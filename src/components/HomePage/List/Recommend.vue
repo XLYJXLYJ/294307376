@@ -7,8 +7,8 @@
                     <p>新年翻福字</p>
                     <span class="game_cat">游戏猫</span>
                     <span class="down"><i class="icon_see"><span>3k</span></i></span>
-                    <span class="down"><i class="icon_love"><span>25</span></i></span>
-                    <span class="down"><i class="icon_star"><span>17</span></i></span>
+                    <span class="down"><i class="icon_love"><span>250</span></i></span>
+                    <span class="down"><i class="icon_star"><span>170</span></i></span>
                 </div>
             </el-col>
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
@@ -17,8 +17,8 @@
                     <p>新年翻福字</p>
                     <span class="game_cat">游戏猫</span>
                     <span class="down"><i class="icon_see"><span>3k</span></i></span>
-                    <span class="down"><i class="icon_love"><span>25</span></i></span>
-                    <span class="down"><i class="icon_star"><span>17</span></i></span></div>
+                    <span class="down"><i class="icon_love"><span>625</span></i></span>
+                    <span class="down"><i class="icon_star"><span>717</span></i></span></div>
             </el-col>
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <div class="grid-content bg-purple list_pic">
@@ -251,7 +251,7 @@
 .list_pic{
     margin-top: 44px;
     height: 220px;
-    width: 150px;
+    width: 140px;
 }
 img{
     border-radius: 8px;
@@ -260,12 +260,14 @@ p{
     font-size: 15px;
     position: relative;
     top: 5px;
+    text-align: left;
     }
 .game_cat{
     display: block;
     font-size: 13px;
     position: relative;
     top: 8px;
+    text-align: left;
 }
 .icon_see{
     background:url(../../../assets/icon_see.png) no-repeat;
@@ -297,8 +299,9 @@ p{
 }
 .down span{
     position: relative;
-    left: 6px;
-    margin-left: 14px;
+    left: 10px;
+    margin-left: 6px;
+    font-style: normal;
 }
 .button:hover{
     background-color: #5bc4ea;

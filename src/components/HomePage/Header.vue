@@ -61,7 +61,7 @@ export default{
 }
 .a_text{
     text-decoration: none;
-    color: #565656;
+    color: #999;
     font-family:"微软雅黑";
 }
 .container04 .router-link-active{
