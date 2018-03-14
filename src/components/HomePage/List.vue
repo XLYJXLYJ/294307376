@@ -12,7 +12,7 @@
     height: auto;
     width: 1000px;
     position: absolute;
-    top: 725px; 
+    top: 745px; 
     left: 24.6%; 
 }
 ul{

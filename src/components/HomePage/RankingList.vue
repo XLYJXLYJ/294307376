@@ -21,8 +21,8 @@
                 <span class="sort_num">3</span>
                 <img src="../../assets/fight.png" alt="">
                 <p>吃鸡吃鸡</p>
-                <span class="icon_see_box"><i class="icon_see" style="background: url(../../assets/icon_see.png) no-repeat;"><span>21225</span></i></span>
-                <span class="icon_see_love"><i class="icon_love" style=" background: url(../../assets/icon_love.png) no-repeat;"><span>8229</span></i></span>
+                <span class="icon_see_box"><i class="icon_see"><span>21225</span></i></span>
+                <span class="icon_see_love"><i class="icon_love"><span>8229</span></i></span>
             </li>
         </ul>
       </div>
@@ -45,7 +45,7 @@
     width: 270px;
     position: absolute;
     left: 1198px;
-    top: 788px;
+    top: 818px;
 }
 .rank_list_top{
     float: left;
@@ -74,14 +74,16 @@
     height: 14px;
     position: relative;
     left: 20px;
+    background: url(../../assets/icon_see.png) no-repeat;
 }
 .icon_see span{
     position: relative;
     left: 6px;
     margin-left: 14px;
+    font-style: normal;
 }
 .icon_love{
-   
+    background: url(../../assets/icon_love.png) no-repeat;
     width: 15px;
     height: 14px;
     position: relative;
@@ -91,6 +93,7 @@
     position: relative;
     left: 6px;
     margin-left: 14px;
+    font-style: normal;
 }
 .icon_see_box{
     height: 12px;

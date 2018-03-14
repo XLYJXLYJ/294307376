@@ -37,6 +37,6 @@ export default{
   background-color: #1e1e1e;
   position: absolute;
   left: 0px;
-  bottom: -843px;
+  bottom: -892px;
 }
 </style>

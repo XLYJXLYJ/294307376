@@ -1,31 +1,63 @@
 <template>
-    <div class="container04">
-        <img class="logo" src="../../assets/logo.png" alt="">  
-        <ul>
-            <li v-for="(item,index) in items" :key="index">
-                <router-link class="a_text" :to="item.url">{{item.context}}</router-link>
-            </li>     
-        </ul> 
-        <img class="make" src="../../assets/make.png" alt="">  
-        <img class="user" src="../../assets/user.png" alt="">
-        <p class="login">登陆/注册</p>     
+    <div>
+        <div class="container04">
+            <img class="logo" src="../../assets/logo.png" alt="">  
+            <ul>
+                <li>
+                    <router-link class="a_text" to="/Home">发现</router-link>
+                </li>    
+                <li>
+                    <router-link class="a_text" to="/Lesson">课程</router-link>
+                </li> 
+                <li>
+                    <a class="a_text" href="https://mofang.qq.com/index/?type=staffpick&pagenum=0&pagesize=40" target="_blank">素材</a>
+                </li> 
+                <li>
+                    <router-link class="a_text" to="/Download">下载</router-link>
+                </li>  
+            </ul> 
+            <img class="make" src="../../assets/make.png" alt="">   
+        </div>
+        <div class="login_sign"> 
+            <img class="user" src="../../assets/user.png" alt="">
+            <el-button class="login" type="text"  @click="dialogFormVisible = true">登陆</el-button>
+            <span class="cut_off_line">/</span>  
+            <p class="sign">注册</p>  
+        </div>
+       
+                <el-dialog :visible.sync="dialogFormVisible" class="dialog_login" >
+                    <Login/>           
+                </el-dialog>   
+      
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
-export default{
-    data(){
-        return {
-            items: [
-                {context:'发现',url:'/Home'},
-                {context:'课程',url:'/Lesson'},
-                {context:'素材',url:'/Material'},
-                {context:'下载',url:'/Download'}   
-            ]
-        }
+import Login from '@/components/Login/Login'
+ export default {
+    data() {
+      return {
+        dialogTableVisible: false,
+        dialogFormVisible: false,
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+        formLabelWidth: '120px'
+      };
+    },
+    components:{
+        Login
     }
-}
+  };
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -94,17 +126,61 @@ export default{
    opacity:0.7;
    cursor:pointer;
 }
+.login_sign{
+     position: absolute;
+     top: 5px;
+     left: 1323px;
+     width: 130px;
+     height: 50px;
+     z-index: 200;
+     border-radius: 10px;
+}
+.login_sign:hover{  
+   background-color: #E3E3E3;
+}
 .user{
     position: absolute;
-    top: 10px;
-    left:1323px;
-    border-radius: 17px;
+    top: 5px;
+    left:5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
 }
 .login{
     display: inline;
     position: absolute;
-    top: 20px;
-    left:1374px;
+    top: 7px;
+    left:49px;
+    font-size: 14px;
+    color: #333333;
+    cursor: pointer;
+}
+.login:hover{
+    text-decoration: underline;
+}
+.dialog{
+    z-index: 200;
+}
+.cut_off_line{
+    position: absolute;
+    top: 19px;
+    left:81px;
+}
+.sign{
+    display: inline;
+    position: absolute;
+    top: 17px;
+    left:89px;
+    font-size: 14px;
+    color: #333333;
+    cursor: pointer;
+}
+.sign:hover{
+    text-decoration: underline;
+}
+.dialog_login{
+    width: 100%;
+    height: 880px;
 }
 
 </style>

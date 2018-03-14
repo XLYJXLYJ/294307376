@@ -9,19 +9,11 @@
         </div>
         <div class="create">
             <div>
-                <a href="www.manykit.com/snap" target="_blank"><div class="creat_stories"><p class="creat_stories_one">创作</p><p class="creat_stories_two">creat_stories</p></div></a>
-                <a href="www.manykit.com/blockly" target="_blank"><div class="box_games"><p class="box_games_one">代码</p><p class="box_games_two">BOX Games</p></div></a>
-                
-                
-            </div>
-            <img class='bg_01' src="../../assets/bg_01.png" alt="">
-            <div class="edit">
-                <img class="expe_img" src="../../assets/experiment.png" alt="">
-                <ul>
-                    <li><img src="../../assets/edit_wood.png" class='wood_img'  alt=""> <p class="big">Wood编辑器</p> <p class="small">强大的Python在线编辑器，一键云端运行，让编程更简单！</p></li>
-                    <li><img src="../../assets/edit_mod.png" class='mod_img' alt=""><p class="big">编程玩Mod编辑器</p><p class="small">动动手指，直达《我的世界》，让编程玩入住多玩盒子，打架能在手机上编程做mod啦</p></li>
-                </ul>
-            </div>
+                <a href="http://www.manykit.com/snap" target="_blank"><div class="creat_snap"><p class="creat_stories_one">积木式编程</p><p class="creat_stories_two">Snap</p></div></a>
+                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat_blocky"><p class="box_games_one">硬件编程</p><p class="box_games_two">Blockly</p></div></a>  
+                <a href="http://www.manykit.com/snap" target="_blank"><div class="creat_phoneix"><p class="creat_phoneix_one">开发引擎</p><p class="creat_phoneix_two">PHONEIX</p></div></a>
+                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat_manykit"><p class="creat_manykit_one">01机器人</p><p class="creat_manykit_two">Manykit</p></div></a>    
+            </div>        
         </div>
     </div>
 </template>
@@ -84,7 +76,7 @@ export default{
       left: 24.6%;
       border-radius: 12px;
   }
-  .creat_stories{
+  .creat_snap{
       height: 216px;
       width: 223px;
       background-color: #ffca32;
@@ -93,36 +85,84 @@ export default{
       left: 24px;
       top:16px;
   }
-  .box_games{
+  .creat_blocky{
       height: 216px;
       width: 223px;
       background-color: #ffca32;
       display: inline-block;
       position: absolute;
-      left: 277px;
+      left: 268px;
+      top:16px;
+  }
+  .creat_phoneix{
+      height: 216px;
+      width: 223px;
+      background-color: #ffca32;
+      display: inline-block;
+      position: absolute;
+      left: 510px;
+      top:16px;
+  }
+  .creat_manykit{
+      height: 216px;
+      width: 223px;
+      background-color: #ffca32;
+      display: inline-block;
+      position: absolute;
+      left: 754px;
       top:16px;
   }
   .create .creat_stories_one{
       position: absolute;
       top:230px;
-      left: 100px;
+      left: 58px;
       font-size: 22px;
+      color: #0e0e0e;
   }
   .create .creat_stories_two{
       position: absolute;
       top:265px;
-      left: 75px;
+      left: 95px;
+      color: #0e0e0e;
   }
  .box_games_one{
       position: absolute;
       top:230px;
-      left: 80px;
+      left: 71px;
       font-size: 22px;
+      color: #0e0e0e;
  }
    .box_games_two{
       position: absolute;
       top:265px;
-      left: 60px;
+      left: 90px;
+      color: #0e0e0e;
+  }
+   .creat_phoneix_one{
+      position: absolute;
+      top:230px;
+      left: 80px;
+      font-size: 22px;
+      color: #0e0e0e;
+ }
+   .creat_phoneix_two{
+      position: absolute;
+      top:265px;
+      left: 88px;
+      color: #0e0e0e;
+  }
+   .creat_manykit_one{
+      position: absolute;
+      top:230px;
+      left: 80px;
+      font-size: 22px;
+      color: #0e0e0e;
+ }
+   .creat_manykit_two{
+      position: absolute;
+      top:265px;
+      left: 94px;
+      color: #0e0e0e;
   }
   .expe_img{
       height: 17px;
@@ -131,39 +171,5 @@ export default{
       top:-50px;
       left: 76px;;
   }
-  .bg_01{
-      position: relative;
-      left: 45px;
-  }
-  .edit{
-      position: absolute;
-      top:67px;
-      left: 604px;
-  }
-  .edit ul{
-      list-style: none;
-      position: absolute;
-      top: -25px;
-      left: 0px;
-  }
-   .edit ul li{
-       height: 72px;
-       margin-top: 33px;
-       height: 72px;
-       width: 355px;
-  }
-  .edit img{
-      float: left;
-      margin-right: 15px;
-  }
   
-   .edit .big{
-      font-size: 18px;
-      text-align: left;
-      margin-bottom: 13px;
-  }
-  .edit .small{
-      font-size: 14px;
-      text-align: left;
-  }
 </style>
