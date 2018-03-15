@@ -20,26 +20,49 @@
         </div>
         <div class="login_sign"> 
             <img class="user" src="../../assets/user.png" alt="">
-            <el-button class="login" type="text"  @click="dialogFormVisible = true">登陆</el-button>
+            <p class="login" type="text"  @click="dialogLogin = true" >登陆</p>   
             <span class="cut_off_line">/</span>  
-            <p class="sign">注册</p>  
+            <p class="sign"  type="text" @click="dialogRegister = true" >注册</p>  
         </div>
-       
-                <el-dialog :visible.sync="dialogFormVisible" class="dialog_login" >
-                    <Login/>           
-                </el-dialog>   
-      
+        <div>
+            <el-row class="block-col-12">
+                <el-col :span="12">
+                    <el-dropdown>
+                    <span  class="el-dropdown-link">
+                        下拉菜单
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <router-link to="/Demo"><el-dropdown-item>作品管理</el-dropdown-item></router-link>
+                        
+                        <el-dropdown-item>社区消息</el-dropdown-item>
+                        <el-dropdown-item>个人中心</el-dropdown-item>
+                        <el-dropdown-item>账号设置</el-dropdown-item>
+                        <el-dropdown-item>退出登陆</el-dropdown-item>
+                    </el-dropdown-menu>
+                    </el-dropdown>
+                </el-col>
+            </el-row>
+        </div>
+
+        <!-- 模态框 -->
+        <el-dialog :visible.sync="dialogLogin" class="dialog_login" width="37%">
+                    <Login/>     
+        </el-dialog> 
+        <el-dialog :visible.sync="dialogRegister" class="dialog_login" width="37%">
+                    <Register/>     
+        </el-dialog>  
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import Login from '@/components/Login/Login'
+import Register from '@/components/Login/Register'
  export default {
     data() {
       return {
-        dialogTableVisible: false,
-        dialogFormVisible: false,
+        dialogLogin: false,
+        dialogRegister: false,
         form: {
           name: '',
           region: '',
@@ -54,7 +77,8 @@ import Login from '@/components/Login/Login'
       };
     },
     components:{
-        Login
+        Login,
+        Register
     }
   };
 
@@ -127,7 +151,7 @@ import Login from '@/components/Login/Login'
    cursor:pointer;
 }
 .login_sign{
-     position: absolute;
+     position: fixed;
      top: 5px;
      left: 1323px;
      width: 130px;
@@ -149,7 +173,7 @@ import Login from '@/components/Login/Login'
 .login{
     display: inline;
     position: absolute;
-    top: 7px;
+    top: 17px;
     left:49px;
     font-size: 14px;
     color: #333333;
@@ -178,9 +202,20 @@ import Login from '@/components/Login/Login'
 .sign:hover{
     text-decoration: underline;
 }
-.dialog_login{
-    width: 100%;
-    height: 880px;
+.block-col-12{
+    position: fixed;
+    left: 1450px;
+    top: 15px;
+    width: 130px;
+    height: 50px;
+    font-size: 24px;
+    /* opacity: 0; */
+    z-index: 200;
+}
+#dropdown-menu-8301{
+    position: fixed;
+    height: 229px;
+    width: 181px;
 }
 
 </style>

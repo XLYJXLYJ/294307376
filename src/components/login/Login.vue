@@ -1,110 +1,161 @@
 <template>
     <div>
-        <div class="container19">
+        <div class="container21">
             <form action="">
                 <img class="welcome" src="../../assets/login/welcome.png" alt="">
                 <img class="sign_logo" src="../../assets/login/login_logo.png" alt="">
-                <input type="text" class="tele" placeholder="手机号码">
+                <input type="text" class="tele" placeholder="请输入手机号码/账号">
                  <input type="text" class="iden01" placeholder="验证码">
                 <button class="iden02">获取验证码</button>
-                <input type="text" class="setpass" placeholder="设置密码">
-                <button class="register">注册</button>
-                <p class="back_login">返回登陆</p>
+                <p class="ap_text">账号密码登陆</p>
+                <button class="register">登陆</button>
+                <div class="free_res"><p>没有账号?</p><span>免费注册</span></div>    
             </form>
         </div>
-        <div class="container20">
+        <div class="container22">
             <p class="three_login">第三方登陆</p>
             <div class="three_qq"> <img src="../../assets/login/qq.png" alt=""><p>QQ</p></div>
             <div class="three_wechat"><img src="../../assets/login/wechat.png" alt=""><P>微信</P></div>   
         </div>
     </div>
 </template>
+<script>
+import Register from '@/components/Login/Register'
+    export default{
+    data() {
+      return {
+        dialogRegister02: false,
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+        formLabelWidth: '120px'
+      };
+    },
+    components:{
+        Register
+    }
+    }
+</script>
 <style scoped>
-.container19{
+.container21{
     margin: 0px;
     padding: 0px;
     width: 100%;
     height: 407px;
-    background: url(../../assets/login/login01_bg.png);
+    background: url(../../assets/login/login01_bg.png) no-repeat;
 }
-.container20{
+.container22{
     margin: 0px;
     padding: 0px;
     width: 100%;
     height: 95px;
     background: #d87632;
 }
-.container19 .welcome{
+.container21 .welcome{
     position: absolute;
-    top: 100px;
-    left: 500px;
+    top: 85px;
+    left: 316px;
 }
-.container19 .sign_logo{
+.container21 .sign_logo{
     position: absolute;
-    top: 100px;
-    left: 700px;
+    top: 85px;
+    left: 520px;
 }
-.container19 .tele{
+.container21 .tele{
     position: absolute;
     height: 48px;
     width: 297px;
-    top: 150px;
-    left: 500px;
+    top: 130px;
+    left: 316px;
     padding-left: 10px;
 }
-.container19 .iden01{
+.container21 .iden01{
     position: absolute;
     height: 48px;
     width: 191px;
-    top: 220px;
-    left: 500px;
+    top: 195px;
+    left: 316px;
     padding-left: 10px;
 }
-.container19 .iden02{
+.container21 .iden02{
     position: absolute;
     height: 52px;
     width: 111px;
-    top: 220px;
-    left: 700px;
+    top: 195px;
+    left: 516px;
     background: #68c5f5;
     color: #fff;
     font-size: 16px;
+    cursor: pointer;
 }
-.container19 .setpass{
+.container21 .ap_text{
     position: absolute;
-    height: 48px;
-    width: 297px;
-    top: 290px;
-    left: 500px;
-    padding-left: 10px;
+    height: 14px;
+    width: 95px;
+    top: 255px;
+    left: 314px;
+    color: #3399CC;
+    font-size: 14px;
+    cursor: pointer;
 }
-.container19 .register{
+.container21 .register{
     position: absolute;
     height: 48px;
     width: 310px;
-    top: 360px;
-    left: 500px;
+    top: 284px;
+    left: 316px;
     background: #fed000;
     color: #fff;
     font-size: 18px;
+    cursor: pointer;
 }
-.container19 .back_login{
+.container21 .free_res p{
     position: absolute;
-    height: 16px;
-    width: 67px;
-    top: 420px;
-    left: 620px;
+    top: 345px;
+    left: 400px;
+    font-size: 16px;
+     color: #000;
+}
+.container21 .free_res span{
+    position: absolute;
+    top: 345px;
+    left: 480px;
     color: #0078d7;
     font-size: 16px;
+    cursor: pointer;
 }
-.three_qq{
+.container22 .three_login{
     position: absolute; 
-    top: 500px;
-    left: 420px;
+    top: 413px;
+    left: 312px;
+    font-size: 16px;
+    color: #fff;
 }
-.three_wechat{
+.container22 .three_qq{
     position: absolute; 
-    top: 500px;
-    left: 510px;
+    top: 440px;
+    left: 277px;
+    cursor: pointer;
 }
+.container22 .three_wechat{
+    position: absolute; 
+    top: 440px;
+    left: 390px;
+    cursor: pointer;
+}
+.container22 .three_qq p{
+    line-height: 10px;
+}
+.container22 .three_wechat p{
+    line-height: 10px;
+}
+
+
 </style>
