@@ -1,7 +1,6 @@
 <template>
     <div>
       <Header/>
-      <h1>Material</h1>
     </div>
 </template>
 

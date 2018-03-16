@@ -33,9 +33,8 @@
                     </span>
                     <el-dropdown-menu slot="dropdown">
                         <router-link to="/Demo"><el-dropdown-item>作品管理</el-dropdown-item></router-link>
-                        
                         <el-dropdown-item>社区消息</el-dropdown-item>
-                        <el-dropdown-item>个人中心</el-dropdown-item>
+                        <router-link to="/User"><el-dropdown-item>个人中心</el-dropdown-item></router-link>              
                         <el-dropdown-item>账号设置</el-dropdown-item>
                         <el-dropdown-item>退出登陆</el-dropdown-item>
                     </el-dropdown-menu>

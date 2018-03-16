@@ -18,7 +18,6 @@
 </template>
 <script>
 import Header from '@/components/HomePage/header'
-
 import Footer from '@/components/HomePage/Footer'
 export default{
     components:{
@@ -75,6 +74,8 @@ export default{
     font-size: 16px;
     color: #fff;
     background: #fcb239;
+    border: none;
+    cursor: pointer;
 }
  .mydemo_frame{
     position: absolute;
@@ -119,7 +120,6 @@ export default{
     height: 2px;
     width: 76px;
     background-color: #FFFBF2;
-    border-radius: 2px; 
-   
+    border-radius: 2px;  
 }
 </style>

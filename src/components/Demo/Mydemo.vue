@@ -6,7 +6,7 @@
         <router-view></router-view>
   </div>
 </template>
-<style>
+<style scoped>
 .container26{
     position: absolute;
     top: 308px;
@@ -23,5 +23,6 @@
     padding: 0px;
     border-radius: 15px;
     cursor: pointer;
+    border: none;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="contain08">
         <div class="container09">
-            <el-carousel :interval="3000" type="card" height="300px" width="580px">
+            <el-carousel :interval="3000" type="card" height="300px">
                 <el-carousel-item v-for="(item,index) in DataImg" :key="index">
                     <img :src="item.url" alt="">
                 </el-carousel-item>
@@ -20,9 +20,9 @@
 <script>
 import Vue from 'vue'
     const DataImg =[
-        {url: '../../assets/img1.png'},
-        {url: '../../assets/img2.png'},
-        {url: '../../assets/img3.png'}   
+        {url: 'https://static.codemao.cn/whitepaw/scrollpic/2018031401.jpg'},
+        {url: 'https://static.codemao.cn/whitepaw/scrollpic/noc.jpg'},
+        {url: 'https://static.codemao.cn/whitepaw/scrollpic/hardware_banner.png'}   
     ]
 export default{
     data(){
@@ -53,16 +53,19 @@ export default{
     opacity: 0.75;
     line-height: 200px;
     margin: 0;
+    width:580px;
   }
   
   .el-carousel__item:nth-child(2n) {
     background-color: #99a9bf;
     margin-top: 25px;
+    width:580px;
   }
   
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
     margin-top: 25px;
+    width:580px;
   }
   .el-carousel__item{
       border-radius: 20px;

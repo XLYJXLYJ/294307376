@@ -4,7 +4,7 @@
 
         </div>
         <div class="container17">
-            <div class="starfish"><img src="../../assets/download/starfish.png" alt=""><p>下载</p></div>
+            <div class="starfish"><img src="../../assets/download/starfish1.png" alt=""><p>下载</p></div>
             <div class="container18">
                 <img class="logo_02" src="../../assets/Lesson/logo_02.png" alt="">
                 <p class="download_text">手机APP端Phoneix</p>

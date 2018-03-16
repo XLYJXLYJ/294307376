@@ -135,6 +135,7 @@
    width: 100%;
    height: 56px;
    margin-top: 20px;
+   cursor: pointer;
 }
 .rank_down{
     position: absolute;
@@ -154,6 +155,7 @@
     margin-top: 24px;
     width: 100%;
     height: auto;
+    cursor: pointer;
 }
 .rank_down p{
     text-align: left;

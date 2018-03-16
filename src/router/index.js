@@ -14,6 +14,12 @@ import Nosend from '@/components/Demo/Nosend'
 import Readysend from '@/components/Demo/Readysend'
 import Mydemo from '@/components/Demo/Mydemo'
 import Delete from '@/components/Demo/Delete'
+import User from '@/components/User'
+import Copassword from '@/components/User/Copassword'
+import Usercenter from '@/components/User/Usercenter'
+import Video from '@/components/Video'
+import Myvideo from '@/components/Video/Myvideo'
+import Lovevideo from '@/components/Video/Lovevideo'
 
 
 Vue.use(Router)
@@ -47,31 +53,44 @@ export default new Router({
       component: Download
     },
     {
+      path: '/Video',
+      name: 'Video',
+      component: Video,
+      children:[
+        {path: '/Myvideo', component: Myvideo},
+        {path: '/Lovevideo', component: Lovevideo},
+        {path: '', component:Myvideo}
+      ]
+    },
+    {
       path: '/Demo',
       name: 'Demo',
       component: Demo,
       children:[
-        { path: '/Mydemo', component: Mydemo,
+        { 
+          path: '', component: All,
+          path: '/Mydemo', component: Mydemo, 
               children:[
                 { path: '/all', component: All},
                 { path: '/Readysend', component: Readysend},
                 { path: '/Nosend', component: Nosend},
-                { path: '', component: All}
+                { path: '/Demo', component: All}
               ]
         },
         { path: '/Delete', component: Delete},
         { path: '', component: Mydemo}
       ]
+    },
+    {
+      path: '/User',
+      name: 'User',
+      component: User,
+      children:[
+        {path: '/Usercenter', component: Usercenter},
+        {path: '/Copassword', component: Copassword},
+        {path: '', component:Usercenter}
+      ]
     }
   ]
-  // {
-  //   path: '/Login',
-  //   name: 'Login',
-  //   component: Login
-  //  },
-  //  {
-  //   path: '/Register',
-  //   name: 'Register',
-  //   component: Register
-  // }
+
 })
