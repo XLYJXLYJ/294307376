@@ -91,6 +91,7 @@
     top: 128px;
     height: 40px;
     width: 147px;
+    cursor: pointer;
 }
 .ios_download{
     position: absolute;
@@ -98,6 +99,7 @@
     top: 128px;
     height: 40px;
     width: 147px;
+    cursor: pointer;
 }
 .qr{
     position: absolute;

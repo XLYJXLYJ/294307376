@@ -4,7 +4,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -16,7 +16,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -28,7 +28,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -40,57 +40,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-        </el-row>
-                <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -104,7 +54,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -116,7 +66,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -128,7 +78,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -140,57 +90,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-        </el-row>
-                <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -204,7 +104,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -216,7 +116,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -228,7 +128,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -240,7 +140,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -254,7 +154,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -266,7 +166,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -278,7 +178,7 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -290,7 +190,107 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/img_mao.png" alt="">
+                        <img src="../../../assets/home/img_mao.png" alt="">
+                        <p>新年翻福字</p>
+                        <span class="game_cat">游戏猫</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                    </div>
+                </router-link>
+            </el-col>
+        </el-row>
+                <el-row :gutter="10">
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <img src="../../../assets/home/img_mao.png" alt="">
+                        <p>新年翻福字</p>
+                        <span class="game_cat">游戏猫</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                    </div>
+                </router-link>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <img src="../../../assets/home/img_mao.png" alt="">
+                        <p>新年翻福字</p>
+                        <span class="game_cat">游戏猫</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                    </div>
+                </router-link>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <img src="../../../assets/home/img_mao.png" alt="">
+                        <p>新年翻福字</p>
+                        <span class="game_cat">游戏猫</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                    </div>
+                </router-link>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <img src="../../../assets/home/img_mao.png" alt="">
+                        <p>新年翻福字</p>
+                        <span class="game_cat">游戏猫</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                    </div>
+                </router-link>
+            </el-col>
+        </el-row>
+                <el-row :gutter="10">
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <img src="../../../assets/home/img_mao.png" alt="">
+                        <p>新年翻福字</p>
+                        <span class="game_cat">游戏猫</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                    </div>
+                </router-link>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <img src="../../../assets/home/img_mao.png" alt="">
+                        <p>新年翻福字</p>
+                        <span class="game_cat">游戏猫</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                    </div>
+                </router-link>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <img src="../../../assets/home/img_mao.png" alt="">
+                        <p>新年翻福字</p>
+                        <span class="game_cat">游戏猫</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                    </div>
+                </router-link>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <img src="../../../assets/home/img_mao.png" alt="">
                         <p>新年翻福字</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
@@ -341,13 +341,13 @@ p{
     color: #707070;
 }
 .icon_see{
-    background:url(../../../assets/icon_see.png) no-repeat;
+    background:url(../../../assets/home/icon_see.png) no-repeat;
 }
 .icon_love{
-    background:url(../../../assets/icon_love.png) no-repeat;
+    background:url(../../../assets/home/icon_love.png) no-repeat;
 }
 .icon_star{
-    background:url(../../../assets/icon_star.png) no-repeat;
+    background:url(../../../assets/home/icon_star.png) no-repeat;
 }
 .button{
     position: relative;

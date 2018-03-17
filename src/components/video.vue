@@ -2,7 +2,6 @@
     <div>
         <Header/>
         <div class="container35">
-            
                 <div class="container36">
                     <div>
                         <p class="one">元宵节猜灯谜</p>
@@ -30,14 +29,12 @@
                 </div>
                 <div class="comment">
                     <div>
-                        <p>作品说明</p>
-                        <span>猜灯谜，闹元宵，欢乐就在编程玩</span>
+                        <p class="explain">作品说明</p>
+                        <span class="explaintext">猜灯谜，闹元宵，欢乐就在编程玩</span>
                     </div>
                     <div>
-                        <img src="" alt="">
-                        <button>分享</button>
-                        <span>or</span>
-                        <i></i><span>扫码在手机上玩</span>
+                        <img class="qrshare" src="../assets/video/qrshare.png" alt="">
+                        <img class="qrsharetext" src="../assets/video/qrsharetext.png" alt="">
                     </div>
                 </div>
                 <div class="mydemo_frame">
@@ -228,5 +225,38 @@ export default{
     background: #fff;
     position: absolute;
     top: 712px;
+}
+.container35 .comment .explain{
+    height: 17px;
+    width:auto;
+    font-size: 18px;
+    color: #43455a;
+    position: absolute;
+    top: 34px;
+    left: 460px;
+}
+.container35 .comment .explaintext{
+    height: 14px;
+    width:auto;
+    font-size: 14px;
+    color: #43455a;
+    position: absolute;
+    top: 66px;
+    left: 460px;
+}
+.container35 .comment .qrshare{
+    width:auto;
+    font-size: 14px;
+    color: #43455a;
+    position: absolute;
+    top: 42px;
+    left: 1180px;
+}
+.container35 .comment .qrsharetext{
+    width:auto;
+    font-size: 14px;
+    position: absolute;
+    top: 42px;
+    left: 1320px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="container03">
-      <img src="../../assets/qr_code.png" alt="">
+      <img src="../../assets/home/qr_code.png" alt="">
       <div class="foot_list_one">
         <ul>
           <li class="big">联系我们</li>
@@ -39,7 +39,7 @@
           <li class="small">深圳许多米科技有限公司/粤ICP备17130138号-1</li>      
         </ul>
       </div>
-      <img class="gov_icon" src="../../assets/govIcon.png" alt="">
+      <img class="gov_icon" src="../../assets/home/govIcon.png" alt="">
     </div>
 </template>
 <style scoped>

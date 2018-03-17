@@ -1,25 +1,25 @@
 <template>
   <div class="container06">
-      <div class="rank_list_top"><img src="../../assets/rank_list.png" alt=""><p>排行版</p></div>
+      <div class="rank_list_top"><img src="../../assets/home/rank_list.png" alt=""><p>排行版</p></div>
       <div class="rank_up">
         <ul>
             <li>
                 <span class="sort_num">1</span>
-                <img src="../../assets/fight.png" alt="">
+                <img src="../../assets/home/fight.png" alt="">
                 <p>精灵战争</p>
                 <span class="icon_see_box"><i class="icon_see"><span>32225</span></i></span>
                 <span class="icon_see_love"><i class="icon_love"><span>6828</span></i></span>
             </li>
              <li>
                 <span class="sort_num">2</span>
-                <img src="../../assets/fight.png" alt="">
+                <img src="../../assets/home/fight.png" alt="">
                 <p>王者荣耀</p>
                 <span class="icon_see_box"><i class="icon_see"><span>32222</span></i></span>
                 <span class="icon_see_love"><i class="icon_love"><span>7428</span></i></span>
             </li>
              <li>
                 <span class="sort_num">3</span>
-                <img src="../../assets/fight.png" alt="">
+                <img src="../../assets/home/fight.png" alt="">
                 <p>吃鸡吃鸡</p>
                 <span class="icon_see_box"><i class="icon_see"><span>21225</span></i></span>
                 <span class="icon_see_love"><i class="icon_love"><span>8229</span></i></span>
@@ -74,7 +74,7 @@
     height: 14px;
     position: relative;
     left: 20px;
-    background: url(../../assets/icon_see.png) no-repeat;
+    background: url(../../assets/home/icon_see.png) no-repeat;
 }
 .icon_see span{
     position: relative;
@@ -83,7 +83,7 @@
     font-style: normal;
 }
 .icon_love{
-    background: url(../../assets/icon_love.png) no-repeat;
+    background: url(../../assets/home/icon_love.png) no-repeat;
     width: 15px;
     height: 14px;
     position: relative;

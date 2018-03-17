@@ -37,7 +37,7 @@ export default{
 .contain08{
     width: 100%;
     height: 553px;
-    background-image: url(../../assets/bg.png);
+    background-image: url(../../assets/home/bg.png);
     background-repeat: no-repeat;
     background-size:1920px 553px;
 }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="container04">
-            <img class="logo" src="../../assets/logo.png" alt="">  
+            <img class="logo" src="../../assets/home/logo.png" alt="">  
             <ul>
                 <li>
                     <router-link class="a_text" to="/Home">发现</router-link>
@@ -16,10 +16,10 @@
                     <router-link class="a_text" to="/Download">下载</router-link>
                 </li>  
             </ul> 
-            <img class="make" src="../../assets/make.png" alt="">   
+            <img class="make" src="../../assets/home/make.png" alt="">   
         </div>
         <div class="login_sign"> 
-            <img class="user" src="../../assets/user.png" alt="">
+            <img class="user" src="../../assets/home/user.png" alt="">
             <p class="login" type="text"  @click="dialogLogin = true" >登陆</p>   
             <span class="cut_off_line">/</span>  
             <p class="sign"  type="text" @click="dialogRegister = true" >注册</p>  
@@ -34,8 +34,8 @@
                     <el-dropdown-menu slot="dropdown">
                         <router-link to="/Demo"><el-dropdown-item>作品管理</el-dropdown-item></router-link>
                         <el-dropdown-item>社区消息</el-dropdown-item>
-                        <router-link to="/User"><el-dropdown-item>个人中心</el-dropdown-item></router-link>              
-                        <el-dropdown-item>账号设置</el-dropdown-item>
+                        <router-link to="/User"><el-dropdown-item>个人中心</el-dropdown-item></router-link>     
+                        <router-link to="/setting"><el-dropdown-item>账号设置</el-dropdown-item></router-link>   
                         <el-dropdown-item>退出登陆</el-dropdown-item>
                     </el-dropdown-menu>
                     </el-dropdown>

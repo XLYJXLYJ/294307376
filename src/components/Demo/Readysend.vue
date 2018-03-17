@@ -152,15 +152,15 @@
   cursor: pointer;
 }
 .container28 .icon_see{
-    background:url(../../assets/icon_see.png) no-repeat;
+    background:url(../../assets/home/icon_see.png) no-repeat;
     padding-right: 10px;
 }
 .container28 .icon_love{
-    background:url(../../assets/icon_love.png) no-repeat;
+    background:url(../../assets/home/icon_love.png) no-repeat;
     padding-right: 10px;
 }
 .container28 .icon_star{
-    background:url(../../assets/icon_star.png) no-repeat;
+    background:url(../../assets/home/icon_star.png) no-repeat;
     padding-right: 10px;
 }
 .container28 .down{

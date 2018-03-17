@@ -15,8 +15,9 @@ import Readysend from '@/components/Demo/Readysend'
 import Mydemo from '@/components/Demo/Mydemo'
 import Delete from '@/components/Demo/Delete'
 import User from '@/components/User'
-import Copassword from '@/components/User/Copassword'
-import Usercenter from '@/components/User/Usercenter'
+import Setting from '@/components/Setting'
+import Copassword from '@/components/Set/Copassword'
+import Usercenter from '@/components/Set/Usercenter'
 import Video from '@/components/Video'
 import Myvideo from '@/components/Video/Myvideo'
 import Lovevideo from '@/components/Video/Lovevideo'
@@ -84,7 +85,12 @@ export default new Router({
     {
       path: '/User',
       name: 'User',
-      component: User,
+      component: User
+    },
+    {
+      path: '/Setting',
+      name: 'Setting',
+      component: Setting,
       children:[
         {path: '/Usercenter', component: Usercenter},
         {path: '/Copassword', component: Copassword},
