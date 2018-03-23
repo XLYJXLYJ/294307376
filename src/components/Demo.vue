@@ -9,8 +9,8 @@
            <button>新建作品</button>
         </div>
         <div class="mydemo_frame">
-        <router-link class="Mydemo" to="/Mydemo">作品</router-link>
-        <router-link class="Delete" to="/Delete">废纸篓</router-link>
+        <router-link class="Mydemo" to="/Demo/Mydemo">作品</router-link>
+        <router-link class="Delete" to="/Demo/Delete">废纸篓</router-link>
         </div>
         <router-view></router-view>
         <Footer/>

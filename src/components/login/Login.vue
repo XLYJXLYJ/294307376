@@ -10,14 +10,14 @@
                 <p class="ap_text">账号密码登陆</p>
                 <button class="register">登陆</button>
                 <div class="free_res"><p>没有账号?</p><span>免费注册</span></div>    
-            </form>
+            </form> 
         </div>
         <div class="container22">
             <p class="three_login">第三方登陆</p>
             <div class="three_qq"> <img src="../../assets/login/qq.png" alt=""><p>QQ</p></div>
             <div class="three_wechat"><img src="../../assets/login/wechat.png" alt=""><P>微信</P></div>   
-        </div>
-    </div>
+        </div> 
+    </div>   
 </template>
 <script>
 import Register from '@/components/Login/Register'

@@ -11,7 +11,7 @@
             <div>
                 <a href="http://www.manykit.com/snap" target="_blank"><div class="creat_snap"><p class="creat_stories_one">积木式编程</p><p class="creat_stories_two">Snap</p></div></a>
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat_blocky"><p class="box_games_one">硬件编程</p><p class="box_games_two">Blockly</p></div></a>  
-                <a href="http://www.manykit.com/snap" target="_blank"><div class="creat_phoneix"><p class="creat_phoneix_one">开发引擎</p><p class="creat_phoneix_two">PHONEIX</p></div></a>
+                <a href="static/logo.png" download="logo.png"><div class="creat_phoneix"><p class="creat_phoneix_one">开发引擎</p><p class="creat_phoneix_two">PHONEIX</p></div></a>
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat_manykit"><p class="creat_manykit_one">01机器人</p><p class="creat_manykit_two">Manykit</p></div></a>    
             </div>        
         </div>

@@ -5,7 +5,7 @@
                 <img class="welcome" src="../../assets/login/welcome.png" alt="">
                 <img class="sign_logo" src="../../assets/login/login_logo.png" alt="">
                 <input type="text" class="tele" placeholder="手机号码">
-                 <input type="text" class="iden01" placeholder="验证码">
+                <input type="text" class="iden01" placeholder="验证码">
                 <button class="iden02">获取验证码</button>
                 <input type="text" class="setpass" placeholder="设置密码">
                 <button class="register">注册</button>
@@ -125,6 +125,4 @@
 .container20 .three_wechat p{
     line-height: 10px;
 }
-
-
 </style>

@@ -21,7 +21,11 @@
                         <span class="buy">已有4人购买</span>
                     </div>
                 </div>
-                <div class="video"></div>
+                <div class="video">
+                    <div>
+                        <!-- <canvas id="world" tabindex="1" style="position: absolute;" /> -->
+                    </div>
+                </div>
                 <div class="videocontrol">
                     <img class="loop" src="../assets/Video/loop.png" alt="">
                     <img class="love02" src="../assets/Video/love.png" alt="">
@@ -38,8 +42,8 @@
                     </div>
                 </div>
                 <div class="mydemo_frame">
-                <router-link class="Myvideo" to="/Myvideo">Ta的作品</router-link>
-                <router-link class="Lovevideo" to="/Lovevideo">推荐作品</router-link>
+                <router-link class="Myvideo" to="/Video/Myvideo">Ta的作品</router-link>
+                <router-link class="Lovevideo" to="/Video/Lovevideo">推荐作品</router-link>
                 </div>
                 <router-view></router-view>     
                 <Footer/>
@@ -50,6 +54,11 @@
 import Header from '@/components/HomePage/header'
 import Footer from '@/components/HomePage/Footer'
 export default{
+    data(){
+        return{
+     
+        }
+    },
     components:{
         Header,
         Footer
@@ -170,7 +179,7 @@ export default{
     position: absolute;
     left: 460px;
     top: 168px;
-    background: blue;
+    /* background: blue; */
     z-index: 2;
 }
 .container35 .videocontrol{

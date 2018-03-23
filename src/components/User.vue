@@ -2,7 +2,7 @@
 <div class="container37">
     <Header/>
     <div class="container38">
-         <Userown/>
+        <Userown/>
         <Usershare/>
         <Usershore/>
         <Userfollow/>
@@ -32,7 +32,7 @@ export default{
 }
 </script>
 <style scoped>
-.container37{
+.container38{
    position: absolute;
     left: 0px;
     top: 60px;

@@ -34,8 +34,8 @@ export default new Router({
       component: Home,
       // redirect:'/List/Recommend',
       children:[
-        { path: '/List/Production', component: Production},
-        { path: '/List/Recommend', component: Recommend},
+        { path: '/Home/Production', component: Production},
+        { path: '/Home/Recommend', component: Recommend},
         { path: '', component: Recommend},
       ]
     }, 
@@ -58,8 +58,8 @@ export default new Router({
       name: 'Video',
       component: Video,
       children:[
-        {path: '/Myvideo', component: Myvideo},
-        {path: '/Lovevideo', component: Lovevideo},
+        {path: '/Video/Myvideo', component: Myvideo},
+        {path: '/Video/Lovevideo', component: Lovevideo},
         {path: '', component:Myvideo}
       ]
     },
@@ -70,15 +70,15 @@ export default new Router({
       children:[
         { 
           path: '', component: All,
-          path: '/Mydemo', component: Mydemo, 
+          path: '/Demo/Mydemo', component: Mydemo, 
               children:[
-                { path: '/all', component: All},
-                { path: '/Readysend', component: Readysend},
-                { path: '/Nosend', component: Nosend},
-                { path: '/Demo', component: All}
+                { path: '/Demo/Mydemo/all', component: All},
+                { path: '/Demo/Mydemo/Readysend', component: Readysend},
+                { path: '/Demo/Mydemo/Nosend', component: Nosend},
+                { path: '/Demo/Mydemo/Demo', component: All}
               ]
         },
-        { path: '/Delete', component: Delete},
+        { path: '/Demo/Delete', component: Delete},
         { path: '', component: Mydemo}
       ]
     },

@@ -1,9 +1,8 @@
 <template>
-<div class="container32">
+<div>
 <Header/>
-    <div class="container31">
-        
-       
+<div class="container32">
+    <div class="container31">  
         <img class="star01" src="../assets/Download/starfish.png" alt="">
         <div class="setaccount">
            <p class="one_text">账号设置</p>
@@ -19,6 +18,7 @@
         <router-view></router-view>     
     </div>   
  <Footer/>
+ </div>
  </div>
 </template>
 <script>

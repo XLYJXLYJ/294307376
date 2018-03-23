@@ -1,8 +1,8 @@
 <template>
   <div class="container05">
       <ul>
-          <li><router-link class="recommend" to="/List/Production">推荐</router-link></li>
-          <li><router-link class="production" to="/List/recommend">作品</router-link></li>
+          <li><router-link class="recommend" to="/Home/Production">推荐</router-link></li>
+          <li><router-link class="production" to="/Home/recommend">作品</router-link></li>
       </ul>
       <router-view></router-view>
   </div>
