@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="con3536">
         <Header/>
         <div class="container35">
-                <div class="container36">
-                    <div>
+            <div class="container36">
+                    <!-- <div>
                         <p class="one">元宵节猜灯谜</p>
                         <p class="two">分享于：2018.03.02</p>
                         <p class="three">已有339次浏览</p>
@@ -20,34 +20,29 @@
                         <button class="buycode">购买代码</button>
                         <span class="buy">已有4人购买</span>
                     </div>
-                </div>
-                <div class="video">
-                    <div>
-                        <!-- <canvas id="world" tabindex="1" style="position: absolute;" /> -->
-                    </div>
-                </div>
-                <div class="videocontrol">
-                    <img class="loop" src="../assets/Video/loop.png" alt="">
-                    <img class="love02" src="../assets/Video/love.png" alt="">
-                    <img class="enlarge" src="../assets/Video/enlarge.png" alt="">
-                </div>
-                <div class="comment">
-                    <div>
-                        <p class="explain">作品说明</p>
-                        <span class="explaintext">猜灯谜，闹元宵，欢乐就在编程玩</span>
-                    </div>
-                    <div>
-                        <img class="qrshare" src="../assets/video/qrshare.png" alt="">
-                        <img class="qrsharetext" src="../assets/video/qrsharetext.png" alt="">
-                    </div>
+                <div>
+                        <iframe class="video" src="static/js/index.html" frameborder="0"></iframe>
                 </div>
                 <div class="mydemo_frame">
                 <router-link class="Myvideo" to="/Video/Myvideo">Ta的作品</router-link>
                 <router-link class="Lovevideo" to="/Video/Lovevideo">推荐作品</router-link>
                 </div>
-                <router-view></router-view>     
-                <Footer/>
-        </div>
+                <router-view></router-view>
+                </div>
+                <div class="comment">
+                    <div class="comment01">
+                        <div>
+                            <p class="explain">作品说明</p>
+                            <span class="explaintext">猜灯谜，闹元宵，欢乐就在编程玩</span>
+                        </div>
+                        <div>
+                            <img class="qrshare" src="../assets/video/qrshare.png" alt="">
+                            <img class="qrsharetext" src="../assets/video/qrsharetext.png" alt="">
+                        </div>
+                    </div> -->
+            </div>
+        </div>         
+        <Footer/>
     </div>
 </template>
 <script>
@@ -66,38 +61,37 @@ export default{
 }
 </script>
 <style>
+.con3536{
+    width: 100%;
+}
 .container35{
-    position: absolute;
-    left: 0px;
-    top: 60px;
+    margin: 0 auto;
     height: 850px;
     width: 100%;
     background: url(../assets/Lesson/Lesson_bg.png) no-repeat;
     z-index: -1;
 }
-.container35 .container03{
+.container35 .container003{
   height: 323px;
   width: 100%;
   background-color: #1e1e1e;
   position: absolute;
   left: 0px;
-  bottom: -367px;
+  bottom: -43.9rem;
 }
 .container35 .container36{
     width: 1000px;
     height: 132px;
-    position: absolute;
-    top: 20px;
-    left: 460px;
-    background: #fff;
-    z-index: -1;
+    margin: 0 auto;  
+    border:2px solid black;
+    z-index: 10;
 }
 .container36 .one{
     height: 25px;
     width: 144px;
     color: #43455a;
     font-size: 24px;
-    position: absolute;
+    position: relative;
     top: 30px;
     left: 30px;
 }
@@ -106,9 +100,9 @@ export default{
     width: auto;
     color: #7b7d8b;
     font-size: 14px;
-    position: absolute;
-    top: 69px;
-    left: 30px;
+    position: relative;
+    top: 42px;
+    left: -400px;
 }
 .container36 .three{
     height: 13px;
@@ -117,7 +111,7 @@ export default{
     font-size: 14px;
     position: absolute;
     top: 90px;
-    left: 30px;
+    left: 220px;
 }
 .container36 .cat01{
     position: absolute;
@@ -174,15 +168,23 @@ export default{
     font-size: 12px;
 }
 .container35 .video{
-    width: 640px;
+    width: 940px;
     height: 480px;
     position: absolute;
-    left: 460px;
-    top: 168px;
-    /* background: blue; */
+    top:167px; 
+    left: 100px;
     z-index: 2;
 }
-.container35 .videocontrol{
+/* .container35 .block01{
+    width: 940px;
+    height: 480px;
+    position: absolute;
+    top:167px; 
+    left: 100px;
+    color: 90ddff;
+    z-index: 2;
+} */
+/* .container35 .videocontrol{
     width: 640px;
     height: 43px;
     position: absolute;
@@ -205,7 +207,7 @@ export default{
     position: absolute;
     left: 599px;
     top: 12px;  
-}
+} */
 .container35  .mydemo_frame{
     position: absolute;
     left: 1114px;
@@ -234,6 +236,9 @@ export default{
     background: #fff;
     position: absolute;
     top: 712px;
+}
+.container35 .comment01{
+    margin: 0 auto;
 }
 .container35 .comment .explain{
     height: 17px;

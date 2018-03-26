@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="headercontainer04">
         <div class="container04">
             <img class="logo" src="../../assets/home/logo.png" alt="">  
             <ul>
@@ -16,9 +16,18 @@
                     <router-link class="a_text" to="/Download">下载</router-link>
                 </li>  
             </ul> 
-            <img class="make" src="../../assets/home/make.png" alt="">   
+            <img class="make" src="../../assets/home/make.png" alt=""> 
+            <div class="login_sign" v-show="loginsign"> 
+                <p class="login" type="text"  @click="dialogLogin = true" >登陆</p>   
+                <span class="cut_off_line">/</span>  
+                <p class="sign"  type="text" @click="dialogRegister = true" >注册</p>  
+            </div>
+            <div class="username" v-show="usercenter"> 
+                <img class="user" src="../../assets/home/user.png" alt="">
+                <p class="login" type="text"  @click="dialogLogin = true" >{{formLogin.username}}</p>   
+            </div>  
         </div>
-        <div class="login_sign" v-show="loginsign"> 
+        <!-- <div class="login_sign" v-show="loginsign"> 
             <p class="login" type="text"  @click="dialogLogin = true" >登陆</p>   
             <span class="cut_off_line">/</span>  
             <p class="sign"  type="text" @click="dialogRegister = true" >注册</p>  
@@ -26,7 +35,7 @@
           <div class="username" v-show="usercenter"> 
             <img class="user" src="../../assets/home/user.png" alt="">
             <p class="login" type="text"  @click="dialogLogin = true" >{{formLogin.username}}</p>   
-        </div>
+        </div> -->
         <div v-show="dropdowm">
             <el-row class="block-col-12">
                 <el-col :span="12">
@@ -356,26 +365,33 @@ import api from '../../public/api';
   .fade-in-linear-leave-active {
     transition: opacity .2s linear;
   } */
+.headercontainer04{
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    top: 0px;
+    left: 0px;
+    background: #fff;
+    z-index: 200;
+}
 .container04{
-    width: 1920px;
+    width: 1000px;
     height:60px;
     background: #fff;
-    position: fixed;
-    left: 0px;
+    margin: 0 auto;
+    position: relative;
     top: 0px;
-    right: 0px;
-    z-index: 100;
 }
 .logo{
     height: auto;
     width: auto;
     position: absolute;
-    left: 487px;
+    left: 2%;
     top: 3px; 
 }
 .container04 ul{
     position: absolute;
-    left: 659px;
+    left: 20%;
     margin-top: 22px; 
 }
 .container04 ul li{
@@ -410,7 +426,7 @@ import api from '../../public/api';
 }
 .make{
     position: absolute;
-    left: 1228px;
+    left: 780px;
     height: 35px;
     width: 85px;
     margin-top: 10px;
@@ -421,9 +437,9 @@ import api from '../../public/api';
    cursor:pointer;
 }
 .login_sign{
-     position: fixed;
+     position: absolute;
      top: 5px;
-     left: 1315px;
+     left: 884px;
      width: 90px;
      height: 50px;
      z-index: 200;
@@ -433,9 +449,9 @@ import api from '../../public/api';
    background-color: #E3E3E3;
 }
 .username .login{
-    position: fixed;
+    position: absolute;
     top: 20px;
-    left:1370px;
+    left:905px;
     width: 40px;
     height: 40px;
     font-size: 16px;
@@ -443,23 +459,13 @@ import api from '../../public/api';
     z-index: 1000;
 }
 .username .user{
-    position: fixed;
+    position: absolute;
     top: 5px;
-    left:1323px;
+    left:854px;
     width: 40px;
     height: 40px;
     background: red;
     border-radius: 20px;
-    z-index: 1000;
-}
-.username .login{
-    position: fix;
-    top: 20px;
-    left:1370px;
-    width: auto;
-    height: 40px;
-    font-size: 16px;
-    font-weight: 600;
     z-index: 1000;
 }
 .login{

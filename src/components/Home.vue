@@ -3,8 +3,6 @@
        <Header/>
        <Swiper/>
        <List/>
-       <Search/>
-       <ranking-list/>
        <Footer/>
     </div>
 </template>
@@ -14,15 +12,11 @@ import Header from '@/components/HomePage/header'
 import Swiper from '@/components/HomePage/swiper'
 import List from '@/components/HomePage/List'
 import Footer from '@/components/HomePage/Footer'
-import RankingList from '@/components/HomePage/RankingList'
-import Search from '@/components/HomePage/Search'
 export default{
     components:{
         Header,
         Swiper,
         List,
-        RankingList,
-        Search,
         Footer
     }
 }
@@ -32,7 +26,13 @@ export default{
 <style scoped>
 .container13{
     width: 100%;
-    height: 100%;
-    background: #fff;
+    /* background: #fff; */
+}
+.container13 .container003{
+    position: absolute;
+    left: 0px;
+    bottom: -142rem;
+    /* bottom: -1940px; */
+    
 }
 </style>

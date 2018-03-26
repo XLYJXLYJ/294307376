@@ -1,28 +1,36 @@
 <template>
   <div class="container05">
+      <Search/>
       <ul>
           <li><router-link class="recommend" to="/Home/Production">推荐</router-link></li>
           <li><router-link class="production" to="/Home/recommend">作品</router-link></li>
       </ul>
       <router-view></router-view>
+      <RankingList/>
   </div>
 </template>
+<script>
+    import RankingList from '@/components/HomePage/RankingList'
+    import Search from '@/components/HomePage/Search'
+    export default{
+        components:{
+        RankingList,
+        Search
+        }
+    }
+  
+</script>
 <style scoped>
 .container05{
-    height: auto;
+    height: 1599px;
     width: 1000px;
-    position: absolute;
-    top: 745px; 
-    left: 24.6%; 
+    margin: 0 auto;
+    margin-top: 152px;
 }
-ul{
+.container05 ul{
     list-style: none;
-    position: absolute;
-    top: 15px;
-    left: 386px; 
- 
 }
-ul li{
+.container05 ul li{
     display: inline;
     position: relative;
     top: 5px;
@@ -30,20 +38,20 @@ ul li{
     font-size: 18px;
     margin-right: 44px;
 }
-.recommend{
+.container05 .recommend{
     color:#5f5f5f;
     text-decoration: none;
 }
-.production{
+.container05 .production{
     color:#5f5f5f;
     text-decoration: none;
 }
-.router-link-active{
+.container05 .router-link-active{
     text-decoration: none;
     border-bottom: 4px solid #fff;  
     position: relative;
 }
-.router-link-active:before {
+.container05 .router-link-active:before {
     content: '';
     position: absolute;
     left: 5px;

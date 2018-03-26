@@ -22,56 +22,55 @@
     position: absolute;
     left: 0px;
     top: 60px;
-    height: 1434px;
+    height: 1634px;
     width: 100%;
-    background: url(../../assets/Lesson/Lesson_bg.png) no-repeat;
+    background: url(../../assets/Lesson/Lesson_bg.png);
     z-index: -1;
 }
 .container10{
     height: 255px;
     width: 1000px;
-    position: absolute;
-    left: 460px;
-    top: 81px;
+    margin: 0 auto;
     background: #fff;
     z-index: 1;  
+    margin-top: 120px;
     border-radius: 10px;
 }
 .logo_02{
-    position: absolute;
-    left: 64px;
-    top: 46px;
+    position: relative;
+    left: -390px;
+    top: 45px;
     height: 86px;
     width: 86px;
 }
 .download_text{
-    position: absolute;
+    position: relative;
     left: 203px;
-    top: 46px;
+    top: -50px;
     height: 21px;
     width: 327px;
     font-size: 20px;
 }
 .download_version{
-    position: absolute;
-    left: 260px;
-    top: 81px;
+    position: relative;
+    left: -183px;
+    top: -37px;
     height: 15px;
     width: 233px;
     font-size: 14px;
     color: #c5c5d3;
 }
 .WindowsDownload{
-    position: absolute;
-    left: 260px;
-    top: 109px;
+    position: relative;
+    left: -241px;
+    top: -25px;
     height: 32px;
     width: 120px;
 }
 .trouble_text_01{
-    position: absolute;
-    left: 403px;
-    top: 119px;
+    position: relative;
+    left: 333px;
+    top: -56px;
     height: 15px;
     width: 150px;
     color: #71cef8;
@@ -81,9 +80,9 @@
     color: #71cef8;
 }
 .trouble_text_02{
-    position: absolute;
-    left: 557px;
-    top: 119px;
+    position: relative;
+    left: 30px;
+    top: -71px;
     height: 15px;
     width: 97px;
     color: #c5c5d3;
@@ -93,9 +92,9 @@
     color: #c5c5d3;
 }
 .qr{
-    position: absolute;
+    position: relative;
     left: 821px;
-    top: 32px;
+    top: -162px;
     height: 113px;
     width: 112px;
     color: #c5c5d3;
@@ -111,17 +110,17 @@
     top: 5px;
 }
 .cut_off{
-    position: absolute;
+    position: relative;
     left: 0px;
-    top: 175px;
+    top: -140px;
     height: 2px;
     width: 1000px;
     background: #f1f1f1;
 }
 .Lesson_01{
-    position: absolute;
-    left: 100px;
-    top: 205px;
+    position: relative;
+    left: 40px;
+    top: -105px;
     height: 16px;
     width: 182px;
     color: #000;

@@ -1,19 +1,18 @@
 <template>
     <div>
         <div class="lesson_bg">
-
-        </div>
-        <div class="container17">
-            <div class="starfish"><img src="../../assets/download/starfish1.png" alt=""><p>下载</p></div>
-            <div class="container18">
-                <img class="logo_02" src="../../assets/Lesson/logo_02.png" alt="">
-                <p class="download_text">手机APP端Phoneix</p>
-                <span class="download_version">随时随地在线学编程，快速成为编程小达人~</span>
-                <div>
-                    <img class="an_download" src="../../assets/download/an_download.png" alt="">
-                    <img class="ios_download" src="../../assets/download/ios_download.png" alt=""> 
+            <div class="container17">
+                <div class="starfish"><img src="../../assets/download/starfish1.png" alt=""><p>下载</p></div>
+                <div class="container18">
+                    <img class="logo_02" src="../../assets/Lesson/logo_02.png" alt="">
+                    <p class="download_text">手机APP端Phoneix</p>
+                    <span class="download_version">随时随地在线学编程，快速成为编程小达人~</span>
+                    <div>
+                        <img class="an_download" src="../../assets/download/an_download.png" alt="">
+                        <img class="ios_download" src="../../assets/download/ios_download.png" alt=""> 
+                    </div>
+                    <div class="qr"><img src="../../assets/download/qr_download.png" alt=""><p>ios/android扫码下载</p></div>
                 </div>
-                <div class="qr"><img src="../../assets/download/qr_download.png" alt=""><p>ios/android扫码下载</p></div>
             </div>
         </div>
     </div>
@@ -24,40 +23,39 @@
     position: absolute;
     left: 0px;
     top: 60px;
-    height: 822px;
+    height: 591px;
     width: 100%;
     background: url(../../assets/Lesson/Lesson_bg.png) no-repeat;
-    z-index: -1;
+    z-index: 1;
 }
 .container17{
     height: 350px;
     width: 1000px;
-    position: absolute;
-    left: 460px;
-    top: 120px;
+    margin: 0 auto;
     background: #fffbf2;
-    z-index: 1;  
+    margin-top: 60px;
+    z-index: 10;  
     border-radius: 10px;
 }
 .container18{
     height: 200px;
     width: 884px;
-    position: absolute;
+    position: relative;
     left: 50px;
-    top: 80px;
+    top: -40px;
     background: #f3efe6;
-    z-index: 1;  
+    z-index: 10;  
     border-radius: 4px;
 }
 .starfish img{
-    position: absolute;
-    left: -12px;
-    top: -36px;
+    position: relative;
+    left: -476px;
+    top: -30px;
 }
 .starfish p{
-    position: absolute;
-    left: 65px;
-    top: 4px;
+    position: relative;
+    left: -410px;
+    top: -68px;
     color: #91121b;
     font-size: 24px;
 }

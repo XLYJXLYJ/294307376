@@ -1,5 +1,5 @@
 <template>
-    <div class="container01">
+    <div class="container02">
         <el-row :gutter="10">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
@@ -304,35 +304,32 @@
     </div>
 </template>
 <style scoped>
-.container01{
+.container02{
     width: 672px;
     height: auto;
-    position: absolute;
-    top: 44px;
-    left: 0px;
 }
-.container01 .routetext{
+.container02 .routetext{
     color:#000;
     text-decoration: none;
 }
-.list_pic{
+.container02 .list_pic{
     margin-top: 44px;
     height: 220px;
     width: 140px;
     cursor: pointer;
     color: #707070;
 }
-img{
+.container02 img{
     border-radius: 8px;
 }
-p{
+.container02 p{
     font-size: 15px;
     position: relative;
     top: 5px;
     text-align: left;
     color:#000;
     }
-.game_cat{
+.container02 .game_cat{
     display: block;
     font-size: 13px;
     position: relative;
@@ -340,16 +337,16 @@ p{
     text-align: left;
     color: #707070;
 }
-.icon_see{
+.container02 .icon_see{
     background:url(../../../assets/home/icon_see.png) no-repeat;
 }
-.icon_love{
+.container02 .icon_love{
     background:url(../../../assets/home/icon_love.png) no-repeat;
 }
-.icon_star{
+.container02 .icon_star{
     background:url(../../../assets/home/icon_star.png) no-repeat;
 }
-.button{
+.container02 .button{
     position: relative;
     top: 46px;
     width: 192px;
@@ -359,7 +356,7 @@ p{
     border: 1px solid #5bc4ea;  
     border-radius: 8px;
 }
-.down{
+.container02 .down{
     font-size: 13px;
     width: 40px;
     height: 14px;
@@ -368,14 +365,14 @@ p{
     left: -8px;
     top: 20px;
 }
-.down span{
+.container02 .down span{
     position: relative;
     left: 10px;
     margin-left: 6px;
     font-style: normal;
     color: #959595;
 }
-.button:hover{
+.container02 .button:hover{
     background-color: #5bc4ea;
     color:#fff;
 }

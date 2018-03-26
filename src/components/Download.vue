@@ -26,12 +26,9 @@ export default{
     height: auto;
     background: #fff;
 }
-.container12 .container03{
-  height: 323px;
-  width: 100%;
-  background-color: #1e1e1e;
+.container12 .container003{
   position: absolute;
   left: 0px;
-  bottom: 0px;
+  bottom: -19rem;
 }
 </style>

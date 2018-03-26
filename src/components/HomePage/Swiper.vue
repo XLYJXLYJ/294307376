@@ -39,13 +39,16 @@ export default{
     height: 553px;
     background-image: url(../../assets/home/bg.png);
     background-repeat: no-repeat;
-    background-size:1920px 553px;
+    background-size:100% 553px;
+    position: relative;
+    top: 0px;
 }
   .container09{
     height: 300px;
     width: 1000px; 
-    position: absolute;
-    left: 24.6%;
+    /* position: absolute;
+    left: 14%; */
+    margin: 0 auto;
   }
   .el-carousel__item h3 {
     color: #475669;
@@ -74,9 +77,12 @@ export default{
       height: 300px;
       width: 1000px;
       background: #fff;
-      position: absolute;
+      /* position: absolute;
       top: 410px;
-      left: 24.6%;
+      left: 14%; */
+      position: relative;
+      top: 51px;
+      margin: 0 auto;
       border-radius: 12px;
   }
   .creat_snap{
@@ -87,6 +93,7 @@ export default{
       position: absolute;
       left: 24px;
       top:16px;
+      margin: 0 auto;
   }
   .creat_blocky{
       height: 216px;

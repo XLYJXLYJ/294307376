@@ -11,9 +11,9 @@
     height: 37px;
     width: 270px;
     border-radius: 15px;
-    position: absolute;
-    left: 1198px;
-    top: 765px;
+    position: relative;
+    left: 710px;
+    top:44px;
     z-index: 1;
 }
 .el-input__icon{

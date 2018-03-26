@@ -29,14 +29,10 @@ export default{
 <style scoped>
 .container14{
     width: 100%;
-    height: 700px;
 }
-.container14 .container03{
-  height: 323px;
-  width: 100%;
-  background-color: #1e1e1e;
+.container14 .container003{
   position: absolute;
   left: 0px;
-  bottom: -892px;
+  bottom: -78rem;
 }
 </style>

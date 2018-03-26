@@ -41,18 +41,18 @@
 </template>
 <style scoped>
 .container06{
-    height: 800px;
+    height: 600px;
     width: 270px;
-    position: absolute;
-    left: 1198px;
-    top: 818px;
+    position: relative;
+    left: 710px;
+    top: -1600px;  
 }
 .rank_list_top{
     float: left;
     height: auto;
     width: 90px;
     position: absolute;
-    top: 25px;
+    top: -48px;
 }
 .rank_up p{
    font-size: 15px;
@@ -139,7 +139,7 @@
 }
 .rank_down{
     position: absolute;
-    top: 300px;
+    top: 240px;
     left: 0px;
     width: 100%;
     height: auto;
