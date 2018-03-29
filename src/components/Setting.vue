@@ -49,7 +49,7 @@ export default{
     height: 657px;
     background:#FFFBF2; 
 }
-.container32 .container03{
+.container32 .container003{
   height: 323px;
   width: 100%;
   background-color: #1e1e1e;

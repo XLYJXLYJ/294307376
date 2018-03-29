@@ -8,9 +8,9 @@
 </template>
 <style scoped>
 .container26{
-    position: absolute;
-    top: 308px;
-    left: 488px;
+    position: relative;
+    top: -600px;
+    left: -320px;
 }
 .container26 button{
     position: relative;

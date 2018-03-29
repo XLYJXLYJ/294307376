@@ -31,44 +31,42 @@ export default{
     position: absolute;
     left: 0px;
     top: 60px;
-    height: 850px;
+    height: 100%;
     width: 100%;
-    background: url(../assets/Lesson/Lesson_bg.png) no-repeat;
+    background: url(../assets/Lesson/Lesson_bg.png);
     z-index: -1;
 }
 .container24{
-    position: absolute;
-    top: 180px;
-    left: 468px;
+    margin: 0 auto;
     width: 1000px;
     height: 700px;
     background:#FFFBF2; 
 }
-.container25 .container03{
+.container25 .container003{
   height: 323px;
   width: 100%;
   background-color: #1e1e1e;
   position: absolute;
   left: 0px;
-  bottom: -308px;
+  bottom: -358px;
 }
 .container25 .star01{
-   position: absolute;
-   left: 453px;
-   top: 146px; 
+   position: relative;
+   left: -463px;
+   top: 44px; 
    z-index: 50;
 }
 .container24 p{
-    position: absolute;
-    top: 27px;
-    left: 48px;
+    position: relative;
+    top: 20px;
+    left: -374px;
     font-size: 18px;
     color: #91121B;
 }
 .container24 button{
-    position: absolute;
+    position: relative;
     top: 27px;
-    left: 839px;
+    left: 339px;
     height: 28px;
     width: 96px;
     font-size: 16px;
@@ -78,10 +76,10 @@ export default{
     cursor: pointer;
 }
  .mydemo_frame{
-    position: absolute;
+    position: relative;
     width: 322px;
     height: 20px;
-    top: 255px;
+    top: -625px;
     left: 468px;
     border-bottom: 2px solid #e6d7b8;
 }

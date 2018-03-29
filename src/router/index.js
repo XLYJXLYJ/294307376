@@ -21,6 +21,7 @@ import Usercenter from '@/components/Set/Usercenter'
 import Video from '@/components/Video'
 import Myvideo from '@/components/Video/Myvideo'
 import Lovevideo from '@/components/Video/Lovevideo'
+import Snap from '@/components/Snap'
 
 
 Vue.use(Router)
@@ -86,6 +87,11 @@ export default new Router({
       path: '/User',
       name: 'User',
       component: User
+    },
+    {
+      path: '/Snap',
+      name: 'Snap',
+      component: Snap
     },
     {
       path: '/Setting',

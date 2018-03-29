@@ -68,7 +68,7 @@ export default{
     margin: 0 auto;
     height: 850px;
     width: 100%;
-    background: url(../assets/Lesson/Lesson_bg.png) no-repeat;
+    background: url(../assets/Lesson/Lesson_bg.png);
     z-index: -1;
 }
 .container35 .container003{

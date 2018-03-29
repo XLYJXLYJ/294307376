@@ -9,7 +9,8 @@
         </div>
         <div class="create">
             <div>
-                <a href="http://www.manykit.com/snap" target="_blank"><div class="creat_snap"><p class="creat_stories_one">积木式编程</p><p class="creat_stories_two">Snap</p></div></a>
+                <router-link to="/snap"><div class="creat_snap"><p class="creat_stories_one">积木式编程</p><p class="creat_stories_two">Snap</p></div></router-link>
+                <!-- <a href="static/snap/index.html" target="_blank"><div class="creat_snap"><p class="creat_stories_one">积木式编程</p><p class="creat_stories_two">Snap</p></div></a> -->
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat_blocky"><p class="box_games_one">硬件编程</p><p class="box_games_two">Blockly</p></div></a>  
                 <a href="static/logo.png" download="logo.png"><div class="creat_phoneix"><p class="creat_phoneix_one">开发引擎</p><p class="creat_phoneix_two">PHONEIX</p></div></a>
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat_manykit"><p class="creat_manykit_one">01机器人</p><p class="creat_manykit_two">Manykit</p></div></a>    
@@ -42,6 +43,7 @@ export default{
     background-size:100% 553px;
     position: relative;
     top: 0px;
+    margin-top: 60px;
 }
   .container09{
     height: 300px;
@@ -88,7 +90,7 @@ export default{
   .creat_snap{
       height: 216px;
       width: 223px;
-      background-color: #ffca32;
+      background:url(../../assets/home/Snap.png) no-repeat;
       display: inline-block;
       position: absolute;
       left: 24px;
@@ -98,7 +100,7 @@ export default{
   .creat_blocky{
       height: 216px;
       width: 223px;
-      background-color: #ffca32;
+      background:url(../../assets/home/Blockly.png) no-repeat;
       display: inline-block;
       position: absolute;
       left: 268px;
@@ -107,7 +109,7 @@ export default{
   .creat_phoneix{
       height: 216px;
       width: 223px;
-      background-color: #ffca32;
+      background:url(../../assets/home/PHOENIXEngine.png) no-repeat;
       display: inline-block;
       position: absolute;
       left: 510px;
@@ -116,7 +118,7 @@ export default{
   .creat_manykit{
       height: 216px;
       width: 223px;
-      background-color: #ffca32;
+      background:url(../../assets/home/Manykit.png) no-repeat;
       display: inline-block;
       position: absolute;
       left: 754px;

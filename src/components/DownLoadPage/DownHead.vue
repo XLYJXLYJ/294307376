@@ -25,7 +25,7 @@
     top: 60px;
     height: 591px;
     width: 100%;
-    background: url(../../assets/Lesson/Lesson_bg.png) no-repeat;
+    background: url(../../assets/Lesson/Lesson_bg.png);
     z-index: 1;
 }
 .container17{

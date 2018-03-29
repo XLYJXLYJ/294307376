@@ -106,8 +106,8 @@ IDE_Morph.uber = Morph.prototype;
 
 IDE_Morph.prototype.setDefaultDesign = function () {
     MorphicPreferences.isFlat = false;
-    SpriteMorph.prototype.paletteColor = new Color(55, 55, 55);
-    SpriteMorph.prototype.paletteTextColor = new Color(230, 230, 230);
+    SpriteMorph.prototype.paletteColor = new Color(255, 255, 255);
+    SpriteMorph.prototype.paletteTextColor = new Color(0, 0, 0);
     StageMorph.prototype.paletteTextColor
         = SpriteMorph.prototype.paletteTextColor;
     StageMorph.prototype.paletteColor = SpriteMorph.prototype.paletteColor;
@@ -121,16 +121,16 @@ IDE_Morph.prototype.setDefaultDesign = function () {
     IDE_Morph.prototype.groupColor
         = SpriteMorph.prototype.paletteColor.lighter(8);
     IDE_Morph.prototype.sliderColor = SpriteMorph.prototype.sliderColor;
-    IDE_Morph.prototype.buttonLabelColor = new Color(255, 255, 255);
+    IDE_Morph.prototype.buttonLabelColor = new Color(0, 0, 0);
     IDE_Morph.prototype.tabColors = [
-        IDE_Morph.prototype.groupColor.darker(40),
-        IDE_Morph.prototype.groupColor.darker(60),
+        IDE_Morph.prototype.groupColor.darker(4),
+        IDE_Morph.prototype.groupColor.darker(6),
         IDE_Morph.prototype.groupColor
     ];
     IDE_Morph.prototype.rotationStyleColors = IDE_Morph.prototype.tabColors;
     IDE_Morph.prototype.appModeColor = new Color();
     IDE_Morph.prototype.scriptsPaneTexture = this.scriptsTexture();
-    IDE_Morph.prototype.padding = 5;
+    IDE_Morph.prototype.padding = 1;
 
     SpriteIconMorph.prototype.labelColor
         = IDE_Morph.prototype.buttonLabelColor;
@@ -145,7 +145,7 @@ IDE_Morph.prototype.setDefaultDesign = function () {
 IDE_Morph.prototype.setFlatDesign = function () {
     MorphicPreferences.isFlat = true;
     SpriteMorph.prototype.paletteColor = new Color(255, 255, 255);
-    SpriteMorph.prototype.paletteTextColor = new Color(70, 70, 70);
+    SpriteMorph.prototype.paletteTextColor = new Color(0, 0, 0);
     StageMorph.prototype.paletteTextColor
         = SpriteMorph.prototype.paletteTextColor;
     StageMorph.prototype.paletteColor = SpriteMorph.prototype.paletteColor;
@@ -157,16 +157,16 @@ IDE_Morph.prototype.setFlatDesign = function () {
 
     IDE_Morph.prototype.groupColor = new Color(230, 230, 230);
     IDE_Morph.prototype.sliderColor = SpriteMorph.prototype.sliderColor;
-    IDE_Morph.prototype.buttonLabelColor = new Color(70, 70, 70);
+    IDE_Morph.prototype.buttonLabelColor = new Color(0, 0, 0);
     IDE_Morph.prototype.tabColors = [
-        IDE_Morph.prototype.groupColor.lighter(60),
-        IDE_Morph.prototype.groupColor.darker(10),
+        IDE_Morph.prototype.groupColor.lighter(0),
+        IDE_Morph.prototype.groupColor.darker(0),
         IDE_Morph.prototype.groupColor
     ];
     IDE_Morph.prototype.rotationStyleColors = [
         IDE_Morph.prototype.groupColor,
-        IDE_Morph.prototype.groupColor.darker(10),
-        IDE_Morph.prototype.groupColor.darker(30)
+        IDE_Morph.prototype.groupColor.darker(0),
+        IDE_Morph.prototype.groupColor.darker(0)
     ];
     IDE_Morph.prototype.appModeColor = IDE_Morph.prototype.frameColor;
     IDE_Morph.prototype.scriptsPaneTexture = null;
@@ -2161,7 +2161,7 @@ IDE_Morph.prototype.refreshIDE = function () {
     }
 };
 
-// IDE_Morph settings persistance
+// IDE_Morph settings persistance申请保存设置
 
 IDE_Morph.prototype.applySavedSettings = function () {
     var design = this.getSetting('design'),
@@ -2458,14 +2458,14 @@ IDE_Morph.prototype.newName = function (name, elements) {
     return newName;
 };
 
-// IDE_Morph deleting scripts
+// IDE_Morph deleting scripts删除脚本
 
 IDE_Morph.prototype.removeBlock = function (aBlock, justThis) {
     this.stage.threads.stopAllForBlock(aBlock);
     aBlock.destroy(justThis);
 };
 
-// IDE_Morph menus
+// IDE_Morph menus导航菜单
 
 IDE_Morph.prototype.userMenu = function () {
     var menu = new MenuMorph(this);
@@ -2524,7 +2524,7 @@ IDE_Morph.prototype.snapMenu = function () {
     }
     menu.popup(world, this.logo.bottomLeft());
 };
-
+// 导航云菜单
 IDE_Morph.prototype.cloudMenu = function () {
     var menu,
         myself = this,
@@ -2661,7 +2661,7 @@ IDE_Morph.prototype.cloudMenu = function () {
     }
     menu.popup(world, pos);
 };
-
+// 导航设置菜单
 IDE_Morph.prototype.settingsMenu = function () {
     var menu,
         stage = this.stage,
@@ -3087,7 +3087,7 @@ IDE_Morph.prototype.settingsMenu = function () {
     );
     menu.popup(world, pos);
 };
-
+//新建项目菜单
 IDE_Morph.prototype.projectMenu = function () {
     var menu,
         myself = this,
@@ -3655,7 +3655,7 @@ IDE_Morph.prototype.aboutSnap = function () {
     dlg.fixLayout();
     dlg.drawNew();
 };
-
+// 编辑项目
 IDE_Morph.prototype.editProjectNotes = function () {
     var dialog = new DialogBoxMorph().withKey('projectNotes'),
         frame = new ScrollFrameMorph(),
@@ -3708,7 +3708,7 @@ IDE_Morph.prototype.editProjectNotes = function () {
     dialog.setCenter(world.center());
     text.edit();
 };
-
+// 新建项目
 IDE_Morph.prototype.newProject = function () {
     this.source = SnapCloud.username ? 'cloud' : 'local';
     if (this.stage) {
@@ -3765,7 +3765,7 @@ IDE_Morph.prototype.saveProject = function (name) {
     ]);
 };
 
-// Serialize a project and save to the browser.
+// Serialize a project and save to the browser.保存到浏览器
 IDE_Morph.prototype.rawSaveProject = function (name) {
     var str;
     if (name) {
@@ -3788,7 +3788,7 @@ IDE_Morph.prototype.rawSaveProject = function (name) {
     }
 };
 
-
+//输出项目
 IDE_Morph.prototype.exportProject = function (name, plain) {
     // Export project XML, saving a file to disk
     // newWindow requests displaying the project in a new tab.
@@ -5382,7 +5382,7 @@ IDE_Morph.prototype.logout = function () {
         }
     );
 };
-
+//保存到服务器
 IDE_Morph.prototype.saveProjectToCloud = function (name) {
     var myself = this;
     if (name) {
@@ -9170,3 +9170,5 @@ SoundRecorderDialogMorph.prototype.destroy = function () {
     }
     SoundRecorderDialogMorph.uber.destroy.call(this);
 };
+
+

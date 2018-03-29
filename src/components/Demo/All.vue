@@ -83,10 +83,13 @@
   </div>
 </template>
 <style scoped>
+.container27 {
+    margin: 0 auto;
+}
 .container27 ul{
-    position: absolute;
-    left: 10px;
-    top: 44px;
+    position: relative;
+    left: 820px;
+    top: 40px;
     height: auto;
     z-index: 100;
     width:950px;

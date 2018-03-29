@@ -17,9 +17,9 @@
 </template>
 <style scoped>
 .container30 ul{
-    position: absolute;
-    left: 501px;
-    top: 303px;
+    position: relative;
+    left: 480px;
+    top: -600px;
     height: auto;
     z-index: 100;
     width:950px;

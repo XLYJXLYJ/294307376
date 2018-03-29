@@ -41,12 +41,12 @@ export default{
     background: url(../assets/Lesson/Lesson_bg.png);
     z-index: -1;
 }
-.container37 .container03{
+.container37 .container003{
   height: 323px;
   width: 100%;
   background-color: #1e1e1e;
   position: absolute;
   left: 0px;
-  bottom: -323px;
+  bottom: -1177px;
 }
 </style>
