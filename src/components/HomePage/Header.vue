@@ -165,7 +165,7 @@ import api from '../../public/api';
             dialogPassSure:false,
             loginsign: true,
             usercenter: false,
-            dropdowm:true,
+            dropdowm:false,
             stata:'',
             resgistermsg:'',
             formLogin: {
