@@ -303,6 +303,21 @@
         <button class="button">查看全部作品</button>
     </div>
 </template>
+<script>
+import Vue from 'vue'
+import axios from 'axios'
+export default{
+    data(){
+        return{
+
+        }
+    },
+    mounted(){
+    },
+    methods:{
+    }
+}
+</script>
 <style scoped>
 .container02{
     width: 672px;

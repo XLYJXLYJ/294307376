@@ -1,99 +1,79 @@
 <template>
-  <div class="container28">
-       <ul>
-         <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>情人节快乐</p>
-                   <span>9分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>5k</span></i></span>
-            <span class="down"><i class="icon_love"><span>5</span></i></span>
-            <span class="down"><i class="icon_star"><span>7</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>情人节快乐</p>
-                   <span>9分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>32k</span></i></span>
-            <span class="down"><i class="icon_love"><span>45</span></i></span>
-            <span class="down"><i class="icon_star"><span>17</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>情人节快乐</p>
-                   <span>9分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>3k</span></i></span>
-            <span class="down"><i class="icon_love"><span>25</span></i></span>
-            <span class="down"><i class="icon_star"><span>17</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>情人节快乐</p>
-                   <span>8分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>7k</span></i></span>
-            <span class="down"><i class="icon_love"><span>25</span></i></span>
-            <span class="down"><i class="icon_star"><span>17</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>情人节快乐</p>
-                   <span>9分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>3k</span></i></span>
-            <span class="down"><i class="icon_love"><span>45</span></i></span>
-            <span class="down"><i class="icon_star"><span>17</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>情人节快乐</p>
-                   <span>9分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>5k</span></i></span>
-            <span class="down"><i class="icon_love"><span>5</span></i></span>
-            <span class="down"><i class="icon_star"><span>173</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-       
-       </ul>  
-  </div>
+    <div class="container28">
+        <ul v-for="item in list" :key='item.id'>
+            <li>
+                <div class="all_up">
+                    <img src="../../assets/all/allpic.png" alt="">
+                    <p>{{item.title}}</p>
+                    <span>9分钟前</span>
+                </div>
+                <button class="button01">修改</button>
+                <button class="button02">加入</button>
+                <span class="down"><i class="icon_see"><span>5k</span></i></span>
+                <span class="down"><i class="icon_love"><span>5</span></i></span>
+                <span class="down"><i class="icon_star"><span>7</span></i></span>
+                <p class="cancelpub" @click="Canpublic(item.id)">取消发布</p>
+            </li>    
+        </ul>  
+    </div>
 </template>
+<script>
+export default{
+    data(){
+        return{
+            list:[]
+        }
+    },
+    mounted: function () {      
+        this.Getalldemo()
+    },
+    methods:{
+        Getalldemo(){
+            this.axios.post('/res/filelist',{
+                userid:0,
+                state:1
+            })
+            .then(response => {
+                this.list=response.data.data[0] 
+            })
+            },
+        Canpublic(id){
+            this.axios.post('/res/dealfile',{
+                    id:id,
+                    // userid:0,
+                    state:6
+                })
+                .then(response => {
+                    this.$message({
+                    message: '取消发布成功，请刷新',
+                    center: true
+                }); 
+                location.reload();
+            })
+        }
+    }
+}
+</script>
 <style scoped>
+.container28 {
+    margin: 0 auto;
+    height: 550px;
+    width: 1000px;
+    position: relative;
+    left: 310px;
+    overflow: auto;
+}
 .container28 ul{
     position: relative;
-    left: 820px;
-    top: 40px;
+    left: 40px;
+    top: 30px;
     height: auto;
     z-index: 100;
-    width:950px;
+    width:auto;
     text-align:left;    
     float: left;
     list-style: none;
+    overflow: hidden;
 }
 .container28 li{
     position: relative;

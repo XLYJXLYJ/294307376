@@ -75,7 +75,7 @@
 	</head>
 	<body style="margin: 0;">
 		<div class="canvasbox01">
-			<div><img src="download.png" alt=""><p onclick="ide.saveProject()">下载</p></div>
+			<div><img src="download.png" alt=""><p onclick="ide.projectMenu()">下载</p></div>
 			<!-- <div class="header01">
 				<div class="headbox">
 					<div class="snapheader">
@@ -168,6 +168,9 @@
 .canvasbox01 img{
 	position: relative;
 	top: 5px;
+	
+	background: red;
+	z-index: 1000;
 }
 .canvasbox01 p{
 	position: relative;

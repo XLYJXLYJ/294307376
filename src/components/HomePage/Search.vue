@@ -1,7 +1,6 @@
 <template>
   <div class="container07">
-        <el-input class="search_input"
-        placeholder="搜索作品">
+        <el-input class="search_input" placeholder="搜索作品">
             <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
   </div>

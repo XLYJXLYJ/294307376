@@ -1,101 +1,64 @@
 <template>
-  <div class="container27">
-       <ul>
-         <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>春节快乐</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>3k</span></i></span>
-            <span class="down"><i class="icon_love"><span>25</span></i></span>
-            <span class="down"><i class="icon_star"><span>17</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>春节快乐</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>3k</span></i></span>
-            <span class="down"><i class="icon_love"><span>25</span></i></span>
-            <span class="down"><i class="icon_star"><span>17</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>春节快乐</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>3k</span></i></span>
-            <span class="down"><i class="icon_love"><span>25</span></i></span>
-            <span class="down"><i class="icon_star"><span>17</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>春节快乐</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>3k</span></i></span>
-            <span class="down"><i class="icon_love"><span>25</span></i></span>
-            <span class="down"><i class="icon_star"><span>17</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>春节快乐</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>3k</span></i></span>
-            <span class="down"><i class="icon_love"><span>25</span></i></span>
-            <span class="down"><i class="icon_star"><span>17</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>春节快乐</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>3k</span></i></span>
-            <span class="down"><i class="icon_love"><span>25</span></i></span>
-            <span class="down"><i class="icon_star"><span>17</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-       </ul>  
-  </div>
+    <div class="container27">
+        <ul v-for="item in list" :key='item.id'>
+            <li>
+                <div class="all_up">
+                    <img src="../../assets/all/allpic.png" alt="">
+                    <p>{{item.title}}</p>
+                    <span>{{item.time}}</span>
+                </div>
+                <button class="button01">修改</button>
+                <button class="button02">加入</button>
+                <span class="down"><i class="icon_see"><span>3k</span></i></span>
+                <span class="down"><i class="icon_love"><span>25</span></i></span>
+                <span class="down"><i class="icon_star"><span>17</span></i></span>
+                <p class="cancelpub">取消发布</p>
+            </li>
+        </ul>  
+    </div>
 </template>
+<script>
+    export default{
+        data(){
+            return{
+                list:[]
+            }
+        },
+        mounted: function () {      
+            this.getalldemo()
+        },
+        methods:{
+            getalldemo(){
+                this.axios.post('/res/filelist',{
+                    userid:0
+                })
+                .then(response => {
+                   this.list=response.data.data[0] 
+                })
+            },
+        }
+    }
+</script>
 <style scoped>
 .container27 {
     margin: 0 auto;
+    height: 550px;
+    width: 1000px;
+    position: relative;
+    left: 310px;
+    overflow: auto;
 }
 .container27 ul{
     position: relative;
-    left: 820px;
-    top: 40px;
+    left: 40px;
+    top: 30px;
     height: auto;
     z-index: 100;
-    width:950px;
+    width:auto;
     text-align:left;    
     float: left;
     list-style: none;
+    overflow: hidden;
 }
 .container27 li{
     position: relative;

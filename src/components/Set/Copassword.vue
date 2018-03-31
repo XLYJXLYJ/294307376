@@ -1,21 +1,21 @@
 <template>
-  <div class="container34">  
-    <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
-        <el-form-item label="旧密码">
-          <el-input class="input01" v-model="formLabelAlign.oldpass"></el-input>
-        </el-form-item>
-        <el-form-item label="新密码">
-          <el-input class="input01" v-model="formLabelAlign.newpass"></el-input>
-        </el-form-item>
-        <el-form-item label="确认密码">
-          <el-input class="input01" v-model="formLabelAlign.conpass"></el-input>
-        </el-form-item>
-        <el-button class="save">确认修改</el-button>
-    </el-form>
-  </div>
+    <div class="container34">  
+          <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+                <el-form-item label="旧密码">
+                  <el-input class="input01" v-model="formLabelAlign.oldpass"></el-input>
+                </el-form-item>
+                <el-form-item label="新密码">
+                  <el-input class="input01" v-model="formLabelAlign.newpass"></el-input>
+                </el-form-item>
+                <el-form-item label="确认密码">
+                  <el-input class="input01" v-model="formLabelAlign.conpass"></el-input>
+                </el-form-item>
+                <el-button class="save">确认修改</el-button>
+          </el-form>
+    </div>
 </template>
 <script>
-    export default {
+  export default {
     data() {
       return {
         labelPosition: 'right',

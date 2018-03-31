@@ -1,10 +1,10 @@
 <template>
-  <div class="container40">
-      <div>
-          <img class="star" src="../../assets/user/starfish.png" alt="">
-          <p class="store">我分享的作品</p>
-          <img class="left" src="../../assets/user/left.png" alt="">
-          <ul class="block">
+    <div class="container40">
+        <div>
+            <img class="star" src="../../assets/user/starfish.png" alt="">
+            <p class="store">我分享的作品</p>
+            <img class="left" src="../../assets/user/left.png" alt="">
+            <ul class="block">
                 <li>
                     <div class="share">
                         <img src="../../assets/user/userdemo.png" alt="">
@@ -12,10 +12,10 @@
                         <span>作者：哇哈哈</span>
                     </div>
                 </li>
-          </ul>
-          <img class="right" src="../../assets/user/right.png" alt="">
-      </div>
-  </div>
+            </ul>
+            <img class="right" src="../../assets/user/right.png" alt="">
+        </div>
+    </div>
 </template>
 <style>
 .container40{

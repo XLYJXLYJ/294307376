@@ -1,99 +1,94 @@
 <template>
-  <div class="container29">
-       <ul>
-         <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>朋友你好</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>36k</span></i></span>
-            <span class="down"><i class="icon_love"><span>265</span></i></span>
-            <span class="down"><i class="icon_star"><span>176</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>朋友你好</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>35k</span></i></span>
-            <span class="down"><i class="icon_love"><span>255</span></i></span>
-            <span class="down"><i class="icon_star"><span>175</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>朋友你好</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>3k4</span></i></span>
-            <span class="down"><i class="icon_love"><span>245</span></i></span>
-            <span class="down"><i class="icon_star"><span>174</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>朋友你好</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>33k</span></i></span>
-            <span class="down"><i class="icon_love"><span>235</span></i></span>
-            <span class="down"><i class="icon_star"><span>137</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>朋友你好</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>32k</span></i></span>
-            <span class="down"><i class="icon_love"><span>225</span></i></span>
-            <span class="down"><i class="icon_star"><span>127</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-             <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>朋友你好</p>
-                   <span>2分钟前</span>
-             </div>
-            <button class="button01">修改</button>
-            <button class="button02">加入</button>
-            <span class="down"><i class="icon_see"><span>31k</span></i></span>
-            <span class="down"><i class="icon_love"><span>215</span></i></span>
-            <span class="down"><i class="icon_star"><span>117</span></i></span>
-            <p class="cancelpub">取消发布</p>
-         </li>
-       
-       </ul>  
-  </div>
+    <div class="container29">
+        <ul v-for="item in title" :key='item.id'>
+            <li>
+                <div class="all_up">
+                    <img src="../../assets/all/allpic.png" alt="">
+                    <p>{{item.title}}</p>
+                    <span>{{item.time}}</span>
+                </div>
+                <button class="button01">修改</button>
+                <button class="button02" @click="publish(item.id)">发布</button>
+                <span class="down"><i class="icon_see"><span>36k</span></i></span>
+                <span class="down"><i class="icon_love"><span>265</span></i></span>
+                <span class="down"><i class="icon_star"><span>176</span></i></span>
+                <p class="cancelpub" @click="deletedemo(item.id)">删除</p>
+            </li>  
+        </ul>  
+    </div>
 </template>
+<script>
+    export default{
+        data(){
+            return{
+                title:[],
+                projectid:''
+            }
+        },
+        mounted: function () {      
+            this.getnosenddemo()
+        },
+        methods:{
+            getnosenddemo(){
+                this.axios.post('/res/filelist',{
+                    userid:0,
+                    state:0
+                })
+                .then(response => {
+                        this.title=response.data.data[0] 
+                    })
+                },
+            publish(id){
+                this.axios.post('/res/dealfile',{
+                    id:id,
+                    // userid:0,
+                    state:3
+                })
+                .then(response => {
+                    this.$message({
+                    message: '发布成功，请刷新',
+                    center: true
+                    }); 
+                    location.reload();
+                })
+            },
+            deletedemo(id){
+                this.axios.post('/res/dealfile',{
+                    id:id,
+                    // userid:0,
+                    state:4
+                })
+                .then(response => {
+                    this.$message({
+                    message: '删除成功，请刷新，如需还原，请到回收站',
+                    center: true
+                    }); 
+                    location.reload();
+                })
+            }
+        }
+    }
+</script>
 <style scoped>
+.container29 {
+    margin: 0 auto;
+    height: 550px;
+    width: 1000px;
+    position: relative;
+    left: 310px;
+    overflow: auto;
+}
 .container29 ul{
     position: relative;
-    left: 820px;
-    top: 40px;
+    left: 40px;
+    top: 30px;
     height: auto;
     z-index: 100;
-    width:950px;
+    width:auto;
     text-align:left;    
     float: left;
     list-style: none;
+    overflow: hidden;
 }
 .container29 li{
     position: relative;
@@ -181,8 +176,8 @@
   color: #666;
   font-size: 14px;
   position: absolute;
-  bottom: 13px;
-  left: 228px;
+  bottom: 15px;
+  left: 254px;
   cursor: pointer;
 }
 </style>

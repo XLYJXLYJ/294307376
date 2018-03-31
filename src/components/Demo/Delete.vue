@@ -1,36 +1,95 @@
 <template>
-  <div class="container30">
-       <ul>
-         <li>
-             <div class="all_up">
-                   <img src="../../assets/all/allpic.png" alt="">
-                   <p>春节快乐</p>
-                   <span class="deltime01">删除时间2018/03/12</span>
-                   <span class="deltime02">上午11：12：51</span>
-             </div>
-            <button class="button01">还原</button>
-            <button class="button02">删除</button>
-         </li>
-   
-       </ul>  
-  </div>
+    <div class="container30">
+        <ul v-for="item in list" :key='item.id'>
+            <li>
+                <div class="all_up">
+                    <img src="../../assets/all/allpic.png" alt="">
+                    <p>{{item.title}}</p>
+                    <span class="deltime01">删除时间2018/03/12</span>
+                    <span class="deltime02">上午11：12：51</span>
+                </div>
+                <button class="button01" @click="restore(item.id)">还原</button>
+                <button class="button02" @click="deletedemo(item.id)">删除</button>
+            </li>
+        </ul>  
+    </div>
 </template>
+<script>
+    export default{
+        data(){
+            return{
+                list:[]
+            }
+        },
+        mounted: function () {      
+            this.getalldemo()
+        },
+        methods:{
+            getalldemo(){
+                this.axios.post('/res/filelist',{
+                    userid:0,
+                    state:2
+                })
+                .then(response => {
+                   console.log(response)
+                   this.list=response.data.data[0] 
+                })
+            },
+            restore(id){
+                this.axios.post('/res/dealfile',{
+                        id:id,
+                        // userid:0,
+                        state:6
+                    })
+                    .then(response => {
+                        this.$message({
+                        message: '还原成功，请刷新',
+                        center: true
+                    }); 
+                })
+            },
+            deletedemo(id){
+                this.axios.post('/res/dealfile',{
+                    id:id,
+                    // userid:0,
+                    state:5
+                })
+                .then(response => {
+                    this.$message({
+                    message: '删除成功,请刷新',
+                    center: true
+                    }); 
+                })
+            }
+        }
+    }
+</script>
 <style scoped>
+.container30 {
+    margin: 0 auto;
+    height: 550px;
+    width: 1000px;
+    position: relative;
+    left: 0px;
+    top:-600px;
+    overflow: auto;
+}
 .container30 ul{
     position: relative;
-    left: 480px;
-    top: -600px;
+    left: 40px;
+    top: 30px;
     height: auto;
     z-index: 100;
-    width:950px;
+    width:auto;
     text-align:left;    
     float: left;
     list-style: none;
+    overflow: hidden;
 }
 .container30 li{
     position: relative;
     left: 0px; 
-    height: 218px;
+    height: 220px;
     z-index: 100;
     width: 299px;
     display: inline-block;
@@ -92,5 +151,4 @@
   border: none;
   cursor: pointer;
 }
-
 </style>

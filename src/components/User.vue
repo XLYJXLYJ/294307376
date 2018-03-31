@@ -33,7 +33,7 @@ export default{
 </script>
 <style scoped>
 .container38{
-   position: absolute;
+    position: absolute;
     left: 0px;
     top: 60px;
     height: 1768px;
@@ -42,11 +42,11 @@ export default{
     z-index: -1;
 }
 .container37 .container003{
-  height: 323px;
-  width: 100%;
-  background-color: #1e1e1e;
-  position: absolute;
-  left: 0px;
-  bottom: -1177px;
+    height: 323px;
+    width: 100%;
+    background-color: #1e1e1e;
+    position: absolute;
+    left: 0px;
+    bottom: -1177px;
 }
 </style>

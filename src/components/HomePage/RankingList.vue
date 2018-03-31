@@ -1,43 +1,43 @@
 <template>
-  <div class="container06">
-      <div class="rank_list_top"><img src="../../assets/home/rank_list.png" alt=""><p>排行版</p></div>
-      <div class="rank_up">
-        <ul>
-            <li>
-                <span class="sort_num">1</span>
-                <img src="../../assets/home/fight.png" alt="">
-                <p>精灵战争</p>
-                <span class="icon_see_box"><i class="icon_see"><span>32225</span></i></span>
-                <span class="icon_see_love"><i class="icon_love"><span>6828</span></i></span>
-            </li>
-             <li>
-                <span class="sort_num">2</span>
-                <img src="../../assets/home/fight.png" alt="">
-                <p>王者荣耀</p>
-                <span class="icon_see_box"><i class="icon_see"><span>32222</span></i></span>
-                <span class="icon_see_love"><i class="icon_love"><span>7428</span></i></span>
-            </li>
-             <li>
-                <span class="sort_num">3</span>
-                <img src="../../assets/home/fight.png" alt="">
-                <p>吃鸡吃鸡</p>
-                <span class="icon_see_box"><i class="icon_see"><span>21225</span></i></span>
-                <span class="icon_see_love"><i class="icon_love"><span>8229</span></i></span>
-            </li>
-        </ul>
-      </div>
-      <div class="rank_down">
-          <ul>
-              <li><span class="sort_num">4</span><p>猛龙过江</p></li>
-              <li><span class="sort_num">5</span><p>QQ堂</p></li>
-              <li><span class="sort_num">6</span><p>神奇女侠</p></li>
-              <li><span class="sort_num">7</span><p>QQ飞车</p></li>
-              <li><span class="sort_num">8</span><p>英雄联盟</p></li>
-              <li><span class="sort_num">9</span><p>三国演义</p></li>
-              <li><span class="sort_num">10</span><p>神雕侠侣</p></li>
-          </ul>
-      </div>
-  </div>
+    <div class="container06">
+        <div class="rank_list_top"><img src="../../assets/home/rank_list.png" alt=""><p>排行版</p></div>
+        <div class="rank_up">
+            <ul>
+                <li>
+                    <span class="sort_num">1</span>
+                    <img src="../../assets/home/fight.png" alt="">
+                    <p>精灵战争</p>
+                    <span class="icon_see_box"><i class="icon_see"><span>32225</span></i></span>
+                    <span class="icon_see_love"><i class="icon_love"><span>6828</span></i></span>
+                </li>
+                <li>
+                    <span class="sort_num">2</span>
+                    <img src="../../assets/home/fight.png" alt="">
+                    <p>王者荣耀</p>
+                    <span class="icon_see_box"><i class="icon_see"><span>32222</span></i></span>
+                    <span class="icon_see_love"><i class="icon_love"><span>7428</span></i></span>
+                </li>
+                <li>
+                    <span class="sort_num">3</span>
+                    <img src="../../assets/home/fight.png" alt="">
+                    <p>吃鸡吃鸡</p>
+                    <span class="icon_see_box"><i class="icon_see"><span>21225</span></i></span>
+                    <span class="icon_see_love"><i class="icon_love"><span>8229</span></i></span>
+                </li>
+            </ul>
+        </div>
+        <div class="rank_down">
+            <ul>
+                <li><span class="sort_num">4</span><p>猛龙过江</p></li>
+                <li><span class="sort_num">5</span><p>QQ堂</p></li>
+                <li><span class="sort_num">6</span><p>神奇女侠</p></li>
+                <li><span class="sort_num">7</span><p>QQ飞车</p></li>
+                <li><span class="sort_num">8</span><p>英雄联盟</p></li>
+                <li><span class="sort_num">9</span><p>三国演义</p></li>
+                <li><span class="sort_num">10</span><p>神雕侠侣</p></li>
+            </ul>
+        </div>
+    </div>
 </template>
 <style scoped>
 .container06{

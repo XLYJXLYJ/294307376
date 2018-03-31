@@ -3,7 +3,7 @@
         <Header/>
         <div class="container35">
             <div class="container36">
-                    <!-- <div>
+                    <div>
                         <p class="one">元宵节猜灯谜</p>
                         <p class="two">分享于：2018.03.02</p>
                         <p class="three">已有339次浏览</p>
@@ -20,6 +20,8 @@
                         <button class="buycode">购买代码</button>
                         <span class="buy">已有4人购买</span>
                     </div>
+            </div>
+            <div class="mydemo_framebox">
                 <div>
                         <iframe class="video" src="static/js/index.html" frameborder="0"></iframe>
                 </div>
@@ -27,9 +29,10 @@
                 <router-link class="Myvideo" to="/Video/Myvideo">Ta的作品</router-link>
                 <router-link class="Lovevideo" to="/Video/Lovevideo">推荐作品</router-link>
                 </div>
-                <router-view></router-view>
-                </div>
-                <div class="comment">
+            </div>
+            <router-view></router-view>    
+            <div class="comment">
+                <div class="commitbox">
                     <div class="comment01">
                         <div>
                             <p class="explain">作品说明</p>
@@ -39,7 +42,8 @@
                             <img class="qrshare" src="../assets/video/qrshare.png" alt="">
                             <img class="qrsharetext" src="../assets/video/qrsharetext.png" alt="">
                         </div>
-                    </div> -->
+                    </div> 
+                </div>
             </div>
         </div>         
         <Footer/>
@@ -63,27 +67,28 @@ export default{
 <style>
 .con3536{
     width: 100%;
+    background: url(../assets/Lesson/Lesson_bg.png);
 }
 .container35{
     margin: 0 auto;
     height: 850px;
-    width: 100%;
-    background: url(../assets/Lesson/Lesson_bg.png);
+    width: 1000PX;
     z-index: -1;
 }
-.container35 .container003{
+.con3536 .container003{
   height: 323px;
   width: 100%;
   background-color: #1e1e1e;
   position: absolute;
   left: 0px;
-  bottom: -43.9rem;
+  bottom: -6.4rem;
 }
 .container35 .container36{
     width: 1000px;
     height: 132px;
-    margin: 0 auto;  
-    border:2px solid black;
+    position: absolute;
+    top: 80px;
+    background: #fff;
     z-index: 10;
 }
 .container36 .one{
@@ -109,9 +114,9 @@ export default{
     width: auto;
     color: #43455A;
     font-size: 14px;
-    position: absolute;
-    top: 90px;
-    left: 220px;
+    position: relative;
+    top: 56px;
+    left: -400px;
 }
 .container36 .cat01{
     position: absolute;
@@ -168,50 +173,25 @@ export default{
     font-size: 12px;
 }
 .container35 .video{
-    width: 940px;
-    height: 480px;
+    width: 623px;
+    height: 524px;
     position: absolute;
-    top:167px; 
-    left: 100px;
+    top:0px; 
+    left: 0px;
     z-index: 2;
 }
-/* .container35 .block01{
-    width: 940px;
-    height: 480px;
-    position: absolute;
-    top:167px; 
-    left: 100px;
-    color: 90ddff;
-    z-index: 2;
-} */
-/* .container35 .videocontrol{
-    width: 640px;
-    height: 43px;
-    position: absolute;
-    left: 460px;
-    top: 648px;
-    background: #fff;
-    z-index: 2;
+.mydemo_framebox{
+    height: 523px;
+    width: 1000px;
+    border: 2px solid red;
+    margin: 0 auto;
+    position: relative;
+    top: 228px;
 }
-.container35 .videocontrol .loop{
-    position: absolute;
-    left: 19px;
-    top: 8px;  
-}
-.container35 .videocontrol .love02{
-    position: absolute;
-    left: 534px;
-    top: 12px;  
-}
-.container35 .videocontrol .enlarge{
-    position: absolute;
-    left: 599px;
-    top: 12px;  
-} */
 .container35  .mydemo_frame{
     position: absolute;
-    left: 1114px;
-    top: 167px;  
+    left: 654px;
+    top: 0px;  
     height: 523px;
     width:345px;
     background:#fff;
@@ -235,10 +215,15 @@ export default{
     height: 182px;
     background: #fff;
     position: absolute;
-    top: 712px;
+    top: 771px;
+    left: 0px;
 }
-.container35 .comment01{
+.container35 .commitbox{
+    width: 1000px;
+    height: 182px;
+    background: #fff;
     margin: 0 auto;
+    position: relative;
 }
 .container35 .comment .explain{
     height: 17px;
@@ -247,7 +232,7 @@ export default{
     color: #43455a;
     position: absolute;
     top: 34px;
-    left: 460px;
+    left: 0px;
 }
 .container35 .comment .explaintext{
     height: 14px;
@@ -256,7 +241,7 @@ export default{
     color: #43455a;
     position: absolute;
     top: 66px;
-    left: 460px;
+    left: 0px;
 }
 .container35 .comment .qrshare{
     width:auto;
@@ -264,13 +249,13 @@ export default{
     color: #43455a;
     position: absolute;
     top: 42px;
-    left: 1180px;
+    left: 720px;
 }
 .container35 .comment .qrsharetext{
     width:auto;
     font-size: 14px;
     position: absolute;
     top: 42px;
-    left: 1320px;
+    left: 860px;
 }
 </style>

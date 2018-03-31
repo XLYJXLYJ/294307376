@@ -307,5 +307,4 @@ import Vue from 'vue'
     color: #ccc;
     font-size: 14px;
 }
-
 </style>

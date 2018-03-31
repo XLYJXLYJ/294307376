@@ -1,20 +1,33 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+ 
+Vue.use(VueAxios, axios)
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-const mutations = {
-    change(state) {
-        state.count = 1
+const state = {
+    userid: 123
+}
+
+const actions = {
+    Getsession (context) {
+      context.commit('Getsession')
     }
 }
 
+const mutations = {
+    Getsession() {
+        // session验证
+        this.axios.get('/res/verify')
+        .then(response =>{
+            state.userid=response.data.data.userid 
+        }) 
+    },
+}
 export default new Vuex.Store({
-    state: {
-        // header导航栏状态
-        headerStatus: 1,
-        //搜索结果
-        searchList: [],
-
-    }
+    state,
+    actions,
+    mutations
 })

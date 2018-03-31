@@ -1,10 +1,10 @@
 <template>
-  <div class="container26">
+    <div class="container26">
         <router-link to="/Demo/Mydemo/All"><button>全部</button></router-link>
         <router-link to="/Demo/Mydemo/Readysend"><button>已发布</button></router-link>
         <router-link to="/Demo/Mydemo/Nosend"><button>未发布</button></router-link>
         <router-view></router-view>
-  </div>
+    </div>
 </template>
 <style scoped>
 .container26{

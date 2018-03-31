@@ -7,13 +7,15 @@
         <div class="container24">
            <p>我的管理中心</p>
            <button>新建作品</button>
-        </div>
         <div class="mydemo_frame">
         <router-link class="Mydemo" to="/Demo/Mydemo">作品</router-link>
         <router-link class="Delete" to="/Demo/Delete">废纸篓</router-link>
         </div>
+        </div>
+        <div class="juzhong">
         <router-view></router-view>
-        <Footer/>
+        </div>
+        <Footer/>  
     </div>   
 </template>
 <script>
@@ -28,6 +30,9 @@ export default{
 </script>
 <style scoped>
 .container25 .lesson_bg{
+    position: relative;
+}
+.container25 .lesson_bg{
     position: absolute;
     left: 0px;
     top: 60px;
@@ -37,6 +42,7 @@ export default{
     z-index: -1;
 }
 .container24{
+    position: relative;
     margin: 0 auto;
     width: 1000px;
     height: 700px;
@@ -49,6 +55,10 @@ export default{
   position: absolute;
   left: 0px;
   bottom: -358px;
+}
+.container25 .juzhong{
+  position: relative;
+  margin: 0 auto;
 }
 .container25 .star01{
    position: relative;
@@ -76,11 +86,11 @@ export default{
     cursor: pointer;
 }
  .mydemo_frame{
-    position: relative;
-    width: 322px;
+    position: absolute;
+    width: 332px;
     height: 20px;
-    top: -625px;
-    left: 468px;
+    top: 54px;
+    left: 48px;
     border-bottom: 2px solid #e6d7b8;
 }
 .Mydemo{

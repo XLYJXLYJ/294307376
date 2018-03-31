@@ -1,16 +1,16 @@
 <template>
-  <div class="container43">
-      <div>
-          <img class="star" src="../../assets/user/starfish.png" alt="">
-          <p class="store">关注我的人</p>
-           <img class="bg02" src="../../assets/user/bg02.png" alt="">
-          <img class="left" src="../../assets/user/left.png" alt="">
-          <ul class="follow">
-         
-          </ul>
-          <img class="right" src="../../assets/user/right.png" alt="">
-      </div>
-  </div>
+    <div class="container43">
+        <div>
+            <img class="star" src="../../assets/user/starfish.png" alt="">
+            <p class="store">关注我的人</p>
+            <img class="bg02" src="../../assets/user/bg02.png" alt="">
+            <img class="left" src="../../assets/user/left.png" alt="">
+            <ul class="follow">
+            
+            </ul>
+            <img class="right" src="../../assets/user/right.png" alt="">
+        </div>
+    </div>
 </template>
 <style>
 .container43{

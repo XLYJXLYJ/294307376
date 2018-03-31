@@ -45,143 +45,137 @@ export default{
     top: 0px;
     margin-top: 60px;
 }
-  .container09{
+.container09{
     height: 300px;
     width: 1000px; 
-    /* position: absolute;
-    left: 14%; */
     margin: 0 auto;
-  }
-  .el-carousel__item h3 {
+}
+.el-carousel__item h3 {
     color: #475669;
     font-size: 14px;
     opacity: 0.75;
     line-height: 200px;
     margin: 0;
     width:580px;
-  }
-  
-  .el-carousel__item:nth-child(2n) {
+}
+
+.el-carousel__item:nth-child(2n) {
     background-color: #99a9bf;
     margin-top: 25px;
     width:580px;
-  }
-  
-  .el-carousel__item:nth-child(2n+1) {
+}
+
+.el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
     margin-top: 25px;
     width:580px;
-  }
-  .el-carousel__item{
-      border-radius: 20px;
-  }
-  .create{
-      height: 300px;
-      width: 1000px;
-      background: #fff;
-      /* position: absolute;
-      top: 410px;
-      left: 14%; */
-      position: relative;
-      top: 51px;
-      margin: 0 auto;
-      border-radius: 12px;
-  }
-  .creat_snap{
-      height: 216px;
-      width: 223px;
-      background:url(../../assets/home/Snap.png) no-repeat;
-      display: inline-block;
-      position: absolute;
-      left: 24px;
-      top:16px;
-      margin: 0 auto;
-  }
-  .creat_blocky{
-      height: 216px;
-      width: 223px;
-      background:url(../../assets/home/Blockly.png) no-repeat;
-      display: inline-block;
-      position: absolute;
-      left: 268px;
-      top:16px;
-  }
-  .creat_phoneix{
-      height: 216px;
-      width: 223px;
-      background:url(../../assets/home/PHOENIXEngine.png) no-repeat;
-      display: inline-block;
-      position: absolute;
-      left: 510px;
-      top:16px;
-  }
-  .creat_manykit{
-      height: 216px;
-      width: 223px;
-      background:url(../../assets/home/Manykit.png) no-repeat;
-      display: inline-block;
-      position: absolute;
-      left: 754px;
-      top:16px;
-  }
-  .create .creat_stories_one{
-      position: absolute;
-      top:230px;
-      left: 58px;
-      font-size: 22px;
-      color: #0e0e0e;
-  }
-  .create .creat_stories_two{
-      position: absolute;
-      top:265px;
-      left: 95px;
-      color: #0e0e0e;
-  }
- .box_games_one{
-      position: absolute;
-      top:230px;
-      left: 71px;
-      font-size: 22px;
-      color: #0e0e0e;
- }
-   .box_games_two{
-      position: absolute;
-      top:265px;
-      left: 90px;
-      color: #0e0e0e;
-  }
-   .creat_phoneix_one{
-      position: absolute;
-      top:230px;
-      left: 80px;
-      font-size: 22px;
-      color: #0e0e0e;
- }
-   .creat_phoneix_two{
-      position: absolute;
-      top:265px;
-      left: 88px;
-      color: #0e0e0e;
-  }
-   .creat_manykit_one{
-      position: absolute;
-      top:230px;
-      left: 80px;
-      font-size: 22px;
-      color: #0e0e0e;
- }
-   .creat_manykit_two{
-      position: absolute;
-      top:265px;
-      left: 94px;
-      color: #0e0e0e;
-  }
-  .expe_img{
-      height: 17px;
-      width: 175px;
-      position: absolute;
-      top:-50px;
-      left: 76px;;
-  }
-  
+}
+.el-carousel__item{
+    border-radius: 20px;
+}
+.create{
+    height: 300px;
+    width: 1000px;
+    background: #fff;
+    position: relative;
+    top: 51px;
+    margin: 0 auto;
+    border-radius: 12px;
+}
+.creat_snap{
+    height: 216px;
+    width: 223px;
+    background:url(../../assets/home/Snap.png) no-repeat;
+    display: inline-block;
+    position: absolute;
+    left: 24px;
+    top:16px;
+    margin: 0 auto;
+}
+.creat_blocky{
+    height: 216px;
+    width: 223px;
+    background:url(../../assets/home/Blockly.png) no-repeat;
+    display: inline-block;
+    position: absolute;
+    left: 268px;
+    top:16px;
+}
+.creat_phoneix{
+    height: 216px;
+    width: 223px;
+    background:url(../../assets/home/PHOENIXEngine.png) no-repeat;
+    display: inline-block;
+    position: absolute;
+    left: 510px;
+    top:16px;
+}
+.creat_manykit{
+    height: 216px;
+    width: 223px;
+    background:url(../../assets/home/Manykit.png) no-repeat;
+    display: inline-block;
+    position: absolute;
+    left: 754px;
+    top:16px;
+}
+.create .creat_stories_one{
+    position: absolute;
+    top:230px;
+    left: 58px;
+    font-size: 22px;
+    color: #0e0e0e;
+}
+.create .creat_stories_two{
+    position: absolute;
+    top:265px;
+    left: 95px;
+    color: #0e0e0e;
+}
+.box_games_one{
+    position: absolute;
+    top:230px;
+    left: 71px;
+    font-size: 22px;
+    color: #0e0e0e;
+}
+.box_games_two{
+    position: absolute;
+    top:265px;
+    left: 90px;
+    color: #0e0e0e;
+}
+.creat_phoneix_one{
+    position: absolute;
+    top:230px;
+    left: 80px;
+    font-size: 22px;
+    color: #0e0e0e;
+}
+.creat_phoneix_two{
+    position: absolute;
+    top:265px;
+    left: 88px;
+    color: #0e0e0e;
+}
+.creat_manykit_one{
+    position: absolute;
+    top:230px;
+    left: 80px;
+    font-size: 22px;
+    color: #0e0e0e;
+}
+.creat_manykit_two{
+    position: absolute;
+    top:265px;
+    left: 94px;
+    color: #0e0e0e;
+}
+.expe_img{
+    height: 17px;
+    width: 175px;
+    position: absolute;
+    top:-50px;
+    left: 76px;;
+}
 </style>

@@ -6,8 +6,6 @@ import Material from '@/components/Material'
 import Download from '@/components/Download'
 import Production from '@/components/HomePage/List/Production'
 import Recommend from '@/components/HomePage/List/Recommend'
-import Login from '@/components/Login/Login'
-import Register from '@/components/Login/Register'
 import Demo from '@/components/Demo'
 import All from '@/components/Demo/All'
 import Nosend from '@/components/Demo/Nosend'
@@ -49,7 +47,8 @@ export default new Router({
       path: '/Material',
       name: 'Material',
       component: Material
-    }, {
+    }, 
+    {
       path: '/Download',
       name: 'Download',
       component: Download
@@ -104,5 +103,4 @@ export default new Router({
       ]
     }
   ]
-
 })

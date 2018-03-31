@@ -2,12 +2,12 @@
     <div>
         <div class="snapboxhead">
             <div class="snapheader">
-                <!-- <ul class="snapheaderleft">
+                <ul class="snapheaderleft">
                     <li class="bcw"><img src="../assets/snappic/home.png" alt=""><p><a href="/"> 编程玩</a></p></li>
                     <li class="borderlight"><img src="../assets/snappic/new.png" alt=""><p onclick="ide.createNewProject()">新建</p></li>
                     <li class="borderlight"  @click="dialogSave = true"><img src="../assets/snappic/save.png" alt="" ><p>保存</p></li>
-                    <li class="borderlight" ><img src="../assets/snappic/upload.png" alt="" ><p>发布</p></li>
-                </ul> -->
+                    <li class="borderlight" ><img src="../assets/snappic/upload.png" alt="" ><p @click="www">发布</p></li>
+                </ul>
             </div>
         </div>
         <!-- <Header/> -->
@@ -24,7 +24,7 @@
                                 <el-input type="text" v-model="formSave.userid" auto-complete="off" placeholder="请输入用户名"></el-input>
                             </el-form-item>
                             <el-form-item class="iden01">
-                                <el-input type="text" v-model="formSave.filename" auto-complete="off" placeholder="请输入项目名称"></el-input>
+                                <el-input type="text" v-model="formSave.title" auto-complete="off" placeholder="请输入项目名称"></el-input>
                             </el-form-item>
                             <el-form-item  class="iden02">
                                 <el-input type="text" v-model="formSave.filedesc" auto-complete="off" placeholder="请输入项目描述"></el-input>
@@ -43,9 +43,7 @@
                                 <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
                                 <div slot="tip" class="el-upload__tip">只能上传xml文件，且不超过10M</div>
                                 </el-upload>
-                                <!-- <el-input type="file" v-model="formSave.file" auto-complete="off" @change="getFile($event)" placeholder="请选择需要保存的文件"></el-input> -->
                             </el-form-item>
-                            <!-- <el-button type="primary" class="register" @click="submitForm">保存</el-button> -->
                         </el-form>
                     </div>
                 </el-dialog>
@@ -56,13 +54,14 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
+
 export default{
     data(){
         return{
             dialogSave: false,
             formSave: {
                 userid:'',
-                filename: '',
+                title: '',
                 filedesc: '',
                 file: '',
             },
@@ -92,34 +91,20 @@ export default{
     },
    
     methods: {
-    submitUpload() {
-        this.$refs.upload.submit();
+        submitUpload() {
+            this.$refs.upload.submit();
+        },
+        uploadSuccess (response, file, fileList) {
+                console.log('上传文件', response)
+        },
+        handleRemove(file, fileList) {
+            console.log(file, fileList);
+        },
+        handlePreview(file) {
+            console.log(file);
+        }
     },
-    uploadSuccess (response, file, fileList) {
-            console.log('上传文件', response)
-    },
-    handleRemove(file, fileList) {
-        console.log(file, fileList);
-    },
-    handlePreview(file) {
-        console.log(file);
-    }
-},
-        // Savebtn() {
-        //     this.axios.post('/res/upload', {
-        //         userid:this.formSave.userid,
-        //         name:this.formSave.filename,
-        //         desc:this.formSave.filedesc,
-        //         file:this.formSave.file,
-        //     })
-        //     .then(response => {
-        //         console.log(response)
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-        // }
-     }
+}
 
 </script>
 <style scoped>
@@ -198,11 +183,6 @@ export default{
     left: 60px;
     padding-left: 10px;
 }
-/* .container19 .el-form-item__error{
-    position: absolute;
-    top: 110px;
-    left: 60px;
-} */
 .container50 .iden01{
     position: absolute;
     height: 49px;

@@ -16,7 +16,6 @@
             </div>
         </div>
     </div>
- 
 </template>
 <style scoped>
 .lesson_bg{

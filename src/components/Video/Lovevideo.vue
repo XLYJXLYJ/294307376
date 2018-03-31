@@ -16,9 +16,9 @@
 .container38{
     height: auto;
     width: 270px;
-    position: absolute;
-    left:1140px;
-    top: 233px;
+    position: relative;
+    left:681px;
+    top: -241px;
 }
 .container38 .jinglin{
     position: absolute;

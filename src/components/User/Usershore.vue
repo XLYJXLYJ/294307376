@@ -1,35 +1,35 @@
 <template>
-  <div class="container41">
-      <div>
-          <img class="star" src="../../assets/user/starfish.png" alt="">
-          <p class="store">我收藏的作品</p>
-          <img class="left" src="../../assets/user/left.png" alt="">
-          <ul class="block">
-                <li>
-                    <div class="share">
-                        <img src="../../assets/user/userdemo.png" alt="">
-                        <p>三只小熊</p>
-                        <span>作者：哇哈哈</span>
-                    </div>
-                </li>
-                  <li>
-                    <div class="share">
-                        <img src="../../assets/user/userdemo.png" alt="">
-                        <p>快乐的小青蛙</p>
-                        <span>作者：：李永健</span>
-                    </div>
-                </li>
-                  <li>
-                    <div class="share">
-                        <img src="../../assets/user/userdemo.png" alt="">
-                        <p>快乐的小青蛙</p>
-                        <span>作者：：李永健</span>
-                    </div>
-                </li>
-          </ul>
-          <img class="right" src="../../assets/user/right.png" alt="">
-      </div>
-  </div>
+    <div class="container41">
+        <div>
+            <img class="star" src="../../assets/user/starfish.png" alt="">
+            <p class="store">我收藏的作品</p>
+            <img class="left" src="../../assets/user/left.png" alt="">
+            <ul class="block">
+                    <li>
+                        <div class="share">
+                            <img src="../../assets/user/userdemo.png" alt="">
+                            <p>三只小熊</p>
+                            <span>作者：哇哈哈</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="share">
+                            <img src="../../assets/user/userdemo.png" alt="">
+                            <p>快乐的小青蛙</p>
+                            <span>作者：：李永健</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="share">
+                            <img src="../../assets/user/userdemo.png" alt="">
+                            <p>快乐的小青蛙</p>
+                            <span>作者：：李永健</span>
+                        </div>
+                    </li>
+            </ul>
+            <img class="right" src="../../assets/user/right.png" alt="">
+        </div>
+    </div>
 </template>
 <style>
 .container41{

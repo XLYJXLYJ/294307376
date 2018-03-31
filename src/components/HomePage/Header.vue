@@ -24,18 +24,9 @@
             </div>
             <div class="username" v-show="usercenter"> 
                 <img class="user" src="../../assets/home/user.png" alt="">
-                <p class="login" type="text"  @click="dialogLogin = true" >{{formLogin.username}}</p>   
+                <p class="login" type="text"  @click="dialogLogin = true" >{{formLogin.username01}}</p>   
             </div>  
         </div>
-        <!-- <div class="login_sign" v-show="loginsign"> 
-            <p class="login" type="text"  @click="dialogLogin = true" >登陆</p>   
-            <span class="cut_off_line">/</span>  
-            <p class="sign"  type="text" @click="dialogRegister = true" >注册</p>  
-        </div>
-          <div class="username" v-show="usercenter"> 
-            <img class="user" src="../../assets/home/user.png" alt="">
-            <p class="login" type="text"  @click="dialogLogin = true" >{{formLogin.username}}</p>   
-        </div> -->
         <div v-show="dropdowm">
             <el-row class="block-col-12">
                 <el-col :span="12">
@@ -48,7 +39,7 @@
                         <el-dropdown-item>社区消息</el-dropdown-item>
                         <router-link to="/User"><el-dropdown-item>个人中心</el-dropdown-item></router-link>     
                         <router-link to="/setting"><el-dropdown-item>账号设置</el-dropdown-item></router-link>   
-                        <el-dropdown-item>退出登陆</el-dropdown-item>
+                        <el-dropdown-item><p @click="Cancellogout">退出登陆</p></el-dropdown-item>
                     </el-dropdown-menu>
                     </el-dropdown>
                 </el-col>
@@ -133,8 +124,8 @@
                     <form action="">
                         <img class="welcome" src="../../assets/login/welcome.png" alt="">
                         <img class="sign_logo" src="../../assets/login/login_logo.png" alt="">
-                        <input type="text" v-model="formReset.password" class="tele" placeholder="输入密码">
-                        <input type="text" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
+                        <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
+                        <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
                         <button class="register" @click="Getuserpassbtn">确认</button>
                     </form> 
                 </div>
@@ -147,9 +138,9 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
-import func from '../../public/func';
-import api from '../../public/api';
- export default {
+import { mapGetters,mapActions} from 'vuex'
+
+export default {
     data() {
         return {
             dynamicValidateForm: {
@@ -170,6 +161,7 @@ import api from '../../public/api';
             resgistermsg:'',
             formLogin: {
                 username: '',
+                username01:'',
                 password: '',
             },
             formRegister: {
@@ -210,8 +202,12 @@ import api from '../../public/api';
             },
         };
     },
-         
-        methods: {
+    created:function() {
+        this.Getsession()
+    }, 
+    methods: {
+        // ...mapActions(['Getsession']),
+            //登陆
         Loginbtn() {
             this.axios.post('/res/login', {
                 username:this.formLogin.username,
@@ -228,16 +224,18 @@ import api from '../../public/api';
                     });
                     break;
                     case 1:
-                    this.dialogLogin = false;
+                    this.dialogLogin = false,
                     this.loginsign = false,
                     this.usercenter = true,
                     this.dropdowm = true,
-                    // sessionStorage.userName = this.formLogin.username;
-                    // this.userName = sessionStorage.userName;
+                    // this.$store.dispatch('getAllProducts')
+                    // location.reload(); 
                     this.$message({
                         message: '登陆成功',
-                        center: true
+                        center: true,
                     });
+                    
+                    
                     break;
                     case 2:
                     this.$message({
@@ -256,12 +254,13 @@ import api from '../../public/api';
                 console.log(error);
             });
         },
+        // 注册
         Registerbtn() {
             if( this.formRegister.password!==this.formRegister.checkpassword||this.formRegister.password.length<6||this.formRegister.checkpassword.length<6||this.formRegister.username.length<3||this.formRegister.username.length>10||this.formRegister.mail.length<9){
-                 this.$message({
+                    this.$message({
                     message: '请根据提示输入相应的内容',
                     center: true
-                 });
+                    });
             }
             else
             {    
@@ -283,12 +282,13 @@ import api from '../../public/api';
                 });
             }
         },
+        //获取验证码
         Getcodebtn() {
             if(this.formReset.mail.length<9){
-                 this.$message({
+                    this.$message({
                     message: '请根据提示输入相应的内容',
                     center: true
-                 });
+                    });
             }
             else
             {    
@@ -300,32 +300,34 @@ import api from '../../public/api';
                     this.$message({
                     message: response.data.data.msg,
                     center: true
-                 });
+                    });
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
             }
         },
+        //获取用户验证码
         Getusercodebtn() {
             this.axios.post('/res/checkcode',{
-                 code:this.formReset.code,
-                 mail:this.formReset.mail
+                    code:this.formReset.code,
+                    mail:this.formReset.mail
             })
             .then(response => {
-                   this.$message({
+                    this.$message({
                     message: response.data.data.msg,
                     center: true
-                 });
-                 if(response.data.data.state==1){
+                    });
+                    if(response.data.data.state==1){
                     this.dialogPassSure = true
                     this.dialogForgetpass = false
-                 }   
+                    }   
             })
             .catch(function (error) {
                 console.log(error);
             });
         },
+        // 修改密码
         Getuserpassbtn() {
             if(this.formReset.password!==this.formReset.checkpassword||this.formReset.password<6||this.formReset.checkpassword<6){
                 this.$message({
@@ -334,37 +336,50 @@ import api from '../../public/api';
                 });
             }else{
                 this.axios.post('/res/setpassword',{
-                 password:this.formReset.password,
-                 mail:this.formReset.mail
+                    password:this.formReset.password,
+                    mail:this.formReset.mail
             })
             .then(response => {
-                console.log(response)
                 this.dialogPassSure = false
                 this.$message({
                     message: '修改密码成功',
                     center: true
-                 }); 
+                    }); 
             })
             .catch(function (error) {
                 console.log(error);
             });
-            }
-            
-        
-        }    
+            }     
+        },
+        //session验证登陆
+        Getsession() {
+            // session验证
+            this.axios.get('/res/verify')
+            .then(response =>{
+                this.formLogin.username01=response.data.data.username
+                this.dialogLogin = false;
+                this.loginsign = false;
+                this.usercenter = true;
+                this.dropdowm = true;  
+            }) 
+        },
+        //取消登陆
+        Cancellogout() {
+            // 退出登陆
+            this.axios.get('/res/logout')
+            .then(response =>{  
+                this.loginsign = true;
+                this.usercenter = false;
+                this.dropdowm = false;     
+            }) 
+        }
     }
-  };
+};
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* .el-fade-in-linear-enter-active,
-  .el-fade-in-linear-leave-active,
-  .fade-in-linear-enter-active,
-  .fade-in-linear-leave-active {
-    transition: opacity .2s linear;
-  } */
 .headercontainer04{
     position: fixed;
     width: 100%;
@@ -451,8 +466,8 @@ import api from '../../public/api';
 .username .login{
     position: absolute;
     top: 20px;
-    left:905px;
-    width: 40px;
+    left:915px;
+    width: auto;
     height: 40px;
     font-size: 16px;
     font-weight: 600;
@@ -461,7 +476,7 @@ import api from '../../public/api';
 .username .user{
     position: absolute;
     top: 5px;
-    left:854px;
+    left:870px;
     width: 40px;
     height: 40px;
     background: red;
@@ -656,11 +671,6 @@ import api from '../../public/api';
     left: 60px;
     padding-left: 10px;
 }
-/* .container19 .el-form-item__error{
-    position: absolute;
-    top: 110px;
-    left: 60px;
-} */
 .container19 .iden01{
     position: absolute;
     height: 49px;
@@ -789,5 +799,4 @@ import api from '../../public/api';
     font-size: 15px;
     cursor: pointer;
 }
-
 </style>
