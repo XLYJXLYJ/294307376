@@ -1,8 +1,8 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
- 
+import Vuex from 'vuex'
+
 Vue.use(VueAxios, axios)
 
 Vue.use(Vuex);

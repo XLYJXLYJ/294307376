@@ -4,7 +4,7 @@
             <img class="logo" src="../../assets/home/logo.png" alt="">  
             <ul>
                 <li>
-                    <router-link class="a_text" to="/Home">发现</router-link>
+                    <router-link class="a_text" to="/Home">首页</router-link>
                 </li>    
                 <li>
                     <router-link class="a_text" to="/Lesson">课程</router-link>
@@ -24,7 +24,7 @@
             </div>
             <div class="username" v-show="usercenter"> 
                 <img class="user" src="../../assets/home/user.png" alt="">
-                <p class="login" type="text"  @click="dialogLogin = true" >{{formLogin.username01}}</p>   
+                <p class="login" type="text"  @click="dialogLogin = true" >{{$store.state.userid}}}</p>   
             </div>  
         </div>
         <div v-show="dropdowm">
@@ -156,7 +156,7 @@ export default {
             dialogPassSure:false,
             loginsign: true,
             usercenter: false,
-            dropdowm:false,
+            dropdowm:true,
             stata:'',
             resgistermsg:'',
             formLogin: {
@@ -206,7 +206,7 @@ export default {
         this.Getsession()
     }, 
     methods: {
-        // ...mapActions(['Getsession']),
+        ...mapActions(['Getsession']),   
             //登陆
         Loginbtn() {
             this.axios.post('/res/login', {
@@ -228,14 +228,13 @@ export default {
                     this.loginsign = false,
                     this.usercenter = true,
                     this.dropdowm = true,
-                    // this.$store.dispatch('getAllProducts')
-                    // location.reload(); 
+                    // this.$store.dispatch('Getsession')
+                    location.reload(); 
                     this.$message({
                         message: '登陆成功',
                         center: true,
-                    });
-                    
-                    
+                    });        
+                    this.$store.dispatch('Getsession')
                     break;
                     case 2:
                     this.$message({
@@ -516,8 +515,8 @@ export default {
     text-decoration: underline;
 }
 .block-col-12{
-    position: fixed;
-    left: 1350px;
+    position: absolute;
+    left: 72%;
     top: 15px;
     width: 130px;
     height: 50px;

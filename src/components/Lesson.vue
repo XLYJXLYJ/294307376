@@ -1,10 +1,14 @@
 <template>
     <div class="container14">
-      <Header/>
-      <LessonDownload/>
-      <LessonList01/> 
-      <LessonList02/>
-      <Footer/>
+        <Header/>
+        <div class="content01">
+        <LessonDownload/>
+        <LessonList01/> 
+        <LessonList02/>
+        </div>
+        <div class="footer02">
+            <Footer/>
+        </div> 
     </div>
 </template>
 
@@ -28,11 +32,15 @@ export default{
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container14{
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-.container14 .container003{
-  position: absolute;
-  left: 0px;
-  bottom: -78rem;
+.content02 {
+    flex: 1;
+}
+.footer02 {
+    flex: 0;
+    margin-top: 120px;
 }
 </style>

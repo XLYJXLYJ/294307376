@@ -22,9 +22,9 @@
     width:1000px;
     height: 263px;
     background: #fffbf2;
-    position: absolute;
-    top: 645px;
-    left: 460px;   
+    margin: 0 auto;
+    position: relative;
+    margin-top: 60px;
 }
 .container40 .store{
     width:111px;

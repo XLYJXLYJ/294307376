@@ -1,21 +1,21 @@
 <template>
     <div class="container25">
         <Header/>
-        <div class="lesson_bg">
+        <div class="content05">
+            <img class="star01" src="../assets/Download/starfish.png" alt="">
+            <div class="container24">
+            <p>我的管理中心</p>
+            <button>新建作品</button>
+            <div class="mydemo_frame">
+            <router-link class="Mydemo" to="/Demo/Mydemo">作品</router-link>
+            <router-link class="Delete" to="/Demo/Delete">废纸篓</router-link>
+            </div>
+            </div>      
+            <router-view></router-view>
         </div>
-        <img class="star01" src="../assets/Download/starfish.png" alt="">
-        <div class="container24">
-           <p>我的管理中心</p>
-           <button>新建作品</button>
-        <div class="mydemo_frame">
-        <router-link class="Mydemo" to="/Demo/Mydemo">作品</router-link>
-        <router-link class="Delete" to="/Demo/Delete">废纸篓</router-link>
-        </div>
-        </div>
-        <div class="juzhong">
-        <router-view></router-view>
-        </div>
-        <Footer/>  
+         <div class="footer05">
+         <Footer/>
+         </div> 
     </div>   
 </template>
 <script>
@@ -29,36 +29,25 @@ export default{
 }
 </script>
 <style scoped>
-.container25 .lesson_bg{
-    position: relative;
+.container25{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url(../assets/Lesson/Lesson_bg.png) no-repeat;
 }
-.container25 .lesson_bg{
-    position: absolute;
-    left: 0px;
-    top: 60px;
-    height: 100%;
-    width: 100%;
-    background: url(../assets/Lesson/Lesson_bg.png);
-    z-index: -1;
+.content05{
+    flex: 1;
+    padding-top: 40px;
+    height: 850px;
+}
+.footer05{
+    flex: 0;
 }
 .container24{
-    position: relative;
     margin: 0 auto;
     width: 1000px;
     height: 700px;
     background:#FFFBF2; 
-}
-.container25 .container003{
-  height: 323px;
-  width: 100%;
-  background-color: #1e1e1e;
-  position: absolute;
-  left: 0px;
-  bottom: -358px;
-}
-.container25 .juzhong{
-  position: relative;
-  margin: 0 auto;
 }
 .container25 .star01{
    position: relative;
@@ -86,11 +75,11 @@ export default{
     cursor: pointer;
 }
  .mydemo_frame{
-    position: absolute;
+    position: relative;
     width: 332px;
     height: 20px;
-    top: 54px;
-    left: 48px;
+    top: 10px;
+    left: 30px;
     border-bottom: 2px solid #e6d7b8;
 }
 .Mydemo{

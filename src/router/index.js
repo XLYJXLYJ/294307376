@@ -97,9 +97,9 @@ export default new Router({
       name: 'Setting',
       component: Setting,
       children:[
-        {path: '/Usercenter', component: Usercenter},
-        {path: '/Copassword', component: Copassword},
-        {path: '', component:Usercenter}
+        {path: '/Setting/Usercenter', component: Usercenter},
+        {path: '/Setting/Copassword', component: Copassword},
+        {path: '/Setting', component:Usercenter}
       ]
     }
   ]

@@ -27,9 +27,9 @@
     width:1000px;
     height: 184px;
     background: #fffbf2;
-    position: absolute;
-    top: 1251px;
-    left: 460px; 
+    margin: 0 auto;
+    position: relative;
+    margin-top: 60px;
 }
 .container42 .store{
     width:111px;

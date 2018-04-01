@@ -8,7 +8,9 @@
         <Userfollow/>
         <Usershow/>
     </div>   
-    <Footer/>
+    <div class="footer06">
+         <Footer/>
+    </div> 
  </div>
 </template>
 <script>
@@ -33,20 +35,19 @@ export default{
 </script>
 <style scoped>
 .container38{
-    position: absolute;
-    left: 0px;
-    top: 60px;
-    height: 1768px;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background: url(../assets/Lesson/Lesson_bg.png);
     z-index: -1;
 }
-.container37 .container003{
-    height: 323px;
-    width: 100%;
-    background-color: #1e1e1e;
-    position: absolute;
-    left: 0px;
-    bottom: -1177px;
+.container38{
+    flex: 1;
+    padding-top: 40px;
+    height: auto;
+    padding-bottom: 40px;
+}
+.footer06{
+    flex: 0;
 }
 </style>

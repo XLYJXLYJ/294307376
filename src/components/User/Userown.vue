@@ -60,9 +60,9 @@ import Vue from 'vue'
     width:1000px;
     height: 546px;
     background: #fffbf2;
-    position: absolute;
-    top: 60px;
-    left: 460px;   
+    margin: 0 auto;
+    position: relative;
+    margin-top: 60px;
 }
 .container39 .head{
     width:60px;

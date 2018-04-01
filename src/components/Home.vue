@@ -1,9 +1,13 @@
 <template>
     <div class="container13">
        <Header/>
-       <Swiper/>
-       <List/>
-       <Footer/>
+       <div class="content01">
+            <Swiper/>
+            <List/>
+       </div>
+       <div class="footer01">
+           <Footer/>
+       </div>  
     </div>
 </template>
 
@@ -25,14 +29,20 @@ export default{
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container13{
-    width: 100%;
-    /* background: #fff; */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-.container13 .container003{
+/* .container13 .container003{
     position: absolute;
     left: 0px;
-    bottom: -142rem;
-    /* bottom: -1940px; */
-    
+    bottom: -142rem;   
+} */
+.content01 {
+    flex: 1;
+}
+.footer01 {
+    flex: 0;
+    margin-top: 120px;
 }
 </style>

@@ -1,7 +1,6 @@
 <template>
-<div>
+<div  class="container32">
 <Header/>
-<div class="container32">
     <div class="container31">  
         <img class="star01" src="../assets/Download/starfish.png" alt="">
         <div class="setaccount">
@@ -12,13 +11,14 @@
             <p class="two_text">古月哥欠、</p>
         </div>
         <div class="mydemo_frame">
-        <router-link class="Mydemo" to="/Usercenter">个人中心</router-link>
-        <router-link class="Delete" to="/Copassword">修改密码</router-link>
+        <router-link class="Mydemo" to="/Setting/Usercenter">个人中心</router-link>
+        <router-link class="Delete" to="/Setting/Copassword">修改密码</router-link>
         </div>
         <router-view></router-view>     
     </div>   
- <Footer/>
- </div>
+ <div class="footer07">
+         <Footer/>
+ </div> 
  </div>
 </template>
 <script>
@@ -33,29 +33,21 @@ export default{
 </script>
 <style scoped>
 .container32{
-   position: absolute;
-    left: 0px;
-    top: 60px;
-    height: 100%;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background: url(../assets/Lesson/Lesson_bg.png) no-repeat;
     z-index: -1;
 }
-.container31{
-    position: absolute;
-    top: 135px;
-    left: 468px;
-    width: 1000px;
-    height: 657px;
-    background:#FFFBF2; 
+.footer07{
+    flex: 0;
 }
-.container32 .container003{
-  height: 323px;
-  width: 100%;
-  background-color: #1e1e1e;
-  position: absolute;
-  left: 0px;
-  bottom: -323px;
+.container31{
+    flex: 1;
+    margin: 0 auto;
+    width: 1000px;
+    height: 607px;
+    background:#FFFBF2; 
 }
 .container31 .star01{
    position: absolute;
@@ -72,25 +64,25 @@ export default{
     font-weight: 600;
 }
 .container31 .two_text{
-    position: absolute;
-    top: 327px;
-    left: 100px;
+    position: relative;
+    top: 127px;
+    left: -350px;
     font-size: 24px;
     color: #91121B;
     font:bold;
 }
 .container31 .cat{
-    position: absolute;
-    left: 58px;
+    position: relative;
+    left: -358px;
     top: 140px;
     font-size: 24px;
     color: #555;
 }
  .container32 .mydemo_frame{
-    position: absolute;
+    position: relative;
     width: 522px;
     height: 20px;
-    top: 140px;
+    top: -100px;
     left: 339px;
     border-bottom: 2px solid #e6d7b8;
 }
