@@ -10,7 +10,10 @@
                     <router-link class="a_text" to="/Lesson">课程</router-link>
                 </li> 
                 <li>
-                    <a class="a_text" href="https://mofang.qq.com/index/?type=staffpick&pagenum=0&pagesize=40" target="_blank">素材</a>
+                    <router-link class="a_text" to="/source">素材</router-link>
+                </li> 
+                <li>
+                    <a class="a_text" href="https://mofang.qq.com/index/?type=staffpick&pagenum=0&pagesize=40" target="_blank">磨坊</a>
                 </li> 
                 <li>
                     <router-link class="a_text" to="/Download">下载</router-link>
@@ -24,7 +27,7 @@
             </div>
             <div class="username" v-show="usercenter"> 
                 <img class="user" src="../../assets/home/user.png" alt="">
-                <p class="login" type="text"  @click="dialogLogin = true" >{{$store.state.userid}}}</p>   
+                <p class="login" type="text"  @click="dialogLogin = true" >{{formLogin.username01}}</p>   
             </div>  
         </div>
         <div v-show="dropdowm">
@@ -156,7 +159,7 @@ export default {
             dialogPassSure:false,
             loginsign: true,
             usercenter: false,
-            dropdowm:true,
+            dropdowm:false,
             stata:'',
             resgistermsg:'',
             formLogin: {
@@ -203,10 +206,11 @@ export default {
         };
     },
     created:function() {
-        this.Getsession()
+        this.Getsession()  
+        this.$store.dispatch('Getsession01') 
     }, 
     methods: {
-        ...mapActions(['Getsession']),   
+        ...mapActions(['Getsession01']),   
             //登陆
         Loginbtn() {
             this.axios.post('/res/login', {
@@ -228,13 +232,11 @@ export default {
                     this.loginsign = false,
                     this.usercenter = true,
                     this.dropdowm = true,
-                    // this.$store.dispatch('Getsession')
-                    location.reload(); 
+                    setTimeout('window.location.reload()',1000);
                     this.$message({
                         message: '登陆成功',
                         center: true,
                     });        
-                    this.$store.dispatch('Getsession')
                     break;
                     case 2:
                     this.$message({

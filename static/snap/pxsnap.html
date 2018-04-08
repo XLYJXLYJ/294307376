@@ -29,10 +29,6 @@
 		<script type="text/javascript" src="sha512.js"></script>
 		<script type="text/javascript" src="FileSaver.min.js"></script>
 		<script type="text/javascript" src="manykit/base64.js"></script>
-		 <!-- <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-		 <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
-		<script type="text/javascript" src="./jquery/jquery-3.2.1.js"></script>
-		<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script> -->
 		<script type="text/javascript">
 			var world;
 			var ide;
@@ -62,138 +58,10 @@
 				world.doOneCycle();
 			}
 		</script>
-		<!-- <script type="text/javascript">
-		$(document).ready(function(){
-  				$('#savebcwform').on("click",
-				function(){
-					$.post("/res/upload",$("#bcw").serialize());
-				}
-			)
-		});
-			
-		</script> -->
 	</head>
-	<body style="margin: 0;">
-		<div class="canvasbox01">
-			<div><img src="download.png" alt=""><p onclick="ide.projectMenu()">下载</p></div>
-			<!-- <div class="header01">
-				<div class="headbox">
-					<div class="snapheader">
-						<ul class="snapheaderleft">
-							<li><img src="" alt=""><p><a href="../../index.html"> 编程玩</a></p></li>
-							<li class="borderlight"><img src="" alt=""><p onclick="ide.createNewProject()">新建</p></li>
-							<li class="borderlight" data-toggle="modal" data-target="#exampleModal01" data-whatever="@mdo"><img src="" alt="" ><p>保存</p></li>
-							<li class="borderlight" data-toggle="modal" data-target="#exampleModal02" data-whatever="@mdo"><img src="" alt="" ><p>发布</p></li>
-						</ul>
-					</div>
-				</div> -->
-				<!-- 保存模态框 -->
-				<!-- <div class="modal fade" id="exampleModal01" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="exampleModalLabel">保存项目</h4>
-					</div>
-					<div class="modal-body">
-						<form id="bcwform">
-						<div class="form-group">
-								<label for="recipient-name" class="control-label">用户名</label>
-								<input type="text" class="form-control" id="recipient-name" placeholder="请输入注册时的用户名">
-						</div>
-						<div class="form-group">
-							<label for="recipient-name" class="control-label">项目名称</label>
-							<input type="text" class="form-control" id="recipient-name" placeholder="请输入注册时的项目名称">
-						</div>
-						<div class="form-group">
-							<label for="recipient-name" class="control-label">文件名称</label>
-							<input type="file" class="form-control" id="recipient-file"  placeholder="请选择要上传的文件名称">
-						</div>
-						<div class="form-group">
-							<label for="message-text" class="control-label">项目介绍</label>
-							<textarea class="form-control" id="message-text" placeholder="请输入项目介绍"></textarea>
-						</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary" id="savebcwform">确定保存</button>
-					</div>
-					</div>
-				</div>
-				</div> -->
-				<!-- 发布模态框 -->
-				<!-- <div class="modal fade" id="exampleModal02" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								<h4 class="modal-title" id="exampleModalLabel">发布项目</h4>
-							</div>
-							<div class="modal-body">
-								<form>
-								<div class="form-group">
-									<label for="recipient-name" class="control-label">项目名称</label>
-									<input type="text" class="form-control" id="recipient-name">
-								</div>
-								<div class="form-group">
-									<label for="message-text" class="control-label">项目介绍</label>
-									<textarea class="form-control" id="message-text"></textarea>
-								</div>
-								</form>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button type="button" class="btn btn-primary">确定发布</button>
-							</div>
-							</div>
-						</div>
-						</div> -->
-			</div> 
+	<body style="margin:0px">
 			<div class="canvasworld">
 				 <canvas id="world" tabindex="1"></canvas> 
 			</div>	
 	</body>
 </html>
-<style>
-.canvasbox01{
-	z-index: 100!important;
-	height: 27px;
-	width: 52%;
-	position: fixed;
-	top: 0px;
-	left: 400px;
-	/* background: linear-gradient(to right,rgb(0, 215, 215), #fff); */
-}
-.canvasbox01 img{
-	position: relative;
-	top: 5px;
-	
-	background: red;
-	z-index: 1000;
-}
-.canvasbox01 p{
-	position: relative;
-	/* top: -35px; */
-	top: -5px;
-	left: 14px;
-	/* color:#ffffff; */
-	color: black;
-	font-size: 16px;
-	cursor: pointer;
-	opacity: 0.7;
-	z-index: 200!important;
-}
-.canvasbox01 p:hover{
-	opacity: 1;
-}
-
-.canvasbox01 .canvasworld{
-	position: fixed;
-	top: 4px;
-	left: 0px;
-	width: 100%;
-	height:100%;
-	z-index: -10;
-}
-</style>

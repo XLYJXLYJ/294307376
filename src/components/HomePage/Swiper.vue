@@ -50,6 +50,10 @@ export default{
     width: 1000px; 
     margin: 0 auto;
 }
+.container09 img{
+    height: 100%;
+    width: 100%; 
+}
 .el-carousel__item h3 {
     color: #475669;
     font-size: 14px;

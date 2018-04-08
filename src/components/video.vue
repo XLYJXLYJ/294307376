@@ -19,18 +19,24 @@
                         <img class="star" src="../assets/Video/star.png" alt="">
                         <button class="buycode">购买代码</button>
                         <span class="buy">已有4人购买</span>
+                        <!-- <a class="avideo" href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation" target="myFrameName"><button>点击播放</button></a> -->
                     </div>
             </div>
+            <!-- <div class="videocanvas"><img src="../assets/Video/video.png" alt=""></div> -->
             <div class="mydemo_framebox">
                 <div>
-                        <iframe class="video" src="static/js/index.html" frameborder="0"></iframe>
+                        <!-- <a href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"></a> -->
+                        <!-- <a href="https://www.baidu.com/" target="_blank">点击播放百度</a> -->
+                        
+                        <iframe class="video" frameborder="0" id="myFrameId" src="static/js/snap.html#run:/static/whatever.xml" name="myFrameName"></iframe>
                 </div>
                 <div class="mydemo_frame">
                 <router-link class="Myvideo" to="/Video/Myvideo">Ta的作品</router-link>
                 <router-link class="Lovevideo" to="/Video/Lovevideo">推荐作品</router-link>
                 </div>
+                
             </div>
-            <router-view></router-view>    
+                <router-view></router-view>
             <div class="comment">
                 <div class="commitbox">
                     <div class="comment01">
@@ -55,8 +61,19 @@ import Footer from '@/components/HomePage/Footer'
 export default{
     data(){
         return{
-     
+            item:{
+                // url:"static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"
+                url:'https://www.baidu.com/'
+            }
         }
+    },
+    mounted(){
+            console.log(123)
+    },
+    methods:{
+       refresh(){
+           window.location.reload(true)
+       }
     },
     components:{
         Header,
@@ -183,7 +200,6 @@ export default{
 .mydemo_framebox{
     height: 523px;
     width: 1000px;
-    border: 2px solid red;
     margin: 0 auto;
     position: relative;
     top: 228px;
@@ -198,11 +214,26 @@ export default{
 }
 .container35  .mydemo_frame .Myvideo{
     position: absolute;
-    left: 58px;
+    left: -48px;
     top:19px;  
+    height: 523px;
+    width:345px;
     color: #60A1F0;
     font-size: 14px;
 }
+/* .container35  .videocanvas img{
+   width: 100%;
+   height: 100%;
+} */
+/* .container35 .videocanvas{
+    position: relative;
+    left: 0px;
+    top:234px;  
+    color: #60A1F0;
+    font-size: 14px;
+    height: 513px;
+    width:605px;
+} */
 .container35  .mydemo_frame .Lovevideo{
     position: absolute;
     left: 231px;
@@ -257,5 +288,18 @@ export default{
     position: absolute;
     top: 42px;
     left: 860px;
+}
+.container35 .avideo button{
+    position: relative;
+    background: #5bc4ea;
+    width: 346px;
+    height: 30px;
+    top: 591px;
+    left: 326px;
+    border: none;
+    cursor: pointer;
+}
+.container35 .avideo button:hover{
+   background: #60A1F0;
 }
 </style>

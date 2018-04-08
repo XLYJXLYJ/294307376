@@ -5594,6 +5594,7 @@ IDE_Morph.prototype.setCloudURL = function () {
             'Snap!Cloud' : 'https://cloud.snap.berkeley.edu',
             'Snap!Cloud (cs10)' : 'https://snap-cloud.cs10.org',
             'localhost' : 'http://localhost:8080',
+            // 'Snap!Cloud' : 'http://www.manykit.com/snap',
             'localhost (secure)' : 'https://localhost:4431'
         }
     );

@@ -8,21 +8,23 @@ Vue.use(VueAxios, axios)
 Vue.use(Vuex);
 
 const state = {
-    userid: 123
+    userid: ''
 }
 
 const actions = {
-    Getsession (context) {
-      context.commit('Getsession')
+    Getsession01 (context) {
+      context.commit('Getsession01')
     }
 }
 
 const mutations = {
-    Getsession() {
-        // session验证
-        this.axios.get('/res/verify')
+    Getsession01() {
+        // session验证 
+        axios.get('/res/verify')
         .then(response =>{
-            state.userid=response.data.data.userid 
+            state.userid=response.data.data.userid
+            // state.userid=0
+            console.log(state.userid)
         }) 
     },
 }

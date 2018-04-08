@@ -1,305 +1,318 @@
 <template>
     <div class="container01">
         <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>animated-tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
+                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
+                        <p>Path Finder</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
+                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
+                        <p>tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
                 </router-link>
             </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
+             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
+                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
+                        <p>swim</p>
+                        <span class="game_cat">swim</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-        </el-row>
-                <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
             </el-col>
         </el-row>
-                <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
+             <el-row :gutter="10">
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>animated-tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
+                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
+                        <p>Path Finder</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
+                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
+                        <p>tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
                 </router-link>
             </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
+             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
+                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
+                        <p>swim</p>
+                        <span class="game_cat">swim</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-        </el-row>
-                <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
             </el-col>
         </el-row>
-                <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
+             <el-row :gutter="10">
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>animated-tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
+                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
+                        <p>Path Finder</p>
                         <span class="game_cat">游戏猫</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
+                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
+                        <p>tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
                 </router-link>
             </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
+             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
+                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
+                        <p>swim</p>
+                        <span class="game_cat">swim</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-        </el-row>
-                <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
             </el-col>
         </el-row>
+             <el-row :gutter="10">
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>animated-tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
+                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
+                        <p>Path Finder</p>
+                        <span class="game_cat">游戏猫</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
+                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
+                        <p>tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+                </router-link>
+            </el-col>
+             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
+                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
+                        <p>swim</p>
+                        <span class="game_cat">swim</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+        </el-row>
+             <el-row :gutter="10">
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>animated-tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
+                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
+                        <p>Path Finder</p>
+                        <span class="game_cat">游戏猫</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
+                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
+                        <p>tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+                </router-link>
+            </el-col>
+             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
+                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
+                        <p>swim</p>
+                        <span class="game_cat">swim</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+        </el-row>
+             <el-row :gutter="10">
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>animated-tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
+                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
+                        <p>Path Finder</p>
+                        <span class="game_cat">游戏猫</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                <router-link class="routetext" to="/Video">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
+                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
+                        <p>tree</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+                </router-link>
+            </el-col>
+             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
+                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
+                        <p>swim</p>
+                        <span class="game_cat">swim</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+            </el-col>
+        </el-row>
+                
         <button class="button">查看全部作品</button>
     </div>
 </template>
@@ -319,8 +332,14 @@
     cursor: pointer;
     color: #707070;
 }
-.container01 img{
+.container01 .imgcon{
+    height: 136px;
+    width: 136px;
+}
+.container01 .imgcon img{
     border-radius: 8px;
+    width: 100%;
+    height: 100%;
 }
 .container01 p{
     font-size: 15px;

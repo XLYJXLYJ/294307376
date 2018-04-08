@@ -362,6 +362,7 @@ Cloud.prototype.saveProject = function (ide, onSuccess, onError) {
                         ide.serializer.mediaXML(ide.projectName) : null,
                     thumbnail: thumbnail
                 };
+                console.log(xml)
                 ide.serializer.isCollectingMedia = false;
                 ide.serializer.flushMedia();
 

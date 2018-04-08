@@ -18,6 +18,8 @@
     </div>
 </template>
 <script>
+import { mapGetters,mapActions} from 'vuex'
+
 export default{
     data(){
         return{
@@ -30,7 +32,7 @@ export default{
     methods:{
         Getalldemo(){
             this.axios.post('/res/filelist',{
-                userid:0,
+                userid:this.$store.state.userid,
                 state:1
             })
             .then(response => {

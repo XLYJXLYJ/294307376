@@ -4,14 +4,15 @@
             <div class="snapheader">
                 <ul class="snapheaderleft">
                     <li class="bcw"><img src="../assets/snappic/home.png" alt=""><p><a href="/"> 编程玩</a></p></li>
-                    <li class="borderlight"><img src="../assets/snappic/new.png" alt=""><p onclick="ide.createNewProject()">新建</p></li>
-                    <li class="borderlight"  @click="dialogSave = true"><img src="../assets/snappic/save.png" alt="" ><p>保存</p></li>
-                    <li class="borderlight" ><img src="../assets/snappic/upload.png" alt="" ><p @click="www">发布</p></li>
+                    <!-- <li class="borderlight01"><img src="../assets/snappic/new.png" alt=""><p >保存</p></li> -->
+                    <li class="borderlight"  @click="dialogSave = true"><img src="../assets/snappic/save.png" alt=""><p @click="handiframe">保存项目</p></li>
+                    <li class="borderlight"><p>{{formSave.title}}</p></li>
+                    <!-- <li class="borderlight" ><img src="../assets/snappic/upload.png" alt=""><p >保存</p></li> -->
                 </ul>
             </div>
         </div>
         <!-- <Header/> -->
-        <iframe class="snap" src="./static/snap/index.html" frameborder="0"></iframe>
+        <iframe class="snap" src="static/snap/pxsnap.html" name="snap" frameborder="0"></iframe>
 
         <transition name="el-fade-in-linear">
             <div>
@@ -20,29 +21,28 @@
                         <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
                             <img class="welcome" src="../assets/login/welcome.png" alt="">
                             <img class="sign_logo" src="../assets/login/login_logo.png" alt="">
-                            <el-form-item class="tele">
-                                <el-input type="text" v-model="formSave.userid" auto-complete="off" placeholder="请输入用户名"></el-input>
-                            </el-form-item>
+                            <!-- <el-form-item class="tele">
+                                <el-input type="text" v-model="formSave.userid" auto-complete="off" placeholder="请输入用户名" v-show="true"></el-input>
+                            </el-form-item> -->
                             <el-form-item class="iden01">
                                 <el-input type="text" v-model="formSave.title" auto-complete="off" placeholder="请输入项目名称"></el-input>
                             </el-form-item>
                             <el-form-item  class="iden02">
-                                <el-input type="text" v-model="formSave.filedesc" auto-complete="off" placeholder="请输入项目描述"></el-input>
+                                <textarea type="text" class="textdes" v-model="formSave.filedesc" auto-complete="off" placeholder="请输入项目描述"></textarea>
                             </el-form-item>
                             <el-form-item  class="iden03">
-                                <el-upload
+                                <!-- <el-upload
                                 class="upload-demo"
                                 ref="upload"
                                 :data="formSave"
                                 action="/res/upload"
-                                :on-preview="handlePreview"
-                                :on-remove="handleRemove"
-                                :onSuccess="uploadSuccess"
+                       
                                 :auto-upload="false">
-                                <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-                                <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
-                                <div slot="tip" class="el-upload__tip">只能上传xml文件，且不超过10M</div>
-                                </el-upload>
+                              
+                                <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">确定保存</el-button>
+                                <div slot="tip" class="el-upload__tip">上传文件到服务器，文件大侠不得超过10M</div>
+                                </el-upload> -->
+                                <el-button  @click="submitUpload">确定保存</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -53,17 +53,20 @@
 </template>
 <script>
 import Vue from 'vue'
+import { mapGetters,mapActions} from 'vuex'
 import axios from 'axios'
 
 export default{
     data(){
         return{
+            // userid:,
             dialogSave: false,
             formSave: {
-                userid:'',
+                userid:this.$store.state.userid,
                 title: '',
                 filedesc: '',
                 file: '',
+                filexml: '',
             },
             rules:{
             username: [
@@ -91,19 +94,50 @@ export default{
     },
    
     methods: {
-        submitUpload() {
-            this.$refs.upload.submit();
+        // submitUpload() {
+        //     this.$refs.upload.submit();
+        // },
+        // uploadSuccess (response, file, fileList) {
+        //         console.log('上传文件', response)
+        // },
+        // handleRemove(file, fileList) {
+        //     console.log(file, fileList);
+        // },
+        // handlePreview(file) {
+        //     console.log(file);
+        // },
+        handiframe() {
+            this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
+            // this.createXml(this.formSave.file)
+            // console.log(this.formSave.filexml)
         },
-        uploadSuccess (response, file, fileList) {
-                console.log('上传文件', response)
+         submitUpload() {
+                this.axios.post('/res/upload', {
+                userid:this.formSave.userid,
+                title: this.formSave.title,
+                filedesc: this.formSave.filedesc,
+                file: this.formSave.file,
+            })
+            .then(response => {
+                this.$message({
+                    message: '上传成功',
+                    center: true,
+                });  
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         },
-        handleRemove(file, fileList) {
-            console.log(file, fileList);
+        // createXml(str){ 
+        // 　　if(document.all){ 
+        //     　　var xmlDom=new ActiveXObject("Microsoft.XMLDOM");
+        //     　　xmlDom.loadXML(str);
+        //     　　return this.formSave.filexml = xmlDom;
+        // 　　} 
+        // 　　else 
+        // 　　return this.formSave.filexml = new DOMParser().parseFromString(str, "text/xml");
+        //     }   
         },
-        handlePreview(file) {
-            console.log(file);
-        }
-    },
 }
 
 </script>
@@ -128,20 +162,29 @@ export default{
 .snapboxhead .snapheaderleft{
 	width:400px;
 	height: 27px;
-	background: linear-gradient(to right,#0078D7, rgb(0, 215, 215));
+    background: #fff;
+	/* background: linear-gradient(to right,#0078D7, rgb(0, 215, 215)); */
 	list-style: none;
 	position: fixed;
 	top: 0px;
 	left: 0px;
-	color: #fff;
+	color: #000;
 }
 .snapboxhead .snapheaderleft img{
     position: relative;
     top: 7px;
     margin-right:64px;
 }
+.snapboxhead .bcw{
+    color: #000; 
+    margin-top: -1px;
+}
+.snapboxhead .borderlight01{
+    color: #000; 
+    margin-top: 1px;
+}
 .snapboxhead .bcw a{
-    color: #fff; 
+    color: #000; 
     margin-left: 4px;
 }
 .snapboxhead .snapheaderleft li{
@@ -162,7 +205,7 @@ export default{
     margin: 0px;
     padding: 0px;
     width: 100%;
-    height: 476px;
+    height: 426px;
     background: #9cf7ff;
 }
 .container50 .welcome{
@@ -187,7 +230,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 297px;
-    top: 168px;
+    top: 108px;
     left: 60px;
     padding-left: 10px;
 }
@@ -195,7 +238,7 @@ export default{
     position: absolute;
     height: 147px;
     width: 297px;
-    top: 226px;
+    top: 156px;
     left: 60px;
     padding-left: 10px;
 }
@@ -203,9 +246,15 @@ export default{
     position: absolute;
     height: 29px;
     width: 297px;
-    top: 284px;
+    top: 364px;
     left: 60px;
     padding-left: 10px;
+}
+.container50 .textdes{
+    height: 170px;
+    width: 278px;
+    padding: 8px;
+    border-radius: 20px;
 }
 .container50 .register{
     position: absolute;
@@ -217,5 +266,9 @@ export default{
     color: #fff;
     font-size: 18px;
     cursor: pointer;
+}
+.borderlighttest{
+    position: relative;
+    top: 18px;
 }
 </style>

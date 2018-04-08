@@ -2,11 +2,25 @@
     <div class="container02">
         <el-row :gutter="10">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+              <!-- <router-link class="routetext" to="/Video"> -->
+                    <div class="grid-content bg-purple list_pic">
+                        <a href="static/js/snap.html#present:Username=jens&ProjectName=tree%20animation" target="_blank">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>大窗口播放</p>
+                        <span class="game_cat">tree</span>
+                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_love"><span>20</span></i></span>
+                        <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
+                    </div>
+                <!-- </router-link> -->
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+                        <img class="imgcon" src="../../../assets/gif/animated-tree.gif" alt="">
+                        <p>小窗口播放</p>
+                        <span class="game_cat">tree</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
@@ -14,90 +28,78 @@
                 </router-link>
             </el-col>
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+                        <a href="http://www.manykit.com/snap/snap.html/#present:Username=jens&ProjectName=tree%20animation" target="_blank">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>mangkit主网址</p>
+                        <span class="game_cat">tree</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
-                </router-link>
             </el-col>
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+                      <div class="grid-content bg-purple list_pic">
+                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation" target="_blank">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>snap链接</p>
+                        <span class="game_cat">tree</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
-                </router-link>
-            </el-col>
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
             </el-col>
         </el-row>
                 <el-row :gutter="10">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+                        <div class="grid-content bg-purple list_pic">
+                        <a href="static/js/snap.html#present:Username=jens&ProjectName=tree%20animation" target="_blank">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>本地测试</p>
+                        <span class="game_cat">tree</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
+                        </a>
+                         </div>
             </el-col>
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+                        <div class="grid-content bg-purple list_pic">
+                        <a href="static/js/snap.html#run:Username=jens&ProjectName=tree%20animation" target="_blank">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>run参数测试</p>
+                        <span class="game_cat">tree</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
-                    </div>
-                </router-link>
+                        </a>
+                        </div>
             </el-col>
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+                     <div class="grid-content bg-purple list_pic">
+                        <a href="static/js/snap.html#open:Username=jens&ProjectName=tree%20animation" target="_blank">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>open参数测试</p>
+                        <span class="game_cat">tree</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
-                </router-link>
             </el-col>
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+               <div class="grid-content bg-purple list_pic">
+                        <a href="static/js/snap.html#run:/static/whatever.xml" target="_blank">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>运行本地tree</p>
+                        <span class="game_cat">tree</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
-                </router-link>
             </el-col>
         </el-row>
                 <el-row :gutter="10">
@@ -334,8 +336,14 @@ export default{
     cursor: pointer;
     color: #707070;
 }
-.container02 img{
+.container02 .imgcon{
+    height: 136px;
+    width: 136px;
+}
+.container02 .imgcon img{
     border-radius: 8px;
+    width: 100%;
+    height: 100%;
 }
 .container02 p{
     font-size: 15px;

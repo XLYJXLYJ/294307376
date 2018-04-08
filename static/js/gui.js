@@ -1231,7 +1231,6 @@ IDE_Morph.prototype.createSpriteBar = function () {
     function addRotationStyleButton(rotationStyle) {
         var colors = myself.rotationStyleColors,
             button;
-
         button = new ToggleButtonMorph(
             colors,
             myself, // the IDE is the target
@@ -4227,7 +4226,7 @@ IDE_Morph.prototype.openProjectString = function (str) {
 };
 
 IDE_Morph.prototype.rawOpenProjectString = function (str) {
-    this.toggleAppMode(false);
+    this.toggleAppMode(true);
     this.spriteBar.tabBar.tabTo('scripts');
     StageMorph.prototype.hiddenPrimitives = {};
     StageMorph.prototype.codeMappings = {};
@@ -4770,9 +4769,7 @@ IDE_Morph.prototype.toggleAppMode = function (appMode) {
             this.palette,
             this.categories
         ];
-
     this.isAppMode = isNil(appMode) ? !this.isAppMode : appMode;
-
     Morph.prototype.trackChanges = false;
     if (this.isAppMode) {
 		this.wasSingleStepping = Process.prototype.enableSingleStepping;
