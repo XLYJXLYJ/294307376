@@ -9,7 +9,7 @@
 <style scoped>
 .container26{
     position: relative;
-    top: -600px;
+    top: -560px;
     left: -320px;
 }
 .container26 button{

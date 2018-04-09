@@ -4,6 +4,7 @@ import Lesson from '@/components/Lesson'
 import Home from '@/components/Home'
 import Material from '@/components/Material'
 import Download from '@/components/Download'
+import Publish from '@/components/Publish'
 import Source from '@/components/Source'
 import Production from '@/components/HomePage/List/Production'
 import Recommend from '@/components/HomePage/List/Recommend'
@@ -89,6 +90,11 @@ export default new Router({
       path: '/Download',
       name: 'Download',
       component: Download
+    },
+    {
+      path: '/Publish',
+      name: 'Publish',
+      component: Publish
     },
     {
       path: '/Video',

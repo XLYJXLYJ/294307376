@@ -74,49 +74,51 @@ export default{
     border: none;
     cursor: pointer;
 }
- .mydemo_frame{
+ .container24 .mydemo_frame{
     position: relative;
     width: 332px;
     height: 20px;
-    top: 10px;
+    top: 30px;
     left: 30px;
     border-bottom: 2px solid #e6d7b8;
 }
-.Mydemo{
+.container24 .Mydemo{
     position: absolute;
-    top: -1px;
+    top: -12px;
     left: 13px;
-    width: 76px;
-    height: 20px;
+    width: 126px;
+    height: 21px;
     font-size: 16px;
-    color: #000;
+    color: #999;
     text-decoration: none;
+    padding-top: 8px;
 }
- .Delete{
+.container24 .Delete{
     position: absolute;
-    top: -1px;
-    left: 89px;
-    width: 76px;
-    height: 20px;
+    top: -12px;
+    left: 129px;
+    width: 126px;
+    height: 21px;
     font-size: 16px;
-    color: #000;
+    color: #999;
     text-decoration: none;
+    padding-top: 8px;
 }
-.mydemo_frame .router-link-active{
+.container24 .mydemo_frame .router-link-active{
     text-decoration: none;
     border-bottom: 3px solid #FFFBF2;  
     border-top: 2px solid #e6d7b8;
     border-left: 2px solid #e6d7b8;
     border-right: 2px solid #e6d7b8;
+    color: #000;
 }
-.mydemo_frame .router-link-active:before {
+.container24 .mydemo_frame .router-link-active:before {
     content: '';
     position: absolute;
     left: 0px;
     top: 19px;
     height: 2px;
     width: 76px;
-    background-color: #FFFBF2;
     border-radius: 2px;  
 }
 </style>

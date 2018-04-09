@@ -305,7 +305,7 @@
                         <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
                         <p>swim</p>
                         <span class="game_cat">swim</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                        <span class="down"><i class="icon_see"><span @click="run">run</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
                         </a>
@@ -316,6 +316,23 @@
         <button class="button">查看全部作品</button>
     </div>
 </template>
+<script>
+    export default{
+        methods:{
+            run() {
+                this.axios('/res/upload', {
+                id:11576,
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        },
+        }
+    }
+</script>
 <style scoped>
 .container01{
     width: 672px;
@@ -381,13 +398,13 @@
     height: 14px;
     margin: 10px;
     position: relative;
-    left: -8px;
+    left: -9px;
     top: 20px;
 }
 .container01 .down span{
     position: relative;
     left: 10px;
-    margin-left: 6px;
+    margin-left: 10px;
     font-style: normal;
     color: #959595;
 }

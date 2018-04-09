@@ -88,23 +88,25 @@ export default{
 }
  .container32 .Mydemo{
     position: absolute;
-    top: -1px;
+    top: -23px;
     left: 13px;
-    width: 76px;
-    height: 20px;
+    width: 126px;
+    height: 31px;
     font-size: 16px;
-    color: #000;
+    color: #999;
     text-decoration: none;
+    padding-top: 10px;
 }
  .container32 .Delete{
     position: absolute;
-    top: -1px;
-    left: 89px;
-    width: 76px;
-    height: 20px;
+    top: -23px;
+    left: 129px;
+    width: 126px;
+    height: 31px;
     font-size: 16px;
-    color: #000;
+    color: #999;
     text-decoration: none;
+    padding-top: 10px;
 }
 .container32 .mydemo_frame .router-link-active{
     text-decoration: none;
@@ -112,6 +114,7 @@ export default{
     border-top: 2px solid #e6d7b8;
     border-left: 2px solid #e6d7b8;
     border-right: 2px solid #e6d7b8;
+    color: #000;
 }
 .container32 .mydemo_frame .router-link-active:before {
     content: '';
@@ -120,7 +123,6 @@ export default{
     top: 19px;
     height: 2px;
     width: 76px;
-    background-color: #FFFBF2;
     border-radius: 2px;   
 }
 </style>

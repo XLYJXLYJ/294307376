@@ -33,7 +33,7 @@ import { mapGetters,mapActions} from 'vuex'
         methods:{
             getalldemo(){
                 this.axios.post('/res/filelist',{
-                    userid:this.$store.state.userid
+                    userid:this.$store.state.userid,
                 })
                 .then(response => {
                    this.list=response.data.data[0] 

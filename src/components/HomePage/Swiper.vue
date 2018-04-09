@@ -49,6 +49,8 @@ export default{
     height: 300px;
     width: 1000px; 
     margin: 0 auto;
+    position: relative;
+    top: 30px;
 }
 .container09 img{
     height: 100%;
@@ -65,13 +67,13 @@ export default{
 
 .el-carousel__item:nth-child(2n) {
     background-color: #99a9bf;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     width:580px;
 }
 
 .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     width:580px;
 }
 .el-carousel__item{

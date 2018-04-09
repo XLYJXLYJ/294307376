@@ -4,8 +4,10 @@
             <div class="snapheader">
                 <ul class="snapheaderleft">
                     <li class="bcw"><img src="../assets/snappic/home.png" alt=""><p><a href="/"> 编程玩</a></p></li>
-                    <!-- <li class="borderlight01"><img src="../assets/snappic/new.png" alt=""><p >保存</p></li> -->
+                    <li class="borderlight01"><img src="../assets/snappic/new.png" alt=""><p @click="open">打开</p></li>
                     <li class="borderlight"  @click="dialogSave = true"><img src="../assets/snappic/save.png" alt=""><p @click="handiframe">保存项目</p></li>
+
+
                     <li class="borderlight"><p>{{formSave.title}}</p></li>
                     <!-- <li class="borderlight" ><img src="../assets/snappic/upload.png" alt=""><p >保存</p></li> -->
                 </ul>
@@ -28,7 +30,7 @@
                                 <el-input type="text" v-model="formSave.title" auto-complete="off" placeholder="请输入项目名称"></el-input>
                             </el-form-item>
                             <el-form-item  class="iden02">
-                                <textarea type="text" class="textdes" v-model="formSave.filedesc" auto-complete="off" placeholder="请输入项目描述"></textarea>
+                                <textarea type="text" class="textdes" v-model="formSave.desc" auto-complete="off" placeholder="请输入项目描述"></textarea>
                             </el-form-item>
                             <el-form-item  class="iden03">
                                 <!-- <el-upload
@@ -42,7 +44,7 @@
                                 <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">确定保存</el-button>
                                 <div slot="tip" class="el-upload__tip">上传文件到服务器，文件大侠不得超过10M</div>
                                 </el-upload> -->
-                                <el-button  @click="submitUpload">确定保存</el-button>
+                                <el-button  @click="submitUpload()">确定保存</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -64,9 +66,12 @@ export default{
             formSave: {
                 userid:this.$store.state.userid,
                 title: '',
-                filedesc: '',
+                desc: '',
                 file: '',
+                files: '',
                 filexml: '',
+                filebir: '',
+                filebinary: '',
             },
             rules:{
             username: [
@@ -109,25 +114,42 @@ export default{
         handiframe() {
             this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
             // this.createXml(this.formSave.file)
-            // console.log(this.formSave.filexml)
+            console.log(this.formSave.file)
+            let filebir = this.formSave.file
+            console.log(filebir)
+            this.filebinary = new Blob([filebir]);
+            console.log(this.filebinary);
+            // this.filebinary = Array.prototype.map.call( filebir, function( c ) { return c.charCodeAt(0); } );
+            // console.log(this.filebinary)
+            console.log(this.$store.state.userid)
+            // console.log(ConvertStrToBin())
+
         },
+        open() {
+            this.formSave.file = window.frames["snap"].ide.droppedText (this.formSave.file)
+
+        },
+
          submitUpload() {
-                this.axios.post('/res/upload', {
-                userid:this.formSave.userid,
-                title: this.formSave.title,
-                filedesc: this.formSave.filedesc,
-                file: this.formSave.file,
-            })
-            .then(response => {
-                this.$message({
-                    message: '上传成功',
-                    center: true,
-                });  
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+             let formData = new FormData();
+             formData.append('userid',this.formSave.userid);
+             formData.append('title',this.formSave.title);
+             formData.append('desc',this.formSave.desc);
+             formData.append('files',this.filebinary);
+
+             let config = {
+                 headers:{
+                     'Content-Type':'multipart/form-data'
+                 }
+             }
+             this.axios.post('/res/upload',formData,config)
+             .then(function(response){
+                 console.log(response)
+             })
         },
+        // open() {
+        //     console.log(123)
+        // },
         // createXml(str){ 
         // 　　if(document.all){ 
         //     　　var xmlDom=new ActiveXObject("Microsoft.XMLDOM");

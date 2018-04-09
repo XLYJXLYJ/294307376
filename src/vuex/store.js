@@ -8,7 +8,8 @@ Vue.use(VueAxios, axios)
 Vue.use(Vuex);
 
 const state = {
-    userid: ''
+    userid: '',
+    usernamesession:''
 }
 
 const actions = {
@@ -24,7 +25,10 @@ const mutations = {
         .then(response =>{
             state.userid=response.data.data.userid
             // state.userid=0
+            state.usernamesession01=response.data.data
+            state.usernamesession02=response.data.data.username
             console.log(state.userid)
+            console.log(response.data.data) 
         }) 
     },
 }

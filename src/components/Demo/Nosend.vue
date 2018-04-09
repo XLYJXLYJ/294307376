@@ -37,7 +37,7 @@ import { mapGetters,mapActions} from 'vuex'
                     state:0
                 })
                 .then(response => {
-                        this.title=response.data.data[0] 
+                        this.title=response.data.data
                     })
                 },
             publish(id){

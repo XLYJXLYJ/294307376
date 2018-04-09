@@ -28,7 +28,7 @@
                         <!-- <a href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"></a> -->
                         <!-- <a href="https://www.baidu.com/" target="_blank">点击播放百度</a> -->
                         
-                        <iframe class="video" frameborder="0" id="myFrameId" src="static/js/snap.html#run:/static/whatever.xml" name="myFrameName"></iframe>
+                        <iframe class="video" frameborder="0" id="myFrameId" src="static/js/snap.html#run:/static/1595.xml" name="myFrameName"></iframe>
                 </div>
                 <div class="mydemo_frame">
                 <router-link class="Myvideo" to="/Video/Myvideo">Ta的作品</router-link>
@@ -73,7 +73,7 @@ export default{
     methods:{
        refresh(){
            window.location.reload(true)
-       }
+       },
     },
     components:{
         Header,

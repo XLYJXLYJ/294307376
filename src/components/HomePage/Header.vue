@@ -1,6 +1,7 @@
 <template>
     <div class="headercontainer04">
         <div class="container04">
+            <a href="static/img/allpic.87321c0.png"></a>
             <img class="logo" src="../../assets/home/logo.png" alt="">  
             <ul>
                 <li>
@@ -12,6 +13,9 @@
                 <li>
                     <router-link class="a_text" to="/source">素材</router-link>
                 </li> 
+                 <li>
+                    <router-link class="a_text" to="/Publish">发布</router-link>
+                </li>
                 <li>
                     <a class="a_text" href="https://mofang.qq.com/index/?type=staffpick&pagenum=0&pagesize=40" target="_blank">磨坊</a>
                 </li> 
@@ -27,27 +31,28 @@
             </div>
             <div class="username" v-show="usercenter"> 
                 <img class="user" src="../../assets/home/user.png" alt="">
-                <p class="login" type="text"  @click="dialogLogin = true" >{{formLogin.username01}}</p>   
+                <p class="login" type="text"  @click="dialogLogin = true" >{{$store.state.usernamesession02}}</p>   
             </div>  
+            <div v-show="dropdowm">
+                <el-row class="block-col-12">
+                    <el-col :span="12">
+                        <el-dropdown>
+                        <span  class="el-dropdown-link">
+                            下拉菜单
+                        </span>
+                        <el-dropdown-menu slot="dropdown">
+                            <router-link to="/Demo"><el-dropdown-item>作品管理</el-dropdown-item></router-link>
+                            <el-dropdown-item>社区消息</el-dropdown-item>
+                            <router-link to="/User"><el-dropdown-item>个人中心</el-dropdown-item></router-link>     
+                            <router-link to="/setting"><el-dropdown-item>账号设置</el-dropdown-item></router-link>   
+                            <el-dropdown-item><p @click="Cancellogout">退出登陆</p></el-dropdown-item>
+                        </el-dropdown-menu>
+                        </el-dropdown>
+                    </el-col>
+                </el-row>
+            </div>
         </div>
-        <div v-show="dropdowm">
-            <el-row class="block-col-12">
-                <el-col :span="12">
-                    <el-dropdown>
-                    <span  class="el-dropdown-link">
-                        下拉菜单
-                    </span>
-                    <el-dropdown-menu slot="dropdown">
-                        <router-link to="/Demo"><el-dropdown-item>作品管理</el-dropdown-item></router-link>
-                        <el-dropdown-item>社区消息</el-dropdown-item>
-                        <router-link to="/User"><el-dropdown-item>个人中心</el-dropdown-item></router-link>     
-                        <router-link to="/setting"><el-dropdown-item>账号设置</el-dropdown-item></router-link>   
-                        <el-dropdown-item><p @click="Cancellogout">退出登陆</p></el-dropdown-item>
-                    </el-dropdown-menu>
-                    </el-dropdown>
-                </el-col>
-            </el-row>
-        </div>
+ 
 
         <!-- 模态框 -->
     
@@ -159,9 +164,10 @@ export default {
             dialogPassSure:false,
             loginsign: true,
             usercenter: false,
-            dropdowm:false,
+            dropdowm:true,
             stata:'',
             resgistermsg:'',
+            usernamesession01:this.$store.state.usernamesession01,
             formLogin: {
                 username: '',
                 username01:'',
@@ -206,6 +212,7 @@ export default {
         };
     },
     created:function() {
+        console.log(this.usernamesession01+'123')
         this.Getsession()  
         this.$store.dispatch('Getsession01') 
     }, 
@@ -232,11 +239,12 @@ export default {
                     this.loginsign = false,
                     this.usercenter = true,
                     this.dropdowm = true,
-                    setTimeout('window.location.reload()',1000);
+                    // setTimeout('window.location.reload()',1000);
                     this.$message({
                         message: '登陆成功',
                         center: true,
-                    });        
+                    });   
+                    this.$store.dispatch('Getsession01') 
                     break;
                     case 2:
                     this.$message({
@@ -357,11 +365,20 @@ export default {
             // session验证
             this.axios.get('/res/verify')
             .then(response =>{
-                this.formLogin.username01=response.data.data.username
-                this.dialogLogin = false;
-                this.loginsign = false;
-                this.usercenter = true;
-                this.dropdowm = true;  
+                // this.formLogin.username01=response.data.data.username
+                if(this.usernamesession01){
+                    this.dialogLogin = false;
+                    this.loginsign = false;
+                    this.usercenter = true;
+                    this.dropdowm = true; 
+                    // location.reload()
+                }else{
+                    this.dialogLogin = false;
+                    this.loginsign = true;
+                    this.usercenter = false;
+                    this.dropdowm = false; 
+                    
+                } 
             }) 
         },
         //取消登陆
@@ -420,7 +437,9 @@ export default {
 .a_text{
     text-decoration: none;
     color: #999;
-    font-family:"微软雅黑";
+}
+.a_text:hover{
+    color: #0078d7;
 }
 .container04 .router-link-active{
     text-decoration: none;
@@ -518,7 +537,7 @@ export default {
 }
 .block-col-12{
     position: absolute;
-    left: 72%;
+    left: 90%;
     top: 15px;
     width: 130px;
     height: 50px;

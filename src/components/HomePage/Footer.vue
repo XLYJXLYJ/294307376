@@ -90,6 +90,7 @@
   color:#fff;
   margin-bottom: 10px;
   text-align: left;
+  font-family: “Microsoft YaHei” !important; 
 }
 .container003 .container03 .small{
   font-size: 13px;

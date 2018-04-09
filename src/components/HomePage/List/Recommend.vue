@@ -104,28 +104,28 @@
         </el-row>
                 <el-row :gutter="10">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
                     <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+                        <a href="static/js/snap.html#run:/static/dayazi.xml" target="_blank">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>打鸭子游戏</p>
+                        <span class="game_cat">tree</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
-                </router-link>
             </el-col>
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <img src="../../../assets/home/img_mao.png" alt="">
-                        <p>新年翻福字</p>
-                        <span class="game_cat">游戏猫</span>
+                   <div class="grid-content bg-purple list_pic">
+                        <a href="static/js/snap.html#run:/codeplay/file/11595.xml" target="_blank">
+                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                        <p>本地服务器运行45</p>
+                        <span class="game_cat">tree</span>
                         <span class="down"><i class="icon_see"><span>4k</span></i></span>
                         <span class="down"><i class="icon_love"><span>20</span></i></span>
                         <span class="down"><i class="icon_star"><span>70</span></i></span>
+                        </a>
                     </div>
-                </router-link>
             </el-col>
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                 <router-link class="routetext" to="/Video">
@@ -385,13 +385,13 @@ export default{
     height: 14px;
     margin: 10px;
     position: relative;
-    left: -8px;
+    left: -9px;
     top: 20px;
 }
 .container02 .down span{
     position: relative;
     left: 10px;
-    margin-left: 6px;
+    margin-left: 10px;
     font-style: normal;
     color: #959595;
 }
