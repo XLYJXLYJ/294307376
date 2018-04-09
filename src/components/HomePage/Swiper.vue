@@ -67,14 +67,12 @@ export default{
 
 .el-carousel__item:nth-child(2n) {
     background-color: #99a9bf;
-    /* margin-top: 25px; */
-    width:580px;
+    width:500px;
 }
 
 .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
-    /* margin-top: 25px; */
-    width:580px;
+    width:500px;
 }
 .el-carousel__item{
     border-radius: 20px;

@@ -4,7 +4,9 @@
             <div class="snapheader">
                 <ul class="snapheaderleft">
                     <li class="bcw"><img src="../assets/snappic/home.png" alt=""><p><a href="/"> 编程玩</a></p></li>
-                    <li class="borderlight01"><img src="../assets/snappic/new.png" alt=""><p @click="open">打开</p></li>
+                    <li class="borderlight01"><img src="../assets/snappic/new.png" alt=""><p @click="dialogNew=true">新建</p></li>
+                    <li class="borderlight01"><img src="../assets/snappic/new.png" alt=""><p @click="open">打开本地文件</p></li>
+                    <li class="borderlight01" @click="dialogExport = true"><img src="../assets/snappic/new.png" alt=""><p @click="download">下载到本地</p></li>
                     <li class="borderlight"  @click="dialogSave = true"><img src="../assets/snappic/save.png" alt=""><p @click="handiframe">保存项目</p></li>
 
 
@@ -51,6 +53,48 @@
                 </el-dialog>
             </div>
         </transition>
+
+        <transition name="el-fade-in-linear">
+            <div>
+                <el-dialog :visible.sync="dialogExport" :modal="false" width="420px">
+                    <div class="container501">
+                        <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
+                            <img class="welcome" src="../assets/login/welcome.png" alt="">
+                            <img class="sign_logo" src="../assets/login/login_logo.png" alt="">
+                            <!-- <el-form-item class="tele">
+                                <el-input type="text" v-model="formSave.userid" auto-complete="off" placeholder="请输入用户名" v-show="true"></el-input>
+                            </el-form-item> -->
+                            <el-form-item class="iden01">
+                                <el-input type="text" v-model="formSave.exporttitle" auto-complete="off" placeholder="请输入项目名称"></el-input>       
+                            </el-form-item>
+                            <el-button  class="iden02" @click="download(formSave.exporttitle)">确定下载</el-button>
+                        </el-form>
+                    </div>
+                </el-dialog>
+            </div>
+        </transition>
+
+        
+        <transition name="el-fade-in-linear">
+            <div>
+                <el-dialog :visible.sync="dialogNew" :modal="false" width="420px">
+                    <div class="container502">
+                        <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
+                            <img class="welcome" src="../assets/login/welcome.png" alt="">
+                            <img class="sign_logo" src="../assets/login/login_logo.png" alt="">
+                            <!-- <el-form-item class="tele">
+                                <el-input type="text" v-model="formSave.userid" auto-complete="off" placeholder="请输入用户名" v-show="true"></el-input>
+                            </el-form-item> -->
+                            <el-form-item class="iden01">
+                                <h1>确定放弃当前项目，新建新的项目吗？</h1>      
+                            </el-form-item>
+                            <el-button  class="iden02"  @click="newproject">确定</el-button>
+                            <el-button  class="iden03" @click="dialogNew=false">取消</el-button>
+                        </el-form>
+                    </div>
+                </el-dialog>
+            </div>
+        </transition>
    </div>
 </template>
 <script>
@@ -63,9 +107,12 @@ export default{
         return{
             // userid:,
             dialogSave: false,
+            dialogExport: false,
+            dialogNew: false,
             formSave: {
                 userid:this.$store.state.userid,
                 title: '',
+                exporttitle: '',
                 desc: '',
                 file: '',
                 files: '',
@@ -99,18 +146,6 @@ export default{
     },
    
     methods: {
-        // submitUpload() {
-        //     this.$refs.upload.submit();
-        // },
-        // uploadSuccess (response, file, fileList) {
-        //         console.log('上传文件', response)
-        // },
-        // handleRemove(file, fileList) {
-        //     console.log(file, fileList);
-        // },
-        // handlePreview(file) {
-        //     console.log(file);
-        // },
         handiframe() {
             this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
             // this.createXml(this.formSave.file)
@@ -126,8 +161,15 @@ export default{
 
         },
         open() {
-            this.formSave.file = window.frames["snap"].ide.droppedText (this.formSave.file)
-
+            window.frames["snap"].ide.openProject()
+        },
+        newproject() {
+            window.frames["snap"].ide.newProject()
+            this.dialogNew=false
+        },
+        download(name) {
+            this.formSave.file = window.frames["snap"].ide.exportProject (name)
+            this.dialogExport=false
         },
 
          submitUpload() {
@@ -146,19 +188,7 @@ export default{
              .then(function(response){
                  console.log(response)
              })
-        },
-        // open() {
-        //     console.log(123)
-        // },
-        // createXml(str){ 
-        // 　　if(document.all){ 
-        //     　　var xmlDom=new ActiveXObject("Microsoft.XMLDOM");
-        //     　　xmlDom.loadXML(str);
-        //     　　return this.formSave.filexml = xmlDom;
-        // 　　} 
-        // 　　else 
-        // 　　return this.formSave.filexml = new DOMParser().parseFromString(str, "text/xml");
-        //     }   
+        }
         },
 }
 
@@ -182,8 +212,8 @@ export default{
 	color: #fff;
 }
 .snapboxhead .snapheaderleft{
-	width:400px;
-	height: 27px;
+	width:500px;
+	height: 28px;
     background: #fff;
 	/* background: linear-gradient(to right,#0078D7, rgb(0, 215, 215)); */
 	list-style: none;
@@ -289,8 +319,99 @@ export default{
     font-size: 18px;
     cursor: pointer;
 }
+
 .borderlighttest{
     position: relative;
     top: 18px;
+}
+
+.container501{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 266px;
+    background: #9cf7ff;
+}
+.container501 .welcome{
+    position: absolute;
+    top: 56px;
+    left: 60px;
+}
+.container501 .sign_logo{
+    position: absolute;
+    top: 56px;
+    left: 266px;
+}
+.container501 .tele{
+    position: absolute;
+    height: 49px;
+    width: 297px;
+    top: 110px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container501 .iden01{
+    position: absolute;
+    height: 49px;
+    width: 297px;
+    top: 108px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container501 .iden02{
+    position: absolute;
+    height: 39px;
+    width: 197px;
+    top: 188px;
+    left: 125px;
+}
+
+
+.container502{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 266px;
+    background: #9cf7ff;
+}
+.container502 .welcome{
+    position: absolute;
+    top: 56px;
+    left: 60px;
+}
+.container502 .sign_logo{
+    position: absolute;
+    top: 56px;
+    left: 266px;
+}
+.container502 .tele{
+    position: absolute;
+    height: 49px;
+    width: 297px;
+    top: 110px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container502 .iden01{
+    position: absolute;
+    height: 49px;
+    width: 297px;
+    top: 108px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container502 .iden02{
+    position: absolute;
+    height: 39px;
+    width: 77px;
+    top: 178px;
+    left: 115px;
+}
+.container502 .iden03{
+    position: absolute;
+    height: 39px;
+    width: 77px;
+    top: 178px;
+    left: 225px;
 }
 </style>

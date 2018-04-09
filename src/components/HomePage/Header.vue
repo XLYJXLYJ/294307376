@@ -164,7 +164,7 @@ export default {
             dialogPassSure:false,
             loginsign: true,
             usercenter: false,
-            dropdowm:true,
+            dropdowm:false,
             stata:'',
             resgistermsg:'',
             usernamesession01:this.$store.state.usernamesession01,
