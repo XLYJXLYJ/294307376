@@ -7,7 +7,7 @@
                     <p>{{item.title}}</p>
                     <span>{{item.time}}</span>
                 </div>
-                <button class="button01">修改</button>
+                <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
                 <button class="button02" @click="publish(item.id)">发布</button>
                 <span class="down"><i class="icon_see"><span>36k</span></i></span>
                 <span class="down"><i class="icon_love"><span>265</span></i></span>
@@ -37,9 +37,15 @@ import { mapGetters,mapActions} from 'vuex'
                     state:0
                 })
                 .then(response => {
-                        this.title=response.data.data
+                    console.log(this.title)
+                    console.log(response.data.data)
+                    this.title=response.data.data
                     })
                 },
+            edit(id){
+                id:id,                  
+                this.$store.state.demoxmlid = id
+            },
             publish(id){
                 this.axios.post('/res/dealfile',{
                     id:id,

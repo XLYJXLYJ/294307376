@@ -158,16 +158,19 @@ export default{
     left: 529px;
     color: #ffca32;
     font-size: 12px;
+    cursor: pointer;
 }
 .container36 .love{
     position: absolute;
     top: 48px;
     left: 720px;
+    cursor: pointer;
 }
 .container36 .star{
     position: absolute;
     top: 44px;
     left: 790px;
+    cursor: pointer;
 }
 .container36 .buycode{
     position: absolute;
@@ -179,6 +182,7 @@ export default{
     color: #fff;
     background: #5bc4ea;
     border-radius: 15px;
+    cursor: pointer;
 }
 .container36 .buy{
     position: absolute;

@@ -4,12 +4,10 @@
             <div class="snapheader">
                 <ul class="snapheaderleft">
                     <li class="bcw"><img src="../assets/snappic/home.png" alt=""><p><a href="/"> 编程玩</a></p></li>
-                    <li class="borderlight01"><img src="../assets/snappic/new.png" alt=""><p @click="dialogNew=true">新建</p></li>
-                    <li class="borderlight01"><img src="../assets/snappic/new.png" alt=""><p @click="open">打开本地文件</p></li>
-                    <li class="borderlight01" @click="dialogExport = true"><img src="../assets/snappic/new.png" alt=""><p @click="download">下载到本地</p></li>
-                    <li class="borderlight"  @click="dialogSave = true"><img src="../assets/snappic/save.png" alt=""><p @click="handiframe">保存项目</p></li>
-
-
+                    <li class="borderlight"><img src="../assets/snappic/new.png" alt=""><p @click="dialogNew=true">新建</p></li>
+                    <li class="borderlight01"><img src="../assets/snappic/save.png" alt=""><p @click="dialogOpen=true"> 打开本地文件</p></li>
+                    <li class="borderlight02" @click="dialogExport = true"><img src="../assets/snappic/download.png" alt=""><p @click="download">下载到本地</p></li>
+                    <li class="borderlight03"  @click="dialogSave = true"><img src="../assets/snappic/upload.png" alt=""><p @click="handiframe">保存项目</p></li>
                     <li class="borderlight"><p>{{formSave.title}}</p></li>
                     <!-- <li class="borderlight" ><img src="../assets/snappic/upload.png" alt=""><p >保存</p></li> -->
                 </ul>
@@ -88,8 +86,29 @@
                             <el-form-item class="iden01">
                                 <h1>确定放弃当前项目，新建新的项目吗？</h1>      
                             </el-form-item>
-                            <el-button  class="iden02"  @click="newproject">确定</el-button>
+                             <el-button  class="iden02"  @click="newproject">确定</el-button>
                             <el-button  class="iden03" @click="dialogNew=false">取消</el-button>
+                        </el-form>
+                    </div>
+                </el-dialog>
+            </div>
+        </transition>
+
+            <transition name="el-fade-in-linear">
+            <div>
+                <el-dialog :visible.sync="dialogOpen" :modal="false" width="420px">
+                    <div class="container503">
+                        <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
+                            <img class="welcome" src="../assets/login/welcome.png" alt="">
+                            <img class="sign_logo" src="../assets/login/login_logo.png" alt="">
+                            <!-- <el-form-item class="tele">
+                                <el-input type="text" v-model="formSave.userid" auto-complete="off" placeholder="请输入用户名" v-show="true"></el-input>
+                            </el-form-item> -->
+                            <el-form-item class="iden01">
+                                <input class="iden04" type="file" ref="file" multiple/>     
+                            </el-form-item>
+                             <el-button  class="iden02"  @click="open">确定</el-button>
+                            <el-button  class="iden03" @click="dialogOpen=false">取消</el-button>
                         </el-form>
                     </div>
                 </el-dialog>
@@ -109,6 +128,7 @@ export default{
             dialogSave: false,
             dialogExport: false,
             dialogNew: false,
+            dialogOpen: false,
             formSave: {
                 userid:this.$store.state.userid,
                 title: '',
@@ -119,6 +139,8 @@ export default{
                 filexml: '',
                 filebir: '',
                 filebinary: '',
+                readfilebinary: '',
+                demoxml:''
             },
             rules:{
             username: [
@@ -144,8 +166,23 @@ export default{
             },
         }
     },
-   
+    mounted(){
+        this.loadproject()
+    },
     methods: {
+        async loadproject(){
+             this.axios.post('/res/getfile',{
+                id:this.$store.state.demoxmlid,
+            })
+            .then(response => {                          
+               this.demoxml = response.data
+               window.frames["snap"].ide.droppedText(this.demoxml,'HHH') 
+               console.log(this.demoxml)
+               console.log(id)
+            })
+        
+            // window.frames["snap"].ide.droppedText(this.$store.state.demoxml,'HHH') 
+        },
         handiframe() {
             this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
             // this.createXml(this.formSave.file)
@@ -161,7 +198,18 @@ export default{
 
         },
         open() {
-            window.frames["snap"].ide.openProject()
+            this.dialogOpen=false
+             var reader = new FileReader();
+             reader.readAsText(this.$refs.file.files[0]);
+             reader.onload = function () {
+                 
+                this.readfilebinary=this.result
+                console.log(this.readfilebinary)
+                window.frames["snap"].ide.droppedText(this.readfilebinary,'HHH')   
+             }
+             
+            //  console.log(reader.readAsDataURL(this.$refs.file.files[0]))
+             
         },
         newproject() {
             window.frames["snap"].ide.newProject()
@@ -188,8 +236,13 @@ export default{
              .then(function(response){
                  console.log(response)
              })
+             this.dialogSave = false;
+            this.$message({
+                message: '上传成功',
+                center: true
+            });
         }
-        },
+    },
 }
 
 </script>
@@ -212,10 +265,9 @@ export default{
 	color: #fff;
 }
 .snapboxhead .snapheaderleft{
-	width:500px;
+	width:75%;
 	height: 28px;
-    background: #fff;
-	/* background: linear-gradient(to right,#0078D7, rgb(0, 215, 215)); */
+	background: linear-gradient(to right,#0078D7, #fff);
 	list-style: none;
 	position: fixed;
 	top: 0px;
@@ -231,9 +283,25 @@ export default{
     color: #000; 
     margin-top: -1px;
 }
+.snapboxhead .bcw p{
+    color: #000; 
+    padding-left: 8px;
+}
 .snapboxhead .borderlight01{
     color: #000; 
     margin-top: 1px;
+}
+.snapboxhead .borderlight p{
+    padding-top: 1px;
+}
+.snapboxhead .borderlight01 p{
+    padding-left: 56px;
+}
+.snapboxhead .borderlight02 p{
+    padding-left: 38px;
+}
+.snapboxhead .borderlight03 p{
+    padding-left: 30px;
 }
 .snapboxhead .bcw a{
     color: #000; 
@@ -242,7 +310,7 @@ export default{
 .snapboxhead .snapheaderleft li{
 	float: left;
 	height: 20px;
-	width: 100px;
+	width: 160px;
 	cursor: pointer;
 	opacity: 0.7;
 }
@@ -413,5 +481,61 @@ export default{
     width: 77px;
     top: 178px;
     left: 225px;
+}
+
+
+.container503{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 266px;
+    background: #9cf7ff;
+}
+.container503 .welcome{
+    position: absolute;
+    top: 56px;
+    left: 60px;
+}
+.container503 .sign_logo{
+    position: absolute;
+    top: 56px;
+    left: 266px;
+}
+.container503 .tele{
+    position: absolute;
+    height: 49px;
+    width: 297px;
+    top: 110px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container503 .iden01{
+    position: absolute;
+    height: 49px;
+    width: 297px;
+    top: 108px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container503 .iden02{
+    position: absolute;
+    height: 39px;
+    width: 77px;
+    top: 178px;
+    left: 115px;
+}
+.container503 .iden03{
+    position: absolute;
+    height: 39px;
+    width: 77px;
+    top: 178px;
+    left: 225px;
+}
+.container503 .iden04{
+    position: absolute;
+    height: 39px;
+    width: 187px;
+    top: 8px;
+    left: 55px;
 }
 </style>

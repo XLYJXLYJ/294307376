@@ -318,17 +318,18 @@
 </template>
 <script>
     export default{
+        mounted(){
+            this.run()
+        },
         methods:{
             run() {
-                this.axios('/res/upload', {
-                id:11576,
-            })
-            .then(response => {
-                console.log(response)
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+            //     this.axios.get('/res/getfile')
+            // .then(response => {
+            //     console.log(response)
+            // })
+            // .catch(function (error) {
+            //     console.log(error);
+            // });
         },
         }
     }

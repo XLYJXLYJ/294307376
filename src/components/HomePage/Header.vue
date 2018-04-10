@@ -211,10 +211,9 @@ export default {
             },
         };
     },
-    created:function() {
-        console.log(this.usernamesession01+'123')
+    mounted:function() {
         this.Getsession()  
-        this.$store.dispatch('Getsession01') 
+        // this.$store.dispatch('Getsession01') 
     }, 
     methods: {
         ...mapActions(['Getsession01']),   
@@ -239,12 +238,11 @@ export default {
                     this.loginsign = false,
                     this.usercenter = true,
                     this.dropdowm = true,
-                    // setTimeout('window.location.reload()',1000);
                     this.$message({
                         message: '登陆成功',
                         center: true,
-                    });   
-                    this.$store.dispatch('Getsession01') 
+                    });  
+                    this.$router.push({ name: 'Lesson' }); 
                     break;
                     case 2:
                     this.$message({
@@ -363,22 +361,23 @@ export default {
         //session验证登陆
         Getsession() {
             // session验证
+            console.log(this.$store.state.userid)   
             this.axios.get('/res/verify')
             .then(response =>{
                 // this.formLogin.username01=response.data.data.username
-                if(this.usernamesession01){
+                if(response.data.data){
                     this.dialogLogin = false;
                     this.loginsign = false;
                     this.usercenter = true;
                     this.dropdowm = true; 
-                    // location.reload()
+                    this.$store.state.usernamesession02=response.data.data.username
+                    this.$store.state.userid=response.data.data.userid
                 }else{
                     this.dialogLogin = false;
                     this.loginsign = true;
                     this.usercenter = false;
                     this.dropdowm = false; 
-                    
-                } 
+                }
             }) 
         },
         //取消登陆

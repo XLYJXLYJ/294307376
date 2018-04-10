@@ -43,6 +43,7 @@ export default new Router({
     {
       path: '/Home',
       component: Home,
+      name: 'Home',
       // redirect:'/List/Recommend',
       children:[
         { path: '/Home/Production', component: Production},

@@ -13,12 +13,6 @@
         <el-form-item label="真实姓名">
           <el-input class="input01" v-model="formLabelAlign.name01"></el-input>
         </el-form-item>
-        <el-form-item label="QQ号">
-          <el-input class="input01" v-model="formLabelAlign.qq"></el-input>
-        </el-form-item>
-        <el-form-item label="手机号码">
-          <el-input class="input01" v-model="formLabelAlign.tele"></el-input>
-        </el-form-item>
         <el-button class="save">保存</el-button>
     </el-form>
   </div>
@@ -29,14 +23,41 @@
       return {
         labelPosition: 'right',
         formLabelAlign: {
-          name: '胡歌',
-          sex: '女',
-          age: '18',
-          name01: '李长长',
-          qq: '000000',
-          tele: '18818818892'
+          name: '',
+          sex: '',
+          age: '',
+          name01: '',
         }
       };
+    },
+    mounted:function(){
+      this.loadmessage()
+    },
+    methods:{
+      loadmessage(){
+            this.axios.post('/res/userinfo',{
+                    userid:this.$store.state.userid,
+                    getinfostate:1
+            })
+            .then(response => {
+              console.log(response)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+      },
+      uploadmessage(){
+          this.axios.post('/res/userinfo',{
+                  userid:this.$store.state.userid,
+                  getinfostate:1
+          })
+          .then(response => {
+            console.log(response)
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+    }
     }
   }
 </script>

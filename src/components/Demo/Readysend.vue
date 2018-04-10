@@ -1,13 +1,13 @@
 <template>
     <div class="container28">
-        <ul v-for="item in list" :key='item.id'>
-            <li>
+        <ul>
+            <li v-for="item in list" :key='item.id'>
                 <div class="all_up">
                     <img src="../../assets/all/allpic.png" alt="">
                     <p>{{item.title}}</p>
-                    <span>9分钟前</span>
+                    <span>{{item.create_time}}</span>
                 </div>
-                <button class="button01">修改</button>
+                <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
                 <button class="button02">加入</button>
                 <span class="down"><i class="icon_see"><span>5k</span></i></span>
                 <span class="down"><i class="icon_love"><span>5</span></i></span>
@@ -23,10 +23,11 @@ import { mapGetters,mapActions} from 'vuex'
 export default{
     data(){
         return{
-            list:[]
+            list:'',
+            demoid:''
         }
     },
-    mounted: function () {      
+    created: function () {      
         this.Getalldemo()
     },
     methods:{
@@ -35,10 +36,15 @@ export default{
                 userid:this.$store.state.userid,
                 state:1
             })
-            .then(response => {
-                this.list=response.data.data[0] 
+            .then(response => {           
+                this.list = response.data.data
+                console.log(this.list)
             })
             },
+        edit(id){
+            id:id,                  
+            this.$store.state.demoxmlid = id
+        },
         Canpublic(id){
             this.axios.post('/res/dealfile',{
                     id:id,
@@ -104,7 +110,7 @@ export default{
 }
 .container28 .all_up span{
     height: 14px;
-    width:51px;
+    width:221px;
     color: #999;
     font-size: 14px;
     position: absolute;

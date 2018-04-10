@@ -9,7 +9,8 @@ Vue.use(Vuex);
 
 const state = {
     userid: '',
-    usernamesession:''
+    usernamesession:'',
+    demoxmlid:''
 }
 
 const actions = {
@@ -27,8 +28,6 @@ const mutations = {
             // state.userid=0
             state.usernamesession01=response.data.data
             state.usernamesession02=response.data.data.username
-            console.log(state.userid)
-            console.log(response.data.data) 
         }) 
     },
 }

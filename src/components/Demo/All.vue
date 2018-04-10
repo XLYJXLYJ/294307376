@@ -7,12 +7,12 @@
                     <p>{{item.title}}</p>
                     <span>{{item.time}}</span>
                 </div>
-                <button class="button01">修改</button>
+                <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
                 <button class="button02">加入</button>
                 <span class="down"><i class="icon_see"><span>3k</span></i></span>
                 <span class="down"><i class="icon_love"><span>25</span></i></span>
                 <span class="down"><i class="icon_star"><span>17</span></i></span>
-                <p class="cancelpub">取消发布</p>
+                <!-- <p class="cancelpub">取消发布</p> -->
             </li>
         </ul>  
     </div>
@@ -31,12 +31,17 @@ import { mapGetters,mapActions} from 'vuex'
             this.getalldemo()
         },
         methods:{
+            edit(id){
+                id:id,                  
+                this.$store.state.demoxmlid = id
+            },
             getalldemo(){
                 this.axios.post('/res/filelist',{
                     userid:this.$store.state.userid,
                 })
-                .then(response => {
-                   this.list=response.data.data[0] 
+                .then(response => {   
+                   this.list=response.data.data 
+                   console.log( this.list)
                 })
             },
         }
