@@ -1,6 +1,6 @@
 <template>
     <div class="container29">
-        <ul v-for="item in title" :key='item.id'>
+        <ul v-for="item in title" :key='item.id' v-show="nosend">
             <li>
                 <div class="all_up">
                     <img src="../../assets/all/allpic.png" alt="">
@@ -23,6 +23,7 @@ import { mapGetters,mapActions} from 'vuex'
     export default{
         data(){
             return{
+                nosend:true,
                 title:[],
                 projectid:''
             }
@@ -37,11 +38,13 @@ import { mapGetters,mapActions} from 'vuex'
                     state:0
                 })
                 .then(response => {
-                    console.log(this.title)
-                    console.log(response.data.data)
-                    this.title=response.data.data
-                    })
-                },
+                    if(response.data.data.msg=='这回真的没有了~'){
+                        this.nosend = false
+                    }else{
+                        this.title=response.data.data
+                    }
+                })
+            },
             edit(id){
                 id:id,                  
                 this.$store.state.demoxmlid = id

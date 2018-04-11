@@ -4,12 +4,12 @@
             <img class="star" src="../../assets/user/starfish.png" alt="">
             <p class="store">我分享的作品</p>
             <img class="left" src="../../assets/user/left.png" alt="">
-            <ul class="block">
-                <li>
+            <ul class="block" v-show="nosend">
+                <li v-for="item in list" :key='item.id'>
                     <div class="share">
                         <img src="../../assets/user/userdemo.png" alt="">
-                        <p>三只小熊</p>
-                        <span>作者：哇哈哈</span>
+                        <p>{{item.title}}</p>
+                        <span>作者：{{$store.state.usernamesession02}}</span>
                     </div>
                 </li>
             </ul>
@@ -17,6 +17,33 @@
         </div>
     </div>
 </template>
+<script>
+    export default{
+        data(){
+            return{
+                list:'',
+                nosend:true
+            }
+        },
+        mounted: function () {      
+            this.Getalldemo()
+            console.log('share')
+        },
+        methods:{
+            Getalldemo(){
+                console.log(12345)
+                // this.axios.post('/res/filelist',{
+                //         userid:this.$store.state.userid,
+                //         state:1
+                //     })
+                //     .then(response => {           
+                //         this.list = response.data.data
+                //         console.log(12345)
+                // })
+            }
+        }
+    }
+</script>
 <style>
 .container40{
     width:1000px;
@@ -46,10 +73,9 @@
 .container40 .block span{
     font-size: 14px;
     color: #999;
- 
     position: relative;
     top: 0px;
-    left: -14px;   
+    left: -24px;   
 }
 .container40 ul{
     list-style: none;

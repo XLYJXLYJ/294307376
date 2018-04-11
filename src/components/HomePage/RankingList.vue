@@ -43,9 +43,9 @@
 .container06{
     height: 600px;
     width: 270px;
-    position: relative;
+    position: absolute;
     left: 710px;
-    top: -1600px;  
+    top: 160px;  
 }
 .rank_list_top{
     float: left;
@@ -123,7 +123,7 @@
    width: 100%;
    height: 210px;
    list-style: none;
-   margin-top: 60px;
+   margin-top: -10px;
 }
 .rank_up img{
    width: 56px;

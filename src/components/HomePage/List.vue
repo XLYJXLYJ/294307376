@@ -26,6 +26,7 @@
     width: 1000px;
     margin: 0 auto;
     margin-top: 152px;
+    position: relative;
 }
 .container05 ul{
     list-style: none;

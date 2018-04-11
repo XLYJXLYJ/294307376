@@ -2,13 +2,13 @@
     <div class="container34">  
           <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
                 <el-form-item label="旧密码">
-                  <el-input class="input01" v-model="formLabelAlign.oldpass"></el-input>
+                  <el-input class="input01" type="password" v-model="formLabelAlign.oldpass"></el-input>
                 </el-form-item>
                 <el-form-item label="新密码">
-                  <el-input class="input01" v-model="formLabelAlign.newpass"></el-input>
+                  <el-input class="input01" type="password" v-model="formLabelAlign.newpass"></el-input>
                 </el-form-item>
                 <el-form-item label="确认密码">
-                  <el-input class="input01" v-model="formLabelAlign.conpass"></el-input>
+                  <el-input class="input01" type="password" v-model="formLabelAlign.conpass"></el-input>
                 </el-form-item>
                 <el-button class="save" @click="changepassbtn">确认修改</el-button>
           </el-form>
@@ -39,10 +39,11 @@
                     userid:this.$store.state.userid
             })
             .then(response => {
-                this.$message({
-                    message: '修改密码成功',
-                    center: true
-                }); 
+              console.log(response)
+                // this.$message({
+                //     message: '修改密码成功',
+                //     center: true
+                // }); 
             })
             .catch(function (error) {
                 console.log(error);

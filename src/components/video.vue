@@ -28,7 +28,7 @@
                         <!-- <a href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"></a> -->
                         <!-- <a href="https://www.baidu.com/" target="_blank">点击播放百度</a> -->
                         
-                        <iframe class="video" frameborder="0" id="myFrameId" src="static/js/snap.html#run:/static/1595.xml" name="myFrameName"></iframe>
+                        <iframe class="video" frameborder="0" id="myFrameId" :src="'static/js/snap.html#run:/codeplay/file/'+this.$store.state.demoxmlid+'.xml'" name="myFrameName"></iframe>
                 </div>
                 <div class="mydemo_frame">
                 <router-link class="Myvideo" to="/Video/Myvideo">Ta的作品</router-link>
@@ -61,6 +61,7 @@ import Footer from '@/components/HomePage/Footer'
 export default{
     data(){
         return{
+            demoxml:'',
             item:{
                 // url:"static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"
                 url:'https://www.baidu.com/'
@@ -68,12 +69,25 @@ export default{
         }
     },
     mounted(){
-            console.log(123)
+        this.loadproject()
+        console.log(123)
     },
     methods:{
-       refresh(){
-           window.location.reload(true)
-       },
+        loadproject(){
+            console.log(666)
+        this.axios.post('/res/getfile',{
+            id:this.$store.state.demoxmlid,
+        })
+        .then(response => {                          
+            this.demoxml = response.data
+            console.log(response)
+            console.log(this.demoxml)
+            console.log(this.$store.state.demoxmlid)
+             window.frames["myFrameName"].ide.droppedText(this.demoxml,'HHH') 
+        })
+        // window.frames["snap"].ide.droppedText(this.demoxml,'HHH') 
+        // window.frames["snap"].ide.droppedText(this.$store.state.demoxml,'HHH') 
+    },
     },
     components:{
         Header,

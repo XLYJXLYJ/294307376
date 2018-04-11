@@ -7,16 +7,17 @@
                 <p class="atten">编程达人</p>
             </div>
             <div>
-                <button :class='{"attenbutton01":buttoncolor,"attenbutton02":!buttoncolor}' @click="attenbutton"><p>{{ atten?'关注':'取消关注' }}</p></button>
+                <button class="attenbutton01" @click="Postuseinfo"><p>保存</p></button>
+                <!-- <button :class='{"attenbutton01":buttoncolor,"attenbutton02":!buttoncolor}' @click="attenbutton"><p>{{ atten?'关注':'取消关注' }}</p></button> -->
             </div>
         </div>
         <div class="aboutbox">
             <p class="aboutme">关于我</p>
-            <textarea class="aboutmetext" name="" id="" cols="30" rows="10" placeholder="简单介绍你自己"></textarea>
+            <textarea class="aboutmetext" name="" id="" cols="30" rows="10" v-model="aboutme"></textarea>
         </div>
          <div class="doing">
             <p class="medoing">我正在做什么</p>
-            <textarea class="medoingtext" name="" id="" cols="30" rows="10" placeholder="描述一下你正在做什么"></textarea>
+            <textarea class="medoingtext" name="" id="" cols="30" rows="10"  v-model="doing"></textarea>
         </div>
         <div>
             <div>
@@ -43,14 +44,51 @@ import Vue from 'vue'
         data(){
             return{
                  atten:true,
-                 buttoncolor:true
-            }
-           
+                 buttoncolor:true,
+                 listdemo:'',
+                 postlistdemo:'',
+                 aboutme:'',
+                 doing:''
+            } 
+        },
+        // watch:{
+        //     doing:function(){
+        //         this.Postuseinfo()
+        //     },
+        //     aboutme:function(){
+        //         this.Postuseinfo()
+        //     }
+        // },
+        mounted: function () {     
+            this.Getuseinfo()
         },
         methods:{
             attenbutton(atten){
                 this.buttoncolor=!this.buttoncolor
                 this.atten=!this.atten;
+            },
+            Getuseinfo(){
+                this.axios.post('/res/userinfo',{
+                        userid:this.$store.state.userid,
+                        getinfostate:2
+                    })
+                    .then(response => {           
+                        this.aboutme = response.data.data.aboutme,
+                        this.doing = response.data.data.doing
+                })
+            },
+            Postuseinfo(){
+                console.log(123)
+                this.axios.post('/res/userinfo',{
+                        userid:this.$store.state.userid,
+                        state:2,
+                        aboutme:this.aboutme,
+                        doing:this.doing
+                    })
+                    .then(response => {           
+                        this.postlistdemo = response.data
+                        // console.log(response.data.data)
+                })
             }
         }
     }

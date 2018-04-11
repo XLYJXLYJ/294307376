@@ -1,336 +1,48 @@
 <template>
     <div class="container01">
         <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
-                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
-                        <p>animated-tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
-                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
-                        <p>Path Finder</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
-                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
-                        <p>tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-                </router-link>
-            </el-col>
-             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
-                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
-                        <p>swim</p>
-                        <span class="game_cat">swim</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id'> 
+                    <router-link to="/Video">
+                        <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
+                            <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
+                            <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                            <p>{{item.title}}</p>
+                            <span class="game_cat">tree</span>
+                            <span class="down"><i class="icon_see"><span>4k</span></i></span>
+                            <span class="down"><i class="icon_love"><span>20</span></i></span>
+                            <span class="down"><i class="icon_star"><span>70</span></i></span>
+                            </a>
+                        </div>
+                    </router-link>
+            </el-col>         
         </el-row>
-             <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
-                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
-                        <p>animated-tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
-                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
-                        <p>Path Finder</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
-                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
-                        <p>tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-                </router-link>
-            </el-col>
-             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
-                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
-                        <p>swim</p>
-                        <span class="game_cat">swim</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-        </el-row>
-             <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
-                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
-                        <p>animated-tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
-                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
-                        <p>Path Finder</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
-                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
-                        <p>tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-                </router-link>
-            </el-col>
-             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
-                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
-                        <p>swim</p>
-                        <span class="game_cat">swim</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-        </el-row>
-             <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
-                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
-                        <p>animated-tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
-                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
-                        <p>Path Finder</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
-                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
-                        <p>tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-                </router-link>
-            </el-col>
-             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
-                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
-                        <p>swim</p>
-                        <span class="game_cat">swim</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-        </el-row>
-             <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
-                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
-                        <p>animated-tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
-                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
-                        <p>Path Finder</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
-                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
-                        <p>tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-                </router-link>
-            </el-col>
-             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
-                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
-                        <p>swim</p>
-                        <span class="game_cat">swim</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-        </el-row>
-             <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6"> 
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
-                        <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
-                        <p>animated-tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=PathFinder">
-                        <div class="imgcon"><img src="../../../assets/gif/pathfinder.png" alt=""></div>
-                        <p>Path Finder</p>
-                        <span class="game_cat">游戏猫</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-              <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                <router-link class="routetext" to="/Video">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=bh&ProjectName=Tree">
-                        <div class="imgcon"><img src="../../../assets/gif/tree.gif" alt=""></div>
-                        <p>tree</p>
-                        <span class="game_cat">tree</span>
-                        <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-                </router-link>
-            </el-col>
-             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                    <div class="grid-content bg-purple list_pic">
-                        <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=swimmer">
-                        <div class="imgcon"><img src="../../../assets/gif/swim.gif" alt=""></div>
-                        <p>swim</p>
-                        <span class="game_cat">swim</span>
-                        <span class="down"><i class="icon_see"><span @click="run">run</span></i></span>
-                        <span class="down"><i class="icon_love"><span>20</span></i></span>
-                        <span class="down"><i class="icon_star"><span>70</span></i></span>
-                        </a>
-                    </div>
-            </el-col>
-        </el-row>
-                
         <button class="button">查看全部作品</button>
     </div>
 </template>
 <script>
     export default{
-        mounted(){
-            this.run()
+        data(){
+            return{
+                list:[],
+            }
+        },
+        mounted: function () {      
+            this.getdemo()
         },
         methods:{
-            run() {
-            //     this.axios.get('/res/getfile')
-            // .then(response => {
-            //     console.log(response)
-            // })
-            // .catch(function (error) {
-            //     console.log(error);
-            // });
-        },
+            getdemo(){
+                this.axios.post('/res/filelist',{
+                    state:1
+                })
+                .then(response => {   
+                        this.list=response.data.data
+                        console.log(this.list)
+                })
+            },
+            edit01(id){                 
+                this.$store.state.demoxmlid = id
+                console.log(this.$store.state.demoxmlid)
+            },
         }
     }
 </script>
@@ -412,5 +124,6 @@
 .container01 .button:hover{
     background-color: #5bc4ea;
     color:#fff;
+    cursor: pointer;
 }
 </style>

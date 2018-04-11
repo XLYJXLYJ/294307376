@@ -14,7 +14,7 @@
             </div>
         </div>
         <!-- <Header/> -->
-        <iframe class="snap" src="static/snap/pxsnap.html" name="snap" frameborder="0"></iframe>
+        <iframe class="snap" :src="'static/js/snap.html#open:/codeplay/file/'+this.$store.state.demoxmlid+'.xml'" name="snap" frameborder="0"></iframe>
 
         <transition name="el-fade-in-linear">
             <div>
@@ -170,17 +170,16 @@ export default{
         this.loadproject()
     },
     methods: {
-        async loadproject(){
+        loadproject(){
              this.axios.post('/res/getfile',{
                 id:this.$store.state.demoxmlid,
             })
             .then(response => {                          
-               this.demoxml = response.data
-               window.frames["snap"].ide.droppedText(this.demoxml,'HHH') 
+               this.demoxml = response.data  
                console.log(this.demoxml)
-               console.log(id)
+               console.log(this.$store.state.demoxmlid)
             })
-        
+            window.frames["snap"].ide.droppedText(this.demoxml,'HHH') 
             // window.frames["snap"].ide.droppedText(this.$store.state.demoxml,'HHH') 
         },
         handiframe() {
@@ -250,8 +249,7 @@ export default{
 .snap{
     width: 100%;
     height: 970px;
-    margin: 0px;
-    padding: 0px;
+    margin-top: 28px;
 }
 .snapboxhead{
     width: 500px;
@@ -265,14 +263,15 @@ export default{
 	color: #fff;
 }
 .snapboxhead .snapheaderleft{
-	width:75%;
+	width:100%;
 	height: 28px;
-	background: linear-gradient(to right,#0078D7, #fff);
+	background: #0078D7;
 	list-style: none;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	color: #000;
+    font-weight: 600;
 }
 .snapboxhead .snapheaderleft img{
     position: relative;
@@ -290,6 +289,12 @@ export default{
 .snapboxhead .borderlight01{
     color: #000; 
     margin-top: 1px;
+}
+.snapboxhead .borderlight{
+    margin-left: -20px;
+}
+.snapboxhead .borderlight01{
+    margin-left: -30px;
 }
 .snapboxhead .borderlight p{
     padding-top: 1px;

@@ -1,6 +1,6 @@
 <template>
     <div class="container27">
-        <ul v-for="item in list" :key='item.id'>
+        <ul v-for="item in list" :key='item.id' v-show="nosend">
             <li>
                 <div class="all_up">
                     <img src="../../assets/all/allpic.png" alt="">
@@ -23,6 +23,7 @@ import { mapGetters,mapActions} from 'vuex'
     export default{
         data(){
             return{
+                nosend:true,
                 list:[],
                 // userid:this.$store.state.userid
             }
@@ -40,8 +41,11 @@ import { mapGetters,mapActions} from 'vuex'
                     userid:this.$store.state.userid,
                 })
                 .then(response => {   
-                   this.list=response.data.data 
-                   console.log( this.list)
+                    if(response.data.data.msg=='这回真的没有了~'){
+                        this.nosend = false
+                    }else{
+                        this.list=response.data.data
+                    }
                 })
             },
         }

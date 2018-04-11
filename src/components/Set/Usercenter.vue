@@ -13,7 +13,7 @@
         <el-form-item label="真实姓名">
           <el-input class="input01" v-model="formLabelAlign.name01"></el-input>
         </el-form-item>
-        <el-button class="save">保存</el-button>
+        <el-button class="save" @click="uploadmessage">保存</el-button>
     </el-form>
   </div>
 </template>
@@ -31,25 +31,27 @@
       };
     },
     mounted:function(){
-      this.loadmessage()
+      // this.loadmessage()
     },
     methods:{
-      loadmessage(){
-            this.axios.post('/res/userinfo',{
-                    userid:this.$store.state.userid,
-                    getinfostate:1
-            })
-            .then(response => {
-              console.log(response)
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-      },
+      // loadmessage(){
+      //       this.axios.post('/res/userinfo',{
+      //               userid:this.$store.state.userid,
+      //               getinfostate:1
+      //       })
+      //       .then(response => {
+      //         console.log(response)
+      //       })
+      //       .catch(function (error) {
+      //           console.log(error);
+      //       });
+      // },
       uploadmessage(){
           this.axios.post('/res/userinfo',{
                   userid:this.$store.state.userid,
-                  getinfostate:1
+                  getinfostate:1,
+                  age:this.formLabelAlign.age,
+                  sex:this.formLabelAlign.sex,
           })
           .then(response => {
             console.log(response)

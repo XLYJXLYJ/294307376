@@ -4,7 +4,7 @@
             <img class="star" src="../../assets/user/starfish.png" alt="">
             <p class="store">我收藏的作品</p>
             <img class="left" src="../../assets/user/left.png" alt="">
-            <ul class="block">
+            <ul class="block" v-show="store01">
                     <li>
                         <div class="share">
                             <img src="../../assets/user/userdemo.png" alt="">
@@ -31,6 +31,35 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+    data() {
+      return {
+          store01:true
+      };
+    },
+    mounted:function(){
+       this.loadstoremessage()
+    },
+    methods:{
+        loadstoremessage(){
+            this.axios.post('/res/userinfo',{
+                    userid:this.$store.state.userid,
+                    getinfostate:4,
+            })
+            .then(response => {
+                console.log(response.data.data)
+                if(response.data.data===false){
+                    this.store01 = false
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+  }
+</script>
 <style>
 .container41{
     width:1000px;

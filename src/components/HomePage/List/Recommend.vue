@@ -117,7 +117,7 @@
             </el-col>
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
                    <div class="grid-content bg-purple list_pic">
-                        <a href="static/js/snap.html#run:/codeplay/file/11595.xml" target="_blank">
+                        <a href="static/js/snap.html#run:/codeplay/file/11565.xml" target="_blank">
                         <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
                         <p>本地服务器运行45</p>
                         <span class="game_cat">tree</span>
@@ -305,21 +305,7 @@
         <button class="button">查看全部作品</button>
     </div>
 </template>
-<script>
-import Vue from 'vue'
-import axios from 'axios'
-export default{
-    data(){
-        return{
 
-        }
-    },
-    mounted(){
-    },
-    methods:{
-    }
-}
-</script>
 <style scoped>
 .container02{
     width: 672px;
