@@ -2,8 +2,8 @@
   <div class="container05">
       <Search/>
       <ul>
-          <li><router-link class="recommend" to="/Home/Production">推荐</router-link></li>
-          <li><router-link class="production" to="/Home/recommend">作品</router-link></li>
+          <li><router-link class="recommend" to="/Home/Recommend">推荐</router-link></li>
+          <li><router-link class="production" to="/Home/Production">作品</router-link></li>
       </ul>
       <router-view></router-view>
       <RankingList/>
@@ -23,9 +23,9 @@
 <style scoped>
 .container05{
     height: 1599px;
-    width: 1000px;
+    width: 1200px;
     margin: 0 auto;
-    margin-top: 152px;
+    margin-top: 60px;
     position: relative;
 }
 .container05 ul{
@@ -35,7 +35,7 @@
     display: inline;
     position: relative;
     top: 5px;
-    left: -360px;  
+    left: 0px;  
     font-size: 18px;
     margin-right: 44px;
 }

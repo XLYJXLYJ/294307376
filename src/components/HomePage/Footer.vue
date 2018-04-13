@@ -1,7 +1,7 @@
 <template>
     <div class="container003">
       <div class="container03">
-        <img src="../../assets/home/qr_code.png" alt="">
+         <div class="imgfoot"><img src="../../assets/home/qr_code.png" alt=""></div>
          <div class="foot_list_one">
           <ul>
             <li class="big">联系我们</li>
@@ -52,49 +52,55 @@
   background-color: #1e1e1e;
 }
 .container003 .container03{
-  width: 1000px;
+  width: 1200px;
   margin: 0 auto;
   position:relative;
   height: 323px;
 }
-.container003 .container03 img{
+.container003 .container03 .imgfoot{
   position:absolute;
   top:45px;
   left: 0px;
+  width: 122px;
+  height: 120px;
+}
+.container003 .container03 imgfoot img{
+  width: 100%;
+  height: 100%;
 }
 .container003 .container03 .foot_list_one{
   position: relative;
-  left: 140px;
-  width: 223px;
+  left: 172px;
+  width: 283px;
   top: 45px;
 }
 .container003 .container03 .foot_list_two{
   position: absolute;
-  left: 380px;
+  left: 498px;
   top: 45px;
 }
 .container003 .container03 .foot_list_three{
   position: relative;
-  width: 52px;
+  width: 152px;
   height: 120px;
-  left: 620px;
-  top: -57px;
+  left: 764px;
+  top: -76px;
 }
 .container003 .container03 .foot_list_four{
   position: absolute;
-  left: 740px;
+  left: 899px;
   top: 45px;
 }
 .container003 .container03 .big{
-  font-size: 18px;
+  font-size: 22px;
   color:#fff;
   margin-bottom: 10px;
   text-align: left;
   font-family: “Microsoft YaHei” !important; 
 }
 .container003 .container03 .small{
-  font-size: 13px;
-  color: #7c7c7c;
+  font-size: 16px;
+  color: #949494;
   margin-top: 10px;
   text-align: left;
 }

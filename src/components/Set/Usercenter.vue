@@ -31,27 +31,34 @@
       };
     },
     mounted:function(){
-      // this.loadmessage()
+      this.loadmessage()
     },
     methods:{
-      // loadmessage(){
-      //       this.axios.post('/res/userinfo',{
-      //               userid:this.$store.state.userid,
-      //               getinfostate:1
-      //       })
-      //       .then(response => {
-      //         console.log(response)
-      //       })
-      //       .catch(function (error) {
-      //           console.log(error);
-      //       });
-      // },
+      loadmessage(){
+            this.axios.post('/res/userinfo',{
+                    userid:sessionStorage.userid,
+                    getinfostate:1
+            })
+            .then(response => {
+              console.log(response)
+                  this.formLabelAlign.age = response.data.data.age,
+                  this.formLabelAlign.sex = response.data.data.sex
+                  if(this.formLabelAlign.sex===1){
+                      this.formLabelAlign.sex='男'
+                  }else{
+                      this.formLabelAlign.sex='女'
+                  }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+      },
       uploadmessage(){
           this.axios.post('/res/userinfo',{
-                  userid:this.$store.state.userid,
-                  getinfostate:1,
+                  userid:sessionStorage.userid,
+                  state:1,
                   age:this.formLabelAlign.age,
-                  sex:this.formLabelAlign.sex,
+                  sex:this.formLabelAlign.sex==='男'?1:2,
           })
           .then(response => {
             console.log(response)

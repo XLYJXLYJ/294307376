@@ -1,7 +1,7 @@
 <template>
     <div class="contain08">
         <div class="container09">
-            <el-carousel :interval="3000" type="card" height="300px">
+            <el-carousel :interval="3000">
                 <el-carousel-item v-for="(item,index) in DataImg" :key="index">
                     <img :src="item.url" alt="">
                 </el-carousel-item>
@@ -9,12 +9,19 @@
         </div>
         <div class="create">
             <div>
-                <router-link to="/snap"><div class="creat_snap"><p class="creat_stories_one">积木式编程</p><p class="creat_stories_two">Snap</p></div></router-link>
-                <!-- <a href="static/snap/index.html" target="_blank"><div class="creat_snap"><p class="creat_stories_one">积木式编程</p><p class="creat_stories_two">Snap</p></div></a> -->
-                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat_blocky"><p class="box_games_one">硬件编程</p><p class="box_games_two">Blockly</p></div></a>  
-                <a href="static/logo.png" download="logo.png"><div class="creat_phoneix"><p class="creat_phoneix_one">开发引擎</p><p class="creat_phoneix_two">PHONEIX</p></div></a>
-                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat_manykit"><p class="creat_manykit_one">01机器人</p><p class="creat_manykit_two">Manykit</p></div></a>    
-            </div>        
+                <router-link to="/snap"><div class="creat01"><img src="../../assets/home/Manykit.png" alt=""></div></router-link>
+                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat02"><img src="../../assets/home/Manykit.png" alt=""></div></a>  
+                <a href="static/logo.png" download="logo.png"><div class="creat03"><img src="../../assets/home/Manykit.png" alt=""></div></a>
+                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat04"><img src="../../assets/home/Manykit.png" alt=""></div></a> 
+                <a href="static/logo.png" download="logo.png"><div class="creat05"><img src="../../assets/home/Manykit.png" alt=""></div></a>
+                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat06"><img src="../../assets/home/Manykit.png" alt=""></div></a>       
+            </div> 
+            <div id="videobox">
+                 <video id="video" src="http://babylife.qiniudn.com/FtRVyPQHHocjVYjeJSrcwDkApTLQ"  :autoplay="playStatus" @click="playClick" height="216" width="388">
+
+                </video> 
+            </div>
+               
         </div>
     </div>
 </template>
@@ -29,7 +36,14 @@ export default{
     data(){
         return{
             DataImg:DataImg,
-            index: 0
+            index: 0,
+            playStatus:true
+        }
+    },
+    methods:{
+        playClick(){
+            this._dom = document.getElementById('video');
+            this._dom.play(); 
         }
     }
 }
@@ -37,149 +51,107 @@ export default{
 <style scoped>
 .contain08{
     width: 100%;
-    height: 553px;
-    background-image: url(../../assets/home/bg.png);
-    background-repeat: no-repeat;
-    background-size:100% 553px;
+    height: 640px;
     position: relative;
-    top: 0px;
-    margin-top: 60px;
+    top: 60px;
+    margin-top: 0px;
 }
-.container09{
-    height: 300px;
-    width: 1000px; 
+.contain08 .container09{
+    height: 380px;
+    width: 1200px; 
     margin: 0 auto;
     position: relative;
-    top: 30px;
+    top: 54px;
 }
-.container09 img{
+.contain08 .container09 img{
     height: 100%;
     width: 100%; 
 }
-.el-carousel__item h3 {
-    color: #475669;
-    font-size: 14px;
-    opacity: 0.75;
-    line-height: 200px;
-    margin: 0;
-    width:580px;
-}
-
-.el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-    width:500px;
-}
-
-.el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-    width:500px;
-}
-.el-carousel__item{
-    border-radius: 20px;
-}
-.create{
-    height: 300px;
-    width: 1000px;
+.contain08 .create{
+    height: 221px;
+    width: 1200px;
     background: #fff;
     position: relative;
-    top: 51px;
-    margin: 0 auto;
-    border-radius: 12px;
-}
-.creat_snap{
-    height: 216px;
-    width: 223px;
-    background:url(../../assets/home/Snap.png) no-repeat;
-    display: inline-block;
-    position: absolute;
-    left: 24px;
-    top:16px;
+    top: 0px;
     margin: 0 auto;
 }
-.creat_blocky{
-    height: 216px;
-    width: 223px;
-    background:url(../../assets/home/Blockly.png) no-repeat;
+.contain08 .creat01{
+    height: 104px;
+    width: 246px;
+    display: inline-block;
+    position: relative;
+    left: 0px;
+    top:0px;
+}
+.contain08 .creat01 img{
+    width: 100%;
+    height: 100%;
+}
+.contain08 .creat02{
+    height: 104px;
+    width: 246px;
     display: inline-block;
     position: absolute;
-    left: 268px;
-    top:16px;
+    left: 269px;
 }
-.creat_phoneix{
-    height: 216px;
-    width: 223px;
-    background:url(../../assets/home/PHOENIXEngine.png) no-repeat;
+.contain08 .creat02 img{
+    width: 100%;
+    height: 100%;
+}
+.contain08 .creat03{
+    height: 104px;
+    width: 246px;
     display: inline-block;
     position: absolute;
-    left: 510px;
-    top:16px;
+    left: 538px;
 }
-.creat_manykit{
-    height: 216px;
-    width: 223px;
-    background:url(../../assets/home/Manykit.png) no-repeat;
+.contain08 .creat03 img{
+    width: 100%;
+    height: 100%;
+}
+.contain08 .creat04{
+    height: 104px;
+    width: 246px;
     display: inline-block;
     position: absolute;
-    left: 754px;
-    top:16px;
+    left: 0px;
+    top:117px;
 }
-.create .creat_stories_one{
+.contain08 .creat04 img{
+    width: 100%;
+    height: 100%;
+}
+.contain08 .creat05{
+    height: 104px;
+    width: 246px;
+    display: inline-block;
     position: absolute;
-    top:230px;
-    left: 58px;
-    font-size: 22px;
-    color: #0e0e0e;
+    left: 269px;
+    top:117px;
 }
-.create .creat_stories_two{
+.contain08 .creat05 img{
+    width: 100%;
+    height: 100%;
+}
+.contain08 .creat06{
+    height: 104px;
+    width: 246px;
+    display: inline-block;
     position: absolute;
-    top:265px;
-    left: 95px;
-    color: #0e0e0e;
+    left: 538px;
+    top:117px;
 }
-.box_games_one{
-    position: absolute;
-    top:230px;
-    left: 71px;
-    font-size: 22px;
-    color: #0e0e0e;
+.contain08 .creat06 img{
+    width: 100%;
+    height: 100%;
 }
-.box_games_two{
-    position: absolute;
-    top:265px;
-    left: 90px;
-    color: #0e0e0e;
+#videobox{
+    width: 388px;
+    height: 221px;
+    position: relative;
+    left: 812px;
+    top: -108px;
+    border: 1px solid red;
 }
-.creat_phoneix_one{
-    position: absolute;
-    top:230px;
-    left: 80px;
-    font-size: 22px;
-    color: #0e0e0e;
-}
-.creat_phoneix_two{
-    position: absolute;
-    top:265px;
-    left: 88px;
-    color: #0e0e0e;
-}
-.creat_manykit_one{
-    position: absolute;
-    top:230px;
-    left: 80px;
-    font-size: 22px;
-    color: #0e0e0e;
-}
-.creat_manykit_two{
-    position: absolute;
-    top:265px;
-    left: 94px;
-    color: #0e0e0e;
-}
-.expe_img{
-    height: 17px;
-    width: 175px;
-    position: absolute;
-    top:-50px;
-    left: 76px;;
-}
+
 </style>

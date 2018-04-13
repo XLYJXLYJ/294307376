@@ -14,6 +14,10 @@
             </div>
         </div>
         <!-- <Header/> -->
+        <!-- 参数播放 -->
+        <!-- <iframe class="snap" src="static/snap/pxsnap.html" name="snap" frameborder="0"></iframe> -->
+
+        <!-- 接口播放 -->
         <iframe class="snap" :src="'static/js/snap.html#open:/codeplay/file/'+this.$store.state.demoxmlid+'.xml'" name="snap" frameborder="0"></iframe>
 
         <transition name="el-fade-in-linear">
@@ -182,6 +186,53 @@ export default{
             window.frames["snap"].ide.droppedText(this.demoxml,'HHH') 
             // window.frames["snap"].ide.droppedText(this.$store.state.demoxml,'HHH') 
         },
+
+    //    async loadproject(){
+    //         let dataxml = await this.axios.post('/res/getfile',{
+    //             id:this.$store.state.demoxmlid,
+    //         })
+    //         .then(response => {                          
+    //            this.demoxml = response.data  
+    //            return  this.demoxml
+    //         //    console.log(this.demoxml)
+    //         //    console.log(this.$store.state.demoxmlid)
+               
+    //         })
+    //         console.log(this.demoxml+1111)
+    //          window.frames["snap"].ide.droppedText(this.demoxml,'H')  
+    //         // window.frames["snap"].ide.droppedText(this.$store.state.demoxml,'HHH') 
+    //     },
+
+
+        // 打来文件
+        open() {
+            this.dialogOpen=false
+             var reader = new FileReader();
+             reader.readAsText(this.$refs.file.files[0]);
+             reader.onload = function () {    
+                this.readfilebinary=this.result
+                console.log(this.readfilebinary)
+                window.frames["snap"].ide.droppedText(this.readfilebinary,'HHH')   
+             }
+             
+            //  console.log(reader.readAsDataURL(this.$refs.file.files[0]))
+             
+        },
+
+        // 新建文件
+        newproject() {
+            window.frames["snap"].ide.newProject()
+            this.dialogNew=false
+        },
+
+         // 下载文件
+        download(name) {
+            this.formSave.file = window.frames["snap"].ide.exportProject (name)
+            this.dialogExport=false
+        },
+
+
+        // 保存文件
         handiframe() {
             this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
             // this.createXml(this.formSave.file)
@@ -196,30 +247,7 @@ export default{
             // console.log(ConvertStrToBin())
 
         },
-        open() {
-            this.dialogOpen=false
-             var reader = new FileReader();
-             reader.readAsText(this.$refs.file.files[0]);
-             reader.onload = function () {
-                 
-                this.readfilebinary=this.result
-                console.log(this.readfilebinary)
-                window.frames["snap"].ide.droppedText(this.readfilebinary,'HHH')   
-             }
-             
-            //  console.log(reader.readAsDataURL(this.$refs.file.files[0]))
-             
-        },
-        newproject() {
-            window.frames["snap"].ide.newProject()
-            this.dialogNew=false
-        },
-        download(name) {
-            this.formSave.file = window.frames["snap"].ide.exportProject (name)
-            this.dialogExport=false
-        },
-
-         submitUpload() {
+        submitUpload() {
              let formData = new FormData();
              formData.append('userid',this.formSave.userid);
              formData.append('title',this.formSave.title);
@@ -248,7 +276,7 @@ export default{
 <style scoped>
 .snap{
     width: 100%;
-    height: 970px;
+    height: 942px;
     margin-top: 28px;
 }
 .snapboxhead{
@@ -438,8 +466,6 @@ export default{
     top: 188px;
     left: 125px;
 }
-
-
 .container502{
     margin: 0px;
     padding: 0px;

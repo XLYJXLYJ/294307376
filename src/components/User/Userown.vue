@@ -69,7 +69,7 @@ import Vue from 'vue'
             },
             Getuseinfo(){
                 this.axios.post('/res/userinfo',{
-                        userid:this.$store.state.userid,
+                        userid:sessionStorage.userid,
                         getinfostate:2
                     })
                     .then(response => {           
@@ -78,9 +78,8 @@ import Vue from 'vue'
                 })
             },
             Postuseinfo(){
-                console.log(123)
                 this.axios.post('/res/userinfo',{
-                        userid:this.$store.state.userid,
+                        userid:sessionStorage.userid,
                         state:2,
                         aboutme:this.aboutme,
                         doing:this.doing

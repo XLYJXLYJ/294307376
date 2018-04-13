@@ -31,15 +31,14 @@
         },
         methods:{
             Getalldemo(){
-                console.log(12345)
-                // this.axios.post('/res/filelist',{
-                //         userid:this.$store.state.userid,
-                //         state:1
-                //     })
-                //     .then(response => {           
-                //         this.list = response.data.data
-                //         console.log(12345)
-                // })
+                this.axios.post('/res/filelist',{
+                        userid:sessionStorage.userid,
+                        state:1
+                    })
+                    .then(response => {           
+                        this.list = response.data.data
+                        console.log(12345)
+                })
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="container01">
+    <div class="container02" v-show="false">
         <el-row :gutter="10">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id'> 
                     <router-link to="/Video">
@@ -8,9 +8,9 @@
                             <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
                             <p>{{item.title}}</p>
                             <span class="game_cat">tree</span>
-                            <span class="down"><i class="icon_see"><span>4k</span></i></span>
-                            <span class="down"><i class="icon_love"><span>20</span></i></span>
-                            <span class="down"><i class="icon_star"><span>70</span></i></span>
+                            <span class="down01"><i class="icon_see"><span>4k</span></i></span>
+                            <span class="down02"><i class="icon_love"><span>20</span></i></span>
+                            <span class="down03"><i class="icon_star"><span>70</span></i></span>
                             </a>
                         </div>
                     </router-link>
@@ -27,101 +27,135 @@
             }
         },
         mounted: function () {      
-            this.getdemo()
+            this.getdemo02()
         },
         methods:{
-            getdemo(){
+            getdemo02(){
                 this.axios.post('/res/filelist',{
                     state:1
                 })
                 .then(response => {   
-                        this.list=response.data.data
-                        console.log(this.list)
+                    this.list=response.data.data
                 })
             },
             edit01(id){                 
-                this.$store.state.demoxmlid = id
-                console.log(this.$store.state.demoxmlid)
+                sessionStorage.id = id
             },
         }
     }
 </script>
 <style scoped>
-.container01{
-    width: 672px;
+.container02{
+    width: 804px;
     height: auto;
 }
-.container01 .routetext{
+.container02 .routetext{
     color:#000;
     text-decoration: none;
 }
-.container01 .list_pic{
+.container02 .list_pic{
     margin-top: 44px;
-    height: 220px;
+    height: 270px;
     width: 140px;
     cursor: pointer;
     color: #707070;
 }
-.container01 .imgcon{
-    height: 136px;
-    width: 136px;
+.container02 .imgcon{
+    height: 170px;
+    width: 173px;
 }
-.container01 .imgcon img{
-    border-radius: 8px;
+.container02 .imgcon img{
     width: 100%;
     height: 100%;
 }
-.container01 p{
-    font-size: 15px;
+.container02 p{
+    font-size: 20px;
     position: relative;
-    top: 5px;
+    top: 15px;
     text-align: left;
     color:#000;
     }
-.container01 .game_cat{
+.container02 .game_cat{
     display: block;
-    font-size: 13px;
+    font-size: 16px;
     position: relative;
-    top: 8px;
+    top: 22px;
     text-align: left;
     color: #707070;
 }
-.container01 .icon_see{
+.container02 .icon_see{
     background:url(../../../assets/home/icon_see.png) no-repeat;
 }
-.container01 .icon_love{
+.container02 .icon_love{
     background:url(../../../assets/home/icon_love.png) no-repeat;
 }
-.container01 .icon_star{
+.container02 .icon_star{
     background:url(../../../assets/home/icon_star.png) no-repeat;
 }
-.container01 .button{
+.container02 .button{
     position: relative;
     top: 46px;
+    left: 284px;
     width: 192px;
     height: 50px;
-    background-color:#fff;
-    color:#5bc4ea;
-    border: 1px solid #5bc4ea;  
-    border-radius: 8px;
+    background-color:#F13232;
+    color:#fff; 
+    border: none;
 }
-.container01 .down{
+.container02 .down01{
     font-size: 13px;
-    width: 40px;
+    width: 80px;
     height: 14px;
     margin: 10px;
     position: relative;
     left: -9px;
-    top: 20px;
+    top: 36px;
 }
-.container01 .down span{
+.container02 .down02{
+    font-size: 13px;
+    width: 80px;
+    height: 14px;
+    margin: 10px;
+    position: relative;
+    left: -9px;
+    top: 36px;
+}
+.container02 .down03{
+    font-size: 13px;
+    width: 80px;
+    height: 14px;
+    margin: 10px;
+    position: relative;
+    left: 99px;
+    top: 16px;
+}
+.container02 .down01 span{
     position: relative;
     left: 10px;
     margin-left: 10px;
     font-style: normal;
     color: #959595;
+    font-size: 16px;
+    top: 0px;
 }
-.container01 .button:hover{
+.container02 .down02 span{
+    position: relative;
+    left: 10px;
+    margin-left: 10px;
+    font-style: normal;
+    color: #959595;
+    font-size: 16px;
+    top: 0px;
+}
+.container02 .down03 span{
+    position: relative;
+    margin-left: 15px;
+    font-style: normal;
+    color: #959595;
+    font-size: 16px;
+    top: 0px;
+}
+.container02 .button:hover{
     background-color: #5bc4ea;
     color:#fff;
     cursor: pointer;

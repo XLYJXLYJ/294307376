@@ -3098,13 +3098,13 @@ IDE_Morph.prototype.projectMenu = function () {
         shiftClicked = (world.currentKey === 16);
 
     menu = new MenuMorph(this);
-    // menu.addItem('Project notes...', 'editProjectNotes');
-    // menu.addLine();
+    menu.addItem('Project notes...', 'editProjectNotes');
+    menu.addLine();
     menu.addPair('New', 'createNewProject', '^N');
-    // menu.addPair('Open...', 'openProjectsBrowser', '^O');
-    // menu.addPair('Save', "save", '^S');
-    // menu.addItem('Save As...', 'saveProjectsBrowser');
-    // menu.addLine();
+    menu.addPair('Open...', 'openProjectsBrowser', '^O');
+    menu.addPair('Save', "save", '^S');
+    menu.addItem('Save As...', 'saveProjectsBrowser');
+    menu.addLine();
     menu.addItem(
         'Import...',
         function () {
@@ -3190,71 +3190,71 @@ IDE_Morph.prototype.projectMenu = function () {
         );
     }
 
-    // menu.addItem(
-    //     'Export summary...',
-    //     function () {myself.exportProjectSummary(); },
-    //     'open a new browser browser window\n with a summary of this project'
-    // );
+    menu.addItem(
+        'Export summary...',
+        function () {myself.exportProjectSummary(); },
+        'open a new browser browser window\n with a summary of this project'
+    );
 
-    // if (shiftClicked) {
-    //     menu.addItem(
-    //         'Export summary with drop-shadows...',
-    //         function () {myself.exportProjectSummary(true); },
-    //         'open a new browser browser window' +
-    //             '\nwith a summary of this project' +
-    //             '\nwith drop-shadows on all pictures.' +
-    //             '\nnot supported by all browsers',
-    //         new Color(100, 0, 0)
-    //     );
-    //     menu.addItem(
-    //         'Export all scripts as pic...',
-    //         function () {myself.exportScriptsPicture(); },
-    //         'show a picture of all scripts\nand block definitions',
-    //         new Color(100, 0, 0)
-    //     );
-    // }
+    if (shiftClicked) {
+        menu.addItem(
+            'Export summary with drop-shadows...',
+            function () {myself.exportProjectSummary(true); },
+            'open a new browser browser window' +
+                '\nwith a summary of this project' +
+                '\nwith drop-shadows on all pictures.' +
+                '\nnot supported by all browsers',
+            new Color(100, 0, 0)
+        );
+        menu.addItem(
+            'Export all scripts as pic...',
+            function () {myself.exportScriptsPicture(); },
+            'show a picture of all scripts\nand block definitions',
+            new Color(100, 0, 0)
+        );
+    }
 
-    // menu.addLine();
-    // menu.addItem(
-    //     'Import tools',
-    //     function () {
-    //         myself.getURL(
-    //             myself.resourceURL('tools.xml'),
-    //             function (txt) {
-    //                 myself.droppedText(txt, 'tools');
-    //             }
-    //         );
-    //     },
-    //     'load the official library of\npowerful blocks'
-    // );
-    // menu.addItem(
-    //     'Libraries...',
-    //     function() {
-    //         myself.getURL(
-    //             myself.resourceURL('libraries', 'LIBRARIES'),
-    //             function (txt) {
-    //                 var libraries = myself.parseResourceFile(txt);
-    //                 new LibraryImportDialogMorph(myself, libraries).popUp();
-    //             }
-    //         );
-    //     },
-    //     'Select categories of additional blocks to add to this project.'
-    // );
+    menu.addLine();
+    menu.addItem(
+        'Import tools',
+        function () {
+            myself.getURL(
+                myself.resourceURL('tools.xml'),
+                function (txt) {
+                    myself.droppedText(txt, 'tools');
+                }
+            );
+        },
+        'load the official library of\npowerful blocks'
+    );
+    menu.addItem(
+        'Libraries...',
+        function() {
+            myself.getURL(
+                myself.resourceURL('libraries', 'LIBRARIES'),
+                function (txt) {
+                    var libraries = myself.parseResourceFile(txt);
+                    new LibraryImportDialogMorph(myself, libraries).popUp();
+                }
+            );
+        },
+        'Select categories of additional blocks to add to this project.'
+    );
 
-    // menu.addItem(
-    //     localize(graphicsName) + '...',
-    //     function () {
-    //         myself.importMedia(graphicsName);
-    //     },
-    //     'Select a costume from the media library'
-    // );
-    // menu.addItem(
-    //     localize('Sounds') + '...',
-    //     function () {
-    //         myself.importMedia('Sounds');
-    //     },
-    //     'Select a sound from the media library'
-    // );
+    menu.addItem(
+        localize(graphicsName) + '...',
+        function () {
+            myself.importMedia(graphicsName);
+        },
+        'Select a costume from the media library'
+    );
+    menu.addItem(
+        localize('Sounds') + '...',
+        function () {
+            myself.importMedia('Sounds');
+        },
+        'Select a sound from the media library'
+    );
 
     menu.popup(world, pos);
 };

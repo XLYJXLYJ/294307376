@@ -44,14 +44,14 @@ export default {
     methods:{
         loadstoremessage(){
             this.axios.post('/res/userinfo',{
-                    userid:this.$store.state.userid,
-                    getinfostate:4,
+                    userid:sessionStorage.userid,
+                    getinfostate:3,
             })
             .then(response => {
-                console.log(response.data.data)
-                if(response.data.data===false){
-                    this.store01 = false
-                }
+                console.log(response.data.data+111)
+                // if(response.data.data===false){
+                //     this.store01 = false
+                // }
             })
             .catch(function (error) {
                 console.log(error);

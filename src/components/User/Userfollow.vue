@@ -4,7 +4,7 @@
           <img class="star" src="../../assets/user/starfish.png" alt="">
           <p class="store">我关注的人</p>
           <img class="left" src="../../assets/user/left.png" alt="">
-          <ul class="follow">
+          <ul class="follow" v-show="nosend">
                 <li>
                     <div class="share">
                         <img src="../../assets/user/user.png" alt="">
@@ -22,6 +22,36 @@
       </div>
   </div>
 </template>
+<script>
+    export default{
+        data(){
+            return{
+                list:'',
+                nosend:true
+            }
+        },
+        mounted: function () {      
+            this.Getalldemo()
+        },
+        methods:{
+            Getalldemo(){
+                this.axios.post('/res/filelist',{
+                        userid:sessionStorage.userid,
+                        state:4
+                    })
+                    .then(response => {     
+                    if(response.data.data.msg==="这回真的没有了~"){
+                        this.nosend = false
+                    } else{
+                        this.list = response.data.data
+                        console.log(this.list)
+                    }    
+
+                })
+            }
+        }
+    }
+</script>
 <style>
 .container42{
     width:1000px;

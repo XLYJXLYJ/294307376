@@ -1,58 +1,61 @@
 <template>
     <div class="headercontainer04">
-        <div class="container04">
-            <a href="static/img/allpic.87321c0.png"></a>
-            <img class="logo" src="../../assets/home/logo.png" alt="">  
-            <ul>
-                <li>
-                    <router-link class="a_text" to="/Home">首页</router-link>
-                </li>    
-                <li>
-                    <router-link class="a_text" to="/Lesson">课程</router-link>
-                </li> 
-                <li>
-                    <router-link class="a_text" to="/source">素材</router-link>
-                </li> 
-                 <li>
-                    <router-link class="a_text" to="/Publish">发布</router-link>
-                </li>
-                <li>
-                    <a class="a_text" href="https://mofang.qq.com/index/?type=staffpick&pagenum=0&pagesize=40" target="_blank">磨坊</a>
-                </li> 
-                <li>
-                    <router-link class="a_text" to="/Download">下载</router-link>
-                </li>  
-            </ul> 
-            <img class="make" src="../../assets/home/make.png" alt=""> 
-            <div class="login_sign" v-show="loginsign"> 
-                <p class="login" type="text"  @click="dialogLogin = true" >登陆</p>   
-                <span class="cut_off_line">/</span>  
-                <p class="sign"  type="text" @click="dialogRegister = true" >注册</p>  
-            </div>
-            <div class="username" v-show="usercenter"> 
-                <img class="user" src="../../assets/home/user.png" alt="">
-                <p class="login" type="text"  @click="dialogLogin = true" >{{$store.state.usernamesession02}}</p>   
-            </div>  
-            <div v-show="dropdowm">
-                <el-row class="block-col-12">
-                    <el-col :span="12">
-                        <el-dropdown>
-                        <span  class="el-dropdown-link">
-                            下拉菜单
-                        </span>
-                        <el-dropdown-menu slot="dropdown">
-                            <router-link to="/Demo"><el-dropdown-item>作品管理</el-dropdown-item></router-link>
-                            <el-dropdown-item>社区消息</el-dropdown-item>
-                            <router-link to="/User"><el-dropdown-item>个人中心</el-dropdown-item></router-link>     
-                            <router-link to="/setting"><el-dropdown-item>账号设置</el-dropdown-item></router-link>   
-                            <el-dropdown-item><p @click="Cancellogout">退出登陆</p></el-dropdown-item>
-                        </el-dropdown-menu>
-                        </el-dropdown>
-                    </el-col>
-                </el-row>
+        <div class="headone">
+            <div class="headonecenter">
+
+                    <span class="el-dropdown-link" @click="language">
+                        中文<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+
+                <div class="shopping">官方商城</div>
+                <div class="appdownload"><p>APP下载</p></div>
+                <div class="login_sign" v-show="loginsign"> 
+                    <p class="login" type="text"  @click="dialogLogin = true" >登陆</p>   
+                    <!-- <span class="cut_off_line">/</span>   -->
+                    <p class="sign"  type="text" @click="dialogRegister = true" >注册</p>  
+                </div>
+                <div class="username" v-show="usercenter"> 
+                    <p class="login" type="text"  @click="dialogLogin = true" >{{$store.state.usernamesession02}}</p>   
+                </div>  
+                <div v-show="dropdowm">
+                    <el-row class="block-col-12">
+                        <el-col :span="12">
+                            <el-dropdown>
+                            <span  class="el-dropdown-link02">
+                                下拉菜单
+                            </span>
+                            <el-dropdown-menu class="el-dropdown-link-menu" slot="dropdown">
+                                <router-link to="/Demo"><el-dropdown-item>作品管理</el-dropdown-item></router-link>
+                                <el-dropdown-item>社区消息</el-dropdown-item>
+                                <router-link to="/User"><el-dropdown-item>个人中心</el-dropdown-item></router-link>     
+                                <router-link to="/setting"><el-dropdown-item>账号设置</el-dropdown-item></router-link>   
+                                <el-dropdown-item><p @click="Cancellogout">退出登陆</p></el-dropdown-item>
+                            </el-dropdown-menu>
+                            </el-dropdown>
+                        </el-col>
+                    </el-row>
+                </div>
             </div>
         </div>
- 
+        <div class="container04">  
+            <div class="container04center">
+                <img class="logo" src="../../assets/home/logo.png" alt="">  
+                <ul>
+                    <li>
+                        <router-link to="/Home"><p> 首页</p></router-link>
+                    </li>    
+                    <li>
+                        <router-link to="/Lesson"><p>课程</p></router-link>
+                    </li> 
+                    <li>
+                        <router-link to="/source"><p>素材</p></router-link>
+                    </li> 
+                    <li>
+                        <router-link to="/Download"><p>下载</p></router-link>
+                    </li>  
+                </ul> 
+            </div>
+        </div> 
 
         <!-- 模态框 -->
     
@@ -217,6 +220,11 @@ export default {
     }, 
     methods: {
         ...mapActions(['Getsession01']),   
+        language(){
+            this.$message({
+                message:'敬请期待更多语言功能'
+            })
+        },
             //登陆
         Loginbtn() {
             this.axios.post('/res/login', {
@@ -372,6 +380,7 @@ export default {
                     this.dropdowm = true; 
                     this.$store.state.usernamesession02=response.data.data.username
                     this.$store.state.userid=response.data.data.userid
+                    sessionStorage.userid = response.data.data.userid
                 }else{
                     this.dialogLogin = false;
                     this.loginsign = true;
@@ -400,151 +409,201 @@ export default {
 .headercontainer04{
     position: fixed;
     width: 100%;
-    height: 60px;
+    height: 114px;
     top: 0px;
     left: 0px;
-    background: #fff;
     z-index: 200;
 }
 .container04{
-    width: 1000px;
-    height:60px;
+    width: 100%;
+    height:84px;
     background: #fff;
+    position: relative;
+    top: 30px;
+}
+.container04 .container04center{
+    width: 1200px;
+    height:84px;
     margin: 0 auto;
     position: relative;
     top: 0px;
 }
-.logo{
+.headercontainer04 .headone{
+    position: fixed;
+    width: 100%;
+    height: 30px;
+    top: 0px;
+    left: 0px;
+    background: #333;
+    z-index: 200;
+}
+.headercontainer04 .headonecenter{
+    width: 1200px;
+    height: 30px;
+    margin: 0 auto;
+    z-index: 0;
+    position: relative;
+}
+.headercontainer04 .headonecenter .el-dropdown-link{
+    position: relative;
+    left: 2px;
+    top: 2px;
+    font-size: 12px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 200;
+}
+.headercontainer04 .headonecenter .el-dropdown-link02{
+    position: relative;
+    left: -20px;
+}
+.headercontainer04 .headonecenter .shopping{
+    position: relative;
+    left: 916px;
+    top: -14px;
+    font-size: 12px;
+    width: 60px;
+    height: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+.headercontainer04 .headonecenter .appdownload{
+    position: relative;
+    left: 1006px;
+    top: -42px;
+    font-size: 12px;
+    color: #fff;
+    width: 60px;
+    height: 13px;
+    line-height: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    cursor: pointer;
+}
+.headercontainer04 .headonecenter .appdownload p{
+    position: relative;
+    top: 4px;
+}
+.headercontainer04 .headonecenter .block-col-12{
+    position:relative;
+    left:1150px;
+    top: -60px;
+    width: 130px;
+    height: 50px;
+    font-size: 24px;
+    opacity: 0;
+    z-index: 1000;
+}
+.headercontainer04 .logo{
     height: auto;
     width: auto;
     position: absolute;
-    left: 2%;
-    top: 3px; 
+    left: 0px;
+    top: 21px; 
 }
 .container04 ul{
     position: absolute;
-    left: 20%;
-    margin-top: 22px; 
+    left: 186px;
+    margin-top: 32px; 
+    z-index: 200;
 }
 .container04 ul li{
     list-style: none;
     float: left; 
-    margin-left: 30px;
+    margin-left: 41px;
     font-size: 16px; 
     padding-bottom: 8px;
+    font-size: 20px;
+    z-index: 200;
+    cursor: pointer;
 }
-.a_text{
+.container04 ul li p{
+    color: #000;
+    cursor: pointer;
     text-decoration: none;
-    color: #999;
 }
-.a_text:hover{
-    color: #0078d7;
+.container04 ul li a{
+    text-decoration: none;
+}
+.container04 ul li p:hover{
+    color: #F13232;
+    cursor: pointer;
 }
 .container04 .router-link-active{
     text-decoration: none;
-    border-bottom: 4px solid #fff;  
+    border-bottom: 8px solid #fff;  
     position: relative;
-    color: #0078d7;
+    color: #F13232;
 }
 .container04 .router-link-active:before {
     content: '';
     position: absolute;
     left: 5px;
-    top: 24px;
-    bottom: 0;
+    top: 28px;
+    bottom: 0px;
     right: 0px;
     height: 4px;
-    width: 20px;
-    background-color: #0078d7;
+    width: 26px;
+    background-color: #F13232;
     border-radius: 2px;
 }
-.make{
-    position: absolute;
-    left: 780px;
-    height: 35px;
-    width: 85px;
-    margin-top: 10px;
-    opacity:1;
-}
-.make:hover{
-   opacity:0.7;
-   cursor:pointer;
-}
-.login_sign{
+.headercontainer04 .login_sign{
      position: absolute;
-     top: 5px;
-     left: 884px;
+     top: -14px;
+     left: 1124px;
      width: 90px;
      height: 50px;
      z-index: 200;
      border-radius: 10px;
+     color: #fff;
+     cursor: pointer;
 }
-.login_sign:hover{  
-   background-color: #E3E3E3;
-}
-.username .login{
+.headercontainer04 .username .login{
     position: absolute;
-    top: 20px;
-    left:915px;
+    top: 6px;
+    left:1134px;
     width: auto;
     height: 40px;
-    font-size: 16px;
-    font-weight: 600;
-    z-index: 1000;
+    font-size: 13px;
+    font-weight: 400;
+    color: #fff;
+    z-index: -10;
 }
-.username .user{
-    position: absolute;
-    top: 5px;
-    left:870px;
-    width: 40px;
-    height: 40px;
-    background: red;
-    border-radius: 20px;
-    z-index: 1000;
-}
-.login{
+.headercontainer04 .login{
     display: inline;
     position: absolute;
-    top: 17px;
+    top: 22px;
     left:10px;
-    font-size: 14px;
-    color: #333333;
+    font-size: 12px;
+    color: #fff;;
     cursor: pointer;
 }
-.login:hover{
+.headercontainer04 .login:hover{
     text-decoration: underline;
 }
-.dialog{
+.headercontainer04 .dialog{
     z-index: 200;
 }
-.cut_off_line{
+.headercontainer04 .cut_off_line{
     position: absolute;
     top: 19px;
     left:40px;
 }
-.sign{
+.headercontainer04 .sign{
     display: inline;
     position: absolute;
-    top: 17px;
-    left:49px;
-    font-size: 14px;
-    color: #333333;
+    top: 22px;
+    left:52px;
+    font-size: 12px;
+    color: #fff;
     cursor: pointer;
 }
-.sign:hover{
+.headercontainer04 .sign:hover{
     text-decoration: underline;
 }
-.block-col-12{
-    position: absolute;
-    left: 90%;
-    top: 15px;
-    width: 130px;
-    height: 50px;
-    font-size: 24px;
-    opacity: 0;
-    z-index: 1200;
-}
-#dropdown-menu-8301{
+.headercontainer04 #dropdown-menu-8301{
     position: fixed;
     height: 229px;
     width: 181px;
@@ -730,7 +789,7 @@ export default {
     height: 14px;
     width: 141px;
     top: 338px;
-    left: 28px;
+    left: 228px;
     font-size: 15px;
     cursor: pointer;
 }

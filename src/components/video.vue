@@ -4,19 +4,18 @@
         <div class="container35">
             <div class="container36">
                     <div>
-                        <p class="one">元宵节猜灯谜</p>
+                        <p class="one">{{list.title}}</p>
                         <p class="two">分享于：2018.03.02</p>
                         <p class="three">已有339次浏览</p>
                     </div>
                     <div>
                         <img class="cat01" src="../assets/Video/cat01.png" alt="">
-                        <p class="four">2018</p>
-                        <img class="jia" src="../assets/Video/jia.png" alt="">
-                        <p class="atten">关注</p>
+                        <p class="four">{{list.name}}</p>
+                        <div :class='{"jia":!isAttention,"jia1":isAttention}' @click="jia"></div>
                     </div>
                     <div>
-                        <img class="love" src="../assets/Video/love.png" alt="">
-                        <img class="star" src="../assets/Video/star.png" alt="">
+                        <div :class='{"love":!isPraise,"love1":isPraise}' @click="love"><span class="lovenum">{{list.praisetotal}}</span></div>
+                        <div :class='{"star":!isCollect,"star1":isCollect}' @click="star"><span class="starnum">{{list.collecttotal}}</span></div>
                         <button class="buycode">购买代码</button>
                         <span class="buy">已有4人购买</span>
                         <!-- <a class="avideo" href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation" target="myFrameName"><button>点击播放</button></a> -->
@@ -61,7 +60,15 @@ import Footer from '@/components/HomePage/Footer'
 export default{
     data(){
         return{
-            demoxml:'',
+            list:[
+                {collecttotal:''},
+                {praisetotal:''},
+
+            ],
+            isAttention:'',
+            isCollect:'',
+            isPraise:'',
+            authid:'',
             item:{
                 // url:"static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"
                 url:'https://www.baidu.com/'
@@ -70,24 +77,98 @@ export default{
     },
     mounted(){
         this.loadproject()
-        console.log(123)
     },
     methods:{
         loadproject(){
-            console.log(666)
-        this.axios.post('/res/getfile',{
-            id:this.$store.state.demoxmlid,
-        })
-        .then(response => {                          
-            this.demoxml = response.data
-            console.log(response)
-            console.log(this.demoxml)
-            console.log(this.$store.state.demoxmlid)
-             window.frames["myFrameName"].ide.droppedText(this.demoxml,'HHH') 
-        })
-        // window.frames["snap"].ide.droppedText(this.demoxml,'HHH') 
-        // window.frames["snap"].ide.droppedText(this.$store.state.demoxml,'HHH') 
-    },
+            // if(sessionStorage.userid!=='unfined')
+            this.axios.post('/res/getfile',{
+                userid:sessionStorage.userid,
+                id:sessionStorage.id,
+                state:3
+            })
+            .then(response => {                          
+                this.list = response.data.data
+                this.isCollect = response.data.data.isCollect
+                this.isPraise = response.data.data.isPraise
+                this.isAttention= response.data.data.isAttention
+                this.authid= response.data.data.authid
+                 console.log(response.data.data)
+                console.log(this.isPraise+'111222')
+                console.log(this.isAttention+'1112223333')
+            }) 
+        },
+        love(){  
+            if(!this.isPraise){
+                   this.list.praisetotal++; 
+                   this.axios.post('/res/useropreate',{
+                        userid:sessionStorage.userid,
+                        state:1,
+                        id:sessionStorage.id,
+                    })
+                    .then(response => {           
+                        console.log(response)
+                })
+            }else{
+                   this.list.praisetotal--; 
+                   this.axios.post('/res/useropreate',{
+                        userid:sessionStorage.userid,
+                        state:2,
+                        id:sessionStorage.id,
+                    })
+                    .then(response => {           
+                        console.log(response)
+                })
+            }
+            this.isPraise = !this.isPraise
+              console.log(this.isPraise+'222')
+        },
+        star(){
+            if(!this.isCollect){
+                   this.list.collecttotal++; 
+                   this.axios.post('/res/useropreate',{
+                        userid:sessionStorage.userid,
+                        state:3,
+                        id:sessionStorage.id,
+                    })
+                    .then(response => {           
+                        console.log(response)
+                })
+            }else{
+                   this.list.collecttotal--; 
+                   this.axios.post('/res/useropreate',{
+                        userid:sessionStorage.userid,
+                        state:4,
+                        id:sessionStorage.id,
+                    })
+                    .then(response => {           
+                        console.log(response)
+                })
+            }
+            this.isCollect= !this.isCollect
+        },
+        jia(){
+            this.isAttention = !this.isAttention
+            if(this.isAttention){
+                   this.axios.post('/res/useropreate',{
+                        userid:sessionStorage.userid,
+                        state:5,
+                        attentionid:this.authid
+                    })
+                    .then(response => {           
+                        console.log(response)
+                })
+            }else{
+                   this.axios.post('/res/useropreate',{
+                        userid:sessionStorage.userid,
+                        state:6,
+                        attentionid:this.authid
+                    })
+                    .then(response => {           
+                        console.log(response)
+                })
+            }
+            
+        }
     },
     components:{
         Header,
@@ -165,6 +246,19 @@ export default{
     position: absolute;
     top: 80px;
     left: 512px;
+    height: 13px;
+    width: 72px;
+    background: url(../assets/Video/guanzhu1.png) no-repeat;
+    cursor: pointer;
+}
+.container36 .jia1{
+    position: absolute;
+    top: 80px;
+    left: 512px;
+    height: 13px;
+    width: 72px;
+    background: url(../assets/Video/guanzhu.png) no-repeat;
+    cursor: pointer;
 }
 .container36 .atten{
     position: absolute;
@@ -176,6 +270,24 @@ export default{
 }
 .container36 .love{
     position: absolute;
+    width: 30px;
+    height: 26px;
+    background: url(../assets/Video/love.png) no-repeat;
+    top: 48px;
+    left: 720px;
+    cursor: pointer;
+}
+.container36 .lovenum{
+    position: relative;
+    top: 28px;
+    left: 10px;
+    cursor: pointer;
+}
+.container36 .love1{
+    position: absolute;
+    width: 30px;
+    height: 26px;
+    background: url(../assets/Video/love1.png) no-repeat;
     top: 48px;
     left: 720px;
     cursor: pointer;
@@ -184,6 +296,24 @@ export default{
     position: absolute;
     top: 44px;
     left: 790px;
+    width: 30px;
+    height: 28px;
+    background: url(../assets/Video/star.png) no-repeat;
+    cursor: pointer;
+}
+.container36 .starnum{
+    position: relative;
+    top: 33px;
+    left: 10px;
+    cursor: pointer;
+}
+.container36 .star1{
+    position: absolute;
+    top: 44px;
+    left: 790px;
+    width: 30px;
+    height: 28px;
+    background: url(../assets/Video/star1.png) no-repeat;
     cursor: pointer;
 }
 .container36 .buycode{
