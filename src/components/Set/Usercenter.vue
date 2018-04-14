@@ -76,23 +76,23 @@
   height: 416px;
   position: relative;
   top: -40px;
-  left: 320px;
+  left: 363px;
 }
 .container33 .input01{
-  width: 308px;
-  height: 36px;
-
-  margin-left: -80px;  
+  width: 370px;
+  height: 43px;  
 }
 .container33 .el-input__inner{
-  background-color: #f2efe6!important;
+  background-color: #BDBDBD!important;
 }
 .container33 .save{
-  width: 309px;
-  height: 36px;
+  width: 370px;
+  height: 43px;
   color: #fff;
   margin-top: 20px;
-  background: #f9b242;
+  background: #F13232;
+  position: relative;
+  left: 80px;
 }
 .el-form-item{
   margin-bottom: 15px;

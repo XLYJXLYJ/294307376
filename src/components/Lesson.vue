@@ -1,7 +1,7 @@
 <template>
     <div class="container14">
         <Header/>
-        <div class="content01">
+        <div class="content02">
         <LessonDownload/>
         <LessonList01/> 
         <LessonList02/>
@@ -36,11 +36,11 @@ export default{
     flex-direction: column;
     min-height: 100vh;
 }
-.content02 {
+.content02{
     flex: 1;
 }
-.footer02 {
+.footer02{
     flex: 0;
-    margin-top: 120px;
+    margin-top: 32px;
 }
 </style>

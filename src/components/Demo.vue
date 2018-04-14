@@ -1,9 +1,9 @@
 <template>
     <div class="container25">
         <Header/>
-        <div class="content05">
-            <img class="star01" src="../assets/Download/starfish.png" alt="">
+        <div class="content05">   
             <div class="container24">
+            <img class="star01" src="../assets/Download/starfish.png" alt="">  
             <p>我的管理中心</p>
             <button>新建作品</button>
             <div class="mydemo_frame">
@@ -33,83 +33,87 @@ export default{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: url(../assets/Lesson/Lesson_bg.png) no-repeat;
+    background: #F5F5F5;
 }
 .content05{
     flex: 1;
-    padding-top: 40px;
-    height: 850px;
+    padding-top: 154px;
+    height: 976px;
 }
 .footer05{
     flex: 0;
 }
 .container24{
     margin: 0 auto;
-    width: 1000px;
-    height: 700px;
-    background:#FFFBF2; 
+    width: 1200px;
+    height: 840px;
+    background:#FFf; 
+    position: relative;
 }
 .container25 .star01{
    position: relative;
-   left: -463px;
-   top: 44px; 
+   left: -18px;
+   top: -30px; 
    z-index: 50;
 }
 .container24 p{
     position: relative;
-    top: 20px;
-    left: -374px;
-    font-size: 18px;
-    color: #91121B;
+    top: -62px;
+    left: 77px;
+    font-size: 22px;
+    color: #333;
+    font-weight: 600;
 }
 .container24 button{
     position: relative;
-    top: 27px;
-    left: 339px;
-    height: 28px;
-    width: 96px;
+    top: -88px;
+    left: 1032px;
+    height: 34px;
+    width: 115px;
     font-size: 16px;
     color: #fff;
-    background: #fcb239;
+    background: #000;
     border: none;
     cursor: pointer;
 }
  .container24 .mydemo_frame{
-    position: relative;
-    width: 332px;
-    height: 20px;
-    top: 30px;
-    left: 30px;
-    border-bottom: 2px solid #e6d7b8;
+    position:relative;
+    width: 643px;
+    height: 38px;
+    top: -30px;
+    left: 0px;
+    border-bottom: 2px solid #333;
 }
 .container24 .Mydemo{
     position: absolute;
-    top: -12px;
-    left: 13px;
-    width: 126px;
-    height: 21px;
-    font-size: 16px;
-    color: #999;
+    top: -10px;
+    left: 24px;
+    width: 101px;
+    height: 37px;
+    font-size: 18px;
+    color: #333;
     text-decoration: none;
     padding-top: 8px;
+    padding-left: 60px;
 }
 .container24 .Delete{
     position: absolute;
-    top: -12px;
-    left: 129px;
-    width: 126px;
-    height: 21px;
-    font-size: 16px;
-    color: #999;
+    top: -10px;
+    left: 189px;
+    width: 109px;
+    height: 37px;
+    font-size: 18px;
+    color: #333;
     text-decoration: none;
     padding-top: 8px;
+    padding-left: 60px;
 }
 .container24 .mydemo_frame .router-link-active{
     text-decoration: none;
-    border-bottom: 3px solid #FFFBF2;  
-    border-top: 2px solid #e6d7b8;
-    border-left: 2px solid #e6d7b8;
-    border-right: 2px solid #e6d7b8;
+    border-bottom: 3px solid #fff;  
+    border-top: 2px solid #333;
+    border-left: 2px solid #333;
+    border-right: 2px solid #333;
     color: #000;
 }
 .container24 .mydemo_frame .router-link-active:before {

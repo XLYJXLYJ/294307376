@@ -3,7 +3,7 @@
         <div class="rank_list_top"><img src="../../assets/home/rank_list.png" alt=""><p>排行版</p></div>
         <div class="rank_up">
             <ul>
-                <li v-for="(item, index) in list" v-if='index<10' :key="index">
+                <li v-for="(item, index) in list" v-if='index<8' :key="index">
                     <span class="sort_num">{{index+1}}</span>
                      <div class="ranking"><img src="../../assets/home/fight.png" alt=""></div>
                     <p>{{item.title}}</p>
@@ -52,7 +52,7 @@
 .container06 .rank_list_top{
     float: left;
     height: auto;
-    width: 90px;
+    width: 100px;
     position: absolute;
     top: -48px;
 }
@@ -61,7 +61,9 @@
     font-size: 22px;
     color: #808080;
     left: 12px;
-    top: 0px；
+    height: 22px;
+    width: 116px;
+    top: 8px;
 }
 .container06 .rank_up p{
    font-size: 18px;
@@ -133,12 +135,16 @@
 .container06 .sort_num{
     width: 18px;
     height: 24px;
-    background: #5bc4ea;
+    background: #F13232;
+    color: #fff;
     float: left;
     border-radius: 25px;
-    line-height: 22px;
+    line-height: 24px;
     padding-left: 8px;
     font-size: 18px;
+    position: relative;
+    left: 4px;
+    top: 20px;
 }
 .container06 .rank_up ul{
    width: 100%;

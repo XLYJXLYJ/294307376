@@ -26,7 +26,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
 import Mysourceshop from '@/components/Source/Mysourceshop'
 import Backg from '@/components/Source/source/Backg'
 import Game from '@/components/Source/source/Game'
-import Role from '@/components/Source/source/Role'
+import Source01 from '@/components/Source/source/Source01'
 import Voice from '@/components/Source/source/Voice'
 import Gsource from '@/components/Source/source/Gsource'
 import Myvoice from '@/components/Source/mysource/Myvoice'
@@ -71,7 +71,7 @@ export default new Router({
               {path: '/source/sourceshop/Backg', component: Backg},
               {path: '/source/sourceshop/Game', component: Game},
               {path: '/source/sourceshop/Gsource', component: Gsource},
-              {path: '/source/sourceshop/Role', component: Role},
+              {path: '/source/sourceshop/Source01', component: Source},
               {path: '/source/sourceshop/Voice', component: Voice},
               {path: '', component:Gsource}
             ]

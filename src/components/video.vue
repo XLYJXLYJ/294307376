@@ -27,7 +27,7 @@
                         <!-- <a href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"></a> -->
                         <!-- <a href="https://www.baidu.com/" target="_blank">点击播放百度</a> -->
                         
-                        <iframe class="video" frameborder="0" id="myFrameId" :src="'static/js/snap.html#run:/codeplay/file/'+this.$store.state.demoxmlid+'.xml'" name="myFrameName"></iframe>
+                        <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe>
                 </div>
                 <div class="mydemo_frame">
                 <router-link class="Myvideo" to="/Video/Myvideo">Ta的作品</router-link>
@@ -69,6 +69,7 @@ export default{
             isCollect:'',
             isPraise:'',
             authid:'',
+            demoid:'',
             item:{
                 // url:"static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"
                 url:'https://www.baidu.com/'
@@ -76,7 +77,8 @@ export default{
         }
     },
     mounted(){
-        this.loadproject()
+        this.loadproject(),
+        this.demoid = sessionStorage.id
     },
     methods:{
         loadproject(){
@@ -92,9 +94,6 @@ export default{
                 this.isPraise = response.data.data.isPraise
                 this.isAttention= response.data.data.isAttention
                 this.authid= response.data.data.authid
-                 console.log(response.data.data)
-                console.log(this.isPraise+'111222')
-                console.log(this.isAttention+'1112223333')
             }) 
         },
         love(){  

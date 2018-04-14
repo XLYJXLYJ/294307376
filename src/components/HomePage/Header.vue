@@ -15,25 +15,34 @@
                     <p class="sign"  type="text" @click="dialogRegister = true" >注册</p>  
                 </div>
                 <div class="username" v-show="usercenter"> 
-                    <p class="login" type="text"  @click="dialogLogin = true" >{{$store.state.usernamesession02}}</p>   
+                    <p class="login01" type="text"  @click="dropdowmcontrol" >{{$store.state.usernamesession02}}</p>   
                 </div>  
                 <div v-show="dropdowm">
-                    <el-row class="block-col-12">
+                    <!-- <el-row class="block-col-12">
                         <el-col :span="12">
-                            <el-dropdown>
-                            <span  class="el-dropdown-link02">
+                            <el-dropdown> -->
+                            <!-- <span  class="el-dropdown-link02">
                                 下拉菜单
-                            </span>
-                            <el-dropdown-menu class="el-dropdown-link-menu" slot="dropdown">
-                                <router-link to="/Demo"><el-dropdown-item>作品管理</el-dropdown-item></router-link>
-                                <el-dropdown-item>社区消息</el-dropdown-item>
+                            </span> -->
+
+                               <!-- <el-dropdown-menu class="el-dropdown-link-menu" slot="dropdown">
+                                <router-link to="/Demo" class="bgfont"><el-dropdown-item><p>作品管理</p></el-dropdown-item></router-link>
+                                <el-dropdown-item >社区消息</el-dropdown-item>
                                 <router-link to="/User"><el-dropdown-item>个人中心</el-dropdown-item></router-link>     
                                 <router-link to="/setting"><el-dropdown-item>账号设置</el-dropdown-item></router-link>   
                                 <el-dropdown-item><p @click="Cancellogout">退出登陆</p></el-dropdown-item>
-                            </el-dropdown-menu>
-                            </el-dropdown>
+                            </el-dropdown-menu> -->
+
+                            <ul class="block-col-12">
+                                <router-link to="/Demo"><li><p>作品管理</p></li></router-link>
+                                <router-link to="#"><li>社区消息</li></router-link>
+                                <router-link to="/User"><li>个人中心</li></router-link>     
+                                <router-link to="/setting"><li>账号设置</li></router-link>  
+                                <li><p @click="Cancellogout">退出登陆</p></li>
+                            </ul>
+                            <!-- </el-dropdown>
                         </el-col>
-                    </el-row>
+                    </el-row> -->
                 </div>
             </div>
         </div>
@@ -65,8 +74,7 @@
                 <el-dialog :visible.sync="dialogRegister" :modal="false" width="420px">
                     <div class="container19">
                         <el-form :model="formRegister" :rules="rules">
-                            <img class="welcome" src="../../assets/login/welcome.png" alt="">
-                            <img class="sign_logo" src="../../assets/login/login_logo.png" alt="">
+                            <p class="sign_logo">注册</p>
                             <el-form-item prop="username" class="tele">
                                 <el-input v-model="formRegister.username" auto-complete="off" placeholder="请输入用户名"></el-input>
                             </el-form-item>
@@ -82,7 +90,7 @@
                             <el-button type="primary" class="register" @click="Registerbtn">注册</el-button>
                         </el-form>
                         <div>
-                            <span class="free_res">已有账号<span @click="dialogLogin = true,dialogRegister = false">点击登录</span></span>
+                            <span class="free_res">已有账号?<span @click="dialogLogin = true,dialogRegister = false">点击登录</span></span>
                         </div>
                     </div>
                 </el-dialog>
@@ -94,8 +102,7 @@
                 <div>
                     <div class="container21">
                         <form action="">
-                            <img class="welcome" src="../../assets/login/welcome.png" alt="">
-                            <img class="sign_logo" src="../../assets/login/login_logo.png" alt="">
+                            <p class="sign_logo">登陆</p>
                             <input type="text" v-model="formLogin.username" class="tele" placeholder="请输入手机号码/账号">
                             <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
                             <p class="ap_text" @click="dialogLogin = false,dialogForgetpass = true">忘记密码?</p>
@@ -112,8 +119,7 @@
             <div>
                 <div class="container46">
                     <el-form action="" :rules="rules">
-                        <img class="welcome" src="../../assets/login/welcome.png" alt="">
-                        <img class="sign_logo" src="../../assets/login/login_logo.png" alt="">
+                        <p class="sign_logo">忘记密码</p>
                          <el-form-item  class="tele">
                                 <el-input type="email" v-model="formReset.mail" auto-complete="off" placeholder="请输入邮箱"></el-input>
                             </el-form-item>
@@ -121,7 +127,7 @@
                                 <el-input v-model="formReset.code" auto-complete="off"  placeholder="验证码"></el-input>
                         </el-form-item>
                         <button class="iden02" @click="Getcodebtn">获取验证码</button>
-                        <button class="register"  @click="Getusercodebtn">重置密码</button>
+                        <button class="register"  @click="Getusercodebtn">下一步</button>
                     </el-form>
                 </div>
             </div>    
@@ -133,8 +139,7 @@
             <div>
                 <div class="container44">
                     <form action="">
-                        <img class="welcome" src="../../assets/login/welcome.png" alt="">
-                        <img class="sign_logo" src="../../assets/login/login_logo.png" alt="">
+                        <p class="sign_logo">确认密码</p>
                         <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
                         <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
                         <button class="register" @click="Getuserpassbtn">确认</button>
@@ -225,6 +230,9 @@ export default {
                 message:'敬请期待更多语言功能'
             })
         },
+        dropdowmcontrol(e){
+            this.dropdowm = !this.dropdowm
+        },
             //登陆
         Loginbtn() {
             this.axios.post('/res/login', {
@@ -245,7 +253,6 @@ export default {
                     this.dialogLogin = false,
                     this.loginsign = false,
                     this.usercenter = true,
-                    this.dropdowm = true,
                     this.$message({
                         message: '登陆成功',
                         center: true,
@@ -377,7 +384,6 @@ export default {
                     this.dialogLogin = false;
                     this.loginsign = false;
                     this.usercenter = true;
-                    this.dropdowm = true; 
                     this.$store.state.usernamesession02=response.data.data.username
                     this.$store.state.userid=response.data.data.userid
                     sessionStorage.userid = response.data.data.userid
@@ -385,7 +391,6 @@ export default {
                     this.dialogLogin = false;
                     this.loginsign = true;
                     this.usercenter = false;
-                    this.dropdowm = false; 
                 }
             }) 
         },
@@ -488,14 +493,29 @@ export default {
 }
 .headercontainer04 .headonecenter .block-col-12{
     position:relative;
-    left:1150px;
-    top: -60px;
-    width: 130px;
-    height: 50px;
-    font-size: 24px;
-    opacity: 0;
+    left:1104px;
+    top: -34px;
+    color: #333;
+    width: 94px;
+    height: 188px;
+    font-size: 12px;
     z-index: 1000;
+    background: #fff;
+    border: 1px solid #333333;
 }
+.headercontainer04 .headonecenter .block-col-12 a{
+    color: #333;
+}
+.headercontainer04 .headonecenter .block-col-12 li{
+    padding-top: 10px;
+    padding-left: 24px;
+    height: 28px;
+}
+.headercontainer04 .headonecenter .block-col-12 li:hover{
+    background:#000;
+    color: #fff;
+}
+
 .headercontainer04 .logo{
     height: auto;
     width: auto;
@@ -533,19 +553,21 @@ export default {
 }
 .container04 .router-link-active{
     text-decoration: none;
-    border-bottom: 8px solid #fff;  
     position: relative;
-    color: #F13232;
+    color: #F13232!important;
+}
+.container04 .router-link-active p{
+    color: #F13232!important;
 }
 .container04 .router-link-active:before {
     content: '';
     position: absolute;
-    left: 5px;
-    top: 28px;
+    left: 8px;
+    top: 34px;
     bottom: 0px;
     right: 0px;
-    height: 4px;
-    width: 26px;
+    height: 2px;
+    width: 22px;
     background-color: #F13232;
     border-radius: 2px;
 }
@@ -560,22 +582,20 @@ export default {
      color: #fff;
      cursor: pointer;
 }
-.headercontainer04 .username .login{
-    position: absolute;
-    top: 6px;
-    left:1134px;
-    width: auto;
-    height: 40px;
-    font-size: 13px;
-    font-weight: 400;
-    color: #fff;
-    z-index: -10;
-}
 .headercontainer04 .login{
     display: inline;
     position: absolute;
     top: 22px;
-    left:10px;
+    left:20px;
+    font-size: 12px;
+    color: #fff;;
+    cursor: pointer;
+}
+.headercontainer04 .login01{
+    display: inline;
+    position: absolute;
+    top: 6px;
+    left:1140px;
     font-size: 12px;
     color: #fff;;
     cursor: pointer;
@@ -613,21 +633,21 @@ export default {
     padding: 0px;
     width: 100%;
     height: 364px;
-    background: #9cf7ff;
-}
-.container21 .welcome{
-    position: absolute;
-    top: 56px;
-    left: 60px;
+    background: #fff;
 }
 .container21 .sign_logo{
-    position: absolute;
-    top: 56px;
-    left: 266px;
+    width: 50px;
+    height: 23px;
+    position: relative;
+    top: 44px;
+    left: 184px;
+    color: #333;
+    font-size: 24px;
+    margin-left: 30px;
 }
 .container21 .tele{
     position: absolute;
-    height: 49px;
+    height: 48px;
     width: 297px;
     top: 110px;
     left: 60px;
@@ -635,9 +655,9 @@ export default {
 }
 .container21 .iden01{
     position: absolute;
-    height: 49px;
+    height: 48px;
     width: 297px;
-    top: 167px;
+    top: 166px;
     left: 60px;
     padding-left: 10px;
 }
@@ -646,11 +666,12 @@ export default {
     position: absolute;
     height: 14px;
     width: 95px;
-    top: 229px;
-    left: 292px;
-    color: #3399CC;
+    top: 226px;
+    left: 291px;
+    color: #F13232;
     font-size: 14px;
     cursor: pointer;
+    font-weight: 600;
 }
 .container21 .register{
     position: absolute;
@@ -658,44 +679,44 @@ export default {
     width: 310px;
     top: 254px;
     left: 60px;
-    background: #fed000;
+    background: #F13232;
     color: #fff;
     font-size: 18px;
     cursor: pointer;
+    border: none;
 }
 .container21 .free_res p{
     position: absolute;
     height: 14px;
     width: 142px;
     top: 317px;
-    left: 107px;
-    font-size: 15px;
-     color: #000;
+    left: 137px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 600;
 }
 .container21 .free_res span{
     position: absolute;
     top: 317px;
     left: 216px;
-    color: #0078d7;
-    font-size: 15px;
+    color: #F13232;
+    font-size: 14px;
     cursor: pointer;
+    font-weight: 600;
 }
 .container44{
     margin: 0px;
     padding: 0px;
     width: 100%;
     height: 364px;
-    background: #9cf7ff;
+    background: #fff;
 }
-.container44 .welcome{
+.container21 .sign_logo{
     position: absolute;
-    top: 56px;
-    left: 60px;
-}
-.container44 .sign_logo{
-    position: absolute;
-    top: 56px;
-    left: 266px;
+    top: 44px;
+    left: 155px;
+    color: #333;
+    font-size: 24px;
 }
 .container44 .tele{
     position: absolute;
@@ -719,7 +740,7 @@ export default {
     width: 310px;
     top: 284px;
     left: 60px;
-    background: #fed000;
+    background: #F13232;
     color: #fff;
     font-size: 18px;
     cursor: pointer;
@@ -729,17 +750,14 @@ export default {
     padding: 0px;
     width: 100%;
     height: 476px;
-    background: #9cf7ff;
-}
-.container19 .welcome{
-    position: absolute;
-    top: 56px;
-    left: 60px;
+    background: #fff;
 }
 .container19 .sign_logo{
     position: absolute;
-    top: 56px;
-    left: 266px;
+    top: 44px;
+    left: 184px;
+    color: #333;
+    font-size: 24px;
 }
 .container19 .tele{
     position: absolute;
@@ -779,19 +797,21 @@ export default {
     width: 297px;
     top: 366px;
     left: 68px;
-    background: #fed000;
+    background: #F13232;
     color: #fff;
     font-size: 18px;
     cursor: pointer;
+    border: none;
 }
 .container19 .free_res{
     position: absolute;
     height: 14px;
     width: 141px;
     top: 338px;
-    left: 228px;
+    left: 73px;
     font-size: 15px;
     cursor: pointer;
+    font-weight: 600;
 }
 .container19 .free_res span{
     position: absolute;
@@ -799,26 +819,24 @@ export default {
     left: 75px;
     height: 14px;
     width: 141px;
-    color: #0078d7;
+    color: #F13232;
     font-size: 15px;
     cursor: pointer;
+    font-weight: 600;
 }
 .container46{
     margin: 0px;
     padding: 0px;
     width: 100%;
     height: 364px;
-    background: #9cf7ff;
-}
-.container46 .welcome{
-    position: absolute;
-    top: 56px;
-    left: 60px;
+    background: #fff;
 }
 .container46 .sign_logo{
     position: absolute;
-    top: 56px;
-    left: 266px;
+    top: 44px;
+    left: 159px;
+    color: #333;
+    font-size: 24px;
 }
 .container46 .tele{
     position: absolute;
@@ -843,10 +861,11 @@ export default {
     width: 111px;
     top: 195px;
     left: 260px;
-    background: #68c5f5;
+    background: #F13232;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
+    border: none;
 }
 .container46 .setpass{
     position: absolute;
@@ -862,10 +881,11 @@ export default {
     width: 310px;
     top: 274px;
     left: 70px;
-    background: #fed000;
+    background: #F13232;
     color: #fff;
     font-size: 18px;
     cursor: pointer;
+    border: none;
 }
 .container46 .back_login{
     position: absolute;
@@ -877,4 +897,8 @@ export default {
     font-size: 15px;
     cursor: pointer;
 }
+.headercontainer04 .el-dropdown-link-menu{
+    border: 1px solid #000;
+}
+
 </style>

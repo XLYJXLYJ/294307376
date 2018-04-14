@@ -10,7 +10,10 @@ Vue.use(Vuex);
 const state = {
     userid: '',
     usernamesession:'',
-    demoxmlid:''
+    demoxmlid:'',
+    recommenddemo:'',
+    productiondemo:'',
+    searchdemo:''
 }
 
 const actions = {

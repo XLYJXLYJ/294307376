@@ -2,10 +2,10 @@
   <div class="container61">
      <ul class="tab_choice">
          <router-link to="/source/sourceshop/Gsource"><li><p>推荐素材</p></li></router-link>
-         <router-link to="/source/sourceshop/Role"><li><p>角色</p></li></router-link>
-         <router-link to="/source/sourceshop/Backg"><li><p>背景</p></li></router-link>
-         <router-link to="/source/sourceshop/Voice"><li><p>声音</p></li></router-link>
-         <router-link to="/source/sourceshop/Game"><li><p>主题游戏</p></li></router-link>
+         <router-link to="/source/sourceshop/Source01"><li><p>素材</p></li></router-link>
+         <router-link to="/source/sourceshop/Backg"><li><p>场景</p></li></router-link>
+         <router-link to="/source/sourceshop/Voice"><li><p>学习</p></li></router-link>
+         <router-link to="/source/sourceshop/Game"><li><p>游戏</p></li></router-link>
          <div class="mymoney"><p>金币:</p><span>500</span><i class="what"></i></div> 
          <div class="line"></div>       
      </ul>  

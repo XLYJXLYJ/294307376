@@ -35,5 +35,6 @@ export default{
 }
 .footer03 {
     flex: 0;
+    margin-top: 110px;
 }
 </style>

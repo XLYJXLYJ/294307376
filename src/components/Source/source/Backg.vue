@@ -3,14 +3,15 @@
         <div class="sort01">
             <p class="sort01text">作品分类:</p>
             <ul>
-                <li><p>全部</p><span>(1965)</span></li>
-                <li><p>生活场景</p><span>(84)</span></li>
-                <li><p>游戏场景</p><span>(115)</span></li>
+                <li v-for="item in listtitle" :key="item.index" @click="Getbgtwo(item.titilenum)">
+                    <p>{{item.title}}</p><span>(1965)</span>
+                </li>
+          
             </ul>
         </div>
             <div class="sort02">
             <ul>
-                <li><p>最近更新</p></li>
+                <li  @click="Getbg"><p>最近更新</p></li>
                 <li><p>最多使用</p></li>
             </ul>
             <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox>
@@ -140,9 +141,41 @@ import Sourcehead from '@/components/Source/Sourcehead'
 export default{
     data() {
       return {
-        checked: true
-      };
+        checked: true,
+        listtitle:[
+            {title:'全部',titilenum:''},
+            {title:'卡通场景',titilenum:1},
+            {title:'生活场景',titilenum:2},
+            {title:'游戏场景',titilenum:3},
+        ],
+        listpagenum:''
+      }
     },
+    mounted:function() {
+        // this.$store.dispatch('Getsession01') 
+    }, 
+    methods:{
+        Getbg(){
+        this.axios.post('/res/resourcelist',{
+             onenav:1,
+        })
+        .then(response => {   
+            this.list=response.data.data
+            console.log(response)
+        })
+    },
+    Getbgtwo(id){
+        this.axios.post('/res/resourcelist',{
+            onenav:1,
+            twonav:id
+        })
+        .then(response => {   
+            this.list=response.data.data
+            console.log(response)
+        })
+    },
+    },
+   
     components:{
         Sourcehead
     }

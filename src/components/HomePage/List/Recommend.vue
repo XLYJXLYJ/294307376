@@ -1,5 +1,5 @@
 <template>
-    <div class="container01" v-show="false">
+    <div class="container01" v-show="$store.state.recommenddemo">
         <el-row :gutter="10">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id'> 
                     <router-link to="/Video">
@@ -38,6 +38,9 @@
                 .then(response => {   
                     this.list=response.data.data
                     console.log(response)
+                    this.$store.state.searchdemo=false
+                    this.$store.state.recommenddemo=true
+                    this.$store.state.productiondemo=false
                 })
             },
             edit01(id){                 
@@ -48,7 +51,7 @@
 </script>
 <style scoped>
 .container01{
-    width: 804px;
+    width: 858px;
     height: auto;
 }
 .container01 .routetext{
@@ -119,7 +122,7 @@
     height: 14px;
     margin: 10px;
     position: relative;
-    left: -9px;
+    left: 9px;
     top: 36px;
 }
 .container01 .down03{
@@ -128,7 +131,7 @@
     height: 14px;
     margin: 10px;
     position: relative;
-    left: 99px;
+    left: 124px;
     top: 16px;
 }
 .container01 .down01 span{
@@ -158,7 +161,7 @@
     top: 0px;
 }
 .container01 .button:hover{
-    background-color: #5bc4ea;
+    background-color: #dd2e2e;
     color:#fff;
     cursor: pointer;
 }

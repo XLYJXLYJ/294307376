@@ -1,13 +1,13 @@
 <template>
     <div class="container34">  
           <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
-                <el-form-item label="旧密码">
+                <el-form-item class="set01" label="旧密码">
                   <el-input class="input01" type="password" v-model="formLabelAlign.oldpass"></el-input>
                 </el-form-item>
-                <el-form-item label="新密码">
+                <el-form-item class="set01" label="新密码">
                   <el-input class="input01" type="password" v-model="formLabelAlign.newpass"></el-input>
                 </el-form-item>
-                <el-form-item label="确认密码">
+                <el-form-item class="set01" label="确认密码">
                   <el-input class="input01" type="password" v-model="formLabelAlign.conpass"></el-input>
                 </el-form-item>
                 <el-button class="save" @click="changepassbtn">确认修改</el-button>
@@ -59,19 +59,23 @@
   height: 416px;
   position: relative;
   top: -40px;
-  left: 320px;
+  left: 363px;
 }
 .container34 .input01{
-  width: 308px;
-  height: 36px;
-  background-color: #f2efe6;
-  margin-left: -80px;  
+  width: 370px;
+  height: 40px;
+  background-color: #BDBDBD;
 }
 .container34 .save{
-  width: 309px;
-  height: 36px;
+  width: 370px;
+  height: 43px;
   color: #fff;
   margin-top: 20px;
-  background: #f9b242;
+  background: #F13232;
+  position: relative;
+  left: 80px;
+}
+.container34 .el-form-item__label{
+  font-size: 18px;
 }
 </style>

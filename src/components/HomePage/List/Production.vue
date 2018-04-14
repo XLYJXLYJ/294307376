@@ -1,9 +1,9 @@
 <template>
-    <div class="container02" v-show="false">
+    <div class="container02" v-show="$store.state.productiondemo">
         <el-row :gutter="10">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id'> 
                     <router-link to="/Video">
-                        <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
+                        <div class="grid-content bg-purple list_pic" @click="edit02(item.id)">
                             <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
                             <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
                             <p>{{item.title}}</p>
@@ -36,9 +36,12 @@
                 })
                 .then(response => {   
                     this.list=response.data.data
+                    this.$store.state.searchdemo=false
+                    this.$store.state.recommenddemo=false
+                    this.$store.state.productiondemo=true
                 })
             },
-            edit01(id){                 
+            edit02(id){                 
                 sessionStorage.id = id
             },
         }
@@ -46,7 +49,7 @@
 </script>
 <style scoped>
 .container02{
-    width: 804px;
+    width: 858px;
     height: auto;
 }
 .container02 .routetext{
@@ -117,7 +120,7 @@
     height: 14px;
     margin: 10px;
     position: relative;
-    left: -9px;
+    left: 9px;
     top: 36px;
 }
 .container02 .down03{
@@ -126,8 +129,8 @@
     height: 14px;
     margin: 10px;
     position: relative;
-    left: 99px;
-    top: 16px;
+    left: 124px;
+    top: 15px;
 }
 .container02 .down01 span{
     position: relative;
@@ -156,7 +159,7 @@
     top: 0px;
 }
 .container02 .button:hover{
-    background-color: #5bc4ea;
+    background-color: #dd2e2e;
     color:#fff;
     cursor: pointer;
 }

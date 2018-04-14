@@ -1,28 +1,33 @@
 <template>
-    <div class="container26">
-        <router-link to="/Demo/Mydemo/All"><button>全部</button></router-link>
-        <router-link to="/Demo/Mydemo/Readysend"><button>已发布</button></router-link>
-        <router-link to="/Demo/Mydemo/Nosend"><button>未发布</button></router-link>
-        <router-view></router-view>
+    <div class="container24">
+        <div class="container26">
+            <router-link to="/Demo/Mydemo/All"><button>全部</button></router-link>
+            <router-link to="/Demo/Mydemo/Readysend"><button>已发布</button></router-link>
+            <router-link to="/Demo/Mydemo/Nosend"><button>未发布</button></router-link>
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 <style scoped>
 .container26{
     position: relative;
-    top: -560px;
-    left: -320px;
+    top: -653px;
+    left: 24px;
 }
 .container26 button{
     position: relative;
-    width: 98px;
-    height: 28px;
-    background: #4C9EE6;
-    color: #fff;
-    font-size: 14px;
+    width: 115px;
+    height: 34px;
+    background: #FFF;
+    color: #000;
+    font-size: 16px;
     margin:0px;
     padding: 0px;
-    border-radius: 15px;
     cursor: pointer;
     border: none;
+}
+.container26 .router-link-active button{
+    background-color: #F13232;
+    border:none;
 }
 </style>

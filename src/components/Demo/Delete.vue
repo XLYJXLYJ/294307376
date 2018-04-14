@@ -74,7 +74,7 @@ import { mapGetters,mapActions} from 'vuex'
 .container30 {
     margin: 0 auto;
     height: 550px;
-    width: 1000px;
+    width: 1200px;
     position: relative;
     left: 0px;
     top:-600px;
@@ -83,7 +83,7 @@ import { mapGetters,mapActions} from 'vuex'
 .container30 ul{
     position: relative;
     left: 40px;
-    top: 30px;
+    top: 0px;
     height: auto;
     z-index: 100;
     width:auto;
@@ -95,16 +95,18 @@ import { mapGetters,mapActions} from 'vuex'
 .container30 li{
     position: relative;
     left: 0px; 
-    height: 220px;
+    height: 252px;
     z-index: 100;
-    width: 299px;
+    width: 359px;
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
-    background: #f7f4eb;
+    background: #F5F5F5;
 }
 .container30 .all_up img{
     position: absolute;
+    height: 154px;
+    width: 154px;
     left: 12px;
     top: 12px;
 }
@@ -114,8 +116,8 @@ import { mapGetters,mapActions} from 'vuex'
     color: #333;
     font-size: 18px;
     position: absolute;
-    top: 150px;
-    left: 12px;
+    top: 180px;
+    left: 13px;
 }
 .container30 .deltime01{
     height: 14px;
@@ -123,8 +125,8 @@ import { mapGetters,mapActions} from 'vuex'
     color: #999;
     font-size: 14px;
     position: absolute;
-    top: 178px;
-    left: 12px;
+    top: 224px;
+    left: 15px;
 }
 .container30 .deltime02{
     height: 14px;
@@ -132,29 +134,31 @@ import { mapGetters,mapActions} from 'vuex'
     color: #999;
     font-size: 14px;
     position: absolute;
-    top: 198px;
+    top: 208px;
     left: 12px;
 }
 .container30 .button01{
-  height: 42px;
-  width: 131px;
-  background: #3bb4dc;
+  height: 50px;
+  width: 157px;
+  background: #F13232;
   color: #fff;
   position: absolute;
-  left: 160px;
-  top: 12px;
+  left: 191px;
+  top: 14px;
   border: none;
+  font-size: 20px;
   cursor: pointer;
 }
 .container30 .button02{
-  height: 42px;
-  width: 131px;
-  background: #3bb4dc;
+  height: 50px;
+  width: 157px;
+  background: #F13232;
   color: #fff;
   position: absolute;
-  left: 160px;
-  top: 58px;
+  left: 191px;
+  top: 71px;
   border: none;
+  font-size: 20px;
   cursor: pointer;
 }
 </style>

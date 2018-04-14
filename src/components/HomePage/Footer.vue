@@ -64,7 +64,7 @@
   width: 122px;
   height: 120px;
 }
-.container003 .container03 imgfoot img{
+.container003 .container03 .imgfoot img{
   width: 100%;
   height: 100%;
 }
@@ -72,36 +72,36 @@
   position: relative;
   left: 172px;
   width: 283px;
-  top: 45px;
+  top: 42px;
 }
 .container003 .container03 .foot_list_two{
   position: absolute;
   left: 498px;
-  top: 45px;
+  top: 42px;
 }
 .container003 .container03 .foot_list_three{
   position: relative;
   width: 152px;
   height: 120px;
   left: 764px;
-  top: -76px;
+  top: -84px;
 }
 .container003 .container03 .foot_list_four{
   position: absolute;
   left: 899px;
-  top: 45px;
+  top: 43px;
 }
 .container003 .container03 .big{
   font-size: 22px;
   color:#fff;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   text-align: left;
   font-family: “Microsoft YaHei” !important; 
 }
 .container003 .container03 .small{
   font-size: 16px;
   color: #949494;
-  margin-top: 10px;
+  margin-top: 8px;
   text-align: left;
 }
 .container003 .container03 .spacial{
@@ -109,7 +109,7 @@
 }
 .container003 .container03 .foot_list_five{
   position: absolute;
-  left: 290px;
+  left: 420px;
   top: 246px;
 }
 .container003 .container03 .small1{
@@ -124,7 +124,7 @@
 }
 .container003 .container03 .gov_icon{
    position: absolute;
-   left: 58%;
+   left: 347px;
    top:246px;
 }
 </style>

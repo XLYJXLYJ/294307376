@@ -70,18 +70,19 @@ export default{
 .container28 {
     margin: 0 auto;
     height: 550px;
-    width: 1000px;
+    width: 1200px;
     position: relative;
-    left: 310px;
+    left: -14px;
+    top: 33px;
     overflow: auto;
 }
 .container28 ul{
     position: relative;
     left: 40px;
-    top: 30px;
+    top: 0px;
     height: auto;
     z-index: 100;
-    width:auto;
+    width:1150px;
     text-align:left;    
     float: left;
     list-style: none;
@@ -90,16 +91,18 @@ export default{
 .container28 li{
     position: relative;
     left: 0px; 
-    height: 210px;
+    height: 252px;
     z-index: 100;
-    width: 299px;
+    width: 359px;
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
-    background: #f7f4eb;
+    background: #F5F5F5;
 }
 .container28 .all_up img{
     position: absolute;
+    height: 154px;
+    width: 154px;
     left: 12px;
     top: 12px;
 }
@@ -109,8 +112,8 @@ export default{
     color: #333;
     font-size: 18px;
     position: absolute;
-    top: 150px;
-    left: 12px;
+    top: 180px;
+    left: 13px;
 }
 .container28 .all_up span{
     height: 14px;
@@ -118,29 +121,31 @@ export default{
     color: #999;
     font-size: 14px;
     position: absolute;
-    top: 178px;
-    left: 12px;
+    top: 215px;
+    left: 15px;
 }
 .container28 .button01{
-  height: 42px;
-  width: 131px;
-  background: #4c9ee6;
+  height: 50px;
+  width: 157px;
+  background: #F13232;
   color: #fff;
   position: absolute;
-  left: 160px;
-  top: 12px;
+  left: 191px;
+  top: 14px;
   border: none;
+  font-size: 20px;
   cursor: pointer;
 }
 .container28 .button02{
-  height: 42px;
-  width: 131px;
-  background: #4c9ee6;
+  height: 50px;
+  width: 157px;
+  background: #F13232;
   color: #fff;
   position: absolute;
-  left: 160px;
-  top: 58px;
+  left: 191px;
+  top: 71px;
   border: none;
+  font-size: 20px;
   cursor: pointer;
 }
 .container28 .icon_see{
@@ -156,25 +161,26 @@ export default{
     padding-right: 10px;
 }
 .container28 .down{
-    font-size: 12px;
+    font-size: 14px;
     position: relative;
-    left: 160px;
-    top: 128px;
+    left: 190px;
+    top: 152px;
 }
 .container28 .down span{
     position: relative;
     left: 10px;
     margin-left: 11px;
+    top: -2px;
     font-style: normal;
 }
 .container28 .cancelpub{
   height: 14px;
-  width: 57px;
+  width: 77px;
   color: #666;
-  font-size: 14px;
+  font-size: 16px;
   position: absolute;
-  bottom: 13px;
-  left: 228px;
+  top: 221px;
+  left: 275px;
   cursor: pointer;
 }
 </style>

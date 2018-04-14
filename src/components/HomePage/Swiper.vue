@@ -9,15 +9,15 @@
         </div>
         <div class="create">
             <div>
-                <router-link to="/snap"><div class="creat01"><img src="../../assets/home/Manykit.png" alt=""></div></router-link>
-                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat02"><img src="../../assets/home/Manykit.png" alt=""></div></a>  
-                <a href="static/logo.png" download="logo.png"><div class="creat03"><img src="../../assets/home/Manykit.png" alt=""></div></a>
-                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat04"><img src="../../assets/home/Manykit.png" alt=""></div></a> 
-                <a href="static/logo.png" download="logo.png"><div class="creat05"><img src="../../assets/home/Manykit.png" alt=""></div></a>
-                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat06"><img src="../../assets/home/Manykit.png" alt=""></div></a>       
+                <router-link to="/snap"><div class="creat01"><img src="../../assets/home/s.png" alt=""></div></router-link>
+                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat02"><img src="../../assets/home/p.png" alt=""></div></a>  
+                <a href="static/logo.png" download="logo.png"><div class="creat03"><img src="../../assets/home/g.png" alt=""></div></a>
+                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat04"><img src="../../assets/home/b.png" alt=""></div></a> 
+                <a href="static/logo.png" download="logo.png"><div class="creat05"><img src="../../assets/home/m.png" alt=""></div></a>
+                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat06"><img src="../../assets/home/p1.png" alt=""></div></a>       
             </div> 
             <div id="videobox">
-                 <video id="video" src="http://babylife.qiniudn.com/FtRVyPQHHocjVYjeJSrcwDkApTLQ"  :autoplay="playStatus" @click="playClick" height="216" width="388">
+                 <video id="video" src="http://babylife.qiniudn.com/FtRVyPQHHocjVYjeJSrcwDkApTLQ"  :autoplay="playStatus" @click="playClick" height="224px" width="100%">
 
                 </video> 
             </div>
@@ -28,9 +28,9 @@
 <script>
 import Vue from 'vue'
     const DataImg =[
-        {url: 'https://static.codemao.cn/whitepaw/scrollpic/2018031401.jpg'},
-        {url: 'https://static.codemao.cn/whitepaw/scrollpic/noc.jpg'},
-        {url: 'https://static.codemao.cn/whitepaw/scrollpic/hardware_banner.png'}   
+        {url: 'static/1.jpg'},
+        {url: 'static/2.jpg'},
+        {url: 'static/3.jpg'}, 
     ]
 export default{
     data(){
@@ -77,7 +77,7 @@ export default{
 }
 .contain08 .creat01{
     height: 104px;
-    width: 246px;
+    width: 266px;
     display: inline-block;
     position: relative;
     left: 0px;
@@ -89,10 +89,10 @@ export default{
 }
 .contain08 .creat02{
     height: 104px;
-    width: 246px;
+    width: 266px;
     display: inline-block;
     position: absolute;
-    left: 269px;
+    left: 282px;
 }
 .contain08 .creat02 img{
     width: 100%;
@@ -100,10 +100,10 @@ export default{
 }
 .contain08 .creat03{
     height: 104px;
-    width: 246px;
+    width: 266px;
     display: inline-block;
     position: absolute;
-    left: 538px;
+    left: 561px;
 }
 .contain08 .creat03 img{
     width: 100%;
@@ -111,7 +111,7 @@ export default{
 }
 .contain08 .creat04{
     height: 104px;
-    width: 246px;
+    width: 266px;
     display: inline-block;
     position: absolute;
     left: 0px;
@@ -123,10 +123,10 @@ export default{
 }
 .contain08 .creat05{
     height: 104px;
-    width: 246px;
+    width: 266px;
     display: inline-block;
     position: absolute;
-    left: 269px;
+    left: 282px;
     top:117px;
 }
 .contain08 .creat05 img{
@@ -135,10 +135,10 @@ export default{
 }
 .contain08 .creat06{
     height: 104px;
-    width: 246px;
+    width: 266px;
     display: inline-block;
     position: absolute;
-    left: 538px;
+    left: 561px;
     top:117px;
 }
 .contain08 .creat06 img{
@@ -146,12 +146,12 @@ export default{
     height: 100%;
 }
 #videobox{
-    width: 388px;
-    height: 221px;
+    width: 328px;
+    height: 224px;
     position: relative;
-    left: 812px;
+    left: 869px;
     top: -108px;
-    border: 1px solid red;
+    background: #000;
 }
 
 </style>

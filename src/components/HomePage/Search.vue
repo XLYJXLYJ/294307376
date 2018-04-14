@@ -1,10 +1,10 @@
 <template>
-<div class="searchdemo" v-show="true">
+<div class="searchdemo">
         <div class="container07">
             <input class="search_input" placeholder="搜索作品" v-model="searchname" @keyup.enter="searchdemo">
                 <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </div>
-        <div class="search01">
+        <div class="search01"  v-show="$store.state.searchdemo">
         <el-row :gutter="10">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id'> 
                     <router-link to="/Video">
@@ -21,7 +21,6 @@
                     </router-link>
             </el-col>         
         </el-row>
-        <button class="button">查看全部作品</button>
     </div>
 </div>
 
@@ -47,6 +46,9 @@
                 .then(response => {   
                     this.list=response.data.data
                     console.log(response)
+                    this.$store.state.searchdemo=true
+                    this.$store.state.recommenddemo=false
+                    this.$store.state.productiondemo=false
                 })
             }
         }
@@ -57,7 +59,7 @@
     width: 804px;
     height: auto;
     position:absolute;
-    margin-top: 40px;
+    margin-top: 24px;
 }
 .search01 .routetext{
     color:#000;
@@ -102,16 +104,6 @@
 .search01 .icon_star{
     background:url(../../assets/home/icon_star.png) no-repeat;
 }
-.search01 .button{
-    position: relative;
-    top: 46px;
-    left: 284px;
-    width: 192px;
-    height: 50px;
-    background-color:#F13232;
-    color:#fff; 
-    border: none;
-}
 .search01 .down01{
     font-size: 13px;
     width: 80px;
@@ -127,7 +119,7 @@
     height: 14px;
     margin: 10px;
     position: relative;
-    left: -9px;
+    left: 9px;
     top: 36px;
 }
 .search01 .down03{
@@ -136,7 +128,7 @@
     height: 14px;
     margin: 10px;
     position: relative;
-    left: 99px;
+    left: 124px;
     top: 16px;
 }
 .search01 .down01 span{
@@ -165,11 +157,6 @@
     font-size: 16px;
     top: 0px;
 }
-.search01 .button:hover{
-    background-color: #5bc4ea;
-    color:#fff;
-    cursor: pointer;
-}
 .container07{
     height: 46px;
     width: 334px;
@@ -179,8 +166,22 @@
     top:44px;
     z-index: 1;
 }
-.el-input__icon{
-    position: absolute;
-    left: 275px;
+.container07 .search_input{
+    width: 299px;
+    height: 46px;
+    background: #F8F8F8;
+    border: 1px solid #B5B5B5;
+    padding-left: 35px;
+    position: relative;
+    left: 20px;
+    outline:none;
+}
+.container07 .search_input:focus{
+    border: 1px solid #F13232;
+}
+.container07 .el-icon-search{
+    position: relative;
+    left: 300px;
+    top:-46px;
 }
 </style>

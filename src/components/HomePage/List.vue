@@ -13,6 +13,8 @@
     import RankingList from '@/components/HomePage/RankingList'
     import Search from '@/components/HomePage/Search'
     export default{
+        methods:{
+        },
         components:{
         RankingList,
         Search
@@ -51,6 +53,7 @@
     text-decoration: none;
     border-bottom: 4px solid #fff;  
     position: relative;
+     color: #F13232;
 }
 .container05 .router-link-active:before {
     content: '';
@@ -61,7 +64,7 @@
     right: 0px;
     height: 4px;
     width: 20px;
-    background-color: #0078d7;
+    background-color: #F13232;
     border-radius: 2px;
 }
 </style>

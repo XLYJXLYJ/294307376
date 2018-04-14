@@ -21,88 +21,87 @@
 .lesson_bg{
     position: absolute;
     left: 0px;
-    top: 60px;
-    height: 1634px;
+    top: 83px;
+    height: 1752px;
     width: 100%;
-    background: url(../../assets/Lesson/Lesson_bg.png);
+    background: #F5F5F5;
     z-index: -1;
 }
 .container10{
-    height: 255px;
-    width: 1000px;
+    height: 306px;
+    width: 1200px;
     margin: 0 auto;
     background: #fff;
     z-index: 1;  
-    margin-top: 120px;
-    border-radius: 10px;
+    margin-top: 138px;
 }
 .logo_02{
     position: relative;
-    left: -390px;
-    top: 45px;
-    height: 86px;
-    width: 86px;
+    left: 77px;
+    top: 55px;
+    height: 103px;
+    width: 103px;
 }
 .download_text{
     position: relative;
-    left: 203px;
+    left: 244px;
     top: -50px;
     height: 21px;
-    width: 327px;
-    font-size: 20px;
+    width: 392px;
+    font-size: 24px;
 }
 .download_version{
     position: relative;
-    left: -183px;
+    left: 240px;
     top: -37px;
     height: 15px;
-    width: 233px;
-    font-size: 14px;
+    width: 266px;
+    font-size: 16px;
     color: #c5c5d3;
 }
 .WindowsDownload{
     position: relative;
-    left: -241px;
+    left: 240px;
     top: -25px;
-    height: 32px;
-    width: 120px;
+    height: 38px;
+    width: 144px;
 }
 .trouble_text_01{
     position: relative;
-    left: 333px;
+    left: 411px;
     top: -56px;
-    height: 15px;
-    width: 150px;
-    color: #71cef8;
-    font-size: 14px;
+    height: 17px;
+    width: 169px;
+    color: #F13232;
+    font-size: 16px;
 }
 .trouble_text_01 a{
-    color: #71cef8;
+    color: #F13232;
 }
 .trouble_text_02{
     position: relative;
-    left: 30px;
+    left: 589px;
     top: -71px;
     height: 15px;
-    width: 97px;
+    width: 105px;
     color: #c5c5d3;
-    font-size: 14px;
+    font-size: 16px;
 }
 .trouble_text_02 a{
     color: #c5c5d3;
 }
 .qr{
     position: relative;
-    left: 821px;
-    top: -162px;
-    height: 113px;
-    width: 112px;
+    left: 1000px;
+    top: -182px;
+    height: 106px;
+    width: 126px;
     color: #c5c5d3;
     font-size: 14px;
 }
 .qr p{
     color: #595959;
-    font-size: 16px;
+    font-size: 18px;
     float: left;
 }
 .qr .what{
@@ -114,15 +113,16 @@
     left: 0px;
     top: -140px;
     height: 2px;
-    width: 1000px;
+    width: 1200px;
     background: #f1f1f1;
 }
 .Lesson_01{
     position: relative;
-    left: 40px;
+    left: -50px;
     top: -105px;
-    height: 16px;
-    width: 182px;
+    height: 21px;
+    width: 367px;
+    font-size: 20px;
     color: #000;
 }
 </style>
