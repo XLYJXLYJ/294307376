@@ -57,7 +57,7 @@
                         <router-link to="/Lesson"><p>课程</p></router-link>
                     </li> 
                     <li>
-                        <router-link to="/source"><p>素材</p></router-link>
+                        <router-link to="/source/sourceshop"><p>素材</p></router-link>
                     </li> 
                     <li>
                         <router-link to="/Download"><p>下载</p></router-link>

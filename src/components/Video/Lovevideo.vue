@@ -15,36 +15,42 @@
 <style scoped>
 .container38{
     height: auto;
-    width: 270px;
+    width: 300px;
     position: relative;
-    left:681px;
+    left:818px;
     top: -241px;
 }
-.container38 .jinglin{
+ .container38 .jinglin{
     position: absolute;
-    top: 0px;
-    left: 0px;
+    height: 77px;
+    width: 77px;
+    top: 18px;
+    left: 32px;
+}
+ .container38 .jinglin img{
+     width: 100%;
+     height: 100%;
 }
 .container38 .jinglingtext{
     position: absolute;
-    top: 3px;
-    left: 80px;
-    font-size: 20px;
+    top: 17px;
+    left: 126px;
+    font-size: 22px;
     color: #43455a;
 }
 .container38 .time{
     position: absolute;
-    top: 32px;
-    left: 80px;
-    font-size: 12px;
+    top: 55px;
+    left: 126px;
+    font-size: 14px;
     color: #b1b2ba;
 }
 .container38 .icon_zan{
     background: url(../../assets/video/zan.png) no-repeat;
     width: auto;
-    height: 14px;
+    height: 16px;
     position: relative;
-    left: 16px;
+    left: 93px;
 }
 .container38 .icon_see{
     width: auto;
@@ -61,28 +67,28 @@
     background: url(../../assets/video/star01.png) no-repeat;
 }
 .container38 .icon_see_zan{
-    height: 12px;
+    height: 16px;
     width: auto;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
-    left: -8px;
-    top: 50px;
+    left: 32px;
+    top: 77px;
 }
 .container38 .icon_see_star01{
-    height: 12px;
+    height: 16px;
     width: auto;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
-    left: -5px;
-    top: 50px;
+    left: 124px;
+    top: 77px;
 }
 .container38 .icon_see_see01{
-    height: 12px;
+    height: 16px;
     width: auto;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
-    left: 10px;
-    top: 50px;
+    left: 150px;
+    top: 77px;
 }
 .container38 .icon_zan span{
     position: relative;
@@ -93,13 +99,13 @@
 .container38 .icon_star span{
     position: relative;
     left: 6px;
-    margin-left: 9px;
+    margin-left: 12px;
     font-style: normal;
 }
 .container38 .icon_see span{
     position: relative;
     left: 6px;
-    margin-left: 14px;
+    margin-left: 12px;
     font-style: normal;
 }
 </style>

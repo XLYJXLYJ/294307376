@@ -1,10 +1,11 @@
 <template>
 <div class="container64">
     <div class="container63">
+        <div class="backsource"></div>
         <div class="source_header01">
             <ul class="sourceshop">
-                <router-link to="/source/sourceshop"><li>素材商城</li></router-link> 
-                <router-link to="/source/mysourceshop"><li>我的素材</li></router-link> 
+                <router-link to="/source/sourceshop"><li><img src="../../assets/source/source01.png" alt=""></li></router-link> 
+                <router-link to="/source/mysourceshop"><li><img src="../../assets/source/source02.png" alt=""></li></router-link> 
             </ul>
             <input class="source_search" type="text" placeholder="搜索作品">
         </div>
@@ -22,47 +23,61 @@
 .container64{
     width: 100%;
     height: 100%;
-    background: #90ddff;
+    background: #f5f5f5;
 }
 .container63{
-    width: 1000px;
+    width: 1200px;
     margin: 0 auto;
     height: auto;
-    padding-top: 256px;
-    background: #90ddff;
+    padding-top: 136px;
+    background: #f5f5f5;
+    position: relative;
 }
 .source_header01{
-    width: 1000px;
-    height: 80px;
-    background: #4aaaff;
+    width: 1200px;
+    height: 196px;
+    background: url(../../assets/source/sourcehead.png) no-repeat;
+    position: relative;
+    top: -38px;
+}
+.container63 .backsource{
+    width: 876px;
+    height: 199px;
+    background: url(../../assets/source/backsource.png) no-repeat;
+    margin: 0 auto;
 }
 .container63 .sourceshop{
     list-style: none;
-    width: 320px;
-    height: 45px;
+    width: 420px;
+    height: 56px;
     position: relative;
-    top:15px;
-    left: 50px;
+    top:76px;
+    left: 72px;
 }
 .container63 .sourceshop li{
     float: left;
-    width: 132px;
-    height: 45px;
-    font-size: 30px;
+    width: 161px;
+    height: 56px;
     position: relative;
     left: 0px;
     top: 0px;
 }
-.source_search{
-    width: 173px;
-    height: 40px;
+.container63 .sourceshop li img{
+    position: relative;
+    left: 17px;
+    top: 12px;
+}
+.container63 .source_search{
+    width: 324px;
+    height: 48px;
     border-radius: 20px;
     padding-left: 15px;
     position:relative;
-    left: 220px;
-    top: -25px;
+    left: 830px;
+    top: 20px;
+    border: none;
 }
 .container63 .router-link-active li{
-     color: #fffbf2;
+     background: url(../../assets/source/xuanzhong.png)
 }
 </style>

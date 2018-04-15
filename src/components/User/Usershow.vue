@@ -3,7 +3,7 @@
         <div>
             <img class="star" src="../../assets/user/starfish.png" alt="">
             <p class="store">关注我的人</p>
-             <img class="bg02" src="../../assets/user/bg02.png" alt="">
+             <!-- <img class="bg02" src="../../assets/user/bg02.png" alt=""> -->
             <img class="left" src="../../assets/user/left.png" alt="">
             <ul class="follow" v-show="nosend">
             
@@ -44,21 +44,22 @@
 </script>
 <style>
 .container43{
-    width:1000px;
-    height: 263px;
-    background: #fffbf2;
+    width:1200px;
+    height: 221px;
+    background: #fff;
     margin: 0 auto;
     position: relative;
     margin-top: 60px;
 }
 .container43 .store{
-    width:111px;
-    height: 263px;
+    width:113px;
+    height: 23px;
     font-weight: 600;
-    color: #91121b;
+    color: #333;
     position: absolute;
-    top: 19px;
-    left: 59px;   
+    top: 22px;
+    left: 71px;
+    font-size: 22px;   
 }
 .container43 .follow p{
     font-size: 14px;
@@ -69,10 +70,10 @@
 }
 .container43 ul{
     list-style: none;
-    width: 1000px;
+    width: 1200px;
     position: absolute;
-    top: 53px;
-    left: 70px;
+    top: 65px;
+    left: 85px;
 }
 .container43 ul li{  
     float: left;
@@ -86,19 +87,14 @@
    width:75pox;
    height: 72px;
 }
-.container43 .bg02{
-   position: absolute;
-   left: 389px;
-   top: 84px;
-}
 .container43 .left{
    position: absolute;
-   left: 18px;
-   top: 118px;
+   left: 13px;
+   top: 92px;
 }
 .container43 .right{
    position: absolute;
-   left: 948px;
-   top: 118px;
+   left: 1128px;
+   top: 92px;
 }
 </style>

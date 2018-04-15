@@ -38,14 +38,14 @@ export default{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: url(../assets/Lesson/Lesson_bg.png);
+    background: #F5F5F5;
     z-index: -1;
 }
 .container38{
     flex: 1;
-    padding-top: 40px;
+    padding-top: 114px;
     height: auto;
-    padding-bottom: 40px;
+    padding-bottom: 36px;
 }
 .footer06{
     flex: 0;

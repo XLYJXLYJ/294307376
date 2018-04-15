@@ -41,6 +41,7 @@ export default{
 }
 .footer07{
     flex: 0;
+    margin-top: 36px;
 }
 .container31{
     flex: 1;

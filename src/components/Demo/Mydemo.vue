@@ -11,8 +11,11 @@
 <style scoped>
 .container26{
     position: relative;
-    top: -653px;
+    top: -687px;
     left: 24px;
+}
+.container24{
+    height: 0px;
 }
 .container26 button{
     position: relative;

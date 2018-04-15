@@ -27,7 +27,6 @@
         },
         mounted: function () {      
             this.Getalldemo()
-            console.log('share')
         },
         methods:{
             Getalldemo(){
@@ -37,7 +36,6 @@
                     })
                     .then(response => {           
                         this.list = response.data.data
-                        console.log(12345)
                 })
             }
         }
@@ -45,24 +43,25 @@
 </script>
 <style>
 .container40{
-    width:1000px;
-    height: 263px;
-    background: #fffbf2;
+    width:1200px;
+    height: 316px;
+    background: #fff;
     margin: 0 auto;
     position: relative;
     margin-top: 60px;
 }
 .container40 .store{
-    width:111px;
-    height: 263px;
+    width:154px;
+    height: 24px;
     font-weight: 600;
-    color: #91121b;
+    color: #333;
     position: absolute;
     top: 19px;
-    left: 59px;   
+    left: 59px;  
+    font-size: 22px; 
 }
 .container40 .block p{
-    font-size: 18px;
+    font-size: 22px;
     color: #555;
     text-align: left;
     position: relative;
@@ -70,17 +69,21 @@
     left: 0px;   
 }
 .container40 .block span{
-    font-size: 14px;
+    font-size: 16px;
     color: #999;
     position: relative;
     top: 0px;
-    left: -24px;   
+    left: 0px;   
+}
+.container40 .block img{
+    width: 154px;
+    height: 153px;  
 }
 .container40 ul{
     list-style: none;
-    width: 1000px;
+    width: 1200px;
     position: absolute;
-    top: 55px;
+    top: 65px;
     left: 67px;
 }
 .container40 ul li{  
@@ -94,12 +97,12 @@
 }
 .container40 .left{
    position: absolute;
-   left: 18px;
-   top: 118px;
+   left: 13px;
+   top: 142px;
 }
 .container40 .right{
    position: absolute;
-   left: 948px;
-   top: 118px;
+   left: 1128px;
+   top: 142px;
 }
 </style>

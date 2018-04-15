@@ -54,21 +54,22 @@
 </script>
 <style>
 .container42{
-    width:1000px;
-    height: 184px;
-    background: #fffbf2;
+    width:1200px;
+    height: 221px;
+    background: #fff;
     margin: 0 auto;
     position: relative;
     margin-top: 60px;
 }
 .container42 .store{
-    width:111px;
-    height: 263px;
+    width:113px;
+    height: 23px;
     font-weight: 600;
-    color: #91121b;
+    color: #333;
     position: absolute;
-    top: 19px;
-    left: 59px;   
+    top: 22px;
+    left: 71px;
+    font-size: 22px;   
 }
 .container42 .follow p{
     font-size: 14px;
@@ -79,10 +80,10 @@
 }
 .container42 ul{
     list-style: none;
-    width: 1000px;
+    width: 1200px;
     position: absolute;
-    top: 53px;
-    left: 70px;
+    top: 65px;
+    left: 85px;
 }
 .container42 ul li{  
     float: left;
@@ -98,12 +99,12 @@
 }
 .container42 .left{
    position: absolute;
-   left: 18px;
-   top: 76px;
+   left: 13px;
+   top: 92px;
 }
 .container42 .right{
    position: absolute;
-   left: 948px;
-   top: 76px;
+   left: 1128px;
+   top: 92px;
 }
 </style>

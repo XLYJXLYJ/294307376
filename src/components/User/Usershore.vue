@@ -4,28 +4,14 @@
             <img class="star" src="../../assets/user/starfish.png" alt="">
             <p class="store">我收藏的作品</p>
             <img class="left" src="../../assets/user/left.png" alt="">
-            <ul class="block" v-show="store01">
-                    <li>
-                        <div class="share">
-                            <img src="../../assets/user/userdemo.png" alt="">
-                            <p>三只小熊</p>
-                            <span>作者：哇哈哈</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="share">
-                            <img src="../../assets/user/userdemo.png" alt="">
-                            <p>快乐的小青蛙</p>
-                            <span>作者：：李永健</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="share">
-                            <img src="../../assets/user/userdemo.png" alt="">
-                            <p>快乐的小青蛙</p>
-                            <span>作者：：李永健</span>
-                        </div>
-                    </li>
+            <ul class="block" v-show="nosend">
+                <li v-for="item in list" :key='item.id'>
+                    <div class="share">
+                        <img src="../../assets/user/userdemo.png" alt="">
+                        <p>{{item.title}}</p>
+                        <span>作者：{{$store.state.usernamesession02}}</span>
+                    </div>
+                </li>
             </ul>
             <img class="right" src="../../assets/user/right.png" alt="">
         </div>
@@ -35,7 +21,9 @@
 export default {
     data() {
       return {
-          store01:true
+          store01:true,
+          nosend:true,
+          list:'',
       };
     },
     mounted:function(){
@@ -49,9 +37,7 @@ export default {
             })
             .then(response => {
                 console.log(response.data.data+111)
-                // if(response.data.data===false){
-                //     this.store01 = false
-                // }
+                 this.list = response.data.data
             })
             .catch(function (error) {
                 console.log(error);
@@ -62,24 +48,25 @@ export default {
 </script>
 <style>
 .container41{
-    width:1000px;
-    height: 263px;
-    background: #fffbf2;
+    width:1200px;
+    height: 316px;
+    background: #fff;
     margin: 0 auto;
     position: relative;
     margin-top: 60px;
 }
 .container41 .store{
-    width:111px;
-    height: 263px;
+    width:154px;
+    height: 24px;
     font-weight: 600;
-    color: #91121b;
+    color: #333;
     position: absolute;
     top: 19px;
-    left: 59px;   
+    left: 59px;
+    font-size: 22px;   
 }
 .container41 .block p{
-    font-size: 18px;
+    font-size: 22px;
     color: #555;
     text-align: left;
     position: relative;
@@ -87,18 +74,21 @@ export default {
     left: 0px;   
 }
 .container41 .block span{
-    font-size: 14px;
+    font-size: 16px;
     color: #999;
- 
     position: relative;
     top: 0px;
-    left: -14px;   
+    left: 0px;   
+}
+.container41 .block img{
+    width: 154px;
+    height: 153px;  
 }
 .container41 ul{
     list-style: none;
-    width: 1000px;
+    width: 1200px;
     position: absolute;
-    top: 55px;
+    top: 65px;
     left: 67px;
 }
 .container41 ul li{  
@@ -112,12 +102,12 @@ export default {
 }
 .container41 .left{
    position: absolute;
-   left: 18px;
-   top: 118px;
+   left: 13px;
+   top: 142px;
 }
 .container41 .right{
    position: absolute;
-   left: 948px;
-   top: 118px;
+   left: 1128px;
+   top: 142px;
 }
 </style>

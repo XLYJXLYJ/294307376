@@ -36,21 +36,19 @@
                 
             </div>
                 <router-view></router-view>
-            <div class="comment">
-                <div class="commitbox">
-                    <div class="comment01">
-                        <div>
-                            <p class="explain">作品说明</p>
-                            <span class="explaintext">猜灯谜，闹元宵，欢乐就在编程玩</span>
-                        </div>
-                        <div>
-                            <img class="qrshare" src="../assets/video/qrshare.png" alt="">
-                            <img class="qrsharetext" src="../assets/video/qrsharetext.png" alt="">
-                        </div>
-                    </div> 
+        </div>   
+        <div class="comment">
+                <div class="comment01">
+                    <div>
+                        <p class="explain">作品说明</p>
+                        <span class="explaintext">猜灯谜，闹元宵，欢乐就在编程玩</span>
+                    </div>
+                    <div>
+                        <img class="qrshare" src="../assets/video/qrshare.png" alt="">
+                        <img class="qrsharetext" src="../assets/video/qrsharetext.png" alt="">
+                    </div>
                 </div>
-            </div>
-        </div>         
+        </div>      
         <Footer/>
     </div>
 </template>
@@ -178,84 +176,78 @@ export default{
 <style>
 .con3536{
     width: 100%;
-    background: url(../assets/Lesson/Lesson_bg.png);
+    background: #F5F5F5;
 }
 .container35{
     margin: 0 auto;
-    height: 850px;
-    width: 1000PX;
+    height: 934px;
+    width: 1200PX;
     z-index: -1;
 }
-.con3536 .container003{
-  height: 323px;
-  width: 100%;
-  background-color: #1e1e1e;
-  position: absolute;
-  left: 0px;
-  bottom: -6.4rem;
-}
 .container35 .container36{
-    width: 1000px;
-    height: 132px;
+    width: 1200px;
+    height: 158px;
     position: absolute;
-    top: 80px;
+    top: 139px;
     background: #fff;
     z-index: 10;
 }
 .container36 .one{
-    height: 25px;
-    width: 144px;
+    height: 28px;
+    width: 168px;
     color: #43455a;
-    font-size: 24px;
+    font-size: 28px;
     position: relative;
-    top: 30px;
-    left: 30px;
+    top: 34px;
+    left: 36px;
 }
 .container36 .two{
     height: 12px;
-    width: auto;
+    width: 150px;
     color: #7b7d8b;
-    font-size: 14px;
+    font-size: 16px;
     position: relative;
-    top: 42px;
-    left: -400px;
+    top: 54px;
+    left: 36px;
 }
 .container36 .three{
-    height: 13px;
-    width: auto;
+    height: 17px;
+    width: 109px;
     color: #43455A;
-    font-size: 14px;
+    font-size: 16px;
     position: relative;
-    top: 56px;
-    left: -400px;
+    top: 73px;
+    left: 35px;
 }
 .container36 .cat01{
     position: absolute;
-    top: 40px;
-    left: 449px;
+    width: 60px;
+    height: 60px;
+    top: 49px;
+    left: 540px;
 }
 .container36 .four{
     position: absolute;
-    top: 40px;
-    left: 512px;
+    top: 53px;
+    left: 614px;
     color:#43455A;
-    font-size: 18px;
+    font-size: 22px;
 }
 .container36 .jia{
     position: absolute;
-    top: 80px;
-    left: 512px;
-    height: 13px;
-    width: 72px;
+    top: 94px;
+    left: 614px;
+    height: 16px;
+    width: 82px;
     background: url(../assets/Video/guanzhu1.png) no-repeat;
     cursor: pointer;
 }
 .container36 .jia1{
     position: absolute;
-    top: 80px;
-    left: 512px;
-    height: 13px;
-    width: 72px;
+    top: 94px;
+    left: 614px;
+    height: 16px;
+    width: 82px;
     background: url(../assets/Video/guanzhu.png) no-repeat;
     cursor: pointer;
 }
@@ -269,11 +261,11 @@ export default{
 }
 .container36 .love{
     position: absolute;
-    width: 30px;
-    height: 26px;
+    width: 36px;
+    height: 32px;
     background: url(../assets/Video/love.png) no-repeat;
-    top: 48px;
-    left: 720px;
+    top: 52px;
+    left: 863px;
     cursor: pointer;
 }
 .container36 .lovenum{
@@ -281,22 +273,26 @@ export default{
     top: 28px;
     left: 10px;
     cursor: pointer;
+    font-size: 16px;
+    width: 28px;
+    height: 28px;
+    text-align: center;
 }
 .container36 .love1{
     position: absolute;
-    width: 30px;
-    height: 26px;
+    width: 36px;
+    height: 32px;
     background: url(../assets/Video/love1.png) no-repeat;
-    top: 48px;
-    left: 720px;
+    top: 52px;
+    left: 863px;
     cursor: pointer;
 }
 .container36 .star{
     position: absolute;
-    top: 44px;
-    left: 790px;
-    width: 30px;
-    height: 28px;
+    top: 47px;
+    left: 946px;
+    width: 38px;
+    height: 36px;
     background: url(../assets/Video/star.png) no-repeat;
     cursor: pointer;
 }
@@ -304,12 +300,16 @@ export default{
     position: relative;
     top: 33px;
     left: 10px;
+    font-size: 16px;
+    width: 28px;
+    height: 28px;
+    text-align: center;
     cursor: pointer;
 }
 .container36 .star1{
     position: absolute;
-    top: 44px;
-    left: 790px;
+    top: 47px;
+    left: 946px;
     width: 30px;
     height: 28px;
     background: url(../assets/Video/star1.png) no-repeat;
@@ -317,136 +317,106 @@ export default{
 }
 .container36 .buycode{
     position: absolute;
-    top: 40px;
-    left: 856px;
+    top: 48px;
+    left: 1036px;
     border: none;
-    height: 37px;
-    width: 105px;
+    height: 44px;
+    width: 102px;
     color: #fff;
-    background: #5bc4ea;
-    border-radius: 15px;
+    background: #F13232;
     cursor: pointer;
 }
 .container36 .buy{
     position: absolute;
-    top: 83px;
-    left: 876px;
+    top: 99px;
+    left: 1051px;
     border: none;
-    color: #0078D7;
-    border-radius: 15px;
+    color: #F13232;
     font-size: 12px;
 }
 .container35 .video{
-    width: 623px;
-    height: 524px;
+    width: 767px;
+    height: 575px;
     position: absolute;
     top:0px; 
     left: 0px;
     z-index: 2;
 }
-.mydemo_framebox{
-    height: 523px;
-    width: 1000px;
+.container35 .mydemo_framebox{
+    height: 627px;
+    width: 1200px;
     margin: 0 auto;
     position: relative;
-    top: 228px;
+    top: 317px;
 }
 .container35  .mydemo_frame{
     position: absolute;
-    left: 654px;
+    left: 786px;
     top: 0px;  
-    height: 523px;
-    width:345px;
+    height: 575px;
+    width:414px;
     background:#fff;
 }
 .container35  .mydemo_frame .Myvideo{
     position: absolute;
-    left: -48px;
-    top:19px;  
-    height: 523px;
-    width:345px;
-    color: #60A1F0;
-    font-size: 14px;
+    left: 70px;
+    top:22px;  
+    color: #7E7E7E;
+    font-size: 16px;
 }
-/* .container35  .videocanvas img{
-   width: 100%;
-   height: 100%;
-} */
-/* .container35 .videocanvas{
-    position: relative;
-    left: 0px;
-    top:234px;  
-    color: #60A1F0;
-    font-size: 14px;
-    height: 513px;
-    width:605px;
-} */
 .container35  .mydemo_frame .Lovevideo{
     position: absolute;
-    left: 231px;
-    top:19px;  
-    color: #60A1F0;
-    font-size: 14px;
+    left: 281px;
+    top:22px;  
+    color: #7E7E7E;
+    font-size: 16px;
 }
-.container35 .comment{
+.con3536 .comment{
     width: 100%;
     height: 182px;
+    position: relative;
     background: #fff;
-    position: absolute;
-    top: 771px;
+    top: 0px;
     left: 0px;
 }
-.container35 .commitbox{
-    width: 1000px;
-    height: 182px;
-    background: #fff;
+.con3536 .comment01{
     margin: 0 auto;
+    width: 1200px;
+    height: 182px;
+    z-index: 1000;
     position: relative;
 }
-.container35 .comment .explain{
+.con3536 .comment01 .explain{
+    height: 22px;
+    width:auto;
+    font-size: 22px;
+    color: #43455a;
+    position: absolute;
+    top: 47px;
+    left: 0px;
+}
+.con3536 .comment01 .explaintext{
     height: 17px;
     width:auto;
-    font-size: 18px;
+    font-size: 16px;
+    color: #43455a;
+    position: absolute;
+    top: 85px;
+    left: 0px;
+}
+.con3536 .comment01 .qrshare{
+    width:auto;
+    font-size: 14px;
     color: #43455a;
     position: absolute;
     top: 34px;
-    left: 0px;
+    left: 864px;
 }
-.container35 .comment .explaintext{
-    height: 14px;
-    width:auto;
-    font-size: 14px;
-    color: #43455a;
-    position: absolute;
-    top: 66px;
-    left: 0px;
-}
-.container35 .comment .qrshare{
-    width:auto;
-    font-size: 14px;
-    color: #43455a;
-    position: absolute;
-    top: 42px;
-    left: 720px;
-}
-.container35 .comment .qrsharetext{
+.con3536 .comment01 .qrsharetext{
     width:auto;
     font-size: 14px;
     position: absolute;
-    top: 42px;
-    left: 860px;
-}
-.container35 .avideo button{
-    position: relative;
-    background: #5bc4ea;
-    width: 346px;
-    height: 30px;
-    top: 591px;
-    left: 326px;
-    border: none;
-    cursor: pointer;
-}
-.container35 .avideo button:hover{
-   background: #60A1F0;
+    top: 56px;
+    left: 1050px;
 }
 </style>

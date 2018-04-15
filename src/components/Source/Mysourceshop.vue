@@ -27,11 +27,11 @@ export default{
     top: 19px;
     z-index: 100;
     left: 0px;
-    width: 980px;
+    width: 1200px;
     padding-top: 30px;
     padding-left: 20px;
     height: 92px;
-    background: #fffbf2;
+    background: #fff;
 }
 .container70 .tab_choice li{
     float: left;

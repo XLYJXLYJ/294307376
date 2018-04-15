@@ -38,9 +38,9 @@ export default{
 .content05{
     flex: 1;
     padding-top: 154px;
-    height: 976px;
 }
 .footer05{
+    margin-top: 36px;
     flex: 0;
 }
 .container24{
@@ -80,7 +80,7 @@ export default{
     position:relative;
     width: 643px;
     height: 38px;
-    top: -30px;
+    top: -60px;
     left: 0px;
     border-bottom: 2px solid #333;
 }
