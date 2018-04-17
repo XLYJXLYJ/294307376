@@ -102,11 +102,11 @@
                 <div>
                     <div class="container21">
                         <form action="">
-                            <p class="sign_logo">登陆</p>
+                            <p class="sign_logo">登录</p>
                             <input type="text" v-model="formLogin.username" class="tele" placeholder="请输入手机号码/账号">
                             <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
                             <p class="ap_text" @click="dialogLogin = false,dialogForgetpass = true">忘记密码?</p>
-                            <button class="register" @click="Loginbtn">登陆</button>
+                            <button class="register" @click="Loginbtn">登录</button>
                             <div class="free_res"><p>没有账号?</p><span @click="dialogLogin = false,dialogRegister = true">免费注册</span></div>    
                         </form> 
                     </div>
@@ -517,8 +517,8 @@ export default {
 }
 
 .headercontainer04 .logo{
-    height: auto;
-    width: auto;
+    height: 52px;
+    width: 132px;;
     position: absolute;
     left: 0px;
     top: 21px; 
@@ -900,5 +900,10 @@ export default {
 .headercontainer04 .el-dropdown-link-menu{
     border: 1px solid #000;
 }
-
+.headercontainer04 input{
+    outline:none;
+}
+.headercontainer04 .el-input__inner:focus{
+    outline:none;
+}
 </style>

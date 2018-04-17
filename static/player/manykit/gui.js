@@ -46,3 +46,30 @@ IDE_Morph.prototype.newProject = function () {
     });
     this.originalNewProject();
 };
+
+
+IDE_Morph.prototype.exportProject_MANYKIT= function (name, plain) {
+    // Export project XML, saving a file to disk
+    // newWindow requests displaying the project in a new tab.
+    var menu, str, dataPrefix;
+
+    if (name) {
+        this.setProjectName(name);
+        dataPrefix = 'data:text/' + plain ? 'plain,' : 'xml,';
+        try {
+            menu = this.showMessage('');
+            str = this.serializer.serialize(this.stage);
+            // this.setURL('#open:' + dataPrefix + encodeURIComponent(str));
+            // this.saveXMLAs(str, name);
+            // menu.destroy();
+            // this.showMessage('Exported!', 1);
+            return str
+        } catch (err) {
+            if (Process.prototype.isCatchingErrors) {
+                this.showMessage('Export failed: ' + err);
+            } else {
+                throw err;
+            }
+        }
+    }
+};

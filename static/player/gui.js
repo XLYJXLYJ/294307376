@@ -336,7 +336,7 @@ IDE_Morph.prototype.openIn = function (world) {
             }
             throw new Error('unable to retrieve ' + url);
         } catch (err) {
-            myself.showMessage('unable to retrieve project');
+            myself.showMessage('欢迎来到snap图形编程');
             return '';
         }
     }

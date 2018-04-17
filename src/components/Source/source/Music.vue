@@ -1,27 +1,27 @@
 <template>
-  <div class="container66">
+  <div class="container80">
         <div class="sort01">
             <p class="sort01text">作品分类:</p>
             <ul>
-                <li v-for="(item,index) in oneidbox" :key="item.oneid" @click="select01(item.oneid)" :class="{demohover:index==isdemohover01}"><p>{{item.name}}</p></li>
+                <li  v-for="item in oneidbox" :key="item.oneid" @click="select01(item.oneid)"><p>{{item.name}}</p></li>
             </ul>
         </div>
         <div class="sort0101" v-show="sort0101">
         <p class="sort0101text">作品分类:</p>
             <ul>
-                <li v-for="(item,index) in twoidbox01" :key="item.twoid"  @click="select0101(item.twoid)" :class="{demohover:index==isdemohover02}"><p>{{item.name}}</p></li>
+                <li   v-for="item in twoidbox01" :key="item.twoid"><p>{{item.name}}</p></li>
             </ul>
         </div>
         <div class="sort0101" v-show="sort0102">
             <p class="sort0101text">作品分类:</p>
             <ul>
-                <li v-for="(item,index) in twoidbox02" :key="item.twoid" @click="select0101(item.twoid)" :class="{demohover:index==isdemohover02}"><p>{{item.name}}</p></li>
+                <li   v-for="item in twoidbox02" :key="item.twoid"><p>{{item.name}}</p></li>
             </ul>
         </div>
         <div class="sort0101" v-show="sort0103">
             <p class="sort0101text">作品分类:</p>
             <ul>
-                <li v-for="(item,index) in twoidbox03" :key="item.twoid" @click="select0101(item.twoid)" :class="{demohover:index==isdemohover02}"><p>{{item.name}}</p></li>
+                <li   v-for="item in twoidbox03" :key="item.twoid"><p>{{item.name}}</p></li>
             </ul>
         </div>
         <!-- <div class="sort010101">
@@ -54,7 +54,13 @@
         </div>
         <div class="sortnum01">
             <ul>
-                <li v-for="(item,index) in pageitem" :key="item.pageid" @click="Selectpage(item.pageid)" :class="{demohover:index==isdemohover03}"><p>{{item.pageid+1}}</p></li>
+                <li><p>1</p></li>
+                <li><p>2</p></li>
+                <li><p>3</p></li>
+                <li><p>4</p></li>
+                <li><p>5</p></li>
+                <li><p>6</p></li>
+                <li><p>7</p></li>
             </ul>
             <div>
                 <p>...</p>
@@ -82,14 +88,10 @@ export default{
     data() {
       return {
         list:'',
-        id02:'',
         checked: true,
         sort0101:false,
         sort0102:false,
         sort0103:false,
-        isdemohover01:'',
-        isdemohover02:'',
-        isdemohover03:'',
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"动物"},
@@ -123,14 +125,6 @@ export default{
             {twoid:4,name:"冒险"},
             {twoid:5,name:"其他"},
         ],
-        pageitem:[
-            {pageid:0},
-            {pageid:1},
-            {pageid:2},
-            {pageid:3},
-            {pageid:4},
-            {pageid:5},
-        ],
       };
     },
     mounted(){
@@ -138,16 +132,13 @@ export default{
     },
     methods:{
         select01(id){
-            this.isdemohover01 = id
-            this.id02 = id;
             switch(id){
-                
                 case id=0:
                     this.sort0101=false;
                     this.sort0102=false;
                     this.sort0103=false;
                     this.axios.post('/res/resourcelist',{
-                        onenav:1,
+                        onenav:0,
                     })
                     .then(response => {   
                         this.list=response.data.data
@@ -160,7 +151,6 @@ export default{
                     this.sort0103=false;
                     this.axios.post('/res/resourcelist',{
                         onenav:1,
-                        twonav:1,
                     })
                     .then(response => {   
                         this.list=response.data.data
@@ -172,8 +162,7 @@ export default{
                     this.sort0102=true;
                     this.sort0103=false;
                     this.axios.post('/res/resourcelist',{
-                        onenav:1,
-                        twonav:2,
+                        onenav:2,
                     })
                     .then(response => {   
                         this.list=response.data.data
@@ -185,8 +174,7 @@ export default{
                     this.sort0102=false;
                     this.sort0103=true;
                     this.axios.post('/res/resourcelist',{
-                        onenav:1,
-                        twonav:3,
+                        onenav:3,
                     })
                     .then(response => {   
                         this.list=response.data.data
@@ -198,8 +186,7 @@ export default{
                     this.sort0102=false;
                     this.sort0103=false;
                     this.axios.post('/res/resourcelist',{
-                        onenav:1,
-                        twonav:4,
+                        onenav:4,
                     })
                     .then(response => {   
                         this.list=response.data.data
@@ -209,34 +196,19 @@ export default{
             }
 
         },
-        select0101(id){
-            this.isdemohover02 = id
-            this.axios.post('/res/resourcelist',{
-                onenav:1,
-                twonav:this.id02,
-                threenav:id
-            })
-            .then(response => {   
-                this.list=response.data.data
-                console.log(response)
-            })
-        },
         Getsource(){
             this.axios.post('/res/resourcelist',{
-                onenav:1,
+                onenav:2,
             })
             .then(response => {   
                 this.list=response.data.data
                 console.log(response)
             })
         },
-        Selectpage(id){
-            this.isdemohover03 = id
+        Getsourcetwo(id){
             this.axios.post('/res/resourcelist',{
                 onenav:1,
-                twonav:this.id02,
-                threenav:id,
-                pagenum:this.isdemohover03
+                twonav:id
             })
             .then(response => {   
                 this.list=response.data.data
@@ -244,14 +216,13 @@ export default{
             })
         },
     },
-
-        components:{
-            Sourcehead
-        }
+    components:{
+        Sourcehead
+    }
 }
 </script>
 <style scoped>
-.container66{
+.container80{
     width: 100%;
     height: 1286px;
     z-index: 100;
@@ -261,7 +232,7 @@ export default{
     background: #fff;
     margin-bottom: 30px;
 }
-.container66 .sort01 ul{
+.container80 .sort01 ul{
    list-style: none;
    position: relative;
    left: 122px;
@@ -269,35 +240,32 @@ export default{
    width: 1040px;
    height: 24px;;
 }
-.container66 .sort01text{
+.container80 .sort01text{
    display: inline-block;
    position: relative;
    left: 46px;
    color:#333;
    font-size: 14px;
 }
-.container66 .sort01 ul p{
+.container80 .sort01 ul p{
    display: inline-block;
    padding-left: 15px;
-   position: relative;
-   top: 2px;
 }
-.container66 .sort01 ul li{
+.container80 .sort01 ul li{
    float: left;
-   width: auto;
-   height: 24px;
+   width: 60px;
+   height: 22px;
    color:#F13232;
-   font-size: 14px;
+   font-size: 16px;
    border: 1px solid #F13232;
    margin-right: 14px;
    font-weight: 600;
-   padding-right: 15px;
 }
-.container66 .sort01 ul li:hover{
+.container80 .sort01 ul li:hover{
    color:#fff;
    background: #F13232;
 }
-.container66 .sort0101 ul{
+.container80 .sort0101 ul{
    list-style: none;
    position: absolute;
    left: 122px;
@@ -306,21 +274,21 @@ export default{
    height: auto;
    padding-left:0;
 }
-.container66 .sort0101text{
+.container80 .sort0101text{
    display: inline-block;
    position: relative;
-   left: -326px;
+   left: 46px;
    top: 12px;
    color:#333;
    font-size: 14px;
 }
-.container66 .sort0101 ul p{
+.container80 .sort0101 ul p{
    display: inline-block;
    margin-top: 0px;
    position: relative;
    top: 2px;
 }
-.container66 .sort0101 ul li{
+.container80 .sort0101 ul li{
    float: left;
    width: auto;
    height: 24px;
@@ -334,7 +302,7 @@ export default{
    padding-right: 14px;
    font-weight: 600;
 }
-.container66 .sort0101 ul li:hover{
+.container80 .sort0101 ul li:hover{
     color: #fff;
     background: #F13232;
 }
@@ -370,7 +338,7 @@ export default{
 } */
 
 
-.container66 .sort02{
+.container80 .sort02{
    width: 1086px;
    height: 30px;
    background: #f5f5f5;
@@ -378,14 +346,14 @@ export default{
    left: 57px;
    top: 88px;
 }
-.container66 .sort02 ul{
+.container80 .sort02 ul{
    list-style: none;
    left: 0px;
    top: 0px;
    width: 170px;
    height: 30px;
 }
-.container66 .sort02 .more{
+.container80 .sort02 .more{
    width: 86px;
    height: 26px;
    color:#F13232;
@@ -397,7 +365,7 @@ export default{
    left: 0px;
    padding-top: 4px;
 }
-.container66 .sort02 .new{
+.container80 .sort02 .new{
    width: 86px;
    height: 26px;
    color:#F13232;
@@ -409,11 +377,11 @@ export default{
    left: 86px;
    padding-top: 4px;
 }
-.container66 .sort02 ul li:hover{
+.container80 .sort02 ul li:hover{
    color:#FFF;
    background: #F13232;
 }
-.container66 .sort02 .nobuy{
+.container80 .sort02 .nobuy{
    width: 92px;
    height: 30px;
    color:#7f6b6f;
@@ -424,7 +392,7 @@ export default{
    left: 80px;
 }
 
-.container66 .sort02 .all{
+.container80 .sort02 .all{
    float: left;
    width: 122px;
    height: 30px;
@@ -436,13 +404,13 @@ export default{
 }
 
 
-.container66 .first .role{
+.container80 .first .role{
     position: absolute;
     top: 150px;
     left: 46px;  
     margin-top: 30px;
 }
-.container66 .first .line{
+.container80 .first .line{
     position: relative;
     border-bottom: 1px solid #e6e6e6;  
     position: relative;
@@ -451,7 +419,7 @@ export default{
     width: 910px;
      z-index: 100;
 }
-.container66 .first .role li{
+.container80 .first .role li{
     float: left;
     width: 198px;
     height: 277px;
@@ -460,11 +428,11 @@ export default{
     margin-top: 30px;
     position: relative;
 }
-.container66 .first .roleup button:hover{
+.container80 .first .roleup button:hover{
     background: #F13232;
     color: #fff;
 }
-.container66 .first .roleup button{
+.container80 .first .roleup button{
     width: 60px;
     height: 26px;
     color: #F13232; 
@@ -476,29 +444,28 @@ export default{
     top: 44px;
     cursor: pointer;
 }
-.container66 .first .roleimg{
+.container80 .first .roleimg{
     height: 198px;
     width: 198px;
 }
-.container66 .first .roleimg img{
+.container80 .first .roleimg img{
     height: 100%;
     width: 100%;
 }
-.container66 .first .roleup .text{
+.container80 .first .roleup .text{
     font-size: 18px;
     position: relative;
     left: 10px;
     top: -13px;
 }
-
-.container66 .sortnum01{
+.container80 .sortnum01{
     position: relative;
     top: 1104px;
     left:120px;
     width: 995px;
     height: 32px;
 }
-.container66 .sortnum01 ul li{
+.container80 .sortnum01 ul li{
     float: left;
     height: 25px;
     width: 32px;
@@ -506,11 +473,11 @@ export default{
     text-align: center;
     margin-right: 10px;
 }
-.container66 .sortnum01 ul li:hover{
+.container80 .sortnum01 ul li:hover{
     background: #F13232;
     color: #fff;
 }
-.container66 .sortnum01 .endpage{
+.container80 .sortnum01 .endpage{
     float: left;
     height: 25px;
     width: 70px;
@@ -520,7 +487,7 @@ export default{
     border: 1px solid #dbdad7;
     text-align: center;
 }
-.container66 .sortnum01 .nextpage{
+.container80 .sortnum01 .nextpage{
     float: left;
     height: 25px;
     width: 70px;
@@ -529,14 +496,14 @@ export default{
     top: -21px;
     border: 1px solid #dbdad7;text-align: center;
 }
-.container66 .sortnum01 .endpage p{
+.container80 .sortnum01 .endpage p{
     margin-top: 2px;
 }
-.container66 .sortnum01 .endpage:hover{
+.container80 .sortnum01 .endpage:hover{
     background: #F13232;
     color: #fff;
 }
-.container66 .sortnum01 .night{
+.container80 .sortnum01 .night{
     float: left;
     height: 25px;
     width: 32px;
@@ -546,21 +513,21 @@ export default{
     left: 20px;
     top: -21px;
 }
-.container66 .sortnum01 .night:hover{
+.container80 .sortnum01 .night:hover{
     background: #F13232;
     color: #fff;
 }
-.container66 .sortnum01 .nextpage p{
+.container80 .sortnum01 .nextpage p{
     margin-top: 2px;
 }
-.container66 .sortnum01 .nextpage:hover{
+.container80 .sortnum01 .nextpage:hover{
     background: #F13232;
     color: #fff;
 }
-.container66 .sortnum01 ul li p{
+.container80  .sortnum01 ul li p{
     margin-top: 2px;   
 }
-.container66 .sortnum01 .sortfly .one{
+.container80  .sortnum01 .sortfly .one{
     position: relative;
     left: 682px;
     top: -42px;
@@ -569,7 +536,7 @@ export default{
     font-size: 12px;
     color: #333;
 }
-.container66 .sortnum01 .sortfly .two{
+.container80  .sortnum01 .sortfly .two{
     position: relative;
     width: 30px;
     height: 14px;
@@ -578,7 +545,7 @@ export default{
     font-size: 12px;
     color: #333;
 }
-.container66 .sortnum01 .sortfly input{
+.container80  .sortnum01 .sortfly input{
     position: relative;
     left: 100px;
     top: -35px;
@@ -587,11 +554,11 @@ export default{
     outline: none;
     padding-left: 4px;
 }
-.container66 .sortnum01 .sortfly input:focus{
+.container80  .sortnum01 .sortfly input:focus{
    border: 1px solid #F13232;
    padding-left: 4px;
 }
-.container66 .sortnum01 .sortfly button{
+.container80  .sortnum01 .sortfly button{
     position: relative;
     left: 772px;
     top: -75px;
@@ -600,7 +567,7 @@ export default{
     font-size: 12px;
     color: #818181;
 }
-.container66 .sortnum01 .sortfly button:hover{
+.container80 .sortnum01 .sortfly button:hover{
     background: #F13232;
     color: #fff;
     border: none;
@@ -614,11 +581,4 @@ export default{
     font-size: 12px;
     display: inline-block;
 } */
-
-.demohover{
-   background:#F13232;
-}
-.demohover p{
-   color: #fff;
-}
 </style>

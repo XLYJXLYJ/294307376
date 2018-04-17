@@ -4,270 +4,89 @@
         <img class="firstlogo" src="../../../assets/source/role.png" alt=""><p class="rolemain">素材</p>
         <div class="line"></div>
         <ul class="role">
-            <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
+            <li v-for="item in list01" :key="item.id">
+                <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
                     <button>采集</button>
-                    <p class="text">森林鹿王</p>
+                    <p class="text">{{item.name}}</p>
                 </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/rolepic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-           
+            </li>  
         </ul>
-         <router-link to="/source/sourceshop/Role"><button class="seeall">查看全部</button></router-link>
+         <router-link to="/source/sourceshop/Role"><button class="seeall">查看全部 ></button></router-link>
      </div>
         <div class="second">
         <img class="secondlogo" src="../../../assets/source/bg.png" alt=""><p class="rolemain">背景</p>
         <div class="line"></div>
         <ul class="role">
-            <li>
-                <div class="roleimg"><img src="../../../assets/source/bgpic.png" alt=""></div>
+            <li v-for="(item,index) in list02" :key="item.id" v-if='index<10'>
+                <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
                     <button>采集</button>
-                    <p class="text">万圣节</p>
+                    <p class="text">{{item.name}}</p>
                 </div>
-            </li>   
-               <li>
-                <div class="roleimg"><img src="../../../assets/source/bgpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">万圣节</p>
-                </div>
-            </li> 
-               <li>
-                <div class="roleimg"><img src="../../../assets/source/bgpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">万圣节</p>
-                </div>
-            </li> 
-               <li>
-                <div class="roleimg"><img src="../../../assets/source/bgpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">万圣节</p>
-                </div>
-            </li> 
-               <li>
-                <div class="roleimg"><img src="../../../assets/source/bgpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">万圣节</p>
-                </div>
-            </li> 
-               <li>
-                <div class="roleimg"><img src="../../../assets/source/bgpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">万圣节</p>
-                </div>
-            </li> 
-               <li>
-                <div class="roleimg"><img src="../../../assets/source/bgpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">万圣节</p>
-                </div>
-            </li> 
-               <li>
-                <div class="roleimg"><img src="../../../assets/source/bgpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">万圣节</p>
-                </div>
-            </li> 
-               <li>
-                <div class="roleimg"><img src="../../../assets/source/bgpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">万圣节</p>
-                </div>
-            </li> 
-               <li>
-                <div class="roleimg"><img src="../../../assets/source/bgpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">万圣节</p>
-                </div>
-            </li>        
+            </li>  
         </ul>
-        <router-link to="/source/sourceshop/Backg"><button class="seeall">查看全部</button></router-link>
+        <router-link to="/source/sourceshop/Backg"><button class="seeall">查看全部 ></button></router-link>
      </div>
         <div class="three">
         <img class="threelogo" src="../../../assets/source/music.png" alt=""><p class="rolemain">音乐</p>
         <div class="line"></div>
         <ul class="role">
-            <li>
-                <div class="roleimg"><img src="../../../assets/source/musicpic.png" alt=""></div>
+             <li v-for="(item,index) in list03" :key="item.id" v-if='index<10'>
+                <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
                     <button>采集</button>
-                    <p class="text">胜利音乐</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/musicpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">胜利音乐</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/musicpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">胜利音乐</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/musicpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">胜利音乐</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/musicpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">胜利音乐</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/musicpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">胜利音乐</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/musicpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">胜利音乐</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/musicpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">胜利音乐</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/musicpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">胜利音乐</p>
-                </div>
-            </li>
-              <li>
-                <div class="roleimg"><img src="../../../assets/source/musicpic.png" alt=""></div>
-                <div class="roleup">
-                    <button>采集</button>
-                    <p class="text">胜利音乐</p>
+                    <p class="text">{{item.name}}</p>
                 </div>
             </li>
         </ul>
-        <router-link to="/source/sourceshop/Voice"><button class="seeall">查看全部</button></router-link>
+        <router-link to="/source/sourceshop/Voice"><button class="seeall">查看全部 ></button></router-link>
      </div>
   </div>
 </template>
 <script>
-
 export default{
-    components:{
-        
-    }
+    data() {
+      return {
+        list01:'',
+        list02:'',
+        list03:'',
+      }
+    },
+    mounted(){
+        this.Getsource01()
+        this.select01()
+        this.Getsource03()
+    },
+    methods:{
+        select01(){
+            this.axios.post('/res/resourcelist',{
+                onenav:1,
+            })
+            .then(response => {   
+                this.list01=response.data.data
+                console.log(response)
+            })
+        },
+        Getsource01(){
+            this.axios.post('/res/resourcelist',{
+                onenav:2,
+            })
+            .then(response => {   
+                this.list02=response.data.data
+                console.log(response)
+            })
+        },
+        Getsource03(){
+            this.axios.post('/res/resourcelist',{
+                onenav:3,
+            })
+            .then(response => {   
+                this.list03=response.data.data
+                console.log(response)
+            })
+        },
+    },
 }
 </script>
 <style scoped>
@@ -333,6 +152,10 @@ export default{
     top: 44px;
     cursor: pointer;
 }
+.container65 .first .roleup button:hover{
+    color: #fff; 
+    background: #F13232;
+}
 .container65 .first .roleimg{
     height: 198px;
     width: 198px;
@@ -358,6 +181,7 @@ export default{
 }
 .container65 .first .seeall:hover{
     background: #F13232;
+    color: #fff;
 }
 .container65 .second{
     position: absolute;
@@ -399,7 +223,7 @@ export default{
 .container65 .second .role li{
     float: left;
     width: 198px;
-    height: 277px;
+    height: 367px;
     margin-right: 24px;
     background: #f5f5f5;
     margin-top: 30px;
@@ -417,8 +241,12 @@ export default{
     top: 44px;
     cursor: pointer;
 }
+.container65 .second .roleup button:hover{
+    color: #fff; 
+    background: #F13232;
+}
 .container65 .second .roleimg{
-    height: 198px;
+    height: 288px;
     width: 198px;
 }
 .container65 .second .roleimg img{
@@ -442,10 +270,11 @@ export default{
 }
 .container65 .second .seeall:hover{
     background: #F13232;
+    color: #fff;
 }
 .container65 .three{
     position: absolute;
-    top: 1880px;
+    top: 2080px;
 }
 .container65 .three .threelogo{
     position: relative;
@@ -482,7 +311,7 @@ export default{
 .container65 .three .role li{
     float: left;
     width: 198px;
-    height: 277px;
+    height: 219px;
     margin-right: 24px;
     background: #f5f5f5;
     margin-top: 30px;
@@ -500,8 +329,12 @@ export default{
     top: 44px;
     cursor: pointer;
 }
+.container65 .three .roleup button:hover{
+    color: #fff; 
+    background: #F13232;
+}
 .container65 .three .roleimg{
-    height: 198px;
+    height: 140px;
     width: 198px;
 }
 .container65 .three .roleimg img{
@@ -525,5 +358,6 @@ export default{
 }
 .container65 .three .seeall:hover{
     background: #F13232;
+    color: #fff;
 }
 </style>

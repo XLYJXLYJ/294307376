@@ -27,7 +27,8 @@ import Mysourceshop from '@/components/Source/Mysourceshop'
 import Backg from '@/components/Source/source/Backg'
 import Game from '@/components/Source/source/Game'
 import Source01 from '@/components/Source/source/Source01'
-import Voice from '@/components/Source/source/Voice'
+import Study from '@/components/Source/source/Study'
+import Music from '@/components/Source/source/Music'
 import Gsource from '@/components/Source/source/Gsource'
 import Myvoice from '@/components/Source/mysource/Myvoice'
 import Mybg from '@/components/Source/mysource/Mybg'
@@ -71,8 +72,9 @@ export default new Router({
               {path: '/source/sourceshop/Backg', component: Backg},
               {path: '/source/sourceshop/Game', component: Game},
               {path: '/source/sourceshop/Gsource', component: Gsource},
-              {path: '/source/sourceshop/Source01', component: Source},
-              {path: '/source/sourceshop/Voice', component: Voice},
+              {path: '/source/sourceshop/Source01', component: Source01},
+              {path: '/source/sourceshop/Study', component: Study},
+              {path: '/source/sourceshop/Music', component: Music},
               {path: '', component:Gsource}
             ]
       },

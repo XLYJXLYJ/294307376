@@ -34,10 +34,10 @@
                     </el-upload>
                 </div>
                 <p class="uploadcover">作品封面</p>
-                <!-- <div class="imglarge"><img :src="urllarge" alt=""></div>
+                <div class="imglarge"><img :src="urllarge" alt=""></div>
                 <ul class="uploadimg">
                     <li  v-for="(item,index) in Urlimg" :key='index'><img :src='item.url' alt="" @click="pickimg(index)"></li>
-                </ul> -->
+                </ul>
                 <!-- <p class="uploadcovertag">作品标签</p>
                 <ul class="uploadtag">
                     <li v-for="(item,index) in Urltag" v-bind:class='{"activeimg":!isactive}' :key='index' @click="picktag(item,index)">{{item.tag}}</li>
@@ -54,24 +54,24 @@ import Vue from 'vue'
                 dialogImageUrl: '',
                 isactive: true,
                 dialogVisible: false,
-                urllarge:'static/publish/1l.png',
+                // urllarge:'static/publish/1l.png',
                 imageUrl: '',
-                Urlimg:[
-                    {url:'static/publish/1.png'},
-                    {url:'static/publish/2.png'},
-                    {url:'static/publish/3.png'},
-                    {url:'static/publish/4.png'},
-                    {url:'static/publish/5.png'},
-                ],
-                Urltag:[
-                    {tag:'游戏'},
-                    {tag:'故事'},
-                    {tag:'绘画'},
-                    {tag:'动漫'},
-                    {tag:'音乐'},
-                    {tag:'教程'},
-                    {tag:'节日'},
-                ]
+                // Urlimg:[
+                //     {url:'static/publish/1.png'},
+                //     {url:'static/publish/2.png'},
+                //     {url:'static/publish/3.png'},
+                //     {url:'static/publish/4.png'},
+                //     {url:'static/publish/5.png'},
+                // ],
+                // Urltag:[
+                //     {tag:'游戏'},
+                //     {tag:'故事'},
+                //     {tag:'绘画'},
+                //     {tag:'动漫'},
+                //     {tag:'音乐'},
+                //     {tag:'教程'},
+                //     {tag:'节日'},
+                // ]
             };
         },
         methods: {
