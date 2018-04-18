@@ -3,7 +3,7 @@
         <ul v-show="nosend">
             <li v-for="item in list" :key='item.id'>
                 <div class="all_up">
-                    <img src="../../assets/all/allpic.png" alt="">
+                    <img :src="item.imgBuffer" alt="">
                     <p>{{item.title}}</p>
                     <span>{{item.create_time}}</span>
                 </div>
@@ -25,7 +25,8 @@ export default{
         return{
             nosend:true,
             list:'',
-            demoid:''
+            demoid:'',
+            imgBuffer:''
         }
     },
     created: function () {      
@@ -42,6 +43,7 @@ export default{
                     this.nosend = false
                 }else{
                     this.list=response.data.data
+                    console.log(this.list)
                 }
             })
             },
@@ -52,7 +54,7 @@ export default{
         Canpublic(id){
             this.axios.post('/res/dealfile',{
                     id:id,
-                    // userid:0,
+                    userid:sessionStorage.userid,
                     state:6
                 })
                 .then(response => {

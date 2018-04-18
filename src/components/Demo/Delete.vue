@@ -44,7 +44,7 @@ import { mapGetters,mapActions} from 'vuex'
             restore(id){
                 this.axios.post('/res/dealfile',{
                         id:id,
-                        // userid:0,
+                        userid:sessionStorage.userid,
                         state:6
                     })
                     .then(response => {
@@ -57,7 +57,7 @@ import { mapGetters,mapActions} from 'vuex'
             deletedemo(id){
                 this.axios.post('/res/dealfile',{
                     id:id,
-                    // userid:0,
+                    userid:sessionStorage.userid,
                     state:5
                 })
                 .then(response => {

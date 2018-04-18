@@ -31,7 +31,7 @@
     height: 420px;
     width: 1200px;
     margin: 0 auto;
-    background: #fffbf2;
+    background: #fff;
     position: relative;
     top: 100px;
     z-index: 10;  

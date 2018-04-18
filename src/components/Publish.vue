@@ -1,39 +1,27 @@
 <template>
     <div class="container72">
         <div class="container73">
-             <div>
                  <p class="publishdemo">发布作品</p>
                  <div class="fengexian"></div>
-                 <div class="demoname"><p>作品名称</p><input type="text" placeholder="请填写作品名"> </div>
-                 <div class="demodes"><p>作品说明</p><textarea type="text" placeholder="请填写作品名"> </textarea></div>
+                 <div class="demoname"><p>作品名称</p><input v-model="demoname" type="text" placeholder="请填写作品名"> </div>
+                 <div class="demodes"><p>作品说明</p><textarea v-model="demodes" type="text" placeholder="请填写作品描述"> </textarea></div>
                  <a href="/snap"><button class="returngo">返回</button></a> 
-                 <!-- <div class="upload">   
+                <div class="upload" @click="select" > 
                     <el-upload
+                    class="avatar-uploader"
                     action="https://jsonplaceholder.typicode.com/posts/"
-                    list-type="picture-card"
-                    :on-preview="handlePictureCardPreview"
-                    :on-remove="handleRemove"
-                    :limit=2>
-                    <i class="el-icon-plus"></i>
-                    </el-upload>
-                    <el-dialog :visible.sync="dialogVisible">
-                    <img width="100%" :src="dialogImageUrl" alt="">
-                    </el-dialog>
-                </div> -->
-                <div class="upload">   
-                   <el-upload
-                        class="avatar-uploader"
-                        action="https://jsonplaceholder.typicode.com/posts/"
-                        :show-file-list="false"
-                        :on-success="handleAvatarSuccess"
-                        :before-upload="beforeAvatarUpload"
-                        :auto-upload="false">
-                        <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                        <el-button class="send" size="small" type="success" @click="submitUpload">确认发布</el-button>
+                    :show-file-list="false"
+                    :on-success="handleAvatarSuccess"
+                    :data="uploadimg"
+                    :before-upload="beforeAvatarUpload"
+                    ref="upload">
+                    <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                     </el-upload>
                 </div>
+                  <el-button class="send" @click="submitUpload">确认发布</el-button>   
                 <p class="uploadcover">作品封面</p>
+                <p class="uploadtext">上传封面</p>
                 <div class="imglarge"><img :src="urllarge" alt=""></div>
                 <ul class="uploadimg">
                     <li  v-for="(item,index) in Urlimg" :key='index'><img :src='item.url' alt="" @click="pickimg(index)"></li>
@@ -42,7 +30,6 @@
                 <ul class="uploadtag">
                     <li v-for="(item,index) in Urltag" v-bind:class='{"activeimg":!isactive}' :key='index' @click="picktag(item,index)">{{item.tag}}</li>
                 </ul> -->
-             </div>
         </div>
     </div>
 </template>
@@ -54,15 +41,29 @@ import Vue from 'vue'
                 dialogImageUrl: '',
                 isactive: true,
                 dialogVisible: false,
-                // urllarge:'static/publish/1l.png',
+                urllarge:'static/publish/9l.png',
                 imageUrl: '',
-                // Urlimg:[
-                //     {url:'static/publish/1.png'},
-                //     {url:'static/publish/2.png'},
-                //     {url:'static/publish/3.png'},
-                //     {url:'static/publish/4.png'},
-                //     {url:'static/publish/5.png'},
-                // ],
+                indexdemoid:'',
+                demoname:'',
+                demodes:'',
+                Urlimg:[
+                    {url:'static/publish/1.png'},
+                    {url:'static/publish/2.png'},
+                    {url:'static/publish/3.png'},
+                    {url:'static/publish/4.png'},
+                    {url:'static/publish/5.png'},
+                    {url:'static/publish/6.png'},
+                    {url:'static/publish/7.png'},
+                    {url:'static/publish/8.png'},
+                ],
+                uploadimg:{
+                        id:this.$store.state.demoxmlid,
+                        userid:sessionStorage.userid,
+                        title:this.demoname,
+                        desc:this.demodes,
+                        state:3,
+                        surfaceplot:this.indexdemoid
+                }
                 // Urltag:[
                 //     {tag:'游戏'},
                 //     {tag:'故事'},
@@ -75,24 +76,41 @@ import Vue from 'vue'
             };
         },
         methods: {
-            handleRemove(file, fileList) {
-                console.log(file, fileList);
+            pickimg(indexid){  
+                this.imageUrl = ''  
+                this.indexdemoid=indexid+1
+                this.urllarge='static/publish/'+this.indexdemoid+'l.png'
             },
-            handlePictureCardPreview(file) {
-                this.dialogImageUrl = file.url;
-                this.dialogVisible = true;
+            select(){
+                this.indexdemoid=9
+                this.urllarge='static/publish/'+this.indexdemoid+'l.png'
             },
-            pickimg(indexid){
-                indexid=indexid+1
-                this.urllarge='static/publish/'+indexid+'l.png'
-                console.log(this.urllarge)
-            },
-            picktag(item,index){
-                console.log(123)
-                 this.$set(this.activeimg, index, !this.isactive)
+            submitUpload(){
+                if(this.indexdemoid==9){
+                    console.log(99999)
+                    this.$refs.upload.submit();
+                }else{
+                    this.axios.post('/res/dealfile',{
+                        id:this.$store.state.demoxmlid,
+                        userid:sessionStorage.userid,
+                        title:this.demoname,
+                        desc:this.demodes,
+                        state:3,
+                        surfaceplot:this.indexdemoid
+                    })
+                    .then(response => {
+                        this.$message({
+                        message: '发布成功，请刷新',
+                        center: true
+                        }); 
+                    })
+                }
             },
             handleAvatarSuccess(res, file) {
                 this.imageUrl = URL.createObjectURL(file.raw);
+            },
+            handleRemove(file, fileList) {
+                console.log(file, fileList);
             },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg';
@@ -105,10 +123,7 @@ import Vue from 'vue'
                 this.$message.error('上传头像图片大小不能超过 2MB!');
                 }
                 return isJPG && isLt2M;
-            },
-            submitUpload() {
-                this.$refs.upload.submit();
-            },
+            }
         }
     }
 </script>
@@ -119,19 +134,20 @@ import Vue from 'vue'
     background: #F1F1F1;
 }
 .container73{
-    width: 1000px;
-    height: 487px;
+    width: 1200px;
+    height: 488px;
     background: #fff;
     margin: 0 auto; 
     position: relative;
-    top: 273px;
+    top: 224px;
 }
 .container73 .publishdemo{
-    color: #43455A;
-    font-size: 18px;
+    color: #333;
+    font-size: 22px;
     position: absolute;
-    left: 20px;
-    top: 24px;
+    left: 25px;
+    top: 29px;
+    font-weight: 600;
 }
 .container72 ul li{
     float: left;
@@ -139,112 +155,164 @@ import Vue from 'vue'
 .container72 .fengexian{
     border-bottom: 2px solid #F5F5F5;
     position: relative;
-    width: 960px;
-    top: 67px;
+    width: 1152px;
+    top: 80px;
     margin:0 auto;
 }
 .container72 .demoname p{
     position: absolute;
-    left: 20px;
-    top: 105px;
-    color: #43455A;
-    font-size: 14px;
+    left: 38px;
+    top: 125px;
+    color: #333;
+    font-size: 16px;
 }
 .container72 .demoname input{
-    height: 42px;
-    width: 384px;
+    height: 50px;
+    width: 434px;
     position: absolute;
-    left: 101px;
-    top: 90px;
-    color: #e1e1e1;
-    font-size: 14px;
+    left: 121px;
+    top: 108px;
+    color: #c8c8c8;
+    font-size: 16px;
     background: #f5f5f5;
     border: none;
-    padding-left: 10px;
+    padding-left: 25px;
+    outline: none;
 }
 .container72 .demodes p{
     position: absolute;
-    left: 20px;
-    top: 182px;
-    color: #43455A;
-    font-size: 14px;
+    left: 38px;
+    top: 216px;
+    color: #333;
+    font-size: 16px;
 }
 .container72 .demodes textarea{
-    height: 178px;
-    width: 384px;
+    height: 116px;
+    width: 434px;
     position: absolute;
-    left: 101px;
-    top: 167px;
-    color: #e1e1e1;
-    font-size: 14px;
+    left: 121px;
+    top: 200px;
+    color: #c8c8c8;
+    font-size: 16px;
     background: #f5f5f5;
     border: none;
-    padding-left: 10px;
-    padding-top:10px;
+    padding-left: 25px;
+    padding-top:16px;
+    outline: none;
 }
-.container72 .send{
-    height: 42px;
-    width: 170px;
-    position:absolute;
-    left: -510px;
-    top: 255px;
-    background: #0078d7;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+
+.container72 .send:hover{
+    opacity: 0.7;
 }
 .container72 .returngo{
-    height: 42px;
-    width: 170px;
+    height: 50px;
+    width: 204px;
     position:absolute;
-    left: 310px;
-    top: 385px;
+    left: 372px;
+    top: 366px;
     background: #fff;
     color: #bbb;
     border: 1px solid #bbb;
     cursor: pointer;
 }
-.container72 .upload{
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    left: 620px;
-    top: 130px;
-}
+
 .container72 .upload img{
     width: 100%;
     height: 100%;
 }
-.container72 .el-icon-plus{
-    margin-top: 50px;
-    padding-top: 100px;
-    height: 120px;
-    width: 250px;
-    border: 1px solid #bbb;
-}
 .container72 .uploadimg{
     position: absolute;
-    top:250px;
-    left: 644px;
+    top:108px;
+    left: 929px;
+    width: 188px;
+    height: 168px;
 }
 .container72 .imglarge img{
     width: 100%;
     height: 100%;
 }
 .container72 .imglarge{
-    width: 140px;
-    height: 140px;
+    width: 168px;
+    height: 168px;
     position: absolute;
-    left: 602px;
-    top: 91px;
+    left: 722px;
+    top: 109px;
 }
 .container72 .uploadimg li{
-    margin-right:4px;
+    margin-right:12px;
     cursor: pointer;
-    /* position: relative;
-    left: 60px; */
+    margin-bottom: 16px;
+    height: 48px;
+    width: 48px;
 }
-.container72 .uploadtag{
+.container72 .uploadcover{
+    color: #333;
+    font-size: 16px;
+    position:absolute;
+    top:125px;
+    left: 635px;
+
+}
+
+.container72 .uploadtext{
+    color: #333;
+    font-size: 14px;
+    position:absolute;
+    top:285px;
+    left: 764px;
+
+}
+.container72 .upload{
+    position:absolute;
+    top:108px;
+    left: 722px;
+    z-index: 2000;
+    height: 168px;
+    width: 168px;
+    overflow: hidden;
+}
+.container72 .el-icon-plus{
+    position:absolute;
+    width: 168px;
+    height: 168px;
+    top:-20px;
+    left: 0px;
+}
+.container72 .send{
+    height: 50px;
+    width: 204px;
+    position:absolute;
+    left: 121px;
+    top: 366px;
+    background: #F13232;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+   .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+  } 
+  .avatar-uploader .el-upload:hover {
+    border-color: #F13232;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  } 
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+/* .container72 .uploadtag{
     position: absolute;
     top:320px;
     left: 600px;
@@ -266,31 +334,12 @@ import Vue from 'vue'
 .unactive{
     color:#000;
 }
-.container72 .uploadcover{
-    color: #43455a;
-    font-size: 14px;
-    position:absolute;
-    top:105px;
-    left: 521px;
-
-}
 .container72 .uploadcovertag{
     color: #43455a;
     font-size: 14px;
     position:absolute;
     top:321px;
     left: 521px;
-}
-.container72 .el-upload--picture-card{
-    position: relative;
-    left: -90px;
-    top: 160px;
-    width: 40px;
-    height: 40px;
-}
-.container72 .el-icon-plus{
-    position: relative;
-    top: -48px;
-}
+} */
 </style>
 

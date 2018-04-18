@@ -2,116 +2,141 @@
   <div class="container68">
       <div class="first">
         <ul class="role">
-            <li>
-                <img src="../../../assets/source/bgpic.png" alt="">
+            <li v-for="item in list01" :key="item.id">
+                <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
-                    <p class="money"><span>0</span></p>
-                    <p class="text">森林鹿王</p>
+                    <button>采集</button>
+                    <p class="text">{{item.name}}</p>
                 </div>
-            </li>
-            <li>
-                <img src="../../../assets/source/bgpic.png" alt="">
-                <div class="roleup">
-                    <p class="money"><span>0</span></p>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-            <li>
-                <img src="../../../assets/source/bgpic.png" alt="">
-                <div class="roleup">
-                    <p class="money"><span>0</span></p>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
-            <li>
-                <img src="../../../assets/source/bgpic.png" alt="">
-                <div class="roleup">
-                    <p class="money"><span>0</span></p>
-                    <p class="text">森林鹿王</p>
-                </div>
-            </li>
+            </li>  
         </ul>
      </div>
   </div>
 </template>
 <script>
-
 export default{
-    components:{
-        
-    }
+    data() {
+      return {
+        list01:'',
+        list02:'',
+        list03:'',
+      }
+    },
+    mounted(){
+        this.Getsource01()
+        this.select01()
+        this.Getsource03()
+    },
+    methods:{
+        select01(){
+            this.axios.post('/res/resourcelist',{
+                onenav:1,
+            })
+            .then(response => {   
+                this.list01=response.data.data
+                console.log(response)
+            })
+        },
+        Getsource01(){
+            this.axios.post('/res/resourcelist',{
+                onenav:2,
+            })
+            .then(response => {   
+                this.list02=response.data.data
+                console.log(response)
+            })
+        },
+        Getsource03(){
+            this.axios.post('/res/resourcelist',{
+                onenav:3,
+            })
+            .then(response => {   
+                this.list03=response.data.data
+                console.log(response)
+            })
+        },
+    },
 }
 </script>
 <style scoped>
 .container68{
-    width: 1000px;
-    height: 405px;
+    width: 1200px;
+    height: 925px;
     position: relative;
-    top: 0px;
+    top: -86px;
     left: 0px;
-    /* height: 2935px; */
-    background: #fffbf2;
-     margin-bottom: 30px;
-     border-radius: 20px;
+    background: #fff;
 }
-.container68 .first img{
+.container68 .first .firstlogo{
     position: relative;
-    top: 0px;
-    left: 0px;
+    height: 29px;
+    width: 29px;
+    top: 10px;
+    left: 57px;
+    z-index: 100;
+}
+.container68 .first .rolemain{
+    position: relative;
+    top: -28px;
+    left: 102px;
+    width: 61px;
+    height: 30px;
+    font-size: 30px;
+    color: #333;
+     z-index: 100;
 }
 .container68 .first .role{
     position: relative;
-    top: 0px;
+    top: -18px;
     left: 44px;  
 }
 .container68 .first .line{
     position: relative;
-    border-bottom: 1px solid #e6e6e6;  
+    border-bottom: 1px solid #333;  
     position: relative;
     left: 63px;
     top: -20px;
-    width: 910px;
+    width: 1086px;
      z-index: 100;
 }
 .container68 .first .role li{
     float: left;
-    width: 167px;
-    height: 306px;
-    margin-right: 19px;
-    background: #fff;
-    border-radius: 20px;
-    margin-top: 21px;
+    width: 198px;
+    height: 277px;
+    margin-right: 24px;
+    background: #f5f5f5;
+    margin-top: 30px;
     position: relative;
-}
-.container68 .first .roleup .money{
-    position: relative;
-    left: 10px;
-    top: 12px;
-    width: 61px;
-    height: 22px;
-    background: url(../../../assets/source/money.png) no-repeat;  
-    padding-right: 22px; 
-}
-.container68 .first .roleup .money span{
-    font-size: 20px;
 }
 .container68 .first .roleup button{
-    width: 72px;
+    width: 60px;
     height: 26px;
-    background: #ffc04c;
-    color: #fff; 
-    border: none;
+    color: #F13232; 
+    border: 1px solid #F13232;
     font-size: 14px;
-    border-radius: 20px;
     position: relative;
-    left: 40px;
-    top: -10px;
+    background: #f5f5f5;
+    left: 120px;
+    top: 44px;
+    cursor: pointer;
+}
+.container68 .first .roleup button:hover{
+    color: #fff; 
+    background: #F13232;
+}
+.container68 .first .roleimg{
+    height: 198px;
+    width: 198px;
+}
+.container68 .first .roleimg img{
+    height: 100%;
+    width: 100%;
 }
 .container68 .first .roleup .text{
-    font-size: 15px;
+    font-size: 18px;
     position: relative;
-    left: -38px;
-    top: 12px;
+    left: 10px;
+    top: -13px;
 }
-</style>
 
+</style>

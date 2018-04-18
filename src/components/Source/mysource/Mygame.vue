@@ -1,5 +1,5 @@
 <template>
-  <div class="container65">
+  <div class="container71">
       <div class="first">
         <ul class="role">
             <li v-for="item in list01" :key="item.id">
@@ -59,7 +59,7 @@ export default{
 }
 </script>
 <style scoped>
-.container65{
+.container71{
     width: 1200px;
     height: 925px;
     position: relative;
@@ -67,7 +67,7 @@ export default{
     left: 0px;
     background: #fff;
 }
-.container65 .first .firstlogo{
+.container71 .first .firstlogo{
     position: relative;
     height: 29px;
     width: 29px;
@@ -75,7 +75,7 @@ export default{
     left: 57px;
     z-index: 100;
 }
-.container65 .first .rolemain{
+.container71 .first .rolemain{
     position: relative;
     top: -28px;
     left: 102px;
@@ -85,12 +85,12 @@ export default{
     color: #333;
      z-index: 100;
 }
-.container65 .first .role{
+.container71 .first .role{
     position: relative;
     top: -18px;
     left: 44px;  
 }
-.container65 .first .line{
+.container71 .first .line{
     position: relative;
     border-bottom: 1px solid #333;  
     position: relative;
@@ -99,7 +99,7 @@ export default{
     width: 1086px;
      z-index: 100;
 }
-.container65 .first .role li{
+.container71 .first .role li{
     float: left;
     width: 198px;
     height: 277px;
@@ -108,7 +108,7 @@ export default{
     margin-top: 30px;
     position: relative;
 }
-.container65 .first .roleup button{
+.container71 .first .roleup button{
     width: 60px;
     height: 26px;
     color: #F13232; 
@@ -120,19 +120,19 @@ export default{
     top: 44px;
     cursor: pointer;
 }
-.container65 .first .roleup button:hover{
+.container71 .first .roleup button:hover{
     color: #fff; 
     background: #F13232;
 }
-.container65 .first .roleimg{
+.container71 .first .roleimg{
     height: 198px;
     width: 198px;
 }
-.container65 .first .roleimg img{
+.container71 .first .roleimg img{
     height: 100%;
     width: 100%;
 }
-.container65 .first .roleup .text{
+.container71 .first .roleup .text{
     font-size: 18px;
     position: relative;
     left: 10px;

@@ -223,7 +223,7 @@ export default{
         },
         Getsource(){
             this.axios.post('/res/resourcelist',{
-                onenav:1,
+                onenav:2,
             })
             .then(response => {   
                 this.list=response.data.data
@@ -234,9 +234,9 @@ export default{
             this.isdemohover03 = id
             this.axios.post('/res/resourcelist',{
                 onenav:1,
-                twonav:this.id02,
-                threenav:id,
-                pagenum:this.isdemohover03
+                // twonav:this.id02,
+                // threenav:id,
+                // pagenum:this.isdemohover03
             })
             .then(response => {   
                 this.list=response.data.data
@@ -376,7 +376,7 @@ export default{
    background: #f5f5f5;
    position: relative;
    left: 57px;
-   top: 88px;
+   top: 58px;
 }
 .container66 .sort02 ul{
    list-style: none;
@@ -440,7 +440,7 @@ export default{
     position: absolute;
     top: 150px;
     left: 46px;  
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .container66 .first .line{
     position: relative;
@@ -483,6 +483,7 @@ export default{
 .container66 .first .roleimg img{
     height: 100%;
     width: 100%;
+    background: url(../../../assets/source/bg1.png) no-repeat;
 }
 .container66 .first .roleup .text{
     font-size: 18px;

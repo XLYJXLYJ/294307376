@@ -163,6 +163,7 @@ export default{
 .container65 .first .roleimg img{
     height: 100%;
     width: 100%;
+    background: url(../../../assets/source/bg1.png) no-repeat;
 }
 .container65 .first .roleup .text{
     font-size: 18px;
@@ -252,6 +253,7 @@ export default{
 .container65 .second .roleimg img{
     height: 100%;
     width: 100%;
+    background: url(../../../assets/source/bg1.png) no-repeat;
 }
 .container65 .second .roleup .text{
     font-size: 18px;
@@ -340,6 +342,7 @@ export default{
 .container65 .three .roleimg img{
     height: 100%;
     width: 100%;
+    background: url(../../../assets/source/bg1.png) no-repeat;
 }
 .container65 .three .roleup .text{
     font-size: 18px;

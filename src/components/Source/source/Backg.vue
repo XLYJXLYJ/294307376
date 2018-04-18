@@ -1,28 +1,30 @@
 <template>
   <div class="container63">
-        <div class="sort01">
-            <p class="sort01text">作品分类:</p>
-            <ul>
-                <li  v-for="item in oneidbox" :key="item.oneid" @click="select01(item.oneid)"><p>{{item.name}}</p></li>
-            </ul>
-        </div>
-        <div class="sort0101" v-show="sort0101">
-        <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li   v-for="item in twoidbox01" :key="item.twoid"><p>{{item.name}}</p></li>
-            </ul>
-        </div>
-        <div class="sort0101" v-show="sort0102">
+        <div class="baozhu">
+            <div class="sort01">
+                <p class="sort01text">作品分类:</p>
+                <ul>
+                    <li  v-for="item in oneidbox" :key="item.oneid" @click="select01(item.oneid)"><p>{{item.name}}</p></li>
+                </ul>
+            </div>
+            <div class="sort0101" v-show="sort0101">
             <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li   v-for="item in twoidbox02" :key="item.twoid"><p>{{item.name}}</p></li>
-            </ul>
-        </div>
-        <div class="sort0101" v-show="sort0103">
-            <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li   v-for="item in twoidbox03" :key="item.twoid"><p>{{item.name}}</p></li>
-            </ul>
+                <ul>
+                    <li   v-for="item in twoidbox01" :key="item.twoid"><p>{{item.name}}</p></li>
+                </ul>
+            </div>
+            <div class="sort0101" v-show="sort0102">
+                <p class="sort0101text">作品分类:</p>
+                <ul>
+                    <li   v-for="item in twoidbox02" :key="item.twoid"><p>{{item.name}}</p></li>
+                </ul>
+            </div>
+            <div class="sort0101" v-show="sort0103">
+                <p class="sort0101text">作品分类:</p>
+                <ul>
+                    <li   v-for="item in twoidbox03" :key="item.twoid"><p>{{item.name}}</p></li>
+                </ul>
+            </div>
         </div>
         <!-- <div class="sort010101">
             <p class="sort010101text">作品分类:</p>
@@ -227,6 +229,10 @@ export default{
     background: #fff;
     margin-bottom: 30px;
 }
+.container63 .baozhu{
+    width: 100%;
+    height: auto;
+}
 .container63 .sort01 ul{
    list-style: none;
    position: relative;
@@ -275,7 +281,7 @@ export default{
 .container63 .sort0101text{
    display: inline-block;
    position: relative;
-   left: -406px;
+   left: -336px;
    top: 14px;
    color:#333;
    font-size: 14px;
@@ -342,7 +348,7 @@ export default{
    background: #f5f5f5;
    position: relative;
    left: 57px;
-   top: 88px;
+   top: 58px;
 }
 .container63 .sort02 ul{
    list-style: none;
@@ -406,7 +412,7 @@ export default{
     position: absolute;
     top: 150px;
     left: 46px;  
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .container63 .first .line{
     position: relative;
@@ -449,6 +455,7 @@ export default{
 .container63 .first .roleimg img{
     height: 100%;
     width: 100%;
+    background: url(../../../assets/source/bg1.png) no-repeat;
 }
 .container63 .first .roleup .text{
     font-size: 18px;

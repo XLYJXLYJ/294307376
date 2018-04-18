@@ -317,7 +317,7 @@ export default{
    background: #f5f5f5;
    position: relative;
    left: 57px;
-   top: 88px;
+   top: 28px;
 }
 .container67 .sort02 ul{
    list-style: none;
@@ -381,7 +381,7 @@ export default{
     position: absolute;
     top: 150px;
     left: 46px;  
-    margin-top: 30px;
+    margin-top: -40px;
 }
 .container67 .first .line{
     position: relative;
@@ -424,6 +424,7 @@ export default{
 .container67 .first .roleimg img{
     height: 100%;
     width: 100%;
+    background: url(../../../assets/source/bg1.png) no-repeat;
 }
 .container67 .first .roleup .text{
     font-size: 18px;

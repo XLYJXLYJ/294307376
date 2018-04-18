@@ -8,7 +8,7 @@
                     <span>{{item.time}}</span>
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
-                <button class="button02" @click="publish(item.id)">发布</button>
+                <router-link to="/Publish"><button class="button02" @click="publish(item.id)">发布</button></router-link>
                 <span class="down"><i class="icon_see"><span>36k</span></i></span>
                 <span class="down"><i class="icon_love"><span>265</span></i></span>
                 <span class="down"><i class="icon_star"><span>176</span></i></span>
@@ -49,23 +49,26 @@ import { mapGetters,mapActions} from 'vuex'
                 this.$store.state.demoxmlid = id
             },
             publish(id){
-                this.axios.post('/res/dealfile',{
-                    id:id,
-                    // userid:0,
-                    state:3
-                })
-                .then(response => {
-                    this.$message({
-                    message: '发布成功，请刷新',
-                    center: true
-                    }); 
-                    location.reload();
-                })
+                this.$store.state.demoxmlid = id
             },
+            // publish(id){
+            //     this.axios.post('/res/dealfile',{
+            //         id:id,
+            //         userid:sessionStorage.userid,
+            //         state:3
+            //     })
+            //     .then(response => {
+            //         this.$message({
+            //         message: '发布成功，请刷新',
+            //         center: true
+            //         }); 
+            //         location.reload();
+            //     })
+            // },
             deletedemo(id){
                 this.axios.post('/res/dealfile',{
                     id:id,
-                    // userid:0,
+                    userid:sessionStorage.userid,
                     state:4
                 })
                 .then(response => {

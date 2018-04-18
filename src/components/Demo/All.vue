@@ -25,7 +25,7 @@ import { mapGetters,mapActions} from 'vuex'
             return{
                 nosend:true,
                 list:[],
-                // userid:this.$store.state.userid
+                userid:sessionStorage.userid
             }
         },
         mounted: function () {      
