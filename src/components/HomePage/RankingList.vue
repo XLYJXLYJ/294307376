@@ -3,12 +3,14 @@
         <div class="rank_list_top"><img src="../../assets/home/rank_list.png" alt=""><p>排行版</p></div>
         <div class="rank_up">
             <ul>
-                <li v-for="(item, index) in list" v-if='index<8' :key="index">
-                    <span class="sort_num">{{index+1}}</span>
-                     <div class="ranking"><img src="../../assets/home/fight.png" alt=""></div>
-                    <p>{{item.title}}</p>
-                    <span class="icon_see_box"><i class="icon_see"><span>32225</span></i></span>
-                    <span class="icon_see_love"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
+                <li v-for="(item, index) in list" v-if='index<8' :key="index"  @click="edit03(item.id)">
+                     <router-link to="/Video">
+                        <span class="sort_num">{{index+1}}</span>
+                        <div class="ranking"><img :src="'static/publish/'+item.surfaceplot+'.png'" alt=""></div>
+                        <p>{{item.title}}</p>
+                        <span class="icon_see_box"><i class="icon_see"><span>32225</span></i></span>
+                        <span class="icon_see_love"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
+                     </router-link>
                 </li>
             </ul>
         </div>
@@ -32,10 +34,10 @@
                 })
                 .then(response => {   
                     this.list=response.data.data
-                    console.log(response)
                 })
             },
-            edit01(id){                 
+            edit03(id){   
+                console.log(id)              
                 sessionStorage.id = id
             },
         }

@@ -91,11 +91,11 @@ export default{
         isdemohover02:'',
         isdemohover03:'',
         oneidbox:[
-            {oneid:0,name:"全部"},
-            {oneid:1,name:"动物"},
-            {oneid:2,name:"工具"},
-            {oneid:3,name:"人物"},
-            {oneid:4,name:"图标"}
+            {oneid:1,name:"全部"},
+            {oneid:2,name:"动物"},
+            {oneid:3,name:"工具"},
+            {oneid:4,name:"人物"},
+            {oneid:5,name:"图标"}
         ],
         twoidbox01:[
             {twoid:0,name:"全部"},
@@ -111,9 +111,9 @@ export default{
             {twoid:10,name:"鹦鹉"}
         ],
         twoidbox02:[
-            {twoid:0,name:"全部"},
-            {twoid:1,name:"交通工具"},
-            {twoid:2,name:"生活工具"},
+            {twoid:1,name:"全部"},
+            {twoid:2,name:"交通工具"},
+            {twoid:3,name:"生活工具"},
         ],
         twoidbox03:[
             {twoid:0,name:"全部"},

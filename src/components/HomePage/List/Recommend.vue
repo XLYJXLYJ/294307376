@@ -5,7 +5,7 @@
                     <router-link to="/Video">
                         <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
                             <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
-                            <div class="imgcon"><img src="../../../assets/gif/animated-tree.gif" alt=""></div>
+                            <div class="imgcon"><img :src="'static/publish/'+item.surfaceplot+'l.png'" alt=""></div>
                             <p>{{item.title}}</p>
                             <span class="game_cat">tree</span>
                             <span class="down01"><i class="icon_see"><span>4k</span></i></span>
@@ -37,7 +37,6 @@
                 })
                 .then(response => {   
                     this.list=response.data.data
-                    console.log(response)
                     this.$store.state.searchdemo=false
                     this.$store.state.recommenddemo=true
                     this.$store.state.productiondemo=false

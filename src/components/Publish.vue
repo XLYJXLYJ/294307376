@@ -5,21 +5,11 @@
                  <div class="fengexian"></div>
                  <div class="demoname"><p>作品名称</p><input v-model="demoname" type="text" placeholder="请填写作品名"> </div>
                  <div class="demodes"><p>作品说明</p><textarea v-model="demodes" type="text" placeholder="请填写作品描述"> </textarea></div>
-                 <a href="/snap"><button class="returngo">返回</button></a> 
-                <div class="upload" @click="select" > 
-                    <el-upload
-                    class="avatar-uploader"
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :show-file-list="false"
-                    :on-success="handleAvatarSuccess"
-                    :data="uploadimg"
-                    :before-upload="beforeAvatarUpload"
-                    ref="upload">
-                    <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
+                 <a href="/snap"><button class="returngo">返回</button></a>  
+                <div class="userpic"><input type="file" ref="file_el" @change="choise_file"> 
+                    <img :src="imageUrl">
                 </div>
-                  <el-button class="send" @click="submitUpload">确认发布</el-button>   
+                <el-button class="send" @click="submitUpload">确认发布</el-button>   
                 <p class="uploadcover">作品封面</p>
                 <p class="uploadtext">上传封面</p>
                 <div class="imglarge"><img :src="urllarge" alt=""></div>
@@ -46,6 +36,9 @@ import Vue from 'vue'
                 indexdemoid:'',
                 demoname:'',
                 demodes:'',
+                readpicbinary:'',
+                picdemo:'',
+                result:'',
                 Urlimg:[
                     {url:'static/publish/1.png'},
                     {url:'static/publish/2.png'},
@@ -81,14 +74,27 @@ import Vue from 'vue'
                 this.indexdemoid=indexid+1
                 this.urllarge='static/publish/'+this.indexdemoid+'l.png'
             },
-            select(){
-                this.indexdemoid=9
-                this.urllarge='static/publish/'+this.indexdemoid+'l.png'
-            },
             submitUpload(){
                 if(this.indexdemoid==9){
-                    console.log(99999)
-                    this.$refs.upload.submit();
+                    this.picdemo = this.$store.state.demoxmlid
+                    sessionStorage.picdemo = this.picdemo
+                    sessionStorage.demoname = this.demoname
+                    sessionStorage.demodes = this.demodes   
+                    var picsource = this.$refs.file_el.files[0]
+                    console.log(picsource)
+                    this.uploadFile(picsource)
+
+
+
+                    // reader.onload = function () {   
+                    //     this.readpicbinary = new Blob([this.result])
+                    //     this.useruploadimg(this.result)
+                    //     console.log(this.readpicbinary)
+                    //     console.log(sessionStorage.picdemo)
+                    //     console.log(sessionStorage.userid)
+                    //     console.log(sessionStorage.demoname)
+                    //     console.log(sessionStorage.demodes)
+                    // }  
                 }else{
                     this.axios.post('/res/dealfile',{
                         id:this.$store.state.demoxmlid,
@@ -106,23 +112,44 @@ import Vue from 'vue'
                     })
                 }
             },
-            handleAvatarSuccess(res, file) {
-                this.imageUrl = URL.createObjectURL(file.raw);
-            },
-            handleRemove(file, fileList) {
-                console.log(file, fileList);
-            },
-            beforeAvatarUpload(file) {
-                const isJPG = file.type === 'image/jpeg';
-                const isLt2M = file.size / 1024 / 1024 < 2;
 
-                if (!isJPG) {
-                this.$message.error('上传头像图片只能是 JPG 格式!');
+            uploadFile(picsource){
+                let formData = new FormData();
+                formData.append('id',sessionStorage.picdemo);
+                formData.append('userid',sessionStorage.userid);
+                formData.append('title',sessionStorage.demoname);
+                formData.append('desc',sessionStorage.demodes);
+                formData.append('state',3);
+                formData.append('surfaceplot',9);
+                formData.append('files',picsource);
+                let config = {
+                    headers:{
+                        'Content-Type':'application/x-jpg'
+                    }
                 }
-                if (!isLt2M) {
-                this.$message.error('上传头像图片大小不能超过 2MB!');
-                }
-                return isJPG && isLt2M;
+                this.axios.post('/res/dealfile',formData,config)
+                .then(function(response){
+                    console.log(response)
+                })
+                this.$message({
+                    message: '上传成功',
+                    center: true
+                });  
+            },
+             choise_file () {
+                this.indexdemoid=9
+                this.urllarge='static/publish/'+this.indexdemoid+'l.png'
+                var file_info = this.$refs.file_el.files[0]
+                // 使用FileReader对象预览
+                var fr = new FileReader()
+                // 通过fr.readAsDataURL文件的内容进行读取
+                fr.readAsDataURL(file_info)
+                var that = this
+                fr.onload = function () {
+                    // DataUrl data? :data:image/jpeg;base64,/9j/4
+                    that.imageUrl = this.result
+
+                }   
             }
         }
     }
@@ -165,6 +192,37 @@ import Vue from 'vue'
     top: 125px;
     color: #333;
     font-size: 16px;
+}
+.container72 .userpic{
+    position: absolute;
+    left: 721px;
+    top: 109px;
+    height: 168px;
+    width: 168px;
+    color: #333;
+    font-size: 16px;
+    overflow: hidden;
+    border: 1px solid #F13232;
+    background: url(../assets/publish/publish.png) no-repeat;
+    background-position: 60px 60px;
+    opacity: 1;
+}
+.container72 .userpic input{
+    position: absolute;
+    left: 0px;
+    top: 80px;
+    height: 188px;
+    width: 168px;
+    color: #333;
+    font-size: 16px;
+    overflow: hidden;
+    z-index: 1000;
+    opacity: 0;
+}
+.container72 .userpic img{
+    height: 168px;
+    width: 168px;
+    z-index: 100;
 }
 .container72 .demoname input{
     height: 50px;
@@ -266,7 +324,7 @@ import Vue from 'vue'
     position:absolute;
     top:108px;
     left: 722px;
-    z-index: 2000;
+    z-index: 0;
     height: 168px;
     width: 168px;
     overflow: hidden;
@@ -312,6 +370,31 @@ import Vue from 'vue'
     height: 178px;
     display: block;
   }
+
+input::-webkit-input-placeholder{
+    color:#C8C8C8;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#C8C8C8;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#C8C8C8;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+    color:#C8C8C8;
+}
+textarea::-webkit-input-placeholder{
+    color:#C8C8C8;
+}
+textarea::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#C8C8C8;
+}
+textarea:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#C8C8C8;
+}
+textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+    color:#C8C8C8;
+}
 /* .container72 .uploadtag{
     position: absolute;
     top:320px;

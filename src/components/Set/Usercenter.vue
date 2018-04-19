@@ -7,8 +7,14 @@
         <el-form-item label="性别">
           <el-input class="input01" v-model="formLabelAlign.sex"></el-input>
         </el-form-item>
-        <el-form-item label="年龄">
-          <el-input class="input01" v-model="formLabelAlign.age"></el-input>
+        <el-form-item 
+          prop="age"
+          :rules="[
+          { required: true, message: '年龄不能为空'},
+          { type: 'number', message: '年龄必须为数字值'}
+        ]"
+        label="年龄">
+          <el-input class="input01" v-model.number="formLabelAlign.age"></el-input>
         </el-form-item>
         <el-form-item label="真实姓名">
           <el-input class="input01" v-model="formLabelAlign.name01"></el-input>

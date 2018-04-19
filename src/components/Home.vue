@@ -17,6 +17,19 @@ import Swiper from '@/components/HomePage/swiper'
 import List from '@/components/HomePage/List'
 import Footer from '@/components/HomePage/Footer'
 export default{
+    data(){
+        return{
+           
+        }
+    },
+    mounted(){
+        this.recommendroute()
+    },
+    methods:{
+        recommendroute(){
+            this.$route.pushthis.$router.push({ name: 'Recommend' })
+        }
+    },
     components:{
         Header,
         Swiper,

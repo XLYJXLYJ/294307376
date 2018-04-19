@@ -1,51 +1,45 @@
 <template>
     <div class="headercontainer04">
         <div class="headone">
+            <!-- 头部 -->
             <div class="headonecenter">
-
-                    <span class="el-dropdown-link" @click="language">
-                        中文<i class="el-icon-arrow-down el-icon--right"></i>
-                    </span>
-
-                <div class="shopping">官方商城</div>
-                <div class="appdownload"><p>APP下载</p></div>
+                <!-- 语言设置 -->
+                <span class="el-dropdown-link" @click="language">
+                    中文<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <div class="shopping"><a href="http://www.manykit.com/" target="_blank">官方商城</a></div>
+                <div class="appdownload"><router-link to="/Download">APP下载</router-link></div>
+                <!-- 登录注册 -->
                 <div class="login_sign" v-show="loginsign"> 
-                    <p class="login" type="text"  @click="dialogLogin = true" >登陆</p>   
-                    <!-- <span class="cut_off_line">/</span>   -->
-                    <p class="sign"  type="text" @click="dialogRegister = true" >注册</p>  
+                    <p class="login" type="text"  
+                    @click="dialogLogin = true, 
+                    dialogLoginshow = true, 
+                    dialogRegister = false, 
+                    dialogForgetpass= false, 
+                    dialogPassSure=false">登陆</p>   
+                    <p class="sign"  type="text" 
+                    @click="dialogLogin = true, 
+                    dialogLoginshow = true, 
+                    dialogRegister = false, 
+                    dialogForgetpass= false, 
+                    dialogPassSure=false">注册</p>   
                 </div>
-                <div class="username" v-show="usercenter"> 
-                    <p class="login01" type="text"  @click="dropdowmcontrol" >{{$store.state.usernamesession02}}</p>   
-                </div>  
-                <div v-show="dropdowm">
-                    <!-- <el-row class="block-col-12">
-                        <el-col :span="12">
-                            <el-dropdown> -->
-                            <!-- <span  class="el-dropdown-link02">
-                                下拉菜单
-                            </span> -->
-
-                               <!-- <el-dropdown-menu class="el-dropdown-link-menu" slot="dropdown">
-                                <router-link to="/Demo" class="bgfont"><el-dropdown-item><p>作品管理</p></el-dropdown-item></router-link>
-                                <el-dropdown-item >社区消息</el-dropdown-item>
-                                <router-link to="/User"><el-dropdown-item>个人中心</el-dropdown-item></router-link>     
-                                <router-link to="/setting"><el-dropdown-item>账号设置</el-dropdown-item></router-link>   
-                                <el-dropdown-item><p @click="Cancellogout">退出登陆</p></el-dropdown-item>
-                            </el-dropdown-menu> -->
-
-                            <ul class="block-col-12">
-                                <router-link to="/Demo"><li><p>作品管理</p></li></router-link>
-                                <router-link to="#"><li>社区消息</li></router-link>
-                                <router-link to="/User"><li>个人中心</li></router-link>     
-                                <router-link to="/setting"><li>账号设置</li></router-link>  
-                                <li><p @click="Cancellogout">退出登陆</p></li>
-                            </ul>
-                            <!-- </el-dropdown>
-                        </el-col>
-                    </el-row> -->
+                <div class="username" v-show="usercenter" id="myPanel"> 
+                    <p class="login01" type="text"  @click="dropdowmcontrol">{{this.$store.state.usernamesession02}}</p>   
+                </div> 
+                <!-- 下拉框  -->
+                <div v-show="$store.state.isdropdownparent">
+                    <ul class="block-col-12">
+                        <router-link to="/Demo"><li><p>作品管理</p></li></router-link>
+                        <router-link to="#"><li>社区消息</li></router-link>
+                        <router-link to="/User"><li>个人中心</li></router-link>     
+                        <router-link to="/setting"><li>账号设置</li></router-link>  
+                        <li><p @click="Cancellogout">退出登陆</p></li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <!-- 头部列表 -->
         <div class="container04">  
             <div class="container04center">
                 <img class="logo" src="../../assets/home/logo.png" alt="">  
@@ -65,14 +59,21 @@
                 </ul> 
             </div>
         </div> 
-
-        <!-- 模态框 -->
-    
-        <!-- 注册模块 -->
+         <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
-            <div>
-                <el-dialog :visible.sync="dialogRegister" :modal="false" width="420px">
-                    <div class="container19">
+            <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false">
+                <div>
+                    <div class="container21" v-show="dialogLoginshow">
+                        <form action="">
+                            <p class="sign_logo">登录</p>
+                            <input type="text" v-model="formLogin.username" class="tele" placeholder="请输入用户名">
+                            <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
+                            <p class="ap_text" @click="dialogLoginshow= false,dialogForgetpass = true">忘记密码?</p>
+                            <button class="register" @click="Loginbtn">登录</button>
+                            <div class="free_res"><p>没有账号?</p><span @click="dialogLoginshow = false,dialogRegister = true">免费注册</span></div>    
+                        </form> 
+                    </div>
+                    <div class="container19" v-show="dialogRegister">
                         <el-form :model="formRegister" :rules="rules">
                             <p class="sign_logo">注册</p>
                             <el-form-item prop="username">
@@ -90,34 +91,10 @@
                             <el-button type="primary" class="register" @click="Registerbtn">注册</el-button>
                         </el-form>
                         <div>
-                            <span class="free_res">已有账号?<span @click="dialogLogin = true,dialogRegister = false">点击登录</span></span>
+                            <span class="free_res">已有账号?<span @click="dialogLoginshow = true,dialogRegister = false">点击登录</span></span>
                         </div>
                     </div>
-                </el-dialog>
-            </div>
-        </transition>
-         <!-- 账号密码登陆 -->
-        <transition name="el-fade-in-linear">
-            <el-dialog :visible.sync="dialogLogin" class="dialog_login" width="420px" :modal="false">
-                <div>
-                    <div class="container21">
-                        <form action="">
-                            <p class="sign_logo">登录</p>
-                            <input type="text" v-model="formLogin.username" class="tele" placeholder="请输入用户名">
-                            <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
-                            <p class="ap_text" @click="dialogLogin = false,dialogForgetpass = true">忘记密码?</p>
-                            <button class="register" @click="Loginbtn">登录</button>
-                            <div class="free_res"><p>没有账号?</p><span @click="dialogLogin = false,dialogRegister = true">免费注册</span></div>    
-                        </form> 
-                    </div>
-                </div> 
-            </el-dialog> 
-        </transition>
-         <!-- 重置密码登陆 -->
-        <transition name="el-fade-in-linear">
-        <el-dialog :visible.sync="dialogForgetpass" class="dialog_login" width="420px" :modal="false">
-            <div>
-                <div class="container46">
+                <div class="container46" v-show="dialogForgetpass">
                     <el-form action="" :rules="rules">
                         <p class="sign_logo">忘记密码</p>
                          <el-form-item >
@@ -130,25 +107,20 @@
                         <button class="register"  @click="Getusercodebtn">下一步</button>
                     </el-form>
                 </div>
-            </div>    
-        </el-dialog>  
+                <div v-show="dialogPassSure">
+                    <div class="container44">
+                        <form action="">
+                            <p class="sign_logo">确认密码</p>
+                            <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
+                            <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
+                            <button class="register" @click="Getuserpassbtn">确认</button>
+                        </form> 
+                    </div>
+                </div> 
+                </div> 
+            </el-dialog> 
         </transition>
-          <!-- 重置密码 -->
-        <transition name="el-fade-in-linear">
-        <el-dialog :visible.sync="dialogPassSure" class="dialog_login" width="420px" :modal="false">
-            <div>
-                <div class="container44">
-                    <form action="">
-                        <p class="sign_logo">确认密码</p>
-                        <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
-                        <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
-                        <button class="register" @click="Getuserpassbtn">确认</button>
-                    </form> 
-                </div>
-            </div>   
-        </el-dialog>  
-        </transition>
-    </div>
+    </div>   
 </template>
 
 <script>
@@ -159,26 +131,16 @@ import { mapGetters,mapActions} from 'vuex'
 export default {
     data() {
         return {
-            dynamicValidateForm: {
-                domains: [{
-                    value: ''
-                }],
-                email: ''
-            },
             dialogRegister: false,
-            dialogSetpass:false,
             dialogLogin: false,
+            dialogLoginshow:false,
             dialogForgetpass: false,
             dialogPassSure:false,
             loginsign: true,
             usercenter: false,
-            dropdowm:false,
-            stata:'',
-            resgistermsg:'',
-            usernamesession01:this.$store.state.usernamesession01,
+            // dropdowm:false,
             formLogin: {
                 username: '',
-                username01:'',
                 password: '',
             },
             formRegister: {
@@ -194,7 +156,6 @@ export default {
                 code:'',
                 msg:'',
             },
-    
             rules:{
                 username: [
                     { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -212,28 +173,26 @@ export default {
                     { required: true, message: '请输入密码', trigger: 'blur' },
                     {min:6,max:12, message: '长度在 6 到 12 个英文与数字', trigger: 'blur' }
                 ],
-                // code:[
-                //     { required: true, message: '验证码不正确', trigger: 'blur' },
-                //     { min:6,max:6, message: '请输入正确的验证码', trigger: 'blur' }
-                // ],
             },
         };
     },
-    mounted:function() {
-        this.Getsession()  
-        // this.$store.dispatch('Getsession01') 
+    mounted:function() { 
+        // 判断session值是否存在，如果存在，则执行
+        this.Getsessionname()
     }, 
     methods: {
-        ...mapActions(['Getsession01']),   
+        ...mapActions(['Getsession01']),  
+        // 语言设置 
         language(){
             this.$message({
                 message:'敬请期待更多语言功能'
             })
         },
-        dropdowmcontrol(e){
-            this.dropdowm = !this.dropdowm
+        // 下拉菜单
+        dropdowmcontrol(){
+            this.$store.state.isdropdownparent = !this.$store.state.isdropdownparent
         },
-            //登陆
+        //登陆
         Loginbtn() {
             this.axios.post('/res/login', {
                 username:this.formLogin.username,
@@ -242,35 +201,36 @@ export default {
             .then(response => {
                 this.state = response.data.data.state;
                 switch(this.state)
-                    {
-                    case 0:
+                {
+                case 0:
+                this.$message({
+                    message: '此账号没有激活',
+                    center: true
+                });
+                break;
+                case 1:
+                this.dialogLogin = false,
+                this.loginsign = false,
+                this.usercenter = true,
+                this.Getsession()
+                this.$message({
+                    message: '登陆成功',
+                    center: true,
+                });  
+                this.$router.push({ name: 'Home' }); 
+                break;
+                case 2:
+                this.$message({
+                    message: '密码错误',
+                    center: true
+                });
+                break;
+                default:
                     this.$message({
-                        message: '此账号没有激活',
-                        center: true
-                    });
-                    break;
-                    case 1:
-                    this.dialogLogin = false,
-                    this.loginsign = false,
-                    this.usercenter = true,
-                    this.$message({
-                        message: '登陆成功',
-                        center: true,
-                    });  
-                    this.$router.push({ name: 'Lesson' }); 
-                    break;
-                    case 2:
-                    this.$message({
-                        message: '密码错误',
-                        center: true
-                    });
-                    break;
-                    default:
-                     this.$message({
-                        message: '账号错误',
-                        center: true
-                    });
-                    }  
+                    message: '账号错误',
+                    center: true
+                });
+                }  
             })
             .catch(function (error) {
                 console.log(error);
@@ -279,10 +239,10 @@ export default {
         // 注册
         Registerbtn() {
             if( this.formRegister.password!==this.formRegister.checkpassword||this.formRegister.password.length<6||this.formRegister.checkpassword.length<6||this.formRegister.username.length<3||this.formRegister.username.length>10||this.formRegister.mail.length<9){
-                    this.$message({
-                    message: '请根据提示输入相应的内容',
-                    center: true
-                    });
+                this.$message({
+                message: '请根据提示输入相应的内容',
+                center: true
+                });
             }
             else
             {    
@@ -296,8 +256,7 @@ export default {
                     this.$message({
                     message: this.registermsg,
                     center: true
-                    });
-                
+                    });    
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -307,10 +266,10 @@ export default {
         //获取验证码
         Getcodebtn() {
             if(this.formReset.mail.length<9){
-                    this.$message({
-                    message: '请根据提示输入相应的内容',
-                    center: true
-                    });
+                this.$message({
+                message: '请根据提示输入相应的内容',
+                center: true
+                });
             }
             else
             {    
@@ -332,18 +291,18 @@ export default {
         //获取用户验证码
         Getusercodebtn() {
             this.axios.post('/res/checkcode',{
-                    code:this.formReset.code,
-                    mail:this.formReset.mail
+                code:this.formReset.code,
+                mail:this.formReset.mail
             })
             .then(response => {
-                    this.$message({
-                    message: response.data.data.msg,
-                    center: true
-                    });
-                    if(response.data.data.state==1){
-                    this.dialogPassSure = true
-                    this.dialogForgetpass = false
-                    }   
+                this.$message({
+                message: response.data.data.msg,
+                center: true
+                });
+                if(response.data.data.state==1){
+                this.dialogPassSure = true
+                this.dialogForgetpass = false
+                }   
             })
             .catch(function (error) {
                 console.log(error);
@@ -366,7 +325,7 @@ export default {
                 this.$message({
                     message: '修改密码成功',
                     center: true
-                    }); 
+                }); 
             })
             .catch(function (error) {
                 console.log(error);
@@ -374,19 +333,15 @@ export default {
             }     
         },
         //session验证登陆
-        Getsession() {
-            // session验证
-            console.log(this.$store.state.userid)   
+        Getsession() {  
             this.axios.get('/res/verify')
             .then(response =>{
-                // this.formLogin.username01=response.data.data.username
                 if(response.data.data){
                     this.dialogLogin = false;
                     this.loginsign = false;
                     this.usercenter = true;
-                    this.$store.state.usernamesession02=response.data.data.username
-                    this.$store.state.userid=response.data.data.userid
                     sessionStorage.userid = response.data.data.userid
+                    sessionStorage.usernamesession = response.data.data.username
                 }else{
                     this.dialogLogin = false;
                     this.loginsign = true;
@@ -394,9 +349,17 @@ export default {
                 }
             }) 
         },
-        //取消登陆
+        Getsessionname(){
+            if(sessionStorage.usernamesession){
+                this.dialogLogin = false;
+                this.loginsign = false;
+                this.usercenter = true; 
+                this.$store.state.usernamesession02 = sessionStorage.usernamesession
+                this.$store.state.userid = sessionStorage.userid
+            }
+        },
+        // 退出登陆
         Cancellogout() {
-            // 退出登陆
             this.axios.get('/res/logout')
             .then(response =>{  
                 this.loginsign = true;
@@ -411,6 +374,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/* 总样式开始 */
 .headercontainer04{
     position: fixed;
     width: 100%;
@@ -419,20 +383,9 @@ export default {
     left: 0px;
     z-index: 200;
 }
-.container04{
-    width: 100%;
-    height:84px;
-    background: #fff;
-    position: relative;
-    top: 30px;
-}
-.container04 .container04center{
-    width: 1200px;
-    height:84px;
-    margin: 0 auto;
-    position: relative;
-    top: 0px;
-}
+/* 总样式结束 */
+
+/* 头部样式开始 */
 .headercontainer04 .headone{
     position: fixed;
     width: 100%;
@@ -472,12 +425,14 @@ export default {
     color: #fff;
     cursor: pointer;
 }
+.headercontainer04 .headonecenter .shopping a{
+    color: #fff;
+}
 .headercontainer04 .headonecenter .appdownload{
     position: relative;
     left: 1006px;
     top: -42px;
     font-size: 12px;
-    color: #fff;
     width: 60px;
     height: 13px;
     line-height: 5px;
@@ -487,7 +442,8 @@ export default {
     border-right: 1px solid #fff;
     cursor: pointer;
 }
-.headercontainer04 .headonecenter .appdownload p{
+.headercontainer04 .headonecenter .appdownload a{
+    color: #fff;
     position: relative;
     top: 4px;
 }
@@ -515,13 +471,22 @@ export default {
     background:#000;
     color: #fff;
 }
+/* 头部样式结束 */
 
-.headercontainer04 .logo{
-    height: 52px;
-    width: 132px;;
-    position: absolute;
-    left: 0px;
-    top: 21px; 
+/* 头部列表开始 */
+.container04{
+    width: 100%;
+    height:84px;
+    background: #fff;
+    position: relative;
+    top: 30px;
+}
+.container04 .container04center{
+    width: 1200px;
+    height:84px;
+    margin: 0 auto;
+    position: relative;
+    top: 0px;
 }
 .container04 ul{
     position: absolute;
@@ -570,6 +535,13 @@ export default {
     width: 22px;
     background-color: #F13232;
     border-radius: 2px;
+}
+.headercontainer04 .logo{
+    height: 52px;
+    width: 132px;;
+    position: absolute;
+    left: 0px;
+    top: 21px; 
 }
 .headercontainer04 .login_sign{
      position: absolute;
@@ -628,6 +600,9 @@ export default {
     height: 229px;
     width: 181px;
 }
+/* 头部列表结束 */
+
+/* 模态框开始 */
 .container21{
     margin: 0px;
     padding: 0px;
@@ -684,6 +659,7 @@ export default {
     font-size: 18px;
     cursor: pointer;
     border: none;
+    outline: none;
 }
 .container21 .free_res p{
     position: absolute;
@@ -747,6 +723,7 @@ export default {
     font-size: 18px;
     cursor: pointer;
     border: none;
+    outline: none;
 }
 .container19{
     margin: 0px;
@@ -805,6 +782,7 @@ export default {
     font-size: 18px;
     cursor: pointer;
     border: none;
+    outline: none;
 }
 .container19 .free_res{
     position: absolute;
@@ -889,6 +867,7 @@ export default {
     font-size: 18px;
     cursor: pointer;
     border: none;
+    outline: none;
 }
 .container46 .back_login{
     position: absolute;
@@ -900,13 +879,5 @@ export default {
     font-size: 15px;
     cursor: pointer;
 }
-.headercontainer04 .el-dropdown-link-menu{
-    border: 1px solid #000;
-}
-.headercontainer04 input{
-    outline:none;
-}
-.headercontainer04 .el-input__inner:focus{
-    outline:none;
-}
+/* 模态框结束 */
 </style>

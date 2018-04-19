@@ -3,7 +3,7 @@
         <ul v-show="nosend">
             <li v-for="item in list" :key='item.id'>
                 <div class="all_up">
-                    <img :src="item.imgBuffer" alt="">
+                    <img :src="'static/publish/'+item.surfaceplot+'l.png'" alt="">
                     <p>{{item.title}}</p>
                     <span>{{item.create_time}}</span>
                 </div>
@@ -26,7 +26,7 @@ export default{
             nosend:true,
             list:'',
             demoid:'',
-            imgBuffer:''
+            surfaceplot:''
         }
     },
     created: function () {      
@@ -43,7 +43,8 @@ export default{
                     this.nosend = false
                 }else{
                     this.list=response.data.data
-                    console.log(this.list)
+                   
+                    console.log(response.data.data.surfaceplot)
                 }
             })
             },

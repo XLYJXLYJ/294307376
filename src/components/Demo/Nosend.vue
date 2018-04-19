@@ -3,7 +3,7 @@
         <ul v-for="item in title" :key='item.id' v-show="nosend">
             <li>
                 <div class="all_up">
-                    <img src="../../assets/all/allpic.png" alt="">
+                    <img :src="'static/publish/'+item.surfaceplot+'l.png'" alt="">
                     <p>{{item.title}}</p>
                     <span>{{item.time}}</span>
                 </div>

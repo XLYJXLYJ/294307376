@@ -95,53 +95,67 @@ export default{
             }) 
         },
         love(){  
-            if(!this.isPraise){
-                   this.list.praisetotal++; 
-                   this.axios.post('/res/useropreate',{
-                        userid:sessionStorage.userid,
-                        state:1,
-                        id:sessionStorage.id,
+            if(this.$store.state.userid){
+                if(!this.isPraise){
+                    this.list.praisetotal++; 
+                    this.axios.post('/res/useropreate',{
+                            userid:sessionStorage.userid,
+                            state:1,
+                            id:sessionStorage.id,
+                        })
+                        .then(response => {           
+                            console.log(response)
                     })
-                    .then(response => {           
-                        console.log(response)
-                })
+                }else{
+                    this.list.praisetotal--; 
+                    this.axios.post('/res/useropreate',{
+                            userid:sessionStorage.userid,
+                            state:2,
+                            id:sessionStorage.id,
+                        })
+                        .then(response => {           
+                            console.log(response)
+                    })
+                }
+                this.isPraise = !this.isPraise
+                console.log(this.isPraise+'222')
             }else{
-                   this.list.praisetotal--; 
-                   this.axios.post('/res/useropreate',{
-                        userid:sessionStorage.userid,
-                        state:2,
-                        id:sessionStorage.id,
-                    })
-                    .then(response => {           
-                        console.log(response)
-                })
+                    this.$message({
+                    message: '请先登录',
+                    center: true,
+                });
             }
-            this.isPraise = !this.isPraise
-              console.log(this.isPraise+'222')
         },
         star(){
-            if(!this.isCollect){
-                   this.list.collecttotal++; 
-                   this.axios.post('/res/useropreate',{
-                        userid:sessionStorage.userid,
-                        state:3,
-                        id:sessionStorage.id,
+            if(this.$store.state.userid){
+                if(!this.isCollect){
+                    this.list.collecttotal++; 
+                    this.axios.post('/res/useropreate',{
+                            userid:sessionStorage.userid,
+                            state:3,
+                            id:sessionStorage.id,
+                        })
+                        .then(response => {           
+                            console.log(response)
                     })
-                    .then(response => {           
-                        console.log(response)
-                })
+                }else{
+                    this.list.collecttotal--; 
+                    this.axios.post('/res/useropreate',{
+                            userid:sessionStorage.userid,
+                            state:4,
+                            id:sessionStorage.id,
+                        })
+                        .then(response => {           
+                            console.log(response)
+                    })
+                }
+                this.isCollect= !this.isCollect
             }else{
-                   this.list.collecttotal--; 
-                   this.axios.post('/res/useropreate',{
-                        userid:sessionStorage.userid,
-                        state:4,
-                        id:sessionStorage.id,
-                    })
-                    .then(response => {           
-                        console.log(response)
-                })
+                    this.$message({
+                    message: '请先登录',
+                    center: true,
+                });
             }
-            this.isCollect= !this.isCollect
         },
         jia(){
             this.isAttention = !this.isAttention

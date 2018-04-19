@@ -110,7 +110,7 @@ export default{
                     this.sort0102=false;
                     this.sort0103=false;
                     this.axios.post('/res/resourcelist',{
-                        onenav:0,
+                        onenav:1,
                     })
                     .then(response => {   
                         this.list=response.data.data

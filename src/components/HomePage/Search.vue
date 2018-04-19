@@ -2,7 +2,7 @@
 <div class="searchdemo">
         <div class="container07">
             <input class="search_input" placeholder="搜索作品" v-model="searchname" @keyup.enter="searchdemo">
-                <i slot="prefix" class="el-input__icon el-icon-search"></i>
+                <i slot="prefix" class="el-input__icon el-icon-search" @click="searchdemo"></i>
         </div>
         <div class="search01"  v-show="$store.state.searchdemo">
         <el-row :gutter="10">
@@ -10,7 +10,7 @@
                     <router-link to="/Video">
                         <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
                             <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
-                            <div class="imgcon"><img src="../../assets/gif/animated-tree.gif" alt=""></div>
+                            <div class="imgcon"><img :src="'static/publish/'+item.surfaceplot+'l.png'" alt=""></div>
                             <p>{{item.title}}</p>
                             <span class="game_cat">tree</span>
                             <span class="down01"><i class="icon_see"><span>4k</span></i></span>
@@ -38,7 +38,6 @@
         },
         methods:{
             searchdemo(){
-                console.log(123)
                 this.axios.post('/res/filelist',{
                     sortstate:3,
                     searchname:this.searchname
@@ -183,5 +182,6 @@
     position: relative;
     left: 300px;
     top:-46px;
+    cursor: pointer;
 }
 </style>

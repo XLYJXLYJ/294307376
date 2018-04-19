@@ -17,7 +17,26 @@
 </div>
 </template>
 <script>
-    
+    export default{
+        watch:{
+            '$route':'islogin'
+         },
+        methods:{
+            islogin(){
+                if(this.$route.path==='/source/mysourceshop'){
+                    if(this.$store.state.userid){
+                        this.$router.push({ name: 'Myrole' })
+                    }else{
+                        this.$message({
+                             message: '请先登录',
+                             center: true,
+                        })
+                        this.$router.push({ name: 'Home' })
+                    }
+                }
+            }
+        }
+    }
 </script>
 <style scoped>
 .container64{

@@ -3,7 +3,7 @@
         <ul v-for="item in list" :key='item.id' v-show="nosend">
             <li>
                 <div class="all_up">
-                    <img src="../../assets/all/allpic.png" alt="">
+                    <img :src="'static/publish/'+item.surfaceplot+'l.png'" alt="">
                     <p>{{item.title}}</p>
                     <span class="deltime01">删除时间2018/03/12</span>
                     <span class="deltime02">上午11：12：51</span>

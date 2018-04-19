@@ -13,7 +13,8 @@ const state = {
     demoxmlid:'',
     recommenddemo:'',
     productiondemo:'',
-    searchdemo:''
+    searchdemo:'',
+    isdropdownparent:false
 }
 
 const actions = {

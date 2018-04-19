@@ -47,11 +47,10 @@ export default new Router({
       path: '/Home',
       component: Home,
       name: 'Home',
-      // redirect:'/List/Recommend',
       children:[
         { path: '/Home/Production', component: Production},
-        { path: '/Home/Recommend', component: Recommend},
-        { path: '', component: Recommend},
+        { path: '/Home/Recommend', name: 'Recommend',component: Recommend},
+        { path: '/', component: Recommend},
       ]
     }, 
     {
@@ -80,10 +79,10 @@ export default new Router({
               {path: '', component:Gsource}
             ]
       },
-        {path: '/source/mysourceshop', component: Mysourceshop,
+        {path: '/source/mysourceshop', name: 'mysourceshop',component: Mysourceshop,
             children:[
               {path: '/source/mysourceshop/Mybg', component: Mybg},
-              {path: '/source/mysourceshop/Myrole', component: Myrole},
+              {path: '/source/mysourceshop/Myrole', name: 'Myrole',component: Myrole},
               {path: '/source/mysourceshop/Mymusic', component: Mymusic},
               {path: '/source/mysourceshop/Mygame', component: Mygame},
               {path: '/source/mysourceshop/Mystudy', component: Mystudy},
@@ -125,11 +124,11 @@ export default new Router({
                 { path: '/Demo/Mydemo/all', component: All},
                 { path: '/Demo/Mydemo/Readysend', component: Readysend},
                 { path: '/Demo/Mydemo/Nosend', component: Nosend},
-                { path: '/Demo/Mydemo/Demo', component: All}
+                { path: '', component: All}
               ]
         },
         { path: '/Demo/Delete', component: Delete},
-        { path: '', component: Mydemo}
+        { path: '', component:All}
       ]
     },
     {

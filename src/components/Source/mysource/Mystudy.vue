@@ -23,9 +23,9 @@ export default{
       }
     },
     mounted(){
-        this.Getsource01()
+        // this.Getsource01()
         this.select01()
-        this.Getsource03()
+        // this.Getsource03()
     },
     methods:{
         select01(){
@@ -37,24 +37,22 @@ export default{
                 console.log(response)
             })
         },
-        Getsource01(){
-            this.axios.post('/res/resourcelist',{
-                onenav:2,
-            })
-            .then(response => {   
-                this.list02=response.data.data
-                console.log(response)
-            })
-        },
-        Getsource03(){
-            this.axios.post('/res/resourcelist',{
-                onenav:3,
-            })
-            .then(response => {   
-                this.list03=response.data.data
-                console.log(response)
-            })
-        },
+        // Getsource01(){
+        //     this.axios.post('/res/resourcelist',{
+        //         onenav:2,
+        //     })
+        //     .then(response => {   
+        //         this.list02=response.data.data
+        //     })
+        // },
+        // Getsource03(){
+        //     this.axios.post('/res/resourcelist',{
+        //         onenav:3,
+        //     })
+        //     .then(response => {   
+        //         this.list03=response.data.data
+        //     })
+        // },
     },
 }
 </script>

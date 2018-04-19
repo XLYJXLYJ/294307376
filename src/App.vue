@@ -1,11 +1,18 @@
 <template>
-  <div id="app">
+  <div id="app" @click="isdropdowncontrol">
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
+  methods:{
+      isdropdowncontrol(event){
+          if(!document.getElementById("myPanel").contains(event.target)){ 
+              this.$store.state.isdropdownparent = false
+          }
+      },
+  },
   name: 'App'
 }
 </script>
