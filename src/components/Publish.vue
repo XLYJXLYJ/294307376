@@ -3,8 +3,8 @@
         <div class="container73">
                  <p class="publishdemo">发布作品</p>
                  <div class="fengexian"></div>
-                 <div class="demoname"><p>作品名称</p><input v-model="demoname" type="text" placeholder="请填写作品名"> </div>
-                 <div class="demodes"><p>作品说明</p><textarea v-model="demodes" type="text" placeholder="请填写作品描述"> </textarea></div>
+                 <div class="demoname"><p>作品名称</p><input :rules="rules" v-model="demoname" type="text" placeholder="请填写作品名"> </div>
+                 <div class="demodes"><p>作品说明</p><textarea :rules="rules" v-model="demodes" type="text" placeholder="请填写作品描述"> </textarea></div>
                  <a href="/snap"><button class="returngo">返回</button></a>  
                 <div class="userpic"><input type="file" ref="file_el" @change="choise_file"> 
                     <img :src="imageUrl">
@@ -56,7 +56,17 @@ import Vue from 'vue'
                         desc:this.demodes,
                         state:3,
                         surfaceplot:this.indexdemoid
-                }
+                },
+                rules:{
+                demoname: [
+                    { required: true, message: '请输入作品名称', trigger: 'blur' },
+                    { min: 1, max: 20, message: '长度在 1 到 10 个字符', trigger: 'blur' }
+                ],
+                demodes:[
+                    { required: true, message: '请输入作品描述', trigger: 'blur' },
+                    { min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur' }
+                ],
+            },
                 // Urltag:[
                 //     {tag:'游戏'},
                 //     {tag:'故事'},
@@ -75,7 +85,7 @@ import Vue from 'vue'
                 this.urllarge='static/publish/'+this.indexdemoid+'l.png'
             },
             submitUpload(){
-                if(this.indexdemoid==9){
+                if(this.indexdemoid==19){
                     this.picdemo = this.$store.state.demoxmlid
                     sessionStorage.picdemo = this.picdemo
                     sessionStorage.demoname = this.demoname
@@ -137,7 +147,7 @@ import Vue from 'vue'
                 });  
             },
              choise_file () {
-                this.indexdemoid=9
+                this.indexdemoid=19
                 this.urllarge='static/publish/'+this.indexdemoid+'l.png'
                 var file_info = this.$refs.file_el.files[0]
                 // 使用FileReader对象预览

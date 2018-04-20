@@ -2,7 +2,7 @@
     <div>
         <div class="lesson_bg">
             <div class="container17">
-                <div class="starfish"><img src="../../assets/download/starfish1.png" alt=""><p>下载</p></div>
+                <div class="starfish"><p>下载</p></div>
                 <div class="container18">
                     <img class="logo_02" src="../../assets/Lesson/logo_02.png" alt="">
                     <p class="download_text">手机APP端Phoneix</p>
@@ -42,21 +42,14 @@
     width: 1061px;
     position: relative;
     left: 60px;
-    top: -40px;
+    top: 67px;
     background: #f5f5f5;
     z-index: 10; 
 }
-.starfish img{
-    position: relative;
-    width: 90px;
-    height: 86px;
-    left: -20px;
-    top: -34px;
-}
 .starfish p{
     position: relative;
-    left:77px;
-    top:-80px;
+    left:60px;
+    top:58px;
     color: #333333;
     font-size: 29px;
 }

@@ -29,9 +29,9 @@
           <ul>
             <li class="big">设备检测</li>
             <li class="small">电脑设备检测</li>
-            <li class="big spacial">产品链接</li>
+            <!-- <li class="big spacial">产品链接</li>
             <li class="small">Blockly</li>
-            <li class="small">snap</li>
+            <li class="small">snap</li> -->
           </ul>
         </div>
           <div class="foot_list_five">
@@ -117,6 +117,7 @@
   color: #7c7c7c;
   position: relative;
   left: 0px;
+  text-align: center;
 }
 .container003 .container03 .beizhu{
   position: absolute;

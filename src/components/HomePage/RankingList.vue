@@ -6,9 +6,9 @@
                 <li v-for="(item, index) in list" v-if='index<8' :key="index"  @click="edit03(item.id)">
                      <router-link to="/Video">
                         <span class="sort_num">{{index+1}}</span>
-                        <div class="ranking"><img :src="'static/publish/'+item.surfaceplot+'.png'" alt=""></div>
+                        <div class="ranking"><img :src="item.imgBuffer" alt=""></div>
                         <p>{{item.title}}</p>
-                        <span class="icon_see_box"><i class="icon_see"><span>32225</span></i></span>
+                        <span class="icon_see_box"><i class="icon_see"><span>325</span></i></span>
                         <span class="icon_see_love"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
                      </router-link>
                 </li>

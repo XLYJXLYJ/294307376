@@ -37,7 +37,7 @@ export default{
         return{
             DataImg:DataImg,
             index: 0,
-            playStatus:true
+            playStatus:false
         }
     },
     methods:{

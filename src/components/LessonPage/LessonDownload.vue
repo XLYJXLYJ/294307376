@@ -11,7 +11,7 @@
                 <p class="trouble_text_01"><a href="">如何咋电脑客户端上课?</a></p>
                 <span class="trouble_text_02"><a href="">安装遇到问题?</a></span>
             </div>
-            <div class="qr"><img src="../../assets/Lesson/download.png" alt=""><p>扫码购买课程</p><div><img class="what" src="../../assets/Lesson/what.png" alt=""></div></div>
+            <!-- <div class="qr"><img src="../../assets/Lesson/download.png" alt=""><p>扫码购买课程</p><div><img class="what" src="../../assets/Lesson/what.png" alt=""></div></div> -->
             <div class="cut_off"></div>
             <p class="Lesson_01">你暂时还没有要上的课程</p>
         </div>
@@ -90,7 +90,7 @@
 .trouble_text_02 a{
     color: #c5c5d3;
 }
-.qr{
+/* .qr{
     position: relative;
     left: 1000px;
     top: -182px;
@@ -107,19 +107,19 @@
 .qr .what{
     position: relative;
     top: 5px;
-}
+} */
 .cut_off{
     position: relative;
     left: 0px;
-    top: -140px;
+    top: -20px;
     height: 2px;
     width: 1200px;
     background: #f1f1f1;
 }
 .Lesson_01{
     position: relative;
-    left: -50px;
-    top: -105px;
+    left: 60px;
+    top: 15px;
     height: 21px;
     width: 367px;
     font-size: 20px;

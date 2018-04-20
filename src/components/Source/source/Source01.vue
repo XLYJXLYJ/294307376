@@ -24,15 +24,6 @@
                 <li v-for="(item,index) in twoidbox03" :key="item.twoid" @click="select0101(item.twoid)" :class="{demohover:index==isdemohover02}"><p>{{item.name}}</p></li>
             </ul>
         </div>
-        <!-- <div class="sort010101">
-            <p class="sort010101text">作品分类:</p>
-            <ul>
-                <li><p>大象</p><span>(1965)</span></li>
-                <li><p>大象1</p><span>(1965)</span></li>
-                <li><p>大象2</p><span>(1965)</span></li>
-                <li><p>大象3</p><span>(1965)</span></li>
-            </ul>
-        </div> -->
             <div class="sort02">
             <ul>
                 <li class="more"><p>最近更新</p></li>
@@ -54,7 +45,7 @@
         </div>
         <div class="sortnum01">
             <ul>
-                <li v-for="(item,index) in pageitem" :key="item.pageid" @click="Selectpage(item.pageid)" :class="{demohover:index==isdemohover03}"><p>{{item.pageid+1}}</p></li>
+                <li v-for="(item,index) in pageitem" :key="item.pageid" @click="Selectpage(item.pageid)" :class="{demohover:index==isdemohover03-1}"><p>{{item.pageid}}</p></li>
             </ul>
             <div>
                 <p>...</p>
@@ -91,11 +82,11 @@ export default{
         isdemohover02:'',
         isdemohover03:'',
         oneidbox:[
-            {oneid:1,name:"全部"},
-            {oneid:2,name:"动物"},
-            {oneid:3,name:"工具"},
-            {oneid:4,name:"人物"},
-            {oneid:5,name:"图标"}
+            {oneid:0,name:"全部"},
+            {oneid:1,name:"动物"},
+            {oneid:2,name:"工具"},
+            {oneid:3,name:"人物"},
+            {oneid:4,name:"图标"}
         ],
         twoidbox01:[
             {twoid:0,name:"全部"},
@@ -111,9 +102,9 @@ export default{
             {twoid:10,name:"鹦鹉"}
         ],
         twoidbox02:[
-            {twoid:1,name:"全部"},
-            {twoid:2,name:"交通工具"},
-            {twoid:3,name:"生活工具"},
+            {twoid:0,name:"全部"},
+            {twoid:1,name:"交通工具"},
+            {twoid:2,name:"生活工具"},
         ],
         twoidbox03:[
             {twoid:0,name:"全部"},
@@ -124,12 +115,12 @@ export default{
             {twoid:5,name:"其他"},
         ],
         pageitem:[
-            {pageid:0},
             {pageid:1},
             {pageid:2},
             {pageid:3},
             {pageid:4},
             {pageid:5},
+            {pageid:6},
         ],
       };
     },
@@ -140,8 +131,7 @@ export default{
         select01(id){
             this.isdemohover01 = id
             this.id02 = id;
-            switch(id){
-                
+            switch(id){                
                 case id=0:
                     this.sort0101=false;
                     this.sort0102=false;
@@ -151,7 +141,6 @@ export default{
                     })
                     .then(response => {   
                         this.list=response.data.data
-                        console.log(response)
                     })
                 break
                 case id=1:
@@ -164,7 +153,6 @@ export default{
                     })
                     .then(response => {   
                         this.list=response.data.data
-                        console.log(response.data.data)
                     })
                 break;
                 case id=2:
@@ -190,7 +178,6 @@ export default{
                     })
                     .then(response => {   
                         this.list=response.data.data
-                        console.log(response)
                     })
                 break;
                 case id=4:
@@ -218,7 +205,6 @@ export default{
             })
             .then(response => {   
                 this.list=response.data.data
-                console.log(response)
             })
         },
         Getsource(){
@@ -227,24 +213,21 @@ export default{
             })
             .then(response => {   
                 this.list=response.data.data
-                console.log(response)
             })
         },
         Selectpage(id){
-            this.isdemohover03 = id
+            this.isdemohover03=id
             this.axios.post('/res/resourcelist',{
                 onenav:1,
-                // twonav:this.id02,
-                // threenav:id,
-                // pagenum:this.isdemohover03
+                twonav:this.id02,
+                threenav:this.isdemohover02,
+                pagenum:id
             })
             .then(response => {   
                 this.list=response.data.data
-                console.log(response)
             })
         },
     },
-
         components:{
             Sourcehead
         }

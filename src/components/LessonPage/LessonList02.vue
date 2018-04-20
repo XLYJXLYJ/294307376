@@ -1,7 +1,7 @@
 <template>
     <div class="container16">
         <div class="container016">
-            <div class="logo04_p"><img class="logo04" src="../../assets/Lesson/logo04.png" alt=""><p>Snap课程</p></div>
+            <div class="logo04_p"><p>Snap课程</p></div>
             <div class="cut_off"></div>
             <div class="container_up02">
                 <img class="video" src="../../assets/Lesson/video.png" alt="">
@@ -41,19 +41,11 @@
 .container016{
      position: relative;
  }
-  .container16 .logo04{
-     float: left;
-     position: absolute;
-     width: 37px;
-     height: 41px;
-     left: 28px;
-     top: 18px;
- }
  .container16 .logo04_p p{
      position: absolute;
      width: 102px;
      height: 24px;
-     left: 89px;
+     left: 60px;
      top: 26px;
      font-size: 22px;
  }

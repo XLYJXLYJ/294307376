@@ -14,7 +14,7 @@ const state = {
     recommenddemo:'',
     productiondemo:'',
     searchdemo:'',
-    isdropdownparent:false
+    isdropdownparent:false,
 }
 
 const actions = {

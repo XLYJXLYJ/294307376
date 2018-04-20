@@ -43,8 +43,6 @@ export default{
                     this.nosend = false
                 }else{
                     this.list=response.data.data
-                   
-                    console.log(response.data.data.surfaceplot)
                 }
             })
             },

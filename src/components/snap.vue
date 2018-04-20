@@ -1,19 +1,30 @@
 <template>
-    <div class="snapbcw">
-        <div class="snapboxhead">
+    <div class="snapbcw" @click="issnapdropdowncontrol">
+        <div class="snapboxhead" @click="issnapuserdropdowncontrol">
             <div class="snapheader">
                 <ul class="snapheaderleft">
                     <li class="bcw"><a href="./"><img src="../assets/snappic/snapb.png" alt=""></a></li>
-                    <li class="borderlight01" @click="snapdropdowmcontrol" ><img src="../assets/snappic/snapn.png" alt=""></li>
+                    <li class="borderlight01" @click="snapdropdowmcontrol" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
                     <li class="borderlight"   @click="dialogSave = true"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
-                    <li class="borderlight03"><router-link to="/Publish"><img src="../assets/snappic/snapu.png" alt=""></router-link></li>
-                    <li class="borderlight04" v-show="login" @click="dialogLogin = true">登陆</li>
-                    <li class="borderlight05" v-show="sign" @click="dialogRegister = true">注册</li>
-                    <li class="borderlight06" v-show="user" @click="snapdemodropdowmcontrol">{{$store.state.usernamesession02}}</li>
+                    <!-- <li class="borderlight03"><router-link to="/Publish"><img src="../assets/snappic/snapu.png" alt="" @click="handiframepublish"></router-link></li> -->
+                    <li class="borderlight04" v-show="login"
+                    @click="dialogLogin = true, 
+                    dialogLoginshow = true, 
+                    dialogRegister = false, 
+                    dialogForgetpass= false, 
+                    dialogPassSure=false">登陆</li>
+                    <li class="borderlight05" v-show="sign"  
+                    @click="dialogLogin = true, 
+                    dialogLoginshow = false, 
+                    dialogRegister = true, 
+                    dialogForgetpass= false, 
+                    dialogPassSure=false">注册</li>
+                    <li class="borderlight06" v-show="user" @click="snapdemodropdowmcontrol" id="sanpuserPanel">{{$store.state.usernamesession02}}</li>
                 </ul>
-                <div v-show="snapdropdowm" class="snapdropdowm">
+                <div v-if="snapdropdown01" class="snapdropdowm">
                     <ul class="block-col-12">
                         <li><p @click="dialogNew=true">新建</p></li>
+                        <li><p>另存为</p></li>
                         <li  @click="dialogExport = true"><p @click="download">保存到本地</p></li>
                         <li><p @click="dialogOpen=true">打开本地作品</p></li>    
                     </ul>
@@ -27,10 +38,10 @@
             </div>
         </div>
         <!-- 参数播放 -->
-        <!-- <iframe class="snap" src="static/snap/pxsnap.html" name="snap" frameborder="0"></iframe> -->
+        <iframe class="snap" src="static/player/pxsnap.html" name="snap" frameborder="0"></iframe>
 
         <!-- 接口播放 -->
-        <iframe class="snap" :src="'static/player/pxsnap.html#open:/codeplay/file/'+this.$store.state.demoxmlid+'.xml'" name="snap" frameborder="0"></iframe>
+        <!-- <iframe class="snap" :src="'static/player/pxsnap.html#open:/codeplay/file/'+this.$store.state.demoxmlid+'.xml'" name="snap" frameborder="0"></iframe> -->
 
         <transition name="el-fade-in-linear">
             <div>
@@ -112,87 +123,66 @@
         </transition>
 
         
-        <!-- 模态框 -->
-    
-        <!-- 注册模块 -->
+         <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
-            <div>
-                <el-dialog :visible.sync="dialogRegister" :modal="false" width="420px">
-                    <div class="container1901">
+            <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false">
+                <div>
+                    <div class="container2101" v-show="dialogLoginshow">
+                        <form action="">
+                            <p class="sign_logo">登录</p>
+                            <input type="text" v-model="formLogin.username" class="tele" placeholder="请输入用户名">
+                            <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
+                            <p class="ap_text" @click="dialogLoginshow= false,dialogForgetpass = true">忘记密码?</p>
+                            <button class="register" @click="Loginbtn">登录</button>
+                            <div class="free_res"><p>没有账号?</p><span @click="dialogLoginshow = false,dialogRegister = true">免费注册</span></div>    
+                        </form> 
+                    </div>
+                    <div class="container1901" v-show="dialogRegister">
                         <el-form :model="formRegister" :rules="rules">
                             <p class="sign_logo">注册</p>
-                            <el-form-item prop="username" class="tele">
-                                <el-input v-model="formRegister.username" auto-complete="off" placeholder="请输入用户名"></el-input>
+                            <el-form-item prop="username">
+                                <input v-model="formRegister.username"  class="tele" auto-complete="off" placeholder="请输入用户名">
                             </el-form-item>
-                            <el-form-item prop="mail"  class="iden01">
-                                <el-input type="email" v-model="formRegister.mail" auto-complete="off" placeholder="请输入邮箱"></el-input>
+                            <el-form-item prop="mail">
+                                <input type="email"  class="iden01" v-model="formRegister.mail" auto-complete="off" placeholder="请输入邮箱">
                             </el-form-item>
-                            <el-form-item prop="password" class="iden02">
-                                <el-input type="password" v-model="formRegister.password" auto-complete="off" placeholder="请输入密码"></el-input>
+                            <el-form-item prop="password">
+                                <input type="password" class="iden02" v-model="formRegister.password" auto-complete="off" placeholder="请输入密码">
                             </el-form-item>
-                            <el-form-item prop="password" class="iden03">
-                                <el-input type="password" v-model="formRegister.checkpassword" auto-complete="off" placeholder="请确认密码"></el-input>
+                            <el-form-item prop="password">
+                                <input type="password" class="iden03" v-model="formRegister.checkpassword" auto-complete="off" placeholder="请确认密码">
                             </el-form-item>
                             <el-button type="primary" class="register" @click="Registerbtn">注册</el-button>
                         </el-form>
                         <div>
-                            <span class="free_res">已有账号?<span @click="dialogLogin = true,dialogRegister = false">点击登录</span></span>
+                            <span class="free_res">已有账号?<span @click="dialogLoginshow = true,dialogRegister = false">点击登录</span></span>
                         </div>
                     </div>
-                </el-dialog>
-            </div>
-        </transition>
-         <!-- 账号密码登陆 -->
-        <transition name="el-fade-in-linear">
-            <el-dialog :visible.sync="dialogLogin" class="dialog_login" width="420px" :modal="false">
-                <div>
-                    <div class="container2101">
-                        <form action="">
-                            <p class="sign_logo">登录</p>
-                            <input type="text" v-model="formLogin.username" class="tele" placeholder="请输入手机号码/账号">
-                            <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
-                            <p class="ap_text" @click="dialogLogin = false,dialogForgetpass = true">忘记密码?</p>
-                            <button class="register" @click="Loginbtn">登录</button>
-                            <div class="free_res"><p>没有账号?</p><span @click="dialogLogin = false,dialogRegister = true">免费注册</span></div>    
-                        </form> 
-                    </div>
-                </div> 
-            </el-dialog> 
-        </transition>
-         <!-- 重置密码登陆 -->
-        <transition name="el-fade-in-linear">
-        <el-dialog :visible.sync="dialogForgetpass" class="dialog_login" width="420px" :modal="false">
-            <div>
-                <div class="container4601">
+                <div class="container4601" v-show="dialogForgetpass">
                     <el-form action="" :rules="rules">
                         <p class="sign_logo">忘记密码</p>
-                         <el-form-item  class="tele">
-                                <el-input type="email" v-model="formReset.mail" auto-complete="off" placeholder="请输入邮箱"></el-input>
+                         <el-form-item >
+                                <input type="email"  class="tele" v-model="formReset.mail" auto-complete="off" placeholder="请输入邮箱">
                             </el-form-item>
-                        <el-form-item prop="code" class="iden01">
-                                <el-input v-model="formReset.code" auto-complete="off"  placeholder="验证码"></el-input>
+                        <el-form-item prop="code">
+                                <input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码">
                         </el-form-item>
                         <button class="iden02" @click="Getcodebtn">获取验证码</button>
                         <button class="register"  @click="Getusercodebtn">下一步</button>
                     </el-form>
                 </div>
-            </div>    
-        </el-dialog>  
-        </transition>
-          <!-- 重置密码 -->
-        <transition name="el-fade-in-linear">
-        <el-dialog :visible.sync="dialogPassSure" class="dialog_login" width="420px" :modal="false">
-            <div>
-                <div class="container4401">
-                    <form action="">
-                        <p class="sign_logo">确认密码</p>
-                        <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
-                        <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
-                        <button class="register" @click="Getuserpassbtn">确认</button>
-                    </form> 
-                </div>
-            </div>   
-        </el-dialog>  
+                <div v-show="dialogPassSure">
+                    <div class="container4401">
+                        <form action="">
+                            <p class="sign_logo">确认密码</p>
+                            <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
+                            <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
+                            <button class="register" @click="Getuserpassbtn">确认</button>
+                        </form> 
+                    </div>
+                </div> 
+                </div> 
+            </el-dialog> 
         </transition>
    </div>
 </template>
@@ -208,7 +198,7 @@ export default{
             dialogExport: false,
             dialogNew: false,
             dialogOpen: false,
-            snapdropdowm:false,
+            snapdropdown01:false,
             snapdemodropdowm:false,
             login:true,
             sign:true,
@@ -216,6 +206,7 @@ export default{
             user:false,
             // 登录注册变量
             dialogRegister: false,
+            dialogLoginshow:false,
             dialogSetpass:false,
             dialogLogin: false,
             dialogForgetpass: false,
@@ -286,15 +277,30 @@ export default{
     },
     mounted(){
         this.loadproject()
-        this.Getsession()
+        this.Getsessionname()
     },
     methods: {
-        snapdropdowmcontrol(e){
-            this.snapdropdowm = !this.snapdropdowm
+        snapdropdowmcontrol(){
+            console.log(this.snapdropdown01);
+            this.snapdropdown01 = !this.snapdropdown01
+            console.log(123456)
+            console.log(this.snapdropdown01)
+            
         },
-        snapdemodropdowmcontrol(e){
+        issnapdropdowncontrol(event){
+            if(!document.getElementById("sanpPanel").contains(event.target)){ 
+                this.snapdropdowm = false
+          }
+        },
+        snapdemodropdowmcontrol(){
             this.snapdemodropdowm = !this.snapdemodropdowm
         },
+        issnapuserdropdowncontrol(event){
+            if(!document.getElementById("sanpuserPanel").contains(event.target)){ 
+                this.snapdemodropdowm  = false
+          }
+        },
+        // 编辑文件
         loadproject(){
              this.axios.post('/res/getfile',{
                 id:this.$store.state.demoxmlid,
@@ -302,10 +308,10 @@ export default{
             .then(response => {                          
                this.demoxml = response.data  
                console.log(this.demoxml)
-               console.log(this.$store.state.demoxmlid)
+            //    console.log(this.$store.state.demoxmlid)
+            window.frames["snap"].ide.droppedText(this.demoxml,'OPEN') 
             })
-            window.frames["snap"].ide.droppedText(this.demoxml,'HHH') 
-            // window.frames["snap"].ide.droppedText(this.$store.state.demoxml,'HHH') 
+            
         },
 
         // 打来文件
@@ -344,7 +350,6 @@ export default{
              formData.append('title',this.formSave.title);
              formData.append('desc',this.formSave.desc);
              formData.append('files',this.filebinary);
-
              let config = {
                  headers:{
                      'Content-Type':'multipart/form-data'
@@ -360,7 +365,40 @@ export default{
                 center: true
             });
         },
-            //登陆
+        // 发布文件
+        // handiframepublish() {
+        //     this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
+        //     let filebir = this.formSave.file
+        //     this.filebinary = new Blob([filebir]);
+        //     let formData = new FormData();
+        //      formData.append('userid',this.formSave.userid);
+        //      formData.append('title',this.formSave.title);
+        //      formData.append('desc',this.formSave.desc);
+        //      formData.append('files',this.filebinary);
+        //      let config = {
+        //          headers:{
+        //              'Content-Type':'multipart/form-data'
+        //          }
+        //      }
+        //      this.axios.post('/res/upload',formData,config)
+        //      .then(function(response){
+        //          console.log(response)
+        //      })
+        // },
+        // getdemopublish(){
+        //         this.axios.post('/res/filelist',{
+        //             userid:this.$store.state.userid,
+        //             state:0
+        //         })
+        //         .then(response => {
+        //             if(response.data.data.msg=='这回真的没有了~'){
+        //                 this.nosend = false
+        //             }else{
+        //                 this.$store.state.demoxmlid = response.data.data.id
+        //             }
+        //         })
+        //     },
+        //登陆
         Loginbtn() {
             this.axios.post('/res/login', {
                 username:this.formLogin.username,
@@ -503,27 +541,34 @@ export default{
             }     
         },
         //session验证登陆
-        Getsession() {
-            // session验证
-            console.log(this.$store.state.userid)   
+        Getsession() {  
             this.axios.get('/res/verify')
             .then(response =>{
-                // this.formLogin.username01=response.data.data.username
                 if(response.data.data){
                     this.dialogLogin = false;
-                    this.loginsign = false;
-                    this.usercenter = true;
-                    console.log(response)
-                    this.$store.state.usernamesession02=response.data.data.username
-                    this.$store.state.userid=response.data.data.userid
+                    this.login = false;
+                    this.sign = false;
+                    this.user = true;
                     sessionStorage.userid = response.data.data.userid
-                    sessionStorage.username = response.data.data.username
+                    sessionStorage.usernamesession = response.data.data.username
+                    console.log(sessionStorage.usernamesession)
                 }else{
                     this.dialogLogin = false;
                     this.loginsign = true;
                     this.usercenter = false;
                 }
             }) 
+        },
+        Getsessionname(){
+            if(sessionStorage.usernamesession){           
+                this.dialogLogin = false;
+                this.sign = false;
+                this.login = false;
+                this.user = true; 
+                this.$store.state.usernamesession02 = sessionStorage.usernamesession
+                this.$store.state.userid = sessionStorage.userid
+                console.log(this.$store.state.userid)
+            }
         },
         Cancellogout() {
             // 退出登陆
@@ -633,6 +678,7 @@ export default{
 	width: 160px;
 	cursor: pointer;
 	opacity: 1;
+    z-index: 1000;
 }
 .snapboxhead .snapheaderleft li p{
 	position: relative;
@@ -648,11 +694,11 @@ export default{
     top: 40px;
     color: #333;
     width: 94px;
-    height: 72px;
+    height: 94px;
     font-size: 14px;
-    z-index: 1000;
+    /* z-index: 1000; */
     background: #fff;
-    display: inline-block;
+    /* display: inline-block; */
     border: 1px solid #333333;
 }
 .snapboxhead .snapdropdowm .block-col-12 a{
@@ -678,7 +724,7 @@ export default{
     width: 74px;
     height: 48px;
     font-size: 14px;
-    z-index: 1000;
+    /* z-index: 1000; */
     background: #fff;
     display: inline-block;
     border: 1px solid #333333;
@@ -914,86 +960,6 @@ export default{
     left: 55px;
 }
 
-.container1901{
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
-    height: 476px;
-    background: #fff;
-}
-.container1901 .sign_logo{
-    position: absolute;
-    top: 44px;
-    left: 184px;
-    color: #333;
-    font-size: 24px;
-}
-.container1901 .tele{
-    position: absolute;
-    height: 49px;
-    width: 297px;
-    top: 110px;
-    left: 60px;
-    padding-left: 10px;
-}
-.container1901 .iden01{
-    position: absolute;
-    height: 49px;
-    width: 297px;
-    top: 168px;
-    left: 60px;
-    padding-left: 10px;
-}
-.container1901 .iden02{
-    position: absolute;
-    height: 49px;
-    width: 297px;
-    top: 226px;
-    left: 60px;
-    padding-left: 10px;
-}
-.container1901 .iden03{
-    position: absolute;
-    height: 49px;
-    width: 297px;
-    top: 284px;
-    left: 60px;
-    padding-left: 10px;
-}
-.container1901 .register{
-    position: absolute;
-    height: 49px;
-    width: 297px;
-    top: 366px;
-    left: 68px;
-    background: #F13232;
-    color: #fff;
-    font-size: 18px;
-    cursor: pointer;
-    border: none;
-}
-.container1901 .free_res{
-    position: absolute;
-    height: 14px;
-    width: 141px;
-    top: 338px;
-    left: 73px;
-    font-size: 15px;
-    cursor: pointer;
-    font-weight: 600;
-}
-.container1901 .free_res span{
-    position: absolute;
-    top: 0px;
-    left: 75px;
-    height: 14px;
-    width: 141px;
-    color: #F13232;
-    font-size: 15px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
 .container2101{
     margin: 0px;
     padding: 0px;
@@ -1015,7 +981,7 @@ export default{
     position: absolute;
     height: 48px;
     width: 297px;
-    top: 110px;
+    top: 102px;
     left: 60px;
     padding-left: 10px;
 }
@@ -1050,6 +1016,7 @@ export default{
     font-size: 18px;
     cursor: pointer;
     border: none;
+    outline: none;
 }
 .container2101 .free_res p{
     position: absolute;
@@ -1070,7 +1037,131 @@ export default{
     cursor: pointer;
     font-weight: 600;
 }
-
+.container4401{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 364px;
+    background: #fff;
+}
+.container4401 .sign_logo{
+    position: absolute;
+    height: 24px;
+    width: 106px;
+    top: 44px;
+    left: 155px;
+    color: #333;
+    font-size: 24px;
+}
+.container4401 .tele{
+    position: absolute;
+    height: 49px;
+    width: 287px;
+    top: 102px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container4401 .iden01{
+    position: absolute;
+    height: 49px;
+    width: 287px;
+    top: 166px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container4401 .register{
+    position: absolute;
+    height: 49px;
+    width: 310px;
+    top: 254px;
+    left: 60px;
+    background: #F13232;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.container1901{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 492px;
+    background: #fff;
+}
+.container1901 .sign_logo{
+    position: absolute;
+    top: 44px;
+    left: 184px;
+    color: #333;
+    font-size: 24px;
+}
+.container1901 .tele{
+    position: absolute;
+    height: 48px;
+    width: 287px;
+    top: 102px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container1901 .iden01{
+    position: absolute;
+    height: 48px;
+    width: 287px;
+    top: 144px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container1901 .iden02{
+    position: absolute;
+    height: 49px;
+    width: 287px;
+    top: 186px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container1901 .iden03{
+    position: absolute;
+    height: 48px;
+    width: 287px;
+    top: 228px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container1901 .register{
+    position: absolute;
+    height: 49px;
+    width: 301px;
+    top: 382px;
+    left: 60px;
+    background: #F13232;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.container1901 .free_res{
+    position: absolute;
+    height: 14px;
+    width: 141px;
+    top: 353px;
+    left: 60px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.container1901 .free_res span{
+    position: absolute;
+    top: 0px;
+    left: 75px;
+    height: 14px;
+    width: 141px;
+    color: #F13232;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 600;
+}
 .container4601{
     margin: 0px;
     padding: 0px;
@@ -1087,27 +1178,27 @@ export default{
 }
 .container4601 .tele{
     position: absolute;
-    height: 49px;
-    width: 297px;
-    top: 130px;
+    height: 48px;
+    width: 287px;
+    top: 102px;
     left: 60px;
     padding-left: 10px;
 }
 .container4601 .iden01{
     position: absolute;
-    height: 49px;
-    width: 180px;
-    top: 195px;
-    left: 70px;
-    padding-left: 0px;
+    height: 48px;
+    width: 170px;
+    top: 148px;
+    left: 60px;
+    padding-left: 10px;
     margin: 0px!important;
 }
 .container4601 .iden02{
     position: absolute;
-    height: 40px;
+    height: 52px;
     width: 111px;
-    top: 195px;
-    left: 260px;
+    top: 170px;
+    left: 250px;
     background: #F13232;
     color: #fff;
     font-size: 16px;
@@ -1126,13 +1217,14 @@ export default{
     position: absolute;
     height: 48px;
     width: 310px;
-    top: 274px;
-    left: 70px;
+    top: 256px;
+    left: 60px;
     background: #F13232;
     color: #fff;
     font-size: 18px;
     cursor: pointer;
     border: none;
+    outline: none;
 }
 .container4601 .back_login{
     position: absolute;

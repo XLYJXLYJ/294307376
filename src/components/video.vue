@@ -4,7 +4,7 @@
         <div class="container35">
             <div class="container36">
                     <div>
-                        <p class="one">{{list.title}}</p>
+                        <p class="one">{{list.name}}</p>
                         <p class="two">分享于：2018.03.02</p>
                         <p class="three">已有339次浏览</p>
                     </div>
@@ -16,8 +16,8 @@
                     <div>
                         <div :class='{"love":!isPraise,"love1":isPraise}' @click="love"><span class="lovenum">{{list.praisetotal}}</span></div>
                         <div :class='{"star":!isCollect,"star1":isCollect}' @click="star"><span class="starnum">{{list.collecttotal}}</span></div>
-                        <button class="buycode">购买代码</button>
-                        <span class="buy">已有4人购买</span>
+                        <!-- <button class="buycode">购买代码</button>
+                        <span class="buy">已有4人购买</span> -->
                         <!-- <a class="avideo" href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation" target="myFrameName"><button>点击播放</button></a> -->
                     </div>
             </div>
@@ -44,7 +44,14 @@
                         <span class="explaintext">猜灯谜，闹元宵，欢乐就在编程玩</span>
                     </div>
                     <div>
-                        <img class="qrshare" src="../assets/video/qrshare.png" alt="">
+                        <div class="home-container">
+                            <div class="qrshare">
+                                <canvas id="qrccode" height="117" width="117" style="height: 117px!important;width: 117px;"></canvas>
+                            </div>
+                            <div class="btn-wrap">
+                                <textarea type="textarea" v-model="bannerUrl"></textarea>
+                            </div>
+                        </div>
                         <img class="qrsharetext" src="../assets/video/qrsharetext.png" alt="">
                     </div>
                 </div>
@@ -55,6 +62,8 @@
 <script>
 import Header from '@/components/HomePage/header'
 import Footer from '@/components/HomePage/Footer'
+var QRCode = require('qrcode')
+var canvas = '';
 export default{
     data(){
         return{
@@ -68,6 +77,7 @@ export default{
             isPraise:'',
             authid:'',
             demoid:'',
+            bannerUrl: '',
             item:{
                 // url:"static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"
                 url:'https://www.baidu.com/'
@@ -75,9 +85,18 @@ export default{
         }
     },
     mounted(){
-        this.loadproject(),
+        this.loadproject()
         this.demoid = sessionStorage.id
+        // this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/snap.html#run:/codeplay/file/11566.xml'
+        this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/snap.html#run:/codeplay/file/'+this.demoid+'.xml' 
+        console.log(this.bannerUrl)
+        this.$nextTick(function () {
+        // DOM操作
+        canvas = document.getElementById('qrccode')
+        this.createQrc()
+        })
     },
+    
     methods:{
         loadproject(){
             // if(sessionStorage.userid!=='unfined')
@@ -86,7 +105,7 @@ export default{
                 id:sessionStorage.id,
                 state:3
             })
-            .then(response => {                          
+            .then(response => {                        
                 this.list = response.data.data
                 this.isCollect = response.data.data.isCollect
                 this.isPraise = response.data.data.isPraise
@@ -179,6 +198,20 @@ export default{
                 })
             }
             
+        },
+        // 自动生成二维码
+        createQrc () {
+            if (!this.bannerUrl) {
+                window.alert('链接不能为空')
+                return false
+            }
+            QRCode.toCanvas(canvas, this.bannerUrl, (error) => {
+                if (error) {
+                console.log(error)
+                } else {
+                console.log('success')
+                }
+            })
         }
     },
     components:{
@@ -284,8 +317,8 @@ export default{
 }
 .container36 .lovenum{
     position: relative;
-    top: 28px;
-    left: 10px;
+    top: 30px;
+    left: 14px;
     cursor: pointer;
     font-size: 16px;
     width: 28px;
@@ -312,8 +345,8 @@ export default{
 }
 .container36 .starnum{
     position: relative;
-    top: 33px;
-    left: 10px;
+    top: 35px;
+    left: 14px;
     font-size: 16px;
     width: 28px;
     height: 28px;
@@ -324,12 +357,12 @@ export default{
     position: absolute;
     top: 47px;
     left: 946px;
-    width: 30px;
-    height: 28px;
+    width: 38px;
+    height: 36px;
     background: url(../assets/Video/star1.png) no-repeat;
     cursor: pointer;
 }
-.container36 .buycode{
+/* .container36 .buycode{
     position: absolute;
     top: 48px;
     left: 1036px;
@@ -347,7 +380,7 @@ export default{
     border: none;
     color: #F13232;
     font-size: 12px;
-}
+} */
 .container35 .video{
     width: 767px;
     height: 575px;
@@ -419,12 +452,12 @@ export default{
     left: 0px;
 }
 .con3536 .comment01 .qrshare{
-    width:auto;
-    font-size: 14px;
-    color: #43455a;
+    width:117px;
+    height: 117px;
     position: absolute;
-    top: 34px;
-    left: 864px;
+    top: 20px;
+    left: 861px;
+    z-index: 1000;
 }
 .con3536 .comment01 .qrsharetext{
     width:auto;
@@ -432,5 +465,17 @@ export default{
     position: absolute;
     top: 56px;
     left: 1050px;
+}
+#qrccode{
+    width:137px!important;
+    height: 137px!important;
+}
+.btn-wrap {
+  width: 0px;
+  height: 0px;
+  margin: 0 auto;
+}
+.btn-wrap textarea{
+  opacity: 0;
 }
 </style>

@@ -12,7 +12,7 @@
                             <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
                             <div class="imgcon"><img :src="'static/publish/'+item.surfaceplot+'l.png'" alt=""></div>
                             <p>{{item.title}}</p>
-                            <span class="game_cat">tree</span>
+                            <span class="game_cat">{{item.desc}}</span>
                             <span class="down01"><i class="icon_see"><span>4k</span></i></span>
                             <span class="down02"><i class="icon_love"><span>200</span></i></span>
                             <span class="down03"><i class="icon_star"><span>70</span></i></span>

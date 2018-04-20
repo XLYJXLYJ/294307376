@@ -19,8 +19,8 @@
                     dialogPassSure=false">登陆</p>   
                     <p class="sign"  type="text" 
                     @click="dialogLogin = true, 
-                    dialogLoginshow = true, 
-                    dialogRegister = false, 
+                    dialogLoginshow = false, 
+                    dialogRegister = true, 
                     dialogForgetpass= false, 
                     dialogPassSure=false">注册</p>   
                 </div>
@@ -159,8 +159,8 @@ export default {
             rules:{
                 username: [
                     { required: true, message: '请输入用户名', trigger: 'blur' },
-                    { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
-                ],
+                    { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' },
+                    {pattern:/^[a-zA-Z]w{1,4}$/,message: '以字母开头，长度在2-5之间， 只能包含字符、数字和下划线'}],
                 mail:[
                     { required: true, message: '请输入邮箱', trigger: 'blur' },
                     { type:'email', message: '请输入合法的email邮箱', trigger: 'blur,change' }
@@ -759,7 +759,7 @@ export default {
     position: absolute;
     height: 49px;
     width: 287px;
-    top: 187px;
+    top: 186px;
     left: 60px;
     padding-left: 10px;
 }
@@ -767,7 +767,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 287px;
-    top: 227px;
+    top: 228px;
     left: 60px;
     padding-left: 10px;
 }
@@ -775,7 +775,7 @@ export default {
     position: absolute;
     height: 49px;
     width: 301px;
-    top: 388px;
+    top: 382px;
     left: 60px;
     background: #F13232;
     color: #fff;
@@ -788,7 +788,7 @@ export default {
     position: absolute;
     height: 14px;
     width: 141px;
-    top: 357px;
+    top: 353px;
     left: 60px;
     font-size: 15px;
     cursor: pointer;
@@ -831,7 +831,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 170px;
-    top: 166px;
+    top: 148px;
     left: 60px;
     padding-left: 10px;
     margin: 0px!important;
@@ -840,7 +840,7 @@ export default {
     position: absolute;
     height: 52px;
     width: 111px;
-    top: 188px;
+    top: 170px;
     left: 250px;
     background: #F13232;
     color: #fff;
@@ -860,7 +860,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 310px;
-    top: 274px;
+    top: 256px;
     left: 60px;
     background: #F13232;
     color: #fff;

@@ -16,22 +16,8 @@ import Sourcehead from '@/components/Source/Sourcehead'
 import Footer from '@/components/HomePage/Footer'
 export default{
     mounted:function() {
-        this.Getsession()  
-        // this.$store.dispatch('Getsession01') 
     }, 
     methods:{
-         Getsession() {
-            // session验证
-            console.log(this.$store.state.userid)   
-            this.axios.get('/res/verify')
-            .then(response =>{
-                // this.formLogin.username01=response.data.data.username
-                if(response.data.data){
-                    this.$store.state.userid=response.data.data.userid
-                }else{
-                }
-            }) 
-        },
     },
     components:{
         Header,
@@ -48,11 +34,6 @@ export default{
     flex-direction: column;
     min-height: 100vh;
 }
-/* .container13 .container003{
-    position: absolute;
-    left: 0px;
-    bottom: -142rem;   
-} */
 .content10 {
     flex: 1;
 }

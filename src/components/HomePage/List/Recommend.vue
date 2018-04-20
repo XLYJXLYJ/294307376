@@ -5,12 +5,12 @@
                     <router-link to="/Video">
                         <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
                             <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
-                            <div class="imgcon"><img :src="'static/publish/'+item.surfaceplot+'l.png'" alt=""></div>
+                            <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>
                             <p>{{item.title}}</p>
-                            <span class="game_cat">tree</span>
+                            <span class="game_cat">{{item.desc}}</span>
                             <span class="down01"><i class="icon_see"><span>4k</span></i></span>
-                            <span class="down02"><i class="icon_love"><span>200</span></i></span>
-                            <span class="down03"><i class="icon_star"><span>70</span></i></span>
+                            <span class="down02"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
+                            <span class="down03"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
                             </a>
                         </div>
                     </router-link>
@@ -33,7 +33,8 @@
             getdemo01(){
                 this.axios.post('/res/filelist',{
                     state:4,
-                    sortstate:2
+                    sortstate:2,
+                    pagesize:120
                 })
                 .then(response => {   
                     this.list=response.data.data
@@ -86,6 +87,9 @@
     top: 22px;
     text-align: left;
     color: #707070;
+    width: 170px;
+    height: 20px;
+    overflow: hidden;
 }
 .container01 .icon_see{
     background:url(../../../assets/home/icon_see.png) no-repeat;
@@ -121,7 +125,7 @@
     height: 14px;
     margin: 10px;
     position: relative;
-    left: 9px;
+    left: 12px;
     top: 36px;
 }
 .container01 .down03{
@@ -130,8 +134,8 @@
     height: 14px;
     margin: 10px;
     position: relative;
-    left: 124px;
-    top: 16px;
+    left: 34px;
+    top: 35px;
 }
 .container01 .down01 span{
     position: relative;
