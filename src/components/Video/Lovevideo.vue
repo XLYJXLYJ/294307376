@@ -1,17 +1,48 @@
 <template>
   <div class="container38">
         <ul>
-            <li>
-                <img class="jinglin" src="../../assets/video/yuan.png" alt="">
-                <p class="jinglingtext">精灵战争</p>
+            <li v-for="(item,index) in list" :key='item.id' v-if='index<5' @click="edit04(item.id)">
+                <img class="jinglin" :src="item.imgBuffer" alt="">
+                <p class="jinglingtext">{{item.title}}</p>
                 <span class="time">分享于：2018-03-02</span>
                 <span class="icon_see_zan"><i class="icon_zan"><span>325</span></i></span>
-                <span class="icon_see_star01"><i class="icon_star"><span>6828</span></i></span>
-                <span class="icon_see_see01"><i class="icon_see"><span>6828</span></i></span>
+                <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
+                <span class="icon_see_see01"><i class="icon_see"><span>{{item.praisetotal}}</span></i></span>
             </li>
         </ul>
   </div>
 </template>
+<script>
+    export default{
+        data(){
+            return{
+                list:[],
+            }
+        },
+        mounted: function () {      
+            this.getdemo01()
+        },
+        methods:{
+            getdemo01(){
+                this.axios.post('/res/filelist',{
+                    state:4,
+                    sortstate:2,
+                    pagesize:5
+                })
+                .then(response => {   
+                    this.list=response.data.data
+                    this.$store.state.searchdemo=false
+                    this.$store.state.recommenddemo=true
+                    this.$store.state.productiondemo=false
+                })
+            },
+            edit04(id){                 
+                sessionStorage.id = id
+                location.reload()
+            },
+        }
+    }
+</script>
 <style scoped>
 .container38{
     height: auto;
@@ -19,6 +50,14 @@
     position: relative;
     left:818px;
     top: -241px;
+}
+.container38 ul li{
+    height: 77px;
+    width: 300px;
+    position: relative;
+    left:0px;
+    margin-bottom: 18px;
+    cursor: pointer;
 }
  .container38 .jinglin{
     position: absolute;
@@ -37,6 +76,9 @@
     left: 126px;
     font-size: 22px;
     color: #43455a;
+}
+.container38 .jinglingtext:hover{
+    color: #f13232;
 }
 .container38 .time{
     position: absolute;

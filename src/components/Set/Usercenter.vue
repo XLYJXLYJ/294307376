@@ -1,19 +1,13 @@
 <template>
   <div class="container33">  
-    <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+    <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign" :rules="rules">
         <el-form-item label="名称">
           <el-input class="input01" v-model="formLabelAlign.name"></el-input>
         </el-form-item>
         <el-form-item label="性别">
           <el-input class="input01" v-model="formLabelAlign.sex"></el-input>
         </el-form-item>
-        <el-form-item 
-          prop="age"
-          :rules="[
-          { required: true, message: '年龄不能为空'},
-          { type: 'number', message: '年龄必须为数字值'}
-        ]"
-        label="年龄">
+        <el-form-item label="年龄">
           <el-input class="input01" v-model.number="formLabelAlign.age"></el-input>
         </el-form-item>
         <el-form-item label="真实姓名">
@@ -33,6 +27,12 @@
           sex: '',
           age: '',
           name01: '',
+        },
+        rules:{
+          age:[
+            { required: true, message: '年龄不能为空'},
+            { type: 'number', message: '年龄必须为数字值'}
+          ]
         }
       };
     },
@@ -47,6 +47,7 @@
             })
             .then(response => {
               console.log(response)
+                  this.formLabelAlign.name = this.$store.state.usernamesession02
                   this.formLabelAlign.age = response.data.data.age,
                   this.formLabelAlign.sex = response.data.data.sex
                   if(this.formLabelAlign.sex===1){

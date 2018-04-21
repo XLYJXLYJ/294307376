@@ -5,7 +5,7 @@
             <div class="container36">
                     <div>
                         <p class="one">{{list.name}}</p>
-                        <p class="two">分享于：2018.03.02</p>
+                        <p class="two">分享于：2018.3.12</p>
                         <p class="three">已有339次浏览</p>
                     </div>
                     <div>
@@ -52,7 +52,11 @@
                                 <textarea type="textarea" v-model="bannerUrl"></textarea>
                             </div>
                         </div>
-                        <img class="qrsharetext" src="../assets/video/qrsharetext.png" alt="">
+                        <div class="qrsharetext">
+                            <button>分享</button>
+                            <p>or</p>
+                            <span>扫码在手机上玩</span>
+                        </div>
                     </div>
                 </div>
         </div>      
@@ -62,6 +66,7 @@
 <script>
 import Header from '@/components/HomePage/header'
 import Footer from '@/components/HomePage/Footer'
+import { formatDate } from '../public/time.js'
 var QRCode = require('qrcode')
 var canvas = '';
 export default{
@@ -107,6 +112,7 @@ export default{
             })
             .then(response => {                        
                 this.list = response.data.data
+                console.log(response)
                 this.isCollect = response.data.data.isCollect
                 this.isPraise = response.data.data.isPraise
                 this.isAttention= response.data.data.isAttention
@@ -212,7 +218,7 @@ export default{
                 console.log('success')
                 }
             })
-        }
+        },
     },
     components:{
         Header,
@@ -388,6 +394,7 @@ export default{
     top:0px; 
     left: 0px;
     z-index: 2;
+    background: #fff;
 }
 .container35 .mydemo_framebox{
     height: 627px;
@@ -402,7 +409,7 @@ export default{
     top: 0px;  
     height: 575px;
     width:414px;
-    background:#fff;
+    background: #fff;
 }
 .container35  .mydemo_frame .Myvideo{
     position: absolute;
@@ -460,11 +467,46 @@ export default{
     z-index: 1000;
 }
 .con3536 .comment01 .qrsharetext{
-    width:auto;
-    font-size: 14px;
+    width:140px;
+    height: 87px;
     position: absolute;
-    top: 56px;
+    top: 45px;
     left: 1050px;
+}
+.con3536 .comment01 .qrsharetext button{
+    width:70px;
+    height: 38px;
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    background: #f13232;
+    color:#fff;
+    border: none;
+}
+.con3536 .comment01 .qrsharetext span{
+    width:140px;
+    height: 38px;
+    position: absolute;
+    top: 74px;
+    left: 0px;
+    color: #43455a;
+    font-size: 18px;
+    padding-left: 20px;
+    background: url(../assets/Video/jiantou.png) no-repeat 0px 5px;
+}
+.con3536 .comment01 .qrsharetext p{
+    width:19px;
+    height: 12px;
+    position: absolute;
+    top: 46px;
+    left: 55px;
+    color: #b1b2ba;
+    font-size: 18px;
+}
+
+.con3536 .comment01 .qrsharetext button:hover{
+    border: 2px solid #c51c1c;
+    cursor: pointer;
 }
 #qrccode{
     width:137px!important;

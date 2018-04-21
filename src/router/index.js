@@ -119,16 +119,15 @@ export default new Router({
       children:[
         { 
           path: '', component: All,
-          path: '/Demo/Mydemo', component: Mydemo, 
+          path: '/Demo/Mydemo', name: 'Mydemo',component: Mydemo, 
               children:[
-                { path: '/Demo/Mydemo/all', component: All},
+                { path: '/Demo/Mydemo/all', name: 'All',component: All},
                 { path: '/Demo/Mydemo/Readysend', component: Readysend},
                 { path: '/Demo/Mydemo/Nosend', component: Nosend},
                 { path: '', component: All}
               ]
         },
         { path: '/Demo/Delete', component: Delete},
-        { path: '', component:All}
       ]
     },
     {
@@ -146,7 +145,7 @@ export default new Router({
       name: 'Setting',
       component: Setting,
       children:[
-        {path: '/Setting/Usercenter', component: Usercenter},
+        {path: '/Setting/Usercenter', name: 'Usercenter', component: Usercenter},
         {path: '/Setting/Copassword', component: Copassword},
         {path: '/Setting', component:Usercenter}
       ]

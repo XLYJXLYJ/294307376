@@ -16,7 +16,7 @@
                     </router-link>
             </el-col>         
         </el-row>
-        <button class="button">查看全部作品</button>
+        <button class="button" @click="Seemorerecommend">查看更多作品</button>
     </div>
 </template>
 <script>
@@ -24,6 +24,7 @@
         data(){
             return{
                 list:[],
+                j:15
             }
         },
         mounted: function () {      
@@ -34,7 +35,7 @@
                 this.axios.post('/res/filelist',{
                     state:4,
                     sortstate:2,
-                    pagesize:120
+                    pagesize:20
                 })
                 .then(response => {   
                     this.list=response.data.data
@@ -46,6 +47,17 @@
             edit01(id){                 
                 sessionStorage.id = id
             },
+            Seemorerecommend(){
+                this.j = this.j+16
+                this.axios.post('/res/filelist',{
+                    state:1,
+                    pagesize:1200
+                })
+                .then(response => {    
+                    console.log(response.data.data.slice(0,this.j))     
+                    this.list = response.data.data.slice(0,this.j)
+                })
+            }
         }
     }
 </script>

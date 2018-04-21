@@ -27,7 +27,7 @@ export default{
     },
     methods:{
         recommendroute(){
-            this.$route.pushthis.$router.push({ name: 'Recommend' })
+            this.$router.push({ name: 'Recommend' })
         }
     },
     components:{

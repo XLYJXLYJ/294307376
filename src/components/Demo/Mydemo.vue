@@ -8,6 +8,18 @@
         </div>
     </div>
 </template>
+<script>
+export default{
+    mounted(){
+        this.Mydemoroute()
+    },
+    methods:{
+        Mydemoroute(){
+            this.$router.push({ name: 'All' })
+        }
+    }
+}
+</script>
 <style scoped>
 .container26{
     position: relative;

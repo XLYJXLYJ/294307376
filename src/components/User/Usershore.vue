@@ -5,9 +5,9 @@
             <p class="store">我收藏的作品</p>
             <img class="left" src="../../assets/user/left.png" alt="">
             <ul class="block" v-show="nosend">
-                <li v-for="item in list" :key='item.id'>
+                <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
                     <div class="share">
-                        <img src="../../assets/user/userdemo.png" alt="">
+                        <img :src="item.imgBuffer" alt="">
                         <p>{{item.title}}</p>
                         <span>作者：{{$store.state.usernamesession02}}</span>
                     </div>
@@ -31,18 +31,41 @@ export default {
     },
     methods:{
         loadstoremessage(){
+            console.log(123)
             this.axios.post('/res/userinfo',{
                     userid:sessionStorage.userid,
-                    getinfostate:3,
+                    state:3,
             })
             .then(response => {
-                console.log(response.data.data+111)
+                console.log(response.data.data)
                  this.list = response.data.data
             })
             .catch(function (error) {
                 console.log(error);
             });
-        }
+        },
+        Pagingup(){
+            this.i = this.i+6
+            this.axios.post('/res/filelist',{
+                    userid:sessionStorage.userid,
+                    state:1
+                })
+                .then(response => {    
+                    console.log(response.data.data.slice(this.i,this.i+6))     
+                    this.list = response.data.data.slice(this.i,this.i+6)
+            })
+        },
+        Pagingdown(){
+            this.i = this.i-6
+            this.axios.post('/res/filelist',{
+                    userid:sessionStorage.userid,
+                    state:1
+                })
+                .then(response => {    
+                    console.log(response.data.data.slice(this.i,this.i+6))     
+                    this.list = response.data.data.slice(this.i,this.i+6)
+            })
+        },
     }
   }
 </script>

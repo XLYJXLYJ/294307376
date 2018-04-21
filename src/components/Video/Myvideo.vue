@@ -1,17 +1,60 @@
 <template>
   <div class="container37">
         <ul>
-            <li>
-                <img class="jinglin" src="../../assets/video/yuan.png" alt="">
-                <p class="jinglingtext">王者荣耀</p>
-                <span class="time">分享于：2018-03-02</span>
-                <span class="icon_see_zan"><i class="icon_zan"><span>325</span></i></span>
-                <span class="icon_see_star01"><i class="icon_star"><span>28</span></i></span>
-                <span class="icon_see_see01"><i class="icon_see"><span>6828</span></i></span>
-            </li>
+            <router-link to="/Video">
+                <li v-for="(item,index) in list" :key='item.id' v-if='index<5' @click="edit03(item.id)">
+                    <img class="jinglin" :src="item.imgBuffer" alt="">
+                    <p class="jinglingtext">{{item.title}}</p>
+                    <span class="time">分享于：{{item.create_time|formatDate}}</span>
+                    <span class="icon_see_zan"><i class="icon_zan"><span>325</span></i></span>
+                    <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
+                    <span class="icon_see_see01"><i class="icon_see"><span>{{item.praisetotal}}</span></i></span>
+                </li>
+            </router-link>
         </ul>
   </div>
 </template>
+<script>
+import { mapGetters,mapActions} from 'vuex'
+import { formatDate } from '../../public/time.js'
+export default{
+    filters: {
+        formatDate(time) {
+        var date = new Date(time);
+        return formatDate(date, 'yyyy-MM-dd');
+        }
+    },
+    data(){
+        return{
+            uservideo:true,
+            list:'',
+        }
+    },
+    created: function () {      
+        this.Getalldemo()
+    },
+    methods:{
+        Getalldemo(){
+            this.axios.post('/res/filelist',{
+                userid:sessionStorage.userid,
+                state:1
+            })
+            .then(response => {    
+                console.log(response)       
+                if(response.data.data.msg=='这回真的没有了~'){
+                    this.uservideo = false
+                }else{
+                    this.list=response.data.data
+                }
+            })
+        },
+        edit03(id){                 
+            sessionStorage.id = id
+            location.reload()
+        },
+    }
+}
+</script>
 <style scoped>
 .container37{
     height: auto;
@@ -19,6 +62,14 @@
     position: relative;
     left:818px;
     top: -241px;
+}
+.container37 ul li{
+    height: 77px;
+    width: 300px;
+    position: relative;
+    left:0px;
+    margin-bottom: 18px;
+    cursor: pointer;
 }
  .container37 .jinglin{
     position: absolute;
@@ -38,8 +89,12 @@
     font-size: 22px;
     color: #43455a;
 }
+.container37 .jinglingtext:hover{
+    color: #f13232;
+}
 .container37 .time{
     position: absolute;
+    width: 200px;
     top: 55px;
     left: 126px;
     font-size: 14px;

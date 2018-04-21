@@ -45,9 +45,10 @@ import { mapGetters,mapActions} from 'vuex'
                         this.nosend = false
                     }else{
                         this.list=response.data.data
+                        console.log(response)
                     }
                 })
-            },
+            }
         }
     }
 </script>
@@ -55,15 +56,15 @@ import { mapGetters,mapActions} from 'vuex'
 .container27 {
     margin: 0 auto;
     height: 550px;
-    width: 1200px;
+    width: 1140px;
     position: relative;
-    left: -14px;
+    left: -20px;
     top: 33px;
     overflow: auto;
 }
 .container27 ul{
     position: relative;
-    left: 40px;
+    left: 0px;
     top: 0px;
     height: auto;
     z-index: 100;

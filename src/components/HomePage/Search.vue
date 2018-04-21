@@ -14,8 +14,8 @@
                             <p>{{item.title}}</p>
                             <span class="game_cat">{{item.desc}}</span>
                             <span class="down01"><i class="icon_see"><span>4k</span></i></span>
-                            <span class="down02"><i class="icon_love"><span>200</span></i></span>
-                            <span class="down03"><i class="icon_star"><span>70</span></i></span>
+                            <span class="down02"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
+                            <span class="down03"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
                             </a>
                         </div>
                     </router-link>
@@ -93,6 +93,9 @@
     top: 22px;
     text-align: left;
     color: #707070;
+    width: 170px;
+    height: 20px;
+    overflow: hidden;
 }
 .search01 .icon_see{
     background:url(../../assets/home/icon_see.png) no-repeat;
@@ -127,8 +130,8 @@
     height: 14px;
     margin: 10px;
     position: relative;
-    left: 124px;
-    top: 16px;
+    left: 34px;
+    top: 35px;
 }
 .search01 .down01 span{
     position: relative;

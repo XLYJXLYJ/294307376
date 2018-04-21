@@ -5,7 +5,7 @@
             <div class="container24">
             <img class="star01" src="../assets/Download/starfish.png" alt="">  
             <p>我的管理中心</p>
-            <button>新建作品</button>
+            <router-link to="/snap"><button>新建作品</button></router-link>
             <div class="mydemo_frame">
             <router-link class="Mydemo" to="/Demo/Mydemo">作品</router-link>
             <router-link class="Delete" to="/Demo/Delete">废纸篓</router-link>
@@ -22,6 +22,14 @@
 import Header from '@/components/HomePage/header'
 import Footer from '@/components/HomePage/Footer'
 export default{
+    mounted(){
+        this.demoroute()
+    },
+    methods:{
+        demoroute(){
+            this.$router.push({ name: 'Mydemo' })
+        }
+    },
     components:{
         Header,
         Footer
@@ -72,7 +80,7 @@ export default{
     width: 115px;
     font-size: 16px;
     color: #fff;
-    background: #000;
+    background: #f13232;
     border: none;
     cursor: pointer;
 }

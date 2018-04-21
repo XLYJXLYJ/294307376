@@ -3,17 +3,17 @@
         <div>
             <img class="star" src="../../assets/user/starfish.png" alt="">
             <p class="store">我分享的作品</p>
-            <img class="left" src="../../assets/user/left.png" alt="">
+            <img class="left" src="../../assets/user/left.png" alt="" @click="Pagingdown">
             <ul class="block" v-show="nosend">
-                <li v-for="item in list" :key='item.id'>
+                <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
                     <div class="share">
-                        <img src="../../assets/user/userdemo.png" alt="">
+                        <img :src="item.imgBuffer" alt="">
                         <p>{{item.title}}</p>
                         <span>作者：{{$store.state.usernamesession02}}</span>
                     </div>
                 </li>
             </ul>
-            <img class="right" src="../../assets/user/right.png" alt="">
+            <img class="right" src="../../assets/user/right.png" alt="" @click="Pagingup">
         </div>
     </div>
 </template>
@@ -22,7 +22,8 @@
         data(){
             return{
                 list:'',
-                nosend:true
+                nosend:true,
+                i:0,
             }
         },
         mounted: function () {      
@@ -37,7 +38,29 @@
                     .then(response => {           
                         this.list = response.data.data
                 })
-            }
+            },
+            Pagingup(){
+                this.i = this.i+6
+                this.axios.post('/res/filelist',{
+                        userid:sessionStorage.userid,
+                        state:1
+                    })
+                    .then(response => {    
+                        console.log(response.data.data.slice(this.i,this.i+6))     
+                        this.list = response.data.data.slice(this.i,this.i+6)
+                })
+            },
+            Pagingdown(){
+                this.i = this.i-6
+                this.axios.post('/res/filelist',{
+                        userid:sessionStorage.userid,
+                        state:1
+                    })
+                    .then(response => {    
+                        console.log(response.data.data.slice(this.i,this.i+6))     
+                        this.list = response.data.data.slice(this.i,this.i+6)
+                })
+            },
         }
     }
 </script>
@@ -84,7 +107,7 @@
     width: 1200px;
     position: absolute;
     top: 65px;
-    left: 67px;
+    left: 76px;
 }
 .container40 ul li{  
     float: left;

@@ -5,7 +5,7 @@
                 <div class="all_up">
                     <img :src="'static/publish/'+item.surfaceplot+'l.png'" alt="">
                     <p>{{item.title}}</p>
-                    <span>{{item.time}}</span>
+                    <span>{{item.create_time|formatDate}}</span>
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
                 <router-link to="/Publish"><button class="button02" @click="publish(item.id)">发布</button></router-link>
@@ -19,7 +19,14 @@
 </template>
 <script>
 import { mapGetters,mapActions} from 'vuex' 
+import { formatDate } from '../../public/time.js'
     export default{
+        filters: {
+            formatDate(time) {
+            var date = new Date(time);
+            return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
+            }
+        },
         data(){
             return{
                 nosend:true,
@@ -86,19 +93,19 @@ import { mapGetters,mapActions} from 'vuex'
 .container29 {
     margin: 0 auto;
     height: 550px;
-    width: 1200px;
+    width: 1140px;
     position: relative;
-    left: -14px;
+    left: -20px;
     top: 33px;
     overflow: auto;
 }
 .container29 ul{
     position: relative;
-    left: 40px;
+    left: 0px;
     top: 0px;
     height: auto;
     z-index: 100;
-    width:auto;
+    width:1120px;
     text-align:left;    
     float: left;
     list-style: none;

@@ -25,6 +25,14 @@
 import Header from '@/components/HomePage/header'
 import Footer from '@/components/HomePage/Footer'
 export default{
+    mounted(){
+        this.Settingroute()
+    },
+    methods:{
+        Settingroute(){
+            this.$router.push({ name: 'Usercenter' })
+        }
+    },
     components:{
         Header,
         Footer

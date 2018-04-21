@@ -38,6 +38,7 @@ import { mapGetters,mapActions} from 'vuex'
                         this.nosend = false
                     }else{
                         this.list=response.data.data
+                        console.log(response)
                     }
                 })
             },
@@ -74,15 +75,15 @@ import { mapGetters,mapActions} from 'vuex'
 .container30 {
     margin: 0 auto;
     height: 550px;
-    width: 1200px;
+    width: 1140px;
     position: relative;
-    left: 0px;
-    top:-600px;
+    left: -20px;
     overflow: auto;
+    top:-600px;
 }
 .container30 ul{
     position: relative;
-    left: 40px;
+    left: 30px;
     top: 0px;
     height: auto;
     z-index: 100;
