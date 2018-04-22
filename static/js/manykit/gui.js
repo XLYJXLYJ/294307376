@@ -46,3 +46,32 @@ IDE_Morph.prototype.newProject = function () {
     });
     this.originalNewProject();
 };
+
+
+// IDE_Morph.prototype.rawOpenProjectStringuser = function (str) {
+//     this.toggleAppMode(true);
+//     this.spriteBar.tabBar.tabTo('scripts');
+//     StageMorph.prototype.hiddenPrimitives = {};
+//     StageMorph.prototype.codeMappings = {};
+//     StageMorph.prototype.codeHeaders = {};
+//     StageMorph.prototype.enableCodeMapping = false;
+//     StageMorph.prototype.enableInheritance = true;
+//     StageMorph.prototype.enableSublistIDs = false;
+//     Process.prototype.enableLiveCoding = false;
+//     if (Process.prototype.isCatchingErrors) {
+//         try {
+//             this.serializer.openProject(
+//                 this.serializer.load(str, this),
+//                 this
+//             );
+//         } catch (err) {
+//             this.showMessage('Load failed: ' + err);
+//         }
+//     } else {
+//         this.serializer.openProject(
+//             this.serializer.load(str, this),
+//             this
+//         );
+//     }
+//     this.stopFastTracking();
+// };

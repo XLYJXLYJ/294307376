@@ -4,14 +4,12 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id'> 
                     <router-link to="/Video">
                         <div class="grid-content bg-purple list_pic" @click="edit02(item.id)">
-                            <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
                             <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>
                             <p>{{item.title}}</p>
                             <span class="game_cat">{{item.desc}}</span>
                             <span class="down01"><i class="icon_see"><span>4k</span></i></span>
                             <span class="down02"><i class="icon_love"><span>20</span></i></span>
                             <span class="down03"><i class="icon_star"><span>70</span></i></span>
-                            </a>
                         </div>
                     </router-link>
             </el-col>         
@@ -74,10 +72,13 @@
 .container02 .list_pic{
     margin-top: 44px;
     height: 270px;
-    width: 140px;
+    width: 173px;
     cursor: pointer;
     color: #707070;
 }
+/* .container01 .list_pic:hover{
+    background: #707070;
+} */
 .container02 .imgcon{
     height: 170px;
     width: 173px;
@@ -86,13 +87,19 @@
     width: 100%;
     height: 100%;
 }
+.container02 .imgcon img:hover{
+    border: 1px solid #d0d0d0;
+}
 .container02 p{
     font-size: 20px;
     position: relative;
     top: 15px;
     text-align: left;
     color:#000;
-    }
+}
+.container02 p:hover{
+    color:#F13232;
+}
 .container02 .game_cat{
     display: block;
     font-size: 16px;
@@ -147,8 +154,8 @@
     height: 14px;
     margin: 10px;
     position: relative;
-    left: 124px;
-    top: 15px;
+    left: 24px;
+    top: 35px;
 }
 .container02 .down01 span{
     position: relative;
@@ -180,5 +187,8 @@
     background-color: #dd2e2e;
     color:#fff;
     cursor: pointer;
+}
+.container02 a{
+    text-decoration: none;
 }
 </style>

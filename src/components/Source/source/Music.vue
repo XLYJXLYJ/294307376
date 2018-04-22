@@ -39,14 +39,14 @@
                 <li class="new"><p>最多使用</p></li>
             </ul>
             <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox>
-            <p class="all">共有1965个素材</p>
+            <p class="all">共有{{listnew.length}}个素材</p>
         </div>
         <div class="first">
             <ul class="role">
-                <li v-for="item in list" :key="item.id">
+                <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
                     <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
                     <div class="roleup">
-                        <button>采集</button>
+                        <button @click="collectmaster(item.id)">采集</button>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>
@@ -54,25 +54,19 @@
         </div>
         <div class="sortnum01">
             <ul>
-                <li><p>1</p></li>
-                <li><p>2</p></li>
-                <li><p>3</p></li>
-                <li><p>4</p></li>
-                <li><p>5</p></li>
-                <li><p>6</p></li>
-                <li><p>7</p></li>
+                <li v-for="(item,index) in pageitem" :key="item.pageid" @click="Selectpage(item.pageid)" :class="{demohover:index==isdemohover03-1}"><p>{{item.pageid}}</p></li>
             </ul>
             <div>
                 <p>...</p>
                 <p class="night">9</p>
-                <p class="endpage">上一页</p>
-                <p class="nextpage">下一页</p>
+               <p class="endpage" @click="Selectpagebefore">上一页</p>
+                <p class="nextpage" @click="Selectpageafter">下一页</p>
             </div>
 
             <div class="sortfly">
                 <p class="one">到第</p>
                 <div>
-                    <input type="text">
+                    <input type="text" v-model="pageuser">
                 </div>
                 <p class="two">页</p>
                 <button>确定</button>
@@ -88,10 +82,14 @@ export default{
     data() {
       return {
         list:'',
+        listnew:'',
+        nowid:1,
+        pageuser:'',
         checked: true,
         sort0101:false,
         sort0102:false,
         sort0103:false,
+        isdemohover03:'',
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"动物"},
@@ -125,6 +123,14 @@ export default{
             {twoid:4,name:"冒险"},
             {twoid:5,name:"其他"},
         ],
+        pageitem:[
+            {pageid:1},
+            {pageid:2},
+            {pageid:3},
+            {pageid:4},
+            {pageid:5},
+            {pageid:6},
+        ],
       };
     },
     mounted(){
@@ -141,7 +147,7 @@ export default{
                         onenav:1,
                     })
                     .then(response => {   
-                        this.list=response.data.data
+                        this.listnew=response.data.data
                         console.log(response)
                     })
                 break
@@ -153,7 +159,7 @@ export default{
                         onenav:1,
                     })
                     .then(response => {   
-                        this.list=response.data.data
+                        this.listnew=response.data.data
                         console.log(response.data.data)
                     })
                 break;
@@ -165,7 +171,7 @@ export default{
                         onenav:2,
                     })
                     .then(response => {   
-                        this.list=response.data.data
+                        this.listnew=response.data.data
                         console.log(response)
                     })
                 break;
@@ -177,7 +183,7 @@ export default{
                         onenav:3,
                     })
                     .then(response => {   
-                        this.list=response.data.data
+                        this.listnew=response.data.data
                         console.log(response)
                     })
                 break;
@@ -189,7 +195,7 @@ export default{
                         onenav:4,
                     })
                     .then(response => {   
-                        this.list=response.data.data
+                        this.listnew=response.data.data
                         console.log(response)
                     })
                 break;
@@ -199,9 +205,11 @@ export default{
         Getsource(){
             this.axios.post('/res/resourcelist',{
                 onenav:2,
+                pagesize:135
             })
             .then(response => {   
                 this.list=response.data.data
+                this.listnew=response.data.data
                 console.log(response)
             })
         },
@@ -215,6 +223,50 @@ export default{
                 console.log(response)
             })
         },
+        collectmaster(id){
+                this.axios.post('/res/collectmaterial',{
+                userid:sessionStorage.userid,
+                id:id,
+                // type:4,
+                state:1
+            })
+            .then(response => {   
+                console.log(response)
+            })
+        },
+        Selectpage(id){
+            this.nowid = id?id:1
+            var head01 = 16*(id-1)
+            var foot01 = 16*id-1
+            console.log(head01)
+            console.log(foot01)
+            this.listnew=this.list.slice(head01,foot01)
+        },
+        Selectpageuser(id){
+            var head01 = 16*(this.pageuser-1)
+            var foot01 = 16*this.pageuser-1
+            console.log(head01)
+            console.log(foot01)
+            this.listnew=this.list.slice(head01,foot01)
+        },
+        Selectpagebefore(){
+            var id =this.nowid
+            var head01 = 16*(id-2)
+            var foot01 = 16*(id-1)-1
+            this.nowid=this.nowid-1
+            console.log(head01)
+            console.log(foot01)
+            this.listnew=this.list.slice(head01,foot01)
+        },
+        Selectpageafter(){
+            var id =this.nowid
+            var head01 = 16*(id)
+            var foot01 = 16*(id+1)-1
+            this.nowid=this.nowid+1
+            console.log(head01)
+            console.log(foot01)
+            this.listnew=this.list.slice(head01,foot01)
+        }
     },
     components:{
         Sourcehead
@@ -399,7 +451,7 @@ export default{
    color:#F13232;
    font-size: 16px;
    position: relative;
-   top: -28px;
+   top: -26px;
    left: 886px;
 }
 

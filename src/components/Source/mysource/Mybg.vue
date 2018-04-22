@@ -5,7 +5,7 @@
             <li v-for="item in list01" :key="item.id">
                 <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
-                    <button>采集</button>
+                    <button @click="deletemaster(item.id)">删除</button>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>  
@@ -18,40 +18,30 @@ export default{
     data() {
       return {
         list01:'',
-        list02:'',
-        list03:'',
       }
     },
-    mounted(){
-        this.Getsource01()
-        this.select01()
-        this.Getsource03()
+     mounted(){
+        this.sourcebg()
+
     },
     methods:{
-        select01(){
+        sourcebg(){
             this.axios.post('/res/resourcelist',{
-                onenav:1,
+                userid:sessionStorage.userid,
+                type:2
             })
             .then(response => {   
                 this.list01=response.data.data
-                console.log(response)
             })
         },
-        Getsource01(){
-            this.axios.post('/res/resourcelist',{
-                onenav:2,
+        deletemaster(id){
+                this.axios.post('/res/collectmaterial',{
+                userid:sessionStorage.userid,
+                id:id,
+                // type:4,
+                state:2
             })
             .then(response => {   
-                this.list02=response.data.data
-                console.log(response)
-            })
-        },
-        Getsource03(){
-            this.axios.post('/res/resourcelist',{
-                onenav:3,
-            })
-            .then(response => {   
-                this.list03=response.data.data
                 console.log(response)
             })
         },

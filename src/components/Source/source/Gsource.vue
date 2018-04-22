@@ -7,7 +7,7 @@
             <li v-for="item in list01" :key="item.id">
                 <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
-                    <button>采集</button>
+                    <button @click="collectmaster01(item.id)">采集</button>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>  
@@ -21,7 +21,7 @@
             <li v-for="(item,index) in list02" :key="item.id" v-if='index<10'>
                 <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
-                    <button>采集</button>
+                    <button @click="collectmaster02(item.id)">采集</button>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>  
@@ -35,7 +35,7 @@
              <li v-for="(item,index) in list03" :key="item.id" v-if='index<10'>
                 <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
-                    <button>采集</button>
+                    <button @click="collectmaster03(item.id)">采集</button>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>
@@ -83,6 +83,39 @@ export default{
             })
             .then(response => {   
                 this.list03=response.data.data
+                console.log(response)
+            })
+        },
+        collectmaster01(id){
+                this.axios.post('/res/collectmaterial',{
+                userid:sessionStorage.userid,
+                id:id,
+                // type:4,
+                state:1
+            })
+            .then(response => {   
+                console.log(response)
+            })
+        },
+        collectmaster02(id){
+                this.axios.post('/res/collectmaterial',{
+                userid:sessionStorage.userid,
+                id:id,
+                // type:4,
+                state:2
+            })
+            .then(response => {   
+                console.log(response)
+            })
+        },
+        collectmaster03(id){
+                this.axios.post('/res/collectmaterial',{
+                userid:sessionStorage.userid,
+                id:id,
+                // type:4,
+                state:3
+            })
+            .then(response => {   
                 console.log(response)
             })
         },

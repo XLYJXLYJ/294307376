@@ -1,6 +1,12 @@
 <template>
   <div class="container33">  
-    <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign" :rules="rules">
+    <div class="userpic">
+      <input type="file" ref="file_el" @change="choise_file">    
+    </div>
+     <div class="userpiv"><img  :src="'data:image/png;base64,'+imageUrl01"></div>
+    
+    <div  class="two_text"><p>{{$store.state.usernamesession02}}</p></div>
+    <el-form :label-position="labelPosition" label-width="80px" class="usercenter" :model="formLabelAlign" :rules="rules">
         <el-form-item label="名称">
           <el-input class="input01" v-model="formLabelAlign.name"></el-input>
         </el-form-item>
@@ -22,6 +28,8 @@
     data() {
       return {
         labelPosition: 'right',
+        imageUrl:'',
+        imageUrl01:'',
         formLabelAlign: {
           name: '',
           sex: '',
@@ -46,10 +54,13 @@
                     getinfostate:1
             })
             .then(response => {
-              console.log(response)
+                 console.log(response)
                   this.formLabelAlign.name = this.$store.state.usernamesession02
                   this.formLabelAlign.age = response.data.data.age,
                   this.formLabelAlign.sex = response.data.data.sex
+                  this.formLabelAlign.name01 = response.data.data.realname
+                  this.imageUrl01 = response.data.data.imgBuffer
+                  console.log( this.imageUrl01)
                   if(this.formLabelAlign.sex===1){
                       this.formLabelAlign.sex='男'
                   }else{
@@ -61,19 +72,46 @@
             });
       },
       uploadmessage(){
-          this.axios.post('/res/userinfo',{
-                  userid:sessionStorage.userid,
-                  state:1,
-                  age:this.formLabelAlign.age,
-                  sex:this.formLabelAlign.sex==='男'?1:2,
-          })
-          .then(response => {
-            console.log(response)
-          })
-          .catch(function (error) {
-              console.log(error);
-          });
-    }
+                var picsource = this.$refs.file_el.files[0]
+                let formData = new FormData();
+                formData.append('userid',sessionStorage.userid);
+                formData.append('state',1);
+                formData.append('age',this.formLabelAlign.age);
+                formData.append('sex',this.formLabelAlign.sex==='男'?1:2);
+                formData.append('realname',this.formLabelAlign.name01);
+                formData.append('files',picsource);
+                let config = {
+                    headers:{
+                        'Content-Type':'application/x-jpg'
+                    }
+                }
+                this.axios.post('/res/userinfo',formData,config)
+                .then(function(response){
+                    console.log(response)
+                })
+                .catch(function (error) {
+                console.log(error);
+                });
+                this.$message({
+                    message: '上传成功',
+                    center: true
+                });  
+      },
+        choise_file () {
+            // this.indexdemoid=19
+            // this.urllarge='static/publish/'+this.indexdemoid+'l.png'
+            var file_info = this.$refs.file_el.files[0]
+            // 使用FileReader对象预览
+            var fr = new FileReader()
+            // 通过fr.readAsDataURL文件的内容进行读取
+            fr.readAsDataURL(file_info)
+            var that = this
+            fr.onload = function () {
+                // DataUrl data? :data:image/jpeg;base64,/9j/4
+                that.imageUrl = this.result
+
+            }   
+        }
     }
   }
 </script>
@@ -103,5 +141,50 @@
 }
 .el-form-item{
   margin-bottom: 15px;
+}
+.container33 .userpic{
+  position: relative;
+  height: 151px;
+  width: 151px;
+  left: -280px;
+  top: 60px;
+}
+.container33 .userpic input{
+  position: relative;
+  left: 30px;
+  top: 65px;
+  z-index: 1000;
+  width: 80px;
+  opacity: 0;
+}
+.container33 .userpiv{
+  position: relative;
+  height: 151px;
+  width: 151px;
+  top: -90px;
+  left: -280px;
+  border-radius: 100px;
+}
+.container33 .userpiv img{
+  width: 100%;
+  height: 100%;
+  border: 1px solid #f13232;
+  border-radius: 100px;
+}
+.container33 .two_text{
+    position: relative;
+    top: -80px;
+    left: -320px;
+    font-size: 28px;
+    color: #91121B;
+    font:bold;
+    text-align: center;
+    width: 229px;
+    height: 29px;
+}
+.container33 .usercenter{
+    position: relative;
+    left: 0px;
+    top: -240px;
 }
 </style>

@@ -4,7 +4,7 @@
         <div class="container35">
             <div class="container36">
                     <div>
-                        <p class="one">{{list.name}}</p>
+                        <p class="one">{{list.title}}</p>
                         <p class="two">分享于：2018.3.12</p>
                         <p class="three">已有339次浏览</p>
                     </div>
@@ -26,8 +26,9 @@
                 <div>
                         <!-- <a href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"></a> -->
                         <!-- <a href="https://www.baidu.com/" target="_blank">点击播放百度</a> -->
-                        
-                        <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe>
+                      <iframe class="video" frameborder="0" src="static/js/pxsnap.html" id="myFrameId"  name="snapplay"></iframe>
+                       
+                        <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
                 </div>
                 <div class="mydemo_frame">
                 <router-link class="Myvideo" to="/Video/Myvideo">Ta的作品</router-link>
@@ -41,7 +42,7 @@
                 <div class="comment01">
                     <div>
                         <p class="explain">作品说明</p>
-                        <span class="explaintext">猜灯谜，闹元宵，欢乐就在编程玩</span>
+                        <span class="explaintext">{{list.desc}}</span>
                     </div>
                     <div>
                         <div class="home-container">
@@ -83,6 +84,7 @@ export default{
             authid:'',
             demoid:'',
             bannerUrl: '',
+            demoxml:'',
             item:{
                 // url:"static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"
                 url:'https://www.baidu.com/'
@@ -91,6 +93,7 @@ export default{
     },
     mounted(){
         this.loadproject()
+        this.loadprojectplay()
         this.demoid = sessionStorage.id
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/snap.html#run:/codeplay/file/11566.xml'
         this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/snap.html#run:/codeplay/file/'+this.demoid+'.xml' 
@@ -103,6 +106,7 @@ export default{
     },
     
     methods:{
+        // 加载默认数据
         loadproject(){
             // if(sessionStorage.userid!=='unfined')
             this.axios.post('/res/getfile',{
@@ -119,6 +123,24 @@ export default{
                 this.authid= response.data.data.authid
             }) 
         },
+        // 播放文件获取数据
+        loadprojectplay(){
+             this.axios.post('/res/getfile',{
+                id:sessionStorage.id,
+            })
+            .then(response => {                          
+               this.demoxml = response.data  
+               console.log(this.demoxml)
+            //    console.log(this.$store.state.demoxmlid)
+            // window.frames["snapplay"].ide.droppedText(this.demoxml,'OPEN') 
+            window.frames["snapplay"].ide.openProjectString(this.demoxml) 
+
+            })
+            
+        },
+
+
+        // 点赞
         love(){  
             if(this.$store.state.userid){
                 if(!this.isPraise){
@@ -151,6 +173,7 @@ export default{
                 });
             }
         },
+        // 收藏
         star(){
             if(this.$store.state.userid){
                 if(!this.isCollect){
@@ -182,6 +205,7 @@ export default{
                 });
             }
         },
+        // 关注
         jia(){
             this.isAttention = !this.isAttention
             if(this.isAttention){
@@ -402,6 +426,11 @@ export default{
     margin: 0 auto;
     position: relative;
     top: 317px;
+        overflow-y:visible;
+}
+.container35 .mydemo_framebox img{
+    width: 100%;
+    height: 100%;
 }
 .container35  .mydemo_frame{
     position: absolute;

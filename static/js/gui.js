@@ -947,7 +947,7 @@ IDE_Morph.prototype.createControlBar = function () {
     this.controlBar.refreshSlider = function () {
         if (Process.prototype.enableSingleStepping && !myself.isAppMode) {
             slider.drawNew();
-            slider.show();
+            slider.hide();
         } else {
             slider.hide();
         }
@@ -3573,8 +3573,8 @@ IDE_Morph.prototype.aboutSnap = function () {
         function () {
             dlg.body.text = translations;
             dlg.body.drawNew();
-            btn1.show();
-            btn2.show();
+            btn1.hide();
+            btn2.hide();
             btn3.hide();
             btn4.hide();
             licenseBtn.hide();
@@ -3589,11 +3589,11 @@ IDE_Morph.prototype.aboutSnap = function () {
         function () {
             dlg.body.text = aboutTxt;
             dlg.body.drawNew();
-            btn1.show();
+            btn1.hide();
             btn2.hide();
-            btn3.show();
-            btn4.show();
-            licenseBtn.show();
+            btn3.hide();
+            btn4.hide();
+            licenseBtn.hide();
             translatorsBtn.hide();
             dlg.fixLayout();
             dlg.drawNew();
@@ -3606,8 +3606,8 @@ IDE_Morph.prototype.aboutSnap = function () {
         function () {
             dlg.body.text = noticeTxt;
             dlg.body.drawNew();
-            btn1.show();
-            btn2.show();
+            btn1.hide();
+            btn2.hide();
             btn3.hide();
             btn4.hide();
             licenseBtn.hide();
@@ -3622,8 +3622,8 @@ IDE_Morph.prototype.aboutSnap = function () {
         function () {
             dlg.body.text = versions;
             dlg.body.drawNew();
-            btn1.show();
-            btn2.show();
+            btn1.hide();
+            btn2.hide();
             btn3.hide();
             btn4.hide();
             licenseBtn.hide();
@@ -3638,9 +3638,9 @@ IDE_Morph.prototype.aboutSnap = function () {
         function () {
             dlg.body.text = creditsTxt;
             dlg.body.drawNew();
-            btn1.show();
-            btn2.show();
-            translatorsBtn.show();
+            btn1.hide();
+            btn2.hide();
+            translatorsBtn.hide();
             btn3.hide();
             btn4.hide();
             licenseBtn.hide();
@@ -4797,13 +4797,13 @@ IDE_Morph.prototype.toggleAppMode = function (appMode) {
         this.setColor(this.backgroundColor);
         this.controlBar.setColor(this.frameColor);
         elements.forEach(function (e) {
-            e.show();
+            e.hide();
         });
         this.stage.setScale(1);
         // show all hidden dialogs
         world.children.forEach(function (morph) {
             if (morph instanceof DialogBoxMorph) {
-                morph.show();
+                morph.hide();
             }
         });
         // prevent scrollbars from showing when morph appears
@@ -6150,7 +6150,7 @@ ProjectDialogMorph.prototype.setSource = function (source) {
     this.unpublishButton.hide();
     */
     if (this.source === 'local') {
-        this.deleteButton.show();
+        this.deleteButton.hide();
     } else { // examples
         this.deleteButton.hide();
     }
@@ -6256,7 +6256,7 @@ ProjectDialogMorph.prototype.installCloudProjectList = function (pl) {
         }
         if (item.ispublic) {
             myself.shareButton.hide();
-            myself.unshareButton.show();
+            myself.unshareButton.hide();
             /*
             if (item.ispublished) {
                 myself.publishButton.hide();
@@ -6268,7 +6268,7 @@ ProjectDialogMorph.prototype.installCloudProjectList = function (pl) {
             */
         } else {
             myself.unshareButton.hide();
-            myself.shareButton.show();
+            myself.shareButton.hide();
             /*
             myself.publishButton.hide();
             myself.unpublishButton.hide();
@@ -6279,9 +6279,9 @@ ProjectDialogMorph.prototype.installCloudProjectList = function (pl) {
         myself.edit();
     };
     this.body.add(this.listField);
-    this.shareButton.show();
+    this.shareButton.hide();
     this.unshareButton.hide();
-    this.deleteButton.show();
+    this.deleteButton.hide();
     this.buttons.fixLayout();
     this.fixLayout();
     if (this.task === 'open') {
@@ -6486,7 +6486,7 @@ ProjectDialogMorph.prototype.shareProject = function () {
                     null, // username is implicit
                     function () {
                         proj.ispublic = true;
-                        myself.unshareButton.show();
+                        myself.unshareButton.hide();
                         myself.shareButton.hide();
                         /*
                         myself.publishButton.show();
@@ -6535,7 +6535,7 @@ ProjectDialogMorph.prototype.unshareProject = function () {
                     null, // username is implicit
                     function () {
                         proj.ispublic = false;
-                        myself.shareButton.show();
+                        myself.shareButton.hide();
                         myself.unshareButton.hide();
                         /*
                         myself.publishButton.hide();
@@ -6578,10 +6578,10 @@ ProjectDialogMorph.prototype.publishProject = function () {
                     null, // username is implicit
                     function () {
                         proj.ispublished = true;
-                        myself.unshareButton.show();
+                        myself.unshareButton.hide();
                         myself.shareButton.hide();
                         myself.publishButton.hide();
-                        myself.unpublishButton.show();
+                        myself.unpublishButton.hide();
                         entry.label.isItalic = true;
                         entry.label.drawNew();
                         entry.label.changed();
@@ -6624,9 +6624,9 @@ ProjectDialogMorph.prototype.unpublishProject = function () {
                     null, // username is implicit
                     function () {
                         proj.ispublished = false;
-                        myself.unshareButton.show();
+                        myself.unshareButton.hide();
                         myself.shareButton.hide();
-                        myself.publishButton.show();
+                        myself.publishButton.hide();
                         myself.unpublishButton.hide();
                         entry.label.isItalic = false;
                         entry.label.drawNew();

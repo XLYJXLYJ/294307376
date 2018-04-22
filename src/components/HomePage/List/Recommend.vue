@@ -4,14 +4,12 @@
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id'> 
                     <router-link to="/Video">
                         <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
-                            <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
                             <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>
                             <p>{{item.title}}</p>
                             <span class="game_cat">{{item.desc}}</span>
                             <span class="down01"><i class="icon_see"><span>4k</span></i></span>
                             <span class="down02"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
                             <span class="down03"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
-                            </a>
                         </div>
                     </router-link>
             </el-col>         
@@ -73,10 +71,13 @@
 .container01 .list_pic{
     margin-top: 44px;
     height: 270px;
-    width: 140px;
+    width: 173px;
     cursor: pointer;
     color: #707070;
 }
+/* .container01 .list_pic:hover{
+    background: #707070;
+} */
 .container01 .imgcon{
     height: 170px;
     width: 173px;
@@ -85,13 +86,19 @@
     width: 100%;
     height: 100%;
 }
+.container01 .imgcon img:hover{
+    border: 1px solid #d0d0d0;
+}
 .container01 p{
     font-size: 20px;
     position: relative;
     top: 15px;
     text-align: left;
     color:#000;
-    }
+}
+.container01 p:hover{
+    color:#F13232;
+}
 .container01 .game_cat{
     display: block;
     font-size: 16px;
@@ -179,5 +186,8 @@
     background-color: #dd2e2e;
     color:#fff;
     cursor: pointer;
+}
+.container01 a{
+    text-decoration: none;
 }
 </style>

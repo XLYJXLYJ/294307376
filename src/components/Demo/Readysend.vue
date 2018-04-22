@@ -3,9 +3,9 @@
         <ul v-show="nosend">
             <li v-for="item in list" :key='item.id'>
                 <div class="all_up">
-                    <img :src="'static/publish/'+item.surfaceplot+'l.png'" alt="">
+                    <img :src="item.imgBuffer" alt="">
                     <p>{{item.title}}</p>
-                    <span>{{item.create_time|formatDate}}</span>
+                    <span>{{item.update_time|formatDate}}</span>
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
                 <button class="button02">加入</button>
@@ -49,6 +49,7 @@ export default{
                     this.nosend = false
                 }else{
                     this.list=response.data.data
+                    console.log(response)
                 }
             })
             },

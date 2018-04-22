@@ -37,7 +37,6 @@ export default {
                     state:3,
             })
             .then(response => {
-                console.log(response.data.data)
                  this.list = response.data.data
             })
             .catch(function (error) {

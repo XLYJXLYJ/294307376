@@ -30,14 +30,14 @@
                 <li class="new"><p>最多使用</p></li>
             </ul>
             <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox>
-            <p class="all">共有1965个素材</p>
+            <p class="all">共有{{listnew.length}}个素材</p>
         </div>
         <div class="first">
             <ul class="role">
-                <li v-for="item in list" :key="item.id">
+                <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
                     <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
                     <div class="roleup">
-                        <button>采集</button>
+                        <button @click="collectmaster(item.id)">采集</button>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>
@@ -45,22 +45,22 @@
         </div>
         <div class="sortnum01">
             <ul>
-                <li v-for="(item,index) in pageitem" :key="item.pageid" @click="Selectpage(item.pageid)" :class="{demohover:index==isdemohover03-1}"><p>{{item.pageid}}</p></li>
+                <li v-for="(item,index) in pageitem" :key="item.pageid" v-if="index<6" @click="Selectpage(item.pageid)" :class="{demohover:index==isdemohover03-1}"><p>{{item.pageid}}</p></li>
             </ul>
             <div>
                 <p>...</p>
-                <p class="night">9</p>
-                <p class="endpage">上一页</p>
-                <p class="nextpage">下一页</p>
+                <p class="night" @click="Selectpage(13)">13</p>
+                <p class="endpage" @click="Selectpagebefore">上一页</p>
+                <p class="nextpage" @click="Selectpageafter">下一页</p>
             </div>
 
             <div class="sortfly">
                 <p class="one">到第</p>
                 <div>
-                    <input type="text">
+                    <input type="text" v-model="pageuser">
                 </div>
                 <p class="two">页</p>
-                <button>确定</button>
+                <button @click="Selectpageuser">确定</button>
             </div>
 
         </div>
@@ -73,6 +73,9 @@ export default{
     data() {
       return {
         list:'',
+        listnew:'',
+        nowid:1,
+        pageuser:'',
         id02:'',
         checked: true,
         sort0101:false,
@@ -121,6 +124,12 @@ export default{
             {pageid:4},
             {pageid:5},
             {pageid:6},
+            {pageid:7},
+            {pageid:8},
+            {pageid:9},
+            {pageid:10},
+            {pageid:11},
+            {pageid:12},
         ],
       };
     },
@@ -138,9 +147,11 @@ export default{
                     this.sort0103=false;
                     this.axios.post('/res/resourcelist',{
                         onenav:1,
+                        pagesize:235
                     })
                     .then(response => {   
-                        this.list=response.data.data
+                    this.list=response.data.data
+                    this.listnew=response.data.data
                     })
                 break
                 case id=1:
@@ -150,9 +161,11 @@ export default{
                     this.axios.post('/res/resourcelist',{
                         onenav:1,
                         twonav:1,
+                        pagesize:235
                     })
                     .then(response => {   
-                        this.list=response.data.data
+                    this.list=response.data.data
+                    this.listnew=response.data.data
                     })
                 break;
                 case id=2:
@@ -162,10 +175,11 @@ export default{
                     this.axios.post('/res/resourcelist',{
                         onenav:1,
                         twonav:2,
+                        pagesize:235
                     })
                     .then(response => {   
-                        this.list=response.data.data
-                        console.log(response)
+                    this.list=response.data.data
+                    this.listnew=response.data.data
                     })
                 break;
                 case id=3:
@@ -175,9 +189,11 @@ export default{
                     this.axios.post('/res/resourcelist',{
                         onenav:1,
                         twonav:3,
+                        pagesize:235
                     })
                     .then(response => {   
-                        this.list=response.data.data
+                    this.list=response.data.data
+                    this.listnew=response.data.data
                     })
                 break;
                 case id=4:
@@ -187,10 +203,11 @@ export default{
                     this.axios.post('/res/resourcelist',{
                         onenav:1,
                         twonav:4,
+                        pagesize:235
                     })
                     .then(response => {   
-                        this.list=response.data.data
-                        console.log(response)
+                    this.list=response.data.data
+                    this.listnew=response.data.data
                     })
                 break;
             }
@@ -205,28 +222,65 @@ export default{
             })
             .then(response => {   
                 this.list=response.data.data
+                this.listnew=response.data.data
             })
         },
         Getsource(){
             this.axios.post('/res/resourcelist',{
-                onenav:2,
+                onenav:1,
+                pagesize:235
             })
             .then(response => {   
                 this.list=response.data.data
+                 this.listnew=response.data.data
+                console.log(response)
+            })
+        },
+        collectmaster(id){
+                this.axios.post('/res/collectmaterial',{
+                userid:sessionStorage.userid,
+                id:id,
+                // type:4,
+                state:1
+            })
+            .then(response => {   
+                console.log(response)
             })
         },
         Selectpage(id){
-            this.isdemohover03=id
-            this.axios.post('/res/resourcelist',{
-                onenav:1,
-                twonav:this.id02,
-                threenav:this.isdemohover02,
-                pagenum:id
-            })
-            .then(response => {   
-                this.list=response.data.data
-            })
+            this.nowid = id?id:1
+            var head01 = 16*(id-1)
+            var foot01 = 16*id-1
+            console.log(head01)
+            console.log(foot01)
+            this.listnew=this.list.slice(head01,foot01)
+            console.log(this.listnew)
         },
+        Selectpageuser(id){
+            var head01 = 16*(this.pageuser-1)
+            var foot01 = 16*this.pageuser-1
+            console.log(head01)
+            console.log(foot01)
+            this.listnew=this.list.slice(head01,foot01)
+        },
+        Selectpagebefore(){
+            var id =this.nowid
+            var head01 = 16*(id-2)
+            var foot01 = 16*(id-1)-1
+            this.nowid=this.nowid-1
+            console.log(head01)
+            console.log(foot01)
+            this.listnew=this.list.slice(head01,foot01)
+        },
+        Selectpageafter(){
+            var id =this.nowid
+            var head01 = 16*(id)
+            var foot01 = 16*(id+1)-1
+            this.nowid=this.nowid+1
+            console.log(head01)
+            console.log(foot01)
+            this.listnew=this.list.slice(head01,foot01)
+        }
     },
         components:{
             Sourcehead
@@ -414,7 +468,7 @@ export default{
    color:#F13232;
    font-size: 16px;
    position: relative;
-   top: -28px;
+   top: -26px;
    left: 886px;
 }
 
@@ -564,7 +618,7 @@ export default{
 }
 .container66 .sortnum01 .sortfly input{
     position: relative;
-    left: 100px;
+    left: 145px;
     top: -35px;
     width: 32px;
     height: 22px;

@@ -5,11 +5,7 @@
         <img class="star01" src="../assets/Download/starfish.png" alt="">
         <div class="setaccount">
            <p class="one_text">账号设置</p>
-        </div>
-        <div>
-            <img class="cat" src="../assets/set/cat.png" alt="">
-            <div  class="two_text"><p>{{$store.state.usernamesession02}}</p></div>
-        </div>
+        </div>  
         <div class="mydemo_frame">
         <router-link class="Mydemo" to="/Setting/Usercenter">个人中心</router-link>
         <router-link class="Delete" to="/Setting/Copassword">修改密码</router-link>
@@ -84,18 +80,13 @@ export default{
     width: 229px;
     height: 29px;
 }
-.container31 .cat{
-    position: relative;
-    left: 73px;
-    top: 140px;
-    color: #555;
-}
  .container32 .mydemo_frame{
     position: relative;
     width: 522px;
     height: 20px;
-    top: -100px;
-    left: 339px;
+    top: 20px;
+    left: 379px;
+    z-index: 1000;
     border-bottom: 2px solid #333;
 }
  .container32 .Mydemo{

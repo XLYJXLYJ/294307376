@@ -74,6 +74,9 @@
    left: 134px;
    top: -68px;
 }
+.container06 .rank_up p:hover{
+   color: #F13232;
+}
 .container06 .rank_up .ranking{
     width: 69px;
     height: 68px;
@@ -84,6 +87,9 @@
 .container06 .rank_up .ranking img{
     width: 100%;
     height: 100%;
+}
+.container06 .rank_up .ranking img:hover{
+    border: 1px solid #d0d0d0;
 }
 .container06 .rank_list_top img{ 
     float: left;
@@ -159,6 +165,9 @@
    height: 56px;
    margin-top: 40px;
    cursor: pointer;
+}
+.container06 a{
+    text-decoration: none;
 }
 </style>
 

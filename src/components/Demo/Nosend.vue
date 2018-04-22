@@ -1,19 +1,19 @@
 <template>
     <div class="container29">
-        <ul v-for="item in title" :key='item.id' v-show="nosend">
-            <li>
+        <ul v-show="nosend">
+            <li v-for="item in title" :key='item.id'>
                 <div class="all_up">
-                    <img :src="'static/publish/'+item.surfaceplot+'l.png'" alt="">
+                    <img :src="item.imgBuffer" alt="">
                     <p>{{item.title}}</p>
-                    <span>{{item.create_time|formatDate}}</span>
+                    <span>{{item.update_time|formatDate}}</span>
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
-                <router-link to="/Publish"><button class="button02" @click="publish(item.id)">发布</button></router-link>
-                <span class="down"><i class="icon_see"><span>36k</span></i></span>
-                <span class="down"><i class="icon_love"><span>265</span></i></span>
-                <span class="down"><i class="icon_star"><span>176</span></i></span>
+                <button class="button02">加入</button>
+                <span class="down"><i class="icon_see"><span>5k</span></i></span>
+                <span class="down"><i class="icon_love"><span>5</span></i></span>
+                <span class="down"><i class="icon_star"><span>7</span></i></span>
                 <p class="cancelpub" @click="deletedemo(item.id)">删除</p>
-            </li>  
+            </li>    
         </ul>  
     </div>
 </template>
@@ -48,6 +48,7 @@ import { formatDate } from '../../public/time.js'
                         this.nosend = false
                     }else{
                         this.title=response.data.data
+                        console.log(response)
                     }
                 })
             },
@@ -140,12 +141,12 @@ import { formatDate } from '../../public/time.js'
 }
 .container29 .all_up span{
     height: 14px;
-    width:51px;
+    width:221px;
     color: #999;
     font-size: 14px;
     position: absolute;
-    top: 178px;
-    left: 12px;
+    top: 215px;
+    left: 15px;
 }
 .container29 .button01{
   height: 50px;
@@ -198,7 +199,7 @@ import { formatDate } from '../../public/time.js'
 }
 .container29 .cancelpub{
   height: 14px;
-  width: 57px;
+  width: 77px;
   color: #666;
   font-size: 16px;
   position: absolute;

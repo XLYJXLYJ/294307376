@@ -5,8 +5,8 @@
                 <ul class="snapheaderleft">
                     <li class="bcw"><a href="./"><img src="../assets/snappic/snapb.png" alt=""></a></li>
                     <li class="borderlight01" @click="snapdropdowmcontrol" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
-                    <li class="borderlight"   @click="dialogSave = true"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
-                    <!-- <li class="borderlight03"><router-link to="/Publish"><img src="../assets/snappic/snapu.png" alt="" @click="handiframepublish"></router-link></li> -->
+                    <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
+                    <li class="borderlight03"><img src="../assets/snappic/snapu.png" alt="" @click="handiframepublish"></li>
                     <li class="borderlight04" v-show="login"
                     @click="dialogLogin = true, 
                     dialogLoginshow = true, 
@@ -48,8 +48,8 @@
                 <el-dialog :visible.sync="dialogSave" :modal="false" width="420px">
                     <div class="container50">
                         <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
-                            <img class="welcome" src="../assets/login/welcome.png" alt="">
-                            <img class="sign_logo" src="../assets/login/login_logo.png" alt="">
+                            <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">
+                            <img class="sign_logo" src="../assets/login/login_logo.png" alt=""> -->
                             <el-form-item class="iden01">
                                 <el-input type="text" v-model="formSave.title" auto-complete="off" placeholder="请输入项目名称"></el-input>
                             </el-form-item>
@@ -70,8 +70,8 @@
                 <el-dialog :visible.sync="dialogExport" :modal="false" width="420px">
                     <div class="container501">
                         <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
-                            <img class="welcome" src="../assets/login/welcome.png" alt="">
-                            <img class="sign_logo" src="../assets/login/login_logo.png" alt="">
+                            <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">
+                            <img class="sign_logo" src="../assets/login/login_logo.png" alt=""> -->
                             <el-form-item class="iden01">
                                 <el-input type="text" v-model="formSave.exporttitle" auto-complete="off" placeholder="请输入项目名称"></el-input>       
                             </el-form-item>
@@ -88,8 +88,8 @@
                 <el-dialog :visible.sync="dialogNew" :modal="false" width="420px">
                     <div class="container502">
                         <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
-                            <img class="welcome" src="../assets/login/welcome.png" alt="">
-                            <img class="sign_logo" src="../assets/login/login_logo.png" alt="">
+                            <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">
+                            <img class="sign_logo" src="../assets/login/login_logo.png" alt=""> -->
                             <el-form-item class="iden01">
                                 <h1>确定放弃当前项目，新建新的项目吗？</h1>      
                             </el-form-item>
@@ -101,13 +101,32 @@
             </div>
         </transition>
 
+
+        <transition name="el-fade-in-linear">
+            <div>
+                <el-dialog :visible.sync="dialogupload" :modal="false" width="420px">
+                    <div class="container5020">
+                        <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
+                            <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">
+                            <img class="sign_logo" src="../assets/login/login_logo.png" alt=""> -->
+                            <el-form-item class="iden01">
+                                <h1>确定发布吗？</h1>      
+                            </el-form-item>
+                             <el-button  class="iden02"  @click="getdemopublish"><router-link to="/Publish">确定</router-link></el-button>
+                            <el-button  class="iden03" @click="dialogupload=false">取消</el-button>
+                        </el-form>
+                    </div>
+                </el-dialog>
+            </div>
+        </transition>
+
             <transition name="el-fade-in-linear">
             <div>
                 <el-dialog :visible.sync="dialogOpen" :modal="false" width="420px">
                     <div class="container503">
                         <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
-                            <img class="welcome" src="../assets/login/welcome.png" alt="">
-                            <img class="sign_logo" src="../assets/login/login_logo.png" alt="">
+                            <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">
+                            <img class="sign_logo" src="../assets/login/login_logo.png" alt=""> -->
                             <!-- <el-form-item class="tele">
                                 <el-input type="text" v-model="formSave.userid" auto-complete="off" placeholder="请输入用户名" v-show="true"></el-input>
                             </el-form-item> -->
@@ -198,6 +217,7 @@ export default{
             dialogExport: false,
             dialogNew: false,
             dialogOpen: false,
+            dialogupload:false,
             snapdropdown01:false,
             snapdemodropdowm:false,
             login:true,
@@ -281,11 +301,7 @@ export default{
     },
     methods: {
         snapdropdowmcontrol(){
-            console.log(this.snapdropdown01);
-            this.snapdropdown01 = !this.snapdropdown01
-            console.log(123456)
-            console.log(this.snapdropdown01)
-            
+            this.snapdropdown01 = !this.snapdropdown01          
         },
         issnapdropdowncontrol(event){
             if(!document.getElementById("sanpPanel").contains(event.target)){ 
@@ -340,64 +356,78 @@ export default{
 
         // 保存文件
         handiframe() {
-            this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
-            let filebir = this.formSave.file
-            this.filebinary = new Blob([filebir]);
+            if(sessionStorage.userid){
+                this.dialogSave = true
+                this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT(' ')
+                let filebir = this.formSave.file
+                this.filebinary = new Blob([filebir]);
+            }else{
+                this.$message({
+                    message: '请先登录',
+                    center: true
+                });
+            }
         },
         submitUpload() {
-             let formData = new FormData();
-             formData.append('userid',this.formSave.userid);
-             formData.append('title',this.formSave.title);
-             formData.append('desc',this.formSave.desc);
-             formData.append('files',this.filebinary);
-             let config = {
-                 headers:{
-                     'Content-Type':'multipart/form-data'
-                 }
-             }
-             this.axios.post('/res/upload',formData,config)
-             .then(function(response){
-                 console.log(response)
-             })
-             this.dialogSave = false;
-            this.$message({
-                message: '上传成功',
-                center: true
-            });
+                let formData = new FormData();
+                formData.append('userid',this.formSave.userid);
+                formData.append('title',this.formSave.title);
+                formData.append('desc',this.formSave.desc);
+                formData.append('files',this.filebinary);
+                let config = {
+                    headers:{
+                        'Content-Type':'multipart/form-data'
+                    }
+                }
+                this.axios.post('/res/upload',formData,config)
+                .then(function(response){
+                    console.log(response)
+                })
+                this.dialogSave = false;
+                this.$message({
+                    message: '上传成功',
+                    center: true
+                });
         },
         // 发布文件
-        // handiframepublish() {
-        //     this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
-        //     let filebir = this.formSave.file
-        //     this.filebinary = new Blob([filebir]);
-        //     let formData = new FormData();
-        //      formData.append('userid',this.formSave.userid);
-        //      formData.append('title',this.formSave.title);
-        //      formData.append('desc',this.formSave.desc);
-        //      formData.append('files',this.filebinary);
-        //      let config = {
-        //          headers:{
-        //              'Content-Type':'multipart/form-data'
-        //          }
-        //      }
-        //      this.axios.post('/res/upload',formData,config)
-        //      .then(function(response){
-        //          console.log(response)
-        //      })
-        // },
-        // getdemopublish(){
-        //         this.axios.post('/res/filelist',{
-        //             userid:this.$store.state.userid,
-        //             state:0
-        //         })
-        //         .then(response => {
-        //             if(response.data.data.msg=='这回真的没有了~'){
-        //                 this.nosend = false
-        //             }else{
-        //                 this.$store.state.demoxmlid = response.data.data.id
-        //             }
-        //         })
-        //     },
+        handiframepublish() {
+            if(sessionStorage.userid){
+                this.dialogupload = true
+                this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
+                let filebir = this.formSave.file
+                this.filebinary = new Blob([filebir]);
+                let formData = new FormData();
+                formData.append('userid',this.formSave.userid);
+                formData.append('title','未发布成功的作品');
+                formData.append('desc','未发布成功的作品');
+                formData.append('files',this.filebinary);
+                let config = {
+                    headers:{
+                        'Content-Type':'multipart/form-data'
+                    }
+                }
+                this.axios.post('/res/upload',formData,config)
+                .then(function(response){
+                        console.log(123)
+                })
+            }else{
+                this.$message(
+                    {
+                        message: '请先登录',
+                        center: true
+                    }
+                )
+            }
+        },
+        getdemopublish(){
+                this.axios.post('/res/filelist',{
+                    userid:this.$store.state.userid,
+                    state:0
+                })
+                .then(response => {
+                    this.$store.state.demoxmlid = response.data.data[response.data.data.length - 1].id    
+                })
+            },
         //登陆
         Loginbtn() {
             this.axios.post('/res/login', {
@@ -748,10 +778,10 @@ export default{
     margin: 0px;
     padding: 0px;
     width: 100%;
-    height: 426px;
+    height: 386px;
     background: #fff;
 }
-.container50 .welcome{
+/* .container50 .welcome{
     position: absolute;
     top: 56px;
     left: 60px;
@@ -760,12 +790,12 @@ export default{
     position: absolute;
     top: 56px;
     left: 266px;
-}
+} */
 .container50 .tele{
     position: absolute;
     height: 49px;
     width: 297px;
-    top: 110px;
+    top: 10px;
     left: 60px;
     padding-left: 10px;
 }
@@ -773,7 +803,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 297px;
-    top: 108px;
+    top: 58px;
     left: 60px;
     padding-left: 10px;
 }
@@ -781,15 +811,24 @@ export default{
     position: absolute;
     height: 147px;
     width: 297px;
-    top: 156px;
+    top: 116px;
     left: 60px;
     padding-left: 10px;
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #C8C8C8;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #C8C8C8;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #C8C8C8;
 }
 .container50 .iden03{
     position: absolute;
     height: 29px;
     width: 297px;
-    top: 364px;
+    top: 324px;
     left: 160px;
     padding-left: 10px;
 }
@@ -804,7 +843,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 297px;
-    top: 366px;
+    top: 346px;
     left: 68px;
     background: #F13232;
     color: #fff;
@@ -820,7 +859,7 @@ export default{
     margin: 0px;
     padding: 0px;
     width: 100%;
-    height: 266px;
+    height: 226px;
     background: #fff;
 }
 .container501 .welcome{
@@ -837,7 +876,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 297px;
-    top: 110px;
+    top: 70px;
     left: 60px;
     padding-left: 10px;
 }
@@ -845,7 +884,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 297px;
-    top: 118px;
+    top: 78px;
     left: 60px;
     padding-left: 10px;
 }
@@ -853,17 +892,17 @@ export default{
     position: absolute;
     height: 39px;
     width: 197px;
-    top: 188px;
+    top: 148px;
     left: 125px;
 }
 .container502{
     margin: 0px;
     padding: 0px;
     width: 100%;
-    height: 266px;
+    height: 226px;
     background: #fff;
 }
-.container502 .welcome{
+/* .container502 .welcome{
     position: absolute;
     top: 56px;
     left: 60px;
@@ -872,7 +911,7 @@ export default{
     position: absolute;
     top: 56px;
     left: 266px;
-}
+} */
 .container502 .tele{
     position: absolute;
     height: 49px;
@@ -885,7 +924,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 297px;
-    top: 118px;
+    top: 78px;
     left: 90px;
     padding-left: 10px;
 }
@@ -893,14 +932,63 @@ export default{
     position: absolute;
     height: 39px;
     width: 77px;
-    top: 178px;
+    top: 138px;
     left: 115px;
 }
 .container502 .iden03{
     position: absolute;
     height: 39px;
     width: 77px;
-    top: 178px;
+    top: 138px;
+    left: 225px;
+}
+
+
+.container5020{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 226px;
+    background: #fff;
+}
+/* .container5020 .welcome{
+    position: absolute;
+    top: 56px;
+    left: 60px;
+}
+.container5020 .sign_logo{
+    position: absolute;
+    top: 56px;
+    left: 266px;
+} */
+.container5020 .tele{
+    position: absolute;
+    height: 49px;
+    width: 297px;
+    top: 110px;
+    left: 60px;
+    padding-left: 10px;
+}
+.container5020 .iden01{
+    position: absolute;
+    height: 49px;
+    width: 297px;
+    top: 78px;
+    left: 160px;
+    padding-left: 10px;
+}
+.container5020 .iden02{
+    position: absolute;
+    height: 39px;
+    width: 77px;
+    top: 138px;
+    left: 115px;
+}
+.container5020 .iden03{
+    position: absolute;
+    height: 39px;
+    width: 77px;
+    top: 138px;
     left: 225px;
 }
 

@@ -39,8 +39,7 @@ export default{
                 userid:sessionStorage.userid,
                 state:1
             })
-            .then(response => {    
-                console.log(response)       
+            .then(response => {        
                 if(response.data.data.msg=='这回真的没有了~'){
                     this.uservideo = false
                 }else{
