@@ -3,7 +3,8 @@
     <div class="userpic">
       <input type="file" ref="file_el" @change="choise_file">    
     </div>
-     <div class="userpiv"><img  :src="'data:image/png;base64,'+imageUrl01"></div>
+     <div class="userpiv" v-show="userpic"><img  :src="'data:image/png;base64,'+imageUrl01"></div>
+     <div class="userpiv" v-show="localpic"><img  :src="imageUrl"></div>
     
     <div  class="two_text"><p>{{$store.state.usernamesession02}}</p></div>
     <el-form :label-position="labelPosition" label-width="80px" class="usercenter" :model="formLabelAlign" :rules="rules">
@@ -28,8 +29,10 @@
     data() {
       return {
         labelPosition: 'right',
-        imageUrl:'',
+        imageUrl:'static/localpic.png',
         imageUrl01:'',
+        userpic:'',
+        localpic:'',
         formLabelAlign: {
           name: '',
           sex: '',
@@ -65,6 +68,18 @@
                       this.formLabelAlign.sex='男'
                   }else{
                       this.formLabelAlign.sex='女'
+                  }
+                  if(this.formLabelAlign.age==null){
+                      this.formLabelAlign.age = ''
+                  }else{
+                     this.formLabelAlign.age = this.formLabelAlign.age
+                  }
+                  if(this.imageUrl01){
+                      this.localpic = false
+                      this.userpic = true
+                  }else{
+                      this.localpic = true
+                      this.userpic = false
                   }
             })
             .catch(function (error) {
@@ -168,7 +183,7 @@
 .container33 .userpiv img{
   width: 100%;
   height: 100%;
-  border: 1px solid #f13232;
+  border: 1px solid #BDBDBD;
   border-radius: 100px;
 }
 .container33 .two_text{

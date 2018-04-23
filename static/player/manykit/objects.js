@@ -9,12 +9,22 @@ SpriteMorph.prototype.init = function(globals) {
 SpriteMorph.prototype.categories.push('PXFrame');
 SpriteMorph.prototype.blockColor['PXFrame'] = new Color(0, 151, 156);
 
-// makeclock
-SpriteMorph.prototype.categories.push('MakeClock');
-SpriteMorph.prototype.blockColor['MakeClock'] = new Color(255, 151, 156);
+// makerclock
+SpriteMorph.prototype.categories.push('MakerClock');
+SpriteMorph.prototype.blockColor['MakerClock'] = new Color(0, 151, 200);
 
 SpriteMorph.prototype.originalInitBlocks = SpriteMorph.prototype.initBlocks;
 SpriteMorph.prototype.initPXFBlocks = function () {
+
+    this.blocks.pxf_GetServerMessage =
+    {
+        only: SpriteMorph,
+        type: 'predicate',
+        category: 'PXFrame',
+        spec: 'GetServerMessage',
+        transpilable: true
+    };
+
     this.blocks.pxf_PinMode =
     {
         only: SpriteMorph,
@@ -91,7 +101,7 @@ SpriteMorph.prototype.initPXFBlocks = function () {
         type: 'command',
         category: 'PXFrame',
         spec: 'Server index %n write value %n',
-        defaults: [90],
+        defaults: [0, 90],
         transpilable: true
     };
 
@@ -276,37 +286,108 @@ SpriteMorph.prototype.initPXFBlocks = function () {
         defaults: [100],
         transpilable: true
     };
-
-    // makeclock
-    this.blocks.pxf_LightInternal =
+	
+	this.blocks.pxf_WeightInit =
     {
         only: SpriteMorph,
         type: 'command',
-        category: 'MakeClock',
-        spec: 'pxf_LightInternal as %b',
+        category: 'PXFrame',
+        spec: 'weight tester %n init at pinOut %pxf_Pin pinClk %pxf_Pin',
+        defaults: [0, 7, 8],
+        transpilable: true
+    };
+	
+	this.blocks.pxf_WeightTest =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'PXFrame',
+        spec: 'test the weight of %n',
+        defaults: [0],
+        transpilable: true
+    };
+	
+	this.blocks.pxf_GetWeight =
+    {
+        only: SpriteMorph,
+        type: 'reporter',
+        category: 'PXFrame',
+        spec: 'get weight of %n',
+		defaults: [0],
+        transpilable: true
+    };
+
+    // makerclock
+    this.blocks.pxf_MC_LightInternal =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'MakerClock',
+        spec: 'LED internal as %b',
         defaults: [true],
         transpilable: true
     };
 
-    this.blocks.pxf_Light =
+    this.blocks.pxf_MC_LED =
     {
         only: SpriteMorph,
         type: 'command',
-        category: 'MakeClock',
-        spec: 'Light %pxf_Pin_mc as %b',
+        category: 'MakerClock',
+        spec: 'LED %pxf_Pin_mc as %b',
         defaults: ["1", true],
         transpilable: true
     };
 
-    this.blocks.pxf_Segment =
+    this.blocks.pxf_MC_Buzzer =
     {
         only: SpriteMorph,
         type: 'command',
-        category: 'MakeClock',
-        spec: 'Segment %pxf_Pin_mc as %n',
+        category: 'MakerClock',
+        spec: 'Buzzer %pxf_Pin_mc as %b',
+        defaults: ["1", true],
+        transpilable: true
+    };
+
+    this.blocks.pxf_MC_Segment =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'MakerClock',
+        spec: 'LEDSegment %pxf_Pin_mc as %n',
         defaults: ["3", 100],
         transpilable: true
     };
+
+    this.blocks.pxf_MC_Moto =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'MakerClock',
+        spec: 'Moto %pxf_PinMoto_mc as speed %n',
+        defaults: ["1", 100],
+        transpilable: true
+    };
+
+    this.blocks.pxf_MC_DistTest =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'MakerClock',
+        spec: 'UltraSensor %pxf_Pin_mc Get dist',
+        defaults: ["1"],
+        transpilable: true
+    };
+
+    this.blocks.pxf_MC_GetDist =
+    {
+        only: SpriteMorph,
+        type: 'reporter',
+        category: 'MakerClock',
+        spec: 'UltraSensor getDist',
+        transpilable: true
+    };
+
+    StageMorph.prototype.codeMappings['pxf_GetServerMessage'] = 'manykit.pxf_GetServerMessage();';
 
 	StageMorph.prototype.codeMappings['pxf_PinMode'] = 'manykit.pxf_PinMode(<#1>, <#2>);';
 	StageMorph.prototype.codeMappings['pxf_DigitalWrite'] = 'manykit.pxf_DigitalWrite(<#1>, <#2>);';
@@ -337,11 +418,19 @@ SpriteMorph.prototype.initPXFBlocks = function () {
     StageMorph.prototype.codeMappings['pxf_MP3SetVolume'] = 'manykit.pxf_MP3SetVolume(<#1>);';
     StageMorph.prototype.codeMappings['pxf_MP3Next'] = 'manykit.pxf_MP3Next();';
 
-    StageMorph.prototype.codeMappings['pxf_IRInit'] = 'manykit.pxf_IRInit();';
+    StageMorph.prototype.codeMappings['pxf_IRInit'] = 'manykit.pxf_IRInit(<#1>);';
     StageMorph.prototype.codeMappings['pxf_IRSend'] = 'manykit.pxf_IRSend();';
+	
+	StageMorph.prototype.codeMappings['pxf_WeightInit'] = 'manykit.pxf_WeightInit(<#1>, <#2>, <#3>);';
+    StageMorph.prototype.codeMappings['pxf_WeightTest'] = 'manykit.pxf_WeightTest(<#1>);';
+	StageMorph.prototype.codeMappings['pxf_GetWeight'] = 'manykit.pxf_GetWeight(<#1>);';
 
-    StageMorph.prototype.codeMappings['pxf_LightInternal'] = 'manykit.pxf_LightInternal(<#1>)';
-    StageMorph.prototype.codeMappings['pxf_Segment'] = 'manykit.pxf_Segment(<#1>, <#2>)';
+    StageMorph.prototype.codeMappings['pxf_MC_LightInternal'] = 'manykit.pxf_MC_LightInternal(<#1>)';
+    StageMorph.prototype.codeMappings['pxf_MC_LED'] = 'manykit.pxf_MC_LED(<#1>, <#2>)';
+    StageMorph.prototype.codeMappings['pxf_MC_Buzzer'] = 'manykit.pxf_MC_Buzzer(<#1>, <#2>)';
+    StageMorph.prototype.codeMappings['pxf_MC_Segment'] = 'manykit.pxf_MC_Segment(<#1>, <#2>)';
+    StageMorph.prototype.codeMappings['pxf_MC_DistTest'] = 'manykit.pxf_MC_DistTest(<#1>)';
+    StageMorph.prototype.codeMappings['pxf_MC_GetDist'] = 'manykit.pxf_MC_GetDist()';
 }
 
 SpriteMorph.prototype.initBlocks =  function() {
@@ -366,6 +455,22 @@ SpriteMorph.prototype.blockTemplates = function (category) {
     };
 
     //  Button that triggers a connection attempt 
+    this.arduinoConnectPXLauncher = new PushButtonMorph(
+        null,
+        function () {
+            myself.pxframe.attemptConnectPXLauncher();
+        },
+        'Connect PXLauncher'
+        );
+
+    this.arduinoDisConnectPXLauncher = new PushButtonMorph(
+        null,
+        function () {
+            myself.pxframe.attemptDisConnectPXLauncher();
+        },
+        'DisConnect PXLauncher'
+        );
+
     this.arduinoConnectButton = new PushButtonMorph(
             null,
             function () {
@@ -392,9 +497,14 @@ SpriteMorph.prototype.blockTemplates = function (category) {
             );
 
     if (category === 'PXFrame') {
+        //blocks.push(this.arduinoConnectPXLauncher);
+        //blocks.push(this.arduinoDisConnectPXLauncher);
+        //blocks.push('-'); 
         blocks.push(this.arduinoConnectButton);
         blocks.push(this.arduinoConnectWifiButton);
         blocks.push(this.arduinoDisconnectButton);
+        blocks.push('-'); 
+        blocks.push(blockBySelector('pxf_GetServerMessage'));
         blocks.push('-'); 
         blocks.push(blockBySelector('pxf_PinMode'));
 		blocks.push(blockBySelector('pxf_DigitalWrite'));
@@ -425,19 +535,30 @@ SpriteMorph.prototype.blockTemplates = function (category) {
         blocks.push(blockBySelector('pxf_MP3PlayStop'));
         blocks.push(blockBySelector('pxf_MP3SetVolume'));
         blocks.push(blockBySelector('pxf_MP3Next'));
+		blocks.push('-');
+		blocks.push(blockBySelector('pxf_WeightInit'));
+        blocks.push(blockBySelector('pxf_WeightTest'));
+		blocks.push(blockBySelector('pxf_GetWeight'));
         blocks.push('-');
         blocks.push(blockBySelector('pxf_IRInit'));
         blocks.push(blockBySelector('pxf_IRSend'));
     }
 
-    if (category === 'MakeClock') {
+    if (category === 'MakerClock') {
+        blocks.push(this.arduinoConnectPXLauncher);
+        blocks.push(this.arduinoDisConnectPXLauncher);
+        blocks.push('-');
         blocks.push(this.arduinoConnectButton);
         blocks.push(this.arduinoConnectWifiButton);
         blocks.push(this.arduinoDisconnectButton);
         blocks.push('-');
-        blocks.push(blockBySelector('pxf_LightInternal'));
-        blocks.push(blockBySelector('pxf_Light'));
-        blocks.push(blockBySelector('pxf_Segment'));
+        blocks.push(blockBySelector('pxf_MC_LightInternal'));
+        blocks.push(blockBySelector('pxf_MC_LED'));
+        blocks.push(blockBySelector('pxf_MC_Buzzer'));
+        blocks.push(blockBySelector('pxf_MC_Segment'));
+        blocks.push(blockBySelector('pxf_MC_Moto'));
+        blocks.push(blockBySelector('pxf_MC_DistTest'));
+        blocks.push(blockBySelector('pxf_MC_GetDist'));   
     }
 
     return blocks;

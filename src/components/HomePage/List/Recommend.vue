@@ -44,6 +44,7 @@
             },
             edit01(id){                 
                 sessionStorage.id = id
+                this.$store.state.shareid=id
             },
             Seemorerecommend(){
                 this.j = this.j+16

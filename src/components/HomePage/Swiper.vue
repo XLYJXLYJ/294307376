@@ -43,7 +43,13 @@ export default{
     methods:{
         playClick(){
             this._dom = document.getElementById('video');
-            this._dom.play(); 
+            if (this._dom.paused) {  
+                this._dom.play();  
+                play.value="播放";  
+            }else{  
+                this._dom.pause();  
+                play.value="暂停";  
+            }  
         }
     }
 }

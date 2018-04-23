@@ -8,10 +8,7 @@
                     <span>{{item.update_time|formatDate}}</span>
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
-                <button class="button02">加入</button>
-                <span class="down"><i class="icon_see"><span>5k</span></i></span>
-                <span class="down"><i class="icon_love"><span>5</span></i></span>
-                <span class="down"><i class="icon_star"><span>7</span></i></span>
+                <router-link to="/publish"><button class="button02" @click="publish(item.id)">发布</button></router-link> 
                 <p class="cancelpub" @click="deletedemo(item.id)">删除</p>
             </li>    
         </ul>  
@@ -183,19 +180,6 @@ import { formatDate } from '../../public/time.js'
 .container29 .icon_star{
     background:url(../../assets/home/icon_star.png) no-repeat;
     padding-right: 10px;
-}
-.container29 .down{
-    font-size: 14px;
-    position: relative;
-    left: 190px;
-    top: 152px;
-}
-.container29 .down span{
-    position: relative;
-    left: 10px;
-    margin-left: 11px;
-    top: -2px;
-    font-style: normal;
 }
 .container29 .cancelpub{
   height: 14px;

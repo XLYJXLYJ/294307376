@@ -19,6 +19,7 @@ import Setting from '@/components/Setting'
 import Copassword from '@/components/Set/Copassword'
 import Usercenter from '@/components/Set/Usercenter'
 import Video from '@/components/Video'
+import share from '@/components/share'
 import Myvideo from '@/components/Video/Myvideo'
 import Lovevideo from '@/components/Video/Lovevideo'
 import Snap from '@/components/Snap'
@@ -113,18 +114,21 @@ export default new Router({
       ]
     },
     {
+      path: '/share',
+      name: 'share',
+      component: share,
+    },
+    {
       path: '/Demo',
       name: 'Demo',
       component: Demo,
       children:[
         { 
-          path: '', component: All,
           path: '/Demo/Mydemo', name: 'Mydemo',component: Mydemo, 
               children:[
-                { path: '/Demo/Mydemo/all', name: 'All',component: All},
+                { path: '/Demo/Mydemo/All', name: 'Alldemohaha',component: All},
                 { path: '/Demo/Mydemo/Readysend', component: Readysend},
                 { path: '/Demo/Mydemo/Nosend', component: Nosend},
-                { path: '', component: All}
               ]
         },
         { path: '/Demo/Delete', component: Delete},

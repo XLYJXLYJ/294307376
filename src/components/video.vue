@@ -26,7 +26,7 @@
                 <div>
                         <!-- <a href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"></a> -->
                         <!-- <a href="https://www.baidu.com/" target="_blank">点击播放百度</a> -->
-                      <iframe class="video" frameborder="0" src="static/js/pxsnap.html" id="myFrameId"  name="snapplay"></iframe>
+                      <iframe class="video" frameborder="0" src="static/player/index.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
                        
                         <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
                 </div>
@@ -41,7 +41,7 @@
         <div class="comment">
                 <div class="comment01">
                     <div>
-                        <p class="explain">作品说明</p>
+                        <p class="explain">作品说明:</p>
                         <span class="explaintext">{{list.desc}}</span>
                     </div>
                     <div>
@@ -96,7 +96,7 @@ export default{
         this.loadprojectplay()
         this.demoid = sessionStorage.id
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/snap.html#run:/codeplay/file/11566.xml'
-        this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/snap.html#run:/codeplay/file/'+this.demoid+'.xml' 
+        this.bannerUrl = 'http://www.manykit.com/codeplay/share' 
         console.log(this.bannerUrl)
         this.$nextTick(function () {
         // DOM操作
@@ -116,7 +116,6 @@ export default{
             })
             .then(response => {                        
                 this.list = response.data.data
-                console.log(response)
                 this.isCollect = response.data.data.isCollect
                 this.isPraise = response.data.data.isPraise
                 this.isAttention= response.data.data.isAttention

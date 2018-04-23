@@ -48,33 +48,6 @@ IDE_Morph.prototype.newProject = function () {
 };
 
 
-// IDE_Morph.prototype.exportProject_MANYKIT = function (name) {
-//     Export project XML, saving a file to disk
-//     newWindow requests displaying the project in a new tab.
-//     console.log(123+name)
-//     var menu, str;
-
-//     if (name) {
-//         this.setProjectName(name);
-//         try {
-//             menu = this.showMessage('Exporting');
-//             str = this.serializer.serialize(this.stage);
-//             // send to server
-
-//             menu.destroy();
-//             this.showMessage('Exported!', 1);
-//             return str;
-//             console.log(str)
-//         } catch (err) {
-//             if (Process.prototype.isCatchingErrors) {
-//                 this.showMessage('Export failed: ' + err);
-//             } else {
-//                 throw err;
-//             }
-//         }
-//     }
-// };
-
 IDE_Morph.prototype.exportProject_MANYKIT= function (name, plain) {
     // Export project XML, saving a file to disk
     // newWindow requests displaying the project in a new tab.

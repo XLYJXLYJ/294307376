@@ -12,7 +12,7 @@
                 </div>
             </li>  
         </ul>
-         <router-link to="/source/sourceshop/Role"><button class="seeall">查看全部 ></button></router-link>
+         <router-link to="/source/sourceshop/Source"><button class="seeall">查看全部 ></button></router-link>
      </div>
         <div class="second">
         <img class="secondlogo" src="../../../assets/source/bg.png" alt=""><p class="rolemain">背景</p>
@@ -40,7 +40,7 @@
                 </div>
             </li>
         </ul>
-        <router-link to="/source/sourceshop/Voice"><button class="seeall">查看全部 ></button></router-link>
+        <router-link to="/source/sourceshop/Music"><button class="seeall">查看全部 ></button></router-link>
      </div>
   </div>
 </template>

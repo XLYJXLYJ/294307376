@@ -15,8 +15,7 @@
                     @click="dialogLogin = true, 
                     dialogLoginshow = true, 
                     dialogRegister = false, 
-                    dialogForgetpass= false, 
-                    dialogPassSure=false">登陆</p>   
+                    dialogForgetpass= false">登录</p>   
                     <p class="sign"  type="text" 
                     @click="dialogLogin = true, 
                     dialogLoginshow = false, 
@@ -45,7 +44,7 @@
                 <img class="logo" src="../../assets/home/logo.png" alt="">  
                 <ul>
                     <li>
-                        <router-link to="/Home"><p> 首页</p></router-link>
+                        <router-link to="/Home"><p>首页</p></router-link>
                     </li>    
                     <li>
                         <router-link to="/Lesson"><p>课程</p></router-link>
@@ -69,7 +68,7 @@
                             <input type="text" v-model="formLogin.username" class="tele" placeholder="请输入用户名">
                             <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
                             <p class="ap_text" @click="dialogLoginshow= false,dialogForgetpass = true">忘记密码?</p>
-                            <button class="register" @click="Loginbtn">登录</button>
+                            <button class="register" @click.prevent="Loginbtn">登录</button>
                             <div class="free_res"><p>没有账号?</p><span @click="dialogLoginshow = false,dialogRegister = true">免费注册</span></div>    
                         </form> 
                     </div>
@@ -88,7 +87,7 @@
                             <el-form-item prop="password">
                                 <input type="password" class="iden03" v-model="formRegister.checkpassword" auto-complete="off" placeholder="请确认密码">
                             </el-form-item>
-                            <el-button type="primary" class="register" @click="Registerbtn">注册</el-button>
+                            <el-button type="primary" class="register" @click.prevent="Registerbtn">注册</el-button>
                         </el-form>
                         <div>
                             <span class="free_res">已有账号?<span @click="dialogLoginshow = true,dialogRegister = false">点击登录</span></span>
@@ -103,7 +102,7 @@
                         <el-form-item prop="code">
                                 <input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码">
                         </el-form-item>
-                        <button class="iden02" @click="Getcodebtn">获取验证码</button>
+                        <button class="iden02" @click.prevent="Getcodebtn">获取验证码</button>
                         <button class="register"  @click="Getusercodebtn">下一步</button>
                     </el-form>
                 </div>
@@ -113,7 +112,7 @@
                             <p class="sign_logo">确认密码</p>
                             <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
                             <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
-                            <button class="register" @click="Getuserpassbtn">确认</button>
+                            <button class="register" @click.prevent="Getuserpassbtn">确认</button>
                         </form> 
                     </div>
                 </div> 
@@ -138,6 +137,7 @@ export default {
             dialogPassSure:false,
             loginsign: true,
             usercenter: false,
+            msg:'',
             // dropdowm:false,
             formLogin: {
                 username: '',
@@ -178,6 +178,7 @@ export default {
     },
     mounted:function() { 
         // 判断session值是否存在，如果存在，则执行
+        this.Getsession()
         this.Getsessionname()
     }, 
     methods: {
@@ -199,38 +200,19 @@ export default {
                 password:this.formLogin.password,
             })
             .then(response => {
-                this.state = response.data.data.state;
-                switch(this.state)
-                {
-                case 0:
-                this.$message({
-                    message: '此账号没有激活',
-                    center: true
-                });
-                break;
-                case 1:
-                this.dialogLogin = false,
-                this.loginsign = false,
-                this.usercenter = true,
-                this.Getsession()
-                this.$message({
-                    message: '登陆成功',
-                    center: true,
-                });  
-                this.$router.push({ name: 'Home' }); 
-                break;
-                case 2:
-                this.$message({
-                    message: '密码错误',
-                    center: true
-                });
-                break;
-                default:
+                var datamsg = response.data
+                this.msg = response.data.errmsg
+                console.log(datamsg.errmsg)
+                if(!response.data.data){
                     this.$message({
-                    message: '账号错误',
-                    center: true
-                });
-                }  
+                        message:datamsg.errmsg,
+                        center:true
+                    })
+                }else{
+                    console.log('denglu')
+                    this.Getsessionname()
+                    this.Getsession()
+                }
             })
             .catch(function (error) {
                 console.log(error);
@@ -353,9 +335,9 @@ export default {
             if(sessionStorage.usernamesession){
                 this.dialogLogin = false;
                 this.loginsign = false;
-                this.usercenter = true; 
                 this.$store.state.usernamesession02 = sessionStorage.usernamesession
                 this.$store.state.userid = sessionStorage.userid
+                this.usercenter = true; 
             }
         },
         // 退出登陆
@@ -480,6 +462,7 @@ export default {
     background: #fff;
     position: relative;
     top: 30px;
+    box-shadow:1px 7px 5px #f6f6f6;
 }
 .container04 .container04center{
     width: 1200px;

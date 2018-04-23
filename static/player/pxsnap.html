@@ -33,32 +33,21 @@
 			var ide;
 			window.onload = function () {
 				world = new WorldMorph(document.getElementById('world'));
-
-                ide = new IDE_Morph();
-                ide.openIn(world);
-
-                ide.inform = function(title, message, callback) { 
-                    var myself = this;
-                    if (!myself.informing) {
-                        var box = new DialogBoxMorph();
-                        myself.informing = true;
-                        box.ok = function() { 
-                            myself.informing = false;
-                            if (callback) { callback() };
-                            this.accept();
-                        };
-                        box.inform(title, message, world)
-                    }
-                };
-
-                setInterval(loop, 30);
+                world.worldCanvas.focus();
+				ide = new IDE_Morph();
+				ide.openIn(world);
+				setInterval(loop, 30);
+				// loop();
 			};
 			function loop() {
+				ide.toggleAppMode(true);
+
+        		requestAnimationFrame(loop);
 				world.doOneCycle();
 			}
 		</script>
 	</head>
 	<body style="margin: 0;">
-		<canvas id="world" tabindex="1" style="position: absolute;" />
+		<canvas id="world" tabindex="1" width="767" height="575" style="position: absolute;" />
 	</body>
 </html>

@@ -42,12 +42,20 @@
                     sortstate:3,
                     searchname:this.searchname
                 })
-                .then(response => {   
+                .then(response => {  
+                    if(response.data.data.msg == "这回真的没有了~"){
+                        this.$store.state.searchdemo=false
+                        this.$message({
+                            message:'没有找到相关的作品',
+                            center:true
+                        })
+                    }else{
                     this.list=response.data.data
                     console.log(response)
                     this.$store.state.searchdemo=true
                     this.$store.state.recommenddemo=false
                     this.$store.state.productiondemo=false
+                    }
                 })
             }
         }

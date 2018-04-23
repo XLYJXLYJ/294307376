@@ -22,7 +22,8 @@
         data(){
             return{
                 list:[],
-                i:15
+                listnum:[],
+                i:1
             }
         },
         mounted: function () {      
@@ -32,10 +33,9 @@
             getdemo02(){
                 this.axios.post('/res/filelist',{
                     state:1,
-                    pagesize:20
+                    pagesize:1
                 })
-                .then(response => { 
-                    
+                .then(response => {         
                     this.list=response.data.data
                     this.$store.state.searchdemo=false
                     this.$store.state.recommenddemo=false
@@ -44,17 +44,21 @@
             },
             edit02(id){                 
                 sessionStorage.id = id
-
+                this.$store.state.shareid=id
+                console.log( this.$store.state.shareid)
             },
             Seemoreproduction(){
-                this.i = this.i+16
+                this.i = this.i+1
                 this.axios.post('/res/filelist',{
                     state:1,
-                    pagesize:1200
+                    pagenum:this.i,
+                    pagesize:2
                 })
-                .then(response => {    
-                    console.log(response.data.data.slice(0,this.i))     
-                    this.list = response.data.data.slice(0,this.i)
+                .then(response => {  
+                    this.listnum = response.data.data
+                    console.log(response)     
+                    this.list.push(this.listnum)
+                    console.log(this.list)
                 })
             },
         }

@@ -38,7 +38,7 @@
             </div>
         </div>
         <!-- 参数播放 -->
-        <iframe class="snap" src="static/player/pxsnap.html" name="snap" frameborder="0"></iframe>
+        <iframe class="snap" src="static/snap/pxsnap.html" name="snap" frameborder="0"></iframe>
 
         <!-- 接口播放 -->
         <!-- <iframe class="snap" :src="'static/player/pxsnap.html#open:/codeplay/file/'+this.$store.state.demoxmlid+'.xml'" name="snap" frameborder="0"></iframe> -->

@@ -29,7 +29,7 @@
                 <li class="more"><p>最近更新</p></li>
                 <li class="new"><p>最多使用</p></li>
             </ul>
-            <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox>
+            <!-- <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox> -->
             <p class="all">共有{{listnew.length}}个素材</p>
         </div>
         <div class="first">
@@ -334,6 +334,11 @@ export default{
    color:#fff;
    background: #F13232;
 }
+.container66 .sort0101{
+    height: 50px;
+    width: 1000px;
+    display: block;
+}
 .container66 .sort0101 ul{
    list-style: none;
    position: absolute;
@@ -413,7 +418,9 @@ export default{
    background: #f5f5f5;
    position: relative;
    left: 57px;
-   top: 58px;
+   top: 28px;
+   margin-bottom: 40px;
+   display: block;
 }
 .container66 .sort02 ul{
    list-style: none;
@@ -472,12 +479,17 @@ export default{
    left: 886px;
 }
 
-
+.container66 .first {
+    width: 1200px;
+    height: 3px;
+    margin-top:60px;
+}
 .container66 .first .role{
-    position: absolute;
-    top: 150px;
+    position: relative;
+    top: -20px;
     left: 46px;  
     margin-top: 10px;
+    display: block;
 }
 .container66 .first .line{
     position: relative;
@@ -531,7 +543,7 @@ export default{
 
 .container66 .sortnum01{
     position: relative;
-    top: 1104px;
+    top: 104px;
     left:120px;
     width: 995px;
     height: 32px;

@@ -53,6 +53,14 @@ PXFrame.prototype.hideMessage = function () {
     }
 };
 
+PXFrame.prototype.attemptConnectPXLauncher = function()
+{
+}
+
+PXFrame.prototype.attemptDisConnectPXLauncher = function()
+{
+}
+
 PXFrame.prototype.attemptConnection = function () {
     var myself = this;
 

@@ -38,7 +38,7 @@
                 <li class="more"><p>最近更新</p></li>
                 <li class="new"><p>最多使用</p></li>
             </ul>
-            <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox>
+            <!-- <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox> -->
             <p class="all">共有{{listnew.length}}个素材</p>
         </div>
         <div class="first">

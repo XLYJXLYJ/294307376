@@ -82,6 +82,11 @@ pxframeDict = {
 
     'infrared recviver init at pin %pxf_Pin': '红外接收器初始化在端口 %pxf_Pin',
     'infrared send value %n': '红外发射器发送 %n',
+	
+	'weight tester %n init at pinOut %pxf_Pin pinClk %pxf_Pin':'称重模块 %n 初始化在输出端口 %pxf_Pin 和时钟端口 %pxf_Pin',
+	'test the weight of %n':'检测第 %n 称重模块的重量',
+	
+	'get weight of %n':'获得第 %n 称重模块的重量',
 };
 
 for (var attrname in pxframeDict) { SnapTranslator.dict.zh_CN[attrname] = pxframeDict[attrname]; }

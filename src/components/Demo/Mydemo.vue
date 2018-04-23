@@ -15,7 +15,7 @@ export default{
     },
     methods:{
         Mydemoroute(){
-            this.$router.push({ name: 'All' })
+            this.$router.push({ name: 'Alldemohaha' })
         }
     }
 }

@@ -1,9 +1,10 @@
 <template>
     <div class="container34"> 
           <div class="userpic">
-            <!-- <input type="file" ref="file_el" @change="choise_file">     -->
+          
           </div>
-           <div class="userpiv"><img  :src="'data:image/png;base64,'+imageUrl02"></div>
+          <div class="userpiv" v-show="userpic"><img  :src="'data:image/png;base64,'+imageUrl02"></div>
+          <div class="userpiv" v-show="localpic"><img  :src="imageUrl"></div>
           <el-form :label-position="labelPosition" class="copassword" label-width="80px" :model="formLabelAlign">
                 <el-form-item class="set01" label="旧密码">
                   <el-input class="input01" type="password" v-model="formLabelAlign.oldpass"></el-input>
@@ -23,13 +24,19 @@
     data() {
       return {
         labelPosition: 'right',
+        imageUrl:'static/localpic.png',
         imageUrl02:'',
+        userpic:'',
+        localpic:'',
         formLabelAlign: {
           oldpass: '',
           newpass: '',
           conpass: ''
         }
       };
+    },
+    mounted:function(){
+      this.loadmessage()
     },
     methods:{
             loadmessage(){
@@ -39,11 +46,13 @@
             })
             .then(response => {
                   this.imageUrl02 = response.data.data.imgBuffer
-                  console.log( this.imageUrl01)
-                  if(this.formLabelAlign.sex===1){
-                      this.formLabelAlign.sex='男'
+                  console.log( this.imageUrl02)
+                  if(this.imageUrl02){
+                      this.localpic = false
+                      this.userpic = true
                   }else{
-                      this.formLabelAlign.sex='女'
+                      this.localpic = true
+                      this.userpic = false
                   }
             })
             .catch(function (error) {
@@ -119,7 +128,8 @@
   width: 151px;
   left: -280px;
   top: 60px;
-  border: 1px solid red;
+  border: 1px solid #BDBDBD;
+  border-radius: 100px;
 }
 .container34 .userpic input{
   position: relative;

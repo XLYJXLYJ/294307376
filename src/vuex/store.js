@@ -15,7 +15,8 @@ const state = {
     productiondemo:'',
     searchdemo:'',
     isdropdownparent:false,
-    bgid:''
+    bgid:'',
+    shareid:'',
 }
 
 const actions = {
