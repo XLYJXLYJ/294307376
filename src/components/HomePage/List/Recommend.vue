@@ -7,14 +7,15 @@
                             <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>
                             <p>{{item.title}}</p>
                             <span class="game_cat">{{item.desc}}</span>
-                            <span class="down01"><i class="icon_see"><span>4k</span></i></span>
+                            <span class="down01"><i class="icon_see"><span>{{item.looktotal}}</span></i></span>
                             <span class="down02"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
                             <span class="down03"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
                         </div>
                     </router-link>
             </el-col>         
         </el-row>
-        <button class="button" @click="Seemorerecommend">查看更多作品</button>
+        <button class="button" v-show="load" @click="Seemorerecommend">查看更多作品</button>
+        <button class="buttonloaddown" v-show="loaddown">已加载完全部作品</button>
     </div>
 </template>
 <script>
@@ -22,7 +23,9 @@
         data(){
             return{
                 list:[],
-                j:15
+                i:1,
+                load:true,
+                loaddown:false
             }
         },
         mounted: function () {      
@@ -33,7 +36,7 @@
                 this.axios.post('/res/filelist',{
                     state:4,
                     sortstate:2,
-                    pagesize:20
+                    pagesize:4
                 })
                 .then(response => {   
                     this.list=response.data.data
@@ -47,16 +50,22 @@
                 this.$store.state.shareid=id
             },
             Seemorerecommend(){
-                this.j = this.j+16
+                this.i = this.i+1
                 this.axios.post('/res/filelist',{
                     state:1,
-                    pagesize:1200
+                    pagenum:this.i,
+                    pagesize:4
                 })
-                .then(response => {    
-                    console.log(response.data.data.slice(0,this.j))     
-                    this.list = response.data.data.slice(0,this.j)
-                })
-            }
+                .then(response => {  
+                if(response.data.data.msg =="这回真的没有了~"){
+                    this.load = false,
+                    this.loaddown = true
+                }else{
+                    this.listnum = response.data.data   
+                    this.list = this.list.concat(this.listnum)
+                }
+                }) 
+            },
         }
     }
 </script>
@@ -127,6 +136,16 @@
     width: 192px;
     height: 50px;
     background-color:#F13232;
+    color:#fff; 
+    border: none;
+}
+.container01 .buttonloaddown{
+    position: relative;
+    top: 46px;
+    left: 284px;
+    width: 192px;
+    height: 50px;
+    background-color:#707070;
     color:#fff; 
     border: none;
 }

@@ -36,12 +36,11 @@
                 world.worldCanvas.focus();
 				ide = new IDE_Morph();
 				ide.openIn(world);
-				setInterval(loop, 30);
-				// loop();
+				// setInterval(loop, 30);
+				loop();
 			};
 			function loop() {
 				ide.toggleAppMode(true);
-
         		requestAnimationFrame(loop);
 				world.doOneCycle();
 			}

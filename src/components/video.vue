@@ -5,8 +5,8 @@
             <div class="container36">
                     <div>
                         <p class="one">{{list.title}}</p>
-                        <p class="two">分享于：2018.3.12</p>
-                        <p class="three">已有339次浏览</p>
+                        <p class="two">分享于：{{list.createtime}}</p>
+                        <p class="three">已有{{list.looktotal}}次浏览</p>
                     </div>
                     <div>
                         <img class="cat01" src="../assets/Video/cat01.png" alt="">
@@ -26,7 +26,8 @@
                 <div>
                         <!-- <a href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"></a> -->
                         <!-- <a href="https://www.baidu.com/" target="_blank">点击播放百度</a> -->
-                      <iframe class="video" frameborder="0" src="static/player/index.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
+                      <!-- <iframe class="video" frameborder="0" src="static/player/index.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
+                      <iframe class="video" frameborder="0" src="static/ceshi/snap.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
                        
                         <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
                 </div>
@@ -93,7 +94,10 @@ export default{
     },
     mounted(){
         this.loadproject()
+        
         this.loadprojectplay()
+        
+
         this.demoid = sessionStorage.id
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/snap.html#run:/codeplay/file/11566.xml'
         this.bannerUrl = 'http://www.manykit.com/codeplay/share' 
@@ -116,6 +120,7 @@ export default{
             })
             .then(response => {                        
                 this.list = response.data.data
+                console.log(response)
                 this.isCollect = response.data.data.isCollect
                 this.isPraise = response.data.data.isPraise
                 this.isAttention= response.data.data.isAttention
@@ -123,21 +128,40 @@ export default{
             }) 
         },
         // 播放文件获取数据
-        loadprojectplay(){
-             this.axios.post('/res/getfile',{
-                id:sessionStorage.id,
-            })
-            .then(response => {                          
-               this.demoxml = response.data  
-               console.log(this.demoxml)
+        // loadprojectplay(){
+        //      this.axios.post('/res/getfile',{
+        //         id:sessionStorage.id,
+        //     })
+        //     .then(response => {                          
+        //        this.demoxml = response.data  
+        //        console.log(this.demoxml)
             //    console.log(this.$store.state.demoxmlid)
             // window.frames["snapplay"].ide.droppedText(this.demoxml,'OPEN') 
-            window.frames["snapplay"].ide.openProjectString(this.demoxml) 
+            // window.frames["snapplay"].ide.openProjectString(this.demoxml) 
 
+        //     })
+        //     window.frames["snapplay"].ide.openProjectString(this.demoxml) 
+        // },
+        loadprojectplay(){
+            return new Promise((resolve,reject) =>{
+                this.axios.post('/res/getfile',{
+                    id:sessionStorage.id,
+                })
+                .then(function(response) { 
+                    resolve(response.data)                         
+                // this.demoxml = response.data  
+                // console.log(this.$store.state.demoxmlid)
+                })
             })
-            
+            .then(function(s){
+            // window.frames["snapplay"].ide.openProjectString(s) 
+            // this.loadxml(s)
+             window.frames["snapplay"].ide.droppedText(s,'O') 
+        })
         },
-
+        // loadxml(s){
+        //     window.frames["snapplay"].ide.openProjectString(s) 
+        // },
 
         // 点赞
         love(){  
@@ -549,3 +573,16 @@ export default{
   opacity: 0;
 }
 </style>
+
+        oneidbox:[
+            {oneid:0,name:"全部"},
+            {oneid:1,name:"NPC"},
+            {oneid:2,name:"宝石"},
+            {oneid:3,name:"穿戴"},
+            {oneid:4,name:"道具"},
+            {oneid:5,name:"技能"},
+            {oneid:6,name:"人物"},
+            {oneid:7,name:"特技"},
+            {oneid:8,name:"武器"},
+            {oneid:9,name:"药水"},
+        ],

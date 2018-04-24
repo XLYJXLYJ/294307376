@@ -1,6 +1,6 @@
 <template>
     <div class="container06">
-        <div class="rank_list_top"><img src="../../assets/home/rank_list.png" alt=""><p>排行版</p></div>
+        <div class="rank_list_top"><img src="../../assets/home/rank_list.png" alt=""><p>排行榜</p></div>
         <div class="rank_up">
             <ul>
                 <li v-for="(item, index) in list" v-if='index<8' :key="index"  @click="edit03(item.id)">
@@ -8,7 +8,7 @@
                         <span class="sort_num">{{index+1}}</span>
                         <div class="ranking"><img :src="item.imgBuffer" alt=""></div>
                         <p>{{item.title}}</p>
-                        <span class="icon_see_box"><i class="icon_see"><span>325</span></i></span>
+                        <span class="icon_see_box"><i class="icon_see"><span>{{item.looktotal}}</span></i></span>
                         <span class="icon_see_love"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
                      </router-link>
                 </li>

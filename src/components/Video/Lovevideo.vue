@@ -4,8 +4,8 @@
             <li v-for="(item,index) in list" :key='item.id' v-if='index<5' @click="edit04(item.id)">
                 <img class="jinglin" :src="item.imgBuffer" alt="">
                 <p class="jinglingtext">{{item.title}}</p>
-                <span class="time">分享于：2018-03-02</span>
-                <span class="icon_see_zan"><i class="icon_zan"><span>325</span></i></span>
+                <span class="time">分享于：{{item.create_time|formatDate}}</span>
+                <span class="icon_see_zan"><i class="icon_zan"><span>{{item.looktotal}}</span></i></span>
                 <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
                 <span class="icon_see_see01"><i class="icon_see"><span>{{item.praisetotal}}</span></i></span>
             </li>
@@ -13,7 +13,14 @@
   </div>
 </template>
 <script>
+import { formatDate } from '../../public/time.js'
     export default{
+            filters: {
+            formatDate(time) {
+                var date = new Date(time);
+                return formatDate(date, 'yyyy-MM-dd');
+                }
+            },
         data(){
             return{
                 list:[],

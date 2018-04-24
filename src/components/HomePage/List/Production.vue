@@ -7,14 +7,15 @@
                             <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>
                             <p>{{item.title}}</p>
                             <span class="game_cat">{{item.desc}}</span>
-                            <span class="down01"><i class="icon_see"><span>4k</span></i></span>
-                            <span class="down02"><i class="icon_love"><span>20</span></i></span>
-                            <span class="down03"><i class="icon_star"><span>70</span></i></span>
+                            <span class="down01"><i class="icon_see"><span>{{item.looktotal}}</span></i></span>
+                            <span class="down02"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
+                            <span class="down03"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
                         </div>
                     </router-link>
             </el-col>         
         </el-row>
-        <button class="button" @click="Seemoreproduction">查看更多作品</button>
+        <button class="button" v-show="load" @click="Seemoreproduction">查看更多作品</button>
+        <button class="buttonloaddown" v-show="loaddown">已加载完全部作品</button>
     </div>
 </template>
 <script>
@@ -23,7 +24,9 @@
             return{
                 list:[],
                 listnum:[],
-                i:1
+                j:1,
+                load:true,
+                loaddown:false
             }
         },
         mounted: function () {      
@@ -33,7 +36,7 @@
             getdemo02(){
                 this.axios.post('/res/filelist',{
                     state:1,
-                    pagesize:1
+                    pagesize:4
                 })
                 .then(response => {         
                     this.list=response.data.data
@@ -45,21 +48,23 @@
             edit02(id){                 
                 sessionStorage.id = id
                 this.$store.state.shareid=id
-                console.log( this.$store.state.shareid)
             },
             Seemoreproduction(){
-                this.i = this.i+1
+                this.j = this.j+1
                 this.axios.post('/res/filelist',{
                     state:1,
-                    pagenum:this.i,
-                    pagesize:2
+                    pagenum:this.j,
+                    pagesize:4
                 })
                 .then(response => {  
-                    this.listnum = response.data.data
-                    console.log(response)     
-                    this.list.push(this.listnum)
-                    console.log(this.list)
-                })
+                if(response.data.data.msg =="这回真的没有了~"){
+                    this.load = false,
+                    this.loaddown = true
+                }else{
+                    this.listnum = response.data.data   
+                    this.list = this.list.concat(this.listnum)   
+                }
+                })  
             },
         }
     }
@@ -131,6 +136,16 @@
     width: 192px;
     height: 50px;
     background-color:#F13232;
+    color:#fff; 
+    border: none;
+}
+.container02 .buttonloaddown{
+    position: relative;
+    top: 46px;
+    left: 284px;
+    width: 192px;
+    height: 50px;
+    background-color:#707070;
     color:#fff; 
     border: none;
 }

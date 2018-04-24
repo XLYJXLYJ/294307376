@@ -195,7 +195,27 @@ export default {
         },
         //登陆
         Loginbtn() {
-            this.axios.post('/res/login', {
+            var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
+            if(this.formLogin.username == ''){
+                this.$message({
+                message: '请输入用户名',
+                center: true
+                });   
+            }
+            else if(this.formLogin.password == ''){
+                this.$message({
+                message: '请输入密码',
+                center: true
+                });   
+            }
+            if(!reguserpassword.test(this.formLogin.password)){
+                this.$message({
+                message: '密码格式不正确',
+                center: true
+                });   
+            }
+            else{
+                 this.axios.post('/res/login', {
                 username:this.formLogin.username,
                 password:this.formLogin.password,
             })
@@ -217,12 +237,39 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
+            }   
         },
         // 注册
         Registerbtn() {
-            if( this.formRegister.password!==this.formRegister.checkpassword||this.formRegister.password.length<6||this.formRegister.checkpassword.length<6||this.formRegister.username.length<3||this.formRegister.username.length>10||this.formRegister.mail.length<9){
+            var regusername = /^[a-zA-Z0-9]\w{4,16}$/;
+            var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
+            var regEmail= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            if(!regusername.test(this.formRegister.username)){
                 this.$message({
-                message: '请根据提示输入相应的内容',
+                message: '用户名以字母开头，长度在4-16之间， 只能包含字符、数字和下划线',
+                center: true
+                });   
+            }
+            else if(this.formRegister.mail==''||this.formRegister.mail.length<12){
+                this.$message({
+                message: '邮箱格式不正确',
+                center: true
+                });  
+            }else if(!regEmail.test(this.formRegister.mail)){
+                this.$message({
+                message: '邮箱格式不正确',
+                center: true
+                });  
+            }
+            else if(!reguserpassword.test(this.formRegister.password)){
+                this.$message({
+                message: '密码长度（6~20 英文+数字）',
+                center: true
+                });
+            }
+            else if( this.formRegister.password!==this.formRegister.checkpassword){
+                this.$message({
+                message: '密码输入不一致',
                 center: true
                 });
             }
@@ -238,7 +285,8 @@ export default {
                     this.$message({
                     message: this.registermsg,
                     center: true
-                    });    
+                    });  
+                    this.dialogLogin = false  
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -321,9 +369,11 @@ export default {
                 if(response.data.data){
                     this.dialogLogin = false;
                     this.loginsign = false;
-                    this.usercenter = true;
                     sessionStorage.userid = response.data.data.userid
                     sessionStorage.usernamesession = response.data.data.username
+                    this.$store.state.usernamesession02 = sessionStorage.usernamesession
+                    this.$store.state.userid = sessionStorage.userid
+                    this.usercenter = true;
                 }else{
                     this.dialogLogin = false;
                     this.loginsign = true;

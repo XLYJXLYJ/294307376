@@ -31,11 +31,13 @@ import Source01 from '@/components/Source/source/Source01'
 import Study from '@/components/Source/source/Study'
 import Music from '@/components/Source/source/Music'
 import Gsource from '@/components/Source/source/Gsource'
+import Sourcelesson from '@/components/Source/source/Sourcelesson'
 import Mymusic from '@/components/Source/mysource/Mymusic'
 import Mybg from '@/components/Source/mysource/Mybg'
 import Myrole from '@/components/Source/mysource/Myrole'
 import Mystudy from '@/components/Source/mysource/Mystudy'
 import Mygame from '@/components/Source/mysource/Mygame'
+import Mysourcelesson from '@/components/Source/mysource/Mysourcelesson'
 
 
 Vue.use(Router)
@@ -77,6 +79,7 @@ export default new Router({
               {path: '/source/sourceshop/Source01', component: Source01},
               {path: '/source/sourceshop/Study', component: Study},
               {path: '/source/sourceshop/Music', component: Music},
+              {path: '/source/sourceshop/Sourcelesson', component: Sourcelesson},
               {path: '', component:Gsource}
             ]
       },
@@ -87,6 +90,7 @@ export default new Router({
               {path: '/source/mysourceshop/Mymusic', component: Mymusic},
               {path: '/source/mysourceshop/Mygame', component: Mygame},
               {path: '/source/mysourceshop/Mystudy', component: Mystudy},
+              {path: '/source/mysourceshop/Mysourcelesson', component: Mysourcelesson},
               {path: '', component:Myrole}
             ]
         },

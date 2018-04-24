@@ -25,14 +25,14 @@
                     <ul class="block-col-12">
                         <li><p @click="dialogNew=true">新建</p></li>
                         <li><p>另存为</p></li>
-                        <li  @click="dialogExport = true"><p @click="download">保存到本地</p></li>
-                        <li><p @click="dialogOpen=true">打开本地作品</p></li>    
+                        <li  @click="dialogExport = true"><p @click.prevent="download">保存到本地</p></li>
+                        <li><p @click.prevent="dialogOpen=true">打开本地作品</p></li>    
                     </ul>
                 </div>
                 <div v-show="snapdemodropdowm" class="snapdemodropdowm" >
                     <ul class="block-col-12">
                         <li><router-link to="/Demo/Mydemo"><p>我的作品</p></router-link></li>
-                        <li><p @click="Cancellogout">退出登录</p></li>  
+                        <li><p @click.prevent="Cancellogout">退出登录</p></li>  
                     </ul>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                                 <textarea type="text" class="textdes" v-model="formSave.desc" auto-complete="off" placeholder="请输入项目描述"></textarea>
                             </el-form-item>
                             <el-form-item  class="iden03">
-                                <el-button  @click="submitUpload()">确定保存</el-button>
+                                <el-button  @click.prevent="submitUpload()">确定保存</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -75,7 +75,7 @@
                             <el-form-item class="iden01">
                                 <el-input type="text" v-model="formSave.exporttitle" auto-complete="off" placeholder="请输入项目名称"></el-input>       
                             </el-form-item>
-                            <el-button  class="iden02" @click="download(formSave.exporttitle)">确定下载</el-button>
+                            <el-button  class="iden02" @click.prevent="download(formSave.exporttitle)">确定下载</el-button>
                         </el-form>
                     </div>
                 </el-dialog>
@@ -93,8 +93,8 @@
                             <el-form-item class="iden01">
                                 <h1>确定放弃当前项目，新建新的项目吗？</h1>      
                             </el-form-item>
-                             <el-button  class="iden02"  @click="newproject">确定</el-button>
-                            <el-button  class="iden03" @click="dialogNew=false">取消</el-button>
+                             <el-button  class="iden02"  @click.prevent="newproject">确定</el-button>
+                            <el-button  class="iden03" @click.prevent="dialogNew=false">取消</el-button>
                         </el-form>
                     </div>
                 </el-dialog>
@@ -152,7 +152,7 @@
                             <input type="text" v-model="formLogin.username" class="tele" placeholder="请输入用户名">
                             <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
                             <p class="ap_text" @click="dialogLoginshow= false,dialogForgetpass = true">忘记密码?</p>
-                            <button class="register" @click="Loginbtn">登录</button>
+                            <button class="register" @click.prevent="Loginbtn">登录</button>
                             <div class="free_res"><p>没有账号?</p><span @click="dialogLoginshow = false,dialogRegister = true">免费注册</span></div>    
                         </form> 
                     </div>
@@ -171,7 +171,7 @@
                             <el-form-item prop="password">
                                 <input type="password" class="iden03" v-model="formRegister.checkpassword" auto-complete="off" placeholder="请确认密码">
                             </el-form-item>
-                            <el-button type="primary" class="register" @click="Registerbtn">注册</el-button>
+                            <el-button type="primary" class="register" @click.prevent="Registerbtn">注册</el-button>
                         </el-form>
                         <div>
                             <span class="free_res">已有账号?<span @click="dialogLoginshow = true,dialogRegister = false">点击登录</span></span>
@@ -187,7 +187,7 @@
                                 <input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码">
                         </el-form-item>
                         <button class="iden02" @click="Getcodebtn">获取验证码</button>
-                        <button class="register"  @click="Getusercodebtn">下一步</button>
+                        <button class="register"  @click.prevent="Getusercodebtn">下一步</button>
                     </el-form>
                 </div>
                 <div v-show="dialogPassSure">
@@ -196,7 +196,7 @@
                             <p class="sign_logo">确认密码</p>
                             <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
                             <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
-                            <button class="register" @click="Getuserpassbtn">确认</button>
+                            <button class="register" @click.prevent="Getuserpassbtn">确认</button>
                         </form> 
                     </div>
                 </div> 
@@ -297,6 +297,7 @@ export default{
     },
     mounted(){
         this.loadproject()
+        this.Getsession()
         this.Getsessionname()
     },
     methods: {
@@ -435,39 +436,19 @@ export default{
                 password:this.formLogin.password,
             })
             .then(response => {
-                this.state = response.data.data.state;
-                switch(this.state)
-                    {
-                    case 0:
+                var datamsg = response.data
+                this.msg = response.data.errmsg
+                console.log(datamsg.errmsg)
+                if(!response.data.data){
                     this.$message({
-                        message: '此账号没有激活',
-                        center: true
-                    });
-                    break;
-                    case 1:
-                    this.sign = false,
-                    this.login = false,
-                    this.user = true,
-                    this.down = true,
-                    this.dialogLogin = false;
+                        message:datamsg.errmsg,
+                        center:true
+                    })
+                }else{
+                    console.log('denglu')
+                    this.Getsessionname()
                     this.Getsession()
-                    this.$message({
-                        message: '登陆成功',
-                        center: true,
-                    });  
-                    break;
-                    case 2:
-                    this.$message({
-                        message: '密码错误',
-                        center: true
-                    });
-                    break;
-                    default:
-                     this.$message({
-                        message: '账号错误',
-                        center: true
-                    });
-                    }  
+                }
             })
             .catch(function (error) {
                 console.log(error);
@@ -571,6 +552,7 @@ export default{
             }     
         },
         //session验证登陆
+        //session验证登陆
         Getsession() {  
             this.axios.get('/res/verify')
             .then(response =>{
@@ -578,26 +560,25 @@ export default{
                     this.dialogLogin = false;
                     this.login = false;
                     this.sign = false;
-                    this.user = true;
                     sessionStorage.userid = response.data.data.userid
                     sessionStorage.usernamesession = response.data.data.username
-                    console.log(sessionStorage.usernamesession)
+                    this.$store.state.usernamesession02 = sessionStorage.usernamesession
+                    this.$store.state.userid = sessionStorage.userid
+                    this.user = true;
                 }else{
-                    this.dialogLogin = false;
-                    this.loginsign = true;
-                    this.usercenter = false;
+                    this.login = true;
+                    this.sign = true;
+                    this.user = false;
                 }
             }) 
         },
         Getsessionname(){
-            if(sessionStorage.usernamesession){           
-                this.dialogLogin = false;
+            if(sessionStorage.usernamesession){
+                this.Login = false;
                 this.sign = false;
-                this.login = false;
-                this.user = true; 
                 this.$store.state.usernamesession02 = sessionStorage.usernamesession
                 this.$store.state.userid = sessionStorage.userid
-                console.log(this.$store.state.userid)
+                this.user = true; 
             }
         },
         Cancellogout() {

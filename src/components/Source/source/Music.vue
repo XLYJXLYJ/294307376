@@ -1,5 +1,5 @@
 <template>
-  <div class="container80">
+  <div class="container80" v-show="false">
         <div class="sort01">
             <p class="sort01text">作品分类:</p>
             <ul>

@@ -7,6 +7,7 @@
          <router-link to="/source/sourceshop/Study"><li><p>学习</p></li></router-link>
          <router-link to="/source/sourceshop/Game"><li><p>游戏</p></li></router-link>
          <router-link to="/source/sourceshop/Music"><li><p>音乐</p></li></router-link>
+        <router-link to="/source/sourceshop/Sourcelesson"><li><p>课程</p></li></router-link>
          <!-- <div class="mymoney"><p>金币:</p><span>500</span><i class="what"></i></div>  -->
          <div class="line"></div>       
      </ul>  

@@ -1,9 +1,9 @@
 <template>
-  <div class="container64">
+  <div class="container64" v-show="false">
         <div class="sort01">
             <p class="sort01text">作品分类:</p>
             <ul>
-                <li  v-for="item in oneidbox" :key="item.oneid" @click="select01(item.oneid)"><p>{{item.name}}</p></li>
+                 <li v-for="(item,index) in oneidbox" :key="item.oneid" @click="select01(item.oneid)" :class="{demohover:index==isdemohover01}"><p>{{item.name}}</p></li>
             </ul>
         </div>
         <!-- <div class="sort0101" v-show="sort0101">
@@ -17,8 +17,8 @@
             <ul>
                 <li   v-for="item in twoidbox02" :key="item.twoid"><p>{{item.name}}</p></li>
             </ul>
-        </div>
-        <div class="sort0101" v-show="sort0103">
+        </div> -->
+        <!-- <div class="sort0101" v-show="sort0103">
             <p class="sort0101text">作品分类:</p>
             <ul>
                 <li   v-for="item in twoidbox03" :key="item.twoid"><p>{{item.name}}</p></li>
@@ -46,20 +46,20 @@
                 <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
                     <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
                     <div class="roleup">
-                        <button @click="collectmaster(item.id)">采集</button>
+                    <button><a :href="'/codeplay/'+item.content" download="素材.png">下载</a></button>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="sortnum01">
+        <div class="sortnum01" v-show="numpage">
             <ul>
-                <li v-for="(item,index) in pageitem" :key="item.pageid" @click="Selectpage(item.pageid)" :class="{demohover:index==isdemohover03-1}"><p>{{item.pageid}}</p></li>
+                <li v-for="(item,index) in pageitem" :key="item.pageid" v-if="index<10" @click="Selectpage(item.pageid)" :class="{demohover:index+1==isdemohover03}"><p>{{item.pageid}}</p></li>
             </ul>
             <div>
-                <p>...</p>
-                <p class="night" @click="Selectpage(9)">9</p>
-               <p class="endpage" @click="Selectpagebefore">上一页</p>
+                <!-- <p>...</p>
+                <p class="night" @click="Selectpage(2)">2</p> -->
+                <p class="endpage" @click="Selectpagebefore">上一页</p>
                 <p class="nextpage" @click="Selectpageafter">下一页</p>
             </div>
 
@@ -69,7 +69,7 @@
                     <input type="text" v-model="pageuser">
                 </div>
                 <p class="two">页</p>
-                <button>确定</button>
+                <button @click="Selectpageuser">确定</button>
             </div>
 
         </div>
@@ -81,16 +81,18 @@ import Sourcehead from '@/components/Source/Sourcehead'
 export default{
     data() {
       return {
+        numpage:true,
         list:'',
         listnew:'',
         nowid:1,
         pageuser:'',
-        oneselectid:'',
         checked: true,
         sort0101:false,
         sort0102:false,
         sort0103:false,
-        isdemohover03:'',
+        isdemohover01:'',
+        isdemohover02:0,
+        isdemohover03:1,
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"NPC"},
@@ -98,7 +100,7 @@ export default{
             {oneid:3,name:"穿戴"},
             {oneid:4,name:"道具"},
             {oneid:5,name:"技能"},
-            {oneid:6,name:"人物"},
+            {oneid:6,name:"角色"},
             {oneid:7,name:"特技"},
             {oneid:8,name:"武器"},
             {oneid:9,name:"药水"},
@@ -110,6 +112,10 @@ export default{
             {pageid:4},
             {pageid:5},
             {pageid:6},
+            {pageid:7},
+            {pageid:8},
+            {pageid:9},
+            {pageid:10},
         ],
       };
     },
@@ -118,31 +124,52 @@ export default{
     },
     methods:{
         select01(id){
-            this.oneselectid = id
-            if(this.oneselectid = 0){
-                this.axios.post('/res/resourcelist',{
-                    onenav:4,
-                })
-                .then(response => {   
+            this.isdemohover01 = id
+            this.isdemohover02 = 0
+            switch(id){                
+                case id=0:
+                    this.axios.post('/res/resourcelist',{
+                        onenav:4,
+                        pagesize:15
+                    })
+                    .then(response => {  
+                    this.numpage = true     
+                    this.list=response.data.data
                     this.listnew=response.data.data
-                    console.log(response)
-                })
-            }else{
-                this.axios.post('/res/resourcelist',{
-                    onenav:4,
-                    twonav:id
-                })
-                .then(response => {   
+                    })
+                break
+                case id=1:
+                    this.axios.post('/res/resourcelist',{
+                        onenav:4,
+                        twonav:1,
+                        pagesize:15
+                    })
+                    .then(response => {  
+                    this.numpage = false     
+                    this.list=response.data.data
                     this.listnew=response.data.data
-                    console.log(id)
-                    console.log(response)
-                })
+                    })
+                break;
+                case id=2:
+                    this.axios.post('/res/resourcelist',{
+                        onenav:4,
+                        twonav:2,
+                        pagesize:15
+                    })
+                    .then(response => { 
+                    this.numpage = false       
+                    this.list=response.data.data
+                    this.listnew=response.data.data
+                    })
+                break;
             }
+
         },
+        // 加载默认数据
         Getsource(){
             this.axios.post('/res/resourcelist',{
                 onenav:4,
-                pagesize:135
+                pagesize:15
             })
             .then(response => {   
                 this.list=response.data.data
@@ -150,9 +177,12 @@ export default{
                 console.log(response)
             })
         },
+        // 二级菜单
         Getsourcetwo(id){
+            this.isdemohover01 = id
+            this.isdemohover02 = 0
             this.axios.post('/res/resourcelist',{
-                onenav:1,
+                onenav:4,
                 twonav:id
             })
             .then(response => {   
@@ -160,6 +190,7 @@ export default{
                 this.listnew=response.data.data
             })
         },
+        // 采集
         collectmaster(id){
                 this.axios.post('/res/collectmaterial',{
                 userid:sessionStorage.userid,
@@ -171,38 +202,92 @@ export default{
                 console.log(response)
             })
         },
+        // 选择页数
         Selectpage(id){
-            this.nowid = id?id:1
-            var head01 = 16*(id-1)
-            var foot01 = 16*id-1
-            console.log(head01)
-            console.log(foot01)
-            this.listnew=this.list.slice(head01,foot01)
+            this.isdemohover03 = id
+            this.axios.post('/res/resourcelist',{
+                onenav:4,
+                twonav:this.isdemohover01,
+                pagenum:id,
+                pagesize:15
+            })
+            .then(response => {  
+                this.listnew=response.data.data  
+                if(this.listnew.length<15){
+                    this.numpage = false
+                }else{
+                    this.numpage = true
+                }
+                this.listnew=response.data.data
+            })
         },
-        Selectpageuser(id){
-            var head01 = 16*(this.pageuser-1)
-            var foot01 = 16*this.pageuser-1
-            console.log(head01)
-            console.log(foot01)
-            this.listnew=this.list.slice(head01,foot01)
+        // 选择跳转页数
+        Selectpageuser(){
+            if(this.pageuser<1||this.pageuser>2){
+                this.$message({
+                    message:'已经超过页数限制',
+                    center:true
+                })
+            }else{
+                this.isdemohover03 = this.pageuser
+                this.axios.post('/res/resourcelist',{
+                    onenav:4,
+                    twonav:this.isdemohover01,
+                    pagenum:this.pageuser,
+                    pagesize:15
+                })
+                .then(response => {  
+                    this.listnew=response.data.data  
+                    if(this.listnew.length<15){
+                        this.numpage = false
+                    }else{
+                        this.numpage = false
+                    }
+                    this.listnew=response.data.data
+                })
+            }
         },
+        // 前页数
         Selectpagebefore(){
-            var id =this.nowid
-            var head01 = 16*(id-2)
-            var foot01 = 16*(id-1)-1
-            this.nowid=this.nowid-1
-            console.log(head01)
-            console.log(foot01)
-            this.listnew=this.list.slice(head01,foot01)
+            if(this.isdemohover03<=1){
+                this.isdemohover03=1
+            }
+            this.axios.post('/res/resourcelist',{
+                onenav:4,
+                twonav:this.isdemohover01,
+                pagenum:--this.isdemohover03,
+                pagesize:15
+            })
+            .then(response => {  
+                this.listnew=response.data.data  
+                if(this.listnew.length<15){
+                    this.numpage = true
+                }else{
+                    this.numpage = true
+                }
+                this.listnew=response.data.data
+            })
         },
+        // 后页数
         Selectpageafter(){
-            var id =this.nowid
-            var head01 = 16*(id)
-            var foot01 = 16*(id+1)-1
-            this.nowid=this.nowid+1
-            console.log(head01)
-            console.log(foot01)
-            this.listnew=this.list.slice(head01,foot01)
+            if(this.isdemohover03>=10){
+                this.isdemohover03=10
+            }
+            this.axios.post('/res/resourcelist',{
+                onenav:4,
+                twonav:this.isdemohover01,
+                pagenum:++this.isdemohover03,
+                pagesize:15
+            })
+            .then(response => {  
+                this.listnew=response.data.data  
+                if(this.listnew.length<15){
+                    this.numpage = true
+                }else{
+                    this.numpage = true
+                }
+                this.listnew=response.data.data
+            })
         }
     },
     components:{
@@ -244,19 +329,18 @@ export default{
 }
 .container64 .sort01 ul li{
    float: left;
-   width: 60px;
+   width: auto;
    height: 24px;
    color:#F13232;
    font-size: 14px;
    border: 1px solid #F13232;
    margin-right: 14px;
    font-weight: 600;
+   padding-right: 15px;
 }
 .container64 .sort01 ul li:hover{
    color:#fff;
    background: #F13232;
-   position: relative;
-   top: 2px;
 }
 .container64 .sort0101 ul{
    list-style: none;
@@ -270,7 +354,7 @@ export default{
 .container64 .sort0101text{
    display: inline-block;
    position: relative;
-   left: -406px;
+   left: 46px;
    top: 12px;
    color:#333;
    font-size: 14px;
@@ -284,7 +368,7 @@ export default{
    width: auto;
    height: 24px;
    color:#F13232;
-   font-size: 14px;
+   font-size: 16px;
    border:1px solid red;
    text-align:center;
    margin-right: 14px;
@@ -419,6 +503,15 @@ export default{
     margin-top: 30px;
     position: relative;
 }
+.container64 .first .roleup a{
+    color: #F13232;
+    text-decoration: none; 
+
+}
+.container64 .first .roleup a:hover{
+    color: #fff; 
+    background: #F13232;
+}
 .container64 .first .roleup button:hover{
     background: #F13232;
     color: #fff;
@@ -452,9 +545,9 @@ export default{
 }
 
 .container64 .sortnum01{
-    position: relative;
+    position: absolute;
     top: 1104px;
-    left:120px;
+    left:260px;
     width: 995px;
     height: 32px;
 }
@@ -476,7 +569,7 @@ export default{
     width: 70px;
     position: relative;
     left: 34px;
-    top: -21px;
+    top: 0px;
     border: 1px solid #dbdad7;
     text-align: center;
 }
@@ -486,7 +579,7 @@ export default{
     width: 70px;
     position: relative;
     left: 48px;
-    top: -21px;
+    top: 0px;
     border: 1px solid #dbdad7;text-align: center;
 }
 .container64 .sortnum01 .endpage p{
@@ -496,7 +589,7 @@ export default{
     background: #F13232;
     color: #fff;
 }
-.container64 .sortnum01 .night{
+/* .container63 .sortnum01 .night{
     float: left;
     height: 25px;
     width: 32px;
@@ -505,11 +598,11 @@ export default{
     position: relative;
     left: 20px;
     top: -21px;
-}
-.container64 .sortnum01 .night:hover{
+} */
+/* .container63 .sortnum01 .night:hover{
     background: #F13232;
     color: #fff;
-}
+} */
 .container64 .sortnum01 .nextpage p{
     margin-top: 2px;
 }
@@ -522,8 +615,8 @@ export default{
 }
 .container64 .sortnum01 .sortfly .one{
     position: relative;
-    left: 682px;
-    top: -42px;
+    left: 660px;
+    top: -20px;
     width: 30px;
     height: 14px;
     font-size: 12px;
@@ -533,15 +626,15 @@ export default{
     position: relative;
     width: 30px;
     height: 14px;
-    left: 752px;
-    top: -56px;
+    left: 742px;
+    top: -32px;
     font-size: 12px;
     color: #333;
 }
 .container64 .sortnum01 .sortfly input{
     position: relative;
-    left: 100px;
-    top: -35px;
+    left: 115px;
+    top: -12px;
     width: 32px;
     height: 22px;
     outline: none;
@@ -553,8 +646,8 @@ export default{
 }
 .container64 .sortnum01 .sortfly button{
     position: relative;
-    left: 772px;
-    top: -75px;
+    left: 758px;
+    top: -52px;
     width: 53px;
     height: 25px;
     font-size: 12px;
@@ -574,4 +667,10 @@ export default{
     font-size: 12px;
     display: inline-block;
 } */
+.container64 .demohover{
+   background:#F13232;
+}
+.container64 .demohover p{
+   color: #fff;
+}
 </style>

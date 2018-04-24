@@ -1,5 +1,5 @@
 <template>
-  <div class="container65">
+  <div class="container65" v-show="false">
       <div class="first">
         <img class="firstlogo" src="../../../assets/source/role.png" alt=""><p class="rolemain">素材</p>
         <div class="line"></div>
@@ -7,12 +7,12 @@
             <li v-for="item in list01" :key="item.id">
                 <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
-                    <button @click="collectmaster01(item.id)">采集</button>
+                    <button><a :href="'/codeplay'+item.content" download="素材.png">下载</a></button>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>  
         </ul>
-         <router-link to="/source/sourceshop/Source"><button class="seeall">查看全部 ></button></router-link>
+         <router-link to="/source/sourceshop/Source01"><button class="seeall">查看全部 ></button></router-link>
      </div>
         <div class="second">
         <img class="secondlogo" src="../../../assets/source/bg.png" alt=""><p class="rolemain">背景</p>
@@ -21,7 +21,7 @@
             <li v-for="(item,index) in list02" :key="item.id" v-if='index<10'>
                 <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
-                    <button @click="collectmaster02(item.id)">采集</button>
+                    <button><a :href="'/codeplay'+item.content" download="素材.png">下载</a></button>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>  
@@ -35,7 +35,7 @@
              <li v-for="(item,index) in list03" :key="item.id" v-if='index<10'>
                 <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
-                    <button @click="collectmaster03(item.id)">采集</button>
+                    <button><a :href="'/codeplay'+item.content" download="素材.png">下载</a></button>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>
@@ -59,27 +59,33 @@ export default{
         this.Getsource03()
     },
     methods:{
+        // 加载素材
         select01(){
             this.axios.post('/res/resourcelist',{
                 onenav:1,
+                pagesize:15
             })
             .then(response => {   
                 this.list01=response.data.data
                 console.log(response)
             })
         },
+        // 加载场景
         Getsource01(){
             this.axios.post('/res/resourcelist',{
                 onenav:2,
+                pagesize:15
             })
             .then(response => {   
                 this.list02=response.data.data
                 console.log(response)
             })
         },
+         // 加载音乐
         Getsource03(){
             this.axios.post('/res/resourcelist',{
                 onenav:3,
+                pagesize:15
             })
             .then(response => {   
                 this.list03=response.data.data
@@ -173,6 +179,15 @@ export default{
     margin-top: 30px;
     position: relative;
 }
+.container65 .first .roleup a{
+    color: #F13232;
+    text-decoration: none; 
+
+}
+.container65 .first .roleup a:hover{
+    color: #fff; 
+    background: #F13232;
+}
 .container65 .first .roleup button{
     width: 60px;
     height: 26px;
@@ -263,6 +278,15 @@ export default{
     margin-top: 30px;
     position: relative;
 }
+.container65 .second .roleup a{
+    color: #F13232;
+    text-decoration: none; 
+
+}
+.container65 .second .roleup a:hover{
+    color: #fff; 
+    background: #F13232;
+}
 .container65 .second .roleup button{
     width: 60px;
     height: 26px;
@@ -351,6 +375,15 @@ export default{
     background: #f5f5f5;
     margin-top: 30px;
     position: relative;
+}
+.container65 .three .roleup a{
+    color: #F13232;
+    text-decoration: none; 
+
+}
+.container65 .three .roleup a:hover{
+    color: #fff; 
+    background: #F13232;
 }
 .container65 .three .roleup button{
     width: 60px;
