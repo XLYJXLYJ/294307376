@@ -38,6 +38,7 @@ export default{
 }
 .content02{
     flex: 1;
+    padding-left: 5px;
 }
 .footer02{
     flex: 0;

@@ -7,13 +7,13 @@
           <div class="userpiv" v-show="localpic"><img  :src="imageUrl"></div>
           <el-form :label-position="labelPosition" class="copassword" label-width="80px" :model="formLabelAlign">
                 <el-form-item class="set01" label="旧密码">
-                  <el-input class="input01" type="password" v-model="formLabelAlign.oldpass"></el-input>
+                  <input class="input01" type="password" v-model="formLabelAlign.oldpass">
                 </el-form-item>
                 <el-form-item class="set01" label="新密码">
-                  <el-input class="input01" type="password" v-model="formLabelAlign.newpass"></el-input>
+                  <input class="input01" type="password" v-model="formLabelAlign.newpass">
                 </el-form-item>
                 <el-form-item class="set01" label="确认密码">
-                  <el-input class="input01" type="password" v-model="formLabelAlign.conpass"></el-input>
+                  <input class="input01" type="password" v-model="formLabelAlign.conpass">
                 </el-form-item>
                 <el-button class="save" @click="changepassbtn">确认修改</el-button>
           </el-form>
@@ -106,9 +106,11 @@
   left: 363px;
 }
 .container34 .input01{
-  width: 370px;
-  height: 40px;
-  background-color: #BDBDBD;
+  width: 360px;
+  height: 43px;  
+  background:#F5F5F5;
+  border: none;
+  padding-left: 10px;
 }
 .container34 .save{
   width: 370px;
@@ -118,9 +120,6 @@
   background: #F13232;
   position: relative;
   left: 80px;
-}
-.container34 .el-form-item__label{
-  font-size: 18px;
 }
 .container34 .userpic{
   position: relative;
@@ -165,8 +164,8 @@
     height: 29px;
 }
 .container34 .copassword{
-    position: relative;
+    position: absolute;
     left: 0px;
-    top: -210px;
+    top: 87px;
 }
 </style>

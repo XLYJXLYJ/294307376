@@ -42,6 +42,10 @@ import { formatDate } from '../../public/time.js'
                 .then(response => {
                     if(response.data.data.msg=='这回真的没有了~'){
                         this.nosend = false
+                        this.$message({
+                        message: '没有删除的作品',
+                        center: true
+                        }); 
                     }else{
                         this.list=response.data.data
                         console.log(response)
@@ -56,9 +60,10 @@ import { formatDate } from '../../public/time.js'
                     })
                     .then(response => {
                         this.$message({
-                        message: '还原成功，请刷新',
+                        message: '还原成功',
                         center: true
                     }); 
+                    location.reload();
                 })
             },
             deletedemo(id){
@@ -69,9 +74,10 @@ import { formatDate } from '../../public/time.js'
                 })
                 .then(response => {
                     this.$message({
-                    message: '删除成功,请刷新',
+                    message: '删除成功',
                     center: true
                     }); 
+                    location.reload();
                 })
             }
         }
@@ -85,7 +91,7 @@ import { formatDate } from '../../public/time.js'
     position: relative;
     left: -20px;
     overflow: auto;
-    top:-600px;
+    top:-640px;
 }
 .container30 ul{
     position: relative;

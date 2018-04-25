@@ -43,6 +43,10 @@ import { formatDate } from '../../public/time.js'
                 .then(response => {
                     if(response.data.data.msg=='这回真的没有了~'){
                         this.nosend = false
+                        this.$message({
+                        message: '没有未发布的作品',
+                        center: true
+                        }); 
                     }else{
                         this.title=response.data.data
                         console.log(response)

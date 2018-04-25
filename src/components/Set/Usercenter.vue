@@ -9,16 +9,16 @@
     <div  class="two_text"><p>{{$store.state.usernamesession02}}</p></div>
     <el-form :label-position="labelPosition" label-width="80px" class="usercenter" :model="formLabelAlign" :rules="rules">
         <el-form-item label="名称">
-          <el-input class="input01" v-model="formLabelAlign.name"></el-input>
+          <input class="input01" v-model="formLabelAlign.name">
         </el-form-item>
         <el-form-item label="性别">
-          <el-input class="input01" v-model="formLabelAlign.sex"></el-input>
+          <input class="input01" v-model="formLabelAlign.sex">
         </el-form-item>
         <el-form-item label="年龄">
-          <el-input class="input01" v-model.number="formLabelAlign.age"></el-input>
+          <input class="input01" v-model.number="formLabelAlign.age">
         </el-form-item>
         <el-form-item label="真实姓名">
-          <el-input class="input01" v-model="formLabelAlign.name01"></el-input>
+          <input class="input01" v-model="formLabelAlign.name01">
         </el-form-item>
         <el-button class="save" @click="uploadmessage">保存</el-button>
     </el-form>
@@ -87,6 +87,19 @@
             });
       },
       uploadmessage(){
+        var regage = /^[0-9]\w{1,3}$/;
+        var regsex=/^(男|女)$/
+        if(!regsex.test(this.formLabelAlign.sex)){
+                this.$message({
+                    message: '性别必须是男或者女',
+                    center: true
+                });  
+        }else if(!regage.test(this.formLabelAlign.age)){
+                this.$message({
+                    message: '年龄必须是数字',
+                    center: true
+                }); 
+        }else{
                 var picsource = this.$refs.file_el.files[0]
                 let formData = new FormData();
                 formData.append('userid',sessionStorage.userid);
@@ -111,6 +124,8 @@
                     message: '上传成功',
                     center: true
                 });  
+        }
+
       },
         choise_file () {
             // this.indexdemoid=19
@@ -139,11 +154,11 @@
   left: 363px;
 }
 .container33 .input01{
-  width: 370px;
+  width: 360px;
   height: 43px;  
-}
-.container33 .el-input__inner{
-  background-color: #BDBDBD!important;
+  background:#F5F5F5;
+  border: none;
+  padding-left: 10px;
 }
 .container33 .save{
   width: 370px;
@@ -198,8 +213,8 @@
     height: 29px;
 }
 .container33 .usercenter{
-    position: relative;
+    position: absolute;
     left: 0px;
-    top: -240px;
+    top: 87px;
 }
 </style>

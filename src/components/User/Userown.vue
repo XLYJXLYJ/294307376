@@ -2,7 +2,7 @@
     <div class="container39">
         <div>
             <div>
-                <img class="head" src="../../assets/user/head.png" alt="">
+                <img class="head" :src="'data:image/png;base64,'+userimageUrl" alt="">
                 <p class="name">{{$store.state.usernamesession02}}</p>
                 <p class="atten">编程达人</p>
             </div>
@@ -32,8 +32,8 @@
             <p class="sum01">你的作品已经累积获得了:</p>
             <div class="good"><p>100</p><span>个赞</span></div>
             <div class="store"><p>100</p><span>个收藏</span></div>
-            <div class="make"><p>100</p><span>次再创作</span></div>
-            <div class="see"><p>100</p><span>次浏览</span></div>
+            <div class="make"><p>100</p><span>次浏览</span></div>
+            <!-- <div class="see"><p>100</p><span>次浏览</span></div> -->
         </div>
         <div class="mydy">我的动态</div>
   </div>
@@ -48,7 +48,8 @@ import Vue from 'vue'
                  listdemo:'',
                  postlistdemo:'',
                  aboutme:'',
-                 doing:''
+                 doing:'',
+                 userimageUrl:''
             } 
         },
         // watch:{
@@ -70,9 +71,11 @@ import Vue from 'vue'
             Getuseinfo(){
                 this.axios.post('/res/userinfo',{
                         userid:sessionStorage.userid,
-                        getinfostate:2
+                        getinfostate:3
                     })
-                    .then(response => {           
+                    .then(response => {   
+                        console.log(response)  
+                        this.userimageUrl= response.data.data.imgBuffer    
                         this.aboutme = response.data.data.aboutme,
                         this.doing = response.data.data.doing
                 })

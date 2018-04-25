@@ -17,6 +17,15 @@ const state = {
     isdropdownparent:false,
     bgid:'',
     shareid:'',
+    sourcesearch:false,
+    sourcebackg:false,
+    sourcegame:false,
+    sourcegsource:false,
+    sourcemusic:false,
+    sourcesource01:false,
+    sourcelesson:false,
+    sourcestudy:false,
+    authid:''
 }
 
 const actions = {

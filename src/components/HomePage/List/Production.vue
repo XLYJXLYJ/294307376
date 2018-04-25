@@ -38,7 +38,8 @@
                     state:1,
                     pagesize:4
                 })
-                .then(response => {         
+                .then(response => {   
+                    console.log(response)      
                     this.list=response.data.data
                     this.$store.state.searchdemo=false
                     this.$store.state.recommenddemo=false

@@ -9,9 +9,9 @@
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
                 <button class="button02">加入</button>
-                <span class="down"><i class="icon_see"><span>5k</span></i></span>
-                <span class="down"><i class="icon_love"><span>5</span></i></span>
-                <span class="down"><i class="icon_star"><span>7</span></i></span>
+                <span class="down"><i class="icon_see"><span>{{item.looktitle}}</span></i></span>
+                <span class="down"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
+                <span class="down"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
                 <p class="cancelpub" @click="Canpublic(item.id)">取消发布</p>
             </li>    
         </ul>  
@@ -47,9 +47,12 @@ export default{
             .then(response => {           
                 if(response.data.data.msg=='这回真的没有了~'){
                     this.nosend = false
+                        this.$message({
+                        message: '没有已发布的作品',
+                        center: true
+                        }); 
                 }else{
                     this.list=response.data.data
-                    console.log(response)
                 }
             })
             },
@@ -65,7 +68,7 @@ export default{
                 })
                 .then(response => {
                     this.$message({
-                    message: '取消发布成功，请刷新',
+                    message: '取消发布成功',
                     center: true
                 }); 
                 location.reload();

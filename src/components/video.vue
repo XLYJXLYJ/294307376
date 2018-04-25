@@ -124,7 +124,7 @@ export default{
                 this.isCollect = response.data.data.isCollect
                 this.isPraise = response.data.data.isPraise
                 this.isAttention= response.data.data.isAttention
-                this.authid= response.data.data.authid
+                this.$store.state.authid= response.data.data.authid
             }) 
         },
         // 播放文件获取数据
@@ -170,7 +170,7 @@ export default{
                     this.list.praisetotal++; 
                     this.axios.post('/res/useropreate',{
                             userid:sessionStorage.userid,
-                            state:1,
+                            state:3,
                             id:sessionStorage.id,
                         })
                         .then(response => {           
@@ -180,7 +180,7 @@ export default{
                     this.list.praisetotal--; 
                     this.axios.post('/res/useropreate',{
                             userid:sessionStorage.userid,
-                            state:2,
+                            state:4,
                             id:sessionStorage.id,
                         })
                         .then(response => {           
@@ -203,7 +203,7 @@ export default{
                     this.list.collecttotal++; 
                     this.axios.post('/res/useropreate',{
                             userid:sessionStorage.userid,
-                            state:3,
+                            state:1,
                             id:sessionStorage.id,
                         })
                         .then(response => {           
@@ -213,7 +213,7 @@ export default{
                     this.list.collecttotal--; 
                     this.axios.post('/res/useropreate',{
                             userid:sessionStorage.userid,
-                            state:4,
+                            state:2,
                             id:sessionStorage.id,
                         })
                         .then(response => {           

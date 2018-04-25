@@ -53,6 +53,7 @@ export default{
 } */
 .content01 {
     flex: 1;
+    padding-left: 5px;
 }
 .footer01 {
     flex: 0;

@@ -27,7 +27,7 @@ export default{
     },
     methods:{
         demoroute(){
-            this.$router.push({ name: 'Mydemo' })
+            this.$router.push({ name: 'Alldemohaha' })
         }
     },
     components:{
@@ -46,6 +46,7 @@ export default{
 .content05{
     flex: 1;
     padding-top: 154px;
+    padding-left: 5px;
 }
 .footer05{
     margin-top: 36px;

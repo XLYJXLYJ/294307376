@@ -23,16 +23,16 @@
                 </ul>
                 <div v-if="snapdropdown01" class="snapdropdowm">
                     <ul class="block-col-12">
-                        <li><p @click="dialogNew=true">新建</p></li>
+                        <li><p @click="dialogNew=true,snapdropdown01=false">新建</p></li>
                         <li><p>另存为</p></li>
-                        <li  @click="dialogExport = true"><p @click.prevent="download">保存到本地</p></li>
-                        <li><p @click.prevent="dialogOpen=true">打开本地作品</p></li>    
+                        <li  @click="dialogExport = true,snapdropdown01=false"><p @click.prevent="download">保存到本地</p></li>
+                        <li><p @click.prevent="dialogOpen=true,snapdropdown01=false">打开本地作品</p></li>    
                     </ul>
                 </div>
                 <div v-show="snapdemodropdowm" class="snapdemodropdowm" >
                     <ul class="block-col-12">
                         <li><router-link to="/Demo/Mydemo"><p>我的作品</p></router-link></li>
-                        <li><p @click.prevent="Cancellogout">退出登录</p></li>  
+                        <li><p @click.prevent="Cancellogout,snapdemodropdowm=false">退出登录</p></li>  
                     </ul>
                 </div>
             </div>
@@ -131,7 +131,7 @@
                                 <el-input type="text" v-model="formSave.userid" auto-complete="off" placeholder="请输入用户名" v-show="true"></el-input>
                             </el-form-item> -->
                             <el-form-item class="iden01">
-                                <input class="iden04" type="file" ref="file" multiple/>     
+                                <input class="iden04" type="file" ref="file" id='xml_seq' multiple/>     
                             </el-form-item>
                              <el-button  class="iden02"  @click="open">确定</el-button>
                             <el-button  class="iden03" @click="dialogOpen=false">取消</el-button>
@@ -224,6 +224,9 @@ export default{
             sign:true,
             down:false,
             user:false,
+            savestate:'',
+            edittittle:'',
+            editdes:'',
             // 登录注册变量
             dialogRegister: false,
             dialogLoginshow:false,
@@ -296,7 +299,8 @@ export default{
         }
     },
     mounted(){
-        this.loadproject()
+        this.loadprojectxml()
+        this.loadprojectdes()
         this.Getsession()
         this.Getsessionname()
     },
@@ -318,29 +322,55 @@ export default{
           }
         },
         // 编辑文件
-        loadproject(){
+        loadprojectxml(){
              this.axios.post('/res/getfile',{
                 id:this.$store.state.demoxmlid,
             })
             .then(response => {                          
                this.demoxml = response.data  
-               console.log(this.demoxml)
+               console.log(response)
             //    console.log(this.$store.state.demoxmlid)
             window.frames["snap"].ide.droppedText(this.demoxml,'OPEN') 
             })
             
         },
-
+        loadprojectdes(){
+            // if(sessionStorage.userid!=='unfined')
+            this.axios.post('/res/getfile',{
+                userid:sessionStorage.userid,
+                id:this.$store.state.demoxmlid,
+                state:1
+            })
+            .then(response => {                        
+                this.list = response.data.data
+                console.log(response)
+                this.edittittle = response.data.data.title
+                this.editdes = response.data.data.desc
+            }) 
+        },
         // 打来文件
         open() {
-            this.dialogOpen=false
-             var reader = new FileReader();
-             reader.readAsText(this.$refs.file.files[0]);
-             reader.onload = function () {    
-                this.readfilebinary=this.result
-                console.log(this.readfilebinary)
-                window.frames["snap"].ide.droppedText(this.readfilebinary,'HHH')   
-             }         
+            var seq_id =document.getElementById('xml_seq').value; //根据id得到值
+            var index= seq_id.indexOf("."); //得到"."在第几位
+            seq_id=seq_id.substring(index);  //截断"."之前的，得到后缀
+            if(seq_id!=".xml"){                         //根据后缀，判断是否符合格式
+                this.$message({
+                    message: '文件格式不正确',
+                    center: true
+                });
+                document.getElementById('movie_seq').value="";  // 不符合，就清除，重新选择
+            }else{
+                this.dialogOpen=false
+                var reader = new FileReader();
+                reader.readAsText(this.$refs.file.files[0]);
+                reader.onload = function () {    
+                    this.readfilebinary=this.result
+                    console.log(this.readfilebinary)
+                    window.frames["snap"].ide.droppedText(this.readfilebinary,'HHH')   
+                } 
+            }
+
+        
         },
 
         // 新建文件
@@ -357,24 +387,47 @@ export default{
 
         // 保存文件
         handiframe() {
-            if(sessionStorage.userid){
-                this.dialogSave = true
-                this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT(' ')
-                let filebir = this.formSave.file
-                this.filebinary = new Blob([filebir]);
-            }else{
-                this.$message({
-                    message: '请先登录',
+        　　if(window.navigator.onLine==true) {　
+                if(sessionStorage.userid){
+                    if(this.$store.state.demoxmlid){
+                        this.savestate=2
+                        this.dialogSave = true
+                        this.formSave.title=this.edittittle
+                        this.formSave.desc=this.editdes
+                        this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT(' ')
+                        let filebir = this.formSave.file
+                        this.filebinary = new Blob([filebir]);
+                    }else{
+                        this.savestate=1
+                        this.dialogSave = true
+                        this.formSave.title=''
+                        this.formSave.desc=''
+                        this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT(' ')
+                        let filebir = this.formSave.file
+                        this.filebinary = new Blob([filebir]);
+                    }
+                }else{
+                    this.$message({
+                        message: '请先登录',
+                        center: true
+                    });
+                }
+        　　}else {　
+　　　　         this.$message({
+                    message: '上传失败，请检查网络',
                     center: true
                 });
-            }
+        　　}
+
         },
         submitUpload() {
+            if(this.state==1){
                 let formData = new FormData();
                 formData.append('userid',this.formSave.userid);
                 formData.append('title',this.formSave.title);
                 formData.append('desc',this.formSave.desc);
                 formData.append('files',this.filebinary);
+                formData.append('state',1);
                 let config = {
                     headers:{
                         'Content-Type':'multipart/form-data'
@@ -389,19 +442,14 @@ export default{
                     message: '上传成功',
                     center: true
                 });
-        },
-        // 发布文件
-        handiframepublish() {
-            if(sessionStorage.userid){
-                this.dialogupload = true
-                this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
-                let filebir = this.formSave.file
-                this.filebinary = new Blob([filebir]);
+            }else{
                 let formData = new FormData();
                 formData.append('userid',this.formSave.userid);
-                formData.append('title','未发布成功的作品');
-                formData.append('desc','未发布成功的作品');
+                formData.append('id',this.$store.state.demoxmlid);
+                formData.append('title',this.formSave.title);
+                formData.append('desc',this.formSave.desc);
                 formData.append('files',this.filebinary);
+                formData.append('state',2);
                 let config = {
                     headers:{
                         'Content-Type':'multipart/form-data'
@@ -409,16 +457,52 @@ export default{
                 }
                 this.axios.post('/res/upload',formData,config)
                 .then(function(response){
-                        console.log(123)
+                    console.log(response)
                 })
-            }else{
-                this.$message(
-                    {
-                        message: '请先登录',
-                        center: true
-                    }
-                )
+                this.dialogSave = false;
+                this.$message({
+                    message: '上传成功',
+                    center: true
+                });
             }
+
+        },
+        // 发布文件
+        handiframepublish() {
+        　　if(window.navigator.onLine==true) {　
+                if(sessionStorage.userid){
+                    this.dialogupload = true
+                    this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
+                    let filebir = this.formSave.file
+                    this.filebinary = new Blob([filebir]);
+                    let formData = new FormData();
+                    formData.append('userid',this.formSave.userid);
+                    formData.append('title','未发布成功的作品');
+                    formData.append('desc','未发布成功的作品');
+                    formData.append('files',this.filebinary);
+                    let config = {
+                        headers:{
+                            'Content-Type':'multipart/form-data'
+                        }
+                    }
+                    this.axios.post('/res/upload',formData,config)
+                    .then(function(response){
+                            console.log(123)
+                    })
+                }else{
+                    this.$message(
+                        {
+                            message: '请先登录',
+                            center: true
+                        }
+                    )
+                }
+        　　}else {　
+　　　　         this.$message({
+                    message: '发布失败，请检查网络',
+                    center: true
+                });
+        　　}
         },
         getdemopublish(){
                 this.axios.post('/res/filelist',{
@@ -429,9 +513,29 @@ export default{
                     this.$store.state.demoxmlid = response.data.data[response.data.data.length - 1].id    
                 })
             },
-        //登陆
+            //登陆
         Loginbtn() {
-            this.axios.post('/res/login', {
+            var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
+            if(this.formLogin.username == ''){
+                this.$message({
+                message: '请输入用户名',
+                center: true
+                });   
+            }
+            else if(this.formLogin.password == ''){
+                this.$message({
+                message: '请输入密码',
+                center: true
+                });   
+            }
+            if(!reguserpassword.test(this.formLogin.password)){
+                this.$message({
+                message: '密码格式不正确',
+                center: true
+                });   
+            }
+            else{
+                 this.axios.post('/res/login', {
                 username:this.formLogin.username,
                 password:this.formLogin.password,
             })
@@ -446,21 +550,49 @@ export default{
                     })
                 }else{
                     console.log('denglu')
-                    this.Getsessionname()
                     this.Getsession()
+                    this.Getsessionname()
+   
                 }
             })
             .catch(function (error) {
                 console.log(error);
             });
+            }   
         },
         // 注册
         Registerbtn() {
-            if( this.formRegister.password!==this.formRegister.checkpassword||this.formRegister.password.length<6||this.formRegister.checkpassword.length<6||this.formRegister.username.length<3||this.formRegister.username.length>10||this.formRegister.mail.length<9){
-                    this.$message({
-                    message: '请根据提示输入相应的内容',
-                    center: true
-                    });
+            var regusername = /^[a-zA-Z0-9]\w{4,16}$/;
+            var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
+            var regEmail= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            if(!regusername.test(this.formRegister.username)){
+                this.$message({
+                message: '用户名以字母开头，长度在4-16之间， 只能包含字母、数字',
+                center: true
+                });   
+            }
+            else if(this.formRegister.mail==''||this.formRegister.mail.length<12){
+                this.$message({
+                message: '邮箱格式不正确',
+                center: true
+                });  
+            }else if(!regEmail.test(this.formRegister.mail)){
+                this.$message({
+                message: '邮箱格式不正确',
+                center: true
+                });  
+            }
+            else if(!reguserpassword.test(this.formRegister.password)){
+                this.$message({
+                message: '密码长度（6~20 英文+数字）',
+                center: true
+                });
+            }
+            else if( this.formRegister.password!==this.formRegister.checkpassword){
+                this.$message({
+                message: '密码输入不一致',
+                center: true
+                });
             }
             else
             {    
@@ -474,8 +606,8 @@ export default{
                     this.$message({
                     message: this.registermsg,
                     center: true
-                    });
-                
+                    });  
+                    this.dialogLogin = false  
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -588,7 +720,9 @@ export default{
                 this.sign = true;
                 this.login = true;
                 this.user = false;
-                this.snapdemodropdowm = false;     
+                this.snapdemodropdowm = false;
+                sessionStorage.usernamesession ==''  
+                this.$router.push({ name: 'Home' })   
             }) 
         }
     },
@@ -711,15 +845,18 @@ export default{
     background: #fff;
     /* display: inline-block; */
     border: 1px solid #333333;
+
 }
 .snapboxhead .snapdropdowm .block-col-12 a{
     color: #333;
+    text-decoration: none;
 }
 .snapboxhead .snapdropdowm .block-col-12 li{
     padding-top: 0px;
     padding-left: 5px;
     height: 24px;
     width: 90px;
+    cursor: pointer;
 }
 .snapboxhead .snapdropdowm .block-col-12 li:hover{
     background:#000;
@@ -742,15 +879,20 @@ export default{
 }
 .snapboxhead .snapdemodropdowm .block-col-12 a{
     color: #333;
+    text-decoration: none;
 }
 .snapboxhead .snapdemodropdowm .block-col-12 li{
     padding-top: 0px;
     padding-left: 5px;
     height: 24px;
     width: 70px;
+    cursor: pointer;
 }
 .snapboxhead .snapdemodropdowm .block-col-12 li:hover{
     background:#000;
+    color: #fff;
+}
+.snapboxhead .snapdemodropdowm .block-col-12 li p:hover{
     color: #fff;
 }
 
@@ -759,7 +901,7 @@ export default{
     margin: 0px;
     padding: 0px;
     width: 100%;
-    height: 386px;
+    height: 336px;
     background: #fff;
 }
 /* .container50 .welcome{
@@ -790,7 +932,7 @@ export default{
 }
 .container50 .iden02{
     position: absolute;
-    height: 147px;
+    height: 97px;
     width: 297px;
     top: 116px;
     left: 60px;
@@ -809,12 +951,12 @@ export default{
     position: absolute;
     height: 29px;
     width: 297px;
-    top: 324px;
+    top: 274px;
     left: 160px;
     padding-left: 10px;
 }
 .container50 .textdes{
-    height: 170px;
+    height: 110px;
     width: 278px;
     padding: 8px;
     border: 1px solid #dcdfe6;
@@ -824,7 +966,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 297px;
-    top: 346px;
+    top: 246px;
     left: 68px;
     background: #F13232;
     color: #fff;
@@ -1003,7 +1145,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 297px;
-    top: 118px;
+    top: 88px;
     left: 60px;
     padding-left: 10px;
 }
@@ -1011,14 +1153,14 @@ export default{
     position: absolute;
     height: 39px;
     width: 77px;
-    top: 178px;
+    top: 158px;
     left: 115px;
 }
 .container503 .iden03{
     position: absolute;
     height: 39px;
     width: 77px;
-    top: 178px;
+    top: 158px;
     left: 225px;
 }
 .container503 .iden04{

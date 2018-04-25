@@ -36,7 +36,7 @@ export default{
     methods:{
         Getalldemo(){
             this.axios.post('/res/filelist',{
-                userid:sessionStorage.userid,
+                userid:this.$store.state.authid,
                 state:1
             })
             .then(response => {        

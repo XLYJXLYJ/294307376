@@ -159,5 +159,11 @@ export default{
     top: -108px;
     background: #000;
 }
+#videobox video{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+}
 
 </style>

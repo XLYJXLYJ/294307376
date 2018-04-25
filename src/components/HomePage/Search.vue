@@ -43,7 +43,13 @@
                     searchname:this.searchname
                 })
                 .then(response => {  
-                    if(response.data.data.msg == "这回真的没有了~"){
+                    if(this.searchname ==''){
+                        this.$message({
+                            message:'搜索内容不能为空',
+                            center:true
+                        })
+                    }
+                    else if(response.data.data.msg == "这回真的没有了~"){
                         this.$store.state.searchdemo=false
                         this.$message({
                             message:'没有找到相关的作品',

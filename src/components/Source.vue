@@ -36,6 +36,7 @@ export default{
 }
 .content10 {
     flex: 1;
+    padding-left: 5px;
 }
 .footer10 {
     flex: 0;

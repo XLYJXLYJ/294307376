@@ -1,5 +1,5 @@
 <template>
-  <div class="container65" v-show="false">
+  <div class="container65" v-show="$store.state.sourcegsource">
       <div class="first">
         <img class="firstlogo" src="../../../assets/source/role.png" alt=""><p class="rolemain">素材</p>
         <div class="line"></div>
@@ -7,7 +7,7 @@
             <li v-for="item in list01" :key="item.id">
                 <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
-                    <button><a :href="'/codeplay'+item.content" download="素材.png">下载</a></button>
+                    <button><a :href="'/codeplay'+item.content" download>下载</a></button>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>  
@@ -21,7 +21,7 @@
             <li v-for="(item,index) in list02" :key="item.id" v-if='index<10'>
                 <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
-                    <button><a :href="'/codeplay'+item.content" download="素材.png">下载</a></button>
+                    <button><a :href="'/codeplay'+item.content" download>下载</a></button>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>  
@@ -35,7 +35,7 @@
              <li v-for="(item,index) in list03" :key="item.id" v-if='index<10'>
                 <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                 <div class="roleup">
-                    <button><a :href="'/codeplay'+item.content" download="素材.png">下载</a></button>
+                    <button><a :href="'/codeplay'+item.content" download>下载</a></button>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>
@@ -57,6 +57,14 @@ export default{
         this.Getsource01()
         this.select01()
         this.Getsource03()
+        this.$store.state.sourcesearch=false,
+        this.$store.state.sourcebackg=false,
+        this.$store.state.sourcegame=false,
+        this.$store.state.sourcegsource=true,
+        this.$store.state.sourcemusic=false,
+        this.$store.state.sourcesource01=false,
+        this.$store.state.sourcelesson=false,
+        this.$store.state.sourcestudy=false
     },
     methods:{
         // 加载素材

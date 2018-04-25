@@ -60,7 +60,7 @@
         </div> 
          <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
-            <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false">
+            <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false" :lock-scroll="false">
                 <div>
                     <div class="container21" v-show="dialogLoginshow">
                         <form action="">
@@ -195,6 +195,7 @@ export default {
         },
         //登陆
         Loginbtn() {
+
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
             if(this.formLogin.username == ''){
                 this.$message({
@@ -246,7 +247,7 @@ export default {
             var regEmail= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
             if(!regusername.test(this.formRegister.username)){
                 this.$message({
-                message: '用户名以字母开头，长度在4-16之间， 只能包含字符、数字和下划线',
+                message: '用户名长度在4-16之间， 只能包含字母、数字',
                 center: true
                 });   
             }
@@ -281,7 +282,8 @@ export default {
                     mail:this.formRegister.mail
                 })
                 .then(response => {
-                    this.registermsg = response.data.data.msg;
+                    this.registermsg = response.data.errmsg;
+                    console.log(response)
                     this.$message({
                     message: this.registermsg,
                     center: true
@@ -396,7 +398,9 @@ export default {
             .then(response =>{  
                 this.loginsign = true;
                 this.usercenter = false;
-                this.dropdowm = false;     
+                this.dropdowm = false;  
+                sessionStorage.usernamesession ==''  
+                this.$router.push({ name: 'Home' })    
             }) 
         }
     }
@@ -433,6 +437,7 @@ export default {
     margin: 0 auto;
     z-index: 0;
     position: relative;
+    padding-left: 5px;
 }
 .headercontainer04 .headonecenter .el-dropdown-link{
     position: relative;
@@ -512,7 +517,7 @@ export default {
     background: #fff;
     position: relative;
     top: 30px;
-    box-shadow:1px 7px 5px #f6f6f6;
+    box-shadow:0px 3px 5px #eee;
 }
 .container04 .container04center{
     width: 1200px;
@@ -520,6 +525,7 @@ export default {
     margin: 0 auto;
     position: relative;
     top: 0px;
+    padding-left: 5px;
 }
 .container04 ul{
     position: absolute;
@@ -636,14 +642,14 @@ export default {
 /* 头部列表结束 */
 
 /* 模态框开始 */
-.container21{
+.headercontainer04 .container21{
     margin: 0px;
     padding: 0px;
     width: 100%;
     height: 364px;
     background: #fff;
 }
-.container21 .sign_logo{
+.headercontainer04 .container21 .sign_logo{
     width: 50px;
     height: 23px;
     position: relative;
@@ -653,7 +659,7 @@ export default {
     font-size: 24px;
     margin-left: 30px;
 }
-.container21 .tele{
+.headercontainer04 .container21 .tele{
     position: absolute;
     height: 48px;
     width: 297px;
@@ -661,7 +667,7 @@ export default {
     left: 60px;
     padding-left: 10px;
 }
-.container21 .iden01{
+.headercontainer04 .container21 .iden01{
     position: absolute;
     height: 48px;
     width: 297px;
@@ -670,7 +676,7 @@ export default {
     padding-left: 10px;
 }
 
-.container21 .ap_text{
+.headercontainer04 .container21 .ap_text{
     position: absolute;
     height: 14px;
     width: 95px;
@@ -681,7 +687,7 @@ export default {
     cursor: pointer;
     font-weight: 600;
 }
-.container21 .register{
+.headercontainer04 .container21 .register{
     position: absolute;
     height: 48px;
     width: 310px;
@@ -694,7 +700,7 @@ export default {
     border: none;
     outline: none;
 }
-.container21 .free_res p{
+.headercontainer04 .container21 .free_res p{
     position: absolute;
     height: 14px;
     width: 142px;
@@ -704,7 +710,7 @@ export default {
     color: #000;
     font-weight: 600;
 }
-.container21 .free_res span{
+.headercontainer04 .container21 .free_res span{
     position: absolute;
     top: 317px;
     left: 216px;

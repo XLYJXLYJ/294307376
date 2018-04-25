@@ -1,5 +1,5 @@
 <template>
-  <div class="container64" v-show="false">
+  <div class="container64" v-show="$store.state.sourcegame">
         <div class="sort01">
             <p class="sort01text">作品分类:</p>
             <ul>
@@ -46,7 +46,7 @@
                 <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
                     <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
                     <div class="roleup">
-                    <button><a :href="'/codeplay/'+item.content" download="素材.png">下载</a></button>
+                    <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>
@@ -167,6 +167,14 @@ export default{
         },
         // 加载默认数据
         Getsource(){
+                this.$store.state.sourcesearch=false,
+                this.$store.state.sourcebackg=false,
+                this.$store.state.sourcegame=true,
+                this.$store.state.sourcegsource=false,
+                this.$store.state.sourcemusic=false,
+                this.$store.state.sourcesource01=false,
+                this.$store.state.sourcelesson=false,
+                this.$store.state.sourcestudy=false,
             this.axios.post('/res/resourcelist',{
                 onenav:4,
                 pagesize:15

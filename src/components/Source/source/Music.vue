@@ -1,12 +1,12 @@
 <template>
-  <div class="container80" v-show="false">
+  <div class="container80" v-show="$store.state.sourcemusic">
         <div class="sort01">
             <p class="sort01text">作品分类:</p>
             <ul>
-                <li  v-for="item in oneidbox" :key="item.oneid" @click="select01(item.oneid)"><p>{{item.name}}</p></li>
+                 <li v-for="(item,index) in oneidbox" :key="item.oneid" @click="select01(item.oneid)" :class="{demohover:index==isdemohover01}"><p>{{item.name}}</p></li>
             </ul>
         </div>
-        <div class="sort0101" v-show="sort0101">
+        <!-- <div class="sort0101" v-show="sort0101">
         <p class="sort0101text">作品分类:</p>
             <ul>
                 <li   v-for="item in twoidbox01" :key="item.twoid"><p>{{item.name}}</p></li>
@@ -23,7 +23,7 @@
             <ul>
                 <li   v-for="item in twoidbox03" :key="item.twoid"><p>{{item.name}}</p></li>
             </ul>
-        </div>
+        </div> -->
         <!-- <div class="sort010101">
             <p class="sort010101text">作品分类:</p>
             <ul>
@@ -46,7 +46,7 @@
                 <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
                     <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
                     <div class="roleup">
-                        <button @click="collectmaster(item.id)">采集</button>
+                    <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>
@@ -54,12 +54,12 @@
         </div>
         <div class="sortnum01">
             <ul>
-                <li v-for="(item,index) in pageitem" :key="item.pageid" @click="Selectpage(item.pageid)" :class="{demohover:index==isdemohover03-1}"><p>{{item.pageid}}</p></li>
+                <li v-for="(item,index) in pageitem" :key="item.pageid" v-if="index<10" @click="Selectpage(item.pageid)" :class="{demohover:index+1==isdemohover03}"><p>{{item.pageid}}</p></li>
             </ul>
             <div>
-                <p>...</p>
-                <p class="night">9</p>
-               <p class="endpage" @click="Selectpagebefore">上一页</p>
+                <!-- <p>...</p>
+                <p class="night">9</p> -->
+                  <p class="endpage" @click="Selectpagebefore">上一页</p>
                 <p class="nextpage" @click="Selectpageafter">下一页</p>
             </div>
 
@@ -69,7 +69,7 @@
                     <input type="text" v-model="pageuser">
                 </div>
                 <p class="two">页</p>
-                <button>确定</button>
+                <button @click="Selectpageuser">确定</button>
             </div>
 
         </div>
@@ -81,6 +81,7 @@ import Sourcehead from '@/components/Source/Sourcehead'
 export default{
     data() {
       return {
+        numpage:true,
         list:'',
         listnew:'',
         nowid:1,
@@ -89,39 +90,17 @@ export default{
         sort0101:false,
         sort0102:false,
         sort0103:false,
-        isdemohover03:'',
+        isdemohover01:'',
+        isdemohover02:0,
+        isdemohover03:1,
         oneidbox:[
             {oneid:0,name:"全部"},
-            {oneid:1,name:"动物"},
-            {oneid:2,name:"工具"},
-            {oneid:3,name:"人物"},
-            {oneid:4,name:"图标"}
-        ],
-        twoidbox01:[
-            {twoid:0,name:"全部"},
-            {twoid:1,name:"大象"},
-            {twoid:2,name:"猴子"},
-            {twoid:3,name:"家禽"},
-            {twoid:4,name:"猫"},
-            {twoid:5,name:"鸟"},
-            {twoid:6,name:"其他"},
-            {twoid:7,name:"狮子"},
-            {twoid:8,name:"水生动物"},
-            {twoid:9,name:"小狗"},
-            {twoid:10,name:"鹦鹉"}
-        ],
-        twoidbox02:[
-            {twoid:0,name:"全部"},
-            {twoid:1,name:"交通工具"},
-            {twoid:2,name:"生活工具"},
-        ],
-        twoidbox03:[
-            {twoid:0,name:"全部"},
-            {twoid:1,name:"机甲"},
-            {twoid:2,name:"经典卡通"},
-            {twoid:3,name:"龙珠"},
-            {twoid:4,name:"冒险"},
-            {twoid:5,name:"其他"},
+            {oneid:1,name:"摇滚"},
+            {oneid:2,name:"乡村"},
+            {oneid:3,name:"游戏"},
+            {oneid:4,name:"流行"},
+            {oneid:5,name:"古典"},
+            {oneid:6,name:"爵士"},
         ],
         pageitem:[
             {pageid:1},
@@ -130,6 +109,10 @@ export default{
             {pageid:4},
             {pageid:5},
             {pageid:6},
+            {pageid:7},
+            {pageid:8},
+            {pageid:9},
+            {pageid:10},
         ],
       };
     },
@@ -138,74 +121,60 @@ export default{
     },
     methods:{
         select01(id){
-            switch(id){
+            this.isdemohover01 = id
+            this.isdemohover02 = 0
+            switch(id){                
                 case id=0:
-                    this.sort0101=false;
-                    this.sort0102=false;
-                    this.sort0103=false;
                     this.axios.post('/res/resourcelist',{
-                        onenav:1,
+                        onenav:5,
+                        pagesize:15
                     })
-                    .then(response => {   
-                        this.listnew=response.data.data
-                        console.log(response)
+                    .then(response => {  
+                    this.numpage = true     
+                    this.list=response.data.data
+                    this.listnew=response.data.data
                     })
                 break
                 case id=1:
-                    this.sort0101=true;
-                    this.sort0102=false;
-                    this.sort0103=false;
                     this.axios.post('/res/resourcelist',{
-                        onenav:1,
+                        onenav:5,
+                        twonav:1,
+                        pagesize:15
                     })
-                    .then(response => {   
-                        this.listnew=response.data.data
-                        console.log(response.data.data)
+                    .then(response => {  
+                    this.numpage = false     
+                    this.list=response.data.data
+                    this.listnew=response.data.data
                     })
                 break;
                 case id=2:
-                    this.sort0101=false;
-                    this.sort0102=true;
-                    this.sort0103=false;
                     this.axios.post('/res/resourcelist',{
-                        onenav:2,
+                        onenav:5,
+                        twonav:2,
+                        pagesize:15
                     })
-                    .then(response => {   
-                        this.listnew=response.data.data
-                        console.log(response)
-                    })
-                break;
-                case id=3:
-                    this.sort0101=false;
-                    this.sort0102=false;
-                    this.sort0103=true;
-                    this.axios.post('/res/resourcelist',{
-                        onenav:3,
-                    })
-                    .then(response => {   
-                        this.listnew=response.data.data
-                        console.log(response)
-                    })
-                break;
-                case id=4:
-                    this.sort0101=false;
-                    this.sort0102=false;
-                    this.sort0103=false;
-                    this.axios.post('/res/resourcelist',{
-                        onenav:4,
-                    })
-                    .then(response => {   
-                        this.listnew=response.data.data
-                        console.log(response)
+                    .then(response => { 
+                    this.numpage = false       
+                    this.list=response.data.data
+                    this.listnew=response.data.data
                     })
                 break;
             }
 
         },
+        // 加载默认数据
         Getsource(){
+                this.$store.state.sourcesearch=false,
+                this.$store.state.sourcebackg=false,
+                this.$store.state.sourcegame=false,
+                this.$store.state.sourcegsource=false,
+                this.$store.state.sourcemusic=true,
+                this.$store.state.sourcesource01=false,
+                this.$store.state.sourcelesson=false,
+                this.$store.state.sourcestudy=false,
             this.axios.post('/res/resourcelist',{
-                onenav:2,
-                pagesize:135
+                onenav:5,
+                pagesize:15
             })
             .then(response => {   
                 this.list=response.data.data
@@ -213,16 +182,20 @@ export default{
                 console.log(response)
             })
         },
+        // 二级菜单
         Getsourcetwo(id){
+            this.isdemohover01 = id
+            this.isdemohover02 = 0
             this.axios.post('/res/resourcelist',{
-                onenav:1,
+                onenav:5,
                 twonav:id
             })
             .then(response => {   
                 this.list=response.data.data
-                console.log(response)
+                this.listnew=response.data.data
             })
         },
+        // 采集
         collectmaster(id){
                 this.axios.post('/res/collectmaterial',{
                 userid:sessionStorage.userid,
@@ -234,38 +207,92 @@ export default{
                 console.log(response)
             })
         },
+        // 选择页数
         Selectpage(id){
-            this.nowid = id?id:1
-            var head01 = 16*(id-1)
-            var foot01 = 16*id-1
-            console.log(head01)
-            console.log(foot01)
-            this.listnew=this.list.slice(head01,foot01)
+            this.isdemohover03 = id
+            this.axios.post('/res/resourcelist',{
+                onenav:5,
+                twonav:this.isdemohover01,
+                pagenum:id,
+                pagesize:15
+            })
+            .then(response => {  
+                this.listnew=response.data.data  
+                if(this.listnew.length<15){
+                    this.numpage = false
+                }else{
+                    this.numpage = true
+                }
+                this.listnew=response.data.data
+            })
         },
-        Selectpageuser(id){
-            var head01 = 16*(this.pageuser-1)
-            var foot01 = 16*this.pageuser-1
-            console.log(head01)
-            console.log(foot01)
-            this.listnew=this.list.slice(head01,foot01)
+        // 选择跳转页数
+        Selectpageuser(){
+            if(this.pageuser<1||this.pageuser>2){
+                this.$message({
+                    message:'已经超过页数限制',
+                    center:true
+                })
+            }else{
+                this.isdemohover03 = this.pageuser
+                this.axios.post('/res/resourcelist',{
+                    onenav:5,
+                    twonav:this.isdemohover01,
+                    pagenum:this.pageuser,
+                    pagesize:15
+                })
+                .then(response => {  
+                    this.listnew=response.data.data  
+                    if(this.listnew.length<15){
+                        this.numpage = false
+                    }else{
+                        this.numpage = false
+                    }
+                    this.listnew=response.data.data
+                })
+            }
         },
+        // 前页数
         Selectpagebefore(){
-            var id =this.nowid
-            var head01 = 16*(id-2)
-            var foot01 = 16*(id-1)-1
-            this.nowid=this.nowid-1
-            console.log(head01)
-            console.log(foot01)
-            this.listnew=this.list.slice(head01,foot01)
+            if(this.isdemohover03<=1){
+                this.isdemohover03=1
+            }
+            this.axios.post('/res/resourcelist',{
+                onenav:5,
+                twonav:this.isdemohover01,
+                pagenum:--this.isdemohover03,
+                pagesize:15
+            })
+            .then(response => {  
+                this.listnew=response.data.data  
+                if(this.listnew.length<15){
+                    this.numpage = true
+                }else{
+                    this.numpage = true
+                }
+                this.listnew=response.data.data
+            })
         },
+        // 后页数
         Selectpageafter(){
-            var id =this.nowid
-            var head01 = 16*(id)
-            var foot01 = 16*(id+1)-1
-            this.nowid=this.nowid+1
-            console.log(head01)
-            console.log(foot01)
-            this.listnew=this.list.slice(head01,foot01)
+            if(this.isdemohover03>=10){
+                this.isdemohover03=10
+            }
+            this.axios.post('/res/resourcelist',{
+                onenav:5,
+                twonav:this.isdemohover01,
+                pagenum:++this.isdemohover03,
+                pagesize:15
+            })
+            .then(response => {  
+                this.listnew=response.data.data  
+                if(this.listnew.length<15){
+                    this.numpage = true
+                }else{
+                    this.numpage = true
+                }
+                this.listnew=response.data.data
+            })
         }
     },
     components:{
@@ -302,16 +329,19 @@ export default{
 .container80 .sort01 ul p{
    display: inline-block;
    padding-left: 15px;
+   position: relative;
+   top: 2px;
 }
 .container80 .sort01 ul li{
    float: left;
-   width: 60px;
-   height: 22px;
+   width: auto;
+   height: 24px;
    color:#F13232;
-   font-size: 16px;
+   font-size: 14px;
    border: 1px solid #F13232;
    margin-right: 14px;
    font-weight: 600;
+   padding-right: 15px;
 }
 .container80 .sort01 ul li:hover{
    color:#fff;
@@ -337,15 +367,13 @@ export default{
 .container80 .sort0101 ul p{
    display: inline-block;
    margin-top: 0px;
-   position: relative;
-   top: 2px;
 }
 .container80 .sort0101 ul li{
    float: left;
    width: auto;
    height: 24px;
    color:#F13232;
-   font-size: 14px;
+   font-size: 16px;
    border:1px solid red;
    text-align:center;
    margin-right: 14px;
@@ -396,7 +424,7 @@ export default{
    background: #f5f5f5;
    position: relative;
    left: 57px;
-   top: 58px;
+   top: 28px;
 }
 .container80 .sort02 ul{
    list-style: none;
@@ -460,7 +488,7 @@ export default{
     position: absolute;
     top: 150px;
     left: 46px;  
-    margin-top: 10px;
+    margin-top: -40px;
 }
 .container80 .first .line{
     position: relative;
@@ -479,6 +507,15 @@ export default{
     background: #f5f5f5;
     margin-top: 30px;
     position: relative;
+}
+.container80 .first .roleup a{
+    color: #F13232;
+    text-decoration: none; 
+
+}
+.container80 .first .roleup a:hover{
+    color: #fff; 
+    background: #F13232;
 }
 .container80 .first .roleup button:hover{
     background: #F13232;
@@ -511,10 +548,11 @@ export default{
     left: 10px;
     top: -13px;
 }
+
 .container80 .sortnum01{
-    position: relative;
+    position: absolute;
     top: 1104px;
-    left:120px;
+    left:260px;
     width: 995px;
     height: 32px;
 }
@@ -536,7 +574,7 @@ export default{
     width: 70px;
     position: relative;
     left: 34px;
-    top: -21px;
+    top: 0px;
     border: 1px solid #dbdad7;
     text-align: center;
 }
@@ -546,7 +584,7 @@ export default{
     width: 70px;
     position: relative;
     left: 48px;
-    top: -21px;
+    top: 0px;
     border: 1px solid #dbdad7;text-align: center;
 }
 .container80 .sortnum01 .endpage p{
@@ -556,7 +594,7 @@ export default{
     background: #F13232;
     color: #fff;
 }
-.container80 .sortnum01 .night{
+/* .container63 .sortnum01 .night{
     float: left;
     height: 25px;
     width: 32px;
@@ -565,11 +603,11 @@ export default{
     position: relative;
     left: 20px;
     top: -21px;
-}
-.container80 .sortnum01 .night:hover{
+} */
+/* .container63 .sortnum01 .night:hover{
     background: #F13232;
     color: #fff;
-}
+} */
 .container80 .sortnum01 .nextpage p{
     margin-top: 2px;
 }
@@ -577,44 +615,44 @@ export default{
     background: #F13232;
     color: #fff;
 }
-.container80  .sortnum01 ul li p{
+.container80 .sortnum01 ul li p{
     margin-top: 2px;   
 }
-.container80  .sortnum01 .sortfly .one{
+.container80 .sortnum01 .sortfly .one{
     position: relative;
-    left: 682px;
-    top: -42px;
+    left: 660px;
+    top: -20px;
     width: 30px;
     height: 14px;
     font-size: 12px;
     color: #333;
 }
-.container80  .sortnum01 .sortfly .two{
+.container80 .sortnum01 .sortfly .two{
     position: relative;
     width: 30px;
     height: 14px;
-    left: 752px;
-    top: -56px;
+    left: 742px;
+    top: -32px;
     font-size: 12px;
     color: #333;
 }
-.container80  .sortnum01 .sortfly input{
+.container80 .sortnum01 .sortfly input{
     position: relative;
-    left: 100px;
-    top: -35px;
+    left: 115px;
+    top: -12px;
     width: 32px;
     height: 22px;
     outline: none;
     padding-left: 4px;
 }
-.container80  .sortnum01 .sortfly input:focus{
+.container80 .sortnum01 .sortfly input:focus{
    border: 1px solid #F13232;
    padding-left: 4px;
 }
-.container80  .sortnum01 .sortfly button{
+.container80 .sortnum01 .sortfly button{
     position: relative;
-    left: 772px;
-    top: -75px;
+    left: 758px;
+    top: -52px;
     width: 53px;
     height: 25px;
     font-size: 12px;
@@ -634,4 +672,10 @@ export default{
     font-size: 12px;
     display: inline-block;
 } */
+.container80 .demohover{
+   background:#F13232;
+}
+.container80 .demohover p{
+   color: #fff;
+}
 </style>

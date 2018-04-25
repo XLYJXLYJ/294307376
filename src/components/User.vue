@@ -46,6 +46,7 @@ export default{
     padding-top: 114px;
     height: auto;
     padding-bottom: 36px;
+    padding-left: 5px;
 }
 .footer06{
     flex: 0;

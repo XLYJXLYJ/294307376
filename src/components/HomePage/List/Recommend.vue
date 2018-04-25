@@ -52,7 +52,8 @@
             Seemorerecommend(){
                 this.i = this.i+1
                 this.axios.post('/res/filelist',{
-                    state:1,
+                    state:4,
+                    sortstate:2,
                     pagenum:this.i,
                     pagesize:4
                 })

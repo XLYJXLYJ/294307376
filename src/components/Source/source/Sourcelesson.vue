@@ -1,5 +1,5 @@
 <template>
-  <div class="container6400" v-show="false">
+  <div class="container6400" v-show="$store.state.sourcelesson">
         <div class="sort01">
             <!-- <p class="sort01text">作品分类:</p>
             <ul>
@@ -141,6 +141,14 @@ export default{
         //     }
         // },
         Getsource(){
+                this.$store.state.sourcesearch=false,
+                this.$store.state.sourcebackg=false,
+                this.$store.state.sourcegame=false,
+                this.$store.state.sourcegsource=false,
+                this.$store.state.sourcemusic=false,
+                this.$store.state.sourcesource01=false,
+                this.$store.state.sourcelesson=true,
+                this.$store.state.sourcestudy=false,
             this.axios.post('/res/resourcelist',{
                 onenav:6,
                 pagesize:15
@@ -217,7 +225,7 @@ export default{
     height: 1286px;
     z-index: 100;
     position: relative;
-    top: -56px;
+    top: -86px;
     left: 0px;
     background: #fff;
     margin-bottom: 30px;
@@ -226,7 +234,7 @@ export default{
    list-style: none;
    position: relative;
    left: 122px;
-   top: -20px;
+   top: -60px;
    width: 1040px;
    height: 24px;;
 }
@@ -394,11 +402,9 @@ export default{
    top: -26px;
    left: 886px;
 }
-
-
 .container6400 .first .role{
     position: absolute;
-    top: 150px;
+    top: 110px;
     left: 46px;  
     margin-top: -40px;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="container66" v-show="false">
+  <div class="container66" v-show="$store.state.sourcesource01">
         <div class="sort01">
             <p class="sort01text">作品分类:</p>
             <ul>
@@ -235,6 +235,14 @@ export default{
         },
         // 默认加载的数据
         Getsource(){
+                this.$store.state.sourcesearch=false,
+                this.$store.state.sourcebackg=false,
+                this.$store.state.sourcegame=false,
+                this.$store.state.sourcegsource=false,
+                this.$store.state.sourcemusic=false,
+                this.$store.state.sourcesource01=true,
+                this.$store.state.sourcelesson=false,
+                this.$store.state.sourcestudy=false,
             this.axios.post('/res/resourcelist',{
                 onenav:1,
                 pagesize:15
