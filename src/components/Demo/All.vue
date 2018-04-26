@@ -7,7 +7,7 @@
                     <p>{{item.title}}</p>
                     <span>{{item.create_time|formatDate}}</span>
                 </div>
-                <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
+                <router-link to="/Snap"><button class="button01" @click="edit(item.id,item.state)">修改</button></router-link>
                 <button class="button02">加入</button>
                 <span class="down"><i class="icon_see"><span>{{item.looktitle}}</span></i></span>
                 <span class="down"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
@@ -38,9 +38,10 @@ import { formatDate } from '../../public/time.js'
             this.getalldemo()
         },
         methods:{
-            edit(id){
+            edit(id,state){
                 id:id,                  
                 this.$store.state.demoxmlid = id
+                this.$store.state.publicstate = state
             },
             getalldemo(){
                 this.axios.post('/res/filelist',{

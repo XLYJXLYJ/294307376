@@ -7,7 +7,7 @@
                 <router-link to="/source/sourceshop"><li><img src="../../assets/source/source01.png" alt=""></li></router-link> 
                 <!-- <router-link to="/source/mysourceshop"><li><img src="../../assets/source/source02.png" alt=""></li></router-link>  -->
             </ul>
-            <input class="source_search" type="text" @keyup.enter="Getsearch" placeholder="搜索素材" v-model="sourcename">
+            <input class="source_search" type="text" @keyup.enter="Getsearch" placeholder="搜索素材" v-model="sourcename"><div class="searchicon" @click="Getsearch"></div>
         </div>
 
 
@@ -122,7 +122,7 @@
     height: 196px;
     background: url(../../assets/source/sourcehead.png) no-repeat;
     position: relative;
-    top: -38px;
+    top: 0px;
 }
 /* .container63 .backsource{
     width: 876px;
@@ -135,7 +135,7 @@
     width: 420px;
     height: 56px;
     position: relative;
-    top:76px;
+    top:19px;
     left: 72px;
 }
 .container631 .sourceshop li{
@@ -158,21 +158,31 @@
     padding-left: 15px;
     position:relative;
     left: 830px;
-    top: 20px;
+    top:-30px;
     border: none;
 }
+.container631 .searchicon{
+    height: 21px;
+    width: 21px;
+    background: url(../../assets/source/searchicon.png) no-repeat;
+    position: relative;
+    left: 1118px;
+    top: -62px;
+    cursor: pointer;
+    
+}
 .container631 .router-link-active li{
-     background: url(../../assets/source/xuanzhong.png)
+     background: url(../../assets/source/xuanzhong.png);
 }
 
 .container64 .container631 .first .role{
     position: relative;
-    width: 1200px;
+    width: 1143px;
     height: 1056px;
-    top: 0px;
-    left: 46px;  
-    margin-top: -40px;
-    background: #f5f5f5;
+    top: -70px;
+    left: 0px; 
+    padding-left: 57px; 
+    background: #fff;
 }
 .container64 .first .line{
     position: relative;

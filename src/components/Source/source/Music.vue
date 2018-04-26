@@ -244,9 +244,9 @@ export default{
                 .then(response => {  
                     this.listnew=response.data.data  
                     if(this.listnew.length<15){
-                        this.numpage = false
+                        this.numpage = true
                     }else{
-                        this.numpage = false
+                        this.numpage = true
                     }
                     this.listnew=response.data.data
                 })
@@ -306,7 +306,7 @@ export default{
     height: 1286px;
     z-index: 100;
     position: relative;
-    top: -56px;
+    top: -70px;
     left: 0px;
     background: #fff;
     margin-bottom: 30px;
@@ -657,6 +657,8 @@ export default{
     height: 25px;
     font-size: 12px;
     color: #818181;
+    background: #fff;
+    border: 1px solid #D2D2D2;
 }
 .container80 .sortnum01 .sortfly button:hover{
     background: #F13232;

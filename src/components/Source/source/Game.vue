@@ -247,9 +247,9 @@ export default{
                 .then(response => {  
                     this.listnew=response.data.data  
                     if(this.listnew.length<15){
-                        this.numpage = false
+                        this.numpage = true
                     }else{
-                        this.numpage = false
+                        this.numpage = true
                     }
                     this.listnew=response.data.data
                 })
@@ -309,7 +309,7 @@ export default{
     height: 1286px;
     z-index: 100;
     position: relative;
-    top: -56px;
+    top: -70px;
     left: 0px;
     background: #fff;
     margin-bottom: 30px;
@@ -555,7 +555,7 @@ export default{
 .container64 .sortnum01{
     position: absolute;
     top: 1104px;
-    left:260px;
+    left:200px;
     width: 995px;
     height: 32px;
 }
@@ -576,7 +576,7 @@ export default{
     height: 25px;
     width: 70px;
     position: relative;
-    left: 34px;
+    left: 0px;
     top: 0px;
     border: 1px solid #dbdad7;
     text-align: center;
@@ -586,7 +586,7 @@ export default{
     height: 25px;
     width: 70px;
     position: relative;
-    left: 48px;
+    left: 14px;
     top: 0px;
     border: 1px solid #dbdad7;text-align: center;
 }
@@ -623,7 +623,7 @@ export default{
 }
 .container64 .sortnum01 .sortfly .one{
     position: relative;
-    left: 660px;
+    left: 620px;
     top: -20px;
     width: 30px;
     height: 14px;
@@ -634,14 +634,14 @@ export default{
     position: relative;
     width: 30px;
     height: 14px;
-    left: 742px;
+    left: 702px;
     top: -32px;
     font-size: 12px;
     color: #333;
 }
 .container64 .sortnum01 .sortfly input{
     position: relative;
-    left: 115px;
+    left: 75px;
     top: -12px;
     width: 32px;
     height: 22px;
@@ -654,12 +654,14 @@ export default{
 }
 .container64 .sortnum01 .sortfly button{
     position: relative;
-    left: 758px;
+    left: 718px;
     top: -52px;
     width: 53px;
     height: 25px;
     font-size: 12px;
     color: #818181;
+    background: #fff;
+    border: 1px solid #D2D2D2;
 }
 .container64 .sortnum01 .sortfly button:hover{
     background: #F13232;

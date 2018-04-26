@@ -29,7 +29,7 @@ export default{
 .container61 .tab_choice{
     list-style: none;
     position: relative;
-    top: -56px;
+    top: -70px;
     z-index: 100;
     left: 0px;
     width: 1170px;

@@ -36,7 +36,7 @@
                 this.axios.post('/res/filelist',{
                     state:4,
                     sortstate:2,
-                    pagesize:4
+                    pagesize:16
                 })
                 .then(response => {   
                     this.list=response.data.data
@@ -55,7 +55,7 @@
                     state:4,
                     sortstate:2,
                     pagenum:this.i,
-                    pagesize:4
+                    pagesize:16
                 })
                 .then(response => {  
                 if(response.data.data.msg =="这回真的没有了~"){
@@ -133,7 +133,7 @@
 .container01 .button{
     position: relative;
     top: 46px;
-    left: 284px;
+    left: 320px;
     width: 192px;
     height: 50px;
     background-color:#F13232;

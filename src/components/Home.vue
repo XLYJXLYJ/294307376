@@ -57,6 +57,6 @@ export default{
 }
 .footer01 {
     flex: 0;
-    margin-top: 120px;
+    margin-top: 0px;
 }
 </style>

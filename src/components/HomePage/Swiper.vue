@@ -2,7 +2,7 @@
     <div class="contain08">
         <div class="container09">
             <el-carousel :interval="3000">
-                <el-carousel-item v-for="(item,index) in DataImg" :key="index">
+                <el-carousel-item v-for="(item,index) in DataImg" :key="index" height="380px">
                     <img :src="item.url" alt="">
                 </el-carousel-item>
             </el-carousel>
@@ -28,9 +28,9 @@
 <script>
 import Vue from 'vue'
     const DataImg =[
-        {url: 'static/1.jpg'},
-        {url: 'static/2.jpg'},
-        {url: 'static/3.jpg'}, 
+        {url: 'static/1.png'},
+        {url: 'static/2.png'},
+        {url: 'static/3.png'}, 
     ]
 export default{
     data(){
@@ -46,7 +46,7 @@ export default{
             if (this._dom.paused) {  
                 this._dom.play();  
                 play.value="播放";  
-            }else{  
+            }else{ 
                 this._dom.pause();  
                 play.value="暂停";  
             }  
@@ -67,18 +67,20 @@ export default{
     width: 1200px; 
     margin: 0 auto;
     position: relative;
-    top: 54px;
+    top: 70px;
 }
 .contain08 .container09 img{
-    height: 100%;
-    width: 100%; 
+    height: 320px;
+    width: 1200px; 
+    /* height: 100%;
+    width: 100%;  */
 }
 .contain08 .create{
     height: 221px;
     width: 1200px;
     background: #fff;
     position: relative;
-    top: 0px;
+    top: 36px;
     margin: 0 auto;
 }
 .contain08 .creat01{

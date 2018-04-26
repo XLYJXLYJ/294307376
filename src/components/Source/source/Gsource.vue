@@ -151,13 +151,13 @@ export default{
     height: 29px;
     width: 29px;
     top: 10px;
-    left: 57px;
+    left: 47px;
     z-index: 100;
 }
 .container65 .first .rolemain{
     position: relative;
     top: -28px;
-    left: 102px;
+    left: 92px;
     width: 61px;
     height: 30px;
     font-size: 30px;
@@ -173,7 +173,7 @@ export default{
     position: relative;
     border-bottom: 1px solid #333;  
     position: relative;
-    left: 63px;
+    left: 46px;
     top: -20px;
     width: 1086px;
      z-index: 100;
@@ -250,13 +250,13 @@ export default{
     height: 28px;
     width: 29px;
     top: 10px;
-    left: 57px;
+    left: 47px;
     z-index: 100;
 }
 .container65 .second .rolemain{
     position: relative;
     top: -28px;
-    left: 102px;
+    left: 92px;
     width: 61px;
     height: 30px;
     font-size: 30px;
@@ -272,7 +272,7 @@ export default{
     position: relative;
     border-bottom: 1px solid #333;  
     position: relative;
-    left: 63px;
+    left: 46px;
     top: -20px;
     width: 1086px;
      z-index: 100;
@@ -348,13 +348,13 @@ export default{
     height: 28px;
     width: 29px;
     top: 10px;
-    left: 57px;
+    left: 47px;
     z-index: 100;
 }
 .container65 .three .rolemain{
     position: relative;
     top: -28px;
-    left: 102px;
+    left: 92px;
     width: 61px;
     height: 30px;
     font-size: 30px;
@@ -370,7 +370,7 @@ export default{
     position: relative;
     border-bottom: 1px solid #333;  
     position: relative;
-    left: 63px;
+    left: 46px;
     top: -20px;
     width: 1086px;
      z-index: 100;

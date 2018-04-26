@@ -93,9 +93,6 @@ import Vue from 'vue'
                     var picsource = this.$refs.file_el.files[0]
                     console.log(picsource)
                     this.uploadFile(picsource)
-
-
-
                     // reader.onload = function () {   
                     //     this.readpicbinary = new Blob([this.result])
                     //     this.useruploadimg(this.result)
@@ -112,11 +109,12 @@ import Vue from 'vue'
                         title:this.demoname,
                         desc:this.demodes,
                         state:3,
-                        surfaceplot:this.indexdemoid
+                        surfaceplot:this.indexdemoid,
+                        coverworkid:this.$store.state.demoxmlid
                     })
                     .then(response => {
                         this.$message({
-                        message: '发布成功，请刷新',
+                        message: '发布成功',
                         center: true
                         }); 
                     })
@@ -132,6 +130,7 @@ import Vue from 'vue'
                 formData.append('state',3);
                 formData.append('surfaceplot',9);
                 formData.append('files',picsource);
+                formData.append('coverworkid',this.$store.state.demoxmlid);
                 let config = {
                     headers:{
                         'Content-Type':'application/x-jpg'

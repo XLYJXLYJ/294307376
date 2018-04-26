@@ -27,6 +27,8 @@
                         <!-- <a href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"></a> -->
                         <!-- <a href="https://www.baidu.com/" target="_blank">点击播放百度</a> -->
                       <!-- <iframe class="video" frameborder="0" src="static/player/index.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
+                      <!-- <iframe class="video" frameborder="0" src="static/ceshi/snap.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
+                      <!-- <iframe class="video" frameborder="0" :src="'static/ceshi/snap.html#run:'+demoxml+'.xml'" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
                       <iframe class="video" frameborder="0" src="static/ceshi/snap.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
                        
                         <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
@@ -87,7 +89,7 @@ export default{
             bannerUrl: '',
             demoxml:'',
             item:{
-                // url:"static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"
+                // url:"static/ceshi/snap.html#present:Username=jens&ProjectName=tree%20animation"
                 url:'https://www.baidu.com/'
             }
         }
@@ -96,7 +98,7 @@ export default{
         this.loadproject()
         
         this.loadprojectplay()
-        
+         
 
         this.demoid = sessionStorage.id
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/snap.html#run:/codeplay/file/11566.xml'
@@ -128,37 +130,46 @@ export default{
             }) 
         },
         // 播放文件获取数据
-        // loadprojectplay(){
-        //      this.axios.post('/res/getfile',{
-        //         id:sessionStorage.id,
-        //     })
-        //     .then(response => {                          
-        //        this.demoxml = response.data  
-        //        console.log(this.demoxml)
-            //    console.log(this.$store.state.demoxmlid)
+        loadprojectplay(){
+             this.axios.post('/res/getfile',{
+                id:sessionStorage.id,
+            })
+            .then(response => {                          
+               this.demoxml = response.data  
+               console.log(this.demoxml)
+               console.log(this.$store.state.demoxmlid)
             // window.frames["snapplay"].ide.droppedText(this.demoxml,'OPEN') 
             // window.frames["snapplay"].ide.openProjectString(this.demoxml) 
-
-        //     })
-        //     window.frames["snapplay"].ide.openProjectString(this.demoxml) 
-        // },
-        loadprojectplay(){
-            return new Promise((resolve,reject) =>{
-                this.axios.post('/res/getfile',{
-                    id:sessionStorage.id,
-                })
-                .then(function(response) { 
-                    resolve(response.data)                         
+             window.frames["snapplay"].ide.openUserProject(this.demoxml)
+            // window.frames["snapplay"].ide.droppedText(this.demoxml,'OPEN')  
+            
+            })
+            // window.frames["snapplay"].ide.openProjectString(this.demoxml) 
+        },
+        // loadprojectplay(){
+        //     return new Promise((resolve,reject) =>{
+        //         this.axios.post('/res/getfile',{
+        //             id:this.$store.state.shareid,
+        //         })
+        //         .then(function(response) { 
+        //             resolve(response.data)                         
                 // this.demoxml = response.data  
                 // console.log(this.$store.state.demoxmlid)
-                })
-            })
-            .then(function(s){
+                // window.frames["snapplay"].ide.droppedText(response.data,'O') 
+                
+            //     })
+            // })
+            // .then(function(s){
+            //  window.frames["snapplay"].ide.openProjectString(s) 
             // window.frames["snapplay"].ide.openProjectString(s) 
             // this.loadxml(s)
-             window.frames["snapplay"].ide.droppedText(s,'O') 
-        })
-        },
+            // window.frames["snapplay"].ide.toggleAppMode(true)
+            // window.frames["snapplay"].ide.droppedText(response.data,'O') 
+            //  window.frames["snapplay"].ide.toggleAppMode(true)
+             
+             
+        // }) 
+        // },
         // loadxml(s){
         //     window.frames["snapplay"].ide.openProjectString(s) 
         // },
@@ -229,29 +240,39 @@ export default{
             }
         },
         // 关注
+        
+
+
+
         jia(){
-            this.isAttention = !this.isAttention
-            if(this.isAttention){
-                   this.axios.post('/res/useropreate',{
-                        userid:sessionStorage.userid,
-                        state:5,
-                        attentionid:this.authid
+            if(this.$store.state.userid){
+                this.isAttention = !this.isAttention
+                if(this.isAttention){
+                    this.axios.post('/res/useropreate',{
+                            userid:sessionStorage.userid,
+                            state:5,
+                            attentionid:this.authid
+                        })
+                        .then(response => {           
+                            console.log(response)
                     })
-                    .then(response => {           
-                        console.log(response)
-                })
+                }else{
+                    this.axios.post('/res/useropreate',{
+                            userid:sessionStorage.userid,
+                            state:6,
+                            attentionid:this.authid
+                        })
+                        .then(response => {           
+                            console.log(response)
+                    })
+                }
             }else{
-                   this.axios.post('/res/useropreate',{
-                        userid:sessionStorage.userid,
-                        state:6,
-                        attentionid:this.authid
-                    })
-                    .then(response => {           
-                        console.log(response)
-                })
+                    this.$message({
+                    message: '请先登录',
+                    center: true,
+                });
             }
-            
-        },
+        },     
         // 自动生成二维码
         createQrc () {
             if (!this.bannerUrl) {

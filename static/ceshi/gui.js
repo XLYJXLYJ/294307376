@@ -9191,3 +9191,38 @@ SoundRecorderDialogMorph.prototype.destroy = function () {
     }
     SoundRecorderDialogMorph.uber.destroy.call(this);
 };
+
+
+
+IDE_Morph.prototype.openUserProject=function (projectData) {
+    // alert(projectData)
+            myself = this;
+            this.shield = new Morph();
+            this.shield.color = this.color;
+            this.shield.setExtent(this.parent.extent());
+            this.parent.add(this.shield);
+            myself.showMessage('Fetching project\nfrom the cloud...');
+            // make sure to lowercase the username
+            SnapCloud.getPublicProject(
+                    myself.nextSteps([
+
+                        function () {nop(); }, // yield (bug in Chrome)
+                        function () {
+                            if (projectData.indexOf('<snapdata') === 0) {
+                                myself.rawOpenCloudDataString(projectData);
+                            } else if (
+                                projectData.indexOf('<project') === 0
+                            ) {
+                                myself.rawOpenProjectString(projectData);
+                            }
+                            myself.hasChangedMedia = true;
+                            myself.toggleAppMode(true)
+                        },
+                        function () {
+                            myself.shield.destroy();
+                            myself.shield = null;
+                        }
+                    ])
+
+            );
+}

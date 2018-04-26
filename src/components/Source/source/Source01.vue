@@ -298,9 +298,9 @@ export default{
             .then(response => {  
                 this.listnew=response.data.data  
                 if(this.listnew.length<15){
-                    this.numpage = false
+                    this.numpage = true
                 }else{
-                    this.numpage = false
+                    this.numpage = true
                 }
                 this.listnew=response.data.data
             })
@@ -361,7 +361,7 @@ export default{
     height: 1286px;
     z-index: 100;
     position: relative;
-    top: -56px;
+    top: -70px;
     left: 0px;
     background: #fff;
     margin-bottom: 30px;
@@ -689,7 +689,7 @@ export default{
 }
 .container66 .sortnum01 .sortfly .one{
     position: relative;
-    left: 556px;
+    left: 512px;
     top: -42px;
     width: 30px;
     height: 14px;
@@ -700,14 +700,14 @@ export default{
     position: relative;
     width: 30px;
     height: 14px;
-    left: 632px;
+    left: 588px;
     top: -56px;
     font-size: 12px;
     color: #333;
 }
 .container66 .sortnum01 .sortfly input{
     position: relative;
-    left: 145px;
+    left: 101px;
     top: -35px;
     width: 32px;
     height: 22px;
@@ -720,12 +720,14 @@ export default{
 }
 .container66 .sortnum01 .sortfly button{
     position: relative;
-    left: 662px;
+    left: 618px;
     top: -75px;
-    width: 53px;
+    width: 43px;
     height: 25px;
     font-size: 12px;
     color: #818181;
+    background: #fff;
+    border: 1px solid #D2D2D2;
 }
 .container66 .sortnum01 .sortfly button:hover{
     background: #F13232;

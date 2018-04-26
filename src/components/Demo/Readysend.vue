@@ -59,6 +59,7 @@ export default{
         edit(id){
             id:id,                  
             this.$store.state.demoxmlid = id
+            this.$store.state.publicstate = 1
         },
         Canpublic(id){
             this.axios.post('/res/dealfile',{

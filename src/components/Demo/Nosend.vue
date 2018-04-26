@@ -59,6 +59,7 @@ import { formatDate } from '../../public/time.js'
             },
             publish(id){
                 this.$store.state.demoxmlid = id
+                this.$store.state.publicstate = 0
             },
             // publish(id){
             //     this.axios.post('/res/dealfile',{

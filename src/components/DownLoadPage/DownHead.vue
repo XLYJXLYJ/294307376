@@ -35,7 +35,6 @@
     position: relative;
     top: 100px;
     z-index: 10;  
-    border-radius: 10px;
 }
 .container18{
     height: 240px;
@@ -46,10 +45,10 @@
     background: #f5f5f5;
     z-index: 10; 
 }
-.starfish p{
+.container17 .starfish p{
     position: relative;
     left:60px;
-    top:58px;
+    top:29px;
     color: #333333;
     font-size: 29px;
 }

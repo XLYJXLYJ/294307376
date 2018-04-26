@@ -6,7 +6,7 @@
                     <li class="bcw"><a href="./"><img src="../assets/snappic/snapb.png" alt=""></a></li>
                     <li class="borderlight01" @click="snapdropdowmcontrol" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
                     <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
-                    <li class="borderlight03"><img src="../assets/snappic/snapu.png" alt="" @click="handiframepublish"></li>
+                    <li class="borderlight03"><img src="../assets/snappic/snapu.png" alt="" @click.prevent="handiframepublish"></li>
                     <li class="borderlight04" v-show="login"
                     @click="dialogLogin = true, 
                     dialogLoginshow = true, 
@@ -102,13 +102,13 @@
         </transition>
 
 
-        <transition name="el-fade-in-linear">
+        <!-- <transition name="el-fade-in-linear">
             <div>
                 <el-dialog :visible.sync="dialogupload" :modal="false" width="420px">
                     <div class="container5020">
                         <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
-                            <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">
-                            <img class="sign_logo" src="../assets/login/login_logo.png" alt=""> -->
+                            <img class="welcome" src="../assets/login/welcome.png" alt="">
+                            <img class="sign_logo" src="../assets/login/login_logo.png" alt="">
                             <el-form-item class="iden01">
                                 <h1>确定发布吗？</h1>      
                             </el-form-item>
@@ -118,7 +118,7 @@
                     </div>
                 </el-dialog>
             </div>
-        </transition>
+        </transition> -->
 
             <transition name="el-fade-in-linear">
             <div>
@@ -239,6 +239,7 @@ export default{
             dropdowm:false,
             stata:'',
             resgistermsg:'',
+            directpublic:'',
             usernamesession01:this.$store.state.usernamesession01,
             formLogin: {
                 username: '',
@@ -328,7 +329,6 @@ export default{
             })
             .then(response => {                          
                this.demoxml = response.data  
-               console.log(response)
             //    console.log(this.$store.state.demoxmlid)
             window.frames["snap"].ide.droppedText(this.demoxml,'OPEN') 
             })
@@ -343,12 +343,11 @@ export default{
             })
             .then(response => {                        
                 this.list = response.data.data
-                console.log(response)
                 this.edittittle = response.data.data.title
                 this.editdes = response.data.data.desc
             }) 
         },
-        // 打来文件
+        // 打开文件
         open() {
             var seq_id =document.getElementById('xml_seq').value; //根据id得到值
             var index= seq_id.indexOf("."); //得到"."在第几位
@@ -365,7 +364,6 @@ export default{
                 reader.readAsText(this.$refs.file.files[0]);
                 reader.onload = function () {    
                     this.readfilebinary=this.result
-                    console.log(this.readfilebinary)
                     window.frames["snap"].ide.droppedText(this.readfilebinary,'HHH')   
                 } 
             }
@@ -388,7 +386,7 @@ export default{
         // 保存文件
         handiframe() {
         　　if(window.navigator.onLine==true) {　
-                if(sessionStorage.userid){
+                if(sessionStorage.userid){              //已保存再保存(编辑)
                     if(this.$store.state.demoxmlid){
                         this.savestate=2
                         this.dialogSave = true
@@ -397,7 +395,7 @@ export default{
                         this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT(' ')
                         let filebir = this.formSave.file
                         this.filebinary = new Blob([filebir]);
-                    }else{
+                    }else{                             //未保存保存
                         this.savestate=1
                         this.dialogSave = true
                         this.formSave.title=''
@@ -421,7 +419,7 @@ export default{
 
         },
         submitUpload() {
-            if(this.state==1){
+            if(this.savestate==1){
                 let formData = new FormData();
                 formData.append('userid',this.formSave.userid);
                 formData.append('title',this.formSave.title);
@@ -435,7 +433,6 @@ export default{
                 }
                 this.axios.post('/res/upload',formData,config)
                 .then(function(response){
-                    console.log(response)
                 })
                 this.dialogSave = false;
                 this.$message({
@@ -457,7 +454,6 @@ export default{
                 }
                 this.axios.post('/res/upload',formData,config)
                 .then(function(response){
-                    console.log(response)
                 })
                 this.dialogSave = false;
                 this.$message({
@@ -465,30 +461,44 @@ export default{
                     center: true
                 });
             }
-
         },
         // 发布文件
         handiframepublish() {
-        　　if(window.navigator.onLine==true) {　
-                if(sessionStorage.userid){
-                    this.dialogupload = true
-                    this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
-                    let filebir = this.formSave.file
-                    this.filebinary = new Blob([filebir]);
-                    let formData = new FormData();
-                    formData.append('userid',this.formSave.userid);
-                    formData.append('title','未发布成功的作品');
-                    formData.append('desc','未发布成功的作品');
-                    formData.append('files',this.filebinary);
-                    let config = {
-                        headers:{
-                            'Content-Type':'multipart/form-data'
+        　　if(window.navigator.onLine==true) {                     //是否联网　
+                if(sessionStorage.userid){                          //是否登录
+                    if(this.$store.state.demoxmlid){                //是否是发布和未发布状态
+                        if(this.$store.state.publicstate==0){         //未发布
+                            this.$store.state.demoxmlid = this.$store.state.demoxmlid
+                            this.$router.push({name:'Publish'})
+                        }else{                                      //已发布
+                                this.$message({
+                                message: '该作品已经发布，请重新保存',
+                                center: true
+                            });
                         }
-                    }
-                    this.axios.post('/res/upload',formData,config)
-                    .then(function(response){
-                            console.log(123)
-                    })
+                    }else{
+                        this.dialogupload = true
+                        this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
+                        let filebir = this.formSave.file
+                        this.filebinary = new Blob([filebir]);
+                        let formData = new FormData();
+                        formData.append('userid',this.formSave.userid);
+                        formData.append('state',1);
+                        formData.append('title','未发布成功的作品');
+                        formData.append('desc','未发布成功的作品');
+                        formData.append('files',this.filebinary);
+                        let config = {
+                            headers:{
+                                'Content-Type':'multipart/form-data'
+                            }
+                        }
+                        this.axios.post('/res/upload',formData,config)
+                        .then(response => {
+                            this.$store.state.demoxmlid=response.data.data.id
+                            console.log('xmlid'+this.$store.state.demoxmlid)
+                        })                      
+                            this.$router.push({name:'Publish'})
+                        }
                 }else{
                     this.$message(
                         {
@@ -504,15 +514,15 @@ export default{
                 });
         　　}
         },
-        getdemopublish(){
-                this.axios.post('/res/filelist',{
-                    userid:this.$store.state.userid,
-                    state:0
-                })
-                .then(response => {
-                    this.$store.state.demoxmlid = response.data.data[response.data.data.length - 1].id    
-                })
-            },
+        // getdemopublish(){
+        //         this.axios.post('/res/filelist',{
+        //             userid:this.$store.state.userid,
+        //             state:0
+        //         })
+        //         .then(response => {
+        //             this.$store.state.demoxmlid = response.data.data[response.data.data.length - 1].id    
+        //         })
+        //     },
             //登陆
         Loginbtn() {
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
@@ -542,14 +552,12 @@ export default{
             .then(response => {
                 var datamsg = response.data
                 this.msg = response.data.errmsg
-                console.log(datamsg.errmsg)
                 if(!response.data.data){
                     this.$message({
                         message:datamsg.errmsg,
                         center:true
                     })
                 }else{
-                    console.log('denglu')
                     this.Getsession()
                     this.Getsessionname()
    
@@ -628,7 +636,6 @@ export default{
                     mail:this.formReset.mail
                 })
                 .then(response => {
-                    console.log(response)
                     this.$message({
                     message: response.data.data.msg,
                     center: true
