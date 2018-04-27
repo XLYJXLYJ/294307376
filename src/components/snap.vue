@@ -32,7 +32,7 @@
                 <div v-show="snapdemodropdowm" class="snapdemodropdowm" >
                     <ul class="block-col-12">
                         <li><router-link to="/Demo/Mydemo"><p>我的作品</p></router-link></li>
-                        <li><p @click.prevent="Cancellogout,snapdemodropdowm=false">退出登录</p></li>  
+                        <li><p @click.prevent="Cancellogout">退出登录</p></li>  
                     </ul>
                 </div>
             </div>
@@ -209,6 +209,7 @@
 import Vue from 'vue'
 import { mapGetters,mapActions} from 'vuex'
 import axios from 'axios'
+import NodeRSA from 'node-rsa'
 
 export default{
     data(){
@@ -241,20 +242,23 @@ export default{
             resgistermsg:'',
             directpublic:'',
             usernamesession01:this.$store.state.usernamesession01,
+            publicKey:'',
             formLogin: {
                 username: '',
-                username01:'',
                 password: '',
+                passwordrsc:''
             },
             formRegister: {
                 username: '',
                 password: '',
                 checkpassword: '',
+                formRegisterpasswordrsc:'',
                 mail:'',
             },
             formReset: {
                 password: '',
                 ckeckpassword: '',
+                formResetpasswordrsc:'',
                 mail:'',
                 code:'',
                 msg:'',
@@ -523,9 +527,13 @@ export default{
         //             this.$store.state.demoxmlid = response.data.data[response.data.data.length - 1].id    
         //         })
         //     },
-            //登陆
+
+          //登陆
         Loginbtn() {
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
+            let logintextpassword = this.publicKey;
+            var privatekey = new NodeRSA(logintextpassword);
+            this.formLogin.passwordrsc = privatekey.encrypt(this.formLogin.password, 'base64');
             if(this.formLogin.username == ''){
                 this.$message({
                 message: '请输入用户名',
@@ -547,20 +555,22 @@ export default{
             else{
                  this.axios.post('/res/login', {
                 username:this.formLogin.username,
-                password:this.formLogin.password,
+                password:this.formLogin.passwordrsc,
             })
             .then(response => {
                 var datamsg = response.data
                 this.msg = response.data.errmsg
+                console.log(response)
                 if(!response.data.data){
+                    console.log('shibai')
                     this.$message({
                         message:datamsg.errmsg,
                         center:true
                     })
                 }else{
-                    this.Getsession()
+                    console.log('denglu')
                     this.Getsessionname()
-   
+                    this.Getsession()
                 }
             })
             .catch(function (error) {
@@ -568,14 +578,17 @@ export default{
             });
             }   
         },
-        // 注册
+           // 注册
         Registerbtn() {
             var regusername = /^[a-zA-Z0-9]\w{4,16}$/;
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
             var regEmail= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            let logintextpassword = this.publicKey;
+            var privatekey = new NodeRSA(logintextpassword);
+            this.formRegister.formRegisterpasswordrsc = privatekey.encrypt(this.formRegister.password, 'base64');
             if(!regusername.test(this.formRegister.username)){
                 this.$message({
-                message: '用户名以字母开头，长度在4-16之间， 只能包含字母、数字',
+                message: '用户名长度在4-16之间， 只能包含字母、数字',
                 center: true
                 });   
             }
@@ -606,11 +619,12 @@ export default{
             {    
                 this.axios.post('/res/signup', {
                     username:this.formRegister.username,
-                    password:this.formRegister.password,
+                    password:this.formRegister.formRegisterpasswordrsc,
                     mail:this.formRegister.mail
                 })
                 .then(response => {
                     this.registermsg = response.data.data.msg;
+                    console.log(response)
                     this.$message({
                     message: this.registermsg,
                     center: true
@@ -625,10 +639,10 @@ export default{
         //获取验证码
         Getcodebtn() {
             if(this.formReset.mail.length<9){
-                    this.$message({
-                    message: '请根据提示输入相应的内容',
-                    center: true
-                    });
+                this.$message({
+                message: '请根据提示输入相应的内容',
+                center: true
+                });
             }
             else
             {    
@@ -649,18 +663,23 @@ export default{
         //获取用户验证码
         Getusercodebtn() {
             this.axios.post('/res/checkcode',{
-                    code:this.formReset.code,
-                    mail:this.formReset.mail
+                code:this.formReset.code,
+                mail:this.formReset.mail
             })
             .then(response => {
+                if( response.data.data.msg =="验证成功"){
+                this.$message({
+                message: '验证成功',
+                center: true
+                });
+                this.dialogPassSure = true
+                this.dialogForgetpass = false
+                }else{
                     this.$message({
-                    message: response.data.data.msg,
+                    message:'验证失败',
                     center: true
                     });
-                    if(response.data.data.state==1){
-                    this.dialogPassSure = true
-                    this.dialogForgetpass = false
-                    }   
+                }
             })
             .catch(function (error) {
                 console.log(error);
@@ -668,6 +687,9 @@ export default{
         },
         // 修改密码
         Getuserpassbtn() {
+            let logintextpassword = this.publicKey;
+            var privatekey = new NodeRSA(logintextpassword);
+            this.formReset.formResetpasswordrsc = privatekey.encrypt(this.formReset.password, 'base64');
             if(this.formReset.password!==this.formReset.checkpassword||this.formReset.password<6||this.formReset.checkpassword<6){
                 this.$message({
                 message: '两次输入的密码不一致或密码长度不足6位',
@@ -675,7 +697,7 @@ export default{
                 });
             }else{
                 this.axios.post('/res/setpassword',{
-                    password:this.formReset.password,
+                    password:this.formReset.formResetpasswordrsc,
                     mail:this.formReset.mail
             })
             .then(response => {
@@ -683,7 +705,7 @@ export default{
                 this.$message({
                     message: '修改密码成功',
                     center: true
-                    }); 
+                }); 
             })
             .catch(function (error) {
                 console.log(error);
@@ -691,45 +713,46 @@ export default{
             }     
         },
         //session验证登陆
-        //session验证登陆
         Getsession() {  
             this.axios.get('/res/verify')
             .then(response =>{
-                if(response.data.data){
-                    this.dialogLogin = false;
+                if(response.data.data.userid){
+                    this.dialogLogin =false
+                    this.publicKey = response.data.data.publicKey
                     this.login = false;
                     this.sign = false;
-                    sessionStorage.userid = response.data.data.userid
+                    sessionStorage.userid = response.data.data.id
                     sessionStorage.usernamesession = response.data.data.username
                     this.$store.state.usernamesession02 = sessionStorage.usernamesession
                     this.$store.state.userid = sessionStorage.userid
                     this.user = true;
                 }else{
-                    this.login = true;
+                    this.login = false;
                     this.sign = true;
                     this.user = false;
+                     this.publicKey = response.data.data.publicKey
                 }
             }) 
         },
         Getsessionname(){
             if(sessionStorage.usernamesession){
-                this.Login = false;
+                this.login = false;
                 this.sign = false;
                 this.$store.state.usernamesession02 = sessionStorage.usernamesession
                 this.$store.state.userid = sessionStorage.userid
                 this.user = true; 
             }
         },
+        // 退出登陆
         Cancellogout() {
-            // 退出登陆
             this.axios.get('/res/logout')
             .then(response =>{  
-                this.sign = true;
+                this.snapdemodropdowm=false;
                 this.login = true;
+                this.sign = true;
                 this.user = false;
-                this.snapdemodropdowm = false;
-                sessionStorage.usernamesession ==''  
-                this.$router.push({ name: 'Home' })   
+                this.dropdowm = false;  
+                sessionStorage.usernamesession ==''    
             }) 
         }
     },

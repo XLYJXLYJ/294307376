@@ -55,6 +55,9 @@
                     <li>
                         <router-link to="/Download"><p>下载</p></router-link>
                     </li>  
+                    <!-- <li>
+                        <router-link to="/Share"><p>分享</p></router-link>
+                    </li>   -->
                 </ul> 
             </div>
         </div> 
@@ -103,7 +106,7 @@
                                 <input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码">
                         </el-form-item>
                         <button class="iden02" @click.prevent="Getcodebtn">获取验证码</button>
-                        <button class="register"  @click="Getusercodebtn">下一步</button>
+                        <button class="register"  @click.prevent="Getusercodebtn">下一步</button>
                     </el-form>
                 </div>
                 <div v-show="dialogPassSure">
@@ -126,6 +129,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 import { mapGetters,mapActions} from 'vuex'
+import NodeRSA from 'node-rsa'
 
 export default {
     data() {
@@ -138,20 +142,24 @@ export default {
             loginsign: true,
             usercenter: false,
             msg:'',
+            publicKey:'',
             // dropdowm:false,
             formLogin: {
                 username: '',
                 password: '',
+                passwordrsc:''
             },
             formRegister: {
                 username: '',
                 password: '',
                 checkpassword: '',
+                formRegisterpasswordrsc:'',
                 mail:'',
             },
             formReset: {
                 password: '',
                 ckeckpassword: '',
+                formResetpasswordrsc:'',
                 mail:'',
                 code:'',
                 msg:'',
@@ -195,8 +203,10 @@ export default {
         },
         //登陆
         Loginbtn() {
-
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
+            let logintextpassword = this.publicKey;
+            var privatekey = new NodeRSA(logintextpassword);
+            this.formLogin.passwordrsc = privatekey.encrypt(this.formLogin.password, 'base64');
             if(this.formLogin.username == ''){
                 this.$message({
                 message: '请输入用户名',
@@ -218,13 +228,14 @@ export default {
             else{
                  this.axios.post('/res/login', {
                 username:this.formLogin.username,
-                password:this.formLogin.password,
+                password:this.formLogin.passwordrsc,
             })
             .then(response => {
                 var datamsg = response.data
                 this.msg = response.data.errmsg
-                console.log(datamsg.errmsg)
+                console.log(response)
                 if(!response.data.data){
+                    console.log('shibai')
                     this.$message({
                         message:datamsg.errmsg,
                         center:true
@@ -245,6 +256,9 @@ export default {
             var regusername = /^[a-zA-Z0-9]\w{4,16}$/;
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
             var regEmail= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            let logintextpassword = this.publicKey;
+            var privatekey = new NodeRSA(logintextpassword);
+            this.formRegister.formRegisterpasswordrsc = privatekey.encrypt(this.formRegister.password, 'base64');
             if(!regusername.test(this.formRegister.username)){
                 this.$message({
                 message: '用户名长度在4-16之间， 只能包含字母、数字',
@@ -278,11 +292,11 @@ export default {
             {    
                 this.axios.post('/res/signup', {
                     username:this.formRegister.username,
-                    password:this.formRegister.password,
+                    password:this.formRegister.formRegisterpasswordrsc,
                     mail:this.formRegister.mail
                 })
                 .then(response => {
-                    this.registermsg = response.data.errmsg;
+                    this.registermsg = response.data.data.msg;
                     console.log(response)
                     this.$message({
                     message: this.registermsg,
@@ -309,7 +323,6 @@ export default {
                     mail:this.formReset.mail
                 })
                 .then(response => {
-                    console.log(response)
                     this.$message({
                     message: response.data.data.msg,
                     center: true
@@ -327,14 +340,19 @@ export default {
                 mail:this.formReset.mail
             })
             .then(response => {
+                if( response.data.data.msg =="验证成功"){
                 this.$message({
-                message: response.data.data.msg,
+                message: '验证成功',
                 center: true
                 });
-                if(response.data.data.state==1){
                 this.dialogPassSure = true
                 this.dialogForgetpass = false
-                }   
+                }else{
+                    this.$message({
+                    message:'验证失败',
+                    center: true
+                    });
+                }
             })
             .catch(function (error) {
                 console.log(error);
@@ -342,6 +360,9 @@ export default {
         },
         // 修改密码
         Getuserpassbtn() {
+            let logintextpassword = this.publicKey;
+            var privatekey = new NodeRSA(logintextpassword);
+            this.formReset.formResetpasswordrsc = privatekey.encrypt(this.formReset.password, 'base64');
             if(this.formReset.password!==this.formReset.checkpassword||this.formReset.password<6||this.formReset.checkpassword<6){
                 this.$message({
                 message: '两次输入的密码不一致或密码长度不足6位',
@@ -349,7 +370,7 @@ export default {
                 });
             }else{
                 this.axios.post('/res/setpassword',{
-                    password:this.formReset.password,
+                    password:this.formReset.formResetpasswordrsc,
                     mail:this.formReset.mail
             })
             .then(response => {
@@ -368,10 +389,11 @@ export default {
         Getsession() {  
             this.axios.get('/res/verify')
             .then(response =>{
-                if(response.data.data){
-                    this.dialogLogin = false;
+                if(response.data.data.userid){
+                    this.publicKey = response.data.data.publicKey
+                    // this.dialogLogin = false;
                     this.loginsign = false;
-                    sessionStorage.userid = response.data.data.userid
+                    sessionStorage.userid = response.data.data.id
                     sessionStorage.usernamesession = response.data.data.username
                     this.$store.state.usernamesession02 = sessionStorage.usernamesession
                     this.$store.state.userid = sessionStorage.userid
@@ -380,6 +402,7 @@ export default {
                     this.dialogLogin = false;
                     this.loginsign = true;
                     this.usercenter = false;
+                     this.publicKey = response.data.data.publicKey
                 }
             }) 
         },

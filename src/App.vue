@@ -1,5 +1,5 @@
 <template>
-  <div id="app" @click="isdropdowncontrol">
+  <div id="app" @click.prevent="isdropdowncontrol">
     <router-view/>
   </div>
 </template>

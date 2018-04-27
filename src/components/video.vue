@@ -29,7 +29,7 @@
                       <!-- <iframe class="video" frameborder="0" src="static/player/index.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
                       <!-- <iframe class="video" frameborder="0" src="static/ceshi/snap.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
                       <!-- <iframe class="video" frameborder="0" :src="'static/ceshi/snap.html#run:'+demoxml+'.xml'" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
-                      <iframe class="video" frameborder="0" src="static/ceshi/snap.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
+                      <iframe class="video" frameborder="0" src="static/player/index.html#present:Username=lynn&ProjectName=haha" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
                        
                         <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
                 </div>
@@ -57,8 +57,8 @@
                             </div>
                         </div>
                         <div class="qrsharetext">
-                            <button>分享</button>
-                            <p>or</p>
+                            <!-- <button>分享</button> -->
+                            <!-- <p>or</p> -->
                             <span>扫码在手机上玩</span>
                         </div>
                     </div>
@@ -100,9 +100,9 @@ export default{
         this.loadprojectplay()
          
 
-        this.demoid = sessionStorage.id
-        // this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/snap.html#run:/codeplay/file/11566.xml'
-        this.bannerUrl = 'http://www.manykit.com/codeplay/share' 
+        this.demoid = sessionStorage.id    
+        // this.bannerUrl = 'http://www.manykit.com/codeplay/static/ static/player/index.html#present:Username=lynn&ProjectName=haha'
+        this.bannerUrl = 'http://www.manykit.com/codeplay/#/share' 
         console.log(this.bannerUrl)
         this.$nextTick(function () {
         // DOM操作
@@ -136,11 +136,11 @@ export default{
             })
             .then(response => {                          
                this.demoxml = response.data  
-               console.log(this.demoxml)
-               console.log(this.$store.state.demoxmlid)
+            //    console.log(this.demoxml)
+            //    console.log(this.$store.state.demoxmlid)
             // window.frames["snapplay"].ide.droppedText(this.demoxml,'OPEN') 
             // window.frames["snapplay"].ide.openProjectString(this.demoxml) 
-             window.frames["snapplay"].ide.openUserProject(this.demoxml)
+            //  window.frames["snapplay"].ide.openUserProject(this.demoxml)
             // window.frames["snapplay"].ide.droppedText(this.demoxml,'OPEN')  
             
             })
@@ -153,19 +153,19 @@ export default{
         //         })
         //         .then(function(response) { 
         //             resolve(response.data)                         
-                // this.demoxml = response.data  
-                // console.log(this.$store.state.demoxmlid)
-                // window.frames["snapplay"].ide.droppedText(response.data,'O') 
+        //         this.demoxml = response.data  
+        //         console.log(this.$store.state.demoxmlid)
+        //         window.frames["snapplay"].ide.droppedText(response.data,'O') 
                 
-            //     })
-            // })
-            // .then(function(s){
-            //  window.frames["snapplay"].ide.openProjectString(s) 
-            // window.frames["snapplay"].ide.openProjectString(s) 
-            // this.loadxml(s)
-            // window.frames["snapplay"].ide.toggleAppMode(true)
-            // window.frames["snapplay"].ide.droppedText(response.data,'O') 
-            //  window.frames["snapplay"].ide.toggleAppMode(true)
+        //         })
+        //     })
+        //     .then(function(s){
+        //      window.frames["snapplay"].ide.openProjectString(s) 
+        //     window.frames["snapplay"].ide.openProjectString(s) 
+        //     this.loadxml(s)
+        //     window.frames["snapplay"].ide.toggleAppMode(true)
+        //     window.frames["snapplay"].ide.droppedText(response.data,'O') 
+        //      window.frames["snapplay"].ide.toggleAppMode(true)
              
              
         // }) 
@@ -594,16 +594,3 @@ export default{
   opacity: 0;
 }
 </style>
-
-        oneidbox:[
-            {oneid:0,name:"全部"},
-            {oneid:1,name:"NPC"},
-            {oneid:2,name:"宝石"},
-            {oneid:3,name:"穿戴"},
-            {oneid:4,name:"道具"},
-            {oneid:5,name:"技能"},
-            {oneid:6,name:"人物"},
-            {oneid:7,name:"特技"},
-            {oneid:8,name:"武器"},
-            {oneid:9,name:"药水"},
-        ],

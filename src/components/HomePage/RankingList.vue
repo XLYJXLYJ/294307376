@@ -73,6 +73,7 @@
    position: relative;
    left: 134px;
    top: -68px;
+   color:#2D2D2D;
 }
 .container06 .rank_up p:hover{
    color: #F13232;
@@ -109,6 +110,7 @@
     top: -3px;
     margin-left: 14px;
     font-style: normal;
+    color:#2D2D2D;
 }
 .container06 .icon_love{
     background: url(../../assets/home/icon_love.png) no-repeat;
@@ -123,6 +125,7 @@
     top: -3px;
     margin-left: 14px;
     font-style: normal;
+    color:#2D2D2D;
 }
 .container06 .icon_see_box{
     height: 12px;

@@ -17,10 +17,32 @@
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat06"><img src="../../assets/home/p1.png" alt=""></div></a>       
             </div> 
             <div id="videobox">
-                 <video id="video" src="http://babylife.qiniudn.com/FtRVyPQHHocjVYjeJSrcwDkApTLQ"  :autoplay="playStatus" @click="playClick" height="224px" width="100%">
+                 <img src="static/homelesson.png"   @click="videoscreen">
+                 <img class="play" src="../../assets/home/player.png"  @click="videoscreen" alt="">
+            </div>
+
+            <!-- <div id="videobox">
+                 <video id="video" src="/static/homelesson.mp4"  :autoplay="playStatus" @click="playClick" height="224px" width="100%">
 
                 </video> 
-            </div>
+            </div> -->
+
+
+            <transition name="el-fade-in-linear">
+            <el-dialog :visible.sync="dialogvideo"  width="63%" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close='false'>
+                <div>
+                    <div class="containervideo" v-show="dialogvideo">  
+                        <video id="video" src="static/homelesson.mp4"  :autoplay="playStatus" controls @click="playClick" height="100%" width="100%">
+                        <img src="../../assets/home/player.png" alt="">
+                        </video> 
+                    </div>
+                </div> 
+            </el-dialog> 
+        </transition>
+
+
+
+ 
                
         </div>
     </div>
@@ -37,7 +59,15 @@ export default{
         return{
             DataImg:DataImg,
             index: 0,
-            playStatus:false
+            playStatus:false,
+            dialogvideo:false
+        }
+    },
+    watch:{
+        dialogvideo:function(){
+             this._dom = document.getElementById('video');
+            this._dom.pause();  
+            play.value="暂停"; 
         }
     },
     methods:{
@@ -50,7 +80,17 @@ export default{
                 this._dom.pause();  
                 play.value="暂停";  
             }  
-        }
+        },
+        videoscreen(){
+            // this._dom = document.getElementById('video');
+            this.dialogvideo = true
+        //     this._dom.play();  
+        //     play.value="播放"; 
+        //     if(!this.dialogvideo){
+        //         this._dom.pause();  
+        //         play.value="暂停"; 
+        //     }
+        },
     }
 }
 </script>
@@ -161,11 +201,19 @@ export default{
     top: -108px;
     background: #000;
 }
-#videobox video{
+#videobox img{
     position: absolute;
     top:0;
     left: 0;
     width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
-
+#videobox .play{
+    width: 67px;
+    height: 67px;
+    position: relative;
+    top: 38%;
+    left: 40%;
+}
 </style>
