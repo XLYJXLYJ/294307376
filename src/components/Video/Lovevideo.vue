@@ -1,16 +1,16 @@
 <template>
-  <div class="container38">
-        <ul>
-            <li v-for="(item,index) in list" :key='item.id' v-if='index<5' @click="edit04(item.id)">
-                <img class="jinglin" :src="item.imgBuffer" alt="">
-                <p class="jinglingtext">{{item.title}}</p>
-                <span class="time">分享于：{{item.create_time|formatDate}}</span>
-                <span class="icon_see_zan"><i class="icon_zan"><span>{{item.looktotal}}</span></i></span>
-                <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
-                <span class="icon_see_see01"><i class="icon_see"><span>{{item.praisetotal}}</span></i></span>
-            </li>
-        </ul>
-  </div>
+    <div class="container38">
+            <ul>
+                <li v-for="(item,index) in list" :key='item.id' v-if='index<5' @click="edit04(item.id)">
+                    <img class="jinglin" :src="item.imgBuffer" alt="">
+                    <p class="jinglingtext">{{item.title}}</p>
+                    <span class="time">分享于：{{item.create_time|formatDate}}</span>
+                    <span class="icon_see_zan"><i class="icon_zan"><span>{{item.looktotal}}</span></i></span>
+                    <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
+                    <span class="icon_see_see01"><i class="icon_see"><span>{{item.praisetotal}}</span></i></span>
+                </li>
+            </ul>
+    </div>
 </template>
 <script>
 import { formatDate } from '../../public/time.js'
@@ -74,8 +74,8 @@ import { formatDate } from '../../public/time.js'
     left: 32px;
 }
  .container38 .jinglin img{
-     width: 100%;
-     height: 100%;
+    width: 100%;
+    height: 100%;
 }
 .container38 .jinglingtext{
     position: absolute;

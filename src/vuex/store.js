@@ -32,7 +32,7 @@ const state = {
 
 const actions = {
     Getsession01 (context) {
-      context.commit('Getsession01')
+        context.commit('Getsession01')
     }
 }
 

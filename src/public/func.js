@@ -5,14 +5,14 @@ export default {
         axios.get(api)
             .then(cb)
             .catch(err => {
-                console.log(err)
-            })
+            console.log(err)
+        })
     },
     ajaxPost(api, post, cb) {
         axios.post(api, post)
             .then(cb)
             .catch(err => {
-                console.log(err)
-            })
+            console.log(err)
+        })
     }
 }

@@ -2,7 +2,7 @@
 <div class="searchdemo">
         <div class="container07">
             <input class="search_input" placeholder="搜索作品" v-model="searchname" @keyup.enter="searchdemo">
-                <i slot="prefix" class="el-input__icon el-icon-search" @click="searchdemo"></i>
+            <i slot="prefix" class="el-input__icon el-icon-search" @click="searchdemo"></i>
         </div>
         <div class="search01"  v-show="$store.state.searchdemo">
         <el-row :gutter="10">
@@ -27,45 +27,45 @@
 </template>
 
 <script>
-    export default{
-        data(){
-            return{
-                searchname:'',
-                list:''
-            }
-        },
-        mounted: function () {      
-        },
-        methods:{
-            searchdemo(){
-                this.axios.post('/res/filelist',{
-                    sortstate:3,
-                    searchname:this.searchname
-                })
-                .then(response => {  
-                    if(this.searchname ==''){
-                        this.$message({
-                            message:'搜索内容不能为空',
-                            center:true
-                        })
-                    }
-                    else if(response.data.data.msg == "这回真的没有了~"){
-                        this.$store.state.searchdemo=false
-                        this.$message({
-                            message:'没有找到相关的作品',
-                            center:true
-                        })
-                    }else{
-                    this.list=response.data.data
-                    console.log(response)
-                    this.$store.state.searchdemo=true
-                    this.$store.state.recommenddemo=false
-                    this.$store.state.productiondemo=false
-                    }
-                })
-            }
+export default{
+    data(){
+        return{
+            searchname:'',
+            list:''
+        }
+    },
+    mounted: function () {      
+    },
+    methods:{
+        searchdemo(){
+            this.axios.post('/res/filelist',{
+                sortstate:3,
+                searchname:this.searchname
+            })
+            .then(response => {  
+                if(this.searchname ==''){
+                    this.$message({
+                        message:'搜索内容不能为空',
+                        center:true
+                    })
+                }
+                else if(response.data.data.msg == "这回真的没有了~"){
+                    this.$store.state.searchdemo=false
+                    this.$message({
+                        message:'没有找到相关的作品',
+                        center:true
+                    })
+                }else{
+                this.list=response.data.data
+                console.log(response)
+                this.$store.state.searchdemo=true
+                this.$store.state.recommenddemo=false
+                this.$store.state.productiondemo=false
+                }
+            })
         }
     }
+}
 </script>
 <style scoped>
 .search01{

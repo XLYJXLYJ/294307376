@@ -1,28 +1,27 @@
 <template>
-  <div class="container33">  
-    <div class="userpic">
-      <input type="file" ref="file_el" @change="choise_file">    
+    <div class="container33">  
+        <div class="userpic">
+            <input type="file" ref="file_el" @change="choise_file">    
+        </div>
+        <div class="userpiv" v-show="userpic"><img  :src="'data:image/png;base64,'+imageUrl01"></div>
+        <div class="userpiv" v-show="localpic"><img  :src="imageUrl"></div> 
+        <div  class="two_text"><p>{{$store.state.usernamesession02}}</p></div>
+        <el-form :label-position="labelPosition" label-width="80px" class="usercenter" :model="formLabelAlign" :rules="rules">
+            <el-form-item label="名称">
+                <input class="input01" v-model="formLabelAlign.name">
+            </el-form-item>
+            <el-form-item label="性别">
+                <input class="input01" v-model="formLabelAlign.sex">
+            </el-form-item>
+            <el-form-item label="年龄">
+                <input class="input01" v-model.number="formLabelAlign.age">
+            </el-form-item>
+            <el-form-item label="真实姓名">
+                <input class="input01" v-model="formLabelAlign.name01">
+            </el-form-item>
+            <el-button class="save" @click="uploadmessage">保存</el-button>
+        </el-form>
     </div>
-     <div class="userpiv" v-show="userpic"><img  :src="'data:image/png;base64,'+imageUrl01"></div>
-     <div class="userpiv" v-show="localpic"><img  :src="imageUrl"></div>
-    
-    <div  class="two_text"><p>{{$store.state.usernamesession02}}</p></div>
-    <el-form :label-position="labelPosition" label-width="80px" class="usercenter" :model="formLabelAlign" :rules="rules">
-        <el-form-item label="名称">
-          <input class="input01" v-model="formLabelAlign.name">
-        </el-form-item>
-        <el-form-item label="性别">
-          <input class="input01" v-model="formLabelAlign.sex">
-        </el-form-item>
-        <el-form-item label="年龄">
-          <input class="input01" v-model.number="formLabelAlign.age">
-        </el-form-item>
-        <el-form-item label="真实姓名">
-          <input class="input01" v-model="formLabelAlign.name01">
-        </el-form-item>
-        <el-button class="save" @click="uploadmessage">保存</el-button>
-    </el-form>
-  </div>
 </template>
 <script>
   export default {

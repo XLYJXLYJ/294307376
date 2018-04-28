@@ -37,7 +37,6 @@
                         this.list = response.data.data
                         console.log(this.list)
                     }    
-
                 })
             }
         }
@@ -82,20 +81,20 @@
     margin-bottom: 100px;
 }
 .container43 .star{
-   position: absolute;
-   left: -12px;
-   top: -35px;
-   width:75pox;
-   height: 72px;
+    position: absolute;
+    left: -12px;
+    top: -35px;
+    width:75pox;
+    height: 72px;
 }
 .container43 .left{
-   position: absolute;
-   left: 13px;
-   top: 92px;
+    position: absolute;
+    left: 13px;
+    top: 92px;
 }
 .container43 .right{
-   position: absolute;
-   left: 1128px;
-   top: 92px;
+    position: absolute;
+    left: 1128px;
+    top: 92px;
 }
 </style>

@@ -23,8 +23,7 @@
             <div>
                 <img class="userdemo" src="../../assets/user/bg01.png" alt="">
                 <div class="makedemotext"><a href="">创作</a><p>你的封面作品</p> <br/><span>还没有封面作品</span></div>
-            </div>
-            
+            </div>   
             <p class="name01">封面作品</p>
             <p class="atten01">暂无作品</p>
         </div>
@@ -36,7 +35,7 @@
             <!-- <div class="see"><p>100</p><span>次浏览</span></div> -->
         </div>
         <div class="mydy">我的动态</div>
-  </div>
+    </div>
 </template>
 <script>
 import Vue from 'vue'
@@ -87,9 +86,9 @@ import Vue from 'vue'
                         aboutme:this.aboutme,
                         doing:this.doing
                     })
-                    .then(response => {           
-                        this.postlistdemo = response.data
-                        // console.log(response.data.data)
+                .then(response => {           
+                    this.postlistdemo = response.data
+                    // console.log(response.data.data)
                 })
             }
         }

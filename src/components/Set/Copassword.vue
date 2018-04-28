@@ -1,7 +1,6 @@
 <template>
     <div class="container34"> 
-          <div class="userpic">
-          
+          <div class="userpic">  
           </div>
           <div class="userpiv" v-show="userpic"><img  :src="'data:image/png;base64,'+imageUrl02"></div>
           <div class="userpiv" v-show="localpic"><img  :src="imageUrl"></div>

@@ -20,18 +20,17 @@
 <script>
 export default {
     data() {
-      return {
-          store01:true,
-          nosend:true,
-          list:'',
-      };
+        return {
+            store01:true,
+            nosend:true,
+            list:'',
+        };
     },
     mounted:function(){
-       this.loadstoremessage()
+        this.loadstoremessage()
     },
     methods:{
         loadstoremessage(){
-            console.log(123)
             this.axios.post('/res/userinfo',{
                     userid:sessionStorage.userid,
                     state:3,
@@ -118,18 +117,18 @@ export default {
     margin-right: 22px;
 }
 .container41 .star{
-   position: absolute;
-   left: -12px;
-   top: -35px;
+    position: absolute;
+    left: -12px;
+    top: -35px;
 }
 .container41 .left{
-   position: absolute;
-   left: 13px;
-   top: 142px;
+    position: absolute;
+    left: 13px;
+    top: 142px;
 }
 .container41 .right{
-   position: absolute;
-   left: 1128px;
-   top: 142px;
+    position: absolute;
+    left: 1128px;
+    top: 142px;
 }
 </style>

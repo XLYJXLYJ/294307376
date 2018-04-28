@@ -1,12 +1,12 @@
 <template>
     <div class="container60">
-       <Header/>
-       <div class="content10">
+        <Header/>
+        <div class="content10">
             <Sourcehead/>
-       </div>
-       <div class="footer10">
-           <Footer/>
-       </div>  
+        </div>
+        <div class="footer10">
+            <Footer/>
+        </div>  
     </div>
 </template>
 

@@ -20,15 +20,11 @@
                  <img src="static/homelesson.png"   @click="videoscreen">
                  <img class="play" src="../../assets/home/player.png"  @click="videoscreen" alt="">
             </div>
-
             <!-- <div id="videobox">
                  <video id="video" src="/static/homelesson.mp4"  :autoplay="playStatus" @click="playClick" height="224px" width="100%">
 
                 </video> 
             </div> -->
-
-
-            <transition name="el-fade-in-linear">
             <el-dialog :visible.sync="dialogvideo"  width="63%" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close='false'>
                 <div>
                     <div class="containervideo" v-show="dialogvideo">  
@@ -37,13 +33,7 @@
                         </video> 
                     </div>
                 </div> 
-            </el-dialog> 
-        </transition>
-
-
-
- 
-               
+            </el-dialog>      
         </div>
     </div>
 </template>
@@ -65,7 +55,7 @@ export default{
     },
     watch:{
         dialogvideo:function(){
-             this._dom = document.getElementById('video');
+            this._dom = document.getElementById('video');
             this._dom.pause();  
             play.value="暂停"; 
         }
@@ -82,14 +72,7 @@ export default{
             }  
         },
         videoscreen(){
-            // this._dom = document.getElementById('video');
             this.dialogvideo = true
-        //     this._dom.play();  
-        //     play.value="播放"; 
-        //     if(!this.dialogvideo){
-        //         this._dom.pause();  
-        //         play.value="暂停"; 
-        //     }
         },
     }
 }

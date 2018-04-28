@@ -1,81 +1,80 @@
 <template>
   <div class="container63" v-show="$store.state.sourcebackg">
-        <div class="baozhu">
-        <div class="sort01">
-            <p class="sort01text">作品分类:</p>
-            <ul>
-                <li v-for="(item,index) in oneidbox" :key="item.oneid" @click="select01(item.oneid)" :class="{demohover:index==isdemohover01}"><p>{{item.name}}</p></li>
-            </ul>
-        </div>
-        <div class="sort0101" v-show="sort0101">
+    <div class="baozhu">
+    <div class="sort01">
+        <p class="sort01text">作品分类:</p>
+        <ul>
+            <li v-for="(item,index) in oneidbox" :key="item.oneid" @click="select01(item.oneid)" :class="{demohover:index==isdemohover01}"><p>{{item.name}}</p></li>
+        </ul>
+    </div>
+    <div class="sort0101" v-show="sort0101">
+    <p class="sort0101text">作品分类:</p>
+        <ul>
+            <li v-for="(item,index) in twoidbox01" :key="item.twoid"  @click="select0101(item.twoid)" :class="{demohover:index==isdemohover02}"><p>{{item.name}}</p></li>
+        </ul>
+    </div>
+    <div class="sort0101" v-show="sort0102">
         <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li v-for="(item,index) in twoidbox01" :key="item.twoid"  @click="select0101(item.twoid)" :class="{demohover:index==isdemohover02}"><p>{{item.name}}</p></li>
-            </ul>
-        </div>
-        <div class="sort0101" v-show="sort0102">
-            <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li v-for="(item,index) in twoidbox02" :key="item.twoid" @click="select0101(item.twoid)" :class="{demohover:index==isdemohover02}"><p>{{item.name}}</p></li>
-            </ul>
-        </div>
-        <div class="sort0101" v-show="sort0103">
-            <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li v-for="(item,index) in twoidbox03" :key="item.twoid" @click="select0101(item.twoid)" :class="{demohover:index==isdemohover02}"><p>{{item.name}}</p></li>
-            </ul>
-        </div>
-        </div>
-        <!-- <div class="sort010101">
-            <p class="sort010101text">作品分类:</p>
-            <ul>
-                <li><p>大象</p><span>(1965)</span></li>
-                <li><p>大象1</p><span>(1965)</span></li>
-                <li><p>大象2</p><span>(1965)</span></li>
-                <li><p>大象3</p><span>(1965)</span></li>
-            </ul>
-        </div> -->
-            <div class="sort02">
-            <ul>
-                <li class="more"><p>最近更新</p></li>
-                <li class="new"><p>最多使用</p></li>
-            </ul>
-            <!-- <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox> -->
-            <p class="all">共有{{listnew.length}}个素材</p>
-        </div>
-        <div class="first">
-            <ul class="role">
-                <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
-                    <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
-                    <div class="roleup">
-                    <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
-                        <p class="text">{{item.name}}</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="sortnum01" v-show="numpage">
-            <ul>
-                <li v-for="(item,index) in pageitem" :key="item.pageid" v-if="index<6" @click="Selectpage(item.pageid)" :class="{demohover:index+1==isdemohover03}"><p>{{item.pageid}}</p></li>
-            </ul>
-            <div>
-                <!-- <p>...</p> -->
-                <!-- <p class="night" @click="Selectpage(4)">4</p> -->
-                <p class="endpage" @click="Selectpagebefore">上一页</p>
-                <p class="nextpage" @click="Selectpageafter">下一页</p>
-            </div>
-
-            <div class="sortfly">
-                <p class="one">到第</p>
-                <div>
-                    <input type="text" v-model="pageuser">
+        <ul>
+            <li v-for="(item,index) in twoidbox02" :key="item.twoid" @click="select0101(item.twoid)" :class="{demohover:index==isdemohover02}"><p>{{item.name}}</p></li>
+        </ul>
+    </div>
+    <div class="sort0101" v-show="sort0103">
+        <p class="sort0101text">作品分类:</p>
+        <ul>
+            <li v-for="(item,index) in twoidbox03" :key="item.twoid" @click="select0101(item.twoid)" :class="{demohover:index==isdemohover02}"><p>{{item.name}}</p></li>
+        </ul>
+    </div>
+    </div>
+    <!-- <div class="sort010101">
+        <p class="sort010101text">作品分类:</p>
+        <ul>
+            <li><p>大象</p><span>(1965)</span></li>
+            <li><p>大象1</p><span>(1965)</span></li>
+            <li><p>大象2</p><span>(1965)</span></li>
+            <li><p>大象3</p><span>(1965)</span></li>
+        </ul>
+    </div> -->
+        <div class="sort02">
+        <ul>
+            <li class="more"><p>最近更新</p></li>
+            <li class="new"><p>最多使用</p></li>
+        </ul>
+        <!-- <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox> -->
+        <p class="all">共有{{listnew.length}}个素材</p>
+    </div>
+    <div class="first">
+        <ul class="role">
+            <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
+                <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
+                <div class="roleup">
+                <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
+                    <p class="text">{{item.name}}</p>
                 </div>
-                <p class="two">页</p>
-                <button @click="Selectpageuser">确定</button>
-            </div>
-
+            </li>
+        </ul>
+    </div>
+    <div class="sortnum01" v-show="numpage">
+        <ul>
+            <li v-for="(item,index) in pageitem" :key="item.pageid" v-if="index<6" @click="Selectpage(item.pageid)" :class="{demohover:index+1==isdemohover03}"><p>{{item.pageid}}</p></li>
+        </ul>
+        <div>
+            <!-- <p>...</p> -->
+            <!-- <p class="night" @click="Selectpage(4)">4</p> -->
+            <p class="endpage" @click="Selectpagebefore">上一页</p>
+            <p class="nextpage" @click="Selectpageafter">下一页</p>
         </div>
-        <!-- <p class="endtext">部分素材来源自网络，版权归原作者所有。所有素材仅供个人创作娱乐使用，禁止做任何商业用途，由此产生的任何法律纠纷本网站不予承担</p> -->
+
+        <div class="sortfly">
+            <p class="one">到第</p>
+            <div>
+                <input type="text" v-model="pageuser">
+            </div>
+            <p class="two">页</p>
+            <button @click="Selectpageuser">确定</button>
+        </div>
+    </div>
+    <!-- <p class="endtext">部分素材来源自网络，版权归原作者所有。所有素材仅供个人创作娱乐使用，禁止做任何商业用途，由此产生的任何法律纠纷本网站不予承担</p> -->
   </div>
 </template>
 <script>
@@ -360,40 +359,40 @@ export default{
     height: auto;
 }
 .container63 .sort01 ul{
-   list-style: none;
-   position: relative;
-   left: 122px;
-   top: -20px;
-   width: 1040px;
-   height: 24px;;
+    list-style: none;
+    position: relative;
+    left: 122px;
+    top: -20px;
+    width: 1040px;
+    height: 24px;
 }
 .container63 .sort01text{
-   display: inline-block;
-   position: relative;
-   left: 46px;
-   color:#333;
-   font-size: 14px;
+    display: inline-block;
+    position: relative;
+    left: 46px;
+    color:#333;
+    font-size: 14px;
 }
 .container63 .sort01 ul p{
-   display: inline-block;
-   padding-left: 15px;
-   position: relative;
-   top: 2px;
+    display: inline-block;
+    padding-left: 15px;
+    position: relative;
+    top: 2px;
 }
 .container63 .sort01 ul li{
-   float: left;
-   width: auto;
-   height: 24px;
-   color:#F13232;
-   font-size: 14px;
-   border: 1px solid #F13232;
-   margin-right: 14px;
-   font-weight: 600;
-   padding-right: 15px;
+    float: left;
+    width: auto;
+    height: 24px;
+    color:#F13232;
+    font-size: 14px;
+    border: 1px solid #F13232;
+    margin-right: 14px;
+    font-weight: 600;
+    padding-right: 15px;
 }
 .container63 .sort01 ul li:hover{
-   color:#fff;
-   background: #F13232;
+    color:#fff;
+    background: #F13232;
 }
 
 .container63 .sort0101{
@@ -402,41 +401,41 @@ export default{
     display: block;
 }
 .container63 .sort0101 ul{
-   list-style: none;
-   position: absolute;
-   left: 122px;
-   top: 60px;
-   width: 1040px;
-   height: auto;
-   padding-left:0;
+    list-style: none;
+    position: absolute;
+    left: 122px;
+    top: 60px;
+    width: 1040px;
+    height: auto;
+    padding-left:0;
 }
 .container63 .sort0101text{
-   display: inline-block;
-   position: relative;
-   left: -336px;
-   top: 14px;
-   color:#333;
-   font-size: 14px;
+    display: inline-block;
+    position: relative;
+    left: -336px;
+    top: 14px;
+    color:#333;
+    font-size: 14px;
 }
 .container63 .sort0101 ul p{
-   display: inline-block;
-   margin-top: 0px;
-   position: relative;
-   top: 2px;
-}
+    display: inline-block;
+    margin-top: 0px;
+    position: relative;
+    top: 2px;
+    }
 .container63 .sort0101 ul li{
-   float: left;
-   width: auto;
-   height: 24px;
-   color:#F13232;
-   font-size: 14px;
-   border:1px solid red;
-   text-align:center;
-   margin-right: 14px;
-   margin-bottom: 14px;
-   padding-left: 14px;
-   padding-right: 14px;
-   font-weight: 600;
+    float: left;
+    width: auto;
+    height: 24px;
+    color:#F13232;
+    font-size: 14px;
+    border:1px solid red;
+    text-align:center;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-weight: 600;
 }
 .container63 .sort0101 ul li:hover{
     color: #fff;

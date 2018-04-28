@@ -1,17 +1,17 @@
 
 <template>
-  <div class="container70">
-     <ul class="tab_choice">
-         <router-link to="/source/mysourceshop/MyRole"><li><p>素材</p></li></router-link>
-         <router-link to="/source/mysourceshop/Mybg"><li><p>场景</p></li></router-link>
-         <router-link to="/source/mysourceshop/Mystudy"><li><p>学习</p></li></router-link>
-         <router-link to="/source/mysourceshop/Mygame"><li><p>游戏</p></li></router-link>
-         <router-link to="/source/mysourceshop/Mymusic"><li><p>音乐</p></li></router-link>
-         <router-link to="/source/mysourceshop/Mysourcelesson"><li><p>课程</p></li></router-link>
-         <div class="line"></div>        
-     </ul>  
-     <router-view></router-view>
-  </div>
+    <div class="container70">
+        <ul class="tab_choice">
+            <router-link to="/source/mysourceshop/MyRole"><li><p>素材</p></li></router-link>
+            <router-link to="/source/mysourceshop/Mybg"><li><p>场景</p></li></router-link>
+            <router-link to="/source/mysourceshop/Mystudy"><li><p>学习</p></li></router-link>
+            <router-link to="/source/mysourceshop/Mygame"><li><p>游戏</p></li></router-link>
+            <router-link to="/source/mysourceshop/Mymusic"><li><p>音乐</p></li></router-link>
+            <router-link to="/source/mysourceshop/Mysourcelesson"><li><p>课程</p></li></router-link>
+            <div class="line"></div>        
+        </ul>  
+        <router-view></router-view>
+    </div>
 </template>
 <script>
 
@@ -75,10 +75,10 @@ export default{
     z-index: 100;
 } */
 .container70 .router-link-active li{
-     background: #fff;
-     border-bottom: 1px solid #fff;
-     position: relative;
-     z-index: 1000;
+    background: #fff;
+    border-bottom: 1px solid #fff;
+    position: relative;
+    z-index: 1000;
 }
 .container70 .line{
     width: 1140px;

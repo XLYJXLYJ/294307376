@@ -1,48 +1,48 @@
 <template>
-  <div class="container65" v-show="$store.state.sourcegsource">
-      <div class="first">
-        <img class="firstlogo" src="../../../assets/source/role.png" alt=""><p class="rolemain">素材</p>
-        <div class="line"></div>
-        <ul class="role">
-            <li v-for="item in list01" :key="item.id">
-                <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
-                <div class="roleup">
-                    <button><a :href="'/codeplay'+item.content" download>下载</a></button>
-                    <p class="text">{{item.name}}</p>
-                </div>
-            </li>  
-        </ul>
-         <router-link to="/source/sourceshop/Source01"><button class="seeall">查看全部 ></button></router-link>
-     </div>
+    <div class="container65" v-show="$store.state.sourcegsource">
+        <div class="first">
+            <img class="firstlogo" src="../../../assets/source/role.png" alt=""><p class="rolemain">素材</p>
+            <div class="line"></div>
+            <ul class="role">
+                <li v-for="item in list01" :key="item.id">
+                    <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
+                    <div class="roleup">
+                        <button><a :href="'/codeplay'+item.content" download>下载</a></button>
+                        <p class="text">{{item.name}}</p>
+                    </div>
+                </li>  
+            </ul>
+            <router-link to="/source/sourceshop/Source01"><button class="seeall">查看全部 ></button></router-link>
+        </div>
         <div class="second">
-        <img class="secondlogo" src="../../../assets/source/bg.png" alt=""><p class="rolemain">背景</p>
-        <div class="line"></div>
-        <ul class="role">
-            <li v-for="(item,index) in list02" :key="item.id" v-if='index<10'>
-                <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
-                <div class="roleup">
-                    <button><a :href="'/codeplay'+item.content" download>下载</a></button>
-                    <p class="text">{{item.name}}</p>
-                </div>
-            </li>  
-        </ul>
-        <router-link to="/source/sourceshop/Backg"><button class="seeall">查看全部 ></button></router-link>
-     </div>
+            <img class="secondlogo" src="../../../assets/source/bg.png" alt=""><p class="rolemain">背景</p>
+            <div class="line"></div>
+            <ul class="role">
+                <li v-for="(item,index) in list02" :key="item.id" v-if='index<10'>
+                    <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
+                    <div class="roleup">
+                        <button><a :href="'/codeplay'+item.content" download>下载</a></button>
+                        <p class="text">{{item.name}}</p>
+                    </div>
+                </li>  
+            </ul>
+            <router-link to="/source/sourceshop/Backg"><button class="seeall">查看全部 ></button></router-link>
+        </div>
         <div class="three">
-        <img class="threelogo" src="../../../assets/source/music.png" alt=""><p class="rolemain">音乐</p>
-        <div class="line"></div>
-        <ul class="role">
-             <li v-for="(item,index) in list03" :key="item.id" v-if='index<10'>
-                <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
-                <div class="roleup">
-                    <button><a :href="'/codeplay'+item.content" download>下载</a></button>
-                    <p class="text">{{item.name}}</p>
-                </div>
-            </li>
-        </ul>
-        <router-link to="/source/sourceshop/Music"><button class="seeall">查看全部 ></button></router-link>
-     </div>
-  </div>
+            <img class="threelogo" src="../../../assets/source/music.png" alt=""><p class="rolemain">音乐</p>
+            <div class="line"></div>
+            <ul class="role">
+                <li v-for="(item,index) in list03" :key="item.id" v-if='index<10'>
+                    <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
+                    <div class="roleup">
+                        <button><a :href="'/codeplay'+item.content" download>下载</a></button>
+                        <p class="text">{{item.name}}</p>
+                    </div>
+                </li>
+            </ul>
+            <router-link to="/source/sourceshop/Music"><button class="seeall">查看全部 ></button></router-link>
+        </div>
+    </div>
 </template>
 <script>
 export default{
@@ -162,7 +162,7 @@ export default{
     height: 30px;
     font-size: 30px;
     color: #333;
-     z-index: 100;
+    z-index: 100;
 }
 .container65 .first .role{
     position: relative;
@@ -176,7 +176,7 @@ export default{
     left: 46px;
     top: -20px;
     width: 1086px;
-     z-index: 100;
+    z-index: 100;
 }
 .container65 .first .role li{
     float: left;
@@ -261,7 +261,7 @@ export default{
     height: 30px;
     font-size: 30px;
     color: #333;
-     z-index: 100;
+    z-index: 100;
 }
 .container65 .second .role{
     position: relative;
@@ -275,7 +275,7 @@ export default{
     left: 46px;
     top: -20px;
     width: 1086px;
-     z-index: 100;
+    z-index: 100;
 }
 .container65 .second .role li{
     float: left;
@@ -359,7 +359,7 @@ export default{
     height: 30px;
     font-size: 30px;
     color: #333;
-     z-index: 100;
+    z-index: 100;
 }
 .container65 .three .role{
     position: relative;
@@ -373,7 +373,7 @@ export default{
     left: 46px;
     top: -20px;
     width: 1086px;
-     z-index: 100;
+    z-index: 100;
 }
 .container65 .three .role li{
     float: left;

@@ -1,13 +1,13 @@
 <template>
     <div class="container13">
-       <Header/>
-       <div class="content01">
+        <Header/>
+        <div class="content01">
             <Swiper/>
             <List/>
-       </div>
-       <div class="footer01">
-           <Footer/>
-       </div>  
+        </div>
+        <div class="footer01">
+            <Footer/>
+        </div>  
     </div>
 </template>
 

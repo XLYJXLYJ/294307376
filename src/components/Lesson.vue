@@ -2,9 +2,9 @@
     <div class="container14">
         <Header/>
         <div class="content02">
-        <LessonDownload/>
-        <LessonList01/> 
-        <LessonList02/>
+            <LessonDownload/>
+            <LessonList01/> 
+            <LessonList02/>
         </div>
         <div class="footer02">
             <Footer/>

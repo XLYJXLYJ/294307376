@@ -14,7 +14,7 @@
             <router-view></router-view>
         </div>
          <div class="footer05">
-         <Footer/>
+            <Footer/>
          </div> 
     </div>   
 </template>
@@ -60,10 +60,10 @@ export default{
     position: relative;
 }
 .container25 .star01{
-   position: relative;
-   left: -18px;
-   top: -30px; 
-   z-index: 50;
+    position: relative;
+    left: -18px;
+    top: -30px; 
+    z-index: 50;
 }
 .container24 p{
     position: relative;

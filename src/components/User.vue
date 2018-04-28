@@ -1,17 +1,17 @@
 <template>
-<div class="container37">
-    <Header/>
-    <div class="container38">
-        <Userown/>
-        <Usershare/>
-        <Usershore/>
-        <Userfollow/>
-        <Usershow/>
-    </div>   
-    <div class="footer06">
-         <Footer/>
-    </div> 
- </div>
+    <div class="container37">
+        <Header/>
+        <div class="container38">
+            <Userown/>
+            <Usershare/>
+            <Usershore/>
+            <Userfollow/>
+            <Usershow/>
+        </div>   
+        <div class="footer06">
+            <Footer/>
+        </div> 
+    </div>
 </template>
 <script>
 import Header from '@/components/HomePage/header'

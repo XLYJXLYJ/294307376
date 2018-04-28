@@ -43,120 +43,120 @@ import Mysourcelesson from '@/components/Source/mysource/Mysourcelesson'
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
-  routes: [
-    {path:'/',redirect:'/Home'},
-    {
-      path: '/Home',
-      component: Home,
-      name: 'Home',
-      children:[
-        { path: '/Home/Production', component: Production},
-        { path: '/Home/Recommend', name: 'Recommend',component: Recommend},
-        { path: '/', component: Recommend},
-      ]
-    }, 
-    {
-      path: '/Lesson',
-      name: 'Lesson',
-      component: Lesson
-    },
-    {
-      path: '/Material',
-      name: 'Material',
-      component: Material
-    }, 
-    {
-      path: '/source',
-      name: 'Source',
-      component: Source,
-      children:[
-        {path: '/source/sourceshop', component: Sourceshop,
+    // mode: 'history',
+    routes: [
+        {path:'/',redirect:'/Home'},
+        {
+            path: '/Home',
+            component: Home,
+            name: 'Home',
             children:[
-              {path: '/source/sourceshop/Backg', component: Backg},
-              {path: '/source/sourceshop/Game', component: Game},
-              {path: '/source/sourceshop/Gsource', component: Gsource},
-              {path: '/source/sourceshop/Source01', component: Source01},
-              {path: '/source/sourceshop/Study', component: Study},
-              {path: '/source/sourceshop/Music', component: Music},
-              {path: '/source/sourceshop/Sourcelesson', component: Sourcelesson},
-              {path: '', component:Gsource}
+                { path: '/Home/Production', component: Production},
+                { path: '/Home/Recommend', name: 'Recommend',component: Recommend},
+                { path: '/', component: Recommend},
             ]
+        }, 
+      {
+          path: '/Lesson',
+          name: 'Lesson',
+          component: Lesson
       },
-        {path: '/source/mysourceshop', name: 'mysourceshop',component: Mysourceshop,
-            children:[
-              {path: '/source/mysourceshop/Mybg', component: Mybg},
-              {path: '/source/mysourceshop/Myrole', name: 'Myrole',component: Myrole},
-              {path: '/source/mysourceshop/Mymusic', component: Mymusic},
-              {path: '/source/mysourceshop/Mygame', component: Mygame},
-              {path: '/source/mysourceshop/Mystudy', component: Mystudy},
-              {path: '/source/mysourceshop/Mysourcelesson', component: Mysourcelesson},
-              {path: '', component:Myrole}
-            ]
-        },
-        {path: '', component:Gsource}
-      ]
-    }, 
-    {
-      path: '/Download',
-      name: 'Download',
-      component: Download
-    },
-    {
-      path: '/Publish',
-      name: 'Publish',
-      component: Publish
-    },
-    {
-      path: '/Video',
-      name: 'Video',
-      component: Video,
-      children:[
-        {path: '/Video/Myvideo', component: Myvideo},
-        {path: '/Video/Lovevideo', component: Lovevideo},
-        {path: '', component:Myvideo}
-      ]
-    },
-    {
-      path: '/share',
-      name: 'share',
-      component: share,
-    },
-    {
-      path: '/Demo',
-      name: 'Demo',
-      component: Demo,
-      children:[
-        { 
-          path: '/Demo/Mydemo', name: 'Mydemo',component: Mydemo, 
-              children:[
-                { path: '/Demo/Mydemo/All', name: 'Alldemohaha',component: All},
-                { path: '/Demo/Mydemo/Readysend', component: Readysend},
-                { path: '/Demo/Mydemo/Nosend', component: Nosend},
-              ]
-        },
-        { path: '/Demo/Delete', component: Delete},
-      ]
-    },
-    {
-      path: '/User',
-      name: 'User',
-      component: User
-    },
-    {
-      path: '/Snap',
-      name: 'Snap',
-      component: Snap
-    },
-    {
-      path: '/Setting',
-      name: 'Setting',
-      component: Setting,
-      children:[
-        {path: '/Setting/Usercenter', name: 'Usercenter', component: Usercenter},
-        {path: '/Setting/Copassword', component: Copassword},
-        {path: '/Setting', component:Usercenter}
-      ]
-    }
-  ]
+      {
+          path: '/Material',
+          name: 'Material',
+          component: Material
+      }, 
+      {
+          path: '/source',
+          name: 'Source',
+          component: Source,
+          children:[
+            {path: '/source/sourceshop', component: Sourceshop,
+                children:[
+                    {path: '/source/sourceshop/Backg', component: Backg},
+                    {path: '/source/sourceshop/Game', component: Game},
+                    {path: '/source/sourceshop/Gsource', component: Gsource},
+                    {path: '/source/sourceshop/Source01', component: Source01},
+                    {path: '/source/sourceshop/Study', component: Study},
+                    {path: '/source/sourceshop/Music', component: Music},
+                    {path: '/source/sourceshop/Sourcelesson', component: Sourcelesson},
+                    {path: '', component:Gsource}
+                ]
+          },
+            {path: '/source/mysourceshop', name: 'mysourceshop',component: Mysourceshop,
+                children:[
+                    {path: '/source/mysourceshop/Mybg', component: Mybg},
+                    {path: '/source/mysourceshop/Myrole', name: 'Myrole',component: Myrole},
+                    {path: '/source/mysourceshop/Mymusic', component: Mymusic},
+                    {path: '/source/mysourceshop/Mygame', component: Mygame},
+                    {path: '/source/mysourceshop/Mystudy', component: Mystudy},
+                    {path: '/source/mysourceshop/Mysourcelesson', component: Mysourcelesson},
+                    {path: '', component:Myrole}
+                ]
+            },
+            {path: '', component:Gsource}
+          ]
+      }, 
+      {
+          path: '/Download',
+          name: 'Download',
+          component: Download
+      },
+      {
+          path: '/Publish',
+          name: 'Publish',
+          component: Publish
+      },
+      {
+          path: '/Video',
+          name: 'Video',
+          component: Video,
+          children:[
+              {path: '/Video/Myvideo', component: Myvideo},
+              {path: '/Video/Lovevideo', component: Lovevideo},
+              {path: '', component:Myvideo}
+          ]
+      },
+      {
+          path: '/share',
+          name: 'share',
+          component: share,
+      },
+      {
+          path: '/Demo',
+          name: 'Demo',
+          component: Demo,
+          children:[
+            { 
+              path: '/Demo/Mydemo', name: 'Mydemo',component: Mydemo, 
+                  children:[
+                      { path: '/Demo/Mydemo/All', name: 'Alldemohaha',component: All},
+                      { path: '/Demo/Mydemo/Readysend', component: Readysend},
+                      { path: '/Demo/Mydemo/Nosend', component: Nosend},
+                  ]
+            },
+            { path: '/Demo/Delete', component: Delete},
+          ]
+      },
+      {
+          path: '/User',
+          name: 'User',
+          component: User
+      },
+      {
+          path: '/Snap',
+          name: 'Snap',
+          component: Snap
+      },
+      {
+        path: '/Setting',
+        name: 'Setting',
+        component: Setting,
+        children:[
+            {path: '/Setting/Usercenter', name: 'Usercenter', component: Usercenter},
+            {path: '/Setting/Copassword', component: Copassword},
+            {path: '/Setting', component:Usercenter}
+        ]
+      }
+    ]
 })

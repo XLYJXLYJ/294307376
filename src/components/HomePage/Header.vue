@@ -96,29 +96,29 @@
                             <span class="free_res">已有账号?<span @click="dialogLoginshow = true,dialogRegister = false">点击登录</span></span>
                         </div>
                     </div>
-                <div class="container46" v-show="dialogForgetpass">
-                    <el-form action="" :rules="rules">
-                        <p class="sign_logo">忘记密码</p>
-                         <el-form-item >
-                                <input type="email"  class="tele" v-model="formReset.mail" auto-complete="off" placeholder="请输入邮箱">
+                    <div class="container46" v-show="dialogForgetpass">
+                        <el-form action="" :rules="rules">
+                            <p class="sign_logo">忘记密码</p>
+                            <el-form-item >
+                                    <input type="email"  class="tele" v-model="formReset.mail" auto-complete="off" placeholder="请输入邮箱">
+                                </el-form-item>
+                            <el-form-item prop="code">
+                                    <input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码">
                             </el-form-item>
-                        <el-form-item prop="code">
-                                <input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码">
-                        </el-form-item>
-                        <button class="iden02" @click.prevent="Getcodebtn">获取验证码</button>
-                        <button class="register"  @click.prevent="Getusercodebtn">下一步</button>
-                    </el-form>
-                </div>
-                <div v-show="dialogPassSure">
-                    <div class="container44">
-                        <form action="">
-                            <p class="sign_logo">确认密码</p>
-                            <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
-                            <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
-                            <button class="register" @click.prevent="Getuserpassbtn">确认</button>
-                        </form> 
+                            <button class="iden02" @click.prevent="Getcodebtn">获取验证码</button>
+                            <button class="register"  @click.prevent="Getusercodebtn">下一步</button>
+                        </el-form>
                     </div>
-                </div> 
+                    <div v-show="dialogPassSure">
+                        <div class="container44">
+                            <form action="">
+                                <p class="sign_logo">确认密码</p>
+                                <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
+                                <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
+                                <button class="register" @click.prevent="Getuserpassbtn">确认</button>
+                            </form> 
+                        </div>
+                    </div> 
                 </div> 
             </el-dialog> 
         </transition>
@@ -341,12 +341,12 @@ export default {
             })
             .then(response => {
                 if( response.data.data.msg =="验证成功"){
-                this.$message({
-                message: '验证成功',
-                center: true
-                });
-                this.dialogPassSure = true
-                this.dialogForgetpass = false
+                    this.$message({
+                    message: '验证成功',
+                    center: true
+                    });
+                    this.dialogPassSure = true
+                    this.dialogForgetpass = false
                 }else{
                     this.$message({
                     message:'验证失败',
@@ -370,8 +370,8 @@ export default {
                 });
             }else{
                 this.axios.post('/res/setpassword',{
-                    password:this.formReset.formResetpasswordrsc,
-                    mail:this.formReset.mail
+                password:this.formReset.formResetpasswordrsc,
+                mail:this.formReset.mail
             })
             .then(response => {
                 this.dialogPassSure = false
@@ -402,7 +402,7 @@ export default {
                     this.dialogLogin = false;
                     this.loginsign = true;
                     this.usercenter = false;
-                     this.publicKey = response.data.data.publicKey
+                    this.publicKey = response.data.data.publicKey
                 }
             }) 
         },

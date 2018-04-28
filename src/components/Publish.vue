@@ -1,167 +1,166 @@
 <template>
     <div class="container72">
         <div class="container73">
-                 <p class="publishdemo">发布作品</p>
-                 <div class="fengexian"></div>
-                 <div class="demoname"><p>作品名称</p><input :rules="rules" v-model="demoname" type="text" placeholder="请填写作品名"> </div>
-                 <div class="demodes"><p>作品说明</p><textarea :rules="rules" v-model="demodes" type="text" placeholder="请填写作品描述"> </textarea></div>
-                 <a href="#/snap"><button class="returngo">返回</button></a>  
-                <div class="userpic"><input type="file" ref="file_el" @change="choise_file"> 
-                    <img :src="imageUrl">
-                </div>
-                <el-button class="send" @click="submitUpload">确认发布</el-button>   
-                <p class="uploadcover">作品封面</p>
-                <p class="uploadtext">上传封面</p>
-                <div class="imglarge"><img :src="urllarge" alt=""></div>
-                <ul class="uploadimg">
-                    <li  v-for="(item,index) in Urlimg" :key='index'><img :src='item.url' alt="" @click="pickimg(index)"></li>
-                </ul>
-                <!-- <p class="uploadcovertag">作品标签</p>
-                <ul class="uploadtag">
-                    <li v-for="(item,index) in Urltag" v-bind:class='{"activeimg":!isactive}' :key='index' @click="picktag(item,index)">{{item.tag}}</li>
-                </ul> -->
+            <p class="publishdemo">发布作品</p>
+            <div class="fengexian"></div>
+            <div class="demoname"><p>作品名称</p><input :rules="rules" v-model="demoname" type="text" placeholder="请填写作品名"> </div>
+            <div class="demodes"><p>作品说明</p><textarea :rules="rules" v-model="demodes" type="text" placeholder="请填写作品描述"> </textarea></div>
+            <a href="#/snap"><button class="returngo">返回</button></a>  
+            <div class="userpic"><input type="file" ref="file_el" @change="choise_file"> 
+                <img :src="imageUrl">
+            </div>
+            <el-button class="send" @click="submitUpload">确认发布</el-button>   
+            <p class="uploadcover">作品封面</p>
+            <p class="uploadtext">上传封面</p>
+            <div class="imglarge"><img :src="urllarge" alt=""></div>
+            <ul class="uploadimg">
+                <li  v-for="(item,index) in Urlimg" :key='index'><img :src='item.url' alt="" @click="pickimg(index)"></li>
+            </ul>
+            <!-- <p class="uploadcovertag">作品标签</p>
+            <ul class="uploadtag">
+                <li v-for="(item,index) in Urltag" v-bind:class='{"activeimg":!isactive}' :key='index' @click="picktag(item,index)">{{item.tag}}</li>
+            </ul> -->
         </div>
     </div>
 </template>
 <script>
 import Vue from 'vue'
-    export default {
-        data() {
-            return {
-                dialogImageUrl: '',
-                isactive: true,
-                dialogVisible: false,
-                urllarge:'static/publish/9l.png',
-                imageUrl: '',
-                indexdemoid:'',
-                demoname:'',
-                demodes:'',
-                readpicbinary:'',
-                picdemo:'',
-                result:'',
-                Urlimg:[
-                    {url:'static/publish/1.png'},
-                    {url:'static/publish/2.png'},
-                    {url:'static/publish/3.png'},
-                    {url:'static/publish/4.png'},
-                    {url:'static/publish/5.png'},
-                    {url:'static/publish/6.png'},
-                    {url:'static/publish/7.png'},
-                    {url:'static/publish/8.png'},
-                ],
-                uploadimg:{
-                        id:this.$store.state.demoxmlid,
-                        userid:sessionStorage.userid,
-                        title:this.demoname,
-                        desc:this.demodes,
-                        state:3,
-                        surfaceplot:this.indexdemoid
-                },
-                rules:{
-                demoname: [
-                    { required: true, message: '请输入作品名称', trigger: 'blur' },
-                    { min: 1, max: 20, message: '长度在 1 到 10 个字符', trigger: 'blur' }
-                ],
-                demodes:[
-                    { required: true, message: '请输入作品描述', trigger: 'blur' },
-                    { min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur' }
-                ],
+export default {
+    data() {
+        return {
+            dialogImageUrl: '',
+            isactive: true,
+            dialogVisible: false,
+            urllarge:'static/publish/9l.png',
+            imageUrl: '',
+            indexdemoid:'',
+            demoname:'',
+            demodes:'',
+            readpicbinary:'',
+            picdemo:'',
+            result:'',
+            Urlimg:[
+                {url:'static/publish/1.png'},
+                {url:'static/publish/2.png'},
+                {url:'static/publish/3.png'},
+                {url:'static/publish/4.png'},
+                {url:'static/publish/5.png'},
+                {url:'static/publish/6.png'},
+                {url:'static/publish/7.png'},
+                {url:'static/publish/8.png'},
+            ],
+            uploadimg:{
+                    id:this.$store.state.demoxmlid,
+                    userid:sessionStorage.userid,
+                    title:this.demoname,
+                    desc:this.demodes,
+                    state:3,
+                    surfaceplot:this.indexdemoid
             },
-                // Urltag:[
-                //     {tag:'游戏'},
-                //     {tag:'故事'},
-                //     {tag:'绘画'},
-                //     {tag:'动漫'},
-                //     {tag:'音乐'},
-                //     {tag:'教程'},
-                //     {tag:'节日'},
-                // ]
-            };
+            rules:{
+            demoname: [
+                { required: true, message: '请输入作品名称', trigger: 'blur' },
+                { min: 1, max: 20, message: '长度在 1 到 10 个字符', trigger: 'blur' }
+            ],
+            demodes:[
+                { required: true, message: '请输入作品描述', trigger: 'blur' },
+                { min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur' }
+            ],
         },
-        methods: {
-            pickimg(indexid){  
-                this.imageUrl = ''  
-                this.indexdemoid=indexid+1
-                this.urllarge='static/publish/'+this.indexdemoid+'l.png'
-            },
-            submitUpload(){
-                if(this.indexdemoid==19){
-                    this.picdemo = this.$store.state.demoxmlid
-                    sessionStorage.picdemo = this.picdemo
-                    sessionStorage.demoname = this.demoname
-                    sessionStorage.demodes = this.demodes   
-                    var picsource = this.$refs.file_el.files[0]
-                    console.log(picsource)
-                    this.uploadFile(picsource)
-                    // reader.onload = function () {   
-                    //     this.readpicbinary = new Blob([this.result])
-                    //     this.useruploadimg(this.result)
-                    //     console.log(this.readpicbinary)
-                    //     console.log(sessionStorage.picdemo)
-                    //     console.log(sessionStorage.userid)
-                    //     console.log(sessionStorage.demoname)
-                    //     console.log(sessionStorage.demodes)
-                    // }  
-                }else{
-                    this.axios.post('/res/dealfile',{
-                        id:this.$store.state.demoxmlid,
-                        userid:sessionStorage.userid,
-                        title:this.demoname,
-                        desc:this.demodes,
-                        state:3,
-                        surfaceplot:this.indexdemoid,
-                        coverworkid:this.$store.state.demoxmlid
-                    })
-                    .then(response => {
-                        this.$message({
-                        message: '发布成功',
-                        center: true
-                        }); 
-                    })
-                }
-            },
-
-            uploadFile(picsource){
-                let formData = new FormData();
-                formData.append('id',sessionStorage.picdemo);
-                formData.append('userid',sessionStorage.userid);
-                formData.append('title',sessionStorage.demoname);
-                formData.append('desc',sessionStorage.demodes);
-                formData.append('state',3);
-                formData.append('surfaceplot',9);
-                formData.append('files',picsource);
-                formData.append('coverworkid',this.$store.state.demoxmlid);
-                let config = {
-                    headers:{
-                        'Content-Type':'application/x-jpg'
-                    }
-                }
-                this.axios.post('/res/dealfile',formData,config)
-                .then(function(response){
-                    console.log(response)
+            // Urltag:[
+            //     {tag:'游戏'},
+            //     {tag:'故事'},
+            //     {tag:'绘画'},
+            //     {tag:'动漫'},
+            //     {tag:'音乐'},
+            //     {tag:'教程'},
+            //     {tag:'节日'},
+            // ]
+        };
+    },
+    methods: {
+        pickimg(indexid){  
+            this.imageUrl = ''  
+            this.indexdemoid=indexid+1
+            this.urllarge='static/publish/'+this.indexdemoid+'l.png'
+        },
+        submitUpload(){
+            if(this.indexdemoid==19){
+                this.picdemo = this.$store.state.demoxmlid
+                sessionStorage.picdemo = this.picdemo
+                sessionStorage.demoname = this.demoname
+                sessionStorage.demodes = this.demodes   
+                var picsource = this.$refs.file_el.files[0]
+                console.log(picsource)
+                this.uploadFile(picsource)
+                // reader.onload = function () {   
+                //     this.readpicbinary = new Blob([this.result])
+                //     this.useruploadimg(this.result)
+                //     console.log(this.readpicbinary)
+                //     console.log(sessionStorage.picdemo)
+                //     console.log(sessionStorage.userid)
+                //     console.log(sessionStorage.demoname)
+                //     console.log(sessionStorage.demodes)
+                // }  
+            }else{
+                this.axios.post('/res/dealfile',{
+                    id:this.$store.state.demoxmlid,
+                    userid:sessionStorage.userid,
+                    title:this.demoname,
+                    desc:this.demodes,
+                    state:3,
+                    surfaceplot:this.indexdemoid,
+                    coverworkid:this.$store.state.demoxmlid
                 })
-                this.$message({
-                    message: '上传成功',
+                .then(response => {
+                    this.$message({
+                    message: '发布成功',
                     center: true
-                });  
-            },
-             choise_file () {
-                this.indexdemoid=19
-                this.urllarge='static/publish/'+this.indexdemoid+'l.png'
-                var file_info = this.$refs.file_el.files[0]
-                // 使用FileReader对象预览
-                var fr = new FileReader()
-                // 通过fr.readAsDataURL文件的内容进行读取
-                fr.readAsDataURL(file_info)
-                var that = this
-                fr.onload = function () {
-                    // DataUrl data? :data:image/jpeg;base64,/9j/4
-                    that.imageUrl = this.result
-
-                }   
+                    }); 
+                })
             }
+        },
+
+        uploadFile(picsource){
+            let formData = new FormData();
+            formData.append('id',sessionStorage.picdemo);
+            formData.append('userid',sessionStorage.userid);
+            formData.append('title',sessionStorage.demoname);
+            formData.append('desc',sessionStorage.demodes);
+            formData.append('state',3);
+            formData.append('surfaceplot',9);
+            formData.append('files',picsource);
+            formData.append('coverworkid',this.$store.state.demoxmlid);
+            let config = {
+                headers:{
+                    'Content-Type':'application/x-jpg'
+                }
+            }
+            this.axios.post('/res/dealfile',formData,config)
+            .then(function(response){
+                console.log(response)
+            })
+            this.$message({
+                message: '上传成功',
+                center: true
+            });  
+        },
+        choise_file () {
+            this.indexdemoid=19
+            this.urllarge='static/publish/'+this.indexdemoid+'l.png'
+            var file_info = this.$refs.file_el.files[0]
+            // 使用FileReader对象预览
+            var fr = new FileReader()
+            // 通过fr.readAsDataURL文件的内容进行读取
+            fr.readAsDataURL(file_info)
+            var that = this
+            fr.onload = function () {
+                // DataUrl data? :data:image/jpeg;base64,/9j/4
+                that.imageUrl = this.result
+            }   
         }
     }
+}
 </script>
 <style>
 .container72{
@@ -320,7 +319,6 @@ import Vue from 'vue'
     left: 635px;
 
 }
-
 .container72 .uploadtext{
     color: #333;
     font-size: 14px;
@@ -357,28 +355,28 @@ import Vue from 'vue'
     cursor: pointer;
     font-size: 16px;
 }
-   .avatar-uploader .el-upload {
+.avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
     cursor: pointer;
     position: relative;
-  } 
-  .avatar-uploader .el-upload:hover {
+} 
+.avatar-uploader .el-upload:hover {
     border-color: #F13232;
-  }
-  .avatar-uploader-icon {
+}
+.avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;
     width: 178px;
     height: 178px;
     line-height: 178px;
     text-align: center;
-  } 
-  .avatar {
+} 
+.avatar {
     width: 178px;
     height: 178px;
     display: block;
-  }
+}
 
 input::-webkit-input-placeholder{
     color:#C8C8C8;

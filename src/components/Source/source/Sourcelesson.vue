@@ -1,39 +1,8 @@
 <template>
-  <div class="container6400" v-show="$store.state.sourcelesson">
+    <div class="container6400" v-show="$store.state.sourcelesson">
         <div class="sort01">
-            <!-- <p class="sort01text">作品分类:</p>
-            <ul>
-                <li  v-for="item in oneidbox" :key="item.oneid" @click="select01(item.oneid)"><p>{{item.name}}</p></li>
-            </ul> -->
         </div>
-        <!-- <div class="sort0101" v-show="sort0101">
-        <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li   v-for="item in twoidbox01" :key="item.twoid"><p>{{item.name}}</p></li>
-            </ul>
-        </div>
-        <div class="sort0101" v-show="sort0102">
-            <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li   v-for="item in twoidbox02" :key="item.twoid"><p>{{item.name}}</p></li>
-            </ul>
-        </div>
-        <div class="sort0101" v-show="sort0103">
-            <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li   v-for="item in twoidbox03" :key="item.twoid"><p>{{item.name}}</p></li>
-            </ul>
-        </div> -->
-        <!-- <div class="sort010101">
-            <p class="sort010101text">作品分类:</p>
-            <ul>
-                <li><p>大象</p><span>(1965)</span></li>
-                <li><p>大象1</p><span>(1965)</span></li>
-                <li><p>大象2</p><span>(1965)</span></li>
-                <li><p>大象3</p><span>(1965)</span></li>
-            </ul>
-        </div> -->
-            <div class="sort02">
+        <div class="sort02">
             <ul>
                 <li class="more"><p>最近更新</p></li>
                 <li class="new"><p>最多使用</p></li>
@@ -60,7 +29,7 @@
             <div>
                 <p>...</p>
                 <p class="night" @click="Selectpage(9)">9</p>
-               <p class="endpage" @click="Selectpagebefore">上一页</p>
+                <p class="endpage" @click="Selectpagebefore">上一页</p>
                 <p class="nextpage" @click="Selectpageafter">下一页</p>
             </div>
 
@@ -72,10 +41,9 @@
                 <p class="two">页</p>
                 <button>确定</button>
             </div>
-
         </div>
         <!-- <p class="endtext">部分素材来源自网络，版权归原作者所有。所有素材仅供个人创作娱乐使用，禁止做任何商业用途，由此产生的任何法律纠纷本网站不予承担</p> -->
-  </div>
+    </div>
 </template>
 <script>
 import Sourcehead from '@/components/Source/Sourcehead'
@@ -231,76 +199,76 @@ export default{
     margin-bottom: 30px;
 }
 .container6400 .sort01 ul{
-   list-style: none;
-   position: relative;
-   left: 122px;
-   top: -60px;
-   width: 1040px;
-   height: 24px;;
+    list-style: none;
+    position: relative;
+    left: 122px;
+    top: -60px;
+    width: 1040px;
+    height: 24px;
 }
 .container6400 .sort01text{
-   display: inline-block;
-   position: relative;
-   left: 46px;
-   color:#333;
-   font-size: 14px;
+    display: inline-block;
+    position: relative;
+    left: 46px;
+    color:#333;
+    font-size: 14px;
 }
 .container6400 .sort01 ul p{
-   display: inline-block;
-   padding-left: 15px;
-   position: relative;
-   top: 2px;
+    display: inline-block;
+    padding-left: 15px;
+    position: relative;
+    top: 2px;
 }
 .container6400 .sort01 ul li{
-   float: left;
-   width: 60px;
-   height: 24px;
-   color:#F13232;
-   font-size: 14px;
-   border: 1px solid #F13232;
-   margin-right: 14px;
-   font-weight: 600;
+    float: left;
+    width: 60px;
+    height: 24px;
+    color:#F13232;
+    font-size: 14px;
+    border: 1px solid #F13232;
+    margin-right: 14px;
+    font-weight: 600;
 }
 .container6400 .sort01 ul li:hover{
-   color:#fff;
-   background: #F13232;
-   position: relative;
-   top: 2px;
+    color:#fff;
+    background: #F13232;
+    position: relative;
+    top: 2px;
 }
 .container6400 .sort0101 ul{
-   list-style: none;
-   position: absolute;
-   left: 122px;
-   top: 60px;
-   width: 1040px;
-   height: auto;
-   padding-left:0;
+    list-style: none;
+    position: absolute;
+    left: 122px;
+    top: 60px;
+    width: 1040px;
+    height: auto;
+    padding-left:0;
 }
 .container6400 .sort0101text{
-   display: inline-block;
-   position: relative;
-   left: -406px;
-   top: 12px;
-   color:#333;
-   font-size: 14px;
+    display: inline-block;
+    position: relative;
+    left: -406px;
+    top: 12px;
+    color:#333;
+    font-size: 14px;
 }
 .container6400 .sort0101 ul p{
-   display: inline-block;
-   margin-top: 0px;
+    display: inline-block;
+    margin-top: 0px;
 }
 .container6400 .sort0101 ul li{
-   float: left;
-   width: auto;
-   height: 24px;
-   color:#F13232;
-   font-size: 14px;
-   border:1px solid red;
-   text-align:center;
-   margin-right: 14px;
-   margin-bottom: 14px;
-   padding-left: 14px;
-   padding-right: 14px;
-   font-weight: 600;
+    float: left;
+    width: auto;
+    height: 24px;
+    color:#F13232;
+    font-size: 14px;
+    border:1px solid red;
+    text-align:center;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-weight: 600;
 }
 .container6400 .sort0101 ul li:hover{
     color: #fff;
@@ -564,8 +532,8 @@ export default{
     padding-left: 4px;
 }
 .container6400 .sortnum01 .sortfly input:focus{
-   border: 1px solid #F13232;
-   padding-left: 4px;
+    border: 1px solid #F13232;
+    padding-left: 4px;
 }
 .container6400 .sortnum01 .sortfly button{
     position: relative;

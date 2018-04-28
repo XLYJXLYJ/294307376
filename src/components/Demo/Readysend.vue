@@ -23,8 +23,8 @@ import { formatDate } from '../../public/time.js'
 export default{
     filters: {
         formatDate(time) {
-        var date = new Date(time);
-        return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
+            var date = new Date(time);
+            return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
         }
     },
     data(){
@@ -137,28 +137,28 @@ export default{
     left: 15px;
 }
 .container28 .button01{
-  height: 50px;
-  width: 157px;
-  background: #F13232;
-  color: #fff;
-  position: absolute;
-  left: 191px;
-  top: 14px;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
+    height: 50px;
+    width: 157px;
+    background: #F13232;
+    color: #fff;
+    position: absolute;
+    left: 191px;
+    top: 14px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 .container28 .button02{
-  height: 50px;
-  width: 157px;
-  background: #F13232;
-  color: #fff;
-  position: absolute;
-  left: 191px;
-  top: 71px;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
+    height: 50px;
+    width: 157px;
+    background: #F13232;
+    color: #fff;
+    position: absolute;
+    left: 191px;
+    top: 71px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 .container28 .icon_see{
     background:url(../../assets/home/icon_see.png) no-repeat;
@@ -186,13 +186,13 @@ export default{
     font-style: normal;
 }
 .container28 .cancelpub{
-  height: 14px;
-  width: 77px;
-  color: #666;
-  font-size: 16px;
-  position: absolute;
-  top: 221px;
-  left: 275px;
-  cursor: pointer;
+    height: 14px;
+    width: 77px;
+    color: #666;
+    font-size: 16px;
+    position: absolute;
+    top: 221px;
+    left: 275px;
+    cursor: pointer;
 }
 </style>

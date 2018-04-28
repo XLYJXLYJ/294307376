@@ -1,17 +1,17 @@
 <template>
-  <div class="container7100">
-      <div class="first">
-        <ul class="role">
-            <li v-for="item in list01" :key="item.id">
-                <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
-                <div class="roleup">
-                    <button @click="deletemaster(item.id)">删除</button>
-                    <p class="text">{{item.name}}</p>
-                </div>
-            </li>  
-        </ul>
-     </div>
-  </div>
+    <div class="container7100">
+        <div class="first">
+            <ul class="role">
+                <li v-for="item in list01" :key="item.id">
+                    <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
+                    <div class="roleup">
+                        <button @click="deletemaster(item.id)">删除</button>
+                        <p class="text">{{item.name}}</p>
+                    </div>
+                </li>  
+            </ul>
+        </div>
+    </div>
 </template>
 <script>
 export default{
@@ -76,7 +76,7 @@ export default{
     height: 30px;
     font-size: 30px;
     color: #333;
-     z-index: 100;
+    z-index: 100;
 }
 .container7100 .first .role{
     position: relative;

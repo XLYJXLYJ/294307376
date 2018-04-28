@@ -114,18 +114,18 @@
     margin-right: 22px;
 }
 .container40 .star{
-   position: absolute;
-   left: -12px;
-   top: -35px;
+    position: absolute;
+    left: -12px;
+    top: -35px;
 }
 .container40 .left{
-   position: absolute;
-   left: 13px;
-   top: 142px;
+    position: absolute;
+    left: 13px;
+    top: 142px;
 }
 .container40 .right{
-   position: absolute;
-   left: 1128px;
-   top: 142px;
+    position: absolute;
+    left: 1128px;
+    top: 142px;
 }
 </style>

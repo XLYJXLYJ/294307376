@@ -151,28 +151,28 @@ import { formatDate } from '../../public/time.js'
     left: 15px;
 }
 .container29 .button01{
-  height: 50px;
-  width: 157px;
-  background: #F13232;
-  color: #fff;
-  position: absolute;
-  left: 191px;
-  top: 14px;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
+    height: 50px;
+    width: 157px;
+    background: #F13232;
+    color: #fff;
+    position: absolute;
+    left: 191px;
+    top: 14px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 .container29 .button02{
-  height: 50px;
-  width: 157px;
-  background: #F13232;
-  color: #fff;
-  position: absolute;
-  left: 191px;
-  top: 71px;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
+    height: 50px;
+    width: 157px;
+    background: #F13232;
+    color: #fff;
+    position: absolute;
+    left: 191px;
+    top: 71px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 .container29 .icon_see{
     background:url(../../assets/home/icon_see.png) no-repeat;
@@ -187,13 +187,13 @@ import { formatDate } from '../../public/time.js'
     padding-right: 10px;
 }
 .container29 .cancelpub{
-  height: 14px;
-  width: 77px;
-  color: #666;
-  font-size: 16px;
-  position: absolute;
-  top: 221px;
-  left: 275px;
-  cursor: pointer;
+    height: 14px;
+    width: 77px;
+    color: #666;
+    font-size: 16px;
+    position: absolute;
+    top: 221px;
+    left: 275px;
+    cursor: pointer;
 }
 </style>

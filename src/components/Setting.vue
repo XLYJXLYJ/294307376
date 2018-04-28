@@ -1,21 +1,21 @@
 <template>
-<div  class="container32">
-<Header/>
-    <div class="container31">  
-        <img class="star01" src="../assets/Download/starfish.png" alt="">
-        <div class="setaccount">
-           <p class="one_text">账号设置</p>
-        </div>  
-        <div class="mydemo_frame">
-        <router-link class="Mydemo" to="/Setting/Usercenter">个人中心</router-link>
-        <router-link class="Delete" to="/Setting/Copassword">修改密码</router-link>
-        </div>
-        <router-view></router-view>     
-    </div>   
- <div class="footer07">
-         <Footer/>
- </div> 
- </div>
+    <div  class="container32">
+        <Header/>
+        <div class="container31">  
+            <img class="star01" src="../assets/Download/starfish.png" alt="">
+            <div class="setaccount">
+            <p class="one_text">账号设置</p>
+            </div>  
+            <div class="mydemo_frame">
+            <router-link class="Mydemo" to="/Setting/Usercenter">个人中心</router-link>
+            <router-link class="Delete" to="/Setting/Copassword">修改密码</router-link>
+            </div>
+            <router-view></router-view>     
+        </div>   
+        <div class="footer07">
+            <Footer/>
+        </div> 
+    </div>
 </template>
 <script>
 import Header from '@/components/HomePage/header'
@@ -56,10 +56,10 @@ export default{
     margin-top: 214px;
 }
 .container31 .star01{
-   position: relative;
-   left: -12px;
-   top: -35px; 
-   z-index: 50;
+    position: relative;
+    left: -12px;
+    top: -35px; 
+    z-index: 50;
 }
 .container31 .one_text{
     position: relative;

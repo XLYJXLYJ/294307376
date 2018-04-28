@@ -120,7 +120,7 @@
             </div>
         </transition> -->
 
-            <transition name="el-fade-in-linear">
+        <transition name="el-fade-in-linear">
             <div>
                 <el-dialog :visible.sync="dialogOpen" :modal="false" width="420px">
                     <div class="container503">
@@ -569,6 +569,7 @@ export default{
                     })
                 }else{
                     console.log('denglu')
+                    this.dialogLogin = false
                     this.Getsessionname()
                     this.Getsession()
                 }

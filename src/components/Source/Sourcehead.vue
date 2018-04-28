@@ -1,37 +1,31 @@
 <template>
-<div class="container64">
-    <div class="container631">
-        <!-- <div class="backsource"></div> -->
-        <div class="source_header01">
-            <ul class="sourceshop">
-                <router-link to="/source/sourceshop"><li><img src="../../assets/source/source01.png" alt=""></li></router-link> 
-                <!-- <router-link to="/source/mysourceshop"><li><img src="../../assets/source/source02.png" alt=""></li></router-link>  -->
-            </ul>
-            <input class="source_search" type="text" @keyup.enter="Getsearch" placeholder="搜索素材" v-model="sourcename"><div class="searchicon" @click="Getsearch"></div>
+    <div class="container64">
+        <div class="container631">
+            <!-- <div class="backsource"></div> -->
+            <div class="source_header01">
+                <ul class="sourceshop">
+                    <router-link to="/source/sourceshop"><li><img src="../../assets/source/source01.png" alt=""></li></router-link> 
+                    <!-- <router-link to="/source/mysourceshop"><li><img src="../../assets/source/source02.png" alt=""></li></router-link>  -->
+                </ul>
+                <input class="source_search" type="text" @keyup.enter="Getsearch" placeholder="搜索素材" v-model="sourcename"><div class="searchicon" @click="Getsearch"></div>
+            </div>
+            <router-view></router-view>
+            <div class="first" v-show="$store.state.sourcesearch">
+                <ul class="role">
+                    <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
+                        <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
+                        <div class="roleup">
+                        <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
+                            <p class="text">{{item.name}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- <el-input class="search_input" placeholder="搜索作品">
+                <i slot="prefix" class="el-input__icon el-icon-search"></i>
+            </el-input> -->
         </div>
-
-
-
-        <router-view></router-view>
-        <div class="first" v-show="$store.state.sourcesearch">
-            <ul class="role">
-                <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
-                    <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
-                    <div class="roleup">
-                    <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
-                        <p class="text">{{item.name}}</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-         <!-- <el-input class="search_input" placeholder="搜索作品">
-            <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input> -->
     </div>
-
-
-</div>
 </template>
 <script>
     export default{
@@ -78,21 +72,20 @@
                     searchname:this.sourcename,
                     pagesize:15
                 })
-                .then(response => {  
-                    var searchresult = response.data.data.msg
-                    if(searchresult=="这回真的没有了~"){
-                            this.$message({
-                            message: '没有搜索到相关素材',
-                            center: true,
+                    .then(response => {  
+                        var searchresult = response.data.data.msg
+                        if(searchresult=="这回真的没有了~"){
+                                this.$message({
+                                message: '没有搜索到相关素材',
+                                center: true,
+                        })
+                        }else{
+                            this.list=response.data.data
+                            this.listnew=response.data.data
+                            console.log(response)
+                        }
                     })
-                    }else{
-                        this.list=response.data.data
-                        this.listnew=response.data.data
-                        console.log(response)
-                    }
-                })
                 }
-
             },
         }
     }
@@ -172,7 +165,7 @@
     
 }
 .container631 .router-link-active li{
-     background: url(../../assets/source/xuanzhong.png);
+    background: url(../../assets/source/xuanzhong.png);
 }
 
 .container64 .container631 .first .role{
@@ -191,7 +184,7 @@
     left: 63px;
     top: -20px;
     width: 910px;
-     z-index: 100;
+    z-index: 100;
 }
 .container64 .first .role li{
     float: left;

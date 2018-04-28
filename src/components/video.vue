@@ -3,66 +3,64 @@
         <Header/>
         <div class="container35">
             <div class="container36">
-                    <div>
-                        <p class="one">{{list.title}}</p>
-                        <p class="two">分享于：{{list.createtime}}</p>
-                        <p class="three">已有{{list.looktotal}}次浏览</p>
-                    </div>
-                    <div>
-                        <img class="cat01" src="../assets/Video/cat01.png" alt="">
-                        <p class="four">{{list.name}}</p>
-                        <div :class='{"jia":!isAttention,"jia1":isAttention}' @click="jia"></div>
-                    </div>
-                    <div>
-                        <div :class='{"love":!isPraise,"love1":isPraise}' @click="love"><span class="lovenum">{{list.praisetotal}}</span></div>
-                        <div :class='{"star":!isCollect,"star1":isCollect}' @click="star"><span class="starnum">{{list.collecttotal}}</span></div>
-                        <!-- <button class="buycode">购买代码</button>
-                        <span class="buy">已有4人购买</span> -->
-                        <!-- <a class="avideo" href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation" target="myFrameName"><button>点击播放</button></a> -->
-                    </div>
+                <div>
+                    <p class="one">{{list.title}}</p>
+                    <p class="two">分享于：{{list.createtime}}</p>
+                    <p class="three">已有{{list.looktotal}}次浏览</p>
+                </div>
+                <div>
+                    <img class="cat01" src="../assets/Video/cat01.png" alt="">
+                    <p class="four">{{list.name}}</p>
+                    <div :class='{"jia":!isAttention,"jia1":isAttention}' @click="jia"></div>
+                </div>
+                <div>
+                    <div :class='{"love":!isPraise,"love1":isPraise}' @click="love"><span class="lovenum">{{list.praisetotal}}</span></div>
+                    <div :class='{"star":!isCollect,"star1":isCollect}' @click="star"><span class="starnum">{{list.collecttotal}}</span></div>
+                    <!-- <button class="buycode">购买代码</button>
+                    <span class="buy">已有4人购买</span> -->
+                    <!-- <a class="avideo" href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation" target="myFrameName"><button>点击播放</button></a> -->
+                </div>
             </div>
             <!-- <div class="videocanvas"><img src="../assets/Video/video.png" alt=""></div> -->
             <div class="mydemo_framebox">
                 <div>
-                        <!-- <a href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"></a> -->
-                        <!-- <a href="https://www.baidu.com/" target="_blank">点击播放百度</a> -->
-                      <!-- <iframe class="video" frameborder="0" src="static/player/index.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
-                      <!-- <iframe class="video" frameborder="0" src="static/ceshi/snap.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
-                      <!-- <iframe class="video" frameborder="0" :src="'static/ceshi/snap.html#run:'+demoxml+'.xml'" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
-                      <iframe class="video" frameborder="0" src="static/player/index.html#present:Username=lynn&ProjectName=haha" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
-                       
-                        <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
+                    <!-- <a href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation"></a> -->
+                    <!-- <a href="https://www.baidu.com/" target="_blank">点击播放百度</a> -->
+                    <!-- <iframe class="video" frameborder="0" src="static/player/index.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
+                    <!-- <iframe class="video" frameborder="0" src="static/ceshi/snap.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
+                    <!-- <iframe class="video" frameborder="0" :src="'static/ceshi/snap.html#run:'+demoxml+'.xml'" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
+                    <iframe class="video" frameborder="0" src="static/player/index.html#present:Username=lynn&ProjectName=haha" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
+                    <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
                 </div>
                 <div class="mydemo_frame">
-                <router-link class="Myvideo" to="/Video/Myvideo">Ta的作品</router-link>
-                <router-link class="Lovevideo" to="/Video/Lovevideo">推荐作品</router-link>
-                </div>
-                
+                    <router-link class="Myvideo" to="/Video/Myvideo">Ta的作品</router-link>
+                    <router-link class="Lovevideo" to="/Video/Lovevideo">推荐作品</router-link>
+                </div>   
             </div>
-                <router-view></router-view>
+            <router-view></router-view>
         </div>   
         <div class="comment">
-                <div class="comment01">
-                    <div>
-                        <p class="explain">作品说明:</p>
-                        <span class="explaintext">{{list.desc}}</span>
+            <div class="comment01">
+                <div>
+                    <p class="explain">作品说明:</p>
+                    <span class="explaintext">{{list.desc}}</span>
+                </div>
+                <div>
+                    <div class="home-container">
+                        <div class="qrshare">
+                            <canvas id="qrccode" height="117" width="117" style="height: 117px!important;width: 117px;"></canvas>
+                        </div>
+                        <div class="btn-wrap">
+                            <textarea type="textarea" v-model="bannerUrl"></textarea>
+                        </div>
                     </div>
-                    <div>
-                        <div class="home-container">
-                            <div class="qrshare">
-                                <canvas id="qrccode" height="117" width="117" style="height: 117px!important;width: 117px;"></canvas>
-                            </div>
-                            <div class="btn-wrap">
-                                <textarea type="textarea" v-model="bannerUrl"></textarea>
-                            </div>
-                        </div>
-                        <div class="qrsharetext">
-                            <!-- <button>分享</button> -->
-                            <!-- <p>or</p> -->
-                            <span>扫码在手机上玩</span>
-                        </div>
+                    <div class="qrsharetext">
+                        <!-- <button>分享</button> -->
+                        <!-- <p>or</p> -->
+                        <span>扫码在手机上玩</span>
                     </div>
                 </div>
+            </div>
         </div>      
         <Footer/>
     </div>
@@ -240,10 +238,6 @@ export default{
             }
         },
         // 关注
-        
-
-
-
         jia(){
             if(this.$store.state.userid){
                 this.isAttention = !this.isAttention
@@ -586,11 +580,11 @@ export default{
     height: 137px!important;
 }
 .btn-wrap {
-  width: 0px;
-  height: 0px;
-  margin: 0 auto;
+    width: 0px;
+    height: 0px;
+    margin: 0 auto;
 }
 .btn-wrap textarea{
-  opacity: 0;
+    opacity: 0;
 }
 </style>

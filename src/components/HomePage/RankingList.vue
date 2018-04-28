@@ -29,11 +29,11 @@
         methods:{
             getdemo03(){
                 this.axios.post('/res/filelist',{
-                    state:3,
-                    sortstate:1
+                state:3,
+                sortstate:1
                 })
                 .then(response => {   
-                    this.list=response.data.data
+                this.list=response.data.data
                 })
             },
             edit03(id){   
@@ -96,8 +96,7 @@
     float: left;
     border-radius: 3px;
 }
-.container06 .icon_see{
-    
+.container06 .icon_see{ 
     width: 15px;
     height: 14px;
     position: relative;

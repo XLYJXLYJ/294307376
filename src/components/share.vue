@@ -47,11 +47,8 @@ export default{
         }
     },
     mounted(){
-        this.loadproject()
-        
+        this.loadproject()      
         this.loadprojectplay()
-         
-
         this.demoid = sessionStorage.id    
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/ static/player/index.html#present:Username=lynn&ProjectName=haha'
         this.bannerUrl = 'http://www.manykit.com/codeplay/#/share' 

@@ -1,80 +1,46 @@
 <template>
-  <div class="container640">
-        <div class="sort01">
-            <!-- <p class="sort01text">作品分类:</p>
-            <ul>
-                <li  v-for="item in oneidbox" :key="item.oneid" @click="select01(item.oneid)"><p>{{item.name}}</p></li>
-            </ul> -->
-        </div>
-        <!-- <div class="sort0101" v-show="sort0101">
-        <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li   v-for="item in twoidbox01" :key="item.twoid"><p>{{item.name}}</p></li>
-            </ul>
-        </div>
-        <div class="sort0101" v-show="sort0102">
-            <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li   v-for="item in twoidbox02" :key="item.twoid"><p>{{item.name}}</p></li>
-            </ul>
-        </div>
-        <div class="sort0101" v-show="sort0103">
-            <p class="sort0101text">作品分类:</p>
-            <ul>
-                <li   v-for="item in twoidbox03" :key="item.twoid"><p>{{item.name}}</p></li>
-            </ul>
-        </div> -->
-        <!-- <div class="sort010101">
-            <p class="sort010101text">作品分类:</p>
-            <ul>
-                <li><p>大象</p><span>(1965)</span></li>
-                <li><p>大象1</p><span>(1965)</span></li>
-                <li><p>大象2</p><span>(1965)</span></li>
-                <li><p>大象3</p><span>(1965)</span></li>
-            </ul>
-        </div> -->
+    <div class="container640">
+            <div class="sort01">
+            </div>
             <div class="sort02">
-            <ul>
-                <li class="more"><p>最近更新</p></li>
-                <li class="new"><p>最多使用</p></li>
-            </ul>
-            <!-- <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox> -->
-            <p class="all">共有{{listnew.length}}个素材</p>
-        </div>
-        <div class="first">
-            <ul class="role">
-                <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
-                    <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
-                    <div class="roleup">
-                        <button @click="collectmaster(item.id)">采集</button>
-                        <p class="text">{{item.name}}</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="sortnum01">
-            <ul>
-                <li v-for="(item,index) in pageitem" :key="item.pageid" @click="Selectpage(item.pageid)" :class="{demohover:index==isdemohover03-1}"><p>{{item.pageid}}</p></li>
-            </ul>
-            <div>
-                <p>...</p>
-                <p class="night" @click="Selectpage(9)">9</p>
-               <p class="endpage" @click="Selectpagebefore">上一页</p>
-                <p class="nextpage" @click="Selectpageafter">下一页</p>
+                <ul>
+                    <li class="more"><p>最近更新</p></li>
+                    <li class="new"><p>最多使用</p></li>
+                </ul>
+                <p class="all">共有{{listnew.length}}个素材</p>
             </div>
-
-            <div class="sortfly">
-                <p class="one">到第</p>
+            <div class="first">
+                <ul class="role">
+                    <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
+                        <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
+                        <div class="roleup">
+                            <button @click="collectmaster(item.id)">采集</button>
+                            <p class="text">{{item.name}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sortnum01">
+                <ul>
+                    <li v-for="(item,index) in pageitem" :key="item.pageid" @click="Selectpage(item.pageid)" :class="{demohover:index==isdemohover03-1}"><p>{{item.pageid}}</p></li>
+                </ul>
                 <div>
-                    <input type="text" v-model="pageuser">
+                    <p>...</p>
+                    <p class="night" @click="Selectpage(9)">9</p>
+                    <p class="endpage" @click="Selectpagebefore">上一页</p>
+                    <p class="nextpage" @click="Selectpageafter">下一页</p>
                 </div>
-                <p class="two">页</p>
-                <button>确定</button>
+                <div class="sortfly">
+                    <p class="one">到第</p>
+                    <div>
+                        <input type="text" v-model="pageuser">
+                    </div>
+                    <p class="two">页</p>
+                    <button>确定</button>
+                </div>
             </div>
-
-        </div>
-        <!-- <p class="endtext">部分素材来源自网络，版权归原作者所有。所有素材仅供个人创作娱乐使用，禁止做任何商业用途，由此产生的任何法律纠纷本网站不予承担</p> -->
-  </div>
+            <!-- <p class="endtext">部分素材来源自网络，版权归原作者所有。所有素材仅供个人创作娱乐使用，禁止做任何商业用途，由此产生的任何法律纠纷本网站不予承担</p> -->
+    </div>
 </template>
 <script>
 import Sourcehead from '@/components/Source/Sourcehead'
@@ -222,76 +188,76 @@ export default{
     margin-bottom: 30px;
 }
 .container640 .sort01 ul{
-   list-style: none;
-   position: relative;
-   left: 122px;
-   top: -20px;
-   width: 1040px;
-   height: 24px;;
+    list-style: none;
+    position: relative;
+    left: 122px;
+    top: -20px;
+    width: 1040px;
+    height: 24px;;
 }
 .container640 .sort01text{
-   display: inline-block;
-   position: relative;
-   left: 46px;
-   color:#333;
-   font-size: 14px;
+    display: inline-block;
+    position: relative;
+    left: 46px;
+    color:#333;
+    font-size: 14px;
 }
 .container640 .sort01 ul p{
-   display: inline-block;
-   padding-left: 15px;
-   position: relative;
-   top: 2px;
+    display: inline-block;
+    padding-left: 15px;
+    position: relative;
+    top: 2px;
 }
 .container64 .sort01 ul li{
-   float: left;
-   width: 60px;
-   height: 24px;
-   color:#F13232;
-   font-size: 14px;
-   border: 1px solid #F13232;
-   margin-right: 14px;
-   font-weight: 600;
+    float: left;
+    width: 60px;
+    height: 24px;
+    color:#F13232;
+    font-size: 14px;
+    border: 1px solid #F13232;
+    margin-right: 14px;
+    font-weight: 600;
 }
 .container640 .sort01 ul li:hover{
-   color:#fff;
-   background: #F13232;
-   position: relative;
-   top: 2px;
+    color:#fff;
+    background: #F13232;
+    position: relative;
+    top: 2px;
 }
 .container640 .sort0101 ul{
-   list-style: none;
-   position: absolute;
-   left: 122px;
-   top: 60px;
-   width: 1040px;
-   height: auto;
-   padding-left:0;
+    list-style: none;
+    position: absolute;
+    left: 122px;
+    top: 60px;
+    width: 1040px;
+    height: auto;
+    padding-left:0;
 }
 .container640 .sort0101text{
-   display: inline-block;
-   position: relative;
-   left: -406px;
-   top: 12px;
-   color:#333;
-   font-size: 14px;
+    display: inline-block;
+    position: relative;
+    left: -406px;
+    top: 12px;
+    color:#333;
+    font-size: 14px;
 }
 .container640 .sort0101 ul p{
-   display: inline-block;
-   margin-top: 0px;
+    display: inline-block;
+    margin-top: 0px;
 }
 .container640 .sort0101 ul li{
-   float: left;
-   width: auto;
-   height: 24px;
-   color:#F13232;
-   font-size: 14px;
-   border:1px solid red;
-   text-align:center;
-   margin-right: 14px;
-   margin-bottom: 14px;
-   padding-left: 14px;
-   padding-right: 14px;
-   font-weight: 600;
+    float: left;
+    width: auto;
+    height: 24px;
+    color:#F13232;
+    font-size: 14px;
+    border:1px solid red;
+    text-align:center;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-weight: 600;
 }
 .container640 .sort0101 ul li:hover{
     color: #fff;
@@ -330,68 +296,68 @@ export default{
 
 
 .container640 .sort02{
-   width: 1086px;
-   height: 30px;
-   background: #f5f5f5;
-   position: relative;
-   left: 57px;
-   top: 28px;
+    width: 1086px;
+    height: 30px;
+    background: #f5f5f5;
+    position: relative;
+    left: 57px;
+    top: 28px;
 }
 .container640 .sort02 ul{
-   list-style: none;
-   left: 0px;
-   top: 0px;
-   width: 170px;
-   height: 30px;
+    list-style: none;
+    left: 0px;
+    top: 0px;
+    width: 170px;
+    height: 30px;
 }
 .container640 .sort02 .more{
-   width: 86px;
-   height: 26px;
-   color:#F13232;
-   font-size: 16px;
-   margin-right: 14px; 
-   text-align: center;
-   position: absolute;
-   top: 0px;
-   left: 0px;
-   padding-top: 4px;
+    width: 86px;
+    height: 26px;
+    color:#F13232;
+    font-size: 16px;
+    margin-right: 14px; 
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding-top: 4px;
 }
 .container640 .sort02 .new{
-   width: 86px;
-   height: 26px;
-   color:#F13232;
-   font-size: 16px;
-   margin-right: 14px; 
-   text-align: center;
-   position: absolute;
-   top: 0px;
-   left: 86px;
-   padding-top: 4px;
+    width: 86px;
+    height: 26px;
+    color:#F13232;
+    font-size: 16px;
+    margin-right: 14px; 
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    left: 86px;
+    padding-top: 4px;
 }
 .container640 .sort02 ul li:hover{
-   color:#FFF;
-   background: #F13232;
+    color:#FFF;
+    background: #F13232;
 }
 .container640 .sort02 .nobuy{
-   width: 92px;
-   height: 30px;
-   color:#7f6b6f;
-   font-size: 13px;
-   margin-right: 4px;
-   position: relative;
-   top: -28px;
-   left: 80px;
+    width: 92px;
+    height: 30px;
+    color:#7f6b6f;
+    font-size: 13px;
+    margin-right: 4px;
+    position: relative;
+    top: -28px;
+    left: 80px;
 }
 
 .container640 .sort02 .all{
-   float: left;
-   width: 122px;
-   height: 30px;
-   color:#F13232;
-   font-size: 16px;
-   position: relative;
-   top: -26px;
-   left: 886px;
+    float: left;
+    width: 122px;
+    height: 30px;
+    color:#F13232;
+    font-size: 16px;
+    position: relative;
+    top: -26px;
+    left: 886px;
 }
 
 
