@@ -7,7 +7,7 @@
             <p class="three">作者:{{list.name}}</p>
         </div>
         <div class="sharevideo">
-            <iframe class="video" frameborder="0" src="static/player/index.html#present:Username=lynn&ProjectName=haha" id="myFrameId"  name="snapplay"></iframe>    
+            <iframe class="video" frameborder="0" :src="'static/player/index.html#present:Username=lynn&ProjectName='+demoid" id="myFrameId"  name="snapplay"></iframe>    
         </div>   
         <div class="sharecomment">
           <ul>
@@ -51,7 +51,7 @@ export default{
         this.loadprojectplay()
         this.demoid = sessionStorage.id    
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/ static/player/index.html#present:Username=lynn&ProjectName=haha'
-        this.bannerUrl = 'http://www.manykit.com/codeplay/#/share' 
+        this.bannerUrl = 'http://www.manykit.com/codeplay/#/static/player/index.html#present:Username=lynn&ProjectName='+this.demoid
         console.log(this.bannerUrl)
         this.$nextTick(function () {
         // DOM操作

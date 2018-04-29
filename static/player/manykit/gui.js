@@ -225,11 +225,11 @@ IDE_Morph.prototype.openIn = function (world) {
             this.shield.setExtent(this.parent.extent());
             this.parent.add(this.shield);
             // myself.showMessage('Fetching project\nfrom the cloud...');
-            console.log(123456)
-
+            var demoxml
+            demoxml = location.hash.substr(35, 5)
             var playerresultxml = new Promise((resolve,reject) =>{
                 axios.post('/res/getfile',{
-                    id:sessionStorage.id,
+                    id:demoxml,
                 })
                 .then(function(response) { 
                     resolve(response.data)
@@ -238,6 +238,7 @@ IDE_Morph.prototype.openIn = function (world) {
             })
             playerresultxml.then(function (projectData) {
                 var msg;
+
                 // alert(projectData)
                 myself.nextSteps([
                     function () {

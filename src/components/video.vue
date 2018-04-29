@@ -29,7 +29,7 @@
                     <!-- <iframe class="video" frameborder="0" src="static/player/index.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
                     <!-- <iframe class="video" frameborder="0" src="static/ceshi/snap.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
                     <!-- <iframe class="video" frameborder="0" :src="'static/ceshi/snap.html#run:'+demoxml+'.xml'" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
-                    <iframe class="video" frameborder="0" src="static/player/index.html#present:Username=lynn&ProjectName=haha" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
+                    <iframe class="video" frameborder="0" :src="'static/player/pxsnap.html#present:Username=lynn&ProjectName='+demoid" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
                     <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
                 </div>
                 <div class="mydemo_frame">
@@ -100,7 +100,7 @@ export default{
 
         this.demoid = sessionStorage.id    
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/ static/player/index.html#present:Username=lynn&ProjectName=haha'
-        this.bannerUrl = 'http://www.manykit.com/codeplay/#/share' 
+        this.bannerUrl = 'http://www.manykit.com/codeplay/static/player/pxsnap.html#present:Username=lynn&ProjectName='+ this.demoid
         console.log(this.bannerUrl)
         this.$nextTick(function () {
         // DOM操作
