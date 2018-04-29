@@ -5,18 +5,12 @@
             <p class="store">我关注的人</p>
             <img class="left" src="../../assets/user/left.png" alt="">
             <ul class="follow" v-show="nosend">
-                    <li>
-                        <div class="share">
-                            <img src="../../assets/user/user.png" alt="">
-                            <p>三只小熊</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="share">
-                            <img src="../../assets/user/user.png" alt="">
-                            <p>三只小熊</p>
-                        </div>
-                    </li>
+                <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
+                    <div class="share">
+                        <img src="../../assets/user/user.png" alt="">
+                        <p>{{item.username}}</p>
+                    </div>
+                </li>
             </ul>
             <img class="right" src="../../assets/user/right.png" alt="">
         </div>
@@ -35,7 +29,7 @@ export default{
     },
     methods:{
         Getalldemo(){
-            this.axios.post('/res/filelist',{
+            this.axios.post('/res/userinfo',{
                     userid:sessionStorage.userid,
                     state:4
                 })
@@ -77,6 +71,7 @@ export default{
     position: relative;
     top: 0px;
     left: 0px;   
+    text-align: center;
 }
 .container42 ul{
     list-style: none;

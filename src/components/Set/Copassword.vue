@@ -124,9 +124,10 @@
   position: relative;
   height: 151px;
   width: 151px;
-  left: -280px;
-  top: 60px;
-  border: 1px solid #BDBDBD;
+  left: -283px;
+  top: 64px;
+  border: 3px solid #fff;
+  box-shadow:0px 6px 10px #bdbdbd;
   border-radius: 100px;
 }
 .container34 .userpic input{

@@ -64,6 +64,7 @@
          <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
             <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false" :lock-scroll="false">
+                <img class="close" @click="close" src="../../assets/login/close.png" alt="">
                 <div>
                     <div class="container21" v-show="dialogLoginshow">
                         <form action="">
@@ -191,6 +192,9 @@ export default {
     }, 
     methods: {
         ...mapActions(['Getsession01']),  
+        close(){
+            this.dialogLogin = false
+        },
         // 语言设置 
         language(){
             this.$message({
@@ -393,7 +397,7 @@ export default {
                     this.publicKey = response.data.data.publicKey
                     // this.dialogLogin = false;
                     this.loginsign = false;
-                    sessionStorage.userid = response.data.data.id
+                    sessionStorage.userid = response.data.data.userid
                     sessionStorage.usernamesession = response.data.data.username
                     this.$store.state.usernamesession02 = sessionStorage.usernamesession
                     this.$store.state.userid = sessionStorage.userid
@@ -422,7 +426,8 @@ export default {
                 this.loginsign = true;
                 this.usercenter = false;
                 this.dropdowm = false;  
-                sessionStorage.usernamesession ==''  
+                sessionStorage.usernamesession =''  
+                this.$store.state.userid = ''
                 this.$router.push({ name: 'Home' })    
             }) 
         }
@@ -605,6 +610,13 @@ export default {
     left: 0px;
     top: 21px; 
 }
+.headercontainer04 .close{
+    float: right;
+    position: relative;
+    right: 13px;
+    top: 13px;
+    cursor: pointer;
+}
 .headercontainer04 .login_sign{
      position: absolute;
      top: -14px;
@@ -677,7 +689,7 @@ export default {
     height: 23px;
     position: relative;
     top: 44px;
-    left: 184px;
+    left: 162px;
     color: #333;
     font-size: 24px;
     margin-left: 30px;
@@ -813,7 +825,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 287px;
-    top: 144px;
+    top: 122px;
     left: 60px;
     padding-left: 10px;
 }
@@ -821,7 +833,7 @@ export default {
     position: absolute;
     height: 49px;
     width: 287px;
-    top: 186px;
+    top: 164px;
     left: 60px;
     padding-left: 10px;
 }
@@ -829,7 +841,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 287px;
-    top: 228px;
+    top: 206px;
     left: 60px;
     padding-left: 10px;
 }
@@ -893,7 +905,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 170px;
-    top: 148px;
+    top: 126px;
     left: 60px;
     padding-left: 10px;
     margin: 0px!important;

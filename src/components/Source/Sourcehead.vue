@@ -9,7 +9,7 @@
                 </ul>
                 <input class="source_search" type="text" @keyup.enter="Getsearch" placeholder="搜索素材" v-model="sourcename"><div class="searchicon" @click="Getsearch"></div>
             </div>
-            <router-view></router-view>
+            
             <div class="first" v-show="$store.state.sourcesearch">
                 <ul class="role">
                     <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
@@ -24,7 +24,9 @@
             <!-- <el-input class="search_input" placeholder="搜索作品">
                 <i slot="prefix" class="el-input__icon el-icon-search"></i>
             </el-input> -->
+        <router-view></router-view>
         </div>
+
     </div>
 </template>
 <script>
@@ -95,8 +97,9 @@
     width: 100%;
     height: auto;
     z-index: 100;
+    margin-top: -30px;
     position: relative;
-    top: -56px;
+    top: 0px;
     left: 0px;
     background: #f5f5f5;
 }
@@ -104,10 +107,10 @@
     width: 1200px;
     margin: 0 auto;
     height: auto;
-    padding-top: 136px;
+    padding-top: 166px;
     background: #f5f5f5;
     position: relative;
-    top: 65px;
+    top: 35px;
     z-index: 1000;
 }
 .container631 .source_header01{

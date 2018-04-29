@@ -197,7 +197,8 @@
 .container33 .userpiv img{
   width: 100%;
   height: 100%;
-  border: 1px solid #BDBDBD;
+  border: 3px solid #fff;
+  box-shadow:0px 6px 10px #bdbdbd;
   border-radius: 100px;
 }
 .container33 .two_text{

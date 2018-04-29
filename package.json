@@ -15,7 +15,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.2.1",
-    "node-rsa": "^0.4.2",
     "qrcode": "^1.2.0",
     "vue": "^2.5.2",
     "vue-axios": "^2.0.2",

@@ -1,5 +1,5 @@
 <template>
-    <div id="app" @click.prevent="isdropdowncontrol">
+    <div id="app" @click="isdropdowncontrol">
         <router-view/>
     </div>
 </template>
@@ -9,7 +9,7 @@ export default {
     methods:{
         isdropdowncontrol(event){
             if(!document.getElementById("myPanel").contains(event.target)){ 
-                this.$store.state.isdropdownparent = false
+                this.$store.state.isdropdownparent = false  
             }
         },
     },

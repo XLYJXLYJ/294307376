@@ -114,20 +114,9 @@ export default{
     padding-left: 44px;
 }
 .container32 .mydemo_frame .router-link-active{
-    text-decoration: none;
-    border-bottom: 3px solid #FFFBF2;  
-    border-top: 2px solid #333;
-    border-left: 2px solid#333;
-    border-right: 2px solid #333;
-    color: #000;
-}
-.container32 .mydemo_frame .router-link-active:before {
-    content: '';
-    position: absolute;
-    left: 0px;
-    top: 19px;
-    height: 2px;
-    width: 76px;
-    border-radius: 2px;   
+   border:2px solid #333;
+   border-radius:15px;
+   border-bottom:none;
+   border-bottom: 11px solid #fff;
 }
 </style>

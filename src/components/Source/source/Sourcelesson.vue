@@ -196,7 +196,6 @@ export default{
     top: -86px;
     left: 0px;
     background: #fff;
-    margin-bottom: 30px;
 }
 .container6400 .sort01 ul{
     list-style: none;

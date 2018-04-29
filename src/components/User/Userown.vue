@@ -73,7 +73,6 @@ import Vue from 'vue'
                         getinfostate:3
                     })
                     .then(response => {   
-                        console.log(response)  
                         this.userimageUrl= response.data.data.imgBuffer    
                         this.aboutme = response.data.data.aboutme,
                         this.doing = response.data.data.doing

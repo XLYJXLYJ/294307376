@@ -144,7 +144,6 @@ export default{
     top: -86px;
     left: 0px;
     background: #fff;
-    margin-bottom: 30px;
 }
 .container65 .first .firstlogo{
     position: relative;

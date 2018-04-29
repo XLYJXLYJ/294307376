@@ -40,5 +40,6 @@ export default{
 }
 .footer10 {
     flex: 0;
+    z-index: 1000;
 }
 </style>

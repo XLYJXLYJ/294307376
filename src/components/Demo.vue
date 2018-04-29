@@ -3,19 +3,19 @@
         <Header/>
         <div class="content05">   
             <div class="container24">
-            <img class="star01" src="../assets/Download/starfish.png" alt="">  
-            <p>我的管理中心</p>
-            <router-link to="/snap"><button>新建作品</button></router-link>
-            <div class="mydemo_frame">
-            <router-link class="Mydemo" to="/Demo/Mydemo">作品</router-link>
-            <router-link class="Delete" to="/Demo/Delete">废纸篓</router-link>
-            </div>
+                <img class="star01" src="../assets/Download/starfish.png" alt="">  
+                <p>我的管理中心</p>
+                <router-link to="/snap"><button>新建作品</button></router-link>
+                <div class="mydemo_frame">
+                    <router-link class="Mydemo" to="/Demo/Mydemo">作品</router-link>
+                    <router-link class="Delete" to="/Demo/Delete">废纸篓</router-link>
+                </div>
             </div>      
             <router-view></router-view>
         </div>
-         <div class="footer05">
+        <div class="footer05">
             <Footer/>
-         </div> 
+        </div> 
     </div>   
 </template>
 <script>
@@ -81,14 +81,14 @@ export default{
     width: 115px;
     font-size: 16px;
     color: #fff;
-    background: #f13232;
+    background: #333;
     border: none;
     cursor: pointer;
 }
  .container24 .mydemo_frame{
     position:relative;
     width: 643px;
-    height: 38px;
+    height: 34px;
     top: -60px;
     left: 0px;
     border-bottom: 2px solid #333;
@@ -98,7 +98,7 @@ export default{
     top: -10px;
     left: 24px;
     width: 101px;
-    height: 37px;
+    height: 32px;
     font-size: 18px;
     color: #333;
     text-decoration: none;
@@ -110,14 +110,23 @@ export default{
     top: -10px;
     left: 189px;
     width: 109px;
-    height: 37px;
+    height: 32px;
     font-size: 18px;
     color: #333;
     text-decoration: none;
     padding-top: 8px;
     padding-left: 60px;
 }
+
+
 .container24 .mydemo_frame .router-link-active{
+   border:2px solid #333;
+   border-radius:15px;
+   border-bottom:none;
+   border-bottom: 12px solid #fff;
+
+}
+/* .container24 .mydemo_frame .router-link-active{
     text-decoration: none;
     border-bottom: 3px solid #fff;  
     border-top: 2px solid #333;
@@ -133,5 +142,5 @@ export default{
     height: 2px;
     width: 76px;
     border-radius: 2px;  
-}
+} */
 </style>

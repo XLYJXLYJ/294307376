@@ -308,7 +308,6 @@ export default{
     top: -70px;
     left: 0px;
     background: #fff;
-    margin-bottom: 30px;
 }
 .container80 .sort01 ul{
     list-style: none;

@@ -3,9 +3,10 @@
         <div class="snapboxhead" @click="issnapuserdropdowncontrol">
             <div class="snapheader">
                 <ul class="snapheaderleft">
-                    <li class="bcw"><a href="./"><img src="../assets/snappic/snapb.png" alt=""></a></li>
+                    <li class="bcw"><a href="http://www.manykit.com/codeplay"><img @click.stop.prevent="Homepass" src="../assets/snappic/snapb.png" alt=""></a></li>
                     <li class="borderlight01" @click="snapdropdowmcontrol" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
                     <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
+                    <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState"></li>
                     <li class="borderlight03"><img src="../assets/snappic/snapu.png" alt="" @click.prevent="handiframepublish"></li>
                     <li class="borderlight04" v-show="login"
                     @click="dialogLogin = true, 
@@ -21,12 +22,13 @@
                     dialogPassSure=false">注册</li>
                     <li class="borderlight06" v-show="user" @click="snapdemodropdowmcontrol" id="sanpuserPanel">{{$store.state.usernamesession02}}</li>
                 </ul>
+                <div class="snapedit" @click="snapedit"></div>
                 <div v-if="snapdropdown01" class="snapdropdowm">
                     <ul class="block-col-12">
-                        <li><p @click="dialogNew=true,snapdropdown01=false">新建</p></li>
-                        <li><p>另存为</p></li>
-                        <li  @click="dialogExport = true,snapdropdown01=false"><p @click.prevent="download">保存到本地</p></li>
-                        <li><p @click.prevent="dialogOpen=true,snapdropdown01=false">打开本地作品</p></li>    
+                        <li><p @click.stop.prevent="dialogNew=true,snapdropdown01=false">新建</p></li>
+                        <li><p @click.stop.prevent="anothersave">另存为</p></li>
+                        <li  @click.stop.prevent="dialogExport = true,snapdropdown01=false"><p @click.prevent="download">保存到本地</p></li>
+                        <li><p @click.stop.prevent="dialogOpen=true,snapdropdown01=false">打开本地作品</p></li>    
                     </ul>
                 </div>
                 <div v-show="snapdemodropdowm" class="snapdemodropdowm" >
@@ -57,7 +59,7 @@
                                 <textarea type="text" class="textdes" v-model="formSave.desc" auto-complete="off" placeholder="请输入项目描述"></textarea>
                             </el-form-item>
                             <el-form-item  class="iden03">
-                                <el-button  @click.prevent="submitUpload()">确定保存</el-button>
+                                <el-button  @click.stop.prevent="submitUpload()">确定保存</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -75,7 +77,7 @@
                             <el-form-item class="iden01">
                                 <el-input type="text" v-model="formSave.exporttitle" auto-complete="off" placeholder="请输入项目名称"></el-input>       
                             </el-form-item>
-                            <el-button  class="iden02" @click.prevent="download(formSave.exporttitle)">确定下载</el-button>
+                            <el-button  class="iden02" @click.stop.prevent="download(formSave.exporttitle)">确定下载</el-button>
                         </el-form>
                     </div>
                 </el-dialog>
@@ -93,8 +95,8 @@
                             <el-form-item class="iden01">
                                 <h1>确定放弃当前项目，新建新的项目吗？</h1>      
                             </el-form-item>
-                             <el-button  class="iden02"  @click.prevent="newproject">确定</el-button>
-                            <el-button  class="iden03" @click.prevent="dialogNew=false">取消</el-button>
+                             <el-button  class="iden02"  @click.stop.prevent="newproject">确定</el-button>
+                            <el-button  class="iden03" @click.stop.prevent="dialogNew=false">取消</el-button>
                         </el-form>
                     </div>
                 </el-dialog>
@@ -120,7 +122,7 @@
             </div>
         </transition> -->
 
-        <transition name="el-fade-in-linear">
+            <transition name="el-fade-in-linear">
             <div>
                 <el-dialog :visible.sync="dialogOpen" :modal="false" width="420px">
                     <div class="container503">
@@ -133,8 +135,8 @@
                             <el-form-item class="iden01">
                                 <input class="iden04" type="file" ref="file" id='xml_seq' multiple/>     
                             </el-form-item>
-                             <el-button  class="iden02"  @click="open">确定</el-button>
-                            <el-button  class="iden03" @click="dialogOpen=false">取消</el-button>
+                             <el-button  class="iden02"  @click.stop.prevent="open">确定</el-button>
+                            <el-button  class="iden03" @click.stop.prevent="dialogOpen=false">取消</el-button>
                         </el-form>
                     </div>
                 </el-dialog>
@@ -145,15 +147,16 @@
          <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
             <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false">
+                <img class="close" @click="close" src="../assets/login/close.png" alt="">
                 <div>
                     <div class="container2101" v-show="dialogLoginshow">
                         <form action="">
                             <p class="sign_logo">登录</p>
                             <input type="text" v-model="formLogin.username" class="tele" placeholder="请输入用户名">
                             <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
-                            <p class="ap_text" @click="dialogLoginshow= false,dialogForgetpass = true">忘记密码?</p>
-                            <button class="register" @click.prevent="Loginbtn">登录</button>
-                            <div class="free_res"><p>没有账号?</p><span @click="dialogLoginshow = false,dialogRegister = true">免费注册</span></div>    
+                            <p class="ap_text" @click.stop.prevent="dialogLoginshow= false,dialogForgetpass = true">忘记密码?</p>
+                            <button class="register" @click.stop.prevent="Loginbtn">登录</button>
+                            <div class="free_res"><p>没有账号?</p><span @click.stop.prevent="dialogLoginshow = false,dialogRegister = true">免费注册</span></div>    
                         </form> 
                     </div>
                     <div class="container1901" v-show="dialogRegister">
@@ -171,10 +174,10 @@
                             <el-form-item prop="password">
                                 <input type="password" class="iden03" v-model="formRegister.checkpassword" auto-complete="off" placeholder="请确认密码">
                             </el-form-item>
-                            <el-button type="primary" class="register" @click.prevent="Registerbtn">注册</el-button>
+                            <el-button type="primary" class="register" @click.stop.prevent="Registerbtn">注册</el-button>
                         </el-form>
                         <div>
-                            <span class="free_res">已有账号?<span @click="dialogLoginshow = true,dialogRegister = false">点击登录</span></span>
+                            <span class="free_res">已有账号?<span @click.stop.prevent="dialogLoginshow = true,dialogRegister = false">点击登录</span></span>
                         </div>
                     </div>
                 <div class="container4601" v-show="dialogForgetpass">
@@ -186,8 +189,8 @@
                         <el-form-item prop="code">
                                 <input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码">
                         </el-form-item>
-                        <button class="iden02" @click="Getcodebtn">获取验证码</button>
-                        <button class="register"  @click.prevent="Getusercodebtn">下一步</button>
+                        <button class="iden02" @click.stop.prevent="Getcodebtn">获取验证码</button>
+                        <button class="register"  @click.stop.prevent="Getusercodebtn">下一步</button>
                     </el-form>
                 </div>
                 <div v-show="dialogPassSure">
@@ -196,7 +199,7 @@
                             <p class="sign_logo">确认密码</p>
                             <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
                             <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
-                            <button class="register" @click.prevent="Getuserpassbtn">确认</button>
+                            <button class="register" @click.stop.prevent="Getuserpassbtn">确认</button>
                         </form> 
                     </div>
                 </div> 
@@ -228,6 +231,8 @@ export default{
             savestate:'',
             edittittle:'',
             editdes:'',
+            snapshow:'作品名称',
+            focusState:'',
             // 登录注册变量
             dialogRegister: false,
             dialogLoginshow:false,
@@ -309,7 +314,42 @@ export default{
         this.Getsession()
         this.Getsessionname()
     },
+    directives: {
+        focus: {
+            update: function (el, {value}) {
+                if (value) {
+                el.focus()
+                }
+            }
+        }
+    },
     methods: {
+        //另存为
+        anothersave(){
+            if(this.snapshow){
+                this.snapshow = this.snapshow + '-1'
+                this.snapdropdown01 = false
+                this.savestate=1
+                this.formSave.userid = sessionStorage.userid
+                this.formSave.title=this.snapshow
+                this.formSave.desc=this.editdes
+                this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT(' ')
+                let filebir = this.formSave.file
+                this.filebinary = new Blob([filebir]);
+                this.submitUpload()
+            }else{
+                this.$message({
+                    message: '请先保存作品',
+                    center: true
+                });
+            }
+        },
+        snapedit(){
+            this.focusState = true
+        },
+        close(){
+            this.dialogLogin = false
+        },
         snapdropdowmcontrol(){
             this.snapdropdown01 = !this.snapdropdown01          
         },
@@ -334,7 +374,7 @@ export default{
             .then(response => {                          
                this.demoxml = response.data  
             //    console.log(this.$store.state.demoxmlid)
-            window.frames["snap"].ide.droppedText(this.demoxml,'OPEN') 
+               window.frames["snap"].ide.droppedText(this.demoxml,'OPEN') 
             })
             
         },
@@ -345,10 +385,12 @@ export default{
                 id:this.$store.state.demoxmlid,
                 state:1
             })
-            .then(response => {                        
+            .then(response => {  
+                console.log(sessionStorage.userid)                      
                 this.list = response.data.data
                 this.edittittle = response.data.data.title
                 this.editdes = response.data.data.desc
+                this.snapshow = response.data.data.title
             }) 
         },
         // 打开文件
@@ -722,16 +764,17 @@ export default{
                     this.publicKey = response.data.data.publicKey
                     this.login = false;
                     this.sign = false;
-                    sessionStorage.userid = response.data.data.id
+                    console.log(response.data.data.userid)
+                    sessionStorage.userid = response.data.data.userid
                     sessionStorage.usernamesession = response.data.data.username
                     this.$store.state.usernamesession02 = sessionStorage.usernamesession
                     this.$store.state.userid = sessionStorage.userid
                     this.user = true;
                 }else{
-                    this.login = false;
+                    this.login = true;
                     this.sign = true;
                     this.user = false;
-                     this.publicKey = response.data.data.publicKey
+                    this.publicKey = response.data.data.publicKey
                 }
             }) 
         },
@@ -744,6 +787,9 @@ export default{
                 this.user = true; 
             }
         },
+        Homepass(){
+            this.$router.push({name:'Home'})
+        },
         // 退出登陆
         Cancellogout() {
             this.axios.get('/res/logout')
@@ -753,7 +799,8 @@ export default{
                 this.sign = true;
                 this.user = false;
                 this.dropdowm = false;  
-                sessionStorage.usernamesession ==''    
+                sessionStorage.usernamesession =''  
+                this.$store.state.userid = ''   
             }) 
         }
     },
@@ -781,10 +828,10 @@ export default{
     top: 0px;
     left: 0px;
 }
-.snapboxhead .header01 a{
+/* .snapboxhead .header01 a{
 	z-index: 10!important;
 	color: #fff;
-}
+} */
 .snapboxhead .snapheaderleft{
 	width:100%;
 	height: 40px;
@@ -802,7 +849,7 @@ export default{
 }
 .snapboxhead .borderlight img{
     position: fixed;
-    left: 220px;
+    left: 210px;
     top: 14px;
 }
 .snapboxhead .borderlight01 img{
@@ -812,7 +859,7 @@ export default{
 }
 .snapboxhead .borderlight03 img{
     position: fixed;
-    left: 320px;
+    left: 485px;
     top: 13px;
 }
 .snapboxhead .borderlight04{
@@ -832,6 +879,31 @@ export default{
     right: -40px;
     top: 12px;
     font-size: 14px;
+}
+.snapboxhead .borderlight07{
+    position: fixed;
+    left: 288px;
+    top: 7px;
+    font-size: 14px;
+}
+.snapedit{
+    height: 10px;
+    width: 10px;
+    position: relative;
+    top: 16px;
+    left: 430px;
+    z-index: 1000;
+    cursor: pointer;
+    background: url(../assets/snappic/snapedit.png) no-repeat;
+}
+.snapboxhead .borderlight07 input{
+    height: 26px;
+    width: 160px;
+    font-size: 14px;
+    background-color: #4D4D4D;
+    color: #C2C2C2;
+    padding-left: 5px;
+    border: 1px dashed #c2c2c2;
 }
 
 
@@ -1200,6 +1272,7 @@ export default{
     width: 187px;
     top: 8px;
     left: 55px;
+    z-index: 1000;
 }
 
 .container2101{
@@ -1214,7 +1287,7 @@ export default{
     height: 23px;
     position: relative;
     top: 44px;
-    left: 184px;
+    left: 162px;
     color: #333;
     font-size: 24px;
     margin-left: 30px;
@@ -1350,7 +1423,7 @@ export default{
     position: absolute;
     height: 48px;
     width: 287px;
-    top: 144px;
+    top: 122px;
     left: 60px;
     padding-left: 10px;
 }
@@ -1358,7 +1431,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 287px;
-    top: 186px;
+    top: 164px;
     left: 60px;
     padding-left: 10px;
 }
@@ -1366,7 +1439,7 @@ export default{
     position: absolute;
     height: 48px;
     width: 287px;
-    top: 228px;
+    top: 206px;
     left: 60px;
     padding-left: 10px;
 }
@@ -1430,7 +1503,7 @@ export default{
     position: absolute;
     height: 48px;
     width: 170px;
-    top: 148px;
+    top: 126px;
     left: 60px;
     padding-left: 10px;
     margin: 0px!important;
@@ -1479,20 +1552,27 @@ export default{
     cursor: pointer;
 }
 
-.container44{
+.container4401{
     margin: 0px;
     padding: 0px;
     width: 100%;
     height: 364px;
     background: #fff;
 }
-.container21 .sign_logo{
+.snapbcw .close{
+    float: right;
+    position: relative;
+    right: 13px;
+    top: 13px;
+    cursor: pointer;
+}
+/* .container21 .sign_logo{
     position: absolute;
     top: 44px;
     left: 155px;
     color: #333;
     font-size: 24px;
-}
+} */
 .container4401 .tele{
     position: absolute;
     height: 49px;

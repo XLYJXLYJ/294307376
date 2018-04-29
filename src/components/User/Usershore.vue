@@ -48,8 +48,7 @@ export default {
                     userid:sessionStorage.userid,
                     state:1
                 })
-                .then(response => {    
-                    console.log(response.data.data.slice(this.i,this.i+6))     
+                .then(response => {       
                     this.list = response.data.data.slice(this.i,this.i+6)
             })
         },
@@ -60,7 +59,6 @@ export default {
                     state:1
                 })
                 .then(response => {    
-                    console.log(response.data.data.slice(this.i,this.i+6))     
                     this.list = response.data.data.slice(this.i,this.i+6)
             })
         },

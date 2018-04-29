@@ -143,30 +143,30 @@
     top: -53px;
 }
 .container06 .sort_num{
-    width: 18px;
+    width: 17px;
     height: 24px;
     background: #F13232;
     color: #fff;
     float: left;
     border-radius: 25px;
     line-height: 24px;
-    padding-left: 8px;
+    padding-left: 7px;
     font-size: 18px;
     position: relative;
     left: 4px;
     top: 20px;
 }
 .container06 .rank_up ul{
-   width: 100%;
-   height: 210px;
-   list-style: none;
-   margin-top: -30px;
+    width: 100%;
+    height: 210px;
+    list-style: none;
+    margin-top: -30px;
 }
 .container06 .rank_up ul li{
-   width: 100%;
-   height: 56px;
-   margin-top: 40px;
-   cursor: pointer;
+    width: 100%;
+    height: 56px;
+    margin-top: 40px;
+    cursor: pointer;
 }
 .container06 a{
     text-decoration: none;
