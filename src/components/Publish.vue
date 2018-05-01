@@ -32,7 +32,7 @@ export default {
             isactive: true,
             dialogVisible: false,
             urllarge:'static/publish/9l.png',
-            imageUrl: '',
+            imageUrl: 'static/publish/1l.png',
             indexdemoid:'',
             demoname:'',
             demodes:'',
@@ -325,7 +325,7 @@ export default {
     font-size: 14px;
     position:absolute;
     top:285px;
-    left: 764px;
+    left: 774px;
 
 }
 .container72 .upload{
