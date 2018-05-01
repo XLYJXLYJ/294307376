@@ -13,6 +13,10 @@
                     </div>
                 </li>
             </ul>
+             <div class="sharebg" v-show="sharebg">
+                <img src="../../assets/user/bg02.png" alt="">
+                <div class="makedemotext"><router-link to="Home">到首页</router-link><p>收藏作品</p> <br/><span>还没有封面作品</span></div>
+            </div>
             <img class="right" src="../../assets/user/right.png" alt="">
         </div>
     </div>
@@ -23,6 +27,7 @@ export default {
         return {
             store01:true,
             nosend:true,
+            sharebg:true,
             list:'',
         };
     },
@@ -37,6 +42,13 @@ export default {
             })
             .then(response => {
                  this.list = response.data.data
+                if(response.data.data.msg == "这回真的没有了~"){
+                    this.nosend=false,
+                    this.sharebg=true
+                }else{
+                    this.nosend=true,
+                    this.sharebg=false
+                }
             })
             .catch(function (error) {
                 console.log(error);
@@ -65,7 +77,7 @@ export default {
     }
   }
 </script>
-<style>
+<style scoped>
 .container41{
     width:1200px;
     height: 316px;
@@ -128,5 +140,29 @@ export default {
     position: absolute;
     left: 1128px;
     top: 142px;
+}
+.container41 .makedemotext{
+    position: relative;
+    top: -170px;
+    left: 20px;
+}
+.container41 .makedemotext a{
+    position: relative;
+    top: 15px;
+    color: #f13232;
+    font-size: 16px;
+    display: inline-block;
+}
+.container41 .makedemotext p{
+    position: relative;
+    left: 34px;
+    top: -6px;
+
+}
+.container41 .makedemotext span{
+    position: relative;
+    top: -10px;
+    font-size: 16px;
+    color: #999;
 }
 </style>

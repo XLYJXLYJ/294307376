@@ -56,13 +56,12 @@
                     getinfostate:1
             })
             .then(response => {
-                 console.log(response)
                   this.formLabelAlign.name = this.$store.state.usernamesession02
                   this.formLabelAlign.age = response.data.data.age,
                   this.formLabelAlign.sex = response.data.data.sex
                   this.formLabelAlign.name01 = response.data.data.realname
                   this.imageUrl01 = response.data.data.imgBuffer
-                  console.log( this.imageUrl01)
+                  console.log(this.imageUrl01)
                   if(this.formLabelAlign.sex===1){
                       this.formLabelAlign.sex='男'
                   }else{
@@ -73,7 +72,7 @@
                   }else{
                      this.formLabelAlign.age = this.formLabelAlign.age
                   }
-                  if(this.imageUrl01){
+                  if(this.imageUrl01.length){
                       this.localpic = false
                       this.userpic = true
                   }else{
@@ -117,7 +116,7 @@
                     console.log(response)
                 })
                 .catch(function (error) {
-                console.log(error);
+                    console.log(error);
                 });
                 this.$message({
                     message: '上传成功',
@@ -127,6 +126,9 @@
 
       },
         choise_file () {
+            this.imageUrl01 = ''
+            this.userpic = false
+            this.localpic = true
             // this.indexdemoid=19
             // this.urllarge='static/publish/'+this.indexdemoid+'l.png'
             var file_info = this.$refs.file_el.files[0]
@@ -138,7 +140,6 @@
             fr.onload = function () {
                 // DataUrl data? :data:image/jpeg;base64,/9j/4
                 that.imageUrl = this.result
-
             }   
         }
     }
@@ -202,8 +203,8 @@
   border-radius: 100px;
 }
 .container33 .two_text{
-    position: relative;
-    top: -80px;
+    position: absolute;
+    top: 230px;
     left: -320px;
     font-size: 28px;
     color: #91121B;

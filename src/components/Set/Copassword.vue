@@ -4,6 +4,7 @@
           </div>
           <div class="userpiv" v-show="userpic"><img  :src="'data:image/png;base64,'+imageUrl02"></div>
           <div class="userpiv" v-show="localpic"><img  :src="imageUrl"></div>
+          <div  class="two_text"><p>{{$store.state.usernamesession02}}</p></div>
           <el-form :label-position="labelPosition" class="copassword" label-width="80px" :model="formLabelAlign">
                 <el-form-item class="set01" label="旧密码">
                   <input class="input01" type="password" v-model="formLabelAlign.oldpass">
@@ -153,8 +154,8 @@
   border-radius: 100px;
 }
 .container34 .two_text{
-    position: relative;
-    top: -80px;
+    position: absolute;
+    top: 230px;
     left: -320px;
     font-size: 28px;
     color: #91121B;

@@ -3,7 +3,7 @@
         <div>
             <img class="star" src="../../assets/user/starfish.png" alt="">
             <p class="store">我分享的作品</p>
-            <img class="left" src="../../assets/user/left.png" alt="" @click="Pagingdown">
+            <img class="left" src="../../assets/user/left.png" alt="">
             <ul class="block" v-show="nosend">
                 <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
                     <div class="share">
@@ -13,6 +13,10 @@
                     </div>
                 </li>
             </ul>
+            <div class="sharebg" v-show="sharebg">
+                <img src="../../assets/user/bg02.png" alt="">
+                <div class="makedemotext"><router-link to="snap">创作</router-link><p>作品分享它到发现</p> <br/><span>还没有封面作品</span></div>
+            </div>
             <img class="right" src="../../assets/user/right.png" alt="" @click="Pagingup">
         </div>
     </div>
@@ -22,7 +26,8 @@
         data(){
             return{
                 list:'',
-                nosend:true,
+                nosend:false,
+                sharebg:true,
                 i:0,
             }
         },
@@ -37,6 +42,13 @@
                     })
                     .then(response => {           
                         this.list = response.data.data
+                        if(response.data.data.msg == "这回真的没有了~"){
+                            this.nosend=false,
+                            this.sharebg=true
+                        }else{
+                            this.nosend=true,
+                            this.sharebg=false
+                        }
                 })
             },
             Pagingup(){
@@ -62,7 +74,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
 .container40{
     width:1200px;
     height: 316px;
@@ -125,5 +137,34 @@
     position: absolute;
     left: 1128px;
     top: 142px;
+}
+.container40 .sharebg{
+    position: relative;
+    left: 449px;
+    top: 58px;
+}
+.container40 .makedemotext{
+    position: relative;
+    top: -170px;
+    left: 20px;
+}
+.container40 .makedemotext a{
+    position: relative;
+    top: 15px;
+    color: #f13232;
+    font-size: 16px;
+    display: inline-block;
+}
+.container40 .makedemotext p{
+    position: relative;
+    left: 34px;
+    top: -6px;
+
+}
+.container40 .makedemotext span{
+    position: relative;
+    top: -10px;
+    font-size: 16px;
+    color: #999;
 }
 </style>

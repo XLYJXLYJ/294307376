@@ -20,18 +20,21 @@
             <textarea class="medoingtext" name="" id="" cols="30" rows="10"  v-model="doing"></textarea>
         </div>
         <div>
-            <div>
+            <div class="demonone" v-show="demonone">
                 <img class="userdemo" src="../../assets/user/bg01.png" alt="">
-                <div class="makedemotext"><a href="">创作</a><p>你的封面作品</p> <br/><span>还没有封面作品</span></div>
+                <div class="makedemotext"><router-link to="snap">创作</router-link><p>你的封面作品</p> <br/><span>还没有封面作品</span></div>
+            </div>  
+            <div class="demoimg" v-show="demoimg">
+                <img class="userdemo" :src="'codeplay/'+demoimageUrl" alt="">
             </div>   
             <p class="name01">封面作品</p>
             <p class="atten01">暂无作品</p>
         </div>
         <div class="sum">
             <p class="sum01">你的作品已经累积获得了:</p>
-            <div class="good"><p>100</p><span>个赞</span></div>
-            <div class="store"><p>100</p><span>个收藏</span></div>
-            <div class="make"><p>100</p><span>次浏览</span></div>
+            <div class="good"><p>{{praisetotal}}</p><span>个赞</span></div>
+            <div class="store"><p>{{collecttotal}}</p><span>个收藏</span></div>
+            <div class="make"><p>{{looktotal}}</p><span>次浏览</span></div>
             <!-- <div class="see"><p>100</p><span>次浏览</span></div> -->
         </div>
         <div class="mydy">我的动态</div>
@@ -48,7 +51,14 @@ import Vue from 'vue'
                  postlistdemo:'',
                  aboutme:'',
                  doing:'',
-                 userimageUrl:''
+                 userimageUrl:'',
+                 demoimageUrl:'',
+                 demonone:false,
+                 demoimg:true,
+                 demoimageid:'',
+                 collecttotal:'',
+                 praisetotal:'',
+                 looktotal:''
             } 
         },
         // watch:{
@@ -73,9 +83,32 @@ import Vue from 'vue'
                         getinfostate:3
                     })
                     .then(response => {   
+                        console.log(response)
                         this.userimageUrl= response.data.data.imgBuffer    
                         this.aboutme = response.data.data.aboutme,
                         this.doing = response.data.data.doing
+                        this.demoimageid= response.data.data.coverworkid 
+                        this.collecttotal = response.data.data.collecttotal
+                        this.praisetotal = response.data.data.praisetotal
+                        this.looktotal = response.data.data.looktotal
+                        if(response.data.data.coverworkid == 'null'){
+                            this.demonone=true,
+                            this.demoimg=false
+                        }else{
+                            this.demonone=false,
+                            this.demoimg=true
+                            this.getdemoimg()
+                        }
+                })
+            },
+            getdemoimg(){
+                this.axios.post('/res/getfile',{
+                    id:this.demoimageid,
+                    state:1
+                })
+                .then(response =>{
+                    console.log(response)
+                    this.demoimageUrl=response.data.data.imgBuffer
                 })
             },
             Postuseinfo(){
@@ -93,7 +126,7 @@ import Vue from 'vue'
         }
     }
 </script>
-<style>
+<style scoped>
 .container39{
     width:1200px;
     height: 655px;

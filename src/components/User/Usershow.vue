@@ -37,17 +37,15 @@
                     .then(response => {     
                     if(response.data.data.msg==="这回真的没有了~"){
                         this.nosend = false
-                        console.log(response)
                     } else{
                         this.list = response.data.data
-                        console.log(this.list)
                     }    
                 })
             }
         }
     }
 </script>
-<style>
+<style scoped>
 .container43{
     width:1200px;
     height: 221px;

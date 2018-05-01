@@ -147,7 +147,8 @@ export default {
         },
         choise_file () {
             this.indexdemoid=19
-            this.urllarge='static/publish/'+this.indexdemoid+'l.png'
+            this.urllarge=''
+            // this.urllarge='static/publish/'+this.indexdemoid+'l.png'
             var file_info = this.$refs.file_el.files[0]
             // 使用FileReader对象预览
             var fr = new FileReader()
@@ -210,7 +211,7 @@ export default {
     color: #333;
     font-size: 16px;
     overflow: hidden;
-    border: 1px solid #F13232;
+    box-shadow:0px 6px 10px #bdbdbd;
     background: url(../assets/publish/publish.png) no-repeat;
     background-position: 60px 60px;
     opacity: 1;
