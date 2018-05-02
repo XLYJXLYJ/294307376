@@ -5,7 +5,7 @@
             <div class="container36">
                 <div>
                     <p class="one">{{list.title}}</p>
-                    <p class="two">分享于：{{list.createtime}}</p>
+                    <p class="two">分享于：{{list.publishtime|formatDate}}</p>
                     <p class="three">已有{{list.looktotal}}次浏览</p>
                 </div>
                 <div>
@@ -72,6 +72,12 @@ import { formatDate } from '../public/time.js'
 var QRCode = require('qrcode')
 var canvas = '';
 export default{
+    filters: {
+        formatDate(time) {
+        var date = new Date(time);
+        return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
+        }
+    },
     data(){
         return{
             list:[
@@ -86,6 +92,7 @@ export default{
             demoid:'',
             bannerUrl: '',
             demoxml:'',
+            publishtime:'',
             item:{
                 // url:"static/ceshi/snap.html#present:Username=jens&ProjectName=tree%20animation"
                 url:'https://www.baidu.com/'
@@ -97,7 +104,7 @@ export default{
         
         this.loadprojectplay()
          
-
+        this.recommendroute()
         this.demoid = sessionStorage.id    
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/ static/player/index.html#present:Username=lynn&ProjectName=haha'
         this.bannerUrl = 'http://www.manykit.com/codeplay/static/player/pxsnap.html#present:Username=lynn&ProjectName='+ this.demoid
@@ -111,6 +118,9 @@ export default{
     
     methods:{
         // 加载默认数据
+        recommendroute(){
+            this.$router.push({ name: 'Myvideo' })
+        },
         loadproject(){
             // if(sessionStorage.userid!=='unfined')
             this.axios.post('/res/getfile',{
@@ -124,6 +134,7 @@ export default{
                 this.isCollect = response.data.data.isCollect
                 this.isPraise = response.data.data.isPraise
                 this.isAttention= response.data.data.isAttention
+                this.publishtime= response.data.data.publishtime
                 this.$store.state.authid= response.data.data.authid
             }) 
         },
@@ -309,7 +320,7 @@ export default{
 }
 .container36 .one{
     height: 28px;
-    width: 168px;
+    width: 268px;
     color: #43455a;
     font-size: 28px;
     position: relative;
@@ -318,7 +329,7 @@ export default{
 }
 .container36 .two{
     height: 12px;
-    width: 150px;
+    width: 250px;
     color: #7b7d8b;
     font-size: 16px;
     position: relative;

@@ -239,7 +239,7 @@ export default new Router({
           name: 'Video',
           component: resolve =>require(['@/components/Video'],resolve),
           children:[
-              {path: '/Video/Myvideo', component: resolve =>require(['@/components/Video/Myvideo'],resolve)},
+              {path: '/Video/Myvideo', name: 'Myvideo',component: resolve =>require(['@/components/Video/Myvideo'],resolve)},
               {path: '/Video/Lovevideo', component: resolve =>require(['@/components/Video/Lovevideo'],resolve)},
               {path: '', component:resolve =>require(['@/components/Video/Myvideo'],resolve)}
           ]
