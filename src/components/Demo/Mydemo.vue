@@ -43,6 +43,7 @@ export default{
 }
 .container26 .router-link-active button{
     background-color: #F13232;
+    color: #FFF;
     border:none;
 }
 </style>

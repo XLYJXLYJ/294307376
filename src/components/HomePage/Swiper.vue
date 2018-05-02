@@ -11,9 +11,9 @@
             <div>
                 <router-link to="/snap"><div class="creat01"><img src="../../assets/home/s.png" alt=""></div></router-link>
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat02"><img src="../../assets/home/p.png" alt=""></div></a>  
-                <a href="static/logo.png" download="logo.png"><div class="creat03"><img src="../../assets/home/g.png" alt=""></div></a>
+                <a href="static/logo.png" download><div class="creat03"><img src="../../assets/home/g.png" alt=""></div></a>
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat04"><img src="../../assets/home/b.png" alt=""></div></a> 
-                <a href="static/logo.png" download="logo.png"><div class="creat05"><img src="../../assets/home/m.png" alt=""></div></a>
+                <a href="https://shop194048616.taobao.com"><div class="creat05"><img src="../../assets/home/m.png" alt=""></div></a>
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat06"><img src="../../assets/home/p1.png" alt=""></div></a>       
             </div> 
             <div id="videobox">

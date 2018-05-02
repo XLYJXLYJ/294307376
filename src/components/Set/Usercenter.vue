@@ -67,8 +67,13 @@
                   }else{
                       this.formLabelAlign.sex='女'
                   }
-                  if(this.formLabelAlign.age==null){
+                  if(this.formLabelAlign.age=='null'){
                       this.formLabelAlign.age = ''
+                  }else{
+                     this.formLabelAlign.age = this.formLabelAlign.age
+                  }
+                  if(this.formLabelAlign.name01=='null'){
+                      this.formLabelAlign.name01 = ''
                   }else{
                      this.formLabelAlign.age = this.formLabelAlign.age
                   }

@@ -1,7 +1,7 @@
 <template>
     <div class="container41">
         <div>
-            <img class="star" src="../../assets/user/starfish.png" alt="">
+            <!-- <img class="star" src="../../assets/user/starfish.png" alt=""> -->
             <p class="store">我收藏的作品</p>
             <img class="left" src="../../assets/user/left.png" alt="">
             <ul class="block" v-show="nosend">
@@ -15,7 +15,7 @@
             </ul>
              <div class="sharebg" v-show="sharebg">
                 <img src="../../assets/user/bg02.png" alt="">
-                <div class="makedemotext"><router-link to="Home">到首页</router-link><p>收藏作品</p> <br/><span>还没有封面作品</span></div>
+                <div class="makedemotext"><router-link to="Home">到首页</router-link><p>收藏作品</p> <br/><span>还没有收藏作品</span></div>
             </div>
             <img class="right" src="../../assets/user/right.png" alt="">
         </div>
@@ -26,7 +26,7 @@ export default {
     data() {
         return {
             store01:true,
-            nosend:true,
+            nosend:false,
             sharebg:true,
             list:'',
         };
@@ -42,7 +42,7 @@ export default {
             })
             .then(response => {
                  this.list = response.data.data
-                if(response.data.data.msg == "这回真的没有了~"){
+                if(!response.data.data){
                     this.nosend=false,
                     this.sharebg=true
                 }else{
@@ -93,7 +93,7 @@ export default {
     color: #333;
     position: absolute;
     top: 19px;
-    left: 59px;
+    left: 19px;
     font-size: 22px;   
 }
 .container41 .block p{
@@ -155,7 +155,7 @@ export default {
 }
 .container41 .makedemotext p{
     position: relative;
-    left: 34px;
+    left: 50px;
     top: -6px;
 
 }
@@ -164,5 +164,10 @@ export default {
     top: -10px;
     font-size: 16px;
     color: #999;
+}
+.container41 .sharebg{
+    position: relative;
+    left: 449px;
+    top: 58px;
 }
 </style>

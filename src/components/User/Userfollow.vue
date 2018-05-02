@@ -1,17 +1,21 @@
 <template>
     <div class="container42">
         <div>
-            <img class="star" src="../../assets/user/starfish.png" alt="">
+            <!-- <img class="star" src="../../assets/user/starfish.png" alt=""> -->
             <p class="store">我关注的人</p>
             <img class="left" src="../../assets/user/left.png" alt="">
             <ul class="follow" v-show="nosend">
                 <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
                     <div class="share">
-                        <img src="../../assets/user/user.png" alt="">
+                        <img :src="item.imgBuffer" alt="">
                         <p>{{item.username}}</p>
                     </div>
                 </li>
             </ul>
+            <div class="sharebg" v-show="sharebg">
+                <img src="../../assets/user/bg02.png" alt="">
+                <div class="makedemotext"><router-link to="Home">到首页</router-link><p>观看作品</p> <br/><span>寻找关注的人</span></div>
+            </div>
             <img class="right" src="../../assets/user/right.png" alt="">
         </div>
     </div>
@@ -21,7 +25,8 @@ export default{
     data(){
         return{
             list:'',
-            nosend:true
+            nosend:true,
+            sharebg:'',
         }
     },
     mounted: function () {      
@@ -34,11 +39,15 @@ export default{
                     state:4
                 })
                 .then(response => {     
-                if(response.data.data.msg==="这回真的没有了~"){
-                    this.nosend = false
-                } else{
-                    this.list = response.data.data
-                }    
+                 this.list = response.data.data
+                 console.log(this.list)
+                    if(!response.data.data){
+                        this.nosend=false,
+                        this.sharebg=true
+                    }else{
+                        this.nosend=true,
+                        this.sharebg=false
+                    }  
             })
         }
     }
@@ -60,7 +69,7 @@ export default{
     color: #333;
     position: absolute;
     top: 22px;
-    left: 71px;
+    left: 19px;
     font-size: 22px;   
 }
 .container42 .follow p{
@@ -99,5 +108,34 @@ export default{
    position: absolute;
    left: 1128px;
    top: 92px;
+}
+.container42 .makedemotext{
+    position: relative;
+    top: -170px;
+    left: 20px;
+}
+.container42 .makedemotext a{
+    position: relative;
+    top: 15px;
+    color: #f13232;
+    font-size: 16px;
+    display: inline-block;
+}
+.container42 .makedemotext p{
+    position: relative;
+    left: 50px;
+    top: -6px;
+
+}
+.container42 .makedemotext span{
+    position: relative;
+    top: -10px;
+    font-size: 16px;
+    color: #999;
+}
+.container42 .sharebg{
+    position: relative;
+    left: 449px;
+    top: 28px;
 }
 </style>

@@ -33,7 +33,7 @@ export default {
             dialogVisible: false,
             urllarge:'static/publish/9l.png',
             imageUrl: 'static/publish/1l.png',
-            indexdemoid:'',
+            indexdemoid:1,
             demoname:'',
             demodes:'',
             readpicbinary:'',
@@ -78,12 +78,31 @@ export default {
             // ]
         };
     },
+    mounted(){
+        this.loadprojectdes()
+    },
     methods: {
         pickimg(indexid){  
             this.imageUrl = ''  
             this.indexdemoid=indexid+1
             this.urllarge='static/publish/'+this.indexdemoid+'l.png'
         },
+        //加载项目信息
+        loadprojectdes(){
+            // if(sessionStorage.userid!=='unfined')
+            this.axios.post('/res/getfile',{
+                userid:sessionStorage.userid,
+                id:this.$store.state.demoxmlid,
+                state:1
+            })
+            .then(response => {  
+                console.log(sessionStorage.userid)                      
+                this.demoname = response.data.data.title
+                this.demodes = response.data.data.desc
+            }) 
+        },
+
+
         submitUpload(){
             if(this.indexdemoid==19){
                 this.picdemo = this.$store.state.demoxmlid
@@ -128,7 +147,7 @@ export default {
             formData.append('title',sessionStorage.demoname);
             formData.append('desc',sessionStorage.demodes);
             formData.append('state',3);
-            formData.append('surfaceplot',9);
+            formData.append('surfaceplot',this.indexdemoid);
             formData.append('files',picsource);
             formData.append('coverworkid',this.$store.state.demoxmlid);
             let config = {
@@ -239,7 +258,7 @@ export default {
     position: absolute;
     left: 121px;
     top: 108px;
-    color: #c8c8c8;
+    color: #333;
     font-size: 16px;
     background: #f5f5f5;
     border: none;
@@ -259,7 +278,7 @@ export default {
     position: absolute;
     left: 121px;
     top: 200px;
-    color: #c8c8c8;
+    color: #333;
     font-size: 16px;
     background: #f5f5f5;
     border: none;

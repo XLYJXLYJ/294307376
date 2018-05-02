@@ -112,16 +112,35 @@ import Vue from 'vue'
                 })
             },
             Postuseinfo(){
-                this.axios.post('/res/userinfo',{
-                        userid:sessionStorage.userid,
-                        state:2,
-                        aboutme:this.aboutme,
-                        doing:this.doing
+            　　if(window.navigator.onLine==true) {                     //是否联网　
+                    if(sessionStorage.userid){                          //是否登录
+                        this.axios.post('/res/userinfo',{
+                            userid:sessionStorage.userid,
+                            state:2,
+                            aboutme:this.aboutme,
+                            doing:this.doing
+                        })
+                    .then(response => {           
+                        this.postlistdemo = response.data
+                        this.$message({
+                            message:'保存成功',
+                            center:true
+                        })
                     })
-                .then(response => {           
-                    this.postlistdemo = response.data
-                    // console.log(response.data.data)
-                })
+                    }else{
+                        this.$message(
+                            {
+                                message: '请先登录',
+                                center: true
+                            }
+                        )
+                    }
+            　　}else {　
+    　　　　         this.$message({
+                        message: '发布失败，请检查网络',
+                        center: true
+                    });
+            　　}
             }
         }
     }
@@ -140,7 +159,9 @@ import Vue from 'vue'
     height: 72px;
     position: absolute;
     top: 12px;
-    left: 9px;   
+    left: 9px;  
+    border-radius: 40px;
+    box-shadow:0px 3px 5px #bdbdbd; 
 }
 .container39 .name{
     width:128px;
@@ -196,13 +217,14 @@ import Vue from 'vue'
     top: 37px;
     left: 0px;
     width: 345px;
-    height: 180px;
+    height: 175px;
     color: #A9A9A9;
     font-size: 18px;
     background: #F5F5F5; 
     border: 2px dashed #d5d3cd;
     border-radius: 10px;
     text-indent: 1rem;
+    padding-top: 5px;
 }
 .container39 .doing{
     position: absolute;
@@ -223,13 +245,14 @@ import Vue from 'vue'
     top: 37px;
     left: 0px;
     width: 345px;
-    height: 180px;
+    height: 175px;
     color: #A9A9A9;
     font-size: 18px;
     background: #F5F5F5; 
     border: 2px dashed #d5d3cd;
     border-radius: 10px;
     text-indent: 1rem;
+    padding-top: 5px;
 }
 .container39 .userdemo{
     position: absolute;

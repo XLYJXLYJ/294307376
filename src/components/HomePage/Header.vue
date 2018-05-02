@@ -245,7 +245,7 @@ export default {
                         center:true
                     })
                 }else{
-                    console.log('denglu')
+                    this.dialogLogin = false
                     this.Getsessionname()
                     this.Getsession()
                 }
@@ -257,7 +257,7 @@ export default {
         },
         // 注册
         Registerbtn() {
-            var regusername = /^[a-zA-Z0-9]\w{4,16}$/;
+            var regusername = /^[a-zA-Z0-9]\w{3,16}$/;
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
             var regEmail= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
             let logintextpassword = this.publicKey;
@@ -394,6 +394,7 @@ export default {
             this.axios.get('/res/verify')
             .then(response =>{
                 if(response.data.data.userid){
+                    console.log(response)
                     this.publicKey = response.data.data.publicKey
                     // this.dialogLogin = false;
                     this.loginsign = false;
@@ -411,11 +412,12 @@ export default {
             }) 
         },
         Getsessionname(){
-            if(sessionStorage.usernamesession){
-                this.dialogLogin = false;
-                this.loginsign = false;
+            if(sessionStorage.userid){
                 this.$store.state.usernamesession02 = sessionStorage.usernamesession
                 this.$store.state.userid = sessionStorage.userid
+                this.dialogLogin = false;
+                this.loginsign = false;
+
                 this.usercenter = true; 
             }
         },
@@ -715,7 +717,7 @@ export default {
     position: absolute;
     height: 14px;
     width: 95px;
-    top: 226px;
+    top: 238px;
     left: 291px;
     color: #F13232;
     font-size: 14px;
@@ -726,7 +728,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 310px;
-    top: 254px;
+    top: 266px;
     left: 60px;
     background: #F13232;
     color: #fff;
@@ -849,7 +851,7 @@ export default {
     position: absolute;
     height: 49px;
     width: 301px;
-    top: 382px;
+    top: 394px;
     left: 60px;
     background: #F13232;
     color: #fff;
@@ -862,7 +864,7 @@ export default {
     position: absolute;
     height: 14px;
     width: 141px;
-    top: 353px;
+    top: 365px;
     left: 60px;
     font-size: 15px;
     cursor: pointer;

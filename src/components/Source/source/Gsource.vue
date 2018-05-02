@@ -5,7 +5,11 @@
             <div class="line"></div>
             <ul class="role">
                 <li v-for="item in list01" :key="item.id">
-                    <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
+                    <div class="roleimg">
+                         <div class="roleimgbox">
+                             <img :src="'/codeplay/'+item.content" alt="">
+                         </div>
+                    </div>
                     <div class="roleup">
                         <button><a :href="'/codeplay'+item.content" download>下载</a></button>
                         <p class="text">{{item.name}}</p>
@@ -33,7 +37,11 @@
             <div class="line"></div>
             <ul class="role">
                 <li v-for="(item,index) in list03" :key="item.id" v-if='index<10'>
-                    <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
+                    <div class="roleimg">
+                        <div class="roleimgbox">
+                             <img :src="'/codeplay/'+item.content" alt="">
+                        </div>
+                    </div>
                     <div class="roleup">
                         <button><a :href="'/codeplay'+item.content" download>下载</a></button>
                         <p class="text">{{item.name}}</p>
@@ -214,11 +222,19 @@ export default{
 .container65 .first .roleimg{
     height: 198px;
     width: 198px;
+    background: url(../../../assets/source/bg1.png) no-repeat;
+    text-align: center;
 }
-.container65 .first .roleimg img{
+.container65 .first .roleimg  .roleimgbox{
+    height: 163px;
+    width: 170px;
+    text-align: center;
+    margin: 0 auto;
+}
+.container65 .first .roleimg .roleimgbox img{
     height: 100%;
     width: 100%;
-    background: url(../../../assets/source/bg1.png) no-repeat;
+    margin-top: 20px;   
 }
 .container65 .first .roleup .text{
     font-size: 18px;
@@ -411,11 +427,18 @@ export default{
 .container65 .three .roleimg{
     height: 140px;
     width: 198px;
+    background: url(../../../assets/source/bg1.png) no-repeat;
+}
+.container65 .three .roleimg  .roleimgbox{
+    height: 103px;
+    width: 150px;
+    text-align: center;
+    margin: 0 auto;
 }
 .container65 .three .roleimg img{
     height: 100%;
     width: 100%;
-    background: url(../../../assets/source/bg1.png) no-repeat;
+    margin-top: 20px;
 }
 .container65 .three .roleup .text{
     font-size: 18px;

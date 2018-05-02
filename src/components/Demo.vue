@@ -64,11 +64,12 @@ export default{
     left: -18px;
     top: -30px; 
     z-index: 50;
+    opacity: 0;
 }
 .container24 p{
     position: relative;
     top: -62px;
-    left: 77px;
+    left: 38px;
     font-size: 22px;
     color: #333;
     font-weight: 600;

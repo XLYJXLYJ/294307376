@@ -3092,12 +3092,12 @@ IDE_Morph.prototype.projectMenu = function () {
     var menu,
         myself = this,
         world = this.world(),
-        pos = this.controlBar.projectButton.bottomLeft(),
+        // pos = this.controlBar.projectButton.bottomLeft(),
         graphicsName = this.currentSprite instanceof SpriteMorph ?
                 'Costumes' : 'Backgrounds',
         shiftClicked = (world.currentKey === 16);
-
     menu = new MenuMorph(this);
+    menu.hide(true);
     menu.addItem('Project notes...', 'editProjectNotes');
     menu.addLine();
     menu.addPair('New', 'createNewProject', '^N');

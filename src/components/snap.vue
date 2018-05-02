@@ -8,6 +8,7 @@
                     <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
                     <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState"></li>
                     <li class="borderlight03"><img src="../assets/snappic/snapu.png" alt="" @click.prevent="handiframepublish"></li>
+                    <li><div @keyup.alt="handiframepublish"></div></li>
                     <li class="borderlight04" v-show="login"
                     @click="dialogLogin = true, 
                     dialogLoginshow = true, 
@@ -623,7 +624,7 @@ export default{
         },
            // 注册
         Registerbtn() {
-            var regusername = /^[a-zA-Z0-9]\w{4,16}$/;
+            var regusername = /^[a-zA-Z0-9]\w{3,16}$/;
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
             var regEmail= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
             let logintextpassword = this.publicKey;
@@ -779,7 +780,7 @@ export default{
             }) 
         },
         Getsessionname(){
-            if(sessionStorage.usernamesession){
+            if(sessionStorage.userid){
                 this.login = false;
                 this.sign = false;
                 this.$store.state.usernamesession02 = sessionStorage.usernamesession
@@ -1313,7 +1314,7 @@ export default{
     position: absolute;
     height: 14px;
     width: 95px;
-    top: 226px;
+    top: 238px;
     left: 291px;
     color: #F13232;
     font-size: 14px;
@@ -1324,7 +1325,7 @@ export default{
     position: absolute;
     height: 48px;
     width: 310px;
-    top: 254px;
+    top: 266px;
     left: 60px;
     background: #F13232;
     color: #fff;
@@ -1447,7 +1448,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 301px;
-    top: 382px;
+    top: 394px;
     left: 60px;
     background: #F13232;
     color: #fff;
@@ -1460,7 +1461,7 @@ export default{
     position: absolute;
     height: 14px;
     width: 141px;
-    top: 353px;
+    top: 365px;
     left: 60px;
     font-size: 15px;
     cursor: pointer;

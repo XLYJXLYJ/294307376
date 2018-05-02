@@ -1,18 +1,22 @@
 <template>
     <div class="container43">
         <div>
-            <img class="star" src="../../assets/user/starfish.png" alt="">
+            <!-- <img class="star" src="../../assets/user/starfish.png" alt=""> -->
             <p class="store">关注我的人</p>
              <!-- <img class="bg02" src="../../assets/user/bg02.png" alt=""> -->
             <img class="left" src="../../assets/user/left.png" alt="">
             <ul class="follow" v-show="nosend">
                 <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
                     <div class="share">
-                        <img src="../../assets/user/user.png" alt="">
+                        <img :src="item.imgBuffer" alt="">
                         <p>{{item.username}}</p>
                     </div>
                 </li>
             </ul>
+            <div class="sharebg" v-show="sharebg">
+                <img src="../../assets/user/bg02.png" alt="">
+                <div class="makedemotext"><router-link to="snap">去snap</router-link><p>创造作品</p> <br/><span>让人关注</span></div>
+            </div>
             <img class="right" src="../../assets/user/right.png" alt="">
         </div>
     </div>
@@ -22,7 +26,8 @@
         data(){
             return{
                 list:'',
-                nosend:true
+                nosend:true,
+                sharebg:''
             }
         },
         mounted: function () {      
@@ -35,10 +40,14 @@
                         state:5
                     })
                     .then(response => {     
-                    if(response.data.data.msg==="这回真的没有了~"){
-                        this.nosend = false
-                    } else{
-                        this.list = response.data.data
+                    this.list = response.data.data
+                    console.log(this.list)
+                    if(!response.data.data){
+                        this.nosend=false,
+                        this.sharebg=true
+                    }else{
+                        this.nosend=true,
+                        this.sharebg=false
                     }    
                 })
             }
@@ -61,7 +70,7 @@
     color: #333;
     position: absolute;
     top: 22px;
-    left: 71px;
+    left: 19px;
     font-size: 22px;   
 }
 .container43 .follow p{
@@ -100,5 +109,34 @@
     position: absolute;
     left: 1128px;
     top: 92px;
+}
+.container43 .makedemotext{
+    position: relative;
+    top: -170px;
+    left: 20px;
+}
+.container43 .makedemotext a{
+    position: relative;
+    top: 15px;
+    color: #f13232;
+    font-size: 16px;
+    display: inline-block;
+}
+.container43 .makedemotext p{
+    position: relative;
+    left: 54px;
+    top: -6px;
+
+}
+.container43 .makedemotext span{
+    position: relative;
+    top: -10px;
+    font-size: 16px;
+    color: #999;
+}
+.container43 .sharebg{
+    position: relative;
+    left: 449px;
+    top: 28px;
 }
 </style>

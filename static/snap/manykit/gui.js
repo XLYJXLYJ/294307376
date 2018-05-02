@@ -73,3 +73,12 @@ IDE_Morph.prototype.exportProject_MANYKIT= function (name, plain) {
         }
     }
 };
+
+
+IDE_Morph.prototype.save = function () {
+    console.log('')
+};
+
+IDE_Morph.prototype.openProjectsBrowser = function () {
+    console.log('')
+};

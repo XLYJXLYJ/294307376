@@ -1,7 +1,7 @@
 <template>
     <div class="container40">
         <div>
-            <img class="star" src="../../assets/user/starfish.png" alt="">
+            <!-- <img class="star" src="../../assets/user/starfish.png" alt=""> -->
             <p class="store">我分享的作品</p>
             <img class="left" src="../../assets/user/left.png" alt="">
             <ul class="block" v-show="nosend">
@@ -90,7 +90,7 @@
     color: #333;
     position: absolute;
     top: 19px;
-    left: 59px;  
+    left: 19px;  
     font-size: 22px; 
 }
 .container40 .block p{

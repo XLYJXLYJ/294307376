@@ -35,7 +35,11 @@
         <div class="first">
             <ul class="role">
                 <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
-                    <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
+                    <div class="roleimg">
+                        <div class="roleimgbox">
+                             <img :src="'/codeplay/'+item.content" alt="">
+                        </div>
+                    </div>
                     <div class="roleup">
                     <button><a :href="'/codeplay/'+item.content" download="素材.png">下载</a></button>
                         <p class="text">{{item.name}}</p>
@@ -603,11 +607,18 @@ export default{
 .container66 .first .roleimg{
     height: 198px;
     width: 198px;
+    background: url(../../../assets/source/bg1.png) no-repeat;
 }
-.container66 .first .roleimg img{
+.container66 .first .roleimg .roleimgbox{
+    height: 163px;
+    width: 170px;
+    text-align: center;
+    margin: 0 auto;
+}
+.container66 .first .roleimg .roleimgbox img{
     height: 100%;
     width: 100%;
-    background: url(../../../assets/source/bg1.png) no-repeat;
+    margin-top: 20px;
 }
 .container66 .first .roleup .text{
     font-size: 18px;

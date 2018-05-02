@@ -586,7 +586,7 @@ IDE_Morph.prototype.createLogo = function () {
 
     this.logo.color = new Color();
     this.logo.setExtent(new Point(200, 28)); // dimensions are fixed
-    this.add(this.logo);
+    // this.add(this.logo);//注释
 };
 
 IDE_Morph.prototype.createControlBar = function () {
@@ -850,7 +850,7 @@ IDE_Morph.prototype.createControlBar = function () {
     // button.hint = 'open, save, & annotate project';
     button.fixLayout();
     projectButton = button;
-    this.controlBar.add(projectButton);
+    // this.controlBar.add(projectButton);//注释
     this.controlBar.projectButton = projectButton; // for menu positioning
 
     // settingsButton
@@ -897,7 +897,7 @@ IDE_Morph.prototype.createControlBar = function () {
     // button.hint = 'cloud operations';
     button.fixLayout();
     cloudButton = button;
-    this.controlBar.add(cloudButton);
+    // this.controlBar.add(cloudButton);//注释
     this.controlBar.cloudButton = cloudButton; // for menu positioning
 
     this.controlBar.fixLayout = function () {
@@ -4944,7 +4944,8 @@ IDE_Morph.prototype.languageMenu = function () {
 
 IDE_Morph.prototype.setLanguage = function (lang, callback) {
     var translation = document.getElementById('language'),
-        src = this.resourceURL('lang-' + lang + '.js'),
+        // src = this.resourceURL('lang-' + lang + '.js'),
+        src = this.resourceURL('lang-' + 'zh_CN' + '.js'),
         myself = this;
     SnapTranslator.unload();
     if (translation) {
