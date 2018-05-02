@@ -106,7 +106,7 @@
                             <el-form-item prop="code">
                                     <input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码">
                             </el-form-item>
-                            <button class="iden02" @click.prevent="Getcodebtn">获取验证码</button>
+                            <button class="iden02" @click.prevent="Getcodebtn" :disabled="disabled">{{btntxt}}</button>
                             <button class="register"  @click.prevent="Getusercodebtn">下一步</button>
                         </el-form>
                     </div>
@@ -144,6 +144,9 @@ export default {
             usercenter: false,
             msg:'',
             publicKey:'',
+            disabled:false,
+            time:0,
+            btntxt:'获取验证码',
             // dropdowm:false,
             formLogin: {
                 username: '',
@@ -327,14 +330,30 @@ export default {
                     mail:this.formReset.mail
                 })
                 .then(response => {
+                    console.log(response)
                     this.$message({
                     message: response.data.data.msg,
                     center: true
                     });
+                    this.time=60;
+                    this.disabled=true;
+                    this.timer();
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
+            }
+        },
+        //验证60s
+        timer() {
+            if (this.time > 0) {
+                    this.time--;
+                    this.btntxt=this.time+"s后重新获取";
+                    setTimeout(this.timer, 1000);
+            } else{
+                    this.time=0;
+                    this.btntxt="获取验证码";
+                    this.disabled=false;
             }
         },
         //获取用户验证码

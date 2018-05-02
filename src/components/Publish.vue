@@ -104,7 +104,7 @@ export default {
 
 
         submitUpload(){
-            if(this.indexdemoid==19){
+            if(this.indexdemoid==19){//用户自己上传图片
                 this.picdemo = this.$store.state.demoxmlid
                 sessionStorage.picdemo = this.picdemo
                 sessionStorage.demoname = this.demoname
@@ -122,7 +122,7 @@ export default {
                 //     console.log(sessionStorage.demodes)
                 // }  
             }else{
-                this.axios.post('/res/dealfile',{
+                this.axios.post('/res/dealfile',{//选择默认图片
                     id:this.$store.state.demoxmlid,
                     userid:sessionStorage.userid,
                     title:this.demoname,
@@ -147,7 +147,7 @@ export default {
             formData.append('title',sessionStorage.demoname);
             formData.append('desc',sessionStorage.demodes);
             formData.append('state',3);
-            formData.append('surfaceplot',this.indexdemoid);
+            formData.append('surfaceplot',9);
             formData.append('files',picsource);
             formData.append('coverworkid',this.$store.state.demoxmlid);
             let config = {
