@@ -9,10 +9,10 @@
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id,item.state)">修改</button></router-link>
                 <button class="button02">加入</button>
-                <span class="down"><i class="icon_see"><span>{{item.looktitle}}</span></i></span>
+                <span class="down"><i class="icon_see"><span>{{item.looktotal}}</span></i></span>
                 <span class="down"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
                 <span class="down"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
-                <p class="cancelpub" @click="Canpublic(item.id,item.state)">{{item.state==0?'删除':'取消发布'}}</p>
+                <p class="cancelpub" @click.prevent.stop="Canpublic(item.id,item.state)">{{item.state==0?'删除':'取消发布'}}</p>
             </li>
         </ul>  
     </div>
@@ -39,8 +39,9 @@ import { formatDate } from '../../public/time.js'
         },
         methods:{
             edit(id,state){
-                id:id,                  
-                this.$store.state.demoxmlid = id
+                id:id,     
+                this.$store.state.demoxmlid = id             
+                sessionStorage.snapdemoid = id
                 this.$store.state.publicstate = state
             },
             getalldemo(){

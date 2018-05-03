@@ -11,7 +11,7 @@
                          </div>
                     </div>
                     <div class="roleup">
-                        <button><a :href="'/codeplay'+item.content" download>下载</a></button>
+                        <a :href="'/codeplay'+item.content" download><button>下载</button></a>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>  
@@ -25,7 +25,7 @@
                 <li v-for="(item,index) in list02" :key="item.id" v-if='index<10'>
                     <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                     <div class="roleup">
-                        <button><a :href="'/codeplay'+item.content" download>下载</a></button>
+                       <a :href="'/codeplay'+item.content" download><button>下载</button></a>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>  
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="roleup">
-                        <button><a :href="'/codeplay'+item.content" download>下载</a></button>
+                        <a :href="'/codeplay'+item.content" download><button>下载</button></a>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>
@@ -199,10 +199,10 @@ export default{
     text-decoration: none; 
 
 }
-.container65 .first .roleup a:hover{
+/* .container65 .first .roleup a:hover{
     color: #fff; 
     background: #F13232;
-}
+} */
 .container65 .first .roleup button{
     width: 60px;
     height: 26px;

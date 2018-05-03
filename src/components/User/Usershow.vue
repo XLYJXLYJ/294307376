@@ -4,7 +4,7 @@
             <!-- <img class="star" src="../../assets/user/starfish.png" alt=""> -->
             <p class="store">关注我的人</p>
              <!-- <img class="bg02" src="../../assets/user/bg02.png" alt=""> -->
-            <img class="left" src="../../assets/user/left.png" alt="">
+            <img class="left" src="../../assets/user/left.png" alt="" @click="Pagingdown">
             <ul class="follow" v-show="nosend">
                 <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
                     <div class="share">
@@ -17,7 +17,7 @@
                 <img src="../../assets/user/bg02.png" alt="">
                 <div class="makedemotext"><router-link to="snap">去snap</router-link><p>创造作品</p> <br/><span>让人关注</span></div>
             </div>
-            <img class="right" src="../../assets/user/right.png" alt="">
+            <img class="right" src="../../assets/user/right.png" alt="" @click="Pagingup">
         </div>
     </div>
 </template>
@@ -27,7 +27,8 @@
             return{
                 list:'',
                 nosend:true,
-                sharebg:''
+                sharebg:'',
+                i:1
             }
         },
         mounted: function () {      
@@ -37,7 +38,8 @@
             Getalldemo(){
                 this.axios.post('/res/userinfo',{
                         userid:sessionStorage.userid,
-                        state:5
+                        state:5,
+                        pagesize:8
                     })
                     .then(response => {     
                     this.list = response.data.data
@@ -50,7 +52,47 @@
                         this.sharebg=false
                     }    
                 })
-            }
+            },
+            Pagingup(){
+                ++this.i
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.userid,
+                        state:5,
+                        pagenum:this.i,
+                        pagesize:8
+                    })
+                    .then(response => {   
+                        if(response.data.data){
+                            this.$message({
+                                message:'没有其他作品了~',
+                                center:true
+                            })
+                        }else{
+                            this.list = response.data.data 
+                        }  
+                })
+            },
+            Pagingdown(){
+                    --this.i
+                    if(this.i<=1){
+                    this.i=1
+                    this.$message({
+                        message:'已经到第一页了~',
+                        center:true
+                    })
+                    }else{
+                    this.i=this.i
+                    }
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.userid,
+                        state:5,
+                        pagenum:this.i,
+                        pagesize:8
+                    })
+                    .then(response => {        
+                        this.list = response.data.data
+                })
+            },
         }
     }
 </script>

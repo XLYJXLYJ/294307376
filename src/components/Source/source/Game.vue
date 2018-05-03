@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="roleup">
-                <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
+                <a :href="'/codeplay/'+item.content" download><button>下载</button></a>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>
@@ -320,6 +320,7 @@ export default{
     margin-right: 14px;
     font-weight: 600;
     padding-right: 15px;
+    cursor: pointer;
 }
 .container64 .sort01 ul li:hover{
     color:#fff;
@@ -491,10 +492,10 @@ export default{
     text-decoration: none; 
 
 }
-.container64 .first .roleup a:hover{
+/* .container64 .first .roleup a:hover{
     color: #fff; 
     background: #F13232;
-}
+} */
 .container64 .first .roleup button:hover{
     background: #F13232;
     color: #fff;

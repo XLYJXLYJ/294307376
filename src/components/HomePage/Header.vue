@@ -303,13 +303,22 @@ export default {
                     mail:this.formRegister.mail
                 })
                 .then(response => {
-                    this.registermsg = response.data.data.msg;
+                    if(response.data.data){
+                        this.registermsg = response.data.data.msg;
+                        this.$message({
+                        message: this.registermsg,
+                        center: true
+                        }); 
+                    }else{
+                        this.registermsg = response.data.errmsg;
+                        this.$message({
+                        message: this.registermsg,
+                        center: true
+                        }); 
+                    }
                     console.log(response)
-                    this.$message({
-                    message: this.registermsg,
-                    center: true
-                    });  
-                    this.dialogLogin = false  
+ 
+                    this.dialogLogin = false 
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -412,17 +421,20 @@ export default {
         Getsession() {  
             this.axios.get('/res/verify')
             .then(response =>{
+                console.log(response)
                 if(response.data.data.userid){
-                    console.log(response)
+                    console.log(111)
                     this.publicKey = response.data.data.publicKey
                     // this.dialogLogin = false;
                     this.loginsign = false;
+                    this.usercenter = true;
                     sessionStorage.userid = response.data.data.userid
                     sessionStorage.usernamesession = response.data.data.username
                     this.$store.state.usernamesession02 = sessionStorage.usernamesession
                     this.$store.state.userid = sessionStorage.userid
-                    this.usercenter = true;
+                    
                 }else{
+                    console.log(333)
                     this.dialogLogin = false;
                     this.loginsign = true;
                     this.usercenter = false;
@@ -432,12 +444,11 @@ export default {
         },
         Getsessionname(){
             if(sessionStorage.userid){
+                console.log(222)
                 this.$store.state.usernamesession02 = sessionStorage.usernamesession
                 this.$store.state.userid = sessionStorage.userid
                 this.dialogLogin = false;
                 this.loginsign = false;
-
-                this.usercenter = true; 
             }
         },
         // 退出登陆

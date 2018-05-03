@@ -3,7 +3,7 @@
         <div>
             <!-- <img class="star" src="../../assets/user/starfish.png" alt=""> -->
             <p class="store">我分享的作品</p>
-            <img class="left" src="../../assets/user/left.png" alt="">
+            <img class="left" src="../../assets/user/left.png" alt="" @click="Pagingdown">
             <ul class="block" v-show="nosend">
                 <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
                     <div class="share">
@@ -28,7 +28,7 @@
                 list:'',
                 nosend:false,
                 sharebg:true,
-                i:0,
+                i:1,
             }
         },
         mounted: function () {      
@@ -52,23 +52,43 @@
                 })
             },
             Pagingup(){
-                this.i = this.i+6
+                ++this.i
                 this.axios.post('/res/filelist',{
                         userid:sessionStorage.userid,
-                        state:1
+                        state:1,
+                        pagenum:this.i,
+                        pagesize:8
                     })
-                    .then(response => {       
-                        this.list = response.data.data.slice(this.i,this.i+6)
+                    .then(response => {   
+                        if(response.data.data){
+                            this.$message({
+                                message:'没有其他作品了~',
+                                center:true
+                            })
+                        }else{
+                           this.list = response.data.data 
+                        }  
                 })
             },
             Pagingdown(){
-                this.i = this.i-6
+                 --this.i
+                 if(this.i<=1){
+                    this.i=1
+                    this.$message({
+                        message:'已经到第一页了~',
+                        center:true
+                    })
+                 }else{
+                    this.i=this.i
+                 }
                 this.axios.post('/res/filelist',{
                         userid:sessionStorage.userid,
-                        state:1
+                        state:1,
+                        pagenum:this.i,
+                        pagesize:8
                     })
                     .then(response => {        
-                        this.list = response.data.data.slice(this.i,this.i+6)
+                        this.list = response.data.data
                 })
             },
         }

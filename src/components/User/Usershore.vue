@@ -3,7 +3,7 @@
         <div>
             <!-- <img class="star" src="../../assets/user/starfish.png" alt=""> -->
             <p class="store">我收藏的作品</p>
-            <img class="left" src="../../assets/user/left.png" alt="">
+            <img class="left" src="../../assets/user/left.png" alt="" @click="Pagingdown">
             <ul class="block" v-show="nosend">
                 <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
                     <div class="share">
@@ -17,7 +17,7 @@
                 <img src="../../assets/user/bg02.png" alt="">
                 <div class="makedemotext"><router-link to="Home">到首页</router-link><p>收藏作品</p> <br/><span>还没有收藏作品</span></div>
             </div>
-            <img class="right" src="../../assets/user/right.png" alt="">
+            <img class="right" src="../../assets/user/right.png" alt="" @click="Pagingup">
         </div>
     </div>
 </template>
@@ -29,6 +29,7 @@ export default {
             nosend:false,
             sharebg:true,
             list:'',
+            i:1
         };
     },
     mounted:function(){
@@ -54,26 +55,46 @@ export default {
                 console.log(error);
             });
         },
-        Pagingup(){
-            this.i = this.i+6
-            this.axios.post('/res/filelist',{
-                    userid:sessionStorage.userid,
-                    state:1
+            Pagingup(){
+                ++this.i
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.userid,
+                        state:3,
+                        pagenum:this.i,
+                        pagesize:8
+                    })
+                    .then(response => {   
+                        if(response.data.data){
+                            this.$message({
+                                message:'没有其他作品了~',
+                                center:true
+                            })
+                        }else{
+                           this.list = response.data.data 
+                        }  
                 })
-                .then(response => {       
-                    this.list = response.data.data.slice(this.i,this.i+6)
-            })
-        },
-        Pagingdown(){
-            this.i = this.i-6
-            this.axios.post('/res/filelist',{
-                    userid:sessionStorage.userid,
-                    state:1
+            },
+            Pagingdown(){
+                 --this.i
+                 if(this.i<=1){
+                    this.i=1
+                    this.$message({
+                        message:'已经到第一页了~',
+                        center:true
+                    })
+                 }else{
+                    this.i=this.i
+                 }
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.userid,
+                        state:3,
+                        pagenum:this.i,
+                        pagesize:8
+                    })
+                    .then(response => {        
+                        this.list = response.data.data
                 })
-                .then(response => {    
-                    this.list = response.data.data.slice(this.i,this.i+6)
-            })
-        },
+            },
     }
   }
 </script>

@@ -63,7 +63,11 @@ export default{
                 this.$store.state.productiondemo=false
                 }
             })
-        }
+        },
+        edit01(id){                 
+            sessionStorage.id = id
+            this.$store.state.shareid=id
+        },
     }
 }
 </script>
@@ -93,6 +97,9 @@ export default{
     width: 100%;
     height: 100%;
 }
+.search01 .imgcon img:hover{
+    border: 1px solid #d0d0d0;
+}
 .search01 p{
     font-size: 20px;
     position: relative;
@@ -110,6 +117,12 @@ export default{
     width: 170px;
     height: 20px;
     overflow: hidden;
+}
+.search01 .game_cat:hover{
+    color: #F13232;
+}
+.search01 p:hover{
+    color: #F13232;
 }
 .search01 .icon_see{
     background:url(../../assets/home/icon_see.png) no-repeat;
@@ -200,5 +213,8 @@ export default{
     left: 300px;
     top:-46px;
     cursor: pointer;
+}
+.searchdemo a{
+    text-decoration: none;
 }
 </style>

@@ -5,7 +5,7 @@
             <div class="container24">
                 <img class="star01" src="../assets/Download/starfish.png" alt="">  
                 <p>我的管理中心</p>
-                <router-link to="/snap"><button>新建作品</button></router-link>
+                <router-link to="/snap"><button @click="clearsession">新建作品</button></router-link>
                 <div class="mydemo_frame">
                     <router-link class="Mydemo" to="/Demo/Mydemo">作品</router-link>
                     <router-link class="Delete" to="/Demo/Delete">废纸篓</router-link>
@@ -28,7 +28,10 @@ export default{
     methods:{
         demoroute(){
             this.$router.push({ name: 'Alldemohaha' })
-        }
+        },
+        clearsession(){
+            sessionStorage.snapdemoid = ''
+        },
     },
     components:{
         Header,

@@ -41,7 +41,13 @@
             </div>
         </div>
         <!-- 参数播放 -->
-        <iframe class="snap" src="static/snap/pxsnap.html" name="snap" frameborder="0"></iframe>
+
+            <iframe class="snap" v-show="snap01" src="static/snap/pxsnap.html" name="snap01" frameborder="0"></iframe>
+
+
+            <iframe class="snap" frameborder="0" v-show="snap02" :src="'static/snap/pxsnap.html#present:Username=lynn&ProjectName='+snapdemoid" id="myFrameId"  name="snap02"></iframe>
+
+         
 
         <!-- 接口播放 -->
         <!-- <iframe class="snap" :src="'static/player/pxsnap.html#open:/codeplay/file/'+this.$store.state.demoxmlid+'.xml'" name="snap" frameborder="0"></iframe> -->
@@ -54,7 +60,7 @@
                             <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">
                             <img class="sign_logo" src="../assets/login/login_logo.png" alt=""> -->
                             <el-form-item class="iden01">
-                                <el-input type="text" v-model="formSave.title" auto-complete="off" placeholder="请输入项目名称"></el-input>
+                                <el-input type="text" class="texttitle" v-model="formSave.title" auto-complete="off" placeholder="请输入项目名称"></el-input>
                             </el-form-item>
                             <el-form-item  class="iden02">
                                 <textarea type="text" class="textdes" v-model="formSave.desc" auto-complete="off" placeholder="请输入项目描述"></textarea>
@@ -123,7 +129,7 @@
             </div>
         </transition> -->
 
-            <transition name="el-fade-in-linear">
+        <transition name="el-fade-in-linear">
             <div>
                 <el-dialog :visible.sync="dialogOpen" :modal="false" width="420px">
                     <div class="container503">
@@ -234,6 +240,9 @@ export default{
             editdes:'',
             snapshow:'作品名称',
             focusState:'',
+            snapdemoid:'',
+            snap01:'',
+            snap02:'',
             // 登录注册变量
             dialogRegister: false,
             dialogLoginshow:false,
@@ -310,10 +319,20 @@ export default{
         }
     },
     mounted(){
+        this.Getsession()
         this.loadprojectxml()
         this.loadprojectdes()
-        this.Getsession()
-        this.Getsessionname()
+        this.snapdemoid= sessionStorage.snapdemoid
+        console.log(sessionStorage.snapdemoid)
+        if(sessionStorage.snapdemoid == undefined||sessionStorage.snapdemoid == ''){
+            this.snap02=false
+            this.snap01=true
+        }else{
+            this.snap02=true
+            this.snap01=false
+        }
+        // window.frames["snap"].ide.droppedText(this.demoxml,'OPEN') 
+        // window.frames["snap"].ide.haha()
     },
     directives: {
         focus: {
@@ -327,6 +346,8 @@ export default{
     methods: {
         //另存为
         anothersave(){
+            this.snap02=true
+            this.snap01=false
             if(this.snapshow){
                 this.snapshow = this.snapshow + '-1'
                 this.snapdropdown01 = false
@@ -334,7 +355,7 @@ export default{
                 this.formSave.userid = sessionStorage.userid
                 this.formSave.title=this.snapshow
                 this.formSave.desc=this.editdes
-                this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT(' ')
+                this.formSave.file = window.frames["snap02"].ide.exportProject_MANYKIT(' ')
                 let filebir = this.formSave.file
                 this.filebinary = new Blob([filebir]);
                 this.submitUpload()
@@ -372,12 +393,15 @@ export default{
              this.axios.post('/res/getfile',{
                 id:this.$store.state.demoxmlid,
             })
-            .then(response => {                          
+            .then(response => {      
+                // this.snapdemoid= this.$store.state.demoxmlid 
+                // console.log(this.snapdemoid+'zuopin')                 
                this.demoxml = response.data  
-            //    console.log(this.$store.state.demoxmlid)
-               window.frames["snap"].ide.droppedText(this.demoxml,'OPEN') 
-            })
-            
+               console.log(this.demoxml)
+                //console.log(this.$store.state.demoxmlid)
+                //  window.frames["snap"].ide.openProjectString(this.demoxml)
+                //window.frames["snap"].ide.rawOpenProjectString(this.demoxml,'OPEN')   
+            })   
         },
         loadprojectdes(){
             // if(sessionStorage.userid!=='unfined')
@@ -396,6 +420,8 @@ export default{
         },
         // 打开文件
         open() {
+            this.snap02=false
+            this.snap01=true
             var seq_id =document.getElementById('xml_seq').value; //根据id得到值
             var index= seq_id.indexOf("."); //得到"."在第几位
             seq_id=seq_id.substring(index);  //截断"."之前的，得到后缀
@@ -411,7 +437,7 @@ export default{
                 reader.readAsText(this.$refs.file.files[0]);
                 reader.onload = function () {    
                     this.readfilebinary=this.result
-                    window.frames["snap"].ide.droppedText(this.readfilebinary,'HHH')   
+                    window.frames["snap01"].ide.droppedText(this.readfilebinary,'HHH')   
                 } 
             }
 
@@ -420,18 +446,30 @@ export default{
 
         // 新建文件
         newproject() {
-            window.frames["snap"].ide.newProject()
+            this.snap02=false
+            this.snap01=true
+            window.frames["snap02"].ide.newProject()
             this.dialogNew=false
+            sessionStorage.snapdemoid = ''
         },
 
          // 下载文件
         download(name) {
-            this.formSave.file = window.frames["snap"].ide.exportProject (name)
+            // this.snap02=false
+            // this.snap01=true
+            if(this.snap02){
+                this.formSave.file = window.frames["snap02"].ide.exportProject (name)
+            }else{
+                this.formSave.file = window.frames["snap01"].ide.exportProject (name)
+            }
+            
+            
             this.dialogExport=false
         },
 
         // 保存文件
         handiframe() {
+            this.snapdropdown01=false
         　　if(window.navigator.onLine==true) {　
                 if(sessionStorage.userid){              //已保存再保存(编辑)
                     if(this.$store.state.demoxmlid){
@@ -439,7 +477,7 @@ export default{
                         this.dialogSave = true
                         this.formSave.title=this.edittittle
                         this.formSave.desc=this.editdes
-                        this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT(' ')
+                        this.formSave.file = window.frames["snap02"].ide.exportProject_MANYKIT(' ')
                         let filebir = this.formSave.file
                         this.filebinary = new Blob([filebir]);
                     }else{                             //未保存保存
@@ -447,7 +485,7 @@ export default{
                         this.dialogSave = true
                         this.formSave.title=''
                         this.formSave.desc=''
-                        this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT(' ')
+                        this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT(' ')
                         let filebir = this.formSave.file
                         this.filebinary = new Blob([filebir]);
                     }
@@ -525,7 +563,7 @@ export default{
                         }
                     }else{
                         this.dialogupload = true
-                        this.formSave.file = window.frames["snap"].ide.exportProject_MANYKIT('whatever')
+                        this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT('o')
                         let filebir = this.formSave.file
                         this.filebinary = new Blob([filebir]);
                         let formData = new FormData();
@@ -613,8 +651,9 @@ export default{
                 }else{
                     console.log('denglu')
                     this.dialogLogin = false
-                    this.Getsessionname()
                     this.Getsession()
+                    this.Getsessionname()
+                   
                 }
             })
             .catch(function (error) {
@@ -760,12 +799,13 @@ export default{
         Getsession() {  
             this.axios.get('/res/verify')
             .then(response =>{
+                console.log(response)
                 if(response.data.data.userid){
                     this.dialogLogin =false
                     this.publicKey = response.data.data.publicKey
                     this.login = false;
                     this.sign = false;
-                    console.log(response.data.data.userid)
+                    console.log(response)
                     sessionStorage.userid = response.data.data.userid
                     sessionStorage.usernamesession = response.data.data.username
                     this.$store.state.usernamesession02 = sessionStorage.usernamesession
@@ -785,7 +825,6 @@ export default{
                 this.sign = false;
                 this.$store.state.usernamesession02 = sessionStorage.usernamesession
                 this.$store.state.userid = sessionStorage.userid
-                this.user = true; 
             }
         },
         Homepass(){
@@ -1029,10 +1068,10 @@ export default{
 .container50 .iden01{
     position: absolute;
     height: 49px;
-    width: 297px;
+    width: 286px;
     top: 58px;
-    left: 60px;
-    padding-left: 10px;
+    left: 68px;
+    padding-left: 0px;
 }
 .container50 .iden02{
     position: absolute;
@@ -1059,12 +1098,15 @@ export default{
     left: 160px;
     padding-left: 10px;
 }
+.container50 .texttitle{
+    color: #333;
+}
 .container50 .textdes{
     height: 110px;
     width: 278px;
     padding: 8px;
     border: 1px solid #dcdfe6;
-    color: #dcdfe6;
+    color: #333;
 }
 .container50 .register{
     position: absolute;

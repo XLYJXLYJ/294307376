@@ -25,7 +25,7 @@
                 <div class="makedemotext"><router-link to="snap">创作</router-link><p>你的封面作品</p> <br/><span>还没有封面作品</span></div>
             </div>  
             <div class="demoimg" v-show="demoimg">
-                <img class="userdemo" :src="'codeplay/'+demoimageUrl" alt="">
+                <img class="userdemo" :src="demoimageUrl" alt="">
             </div>   
             <p class="name01">封面作品</p>
             <p class="atten01">暂无作品</p>
@@ -93,22 +93,29 @@ import Vue from 'vue'
                         this.looktotal = response.data.data.looktotal
                         if(response.data.data.coverworkid == 'null'){
                             this.demonone=true,
-                            this.demoimg=false
+                            this.demoimg=false,
+                            console.log('000111')
                         }else{
+                            this.getdemoimg()
                             this.demonone=false,
                             this.demoimg=true
-                            this.getdemoimg()
+                             console.log(1112222)
                         }
                 })
             },
             getdemoimg(){
                 this.axios.post('/res/getfile',{
+                    userid:sessionStorage.userid,
                     id:this.demoimageid,
                     state:1
                 })
                 .then(response =>{
-                    console.log(response)
-                    this.demoimageUrl=response.data.data.imgBuffer
+                    if(response.data.data){
+                        this.demonone=true,
+                        this.demoimg=false
+                    }else{
+                        this.demoimageUrl=response.data.data.imgBuffer
+                    }
                 })
             },
             Postuseinfo(){

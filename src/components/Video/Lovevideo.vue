@@ -128,7 +128,7 @@ import { formatDate } from '../../public/time.js'
     width: auto;
     font-size: 14px;
     position: relative;
-    left: 124px;
+    left: 126px;
     top: 77px;
 }
 .container38 .icon_see_see01{

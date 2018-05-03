@@ -5,7 +5,7 @@
             <div class="fengexian"></div>
             <div class="demoname"><p>作品名称</p><input :rules="rules" v-model="demoname" type="text" placeholder="请填写作品名"> </div>
             <div class="demodes"><p>作品说明</p><textarea :rules="rules" v-model="demodes" type="text" placeholder="请填写作品描述"> </textarea></div>
-            <a href="#/snap"><button class="returngo">返回</button></a>  
+            <a href="#/snap"><button class="returngo" @click="returngo">返回</button></a>  
             <div class="userpic"><input type="file" ref="file_el" @change="choise_file"> 
                 <img :src="imageUrl">
             </div>
@@ -139,7 +139,9 @@ export default {
                 })
             }
         },
-
+        returngo(){
+            sessionStorage.snapdemoid = this.$store.state.demoxmlid
+        },
         uploadFile(picsource){
             let formData = new FormData();
             formData.append('id',sessionStorage.picdemo);

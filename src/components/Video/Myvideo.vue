@@ -133,7 +133,7 @@ export default{
     width: auto;
     font-size: 14px;
     position: relative;
-    left: 124px;
+    left: 126px;
     top: 77px;
 }
 .container37 .icon_see_see01{

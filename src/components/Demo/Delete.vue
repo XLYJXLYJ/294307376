@@ -8,8 +8,8 @@
                     <span class="deltime01">删除时间{{item.update_time|formatDate}}</span>
                     <!-- <span class="deltime02">上午11：12：51</span> -->
                 </div>
-                <button class="button01" @click="restore(item.id)">还原</button>
-                <button class="button02" @click="deletedemo(item.id)">删除</button>
+                <button class="button01" @click.prevent.stop="restore(item.id)">还原</button>
+                <button class="button02" @click.prevent.stop="deletedemo(item.id)">删除</button>
             </li>
         </ul>  
     </div>

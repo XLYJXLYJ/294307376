@@ -9177,7 +9177,3 @@ SoundRecorderDialogMorph.prototype.destroy = function () {
     SoundRecorderDialogMorph.uber.destroy.call(this);
 };
 
-
-IDE_Morph.prototype.haha = function() {
-    console.log('haha')
-};

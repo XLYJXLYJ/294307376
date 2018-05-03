@@ -16,7 +16,7 @@
                     <div class="roleimg"><img class="imglesson" :src="'/codeplay'+item.content"></div>
                     <div class="roleup">
                         <!-- <button @click="collectmaster(item.id)">采集</button> -->
-                        <button @click="downloadmaster(item.id)"><a :href="'/codeplay'+item.content" download="素材.png">下载</a></button>
+                        <a :href="'/codeplay'+item.content" download><button @click="downloadmaster(item.id)">下载</button></a>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>
@@ -227,6 +227,7 @@ export default{
     border: 1px solid #F13232;
     margin-right: 14px;
     font-weight: 600;
+    cursor: pointer;
 }
 .container6400 .sort01 ul li:hover{
     color:#fff;
@@ -397,10 +398,10 @@ export default{
     background: #F13232;
     color: #fff;
 }
-.container6400 .first .roleup a{
+/* .container6400 .first .roleup a{
     text-decoration: none;
     color: #F13232;
-}
+} */
 .container6400 .first .roleup a:hover{
     text-decoration: none;
     color: #fff;

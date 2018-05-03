@@ -121,6 +121,9 @@
     height: 20px;
     overflow: hidden;
 }
+.container01 .game_cat:hover{
+    color: #F13232;
+}
 .container01 .icon_see{
     background:url(../../../assets/home/icon_see.png) no-repeat;
 }
@@ -143,7 +146,7 @@
 .container01 .buttonloaddown{
     position: relative;
     top: 46px;
-    left: 284px;
+    left: 320px;
     width: 192px;
     height: 50px;
     background-color:#707070;
@@ -197,7 +200,7 @@
 }
 .container01 .down03 span{
     position: relative;
-    margin-left: 15px;
+    margin-left: 18px;
     font-style: normal;
     color: #959595;
     font-size: 16px;

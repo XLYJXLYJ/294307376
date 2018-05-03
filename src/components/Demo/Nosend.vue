@@ -9,7 +9,7 @@
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
                 <router-link to="/publish"><button class="button02" @click="publish(item.id)">发布</button></router-link> 
-                <p class="cancelpub" @click="deletedemo(item.id)">删除</p>
+                <p class="cancelpub" @click.prevent.stop="deletedemo(item.id)">删除</p>
             </li>    
         </ul>  
     </div>
@@ -56,6 +56,7 @@ import { formatDate } from '../../public/time.js'
             edit(id){
                 id:id,                  
                 this.$store.state.demoxmlid = id
+                sessionStorage.snapdemoid = id
             },
             publish(id){
                 this.$store.state.demoxmlid = id
