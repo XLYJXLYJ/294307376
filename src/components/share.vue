@@ -7,7 +7,7 @@
             <p class="three">作者:{{list.name}}</p>
         </div>
         <div class="sharevideo">
-            <iframe class="video" frameborder="0" :src="'static/player/index.html#present:Username=lynn&ProjectName='+demoid" id="myFrameId"  name="snapplay"></iframe>    
+            <iframe class="video" frameborder="0" :src="bannerUrl01" id="myFrameId"  name="snapplay"></iframe>    
         </div>   
         <div class="sharecomment">
           <ul>
@@ -40,6 +40,7 @@ export default{
             demoid:'',
             bannerUrl: '',
             demoxml:'',
+            bannerUrl01:'',
             item:{
                 // url:"static/ceshi/snap.html#present:Username=jens&ProjectName=tree%20animation"
                 url:'https://www.baidu.com/'
@@ -47,53 +48,17 @@ export default{
         }
     },
     mounted(){
-        this.loadproject()      
-        this.loadprojectplay()
-        this.demoid = sessionStorage.id    
-        // this.bannerUrl = 'http://www.manykit.com/codeplay/static/ static/player/index.html#present:Username=lynn&ProjectName=haha'
+        this.demoid = sessionStorage.id   
+        this.demoid01 = this.$store.state.shareid  
+        this.bannerUrl01 = 'static/js/index.html#present:Username=lynn&ProjectName='+1
         this.bannerUrl = 'http://www.manykit.com/codeplay/#/static/player/index.html#present:Username=lynn&ProjectName='+this.demoid
-        console.log(this.bannerUrl)
+        console.log(this.demoid)
+        console.log(this.demoid01)
         this.$nextTick(function () {
-        // DOM操作
-        canvas = document.getElementById('qrccode')
-        this.createQrc()
         })
     },
     
     methods:{
-        // 加载默认数据
-        loadproject(){
-            // if(sessionStorage.userid!=='unfined')
-            this.axios.post('/res/getfile',{
-                userid:sessionStorage.userid,
-                id:sessionStorage.id,
-                state:3
-            })
-            .then(response => {                        
-                this.list = response.data.data
-                console.log(response)
-                this.isCollect = response.data.data.isCollect
-                this.isPraise = response.data.data.isPraise
-                this.isAttention= response.data.data.isAttention
-                this.$store.state.authid= response.data.data.authid
-            }) 
-        },
-        // 播放文件获取数据
-        loadprojectplay(){
-             this.axios.post('/res/getfile',{
-                id:sessionStorage.id,
-            })
-            .then(response => {                          
-               this.demoxml = response.data  
-            //    console.log(this.demoxml)
-            //    console.log(this.$store.state.demoxmlid)
-            // window.frames["snapplay"].ide.droppedText(this.demoxml,'OPEN') 
-            // window.frames["snapplay"].ide.openProjectString(this.demoxml) 
-            //  window.frames["snapplay"].ide.openUserProject(this.demoxml)
-            // window.frames["snapplay"].ide.droppedText(this.demoxml,'OPEN')  
-            
-            })
-        },
     },
     components:{
         Header,

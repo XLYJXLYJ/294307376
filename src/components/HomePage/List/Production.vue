@@ -104,6 +104,9 @@
     font-size: 20px;
     position: relative;
     top: 15px;
+    height: 24px;
+    width: 151px;
+    overflow: hidden;
     text-align: left;
     color:#000;
 }

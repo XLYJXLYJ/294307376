@@ -63,7 +63,7 @@ export default{
                 .then(response => {   
                     if(response.data.data){
                         this.$message({
-                            message:'没有其他作品了~',
+                            message:'没有其他关注的人了~',
                             center:true
                         })
                     }else{
@@ -121,6 +121,16 @@ export default{
     top: 0px;
     left: 0px;   
     text-align: center;
+}
+.container42 .follow img{
+    position: relative;
+    height: 84px;
+    width: 84px;
+    top: 0px;
+    left: 0px;   
+    text-align: center;
+    border-radius: 50px;
+    border: 1px solid #999;
 }
 .container42 ul{
     list-style: none;

@@ -40,6 +40,7 @@ export default {
             this.axios.post('/res/userinfo',{
                     userid:sessionStorage.userid,
                     state:3,
+                    pagesize:6
             })
             .then(response => {
                  this.list = response.data.data
@@ -61,7 +62,7 @@ export default {
                         userid:sessionStorage.userid,
                         state:3,
                         pagenum:this.i,
-                        pagesize:8
+                        pagesize:6
                     })
                     .then(response => {   
                         if(response.data.data){
@@ -89,7 +90,7 @@ export default {
                         userid:sessionStorage.userid,
                         state:3,
                         pagenum:this.i,
-                        pagesize:8
+                        pagesize:6
                     })
                     .then(response => {        
                         this.list = response.data.data

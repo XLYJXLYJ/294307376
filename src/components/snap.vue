@@ -422,6 +422,7 @@ export default{
         open() {
             this.snap02=false
             this.snap01=true
+            this.snapdemoid = ''
             var seq_id =document.getElementById('xml_seq').value; //根据id得到值
             var index= seq_id.indexOf("."); //得到"."在第几位
             seq_id=seq_id.substring(index);  //截断"."之前的，得到后缀

@@ -75,7 +75,7 @@ isRetinaSupported, SliderMorph, Animation, BoxMorph, MediaRecorder*/
 
 // Global stuff ////////////////////////////////////////////////////////
 
-modules.gui = '2018-March-09';
+modules.gui = '2018-March-19';
 
 // Declarations
 
@@ -684,7 +684,7 @@ IDE_Morph.prototype.createControlBar = function () {
     button.fixLayout();
     button.refresh();
     appModeButton = button;
-    this.controlBar.add(appModeButton);
+    // this.controlBar.add(appModeButton);
     this.controlBar.appModeButton = appModeButton; // for refreshing
 
     //steppingButton
@@ -947,7 +947,7 @@ IDE_Morph.prototype.createControlBar = function () {
     this.controlBar.refreshSlider = function () {
         if (Process.prototype.enableSingleStepping && !myself.isAppMode) {
             slider.drawNew();
-            slider.hide();
+            slider.show();
         } else {
             slider.hide();
         }
@@ -1231,6 +1231,7 @@ IDE_Morph.prototype.createSpriteBar = function () {
     function addRotationStyleButton(rotationStyle) {
         var colors = myself.rotationStyleColors,
             button;
+
         button = new ToggleButtonMorph(
             colors,
             myself, // the IDE is the target
@@ -3091,12 +3092,12 @@ IDE_Morph.prototype.projectMenu = function () {
     var menu,
         myself = this,
         world = this.world(),
-        pos = this.controlBar.projectButton.bottomLeft(),
+        // pos = this.controlBar.projectButton.bottomLeft(),
         graphicsName = this.currentSprite instanceof SpriteMorph ?
                 'Costumes' : 'Backgrounds',
         shiftClicked = (world.currentKey === 16);
-
     menu = new MenuMorph(this);
+    menu.hide(true);
     menu.addItem('Project notes...', 'editProjectNotes');
     menu.addLine();
     menu.addPair('New', 'createNewProject', '^N');
@@ -3498,7 +3499,7 @@ IDE_Morph.prototype.aboutSnap = function () {
         module, btn1, btn2, btn3, btn4, licenseBtn, translatorsBtn,
         world = this.world();
 
-    aboutTxt = 'Snap! 4.1.2.4\nBuild Your Own Blocks\n\n'
+    aboutTxt = 'Snap! 4.1.2.7\nBuild Your Own Blocks\n\n'
         + 'Copyright \u24B8 2018 Jens M\u00F6nig and '
         + 'Brian Harvey\n'
         + 'jens@moenig.org, bh@cs.berkeley.edu\n\n'
@@ -3573,8 +3574,8 @@ IDE_Morph.prototype.aboutSnap = function () {
         function () {
             dlg.body.text = translations;
             dlg.body.drawNew();
-            btn1.hide();
-            btn2.hide();
+            btn1.show();
+            btn2.show();
             btn3.hide();
             btn4.hide();
             licenseBtn.hide();
@@ -3589,11 +3590,11 @@ IDE_Morph.prototype.aboutSnap = function () {
         function () {
             dlg.body.text = aboutTxt;
             dlg.body.drawNew();
-            btn1.hide();
+            btn1.show();
             btn2.hide();
-            btn3.hide();
-            btn4.hide();
-            licenseBtn.hide();
+            btn3.show();
+            btn4.show();
+            licenseBtn.show();
             translatorsBtn.hide();
             dlg.fixLayout();
             dlg.drawNew();
@@ -3606,8 +3607,8 @@ IDE_Morph.prototype.aboutSnap = function () {
         function () {
             dlg.body.text = noticeTxt;
             dlg.body.drawNew();
-            btn1.hide();
-            btn2.hide();
+            btn1.show();
+            btn2.show();
             btn3.hide();
             btn4.hide();
             licenseBtn.hide();
@@ -3622,8 +3623,8 @@ IDE_Morph.prototype.aboutSnap = function () {
         function () {
             dlg.body.text = versions;
             dlg.body.drawNew();
-            btn1.hide();
-            btn2.hide();
+            btn1.show();
+            btn2.show();
             btn3.hide();
             btn4.hide();
             licenseBtn.hide();
@@ -3638,9 +3639,9 @@ IDE_Morph.prototype.aboutSnap = function () {
         function () {
             dlg.body.text = creditsTxt;
             dlg.body.drawNew();
-            btn1.hide();
-            btn2.hide();
-            translatorsBtn.hide();
+            btn1.show();
+            btn2.show();
+            translatorsBtn.show();
             btn3.hide();
             btn4.hide();
             licenseBtn.hide();
@@ -4226,7 +4227,7 @@ IDE_Morph.prototype.openProjectString = function (str) {
 };
 
 IDE_Morph.prototype.rawOpenProjectString = function (str) {
-    this.toggleAppMode(true);
+    this.toggleAppMode(false);
     this.spriteBar.tabBar.tabTo('scripts');
     StageMorph.prototype.hiddenPrimitives = {};
     StageMorph.prototype.codeMappings = {};
@@ -4769,7 +4770,9 @@ IDE_Morph.prototype.toggleAppMode = function (appMode) {
             this.palette,
             this.categories
         ];
+
     this.isAppMode = isNil(appMode) ? !this.isAppMode : appMode;
+
     Morph.prototype.trackChanges = false;
     if (this.isAppMode) {
 		this.wasSingleStepping = Process.prototype.enableSingleStepping;
@@ -4797,13 +4800,13 @@ IDE_Morph.prototype.toggleAppMode = function (appMode) {
         this.setColor(this.backgroundColor);
         this.controlBar.setColor(this.frameColor);
         elements.forEach(function (e) {
-            e.hide();
+            e.show();
         });
         this.stage.setScale(1);
         // show all hidden dialogs
         world.children.forEach(function (morph) {
             if (morph instanceof DialogBoxMorph) {
-                morph.hide();
+                morph.show();
             }
         });
         // prevent scrollbars from showing when morph appears
@@ -6150,7 +6153,7 @@ ProjectDialogMorph.prototype.setSource = function (source) {
     this.unpublishButton.hide();
     */
     if (this.source === 'local') {
-        this.deleteButton.hide();
+        this.deleteButton.show();
     } else { // examples
         this.deleteButton.hide();
     }
@@ -6256,7 +6259,7 @@ ProjectDialogMorph.prototype.installCloudProjectList = function (pl) {
         }
         if (item.ispublic) {
             myself.shareButton.hide();
-            myself.unshareButton.hide();
+            myself.unshareButton.show();
             /*
             if (item.ispublished) {
                 myself.publishButton.hide();
@@ -6268,7 +6271,7 @@ ProjectDialogMorph.prototype.installCloudProjectList = function (pl) {
             */
         } else {
             myself.unshareButton.hide();
-            myself.shareButton.hide();
+            myself.shareButton.show();
             /*
             myself.publishButton.hide();
             myself.unpublishButton.hide();
@@ -6279,9 +6282,9 @@ ProjectDialogMorph.prototype.installCloudProjectList = function (pl) {
         myself.edit();
     };
     this.body.add(this.listField);
-    this.shareButton.hide();
+    this.shareButton.show();
     this.unshareButton.hide();
-    this.deleteButton.hide();
+    this.deleteButton.show();
     this.buttons.fixLayout();
     this.fixLayout();
     if (this.task === 'open') {
@@ -6486,7 +6489,7 @@ ProjectDialogMorph.prototype.shareProject = function () {
                     null, // username is implicit
                     function () {
                         proj.ispublic = true;
-                        myself.unshareButton.hide();
+                        myself.unshareButton.show();
                         myself.shareButton.hide();
                         /*
                         myself.publishButton.show();
@@ -6535,7 +6538,7 @@ ProjectDialogMorph.prototype.unshareProject = function () {
                     null, // username is implicit
                     function () {
                         proj.ispublic = false;
-                        myself.shareButton.hide();
+                        myself.shareButton.show();
                         myself.unshareButton.hide();
                         /*
                         myself.publishButton.hide();
@@ -6578,10 +6581,10 @@ ProjectDialogMorph.prototype.publishProject = function () {
                     null, // username is implicit
                     function () {
                         proj.ispublished = true;
-                        myself.unshareButton.hide();
+                        myself.unshareButton.show();
                         myself.shareButton.hide();
                         myself.publishButton.hide();
-                        myself.unpublishButton.hide();
+                        myself.unpublishButton.show();
                         entry.label.isItalic = true;
                         entry.label.drawNew();
                         entry.label.changed();
@@ -6624,9 +6627,9 @@ ProjectDialogMorph.prototype.unpublishProject = function () {
                     null, // username is implicit
                     function () {
                         proj.ispublished = false;
-                        myself.unshareButton.hide();
+                        myself.unshareButton.show();
                         myself.shareButton.hide();
-                        myself.publishButton.hide();
+                        myself.publishButton.show();
                         myself.unpublishButton.hide();
                         entry.label.isItalic = false;
                         entry.label.drawNew();
@@ -9113,6 +9116,11 @@ SoundRecorderDialogMorph.prototype.buildProgressBar = function () {
 };
 
 SoundRecorderDialogMorph.prototype.record = function () {
+    if (this.mediaRecorder && this.mediaRecorder.state !== 'inactive') {
+        this.stop();
+        return;
+    }
+
     this.mediaRecorder.start();
     this.recordButton.label.setColor(new Color(255, 0, 0));
     this.playButton.label.setColor(new Color(0, 0, 0));

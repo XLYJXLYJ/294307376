@@ -27,7 +27,8 @@ const state = {
     sourcestudy:false,
     authid:'',
     publicstate:'',
-    directxmlid:''
+    directxmlid:'',
+    shareid:''
 }
 
 const actions = {

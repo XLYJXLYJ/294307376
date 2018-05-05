@@ -54,10 +54,7 @@
                     </li> 
                     <li>
                         <router-link to="/Download"><p>下载</p></router-link>
-                    </li>  
-                    <!-- <li>
-                        <router-link to="/Share"><p>分享</p></router-link>
-                    </li>   -->
+                    </li>   
                 </ul> 
             </div>
         </div> 

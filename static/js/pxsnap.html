@@ -2,7 +2,9 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>PXSnap! create your robots from 0 to 1</title>
+		<title>编程玩-开源编程玩法社区</title>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script type="text/javascript" src="manykit/jquery-3.2.1.min.js"></script>
 		<link rel="shortcut icon" href="manykit/manykit.ico">
 		<script type="text/javascript" src="morphic.js"></script>
 		<script type="text/javascript" src="widgets.js"></script>
@@ -33,33 +35,33 @@
 			var ide;
 			window.onload = function () {
 				world = new WorldMorph(document.getElementById('world'));
-
-                ide = new IDE_Morph();
-                ide.openIn(world);
-
-                ide.inform = function(title, message, callback) { 
-                    var myself = this;
-                    if (!myself.informing) {
-                        var box = new DialogBoxMorph();
-                        myself.informing = true;
-                        box.ok = function() { 
-                            myself.informing = false;
-                            if (callback) { callback() };
-                            this.accept();
-                        };
-                        box.inform(title, message, world)
-                    }
-                };
-
-                setInterval(loop, 1);
+                world.worldCanvas.focus();
+				ide = new IDE_Morph();
+				ide.openIn(world);
+				ide.toggleAppMode(true);
+				// ide.toggleAppMode(true);
+				// setInterval(loop, 30);
+				loop();
 			};
 			function loop() {
+        		requestAnimationFrame(loop);
 				world.doOneCycle();
 			}
 		</script>
 	</head>
+	<h1>编程玩-开源编程玩法社区</h1>
+	<h1>作者：<span id="demouser"></span></h1>
+	<h1>名称：<span id="demoxml"></span></h1>
+	<h1>微信:Manykits</h1>
+	<h1>商务/投资：133 8230 4658</h1>
 	<body style="margin: 0;">
-		<p onclick="ide.openProjectString(str)"></p>
-		<canvas id="world" tabindex="1" style="position: absolute;" />
+		<canvas id="world" tabindex="1" width="767" height="575" style="position: absolute;" />
 	</body>
 </html>
+<style>
+	#world{
+		height: 1000px!important;
+		margin-top: 30px;
+		display: block;
+	}
+</style>

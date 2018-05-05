@@ -38,7 +38,8 @@
             Getalldemo(){
                 this.axios.post('/res/filelist',{
                         userid:sessionStorage.userid,
-                        state:1
+                        state:1,
+                        pagesize:6
                     })
                     .then(response => {           
                         this.list = response.data.data
@@ -57,7 +58,7 @@
                         userid:sessionStorage.userid,
                         state:1,
                         pagenum:this.i,
-                        pagesize:8
+                        pagesize:6
                     })
                     .then(response => {   
                         if(response.data.data){
@@ -85,7 +86,7 @@
                         userid:sessionStorage.userid,
                         state:1,
                         pagenum:this.i,
-                        pagesize:8
+                        pagesize:6
                     })
                     .then(response => {        
                         this.list = response.data.data

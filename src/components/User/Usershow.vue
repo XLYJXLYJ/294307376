@@ -64,7 +64,7 @@
                     .then(response => {   
                         if(response.data.data){
                             this.$message({
-                                message:'没有其他作品了~',
+                                message:'没有其他关注我的人了~',
                                 center:true
                             })
                         }else{
@@ -122,6 +122,16 @@
     top: 0px;
     left: 0px;   
     text-align: center;
+}
+.container43 .follow img{
+    position: relative;
+    height: 84px;
+    width: 84px;
+    top: 0px;
+    left: 0px;   
+    text-align: center;
+    border-radius: 50px;
+    border: 1px solid #999;
 }
 .container43 ul{
     list-style: none;

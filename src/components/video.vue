@@ -29,7 +29,7 @@
                     <!-- <iframe class="video" frameborder="0" src="static/player/index.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
                     <!-- <iframe class="video" frameborder="0" src="static/ceshi/snap.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
                     <!-- <iframe class="video" frameborder="0" :src="'static/ceshi/snap.html#run:'+demoxml+'.xml'" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
-                    <iframe class="video" frameborder="0" :src="'static/player/pxsnap.html#present:Username=lynn&ProjectName='+demoid" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
+                    <iframe class="video" frameborder="0" :src="'static/player/pxsnap.html#present:Username=Lynn&ProjectName='+demoid" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
                     <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
                 </div>
                 <div class="mydemo_frame">
@@ -99,6 +99,7 @@ export default{
             }
         }
     },
+
     mounted(){
         this.loadproject()
         
@@ -106,8 +107,14 @@ export default{
          
         this.recommendroute()
         this.demoid = sessionStorage.id    
-        // this.bannerUrl = 'http://www.manykit.com/codeplay/static/ static/player/index.html#present:Username=lynn&ProjectName=haha'
-        this.bannerUrl = 'http://www.manykit.com/codeplay/static/player/pxsnap.html#present:Username=lynn&ProjectName='+ this.demoid
+        this.$store.state.shareid = sessionStorage.id  
+        console.log( 'sessionStorage.id'+sessionStorage.id)
+        console.log( 'this.demoid'+this.demoid)
+        console.log( 'this.$store.state.shareid'+this.$store.state.shareid )
+
+        this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/index.html#present:Username=lynnn&ProjectName='+this.demoid
+        // this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/pxsnap.html#present:Username='+this.$store.state.authid+'&ProjectName='+this.demoid
+        // this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/index.html#present:ProjectName='+this.demoid
         console.log(this.bannerUrl)
         this.$nextTick(function () {
         // DOM操作
@@ -118,6 +125,11 @@ export default{
     
     methods:{
         // 加载默认数据
+        shareid(){
+            if(this.$route.path==='/video'){  
+                this.$store.state.shareid = sessionStorage.id  
+            }
+        },
         recommendroute(){
             this.$router.push({ name: 'Myvideo' })
         },
@@ -136,6 +148,7 @@ export default{
                 this.isAttention= response.data.data.isAttention
                 this.publishtime= response.data.data.publishtime
                 this.$store.state.authid= response.data.data.authid
+            
             }) 
         },
         // 播放文件获取数据
@@ -256,7 +269,7 @@ export default{
                     this.axios.post('/res/useropreate',{
                             userid:sessionStorage.userid,
                             state:5,
-                            attentionid:this.authid
+                            attentionid:this.$store.state.authid
                         })
                         .then(response => {           
                             console.log(response)
@@ -265,7 +278,7 @@ export default{
                     this.axios.post('/res/useropreate',{
                             userid:sessionStorage.userid,
                             state:6,
-                            attentionid:this.authid
+                            attentionid:this.$store.state.authid
                         })
                         .then(response => {           
                             console.log(response)

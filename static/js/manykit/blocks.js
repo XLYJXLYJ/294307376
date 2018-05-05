@@ -125,6 +125,18 @@ SyntaxElementMorph.prototype.labelPart = function(spec) {
             part.originalChanged = part.changed;
             part.changed = function () { part.originalChanged(); if (block.toggle) { block.toggle.refresh(); } };
             break;
+        case '%pxf_PinMoto_mc':
+            part = new InputSlotMorph(
+                null,
+                true,
+                {
+                    '1': ['1'],
+                    '2': ['2'],
+                }
+            );
+            part.originalChanged = part.changed;
+            part.changed = function () { part.originalChanged(); if (block.toggle) { block.toggle.refresh(); } };
+            break;
         default:
             part = this.originalLabelPart(spec);
             break;

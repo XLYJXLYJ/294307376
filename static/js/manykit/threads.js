@@ -30,9 +30,20 @@
 	"24", //OT_IR_INIT
 	"25", //OT_IR_SEND
 	"26"  //OT_RETURN_IR
+	"27" //OT_HX711_I
+	"28" //OT_HX711_TEST
+	"29" //OT_RETURN_HX711
 	"500" //OT_INTERNAL_LIGHT
-	"501" //OT_SEGMENT
+	"501" //OT_LIGHT
+	"502" //OT_SEGMENT
 */
+
+// has massage to tell me
+Process.prototype.pxf_GetServerMessage = function (pin) {
+    var sprite = this.homeContext.receiver;
+
+	return PXFrame.prototype.getURL('phoenix', "777", null);
+};
 
 // gpio
 Process.prototype.pxf_PinMode = function (pin, mode) {
@@ -54,7 +65,7 @@ Process.prototype.pxf_DigitalWrite = function (pin, val) {
 	if (sprite.pxframe.isBoardReady()) {
 		// OT_DW
 		var cntStr = "1" + "," + pin + "," + val;        
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		return PXFrame.prototype.getURL('pxframe', cntStr, null);
     } 
     else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
@@ -390,28 +401,171 @@ Process.prototype.pxf_IRSend = function (val) {
 	}
 };
 
-Process.prototype.pxf_LightInternal = function (val) {
+Process.prototype.pxf_WeightInit = function (i, pinOut, pinClk) {
+	var sprite = this.homeContext.receiver;
+
+	if (sprite.pxframe.isBoardReady()) {
+		// OT_HX711_I
+		var cntStr = "27" + "," + i + "," + pinOut + "," + pinClk;
+		PXFrame.prototype.getURL('pxframe', cntStr, null);
+	}
+	else {
+		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
+	}
+};
+
+
+Process.prototype.pxf_WeightTest = function (i) {
+	var sprite = this.homeContext.receiver;
+
+	if (sprite.pxframe.isBoardReady()) {
+		// OT_HX711_TEST
+		var cntStr = "28" + "," + i;
+		PXFrame.prototype.getURL('pxframe', cntStr, null);
+	}
+	else {
+		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
+	}
+};
+
+Process.prototype.pxf_GetWeight = function (i) {
+	var sprite = this.homeContext.receiver;
+
+	if (sprite.pxframe.isBoardReady()) {
+		// OT_RETURN_HX711
+		var cntStr = "29" + "," + i;
+		return PXFrame.prototype.getURL('pxframe', cntStr, null);
+	}
+	else {
+		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
+	}
+};
+
+Process.prototype.pxf_MC_LightInternal = function (val) {
 	var sprite = this.homeContext.receiver;
 
 	if (sprite.pxframe.isBoardReady()) {
 		// OT_INTERNAL_LIGHT
 		var cntStr = "500" + "," + val;
-		PXFrame.prototype.getURL('makeclock', cntStr, null);
+		PXFrame.prototype.getURL('makerclock', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_Segment = function (pin, val) {
+Process.prototype.pxf_MC_LED = function (pin, val) {
+	var sprite = this.homeContext.receiver;
+
+	if (sprite.pxframe.isBoardReady()) {
+		// OT_LIGHT
+		var cntStr = "501" + "," + pin + "," + val;
+		PXFrame.prototype.getURL('makerclock', cntStr, null);
+	}
+	else {
+		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
+	}
+};
+
+Process.prototype.pxf_MC_Buzzer = function (pin, val) {
+	var sprite = this.homeContext.receiver;
+
+	if (sprite.pxframe.isBoardReady()) {
+		// OT_LIGHT=BUZZER
+		var cntStr = "501" + "," + pin + "," + val;
+		PXFrame.prototype.getURL('makerclock', cntStr, null);
+	}
+	else {
+		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
+	}
+};
+
+Process.prototype.pxf_MC_Segment = function (pin, val) {
 	var sprite = this.homeContext.receiver;
 
 	if (sprite.pxframe.isBoardReady()) {
 		// OT_SEGMENT
-		var cntStr = "501" + "," + pin + "," + val;
-		PXFrame.prototype.getURL('makeclock', cntStr, null);
+		var cntStr = "502" + "," + pin + "," + val;
+		PXFrame.prototype.getURL('makerclock', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
+
+Process.prototype.pxf_MC_Moto = function (pin, speed){
+	var sprite = this.homeContext.receiver;
+
+	if (sprite.pxframe.isBoardReady()) {
+		// OT_SEGMENT
+		var cntStr = "503" + "," + pin + "," + speed;
+		PXFrame.prototype.getURL('makerclock', cntStr, null);
+	}
+	else {
+		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
+	}
+}
+
+Process.prototype.pxf_MC_DistTest = function (pin){
+	var sprite = this.homeContext.receiver;
+
+	if (sprite.pxframe.isBoardReady()) {
+		// OT_DISTTEST
+		var cntStr = "504" + "," + pin;
+		PXFrame.prototype.getURL('makerclock', cntStr, null);
+	}
+	else {
+		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
+	}
+}
+
+Process.prototype.pxf_MC_GetDist = function (pin){
+	var sprite = this.homeContext.receiver;
+
+	if (sprite.pxframe.isBoardReady()) {
+		// OT_RETURN_DIST
+		var cntStr = "9";        
+		return PXFrame.prototype.getURL('makerclock', cntStr, null);
+    } 
+	else {
+        throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
+    }	
+}
+
+// websocket -------------------------------------------------------------------
+var mWebSocket = null
+function webSocketConnect()
+{
+	mWebSocket = new WebSocket('ws://localhost:8389/websocket');
+
+    mWebSocket.onerror = function(event) {
+    }
+
+    mWebSocket.onopen = function(event) {
+	}
+	
+	mWebSocket.onclose = function(event){
+
+	}
+
+    mWebSocket.onmessage = function(ent) {
+		var recvStr = ent.data;
+    }
+	
+}
+
+function mWebSocketDisConnect()
+{
+	if (null != mWebSocket)
+	{
+		mWebSocket.close();
+		mWebSocket = null;
+	}
+}
+
+function mWebSocketSend(sendStr)
+{
+	if (null != mWebSocket)
+		mWebSocket.send(sendStr);
+}
+// websocket -------------------------------------------------------------------

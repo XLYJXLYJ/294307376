@@ -245,9 +245,9 @@ export default new Router({
           ]
       },
       {
-          path: '/share',
-          name: 'share',
-          component: resolve =>require(['@/components/share'],resolve),
+          path: '/Share',
+          name: 'Share',
+          component: resolve =>require(['@/components/Share'],resolve),
       },
       {
           path: '/Demo',

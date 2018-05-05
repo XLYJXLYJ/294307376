@@ -13,8 +13,7 @@
           <div class="foot_list_two">
           <ul>
             <li class="big">合作方式</li>
-            <li class="small">商务：1562818961@qq.com</li>
-            <li class="small">投资：156281896@qq.com</li>
+            <li class="small">商务/投资：133 8230 4658</li>
           </ul>
         </div>
          <div class="foot_list_three">
