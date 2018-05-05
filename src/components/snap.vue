@@ -42,12 +42,11 @@
         </div>
         <!-- 参数播放 -->
 
-            <iframe class="snap" v-show="snap01" src="static/snap/pxsnap.html" name="snap01" frameborder="0"></iframe>
+            <iframe class="snap" v-show="snap01" src="static/snap/pxsnap.html" name="snap01" frameborder="0" ></iframe>
 
 
             <iframe class="snap" frameborder="0" v-show="snap02" :src="'static/snap/pxsnap.html#present:Username=lynn&ProjectName='+snapdemoid" id="myFrameId"  name="snap02"></iframe>
 
-         
 
         <!-- 接口播放 -->
         <!-- <iframe class="snap" :src="'static/player/pxsnap.html#open:/codeplay/file/'+this.$store.state.demoxmlid+'.xml'" name="snap" frameborder="0"></iframe> -->
@@ -222,6 +221,7 @@ import axios from 'axios'
 import NodeRSA from 'node-rsa'
 
 export default{
+    
     data(){
         return{
             dialogSave: false,
@@ -343,8 +343,9 @@ export default{
             }
         }
     },
+
     methods: {
-        //另存为
+        //另存为  
         anothersave(){
             this.snap02=true
             this.snap01=false

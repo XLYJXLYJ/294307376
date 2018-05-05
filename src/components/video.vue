@@ -101,11 +101,12 @@ export default{
     },
 
     mounted(){
+        this.recommendroute()
         this.loadproject()
         
         this.loadprojectplay()
          
-        this.recommendroute()
+
         this.demoid = sessionStorage.id    
         this.$store.state.shareid = sessionStorage.id  
         console.log( 'sessionStorage.id'+sessionStorage.id)
@@ -131,7 +132,7 @@ export default{
             }
         },
         recommendroute(){
-            this.$router.push({ name: 'Myvideo' })
+            this.$router.push({ name: 'Lovevideo' })
         },
         loadproject(){
             // if(sessionStorage.userid!=='unfined')
@@ -610,5 +611,9 @@ export default{
 }
 .btn-wrap textarea{
     opacity: 0;
+}
+.container35  .mydemo_frame .router-link-active{
+    text-decoration: none;
+    color: #f13232;
 }
 </style>

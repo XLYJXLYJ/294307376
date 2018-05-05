@@ -53,7 +53,7 @@
     text-decoration: none;
     border-bottom: 4px solid #fff;  
     position: relative;
-     color: #F13232;
+    color: #F13232;
 }
 .container05 .router-link-active:before {
     content: '';

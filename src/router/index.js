@@ -240,7 +240,7 @@ export default new Router({
           component: resolve =>require(['@/components/Video'],resolve),
           children:[
               {path: '/Video/Myvideo', name: 'Myvideo',component: resolve =>require(['@/components/Video/Myvideo'],resolve)},
-              {path: '/Video/Lovevideo', component: resolve =>require(['@/components/Video/Lovevideo'],resolve)},
+              {path: '/Video/Lovevideo', name: 'Lovevideo',component: resolve =>require(['@/components/Video/Lovevideo'],resolve)},
               {path: '', component:resolve =>require(['@/components/Video/Myvideo'],resolve)}
           ]
       },

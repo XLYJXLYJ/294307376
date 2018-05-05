@@ -76,10 +76,7 @@ IDE_Morph.prototype.exportProject_MANYKIT= function (name, plain) {
 
 
 IDE_Morph.prototype.save = function () {
-    console.log('') 
-    window.parent.dialogSave = true
-    console.log(111222333)
-    this.dialogSave = true
+    console.log('')
 };
 
 IDE_Morph.prototype.openProjectsBrowser = function () {

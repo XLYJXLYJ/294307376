@@ -56,7 +56,7 @@ import { formatDate } from '../../public/time.js'
     width: 300px;
     position: relative;
     left:818px;
-    top: -241px;
+    top: -261px;
 }
 .container38 ul li{
     height: 77px;
