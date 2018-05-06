@@ -28,7 +28,8 @@ const state = {
     authid:'',
     publicstate:'',
     directxmlid:'',
-    shareid:''
+    shareid:'',
+    lookdemoname:''
 }
 
 const actions = {

@@ -2,7 +2,8 @@
     <div class="container42">
         <div>
             <!-- <img class="star" src="../../assets/user/starfish.png" alt=""> -->
-            <p class="store">我关注的人</p>
+            <p class="store" v-show="myfollow">我关注的人</p>
+            <p class="store" v-show="shefollow">ta关注的人</p>
             <img class="left" src="../../assets/user/left.png" alt="" @click="Pagingdown">
             <ul class="follow" v-show="nosend">
                 <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
@@ -24,6 +25,8 @@
 export default{
     data(){
         return{
+            myfollow:'',
+            shefollow:'',
             list:'',
             nosend:true,
             sharebg:'',
@@ -35,6 +38,28 @@ export default{
     },
     methods:{
         Getalldemo(){
+            if(!sessionStorage.lookuserdes==''){
+            this.myfollow=false,
+            this.shefollow=true,
+            this.axios.post('/res/userinfo',{
+                userid:sessionStorage.lookuserdes,
+                state:4,
+                pagesize:10
+            })
+            .then(response => {     
+                this.list = response.data.data
+                console.log(this.list)
+                if(!response.data.data){
+                    this.nosend=false,
+                    this.sharebg=true
+                }else{
+                    this.nosend=true,
+                    this.sharebg=false
+                }  
+            })
+            }else{
+            this.myfollow=true,
+            this.shefollow=false,
             this.axios.post('/res/userinfo',{
                     userid:sessionStorage.userid,
                     state:4,
@@ -50,26 +75,49 @@ export default{
                         this.nosend=true,
                         this.sharebg=false
                     }  
-            })
+                })
+            }
         },
         Pagingup(){
-            ++this.i
-            this.axios.post('/res/userinfo',{
-                    userid:sessionStorage.userid,
-                    state:4,
-                    pagenum:this.i,
-                    pagesize:8
-                })
-                .then(response => {   
+            if(!sessionStorage.lookuserdes==''){
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.lookuserdes,
+                        state:4,
+                        pagenum:this.i,
+                        pagesize:8
+                    })
+                    .then(response => {   
                     if(response.data.data){
+                        this.i
                         this.$message({
                             message:'没有其他关注的人了~',
                             center:true
                         })
                     }else{
+                        ++this.i
                         this.list = response.data.data 
                     }  
-            })
+                })
+            }else{
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.userid,
+                        state:4,
+                        pagenum:this.i,
+                        pagesize:8
+                    })
+                    .then(response => {   
+                    if(response.data.data){
+                        this.i
+                        this.$message({
+                            message:'没有其他关注的人了~',
+                            center:true
+                        })
+                    }else{
+                        ++this.i
+                        this.list = response.data.data 
+                    }  
+                })
+            }
         },
         Pagingdown(){
                 --this.i
@@ -82,7 +130,18 @@ export default{
                 }else{
                 this.i=this.i
                 }
-            this.axios.post('/res/userinfo',{
+                if(!sessionStorage.lookuserdes==''){
+                    this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.lookuserdes,
+                        state:4,
+                        pagenum:this.i,
+                        pagesize:8
+                    })
+                    .then(response => {        
+                        this.list = response.data.data
+                    })
+                }else{
+                this.axios.post('/res/userinfo',{
                     userid:sessionStorage.userid,
                     state:4,
                     pagenum:this.i,
@@ -90,7 +149,9 @@ export default{
                 })
                 .then(response => {        
                     this.list = response.data.data
-            })
+                })
+            }
+
         },
     }
 }

@@ -2,14 +2,15 @@
     <div class="container41">
         <div>
             <!-- <img class="star" src="../../assets/user/starfish.png" alt=""> -->
-            <p class="store">我收藏的作品</p>
+            <p class="store" v-show="myfollow">我收藏的作品</p>
+            <p class="store" v-show="shefollow">ta收藏的作品</p>
             <img class="left" src="../../assets/user/left.png" alt="" @click="Pagingdown">
             <ul class="block" v-show="nosend">
                 <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
                     <div class="share">
                         <img :src="item.imgBuffer" alt="">
                         <p>{{item.title}}</p>
-                        <span>作者：{{$store.state.usernamesession02}}</span>
+                        <span>作者：{{item.auth}}</span>
                     </div>
                 </li>
             </ul>
@@ -25,6 +26,8 @@
 export default {
     data() {
         return {
+            myfollow:'',
+            shefollow:'',
             store01:true,
             nosend:false,
             sharebg:true,
@@ -37,27 +40,73 @@ export default {
     },
     methods:{
         loadstoremessage(){
-            this.axios.post('/res/userinfo',{
-                    userid:sessionStorage.userid,
-                    state:3,
-                    pagesize:6
-            })
-            .then(response => {
-                 this.list = response.data.data
-                if(!response.data.data){
-                    this.nosend=false,
-                    this.sharebg=true
-                }else{
-                    this.nosend=true,
-                    this.sharebg=false
+            if(!sessionStorage.lookuserdes==''){
+                this.myfollow=false,
+                this.shefollow=true,
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.userid,
+                        state:3,
+                        pagesize:6
+                })
+                .then(response => {
+                    this.list = response.data.data
+                    console.log(this.list)
+                    if(!response.data.data){
+                        this.nosend=false,
+                        this.sharebg=true
+                    }else{
+                        this.nosend=true,
+                        this.sharebg=false
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
                 }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+            else{
+                this.myfollow=true,
+                this.shefollow=false,
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.userid,
+                        state:3,
+                        pagesize:6
+                })
+                .then(response => {
+                    this.list = response.data.data
+                    if(!response.data.data){
+                        this.nosend=false,
+                        this.sharebg=true
+                    }else{
+                        this.nosend=true,
+                        this.sharebg=false
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            }
         },
             Pagingup(){
-                ++this.i
+                if(!sessionStorage.lookuserdes==''){
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.lookuserdes,
+                        state:3,
+                        pagenum:this.i,
+                        pagesize:6
+                    })
+                    .then(response => {   
+                        if(response.data.data){
+                            this.i
+                            this.$message({
+                                message:'没有其他作品了~',
+                                center:true
+                            })
+                        }else{
+                           ++this.i
+                           this.list = response.data.data 
+                        }  
+                })
+                }else{
                 this.axios.post('/res/userinfo',{
                         userid:sessionStorage.userid,
                         state:3,
@@ -66,36 +115,51 @@ export default {
                     })
                     .then(response => {   
                         if(response.data.data){
+                            this.i
                             this.$message({
                                 message:'没有其他作品了~',
                                 center:true
                             })
                         }else{
+                           ++this.i
                            this.list = response.data.data 
                         }  
-                })
+                    })
+                }
             },
             Pagingdown(){
-                 --this.i
-                 if(this.i<=1){
-                    this.i=1
-                    this.$message({
-                        message:'已经到第一页了~',
-                        center:true
-                    })
-                 }else{
-                    this.i=this.i
-                 }
-                this.axios.post('/res/userinfo',{
-                        userid:sessionStorage.userid,
-                        state:3,
-                        pagenum:this.i,
-                        pagesize:6
-                    })
-                    .then(response => {        
-                        this.list = response.data.data
+                --this.i
+                if(this.i<=1){
+                this.i=1
+                this.$message({
+                    message:'已经到第一页了~',
+                    center:true
                 })
-            },
+                }else{
+                this.i=this.i
+                }
+            if(!sessionStorage.lookuserdes==''){
+                this.axios.post('/res/userinfo',{
+                    userid:sessionStorage.lookuserdes,
+                    state:3,
+                    pagenum:this.i,
+                    pagesize:6
+                })
+                .then(response => {        
+                    this.list = response.data.data
+                })
+            }else{
+                this.axios.post('/res/userinfo',{
+                    userid:sessionStorage.userid,
+                    state:3,
+                    pagenum:this.i,
+                    pagesize:6
+                })
+                .then(response => {        
+                    this.list = response.data.data
+                })
+            }
+        },
     }
   }
 </script>

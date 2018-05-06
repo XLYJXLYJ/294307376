@@ -9,8 +9,10 @@
                     <p class="three">已有{{list.looktotal}}次浏览</p>
                 </div>
                 <div>
-                    <img class="cat01" src="../assets/Video/cat01.png" alt="">
-                    <p class="four">{{list.name}}</p>
+                    <router-link to="/User">
+                        <img class="cat01" src="../assets/Video/cat01.png" alt="" @click="lookusersdes">
+                        <p class="four" @click="lookusersdes">{{list.name}}</p>
+                    </router-link>
                     <div :class='{"jia":!isAttention,"jia1":isAttention}' @click="jia"></div>
                 </div>
                 <div>
@@ -93,6 +95,7 @@ export default{
             bannerUrl: '',
             demoxml:'',
             publishtime:'',
+            lookuserdes:'',
             item:{
                 // url:"static/ceshi/snap.html#present:Username=jens&ProjectName=tree%20animation"
                 url:'https://www.baidu.com/'
@@ -102,11 +105,8 @@ export default{
 
     mounted(){
         this.recommendroute()
-        this.loadproject()
-        
+        this.loadproject()     
         this.loadprojectplay()
-         
-
         this.demoid = sessionStorage.id    
         this.$store.state.shareid = sessionStorage.id  
         console.log( 'sessionStorage.id'+sessionStorage.id)
@@ -125,6 +125,11 @@ export default{
     },
     
     methods:{
+        lookusersdes(){
+            sessionStorage.lookuserdes = this.$store.state.authid
+            console.log(this.$store.state.authid)
+            console.log(sessionStorage.lookuserdes)
+        },
         // 加载默认数据
         shareid(){
             if(this.$route.path==='/video'){  
@@ -143,14 +148,19 @@ export default{
             })
             .then(response => {                        
                 this.list = response.data.data
+                
                 console.log(response)
                 this.isCollect = response.data.data.isCollect
                 this.isPraise = response.data.data.isPraise
                 this.isAttention= response.data.data.isAttention
                 this.publishtime= response.data.data.publishtime
                 this.$store.state.authid= response.data.data.authid
+                this.$store.state.lookdemoname= response.data.data.name
             
             }) 
+        },
+        lookother(){
+            sessionStorage.userid = this.$store.state.authid
         },
         // 播放文件获取数据
         loadprojectplay(){

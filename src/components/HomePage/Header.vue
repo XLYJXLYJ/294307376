@@ -31,7 +31,7 @@
                     <ul class="block-col-12">
                         <router-link to="/Demo"><li><p>作品管理</p></li></router-link>
                         <router-link to="#"><li>社区消息</li></router-link>
-                        <router-link to="/User"><li>个人中心</li></router-link>     
+                        <router-link to="/User"><li @click="clearsessionlookuser">个人中心</li></router-link>     
                         <router-link to="/setting"><li>账号设置</li></router-link>  
                         <li><p @click="Cancellogout">退出登陆</p></li>
                     </ul>
@@ -192,6 +192,12 @@ export default {
     }, 
     methods: {
         ...mapActions(['Getsession01']),  
+        //清除session
+        clearsessionlookuser(){
+            sessionStorage.lookuserdes=''
+            location.reload();
+        },
+
         close(){
             this.dialogLogin = false
         },
@@ -354,7 +360,7 @@ export default {
         timer() {
             if (this.time > 0) {
                     this.time--;
-                    this.btntxt=this.time+"s后重新获取";
+                    this.btntxt=this.time+"s";
                     setTimeout(this.timer, 1000);
             } else{
                     this.time=0;

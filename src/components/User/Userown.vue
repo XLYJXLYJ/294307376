@@ -3,12 +3,12 @@
         <div>
             <div>
                 <img class="head" :src="'data:image/png;base64,'+userimageUrl" alt="">
-                <p class="name">{{$store.state.usernamesession02}}</p>
+                <p class="name">{{realname}}</p>
                 <p class="atten">编程达人</p>
             </div>
             <div>
-                <button class="attenbutton01" @click="Postuseinfo"><p>保存</p></button>
-                <!-- <button :class='{"attenbutton01":buttoncolor,"attenbutton02":!buttoncolor}' @click="attenbutton"><p>{{ atten?'关注':'取消关注' }}</p></button> -->
+                <button class="attenbutton01" @click="Postuseinfo" v-show="savedes"><p>保存</p></button>
+                <button v-show="followother" :class='{"attenbutton01":buttoncolor,"attenbutton02":!buttoncolor}' @click="attenbutton"><p>{{ atten?'关注':'取消关注' }}</p></button>
             </div>
         </div>
         <div class="aboutbox">
@@ -49,6 +49,7 @@ import Vue from 'vue'
                  buttoncolor:true,
                  listdemo:'',
                  postlistdemo:'',
+                 realname:'',
                  aboutme:'',
                  doing:'',
                  userimageUrl:'',
@@ -58,7 +59,10 @@ import Vue from 'vue'
                  demoimageid:'',
                  collecttotal:'',
                  praisetotal:'',
-                 looktotal:''
+                 looktotal:'',
+                 savedes:'',
+                 followother:''
+
             } 
         },
         // watch:{
@@ -77,13 +81,18 @@ import Vue from 'vue'
                 this.buttoncolor=!this.buttoncolor
                 this.atten=!this.atten;
             },
-            Getuseinfo(){
-                this.axios.post('/res/userinfo',{
-                        userid:sessionStorage.userid,
+            Getuseinfo(){//需要加昵称信息和是否关注信息
+                console.log(sessionStorage.lookuserdes)
+                if(!sessionStorage.lookuserdes==''){
+                    this.savedes=false,
+                    this.followother=true
+                    this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.lookuserdes,
                         getinfostate:3
                     })
                     .then(response => {   
-                        console.log(response)
+                        console.log(7879)
+                        this.realname= response.data.data.realname   
                         this.userimageUrl= response.data.data.imgBuffer    
                         this.aboutme = response.data.data.aboutme,
                         this.doing = response.data.data.doing
@@ -101,8 +110,71 @@ import Vue from 'vue'
                             this.demoimg=true
                              console.log(1112222)
                         }
-                })
+                    })
+                }else{
+                    console.log(45679)
+                    this.savedes=true,
+                    this.followother=false
+                    this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.userid,
+                        getinfostate:3
+                    })
+                    .then(response => {   
+                        console.log(response)
+                        this.realname= response.data.data.realname   
+                        this.userimageUrl= response.data.data.imgBuffer    
+                        this.aboutme = response.data.data.aboutme,
+                        this.doing = response.data.data.doing
+                        this.demoimageid= response.data.data.coverworkid 
+                        this.collecttotal = response.data.data.collecttotal
+                        this.praisetotal = response.data.data.praisetotal
+                        this.looktotal = response.data.data.looktotal
+                        if(response.data.data.coverworkid == 'null'){
+                            this.demonone=true,
+                            this.demoimg=false,
+                            console.log('000111')
+                        }else{
+                            this.getdemoimg()
+                            this.demonone=false,
+                            this.demoimg=true
+                             console.log(1112222)
+                        }
+                    })
+                }
+
             },
+
+            // 关注
+            jia(){
+                if(this.$store.state.userid){//是否登录
+                    if(this.buttoncolor){
+                        this.axios.post('/res/useropreate',{
+                                userid:sessionStorage.userid,
+                                state:5,
+                                attentionid:sessionStorage.lookuserdes
+                            })
+                            .then(response => {           
+                                console.log(response)
+                        })
+                    }else{
+                        this.axios.post('/res/useropreate',{
+                                userid:sessionStorage.userid,
+                                state:6,
+                                attentionid:sessionStorage.lookuserdes
+                            })
+                            .then(response => {           
+                                console.log(response)
+                        })
+                    }
+                }else{
+                        this.$message({
+                        message: '请先登录',
+                        center: true,
+                    });
+                }
+            }, 
+
+
             getdemoimg(){
                 this.axios.post('/res/getfile',{
                     userid:sessionStorage.userid,
@@ -203,6 +275,19 @@ import Vue from 'vue'
     font-weight: 600;
     border: none;
     background: #F13232;
+    cursor: pointer;
+}
+.container39 .attenbutton02{
+    width:108px;
+    height: 36px;
+    position: absolute;
+    top: 24px;
+    left: 1024px; 
+    color: #fff;
+    font-size: 16px;  
+    font-weight: 600;
+    border: none;
+    background: #333;
     cursor: pointer;
 }
 .container39 .aboutbox{

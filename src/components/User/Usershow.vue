@@ -2,7 +2,8 @@
     <div class="container43">
         <div>
             <!-- <img class="star" src="../../assets/user/starfish.png" alt=""> -->
-            <p class="store">关注我的人</p>
+            <p class="store" v-show="myfollow">关注我的人</p>
+            <p class="store" v-show="shefollow">关注ta的人</p>
              <!-- <img class="bg02" src="../../assets/user/bg02.png" alt=""> -->
             <img class="left" src="../../assets/user/left.png" alt="" @click="Pagingdown">
             <ul class="follow" v-show="nosend">
@@ -25,6 +26,8 @@
     export default{
         data(){
             return{
+                myfollow:'',
+                shefollow:'',
                 list:'',
                 nosend:true,
                 sharebg:'',
@@ -35,26 +38,69 @@
             this.Getalldemo()
         },
         methods:{
-            Getalldemo(){
-                this.axios.post('/res/userinfo',{
-                        userid:sessionStorage.userid,
-                        state:5,
-                        pagesize:8
-                    })
-                    .then(response => {     
-                    this.list = response.data.data
-                    console.log(this.list)
+        Getalldemo(){
+            if(!sessionStorage.lookuserdes==''){
+            this.myfollow=false,
+            this.shefollow=true,
+            this.axios.post('/res/userinfo',{
+                userid:sessionStorage.lookuserdes,
+                state:5,
+                pagesize:10
+            })
+            .then(response => {     
+                this.list = response.data.data
+                console.log(this.list)
+                if(!response.data.data){
+                    this.nosend=false,
+                    this.sharebg=true
+                }else{
+                    this.nosend=true,
+                    this.sharebg=false
+                }  
+            })
+            }else{
+            this.myfollow=true,
+            this.shefollow=false,
+            this.axios.post('/res/userinfo',{
+                    userid:sessionStorage.userid,
+                    state:5,
+                    pagesize:10
+                })
+                .then(response => {     
+                 this.list = response.data.data
+                 console.log(this.list)
                     if(!response.data.data){
                         this.nosend=false,
                         this.sharebg=true
                     }else{
                         this.nosend=true,
                         this.sharebg=false
-                    }    
+                    }  
                 })
-            },
-            Pagingup(){
-                ++this.i
+            }
+        },
+        Pagingup(){
+           
+            if(!sessionStorage.lookuserdes==''){
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.lookuserdes,
+                        state:5,
+                        pagenum:this.i,
+                        pagesize:8
+                    })
+                    .then(response => {   
+                    if(response.data.data){
+                         this.i
+                        this.$message({
+                            message:'没有其他关注的人了~',
+                            center:true
+                        })
+                    }else{
+                         ++this.i
+                        this.list = response.data.data 
+                    }  
+                })
+            }else{
                 this.axios.post('/res/userinfo',{
                         userid:sessionStorage.userid,
                         state:5,
@@ -62,37 +108,53 @@
                         pagesize:8
                     })
                     .then(response => {   
-                        if(response.data.data){
-                            this.$message({
-                                message:'没有其他关注我的人了~',
-                                center:true
-                            })
-                        }else{
-                            this.list = response.data.data 
-                        }  
-                })
-            },
-            Pagingdown(){
-                    --this.i
-                    if(this.i<=1){
-                    this.i=1
-                    this.$message({
-                        message:'已经到第一页了~',
-                        center:true
-                    })
+                    if(response.data.data){
+                         this.i
+                        this.$message({
+                            message:'没有其他关注的人了~',
+                            center:true
+                        })
                     }else{
-                    this.i=this.i
-                    }
-                this.axios.post('/res/userinfo',{
-                        userid:sessionStorage.userid,
+                         ++this.i
+                        this.list = response.data.data 
+                    }  
+                })
+            }
+        },
+        Pagingdown(){
+                --this.i
+                if(this.i<=1){
+                this.i=1
+                this.$message({
+                    message:'已经到第一页了~',
+                    center:true
+                })
+                }else{
+                this.i=this.i
+                }
+                if(!sessionStorage.lookuserdes==''){
+                    this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.lookuserdes,
                         state:5,
                         pagenum:this.i,
                         pagesize:8
                     })
                     .then(response => {        
                         this.list = response.data.data
+                    })
+                }else{
+                this.axios.post('/res/userinfo',{
+                    userid:sessionStorage.userid,
+                    state:5,
+                    pagenum:this.i,
+                    pagesize:8
                 })
-            },
+                .then(response => {        
+                    this.list = response.data.data
+                })
+            }
+
+        },
         }
     }
 </script>
