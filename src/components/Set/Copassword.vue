@@ -46,7 +46,6 @@
             })
             .then(response => {
                   this.imageUrl02 = response.data.data.imgBuffer
-                  console.log( this.imageUrl02)
                   if(this.imageUrl02){
                       this.localpic = false
                       this.userpic = true
@@ -74,7 +73,6 @@
                    
             })
             .then(response => {
-              console.log(response)
                 // this.$message({
                 //     message: '修改密码成功',
                 //     center: true

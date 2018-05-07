@@ -96,7 +96,7 @@ export default {
                 state:1
             })
             .then(response => {  
-                console.log(sessionStorage.userid)                      
+                      
                 this.demoname = response.data.data.title
                 this.demodes = response.data.data.desc
             }) 
@@ -110,7 +110,6 @@ export default {
                 sessionStorage.demoname = this.demoname
                 sessionStorage.demodes = this.demodes   
                 var picsource = this.$refs.file_el.files[0]
-                console.log(picsource)
                 this.uploadFile(picsource)
                 // reader.onload = function () {   
                 //     this.readpicbinary = new Blob([this.result])
@@ -159,7 +158,7 @@ export default {
             }
             this.axios.post('/res/dealfile',formData,config)
             .then(function(response){
-                console.log(response)
+                
             })
             this.$message({
                 message: '上传成功',

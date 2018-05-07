@@ -49,7 +49,7 @@
             })
             .then(response => {     
                 this.list = response.data.data
-                console.log(this.list)
+             
                 if(!response.data.data){
                     this.nosend=false,
                     this.sharebg=true
@@ -68,7 +68,7 @@
                 })
                 .then(response => {     
                  this.list = response.data.data
-                 console.log(this.list)
+         
                     if(!response.data.data){
                         this.nosend=false,
                         this.sharebg=true

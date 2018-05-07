@@ -48,7 +48,6 @@ export default{
             })
             .then(response => {     
                 this.list = response.data.data
-                console.log(this.list)
                 if(!response.data.data){
                     this.nosend=false,
                     this.sharebg=true
@@ -67,7 +66,6 @@ export default{
                 })
                 .then(response => {     
                  this.list = response.data.data
-                 console.log(this.list)
                     if(!response.data.data){
                         this.nosend=false,
                         this.sharebg=true

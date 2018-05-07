@@ -31,7 +31,7 @@
                     <ul class="block-col-12">
                         <router-link to="/Demo"><li><p>作品管理</p></li></router-link>
                         <router-link to="#"><li>社区消息</li></router-link>
-                        <router-link to="/User"><li @click="clearsessionlookuser">个人中心</li></router-link>     
+                        <li @click.prevent.stop="clearsessionlookuser"><router-link to="/User">个人中心</router-link> </li>
                         <router-link to="/setting"><li>账号设置</li></router-link>  
                         <li><p @click="Cancellogout">退出登陆</p></li>
                     </ul>
@@ -195,7 +195,7 @@ export default {
         //清除session
         clearsessionlookuser(){
             sessionStorage.lookuserdes=''
-            location.reload();
+            // location.reload();
         },
 
         close(){
@@ -243,17 +243,15 @@ export default {
             .then(response => {
                 var datamsg = response.data
                 this.msg = response.data.errmsg
-                console.log(response)
                 if(!response.data.data){
-                    console.log('shibai')
                     this.$message({
                         message:datamsg.errmsg,
                         center:true
                     })
                 }else{
                     this.dialogLogin = false
-                    this.Getsessionname()
                     this.Getsession()
+                    this.Getsessionname()
                 }
             })
             .catch(function (error) {
@@ -319,8 +317,6 @@ export default {
                         center: true
                         }); 
                     }
-                    console.log(response)
- 
                     this.dialogLogin = false 
                 })
                 .catch(function (error) {
@@ -342,7 +338,6 @@ export default {
                     mail:this.formReset.mail
                 })
                 .then(response => {
-                    console.log(response)
                     this.$message({
                     message: response.data.data.msg,
                     center: true
@@ -424,34 +419,32 @@ export default {
         Getsession() {  
             this.axios.get('/res/verify')
             .then(response =>{
-                console.log(response)
                 if(response.data.data.userid){
-                    console.log(111)
                     this.publicKey = response.data.data.publicKey
                     // this.dialogLogin = false;
                     this.loginsign = false;
-                    this.usercenter = true;
                     sessionStorage.userid = response.data.data.userid
                     sessionStorage.usernamesession = response.data.data.username
+                    this.usercenter = true; 
                     this.$store.state.usernamesession02 = sessionStorage.usernamesession
-                    this.$store.state.userid = sessionStorage.userid
-                    
+                    this.$store.state.userid = sessionStorage.userid  
+                   
                 }else{
-                    console.log(333)
                     this.dialogLogin = false;
-                    this.loginsign = true;
                     this.usercenter = false;
+                    this.loginsign = true;
                     this.publicKey = response.data.data.publicKey
                 }
             }) 
         },
         Getsessionname(){
             if(sessionStorage.userid){
-                console.log(222)
-                this.$store.state.usernamesession02 = sessionStorage.usernamesession
-                this.$store.state.userid = sessionStorage.userid
+                this.usercenter = true;
                 this.dialogLogin = false;
                 this.loginsign = false;
+                this.$store.state.usernamesession02 = sessionStorage.usernamesession
+                this.$store.state.userid = sessionStorage.userid
+
             }
         },
         // 退出登陆
@@ -463,7 +456,8 @@ export default {
                 this.dropdowm = false;  
                 sessionStorage.usernamesession =''  
                 this.$store.state.userid = ''
-                this.$router.push({ name: 'Home' })    
+                this.$router.push({ name: 'Home' })  
+                location.reload()  
             }) 
         }
     }
@@ -562,10 +556,15 @@ export default {
 .headercontainer04 .headonecenter .block-col-12 a{
     color: #333;
 }
+.headercontainer04 .headonecenter .block-col-12 a:hover{
+    color: #fff;
+    text-decoration: none;
+}
 .headercontainer04 .headonecenter .block-col-12 li{
     padding-top: 10px;
     padding-left: 24px;
     height: 28px;
+    cursor: pointer;
 }
 .headercontainer04 .headonecenter .block-col-12 li:hover{
     background:#000;

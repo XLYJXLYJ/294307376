@@ -326,7 +326,6 @@ export default{
         this.loadprojectxml()
         this.loadprojectdes()
         this.snapdemoid= sessionStorage.snapdemoid
-        console.log(sessionStorage.snapdemoid)
         if(sessionStorage.snapdemoid == undefined||sessionStorage.snapdemoid == ''){
             this.snap02=false
             this.snap01=true
@@ -401,7 +400,6 @@ export default{
                 // this.snapdemoid= this.$store.state.demoxmlid 
                 // console.log(this.snapdemoid+'zuopin')                 
                this.demoxml = response.data  
-               console.log(this.demoxml)
                 //console.log(this.$store.state.demoxmlid)
                 //  window.frames["snap"].ide.openProjectString(this.demoxml)
                 //window.frames["snap"].ide.rawOpenProjectString(this.demoxml,'OPEN')   
@@ -414,8 +412,7 @@ export default{
                 id:this.$store.state.demoxmlid,
                 state:1
             })
-            .then(response => {  
-                console.log(sessionStorage.userid)                      
+            .then(response => {                      
                 this.list = response.data.data
                 this.edittittle = response.data.data.title
                 this.editdes = response.data.data.desc
@@ -585,7 +582,6 @@ export default{
                         this.axios.post('/res/upload',formData,config)
                         .then(response => {
                             this.$store.state.demoxmlid=response.data.data.id
-                            console.log('xmlid'+this.$store.state.demoxmlid)
                         })                      
                             this.$router.push({name:'Publish'})
                         }
@@ -646,15 +642,12 @@ export default{
             .then(response => {
                 var datamsg = response.data
                 this.msg = response.data.errmsg
-                console.log(response)
                 if(!response.data.data){
-                    console.log('shibai')
                     this.$message({
                         message:datamsg.errmsg,
                         center:true
                     })
                 }else{
-                    console.log('denglu')
                     this.dialogLogin = false
                     this.Getsession()
                     this.Getsessionname()
@@ -712,7 +705,6 @@ export default{
                 })
                 .then(response => {
                     this.registermsg = response.data.data.msg;
-                    console.log(response)
                     this.$message({
                     message: this.registermsg,
                     center: true
@@ -816,13 +808,11 @@ export default{
         Getsession() {  
             this.axios.get('/res/verify')
             .then(response =>{
-                console.log(response)
                 if(response.data.data.userid){
                     this.dialogLogin =false
                     this.publicKey = response.data.data.publicKey
                     this.login = false;
                     this.sign = false;
-                    console.log(response)
                     sessionStorage.userid = response.data.data.userid
                     sessionStorage.usernamesession = response.data.data.username
                     this.$store.state.usernamesession02 = sessionStorage.usernamesession
@@ -838,6 +828,7 @@ export default{
         },
         Getsessionname(){
             if(sessionStorage.userid){
+                this.user = true;
                 this.login = false;
                 this.sign = false;
                 this.$store.state.usernamesession02 = sessionStorage.usernamesession

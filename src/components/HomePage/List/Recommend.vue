@@ -7,9 +7,9 @@
                             <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>
                             <p>{{item.title}}</p>
                             <span class="game_cat">{{item.desc}}</span>
-                            <span class="down01"><i class="icon_see"><span>{{item.looktotal}}</span></i></span>
-                            <span class="down02"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
-                            <span class="down03"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
+                            <span class="down01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
+                            <span class="down02"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
+                            <span class="down03"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
                         </div>
                     </router-link>
             </el-col>         
@@ -19,7 +19,14 @@
     </div>
 </template>
 <script>
+import { looksum } from '../../../public/seesum.js'
     export default{
+        filters: {
+            looksums(n) {
+                var n = n;
+                return looksum(n);
+            }
+        },
         data(){
             return{
                 list:[],

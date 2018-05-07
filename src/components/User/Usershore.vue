@@ -6,7 +6,7 @@
             <p class="store" v-show="shefollow">ta收藏的作品</p>
             <img class="left" src="../../assets/user/left.png" alt="" @click="Pagingdown">
             <ul class="block" v-show="nosend">
-                <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
+                <li v-for="(item,index) in list01" :key='item.id' v-if="index<6">
                     <div class="share">
                         <img :src="item.imgBuffer" alt="">
                         <p>{{item.title}}</p>
@@ -32,6 +32,7 @@ export default {
             nosend:false,
             sharebg:true,
             list:'',
+            list01:'',
             i:1
         };
     },
@@ -49,8 +50,8 @@ export default {
                         pagesize:6
                 })
                 .then(response => {
-                    this.list = response.data.data
-                    console.log(this.list)
+                    this.list = response.data.data    
+                    this.list01 = response.data.data        
                     if(!response.data.data){
                         this.nosend=false,
                         this.sharebg=true
@@ -73,6 +74,7 @@ export default {
                 })
                 .then(response => {
                     this.list = response.data.data
+                    this.list01 = response.data.data  
                     if(!response.data.data){
                         this.nosend=false,
                         this.sharebg=true
@@ -86,80 +88,105 @@ export default {
                 });
             }
         },
-            Pagingup(){
-                if(!sessionStorage.lookuserdes==''){
-                this.axios.post('/res/userinfo',{
-                        userid:sessionStorage.lookuserdes,
-                        state:3,
-                        pagenum:this.i,
-                        pagesize:6
-                    })
-                    .then(response => {   
-                        if(response.data.data){
-                            this.i
-                            this.$message({
-                                message:'没有其他作品了~',
-                                center:true
-                            })
-                        }else{
-                           ++this.i
-                           this.list = response.data.data 
-                        }  
-                })
+
+            Pagingup(){    
+                if(this.list01.length<6){
+                    this.i=1
                 }else{
-                this.axios.post('/res/userinfo',{
-                        userid:sessionStorage.userid,
-                        state:3,
-                        pagenum:this.i,
-                        pagesize:6
-                    })
-                    .then(response => {   
-                        if(response.data.data){
-                            this.i
-                            this.$message({
-                                message:'没有其他作品了~',
-                                center:true
-                            })
-                        }else{
-                           ++this.i
-                           this.list = response.data.data 
-                        }  
-                    })
+                    ++this.i
                 }
+                this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
             },
             Pagingdown(){
-                --this.i
-                if(this.i<=1){
-                this.i=1
-                this.$message({
-                    message:'已经到第一页了~',
-                    center:true
-                })
-                }else{
-                this.i=this.i
-                }
-            if(!sessionStorage.lookuserdes==''){
-                this.axios.post('/res/userinfo',{
-                    userid:sessionStorage.lookuserdes,
-                    state:3,
-                    pagenum:this.i,
-                    pagesize:6
-                })
-                .then(response => {        
-                    this.list = response.data.data
-                })
-            }else{
-                this.axios.post('/res/userinfo',{
-                    userid:sessionStorage.userid,
-                    state:3,
-                    pagenum:this.i,
-                    pagesize:6
-                })
-                .then(response => {        
-                    this.list = response.data.data
-                })
-            }
-        },
+                 --this.i
+                 if(this.i<=1){
+                    this.i=1
+                    this.$message({
+                        message:'已经到第一页了~',
+                        center:true
+                    })
+                    this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
+                    console.log(this.list)
+                 }else{
+                    this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
+                 }
+            },
+
+
+        //     Pagingup(){
+        //         if(!sessionStorage.lookuserdes==''){
+        //         this.axios.post('/res/userinfo',{
+        //                 userid:sessionStorage.lookuserdes,
+        //                 state:3,
+        //                 pagenum:this.i,
+        //                 pagesize:6
+        //             })
+        //             .then(response => {   
+        //                 if(response.data.data){
+        //                     this.i=this.i
+        //                     this.$message({
+        //                         message:'没有其他作品了~',
+        //                         center:true
+        //                     })
+        //                 }else{
+        //                    ++this.i
+        //                    this.list = response.data.data 
+        //                 }  
+        //         })
+        //         }else{
+        //         this.axios.post('/res/userinfo',{
+        //                 userid:sessionStorage.userid,
+        //                 state:3,
+        //                 pagenum:this.i,
+        //                 pagesize:6
+        //             })
+        //             .then(response => {   
+        //                 if(response.data.data){
+        //                     this.i
+        //                     this.$message({
+        //                         message:'没有其他作品了~',
+        //                         center:true
+        //                     })
+        //                 }else{
+        //                    ++this.i
+        //                    this.list = response.data.data 
+        //                 }  
+        //             })
+        //         }
+        //     },
+        //     Pagingdown(){
+        //         --this.i
+        //         if(this.i<=1){
+        //         this.i=1
+        //         this.$message({
+        //             message:'已经到第一页了~',
+        //             center:true
+        //         })
+        //         }else{
+        //         this.i=this.i
+        //         }
+        //     if(!sessionStorage.lookuserdes==''){
+        //         this.axios.post('/res/userinfo',{
+        //             userid:sessionStorage.lookuserdes,
+        //             state:3,
+        //             pagenum:this.i,
+        //             pagesize:6
+        //         })
+        //         .then(response => {        
+        //             this.list = response.data.data
+        //         })
+        //     }else{
+        //         this.axios.post('/res/userinfo',{
+        //             userid:sessionStorage.userid,
+        //             state:3,
+        //             pagenum:this.i,
+        //             pagesize:6
+        //         })
+        //         .then(response => {        
+        //             this.list = response.data.data
+        //         })
+        //     }
+        // },
     }
   }
 </script>

@@ -8,8 +8,8 @@
                         <span class="sort_num">{{index+1}}</span>
                         <div class="ranking"><img :src="item.imgBuffer" alt=""></div>
                         <p>{{item.title}}</p>
-                        <span class="icon_see_box"><i class="icon_see"><span>{{item.looktotal}}</span></i></span>
-                        <span class="icon_see_love"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
+                        <span class="icon_see_box"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
+                        <span class="icon_see_love"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
                      </router-link>
                 </li>
             </ul>
@@ -17,7 +17,14 @@
     </div>
 </template>
 <script>
+import { looksum } from '../../public/seesum.js'
     export default{
+        filters: {
+            looksums(n) {
+                var n = n;
+                return looksum(n);
+            }
+        },
         data(){
             return{
                 list:[],
@@ -36,8 +43,7 @@
                 this.list=response.data.data
                 })
             },
-            edit03(id){   
-                console.log(id)              
+            edit03(id){               
                 sessionStorage.id = id
             },
         }
@@ -107,9 +113,12 @@
     position: relative;
     left: 6px;
     top: -3px;
+    width: 25px;
+    height: 14px;
     margin-left: 14px;
     font-style: normal;
     color:#2D2D2D;
+    display: inline-block;
 }
 .container06 .icon_love{
     background: url(../../assets/home/icon_love.png) no-repeat;

@@ -9,7 +9,8 @@
                 </ul>
                 <input class="source_search" type="text" @keyup.enter="Getsearch" placeholder="搜索素材" v-model="sourcename"><div class="searchicon" @click="Getsearch"></div>
             </div>
-            
+            <router-view></router-view>
+            <!-- <Sourceshop/> -->
             <div class="first" v-show="$store.state.sourcesearch">
                 <ul class="role">
                     <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
@@ -24,12 +25,13 @@
             <!-- <el-input class="search_input" placeholder="搜索作品">
                 <i slot="prefix" class="el-input__icon el-icon-search"></i>
             </el-input> -->
-        <router-view></router-view>
+        <!-- <router-view></router-view> -->
         </div>
 
     </div>
 </template>
 <script>
+import Sourceshop from '@/components/Source/Sourceshop'
     export default{
         data(){
             return{
@@ -84,11 +86,13 @@
                         }else{
                             this.list=response.data.data
                             this.listnew=response.data.data
-                            console.log(response)
                         }
                     })
                 }
             },
+        },
+        components:{
+            Sourceshop
         }
     }
 </script>

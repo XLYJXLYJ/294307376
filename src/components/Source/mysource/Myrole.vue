@@ -34,7 +34,6 @@ export default{
             })
             .then(response => {   
                 this.list01=response.data.data
-                console.log(response)
             })
         },
         deletemaster(id){
@@ -45,7 +44,6 @@ export default{
                 state:2
             })
             .then(response => {   
-                console.log(response)
             })
         },
     },

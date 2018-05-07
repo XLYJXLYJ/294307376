@@ -124,7 +124,7 @@ export default{
             .then(response => {   
                 this.list=response.data.data
                 this.listnew=response.data.data
-                console.log(response)
+       
             })
         },
         // Getsourcetwo(id){
@@ -145,22 +145,20 @@ export default{
                 state:1
             })
             .then(response => {   
-                console.log(response)
+                
             })
         },
         Selectpage(id){
             this.nowid = id?id:1
             var head01 = 16*(id-1)
             var foot01 = 16*id-1
-            console.log(head01)
-            console.log(foot01)
+     
             this.listnew=this.list.slice(head01,foot01)
         },
         Selectpageuser(id){
             var head01 = 16*(this.pageuser-1)
             var foot01 = 16*this.pageuser-1
-            console.log(head01)
-            console.log(foot01)
+           
             this.listnew=this.list.slice(head01,foot01)
         },
         Selectpagebefore(){
@@ -168,8 +166,7 @@ export default{
             var head01 = 16*(id-2)
             var foot01 = 16*(id-1)-1
             this.nowid=this.nowid-1
-            console.log(head01)
-            console.log(foot01)
+          
             this.listnew=this.list.slice(head01,foot01)
         },
         Selectpageafter(){
@@ -177,8 +174,7 @@ export default{
             var head01 = 16*(id)
             var foot01 = 16*(id+1)-1
             this.nowid=this.nowid+1
-            console.log(head01)
-            console.log(foot01)
+          
             this.listnew=this.list.slice(head01,foot01)
         }
     },
@@ -449,6 +445,7 @@ export default{
     border: 1px solid #dbdad7;
     text-align: center;
     margin-right: 10px;
+    cursor: pointer;
 }
 .container6400 .sortnum01 ul li:hover{
     background: #F13232;
@@ -463,6 +460,7 @@ export default{
     top: -21px;
     border: 1px solid #dbdad7;
     text-align: center;
+    cursor: pointer;
 }
 .container6400 .sortnum01 .nextpage{
     float: left;
@@ -471,7 +469,9 @@ export default{
     position: relative;
     left: 48px;
     top: -21px;
-    border: 1px solid #dbdad7;text-align: center;
+    border: 1px solid #dbdad7;
+    text-align: center;
+    cursor: pointer;
 }
 .container6400 .sortnum01 .endpage p{
     margin-top: 2px;
@@ -543,6 +543,7 @@ export default{
     height: 25px;
     font-size: 12px;
     color: #818181;
+    cursor: pointer;
 }
 .container6400 .sortnum01 .sortfly button:hover{
     background: #F13232;

@@ -9,9 +9,9 @@
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id,item.state)">修改</button></router-link>
                 <button class="button02">加入</button>
-                <span class="down"><i class="icon_see"><span>{{item.looktotal}}</span></i></span>
-                <span class="down"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
-                <span class="down"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
+                <span class="down"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
+                <span class="down"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
+                <span class="down"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
                 <p class="cancelpub" @click.prevent.stop="Canpublic(item.id,item.state)">{{item.state==0?'删除':'取消发布'}}</p>
             </li>
         </ul>  
@@ -20,11 +20,16 @@
 <script>
 import { mapGetters,mapActions} from 'vuex'
 import { formatDate } from '../../public/time.js'
+import { looksum } from '../../public/seesum.js'
     export default{
         filters: {//时间转换
             formatDate(time) {
-            var date = new Date(time);
-            return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
+                var date = new Date(time);
+                return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
+            },
+            looksums(n) {
+                var n = n;
+                return looksum(n);
             }
         },
         data(){
@@ -57,7 +62,6 @@ import { formatDate } from '../../public/time.js'
                         }); 
                     }else{
                         this.list=response.data.data
-                        console.log(response)
                     }
                 })
             },

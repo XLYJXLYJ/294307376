@@ -57,7 +57,6 @@ export default{
                     })
                 }else{
                 this.list=response.data.data
-                console.log(response)
                 this.$store.state.searchdemo=true
                 this.$store.state.recommenddemo=false
                 this.$store.state.productiondemo=false

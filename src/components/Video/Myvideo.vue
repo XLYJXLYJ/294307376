@@ -6,24 +6,28 @@
                         <img class="jinglin" :src="item.imgBuffer" alt="">
                         <p class="jinglingtext">{{item.title}}</p>
                         <span class="time">分享于：{{item.create_time|formatDate}}</span>
-                        <span class="icon_see_zan"><i class="icon_zan"><span>{{item.praisetotal}}</span></i></span>
-                        <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
-                        <span class="icon_see_see01"><i class="icon_see"><span>{{item.looktotal}}</span></i></span>
+                        <span class="icon_see_zan"><i class="icon_zan"><span>{{item.praisetotal|looksums}}</span></i></span>
+                        <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
+                        <span class="icon_see_see01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
                     </li>
                 </router-link>
             </ul>
     </div>
 </template>
 <script>
-import { mapGetters,mapActions} from 'vuex'
 import { formatDate } from '../../public/time.js'
-export default{
-    filters: {
-        formatDate(time) {
-        var date = new Date(time);
-        return formatDate(date, 'yyyy-MM-dd');
-        }
-    },
+import { looksum } from '../../public/seesum.js'
+    export default{
+        filters: {
+            formatDate(time) {
+                var date = new Date(time);
+                return formatDate(date, 'yyyy-MM-dd');
+            },
+            looksums(n) {
+                var n = n;
+                return looksum(n);
+            }
+        },
     data(){
         return{
             uservideo:true,

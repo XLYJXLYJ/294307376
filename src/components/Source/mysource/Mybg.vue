@@ -42,7 +42,6 @@ export default{
                 state:2
             })
             .then(response => {   
-                console.log(response)
             })
         },
     },

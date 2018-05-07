@@ -83,7 +83,6 @@ export default{
             })
             .then(response => {   
                 this.list01=response.data.data
-                console.log(response)
             })
         },
         // 加载场景
@@ -94,7 +93,6 @@ export default{
             })
             .then(response => {   
                 this.list02=response.data.data
-                console.log(response)
             })
         },
          // 加载音乐
@@ -105,7 +103,6 @@ export default{
             })
             .then(response => {   
                 this.list03=response.data.data
-                console.log(response)
             })
         },
         collectmaster01(id){
@@ -116,7 +113,6 @@ export default{
                 state:1
             })
             .then(response => {   
-                console.log(response)
             })
         },
         collectmaster02(id){
@@ -127,7 +123,7 @@ export default{
                 state:2
             })
             .then(response => {   
-                console.log(response)
+
             })
         },
         collectmaster03(id){
@@ -138,7 +134,7 @@ export default{
                 state:3
             })
             .then(response => {   
-                console.log(response)
+   
             })
         },
     },

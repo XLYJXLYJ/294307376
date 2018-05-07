@@ -61,7 +61,6 @@
                   this.formLabelAlign.sex = response.data.data.sex
                   this.formLabelAlign.name01 = response.data.data.realname
                   this.imageUrl01 = response.data.data.imgBuffer
-                  console.log(this.imageUrl01)
                   if(this.formLabelAlign.sex===1){
                       this.formLabelAlign.sex='男'
                   }else{
@@ -118,7 +117,6 @@
                 }
                 this.axios.post('/res/userinfo',formData,config)
                 .then(function(response){
-                    console.log(response)
                 })
                 .catch(function (error) {
                     console.log(error);

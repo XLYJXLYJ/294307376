@@ -6,11 +6,11 @@
             <p class="store" v-show="shefollow">ta分享的作品</p>
             <img class="left" src="../../assets/user/left.png" alt="" @click="Pagingdown">
             <ul class="block" v-show="nosend">
-                <li v-for="(item,index) in list" :key='item.id' v-if="index<6">
+                <li v-for="(item,index) in list01" :key='item.id' v-if="index<6">
                     <div class="share">
                         <img :src="item.imgBuffer" alt="">
                         <p>{{item.title}}</p>
-                        <span>作者：{{item.name}}</span>
+                        <span>作者：{{name}}</span>
                     </div>
                 </li>
             </ul>
@@ -29,9 +29,11 @@
                 myfollow:'',
                 shefollow:'',
                 list:'',
+                list01:'',
                 nosend:false,
                 sharebg:true,
                 i:1,
+                name:''
             }
         },
         mounted: function () {      
@@ -45,11 +47,11 @@
                     this.axios.post('/res/filelist',{//
                         userid:sessionStorage.lookuserdes,
                         state:1,
-                        pagesize:6
                     })
                     .then(response => {  
-                        console.log(response)         
                         this.list = response.data.data
+                        this.list01 = response.data.data
+                        this.name = response.data.auth
                         if(response.data.data.msg == "这回真的没有了~"){
                             this.nosend=false,
                             this.sharebg=true
@@ -64,10 +66,10 @@
                     this.axios.post('/res/filelist',{
                         userid:sessionStorage.userid,
                         state:1,
-                        pagesize:6
                     })
                     .then(response => {           
                         this.list = response.data.data
+                        this.list01 = response.data.data
                         if(response.data.data.msg == "这回真的没有了~"){
                             this.nosend=false,
                             this.sharebg=true
@@ -79,47 +81,15 @@
                 }
  
             },
-            Pagingup(){
-                
-                if(!sessionStorage.lookuserdes==''){
-                    this.axios.post('/res/filelist',{
-                        userid:sessionStorage.lookuserdes,
-                        state:1,
-                        pagenum:this.i,
-                        pagesize:6
-                    })
-                    .then(response => {   
-                        if(response.data.data){
-                            this.i
-                            this.$message({
-                                message:'没有其他作品了~',
-                                center:true
-                            })
-                        }else{
-                           ++this.i
-                           this.list = response.data.data 
-                        }  
-                    })
+
+
+            Pagingup(){    
+                if(this.list01.length<6){
+                    this.i=1
                 }else{
-                    this.axios.post('/res/filelist',{
-                        userid:sessionStorage.userid,
-                        state:1,
-                        pagenum:this.i,
-                        pagesize:6
-                    })
-                    .then(response => {   
-                        if(response.data.data){
-                            this.i
-                            this.$message({
-                                message:'没有其他作品了~',
-                                center:true
-                            })
-                        }else{
-                            ++this.i
-                           this.list = response.data.data 
-                        }  
-                    })
+                    ++this.i
                 }
+                this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
             },
             Pagingdown(){
                  --this.i
@@ -129,31 +99,82 @@
                         message:'已经到第一页了~',
                         center:true
                     })
+                    this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
+                    console.log(this.list)
                  }else{
-                    this.i=this.i
-                 }
-                 if(!sessionStorage.lookuserdes==''){
-                    this.axios.post('/res/filelist',{
-                        userid:sessionStorage.lookuserdes,
-                        state:1,
-                        pagenum:this.i,
-                        pagesize:6
-                    })
-                    .then(response => {        
-                        this.list = response.data.data
-                    })
-                 }else{
-                    this.axios.post('/res/filelist',{
-                        userid:sessionStorage.userid,
-                        state:1,
-                        pagenum:this.i,
-                        pagesize:6
-                    })
-                    .then(response => {        
-                        this.list = response.data.data
-                    })
+                    this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
                  }
             },
+
+
+            // Pagingup(){               
+            //     if(!sessionStorage.lookuserdes==''){
+            //         this.axios.post('/res/filelist',{
+            //             userid:sessionStorage.lookuserdes,
+            //             state:1,
+            //         })
+            //         .then(response => {   
+            //             if(response.data.data){
+            //                 this.i
+            //                 this.$message({
+            //                     message:'没有其他作品了~',
+            //                     center:true
+            //                 })
+            //             }else{
+
+            //                ++this.i
+            //                this.list = response.data.data 
+            //                 console.log(this.list)
+            //             }  
+            //         })
+            //     }else{
+            //         this.axios.post('/res/filelist',{
+            //             userid:sessionStorage.userid,
+            //             state:1,
+            //         })
+            //         .then(response => {   
+            //             if(response.data.data){
+            //                 this.i
+            //                 this.$message({
+            //                     message:'没有其他作品了~',
+            //                     center:true
+            //                 })
+            //             }else{
+            //                 ++this.i
+            //                this.list = response.data.data 
+            //             }  
+            //         })
+            //     }
+            // },
+            // Pagingdown(){
+            //      --this.i
+            //      if(this.i<=1){
+            //         this.i=1
+            //         this.$message({
+            //             message:'已经到第一页了~',
+            //             center:true
+            //         })
+            //      }else{
+            //         this.i=this.i
+            //      }
+            //      if(!sessionStorage.lookuserdes==''){
+            //         this.axios.post('/res/filelist',{
+            //             userid:sessionStorage.lookuserdes,
+            //             state:1,
+            //         })
+            //         .then(response => {        
+            //             this.list = response.data.data
+            //         })
+            //      }else{
+            //         this.axios.post('/res/filelist',{
+            //             userid:sessionStorage.userid,
+            //             state:1,
+            //         })
+            //         .then(response => {        
+            //             this.list = response.data.data
+            //         })
+            //      }
+            // },
         }
     }
 </script>
@@ -197,7 +218,8 @@
 }
 .container40 ul{
     list-style: none;
-    width: 1200px;
+    width: 1060px;
+    height: 400px!important;
     position: absolute;
     top: 65px;
     left: 76px;

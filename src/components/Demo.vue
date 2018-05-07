@@ -27,7 +27,7 @@ export default{
     },
     methods:{
         demoroute(){
-            this.$router.push({ name: 'Alldemohaha' })
+            this.$router.push({ name: 'Mydemo' })
         },
         clearsession(){
             sessionStorage.snapdemoid = ''

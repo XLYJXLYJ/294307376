@@ -51,9 +51,7 @@ export default{
         this.demoid = sessionStorage.id   
         this.demoid01 = this.$store.state.shareid  
         this.bannerUrl01 = 'static/js/index.html#present:Username=lynn&ProjectName='+1
-        this.bannerUrl = 'http://www.manykit.com/codeplay/#/static/player/index.html#present:Username=lynn&ProjectName='+this.demoid
-        console.log(this.demoid)
-        console.log(this.demoid01)
+        this.bannerUrl = 'http://www.manykit.com/codeplay/#/static/player/index.html#present:Username=lynn&ProjectName='+this.demoi
         this.$nextTick(function () {
         })
     },

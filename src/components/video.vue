@@ -10,7 +10,7 @@
                 </div>
                 <div>
                     <router-link to="/User">
-                        <img class="cat01" src="../assets/Video/cat01.png" alt="" @click="lookusersdes">
+                        <img class="cat01" :src="'data:image/png;base64,'+list.imgBuffer" alt="" @click="lookusersdes">
                         <p class="four" @click="lookusersdes">{{list.name}}</p>
                     </router-link>
                     <div :class='{"jia":!isAttention,"jia1":isAttention}' @click="jia"></div>
@@ -109,14 +109,10 @@ export default{
         this.loadprojectplay()
         this.demoid = sessionStorage.id    
         this.$store.state.shareid = sessionStorage.id  
-        console.log( 'sessionStorage.id'+sessionStorage.id)
-        console.log( 'this.demoid'+this.demoid)
-        console.log( 'this.$store.state.shareid'+this.$store.state.shareid )
 
         this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/index.html#present:Username=lynnn&ProjectName='+this.demoid
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/pxsnap.html#present:Username='+this.$store.state.authid+'&ProjectName='+this.demoid
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/index.html#present:ProjectName='+this.demoid
-        console.log(this.bannerUrl)
         this.$nextTick(function () {
         // DOM操作
         canvas = document.getElementById('qrccode')
@@ -127,8 +123,6 @@ export default{
     methods:{
         lookusersdes(){
             sessionStorage.lookuserdes = this.$store.state.authid
-            console.log(this.$store.state.authid)
-            console.log(sessionStorage.lookuserdes)
         },
         // 加载默认数据
         shareid(){
@@ -148,8 +142,6 @@ export default{
             })
             .then(response => {                        
                 this.list = response.data.data
-                
-                console.log(response)
                 this.isCollect = response.data.data.isCollect
                 this.isPraise = response.data.data.isPraise
                 this.isAttention= response.data.data.isAttention
@@ -169,6 +161,7 @@ export default{
             })
             .then(response => {                          
                this.demoxml = response.data  
+
             //    console.log(this.demoxml)
             //    console.log(this.$store.state.demoxmlid)
             // window.frames["snapplay"].ide.droppedText(this.demoxml,'OPEN') 
@@ -218,7 +211,7 @@ export default{
                             id:sessionStorage.id,
                         })
                         .then(response => {           
-                            console.log(response)
+                           
                     })
                 }else{
                     this.list.praisetotal--; 
@@ -228,11 +221,10 @@ export default{
                             id:sessionStorage.id,
                         })
                         .then(response => {           
-                            console.log(response)
+                           
                     })
                 }
                 this.isPraise = !this.isPraise
-                console.log(this.isPraise+'222')
             }else{
                     this.$message({
                     message: '请先登录',
@@ -251,7 +243,7 @@ export default{
                             id:sessionStorage.id,
                         })
                         .then(response => {           
-                            console.log(response)
+                            
                     })
                 }else{
                     this.list.collecttotal--; 
@@ -261,7 +253,7 @@ export default{
                             id:sessionStorage.id,
                         })
                         .then(response => {           
-                            console.log(response)
+                            
                     })
                 }
                 this.isCollect= !this.isCollect
@@ -283,7 +275,7 @@ export default{
                             attentionid:this.$store.state.authid
                         })
                         .then(response => {           
-                            console.log(response)
+                           
                     })
                 }else{
                     this.axios.post('/res/useropreate',{
@@ -292,7 +284,7 @@ export default{
                             attentionid:this.$store.state.authid
                         })
                         .then(response => {           
-                            console.log(response)
+                            
                     })
                 }
             }else{
@@ -312,7 +304,7 @@ export default{
                 if (error) {
                 console.log(error)
                 } else {
-                console.log('success')
+                
                 }
             })
         },
@@ -375,6 +367,8 @@ export default{
     height: 60px;
     top: 49px;
     left: 540px;
+    box-shadow:0px 3px 5px #bdbdbd; 
+    border-radius: 40px;
 }
 .container36 .four{
     position: absolute;
@@ -534,6 +528,7 @@ export default{
     background: #fff;
     top: 0px;
     left: 0px;
+    z-index: 0;
 }
 .con3536 .comment01{
     margin: 0 auto;

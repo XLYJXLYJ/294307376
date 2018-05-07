@@ -3,12 +3,12 @@
         <div>
             <div>
                 <img class="head" :src="'data:image/png;base64,'+userimageUrl" alt="">
-                <p class="name">{{realname}}</p>
+                <p class="name">{{username}}</p>
                 <p class="atten">编程达人</p>
             </div>
             <div>
                 <button class="attenbutton01" @click="Postuseinfo" v-show="savedes"><p>保存</p></button>
-                <button v-show="followother" :class='{"attenbutton01":buttoncolor,"attenbutton02":!buttoncolor}' @click="attenbutton"><p>{{ atten?'关注':'取消关注' }}</p></button>
+                <!-- <button v-show="followother" :class='{"attenbutton01":buttoncolor,"attenbutton02":!buttoncolor}' @click="attenbutton"><p>{{ atten?'关注':'取消关注' }}</p></button> -->
             </div>
         </div>
         <div class="aboutbox">
@@ -32,9 +32,9 @@
         </div>
         <div class="sum">
             <p class="sum01">你的作品已经累积获得了:</p>
-            <div class="good"><p>{{praisetotal}}</p><span>个赞</span></div>
-            <div class="store"><p>{{collecttotal}}</p><span>个收藏</span></div>
-            <div class="make"><p>{{looktotal}}</p><span>次浏览</span></div>
+            <div class="good"><p>{{praisetotal|looksums}}</p><span>个赞</span></div>
+            <div class="store"><p>{{collecttotal|looksums}}</p><span>个收藏</span></div>
+            <div class="make"><p>{{looktotal|looksums}}</p><span>次浏览</span></div>
             <!-- <div class="see"><p>100</p><span>次浏览</span></div> -->
         </div>
         <div class="mydy">我的动态</div>
@@ -42,14 +42,21 @@
 </template>
 <script>
 import Vue from 'vue'
+import { looksum } from '../../public/seesum.js'
     export default{
+        filters: {
+            looksums(n) {
+                var n = n;
+                return looksum(n);
+            }
+        },
         data(){
             return{
                  atten:true,
                  buttoncolor:true,
                  listdemo:'',
                  postlistdemo:'',
-                 realname:'',
+                 username:'',
                  aboutme:'',
                  doing:'',
                  userimageUrl:'',
@@ -82,7 +89,7 @@ import Vue from 'vue'
                 this.atten=!this.atten;
             },
             Getuseinfo(){//需要加昵称信息和是否关注信息
-                console.log(sessionStorage.lookuserdes)
+
                 if(!sessionStorage.lookuserdes==''){
                     this.savedes=false,
                     this.followother=true
@@ -91,8 +98,8 @@ import Vue from 'vue'
                         getinfostate:3
                     })
                     .then(response => {   
-                        console.log(7879)
-                        this.realname= response.data.data.realname   
+
+                        this.username= response.data.data.username   
                         this.userimageUrl= response.data.data.imgBuffer    
                         this.aboutme = response.data.data.aboutme,
                         this.doing = response.data.data.doing
@@ -102,17 +109,17 @@ import Vue from 'vue'
                         this.looktotal = response.data.data.looktotal
                         if(response.data.data.coverworkid == 'null'){
                             this.demonone=true,
-                            this.demoimg=false,
-                            console.log('000111')
+                            this.demoimg=false
+
                         }else{
                             this.getdemoimg()
                             this.demonone=false,
                             this.demoimg=true
-                             console.log(1112222)
+                        
                         }
                     })
                 }else{
-                    console.log(45679)
+                
                     this.savedes=true,
                     this.followother=false
                     this.axios.post('/res/userinfo',{
@@ -120,8 +127,8 @@ import Vue from 'vue'
                         getinfostate:3
                     })
                     .then(response => {   
-                        console.log(response)
-                        this.realname= response.data.data.realname   
+                    
+                        this.username= response.data.data.username   
                         this.userimageUrl= response.data.data.imgBuffer    
                         this.aboutme = response.data.data.aboutme,
                         this.doing = response.data.data.doing
@@ -131,13 +138,13 @@ import Vue from 'vue'
                         this.looktotal = response.data.data.looktotal
                         if(response.data.data.coverworkid == 'null'){
                             this.demonone=true,
-                            this.demoimg=false,
-                            console.log('000111')
+                            this.demoimg=false
+                           
                         }else{
                             this.getdemoimg()
                             this.demonone=false,
                             this.demoimg=true
-                             console.log(1112222)
+                           
                         }
                     })
                 }
@@ -154,7 +161,7 @@ import Vue from 'vue'
                                 attentionid:sessionStorage.lookuserdes
                             })
                             .then(response => {           
-                                console.log(response)
+                                
                         })
                     }else{
                         this.axios.post('/res/useropreate',{
@@ -163,7 +170,7 @@ import Vue from 'vue'
                                 attentionid:sessionStorage.lookuserdes
                             })
                             .then(response => {           
-                                console.log(response)
+                                
                         })
                     }
                 }else{
@@ -435,7 +442,7 @@ import Vue from 'vue'
 }
 .container39 .sum .good span{
     position: absolute;
-    left: 36px;
+    left: 40px;
     top: 6px;
     color: #ccc;
     font-size: 12px;
@@ -451,7 +458,7 @@ import Vue from 'vue'
 .container39 .sum .store span{
     position: absolute;
     top: 63px;
-    left: 154px;
+    left: 158px;
     color: #ccc;
     font-size: 12px;
 }
@@ -479,7 +486,7 @@ import Vue from 'vue'
 .container39 .sum .see span{
     position: absolute;
     top: 105px;
-    left: 154px;
+    left: 158px;
     color: #ccc;
     font-size: 12px;
 }

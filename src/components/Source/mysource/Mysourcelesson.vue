@@ -113,7 +113,6 @@ export default{
             .then(response => {   
                 this.list=response.data.data
                 this.listnew=response.data.data
-                console.log(response)
             })
         },
         // Getsourcetwo(id){
@@ -134,22 +133,18 @@ export default{
                 state:1
             })
             .then(response => {   
-                console.log(response)
+
             })
         },
         Selectpage(id){
             this.nowid = id?id:1
             var head01 = 16*(id-1)
             var foot01 = 16*id-1
-            console.log(head01)
-            console.log(foot01)
             this.listnew=this.list.slice(head01,foot01)
         },
         Selectpageuser(id){
             var head01 = 16*(this.pageuser-1)
             var foot01 = 16*this.pageuser-1
-            console.log(head01)
-            console.log(foot01)
             this.listnew=this.list.slice(head01,foot01)
         },
         Selectpagebefore(){
@@ -157,8 +152,6 @@ export default{
             var head01 = 16*(id-2)
             var foot01 = 16*(id-1)-1
             this.nowid=this.nowid-1
-            console.log(head01)
-            console.log(foot01)
             this.listnew=this.list.slice(head01,foot01)
         },
         Selectpageafter(){
@@ -166,8 +159,6 @@ export default{
             var head01 = 16*(id)
             var foot01 = 16*(id+1)-1
             this.nowid=this.nowid+1
-            console.log(head01)
-            console.log(foot01)
             this.listnew=this.list.slice(head01,foot01)
         }
     },

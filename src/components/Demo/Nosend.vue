@@ -49,7 +49,6 @@ import { formatDate } from '../../public/time.js'
                         }); 
                     }else{
                         this.title=response.data.data
-                        console.log(response)
                     }
                 })
             },

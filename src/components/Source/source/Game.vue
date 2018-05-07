@@ -158,7 +158,7 @@ export default{
             .then(response => {   
                 this.list=response.data.data
                 this.listnew=response.data.data
-                console.log(response)
+
             })
         },
         // 二级菜单
@@ -183,7 +183,6 @@ export default{
                 state:1
             })
             .then(response => {   
-                console.log(response)
             })
         },
         // 选择页数
@@ -549,6 +548,7 @@ export default{
     border: 1px solid #dbdad7;
     text-align: center;
     margin-right: 10px;
+    cursor: pointer;
 }
 .container64 .sortnum01 ul li:hover{
     background: #F13232;
@@ -563,6 +563,7 @@ export default{
     top: 0px;
     border: 1px solid #dbdad7;
     text-align: center;
+    cursor: pointer;
 }
 .container64 .sortnum01 .nextpage{
     float: left;
@@ -571,7 +572,9 @@ export default{
     position: relative;
     left: 14px;
     top: 0px;
-    border: 1px solid #dbdad7;text-align: center;
+    border: 1px solid #dbdad7;
+    text-align: center;
+    cursor: pointer;
 }
 .container64 .sortnum01 .endpage p{
     margin-top: 2px;
