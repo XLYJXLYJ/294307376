@@ -36,16 +36,38 @@
           <div class="foot_list_five">
           <ul>
             <li class="small1">许多米创造社区@2018</li>
-            <li class="small">深圳许多米科技有限公司/粤ICP备17130138号-1</li>      
+            <li class="small">深圳许多米科技有限公司/粤ICP备17130138号-1</li>    
           </ul>
         </div>
+        <!-- <img class="music" @click="playClick" src="../../assets/home/music.gif" alt="">
+          <audio autoplay="autoplay" id="music">   
+              <source src="horse.ogg" type="audio/ogg">
+              <source src="static/storms.mp3" type="audio/mpeg">
+          </audio> -->
         <img class="gov_icon" src="../../assets/home/govIcon.png" alt=""> 
       </div>
     </div>
 </template>
+<script>
+  export default{
+     methods:{
+        playClick(){
+            this._dom = document.getElementById('music');
+            if (this._dom.paused) {  
+                this._dom.play();  
+                play.value="播放";  
+            }else{ 
+                this._dom.pause();  
+                play.value="暂停";  
+            }  
+        },
+     }
+  }
+
+</script>
 <style scoped>
 .container003{
-  width: 100%;
+  width: 100%!important;
   height: 323px;
   position: relative;
   background-color: #1e1e1e;
@@ -55,6 +77,7 @@
   margin: 0 auto;
   position:relative;
   height: 323px;
+  background-color: #1e1e1e;
 }
 .container003 .container03 .imgfoot{
   position:absolute;
@@ -127,4 +150,11 @@
    left: 347px;
    top:246px;
 }
+/* .container003 .container03 .music{
+   position: absolute;
+   left: 790px;
+   top:254px;
+   border: 2px ridge #333;
+   box-shadow:0px 2px 2px #333; 
+} */
 </style>

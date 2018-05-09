@@ -51,12 +51,14 @@ export default{
     left: 0px;
     bottom: -142rem;   
 } */
-.content01 {
+.content01{
     flex: 1;
     padding-left: 5px;
 }
 .footer01 {
     flex: 0;
     margin-top: 0px;
+    min-width: 1300px;
+    background: #1e1e1e;
 }
 </style>
