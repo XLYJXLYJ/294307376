@@ -86,7 +86,7 @@ export default{
     height: 20px;
     top: 20px;
     left: 379px;
-    z-index: 1000;
+    z-index: 10;
     border-bottom: 2px solid #333;
 }
  .container32 .Mydemo{

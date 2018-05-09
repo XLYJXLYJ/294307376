@@ -7,7 +7,7 @@
                 <span class="el-dropdown-link" @click="language">
                     中文<i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
-                <div class="shopping"><a href="http://www.manykit.com/" target="_blank">官方商城</a></div>
+                <div class="shopping"><a href="https://shop194048616.taobao.com/" target="_blank">官方商城</a></div>
                 <div class="appdownload"><router-link to="/Download">APP下载</router-link></div>
                 <!-- 登录注册 -->
                 <div class="login_sign" v-show="loginsign"> 
@@ -23,7 +23,7 @@
                     dialogForgetpass= false, 
                     dialogPassSure=false">注册</p>   
                 </div>
-                <div class="username" v-show="usercenter" id="myPanel"> 
+                <div class="username"  v-show="usercenter" id="myPanel"> 
                     <p class="login01" type="text"  @click="dropdowmcontrol">{{this.$store.state.usernamesession02}}</p>   
                 </div> 
                 <!-- 下拉框  -->
@@ -31,7 +31,7 @@
                     <ul class="block-col-12">
                         <router-link to="/Demo"><li><p>作品管理</p></li></router-link>
                         <router-link to="#"><li>社区消息</li></router-link>
-                        <li @click.prevent.stop="clearsessionlookuser"><router-link to="/User">个人中心</router-link> </li>
+                        <router-link to="/User"><li @click="clearsessionlookuser">个人中心</li></router-link> 
                         <router-link to="/setting"><li>账号设置</li></router-link>  
                         <li><p @click="Cancellogout">退出登陆</p></li>
                     </ul>
@@ -54,7 +54,10 @@
                     </li> 
                     <li>
                         <router-link to="/Download"><p>下载</p></router-link>
-                    </li>   
+                    </li>  
+                    <li>
+                        <a href="http://www.manykit.com" target="_blank"><p>Manykit</p></a> 
+                    </li>  
                 </ul> 
             </div>
         </div> 
@@ -188,7 +191,7 @@ export default {
     mounted:function() { 
         // 判断session值是否存在，如果存在，则执行
         this.Getsession()
-        this.Getsessionname()
+        // this.Getsessionname()
     }, 
     methods: {
         ...mapActions(['Getsession01']),  
@@ -212,7 +215,7 @@ export default {
             this.$store.state.isdropdownparent = !this.$store.state.isdropdownparent
         },
         //登陆
-        Loginbtn() {
+        async Loginbtn() {
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
             let logintextpassword = this.publicKey;
             var privatekey = new NodeRSA(logintextpassword);
@@ -251,7 +254,7 @@ export default {
                 }else{
                     this.dialogLogin = false
                     this.Getsession()
-                    this.Getsessionname()
+                    // this.Getsessionname()  
                 }
             })
             .catch(function (error) {
@@ -421,14 +424,13 @@ export default {
             .then(response =>{
                 if(response.data.data.userid){
                     this.publicKey = response.data.data.publicKey
-                    // this.dialogLogin = false;
+                    this.dialogLogin = false;
                     this.loginsign = false;
                     sessionStorage.userid = response.data.data.userid
                     sessionStorage.usernamesession = response.data.data.username
-                    this.usercenter = true; 
                     this.$store.state.usernamesession02 = sessionStorage.usernamesession
                     this.$store.state.userid = sessionStorage.userid  
-                   
+                    this.usercenter = true;  
                 }else{
                     this.dialogLogin = false;
                     this.usercenter = false;
@@ -437,16 +439,18 @@ export default {
                 }
             }) 
         },
-        Getsessionname(){
-            if(sessionStorage.userid){
-                this.usercenter = true;
-                this.dialogLogin = false;
-                this.loginsign = false;
-                this.$store.state.usernamesession02 = sessionStorage.usernamesession
-                this.$store.state.userid = sessionStorage.userid
-
-            }
-        },
+        // Getsessionname(){
+        //     console.log(sessionStorage.userid)
+        //     if(sessionStorage.userid!=null){
+        //         console.log(333)
+        //         this.$store.state.usernamesession02 = sessionStorage.usernamesession
+        //         this.$store.state.userid = sessionStorage.userid
+        //         this.dialogLogin = false;
+        //         this.loginsign = false;
+        //         this.usercenter = true;
+        //         console.log(444)
+        //     }
+        // },
         // 退出登陆
         Cancellogout() {
             this.axios.get('/res/logout')
@@ -455,9 +459,9 @@ export default {
                 this.usercenter = false;
                 this.dropdowm = false;  
                 sessionStorage.usernamesession =''  
+                sessionStorage.userid ='' 
                 this.$store.state.userid = ''
-                this.$router.push({ name: 'Home' })  
-                location.reload()  
+                this.$router.push({ name: 'Home' })   
             }) 
         }
     }

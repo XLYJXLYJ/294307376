@@ -12,11 +12,11 @@
             </div>
         </div>
         <div class="aboutbox">
-            <p class="aboutme">关于我</p>
+            <p class="aboutme" placeholder="请填写关于你的一些信息">关于我</p>
             <textarea class="aboutmetext" name="" id="" cols="30" rows="10" v-model="aboutme"></textarea>
         </div>
          <div class="doing">
-            <p class="medoing">我正在做什么</p>
+            <p class="medoing" placeholder="请填写你正在规划的事情">我正在做什么</p>
             <textarea class="medoingtext" name="" id="" cols="30" rows="10"  v-model="doing"></textarea>
         </div>
         <div>

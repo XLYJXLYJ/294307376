@@ -650,7 +650,7 @@ export default{
                 }else{
                     this.dialogLogin = false
                     this.Getsession()
-                    this.Getsessionname()
+                    // this.Getsessionname()
                    
                 }
             })
@@ -826,15 +826,15 @@ export default{
                 }
             }) 
         },
-        Getsessionname(){
-            if(sessionStorage.userid){
-                this.user = true;
-                this.login = false;
-                this.sign = false;
-                this.$store.state.usernamesession02 = sessionStorage.usernamesession
-                this.$store.state.userid = sessionStorage.userid
-            }
-        },
+        // Getsessionname(){
+        //     if(sessionStorage.userid){
+        //         this.user = true;
+        //         this.login = false;
+        //         this.sign = false;
+        //         this.$store.state.usernamesession02 = sessionStorage.usernamesession
+        //         this.$store.state.userid = sessionStorage.userid
+        //     }
+        // },
         Homepass(){
             this.$router.push({name:'Home'})
         },

@@ -237,11 +237,13 @@
     position: absolute;
     left: 13px;
     top: 142px;
+    cursor: pointer;
 }
 .container40 .right{
     position: absolute;
     left: 1128px;
     top: 142px;
+    cursor: pointer;
 }
 .container40 .sharebg{
     position: relative;

@@ -31,7 +31,7 @@
                     <!-- <iframe class="video" frameborder="0" src="static/player/index.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
                     <!-- <iframe class="video" frameborder="0" src="static/ceshi/snap.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
                     <!-- <iframe class="video" frameborder="0" :src="'static/ceshi/snap.html#run:'+demoxml+'.xml'" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
-                    <iframe class="video" frameborder="0" :src="'static/player/pxsnap.html#present:Username=Lynn&ProjectName='+demoid" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
+                    <iframe class="video" frameborder="0" :src="'static/snap/playersnap.html#present:Username=Lynn&ProjectName='+demoid" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
                     <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
                 </div>
                 <div class="mydemo_frame">
@@ -107,11 +107,12 @@ export default{
         this.recommendroute()
         this.loadproject()     
         this.loadprojectplay()
-        this.demoid = sessionStorage.id    
+          
         this.$store.state.shareid = sessionStorage.id  
 
-        this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/index.html#present:Username=lynnn&ProjectName='+this.demoid
-        // this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/pxsnap.html#present:Username='+this.$store.state.authid+'&ProjectName='+this.demoid
+        // this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username=lynnn&ProjectName='+this.demoid
+        //  this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+this.$store.state.authid+'&ProjectName='+this.$store.state.shareid
+         this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+11111+'&ProjectName='+this.$store.state.shareid
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/index.html#present:ProjectName='+this.demoid
         this.$nextTick(function () {
         // DOM操作
@@ -133,9 +134,9 @@ export default{
         recommendroute(){
             this.$router.push({ name: 'Lovevideo' })
         },
-        loadproject(){
+        async loadproject(){
             // if(sessionStorage.userid!=='unfined')
-            this.axios.post('/res/getfile',{
+            await this.axios.post('/res/getfile',{
                 userid:sessionStorage.userid,
                 id:sessionStorage.id,
                 state:3
@@ -148,8 +149,9 @@ export default{
                 this.publishtime= response.data.data.publishtime
                 this.$store.state.authid= response.data.data.authid
                 this.$store.state.lookdemoname= response.data.data.name
-            
+                this.demoid = sessionStorage.id  
             }) 
+           
         },
         lookother(){
             sessionStorage.userid = this.$store.state.authid

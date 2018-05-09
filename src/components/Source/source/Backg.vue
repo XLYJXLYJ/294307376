@@ -346,7 +346,7 @@ export default{
 <style scoped>
 .container63{
     width: 100%;
-    height: 1286px;
+    height: 1556px;
     z-index: 100;
     position: relative;
     top: -70px;
@@ -565,7 +565,7 @@ export default{
 .container63 .first .role li{
     float: left;
     width: 198px;
-    height: 277px;
+    height: 367px;
     margin-right: 24px;
     background: #f5f5f5;
     margin-top: 30px;
@@ -597,7 +597,7 @@ export default{
     color: #fff;
 }
 .container63 .first .roleimg{
-    height: 198px;
+    height: 288px;
     width: 198px;
 }
 .container63 .first .roleimg img{
@@ -614,7 +614,7 @@ export default{
 
 .container63 .sortnum01{
     position: absolute;
-    top: 1104px;
+    top: 1374px;
     left:320px;
     width: 995px;
     height: 32px;

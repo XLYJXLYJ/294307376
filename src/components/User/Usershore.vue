@@ -33,6 +33,7 @@ export default {
             sharebg:true,
             list:'',
             list01:'',
+            list02:'',
             i:1
         };
     },
@@ -51,7 +52,8 @@ export default {
                 })
                 .then(response => {
                     this.list = response.data.data    
-                    this.list01 = response.data.data        
+                    this.list01 = response.data.data 
+                    this.list03 = response.data.data      
                     if(!response.data.data){
                         this.nosend=false,
                         this.sharebg=true
@@ -70,11 +72,13 @@ export default {
                 this.axios.post('/res/userinfo',{
                         userid:sessionStorage.userid,
                         state:3,
+                        pagenum:1,
                         pagesize:6
                 })
                 .then(response => {
                     this.list = response.data.data
-                    this.list01 = response.data.data  
+                    this.list01 = response.data.data
+                    this.list03 = response.data.data 
                     if(!response.data.data){
                         this.nosend=false,
                         this.sharebg=true
@@ -89,28 +93,74 @@ export default {
             }
         },
 
-            Pagingup(){    
-                if(this.list01.length<6){
-                    this.i=1
-                }else{
-                    ++this.i
-                }
-                this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
+
+            Pagingup(){ 
+                this.i=this.i+1
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.userid,
+                        state:3,
+                        pagenum:this.i,
+                        pagesize:6
+                })
+                .then(response => {   
+                    this.list01 = response.data.data  
+                    this.list=this.list.concat(this.list01)
+                    if(this.list01.length==0){
+                        this.i=1
+                        this.list=[]
+                        this.list01 = this.list03
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });           
             },
             Pagingdown(){
                  --this.i
+                 console.log(this.i) 
                  if(this.i<=1){
                     this.i=1
                     this.$message({
                         message:'已经到第一页了~',
                         center:true
                     })
-                    this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
-                    console.log(this.list)
+                    this.list01 = this.list03 
+                    this.list = []      
+                    // console.log(this.list) 
                  }else{
-                    this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
+                    this.list01 = this.list.slice(this.list.length-6,this.list.length)  
+                    this.list = this.list.slice(0,this.list.length-6)
+                    if(this.list01.length<6){
+                        this.i=1
+                        this.list=[]
+                        this.list01 = this.list03
+                    }   
                  }
             },
+
+
+            // Pagingup(){    
+            //     if(this.list01.length<6){
+            //         this.i=1
+            //     }else{
+            //         ++this.i
+            //     }
+            //     this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
+            // },
+            // Pagingdown(){
+            //      --this.i
+            //      if(this.i<=1){
+            //         this.i=1
+            //         this.$message({
+            //             message:'已经到第一页了~',
+            //             center:true
+            //         })
+            //         this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
+            //         console.log(this.list)
+            //      }else{
+            //         this.list01 = this.list.slice(6*(this.i-1),6*this.i)           
+            //      }
+            // },
 
 
         //     Pagingup(){
@@ -248,11 +298,13 @@ export default {
     position: absolute;
     left: 13px;
     top: 142px;
+    cursor: pointer;
 }
 .container41 .right{
     position: absolute;
     left: 1128px;
     top: 142px;
+    cursor: pointer;
 }
 .container41 .makedemotext{
     position: relative;

@@ -20,6 +20,7 @@
     </div>
 </template>
 <script>
+import NodeRSA from 'node-rsa'
   export default {
     data() {
       return {
@@ -28,15 +29,18 @@
         imageUrl02:'',
         userpic:'',
         localpic:'',
+        publicKey:'',
         formLabelAlign: {
           oldpass: '',
           newpass: '',
-          conpass: ''
+          conpass: '',
+          conpassss:''
         }
       };
     },
     mounted:function(){
       this.loadmessage()
+      this.Getsession()
     },
     methods:{
             loadmessage(){
@@ -59,6 +63,9 @@
             });
       },
           changepassbtn() {
+              let logintextpassword = this.publicKey;
+              var privatekey = new NodeRSA(logintextpassword);
+              this.formLabelAlign.conpassss = privatekey.encrypt(this.formLabelAlign.conpass, 'base64');
             //  var picsource = this.$refs.file_el.files[0]
             if(this.formLabelAlign.newpass!==this.formLabelAlign.conpass||this.formLabelAlign.newpass<6||this.formLabelAlign.conpass<6){
                 this.$message({
@@ -66,8 +73,9 @@
                 center: true
                 });
             }else{
+
                 this.axios.post('/res/setpassword',{
-                    password:this.formLabelAlign.conpass,
+                    password:this.formLabelAlign.conpassss,
                     userid:this.$store.state.userid,
                     // fiels:picsource
                    
@@ -82,6 +90,27 @@
                 console.log(error);
             });
             }     
+        },
+          Getsession() {  
+            this.axios.get('/res/verify')
+            .then(response =>{
+                if(response.data.data.userid){
+                    this.publicKey = response.data.data.publicKey
+                    // this.dialogLogin = false;
+                    this.loginsign = false;
+                    sessionStorage.userid = response.data.data.userid
+                    sessionStorage.usernamesession = response.data.data.username
+                    this.usercenter = true; 
+                    this.$store.state.usernamesession02 = sessionStorage.usernamesession
+                    this.$store.state.userid = sessionStorage.userid  
+                   
+                }else{
+                    this.dialogLogin = false;
+                    this.usercenter = false;
+                    this.loginsign = true;
+                    this.publicKey = response.data.data.publicKey
+                }
+            }) 
         },
         // choise_file () {
         //     var file_info = this.$refs.file_el.files[0]
