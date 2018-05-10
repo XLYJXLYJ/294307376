@@ -37,18 +37,18 @@
     </div> -->
         <div class="sort02">
         <ul>
-            <li class="more"><p>最近更新</p></li>
-            <li class="new"><p>最多使用</p></li>
+            <li class="more"><p @click="resentchange">最近更新</p></li>
+            <li class="new"><p @click="mostuse">最多下载</p></li>
         </ul>
         <!-- <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox> -->
-        <p class="all">共有{{listnew.length}}个素材</p>
+        <p class="all">共有{{listnewlength}}个素材</p>
     </div>
     <div class="first">
         <ul class="role">
             <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
                 <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
                 <div class="roleup">
-                <a :href="'/codeplay/'+item.content" download><button>下载</button></a>
+                <a :href="'/codeplay/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>
@@ -94,6 +94,7 @@ export default{
         isdemohover01:'',
         isdemohover02:0,
         isdemohover03:1,
+        listnewlength:'',//请求数据的长度
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"卡通场景"},
@@ -143,7 +144,8 @@ export default{
                         pagesize:15
                     })
                     .then(response => {  
-                    this.numpage = true     
+                    this.numpage = true  
+                    this.listnewlength = response.data.total   
                     this.list=response.data.data
                     this.listnew=response.data.data
                     })
@@ -158,6 +160,7 @@ export default{
                         pagesize:15
                     })
                     .then(response => {  
+                    this.listnewlength = response.data.total
                     this.numpage = false     
                     this.list=response.data.data
                     this.listnew=response.data.data
@@ -173,7 +176,8 @@ export default{
                         pagesize:15
                     })
                     .then(response => { 
-                    this.numpage = false       
+                    this.numpage = false  
+                    this.listnewlength = response.data.total     
                     this.list=response.data.data
                     this.listnew=response.data.data
                     })
@@ -188,7 +192,8 @@ export default{
                         pagesize:15
                     })
                     .then(response => {  
-                    this.numpage = false      
+                    this.numpage = false  
+                    this.listnewlength = response.data.total    
                     this.list=response.data.data
                     this.listnew=response.data.data
                     })
@@ -199,22 +204,66 @@ export default{
             // 第二级选择
         select0101(id){
             this.isdemohover02 = id
+            if(id==0){
+                this.isdemohover03=1
+                this.axios.post('/res/resourcelist',{
+                onenav:2,
+                twonav:this.isdemohover01,
+                threenav:0,
+                pagesize:15
+            })
+            .then(response => { 
+                this.listnewlength = response.data.total 
+                this.listnew=response.data.data  
+                this.numpage = true
+
+                })
+            }else{
             this.axios.post('/res/resourcelist',{
                 onenav:2,
                 twonav:this.isdemohover01,
                 threenav:id,
                 pagesize:15
             })
-            .then(response => {  
+            .then(response => { 
+                this.listnewlength = response.data.total 
                 this.listnew=response.data.data  
-                if(this.listnew.length<15){
-                    this.numpage = false
-                }else{
-                    this.numpage = false
-                }
-                this.listnew=response.data.data
+                this.numpage = false
+                })
+            }
+            
+        },
+
+        //最近更新
+        resentchange(){
+            this.isdemohover03 = 1
+            this.axios.post('/res/resourcelist',{
+                onenav:2,
+                state:1,
+                pagenum:1,
+                pagesize:15
+            })
+            .then(response => {   
+                this.listnewlength = response.data.total
+                this.list=response.data.data
+                this.listnew=response.data.data     
             })
         },
+        //最多使用
+        mostuse(){
+            this.axios.post('/res/resourcelist',{
+                onenav:2,
+                state:2,
+                pagenum:1,
+                pagesize:15
+            })
+            .then(response => {   
+                this.listnewlength = response.data.total
+                this.list=response.data.data
+                this.listnew=response.data.data     
+            })
+        },
+
         // 默认加载的数据
         Getsource(){
                 this.$store.state.sourcesearch=false,
@@ -237,11 +286,8 @@ export default{
         },
         // 采集函数
         collectmaster(id){
-                this.axios.post('/res/collectmaterial',{
-                userid:sessionStorage.userid,
+            this.axios.post('/res/collectmaterial',{
                 id:id,
-                // type:4,
-                state:1
             })
             .then(response => {   
  
@@ -479,7 +525,7 @@ export default{
    height: 30px;
    background: #f5f5f5;
    position: relative;
-   left: 57px;
+   left: 47px;
    top: 28px;
    margin-bottom: 40px;
    display: block;
@@ -502,6 +548,7 @@ export default{
    top: 0px;
    left: 0px;
    padding-top: 4px;
+   cursor: pointer;
 }
 .container63 .sort02 .new{
    width: 86px;
@@ -514,6 +561,7 @@ export default{
    top: 0px;
    left: 86px;
    padding-top: 4px;
+   cursor: pointer;
 }
 .container63 .sort02 ul li:hover{
    color:#FFF;

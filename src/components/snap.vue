@@ -508,6 +508,14 @@ export default{
         submitUpload() {
             if(this.savestate==1){
                 let formData = new FormData();
+                console.log("==========新增=====");
+                console.log(
+                    'userid',this.formSave.userid,
+                    'id',this.$store.state.demoxmlid,
+                    'title',this.formSave.title,
+                    'desc',this.formSave.desc,
+                    'state',1
+                )
                 formData.append('userid',this.formSave.userid);
                 formData.append('title',this.formSave.title);
                 formData.append('desc',this.formSave.desc);
@@ -528,6 +536,14 @@ export default{
                 });
             }else{
                 let formData = new FormData();
+                console.log("==========编辑=====");
+                console.log(
+                    'userid',this.formSave.userid,
+                    'id',this.$store.state.demoxmlid,
+                    'title',this.formSave.title,
+                    'desc',this.formSave.desc,
+                    'state',1
+                )
                 formData.append('userid',this.formSave.userid);
                 formData.append('id',this.$store.state.demoxmlid);
                 formData.append('title',this.formSave.title);
@@ -554,9 +570,10 @@ export default{
         　　if(window.navigator.onLine==true) {                     //是否联网　
                 if(sessionStorage.userid){                          //是否登录
                     if(this.$store.state.demoxmlid){                //是否是发布和未发布状态
-                        if(this.$store.state.publicstate==0){         //未发布
+                        if(this.$store.state.publicstate==0){       //未发布
                             this.$store.state.demoxmlid = this.$store.state.demoxmlid
-                            this.$router.push({name:'Publish'})
+                            console.log(123)
+                            // this.$router.push({name:'Publish'})
                         }else{                                      //已发布
                                 this.$message({
                                 message: '该作品已经发布，请重新保存',
@@ -582,8 +599,9 @@ export default{
                         this.axios.post('/res/upload',formData,config)
                         .then(response => {
                             this.$store.state.demoxmlid=response.data.data.id
+                            console.log(456)
+                            // this.$router.push({name:'Publish'})
                         })                      
-                            this.$router.push({name:'Publish'})
                         }
                 }else{
                     this.$message(

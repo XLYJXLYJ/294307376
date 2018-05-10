@@ -3,16 +3,16 @@
     <div class="sort01">
         <p class="sort01text">作品分类:</p>
         <ul>
-                <li v-for="(item,index) in oneidbox" :key="item.oneid" @click="select01(item.oneid)" :class="{demohover:index==isdemohover01}"><p>{{item.name}}</p></li>
+            <li v-for="(item,index) in oneidbox" :key="item.oneid" @click="Getsourcetwo(item.oneid)" :class="{demohover:index==isdemohover01}"><p>{{item.name}}</p></li>
         </ul>
     </div>
     <div class="sort02">
         <ul>
-            <li class="more"><p>最近更新</p></li>
-            <li class="new"><p>最多使用</p></li>
+            <li class="more"><p @click="resentchange">最近更新</p></li>
+            <li class="new"><p @click="mostuse">最多下载</p></li>
         </ul>
         <!-- <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox> -->
-        <p class="all">共有{{listnew.length}}个素材</p>
+        <p class="all">共有{{listnewlength}}个素材</p>
     </div>
     <div class="first">
         <ul class="role">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="roleup">
-                <a :href="'/codeplay/'+item.content" download><button>下载</button></a>
+                <a :href="'/codeplay/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>
@@ -69,6 +69,8 @@ export default{
         isdemohover01:'',
         isdemohover02:0,
         isdemohover03:1,
+        pagesum:'',//页面的页数
+        listnewlength:'',//请求数据的长度
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"NPC"},
@@ -99,48 +101,48 @@ export default{
         this.Getsource()
     },
     methods:{
-        select01(id){
-            this.isdemohover01 = id
-            this.isdemohover02 = 0
-            switch(id){                
-                case id=0:
-                    this.axios.post('/res/resourcelist',{
-                        onenav:4,
-                        pagesize:15
-                    })
-                    .then(response => {  
-                    this.numpage = true     
-                    this.list=response.data.data
-                    this.listnew=response.data.data
-                    })
-                break
-                case id=1:
-                    this.axios.post('/res/resourcelist',{
-                        onenav:4,
-                        twonav:1,
-                        pagesize:15
-                    })
-                    .then(response => {  
-                    this.numpage = false     
-                    this.list=response.data.data
-                    this.listnew=response.data.data
-                    })
-                break;
-                case id=2:
-                    this.axios.post('/res/resourcelist',{
-                        onenav:4,
-                        twonav:2,
-                        pagesize:15
-                    })
-                    .then(response => { 
-                    this.numpage = false       
-                    this.list=response.data.data
-                    this.listnew=response.data.data
-                    })
-                break;
-            }
+        // select01(id){
+        //     this.isdemohover01 = id
+        //     this.isdemohover02 = 0
+        //     switch(id){                
+        //         case id=0:
+        //             this.axios.post('/res/resourcelist',{
+        //                 onenav:4,
+        //                 pagesize:15
+        //             })
+        //             .then(response => {  
+        //             this.numpage = true     
+        //             this.list=response.data.data
+        //             this.listnew=response.data.data
+        //             })
+        //         break
+        //         case id=1:
+        //             this.axios.post('/res/resourcelist',{
+        //                 onenav:4,
+        //                 twonav:1,
+        //                 pagesize:15
+        //             })
+        //             .then(response => {  
+        //             this.numpage = false     
+        //             this.list=response.data.data
+        //             this.listnew=response.data.data
+        //             })
+        //         break;
+        //         case id=2:
+        //             this.axios.post('/res/resourcelist',{
+        //                 onenav:4,
+        //                 twonav:2,
+        //                 pagesize:15
+        //             })
+        //             .then(response => { 
+        //             this.numpage = false       
+        //             this.list=response.data.data
+        //             this.listnew=response.data.data
+        //             })
+        //         break;
+        //     }
 
-        },
+        // },
         // 加载默认数据
         Getsource(){
                 this.$store.state.sourcesearch=false,
@@ -156,6 +158,7 @@ export default{
                 pagesize:15
             })
             .then(response => {   
+                this.listnewlength = response.data.total 
                 this.list=response.data.data
                 this.listnew=response.data.data
 
@@ -165,15 +168,62 @@ export default{
         Getsourcetwo(id){
             this.isdemohover01 = id
             this.isdemohover02 = 0
+            if(id!=0){
+                this.numpage=false
+                this.axios.post('/res/resourcelist',{
+                    onenav:4,
+                    twonav:id
+                })
+                .then(response => {  
+                    console.log(response)
+                    this.listnewlength = response.data.total  
+                    this.list=response.data.data
+                    this.listnew=response.data.data
+                })
+            }else{
+                this.numpage=true
+                this.axios.post('/res/resourcelist',{
+                    onenav:4,
+                })
+                .then(response => {  
+                    console.log(111)
+                    this.listnewlength = response.data.total  
+                    this.list=response.data.data
+                    this.listnew=response.data.data
+                })
+            }
+        },
+
+          //最近更新
+        resentchange(){
             this.axios.post('/res/resourcelist',{
                 onenav:4,
-                twonav:id
+                state:1,
+                pagenum:1,
+                pagesize:15
             })
             .then(response => {   
+                this.listnewlength = response.data.total
                 this.list=response.data.data
-                this.listnew=response.data.data
+                this.listnew=response.data.data     
             })
         },
+        //最多使用
+        mostuse(){
+            this.axios.post('/res/resourcelist',{
+                onenav:4,
+                state:2,
+                pagenum:1,
+                pagesize:15
+            })
+            .then(response => {   
+                this.listnewlength = response.data.total
+                this.list=response.data.data
+                this.listnew=response.data.data     
+            })
+        },
+
+
         // 采集
         collectmaster(id){
                 this.axios.post('/res/collectmaterial',{
@@ -206,7 +256,7 @@ export default{
         },
         // 选择跳转页数
         Selectpageuser(){
-            if(this.pageuser<1||this.pageuser>2){
+            if(this.pageuser<1||this.pageuser>10){
                 this.$message({
                     message:'已经超过页数限制',
                     center:true
@@ -401,7 +451,7 @@ export default{
     height: 30px;
     background: #f5f5f5;
     position: relative;
-    left: 57px;
+    left: 47px;
     top: 28px;
 }
 .container64 .sort02 ul{
@@ -422,6 +472,7 @@ export default{
     top: 0px;
     left: 0px;
     padding-top: 4px;
+    cursor: pointer;
 }
 .container64 .sort02 .new{
     width: 86px;
@@ -434,6 +485,7 @@ export default{
     top: 0px;
     left: 86px;
     padding-top: 4px;
+    cursor: pointer;
 }
 .container64 .sort02 ul li:hover{
     color:#FFF;

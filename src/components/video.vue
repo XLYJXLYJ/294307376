@@ -111,8 +111,8 @@ export default{
         this.$store.state.shareid = sessionStorage.id  
 
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username=lynnn&ProjectName='+this.demoid
-        //  this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+this.$store.state.authid+'&ProjectName='+this.$store.state.shareid
-         this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+11111+'&ProjectName='+this.$store.state.shareid
+         this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+this.$store.state.authid+'&ProjectName='+this.$store.state.shareid
+        //  this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+11111+'&ProjectName='+this.$store.state.shareid
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/index.html#present:ProjectName='+this.demoid
         this.$nextTick(function () {
         // DOM操作

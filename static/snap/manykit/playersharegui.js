@@ -231,17 +231,17 @@ IDE_Morph.prototype.openIn = function (world) {
             // $('#demoxml').html(1);
             demoxml = location.hash.substr(36, 5)
             demouser = location.hash.substr(18, 5)
-            // axios.post('/res/getfile',{
-            //     userid:demouser,
-            //     id:demoxml,
-            //     state:3
-            // })
-            // .then(function(response) { 
-            //     var namexml = response.data.data.name;
-            //     var titlexml = response.data.data.title;
-            //     $("#demouser").html(namexml);
-            //     $("#demoxml").html(titlexml);
-            // })
+            axios.post('/res/getfile',{
+                userid:demouser,
+                id:demoxml,
+                state:3
+            })
+            .then(function(response) { 
+                var namexml = response.data.data.name;
+                var titlexml = response.data.data.title;
+                document.getElementById("demouser").innerHTML=namexml;
+                document.getElementById("demoxml").innerHTML=titlexml;
+            })
 
             var playerresultxml = new Promise((resolve,reject) =>{
                 axios.post('/res/getfile',{

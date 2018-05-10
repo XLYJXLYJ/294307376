@@ -195,10 +195,6 @@ export default{
     text-decoration: none; 
 
 }
-/* .container65 .first .roleup a:hover{
-    color: #fff; 
-    background: #F13232;
-} */
 .container65 .first .roleup button{
     width: 60px;
     height: 26px;
@@ -302,10 +298,6 @@ export default{
     text-decoration: none; 
 
 }
-.container65 .second .roleup a:hover{
-    color: #fff; 
-    background: #F13232;
-}
 .container65 .second .roleup button{
     width: 60px;
     height: 26px;
@@ -399,10 +391,6 @@ export default{
     color: #F13232;
     text-decoration: none; 
 
-}
-.container65 .three .roleup a:hover{
-    color: #fff; 
-    background: #F13232;
 }
 .container65 .three .roleup button{
     width: 60px;

@@ -73,6 +73,7 @@ export default{
         },
         clearsession(){
             sessionStorage.snapdemoid = ''
+            this.$store.state.demoxmlid = ''
         },
         videoscreen(){
             this.dialogvideo = true

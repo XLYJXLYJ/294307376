@@ -26,11 +26,11 @@
         </div>
             <div class="sort02">
             <ul>
-                <li class="more"><p>最近更新</p></li>
-                <li class="new"><p>最多使用</p></li>
+                <li class="more"><p @click.prevent.stop="resentchange">最近更新</p></li>
+                <li class="new" @click="mostuse"><p>最多下载</p></li>
             </ul>
             <!-- <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox> -->
-            <p class="all">共有{{listnew.length}}个素材</p>
+            <p class="all">有{{listnewlength}}个素材</p>
         </div>
         <div class="first">
             <ul class="role">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="roleup">
-                    <a :href="'/codeplay/'+item.content" download><button>下载</button></a>
+                    <a :href="'/codeplay/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>
@@ -87,6 +87,7 @@ export default{
         isdemohover01:'',
         isdemohover02:0,
         isdemohover03:1,
+        listnewlength:'',//请求数据的长度
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"动物"},
@@ -153,7 +154,8 @@ export default{
                         onenav:1,
                         pagesize:15
                     })
-                    .then(response => {   
+                    .then(response => {  
+                    this.listnewlength = response.data.total
                     this.list=response.data.data
                     this.listnew=response.data.data
                     })
@@ -168,6 +170,8 @@ export default{
                         pagesize:15
                     })
                     .then(response => {   
+                        console.log(response)
+                    this.listnewlength = response.data.total
                     this.list=response.data.data
                     this.listnew=response.data.data
                     })
@@ -182,6 +186,7 @@ export default{
                         pagesize:15
                     })
                     .then(response => {   
+                    this.listnewlength = response.data.total
                     this.list=response.data.data
                     this.listnew=response.data.data
                     })
@@ -195,7 +200,8 @@ export default{
                         twonav:3,
                         pagesize:15
                     })
-                    .then(response => {   
+                    .then(response => {  
+                    this.listnewlength = response.data.total 
                     this.list=response.data.data
                     this.listnew=response.data.data
                     })
@@ -209,7 +215,8 @@ export default{
                         twonav:4,
                         pagesize:15
                     })
-                    .then(response => {   
+                    .then(response => {  
+                    this.listnewlength = response.data.total 
                     this.list=response.data.data
                     this.listnew=response.data.data
                     })
@@ -219,6 +226,7 @@ export default{
         },
          // 第二级选择
         select0101(id){
+            this.isdemohover03 = 1
             this.isdemohover02 = id
             this.axios.post('/res/resourcelist',{
                 onenav:1,
@@ -227,6 +235,7 @@ export default{
                 pagesize:15
             })
             .then(response => {  
+                this.listnewlength = response.data.total
                 this.listnew=response.data.data  
                 if(this.listnew.length<15){
                     this.numpage = false
@@ -251,18 +260,45 @@ export default{
                 pagesize:15
             })
             .then(response => {   
+                this.listnewlength = response.data.total
                 this.list=response.data.data
-                 this.listnew=response.data.data
+                this.listnew=response.data.data
                 
+            })
+        },
+        //最近更新
+        resentchange(){
+            this.isdemohover03 = 1
+            this.axios.post('/res/resourcelist',{
+                onenav:1,
+                state:1,
+                pagenum:1,
+                pagesize:15
+            })
+            .then(response => {   
+                this.listnewlength = response.data.total
+                this.list=response.data.data
+                this.listnew=response.data.data     
+            })
+        },
+        //最多使用
+        mostuse(){
+            this.axios.post('/res/resourcelist',{
+                onenav:1,
+                state:2,
+                pagenum:1,
+                pagesize:15
+            })
+            .then(response => {   
+                this.listnewlength = response.data.total
+                this.list=response.data.data
+                this.listnew=response.data.data     
             })
         },
         // 采集函数
         collectmaster(id){
                 this.axios.post('/res/collectmaterial',{
-                userid:sessionStorage.userid,
                 id:id,
-                // type:4,
-                state:1
             })
             .then(response => {   
 
@@ -332,25 +368,35 @@ export default{
         },
         // 后页数
         Selectpageafter(){
-            if(this.isdemohover03>=13){
+            this.isdemohover03++
+            if(this.isdemohover03>=14){
                 this.isdemohover03=13
-            }
-            this.axios.post('/res/resourcelist',{
+            }else{
+                this.axios.post('/res/resourcelist',{
                 onenav:1,
                 twonav:this.isdemohover01,
                 threenav:this.isdemohover02,
-                pagenum:++this.isdemohover03,
+                pagenum:this.isdemohover03,
                 pagesize:15
             })
             .then(response => {  
                 this.listnew=response.data.data  
+                console.log(this.listnew)
                 if(this.listnew.length<15){
                     this.numpage = false
-                }else{
+                }else if(this.listnew.length==0){
+                    this.numpage = false
+                    this.$messsage({
+                        message:'没有其他数据了',
+                        center:true
+                    })
+                }
+                else{
                     this.numpage = true
                 }
                 this.listnew=response.data.data
             })
+            }    
         }
     },
         components:{
@@ -409,6 +455,7 @@ export default{
     height: 50px;
     width: 1000px;
     display: block;
+    cursor: pointer;
 }
 .container66 .sort0101 ul{
     list-style: none;
@@ -488,7 +535,7 @@ export default{
     height: 30px;
     background: #f5f5f5;
     position: relative;
-    left: 57px;
+    left: 47px;
     top: 28px;
     margin-bottom: 40px;
     display: block;
@@ -511,6 +558,7 @@ export default{
     top: 0px;
     left: 0px;
     padding-top: 4px;
+    cursor: pointer;
 }
 .container66 .sort02 .new{
     width: 86px;
@@ -523,6 +571,7 @@ export default{
     top: 0px;
     left: 86px;
     padding-top: 4px;
+    cursor: pointer;
 }
 .container66 .sort02 ul li:hover{
     color:#FFF;
