@@ -122,8 +122,8 @@ export default{
                 pagesize:15
             })
             .then(response => {   
-                this.list=response.data.data
-                this.listnew=response.data.data
+                // this.list=response.data.data
+                // this.listnew=response.data.data
        
             })
         },

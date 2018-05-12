@@ -5,7 +5,7 @@
                 <div class="all_up">
                     <img :src="item.imgBuffer" alt="">
                     <p>{{item.title}}</p>
-                    <span class="deltime01">删除时间{{item.update_time|formatDate}}</span>
+                    <span class="deltime01">删除时间:{{item.update_time|formatDate}}</span>
                     <!-- <span class="deltime02">上午11：12：51</span> -->
                 </div>
                 <button class="button01" @click.prevent.stop="restore(item.id)">还原</button>

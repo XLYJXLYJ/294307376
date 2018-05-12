@@ -54,11 +54,13 @@ export default{
 .content01{
     flex: 1;
     padding-left: 5px;
+    margin: 0 auto;
 }
 .footer01 {
     flex: 0;
     margin-top: 0px;
     min-width: 1300px;
     background: #1e1e1e;
+    margin-top: 140px;
 }
 </style>

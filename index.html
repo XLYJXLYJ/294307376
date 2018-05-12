@@ -29,6 +29,9 @@ legend { color:#000; }
 fieldset, img { border:0; }
 button, input, select, textarea { font-size:100%; }
 table { border-collapse:collapse; border-spacing:0; } 
+body,html{
+  min-width: 1300px;
+}
 .el-dialog__body{
   padding: 0px;
   margin: 0px;
@@ -60,11 +63,11 @@ body{
     height: 168px;
     width: 168px;
 }
-.el-input__inner{
+/* .el-input__inner{
     height: 48px;
     width: 301px;
     border-radius: 0px;
-}
+} */
 .el-input__inner:focus{
     outline: none;
     border-color: none;
@@ -85,6 +88,9 @@ input:focus{
 }
 .el-carousel__container{
   height: 320px;
+}
+.el-pagination.is-background .el-pager li:not(.disabled).active{
+background-color:#f13232;
 }
 </style>
 

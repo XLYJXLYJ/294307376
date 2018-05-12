@@ -150,7 +150,8 @@ IDE_Morph.prototype.openIn = function (world) {
             return '';
         }
     }
-
+    dict = SnapCloud.parseDict(location.hash.substr(9));
+    dict.Username = dict.Username.toLowerCase();
     function applyFlags(dict) {
         if (dict.embedMode) {
             myself.setEmbedMode();

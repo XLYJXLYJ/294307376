@@ -7,8 +7,10 @@
                 <p>我的管理中心</p>
                 <router-link to="/snap"><button @click="clearsession">新建作品</button></router-link>
                 <div class="mydemo_frame">
-                    <router-link class="Mydemo" to="/Demo/Mydemo">作品</router-link>
-                    <router-link class="Delete" to="/Demo/Delete">废纸篓</router-link>
+                    <div @click="clickblock01"><router-link class="Mydemo" to="/Demo/Mydemo">作品</router-link></div>
+                    <div @click="clickblock02"><router-link class="Delete" to="/Demo/Delete">废纸篓</router-link></div>
+                    <div class="block01" v-show="block01"></div>
+                    <div class="block02" v-show="block02"></div>
                 </div>
             </div>      
             <router-view></router-view>
@@ -22,10 +24,26 @@
 import Header from '@/components/HomePage/header'
 import Footer from '@/components/HomePage/Footer'
 export default{
+    data(){
+        return{
+            block01:true,
+            block02:false
+        }
+    },
     mounted(){
         this.demoroute()
     },
     methods:{
+        clickblock01(){
+            console.log(123)
+            this.block01=true,
+            this.block02=false
+        },
+        clickblock02(){
+            console.log(123)
+            this.block02=true,
+            this.block01=false
+        },
         demoroute(){
             this.$router.push({ name: 'Mydemo' })
         },
@@ -92,17 +110,18 @@ export default{
  .container24 .mydemo_frame{
     position:relative;
     width: 643px;
-    height: 34px;
+    height: 28px;
     top: -60px;
     left: 0px;
-    border-bottom: 2px solid #333;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #333;
 }
 .container24 .Mydemo{
     position: absolute;
     top: -10px;
     left: 24px;
     width: 101px;
-    height: 32px;
+    height: 38px;
     font-size: 18px;
     color: #333;
     text-decoration: none;
@@ -114,7 +133,7 @@ export default{
     top: -10px;
     left: 189px;
     width: 109px;
-    height: 32px;
+    height: 38px;
     font-size: 18px;
     color: #333;
     text-decoration: none;
@@ -122,13 +141,26 @@ export default{
     padding-left: 60px;
 }
 
-
+.container24 .block01{
+    width: 162px;
+    height: 10px;
+    background: #fff;
+    position: absolute;
+    top: 28px;
+    left: 24px;
+}
+.container24 .block02{
+    width: 170px;
+    height: 10px;
+    background: #fff;
+    position: absolute;
+    top: 28px;
+    left: 190px;
+}
 .container24 .mydemo_frame .router-link-active{
-   border:2px solid #333;
+   border:1px solid #333;
    border-radius:15px;
-   border-bottom:none;
-   border-bottom: 12px solid #fff;
-
+   border-bottom: none;
 }
 /* .container24 .mydemo_frame .router-link-active{
     text-decoration: none;

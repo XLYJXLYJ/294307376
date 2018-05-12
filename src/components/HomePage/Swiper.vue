@@ -9,7 +9,8 @@
         </div>
         <div class="create">
             <div>
-                <router-link to="/snap"><div class="creat01" @click="clearsession"><img src="../../assets/home/s.png" alt=""></div></router-link>
+                <!-- <a href="http://www.manykit.com/codeplay/#/snap" target="_blank"><div class="creat01" @click="clearsession"><img src="../../assets/home/s.png" alt=""></div></a> -->
+                <router-link to="/snap" target="_blank"><div class="creat01" @click="clearsession"><img src="../../assets/home/s.png" alt=""></div></router-link>
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat02"><img src="../../assets/home/p.png" alt=""></div></a>  
                 <a href="static/logo.png" download><div class="creat03"><img src="../../assets/home/g.png" alt=""></div></a>
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat04"><img src="../../assets/home/b.png" alt=""></div></a> 

@@ -5,8 +5,9 @@
                 <ul class="snapheaderleft">
                     <li class="bcw"><a href="http://www.manykit.com/codeplay"><img @click.stop.prevent="Homepass" src="../assets/snappic/snapb.png" alt=""></a></li>
                     <li class="borderlight01" @click="snapdropdowmcontrol" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
-                    <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
-                    <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState"></li>
+                    <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click.stop.prevent="handiframe"></li>
+                    <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState" disabled="disabled"></li>
+                    <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState"></li> -->
                     <li class="borderlight03"><img src="../assets/snappic/snapu.png" alt="" @click.prevent="handiframepublish"></li>
                     <li><div @keyup.alt="handiframepublish"></div></li>
                     <li class="borderlight04" v-show="login"
@@ -34,7 +35,7 @@
                 </div>
                 <div v-show="snapdemodropdowm" class="snapdemodropdowm" >
                     <ul class="block-col-12">
-                        <li><router-link to="/Demo/Mydemo"><p>我的作品</p></router-link></li>
+                        <li><a href="http://www.manykit.com/codeplay/#/Demo/Mydemo" target="_blank"><p>我的作品</p></a></li>
                         <li><p @click.prevent="Cancellogout">退出登录</p></li>  
                     </ul>
                 </div>
@@ -161,7 +162,7 @@
                             <input type="text" v-model="formLogin.username" class="tele" placeholder="请输入用户名">
                             <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
                             <p class="ap_text" @click.stop.prevent="dialogLoginshow= false,dialogForgetpass = true">忘记密码?</p>
-                            <button class="register" @click.stop.prevent="Loginbtn">登录</button>
+                            <button class="register" @click.stop="Loginbtn">登录</button>
                             <div class="free_res"><p>没有账号?</p><span @click.stop.prevent="dialogLoginshow = false,dialogRegister = true">免费注册</span></div>    
                         </form> 
                     </div>
@@ -325,6 +326,10 @@ export default{
         this.Getsession()
         this.loadprojectxml()
         this.loadprojectdes()
+
+        this.formSave.userid = sessionStorage.userid
+
+        //作品是否存在，如果存在，则使用snap02，如果不存在，则使用snap01
         this.snapdemoid= sessionStorage.snapdemoid
         if(sessionStorage.snapdemoid == undefined||sessionStorage.snapdemoid == ''){
             this.snap02=false
@@ -453,6 +458,7 @@ export default{
             window.frames["snap02"].ide.newProject()
             this.dialogNew=false
             sessionStorage.snapdemoid = ''
+            this.$store.state.demoxmlid = ''
         },
 
          // 下载文件
@@ -483,13 +489,15 @@ export default{
                         let filebir = this.formSave.file
                         this.filebinary = new Blob([filebir]);
                     }else{                             //未保存保存
-                        this.savestate=1
-                        this.dialogSave = true
-                        this.formSave.title=''
-                        this.formSave.desc=''
-                        this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT(' ')
-                        let filebir = this.formSave.file
-                        this.filebinary = new Blob([filebir]);
+                            sessionStorage.formSavetitle = this.formSave.title
+                            sessionStorage.formSavedesc = this.formSave.desc
+                            this.savestate=1
+                            this.dialogSave = true
+                            this.formSave.title=sessionStorage.formSavetitle//赋值上一次保存的值
+                            this.formSave.desc=sessionStorage.formSavedesc//赋值上一次保存的值
+                            this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT(' ')
+                            let filebir = this.formSave.file
+                            this.filebinary = new Blob([filebir]);
                     }
                 }else{
                     this.$message({
@@ -507,43 +515,37 @@ export default{
         },
         submitUpload() {
             if(this.savestate==1){
-                let formData = new FormData();
-                console.log("==========新增=====");
-                console.log(
-                    'userid',this.formSave.userid,
-                    'id',this.$store.state.demoxmlid,
-                    'title',this.formSave.title,
-                    'desc',this.formSave.desc,
-                    'state',1
-                )
-                formData.append('userid',this.formSave.userid);
-                formData.append('title',this.formSave.title);
-                formData.append('desc',this.formSave.desc);
-                formData.append('files',this.filebinary);
-                formData.append('state',1);
-                let config = {
-                    headers:{
-                        'Content-Type':'multipart/form-data'
+                if(this.formSave.title==''||this.formSave.desc==''){//检测项目名和文件名不能为空
+                    this.$message({
+                        message: '项目名和文件名不能为空',
+                        center: true
+                    });
+                }else{
+                    let formData = new FormData();
+                    formData.append('userid',this.formSave.userid);
+                    formData.append('title',this.formSave.title);
+                    formData.append('desc',this.formSave.desc);
+                    formData.append('files',this.filebinary);
+                    formData.append('state',1);
+                    let config = {
+                        headers:{
+                            'Content-Type':'multipart/form-data'
+                        }
                     }
+                    this.axios.post('/res/upload',formData,config)
+                    .then(function(response){
+                        console.log(response.data.data.id)
+                        // this.$store.state.demoxmlid = response.data.data.id//保存后赋值作品值，这样会覆盖之前保存的项目，如果要新建项目，必须要按新建按钮
+                        // location.reload()
+                    })
+                    this.dialogSave = false;
+                    this.$message({
+                        message: '上传成功',
+                        center: true
+                    });
                 }
-                this.axios.post('/res/upload',formData,config)
-                .then(function(response){
-                })
-                this.dialogSave = false;
-                this.$message({
-                    message: '上传成功',
-                    center: true
-                });
             }else{
                 let formData = new FormData();
-                console.log("==========编辑=====");
-                console.log(
-                    'userid',this.formSave.userid,
-                    'id',this.$store.state.demoxmlid,
-                    'title',this.formSave.title,
-                    'desc',this.formSave.desc,
-                    'state',1
-                )
                 formData.append('userid',this.formSave.userid);
                 formData.append('id',this.$store.state.demoxmlid);
                 formData.append('title',this.formSave.title);
@@ -572,7 +574,7 @@ export default{
                     if(this.$store.state.demoxmlid){                //是否是发布和未发布状态
                         if(this.$store.state.publicstate==0){       //未发布
                             this.$store.state.demoxmlid = this.$store.state.demoxmlid
-                            console.log(123)
+                            window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
                             // this.$router.push({name:'Publish'})
                         }else{                                      //已发布
                                 this.$message({
@@ -599,7 +601,7 @@ export default{
                         this.axios.post('/res/upload',formData,config)
                         .then(response => {
                             this.$store.state.demoxmlid=response.data.data.id
-                            console.log(456)
+                            window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
                             // this.$router.push({name:'Publish'})
                         })                      
                         }
@@ -866,7 +868,8 @@ export default{
                 this.user = false;
                 this.dropdowm = false;  
                 sessionStorage.usernamesession =''  
-                this.$store.state.userid = ''   
+                this.$store.state.userid = '' 
+                sessionStorage.userid = ''  
             }) 
         }
     },
@@ -960,7 +963,7 @@ export default{
     left: 430px;
     z-index: 1000;
     cursor: pointer;
-    background: url(../assets/snappic/snapedit.png) no-repeat;
+    /* background: url(../assets/snappic/snapedit.png) no-repeat; */
 }
 .snapboxhead .borderlight07 input{
     height: 26px;

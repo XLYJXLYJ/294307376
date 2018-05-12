@@ -29,14 +29,30 @@
             </li>
         </ul>
     </div>
-    <div class="sortnum01" v-show="numpage">
+
+        <!-- element分页 -->
+        <div class="sortpagenum" v-show="numpage">
+            <div class="sortpagenumcenter">
+                <el-pagination
+                background
+                @current-change ="handleCurrentChange"
+                @prev-click="Selectpagebefore"
+                @next-click="Selectpageafter"
+                layout="prev, pager, next, jumper"
+                :total.sync="listnumtotal"
+                prev-text='上一页'
+                next-text='下一页'>
+                </el-pagination>
+            </div>
+        </div>
+    <!-- <div class="sortnum01" v-show="numpage">
         <ul>
             <li v-for="(item,index) in pageitem" :key="item.pageid" v-if="index<10" @click="Selectpage(item.pageid)" :class="{demohover:index+1==isdemohover03}"><p>{{item.pageid}}</p></li>
         </ul>
-        <div>
+        <div> -->
             <!-- <p>...</p>
             <p class="night" @click="Selectpage(2)">2</p> -->
-            <p class="endpage" @click="Selectpagebefore">上一页</p>
+            <!-- <p class="endpage" @click="Selectpagebefore">上一页</p>
             <p class="nextpage" @click="Selectpageafter">下一页</p>
         </div>
 
@@ -48,7 +64,7 @@
             <p class="two">页</p>
             <button @click="Selectpageuser">确定</button>
         </div>
-    </div>
+    </div> -->
     <!-- <p class="endtext">部分素材来源自网络，版权归原作者所有。所有素材仅供个人创作娱乐使用，禁止做任何商业用途，由此产生的任何法律纠纷本网站不予承担</p> -->
   </div>
 </template>
@@ -71,6 +87,8 @@ export default{
         isdemohover03:1,
         pagesum:'',//页面的页数
         listnewlength:'',//请求数据的长度
+        listnumtotal:0,//请求的总页数
+        cur_page:'',//当前页数
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"NPC"},
@@ -158,7 +176,8 @@ export default{
                 pagesize:15
             })
             .then(response => {   
-                this.listnewlength = response.data.total 
+                this.listnewlength = response.data.total
+                this.listnumtotal = Math.ceil(this.listnewlength/15)*10   
                 this.list=response.data.data
                 this.listnew=response.data.data
 
@@ -169,14 +188,13 @@ export default{
             this.isdemohover01 = id
             this.isdemohover02 = 0
             if(id!=0){
-                this.numpage=false
                 this.axios.post('/res/resourcelist',{
                     onenav:4,
                     twonav:id
                 })
                 .then(response => {  
-                    console.log(response)
-                    this.listnewlength = response.data.total  
+                    this.listnewlength = response.data.total 
+                    this.listnumtotal = Math.ceil(this.listnewlength/15)*10   
                     this.list=response.data.data
                     this.listnew=response.data.data
                 })
@@ -186,8 +204,8 @@ export default{
                     onenav:4,
                 })
                 .then(response => {  
-                    console.log(111)
-                    this.listnewlength = response.data.total  
+                    this.listnewlength = response.data.total 
+                    this.listnumtotal = Math.ceil(this.listnewlength/15)*10   
                     this.list=response.data.data
                     this.listnew=response.data.data
                 })
@@ -199,11 +217,12 @@ export default{
             this.axios.post('/res/resourcelist',{
                 onenav:4,
                 state:1,
-                pagenum:1,
+                pagenum:this.cur_page,
                 pagesize:15
             })
             .then(response => {   
                 this.listnewlength = response.data.total
+                this.listnumtotal = Math.ceil(this.listnewlength/15)*10  
                 this.list=response.data.data
                 this.listnew=response.data.data     
             })
@@ -213,11 +232,12 @@ export default{
             this.axios.post('/res/resourcelist',{
                 onenav:4,
                 state:2,
-                pagenum:1,
+                pagenum:this.cur_page,
                 pagesize:15
             })
             .then(response => {   
                 this.listnewlength = response.data.total
+                this.listnumtotal = Math.ceil(this.listnewlength/15)*10  
                 this.list=response.data.data
                 this.listnew=response.data.data     
             })
@@ -235,90 +255,121 @@ export default{
             .then(response => {   
             })
         },
-        // 选择页数
-        Selectpage(id){
-            this.isdemohover03 = id
-            this.axios.post('/res/resourcelist',{
-                onenav:4,
-                twonav:this.isdemohover01,
-                pagenum:id,
-                pagesize:15
-            })
-            .then(response => {  
-                this.listnew=response.data.data  
-                if(this.listnew.length<15){
-                    this.numpage = false
-                }else{
-                    this.numpage = true
-                }
-                this.listnew=response.data.data
-            })
+        // // 选择页数
+        // Selectpage(id){
+        //     this.isdemohover03 = id
+        //     this.axios.post('/res/resourcelist',{
+        //         onenav:4,
+        //         twonav:this.isdemohover01,
+        //         pagenum:id,
+        //         pagesize:15
+        //     })
+        //     .then(response => {  
+        //         this.listnew=response.data.data  
+        //         if(this.listnew.length<15){
+        //             this.numpage = false
+        //         }else{
+        //             this.numpage = true
+        //         }
+        //         this.listnew=response.data.data
+        //     })
+        // },
+        // // 选择跳转页数
+        // Selectpageuser(){
+        //     if(this.pageuser<1||this.pageuser>10){
+        //         this.$message({
+        //             message:'已经超过页数限制',
+        //             center:true
+        //         })
+        //     }else{
+        //         this.isdemohover03 = this.pageuser
+        //         this.axios.post('/res/resourcelist',{
+        //             onenav:4,
+        //             twonav:this.isdemohover01,
+        //             pagenum:this.pageuser,
+        //             pagesize:15
+        //         })
+        //         .then(response => {  
+        //             this.listnew=response.data.data  
+        //             if(this.listnew.length<15){
+        //                 this.numpage = true
+        //             }else{
+        //                 this.numpage = true
+        //             }
+        //             this.listnew=response.data.data
+        //         })
+        //     }
+        // },
+        // // 前页数
+        // Selectpagebefore(){
+        //     if(this.isdemohover03<=1){
+        //         this.isdemohover03=1
+        //     }
+        //     this.axios.post('/res/resourcelist',{
+        //         onenav:4,
+        //         twonav:this.isdemohover01,
+        //         pagenum:--this.isdemohover03,
+        //         pagesize:15
+        //     })
+        //     .then(response => {  
+        //         this.listnew=response.data.data  
+        //         if(this.listnew.length<15){
+        //             this.numpage = true
+        //         }else{
+        //             this.numpage = true
+        //         }
+        //         this.listnew=response.data.data
+        //     })
+        // },
+        // // 后页数
+        // Selectpageafter(){
+        //     if(this.isdemohover03>=10){
+        //         this.isdemohover03=10
+        //     }
+        //     this.axios.post('/res/resourcelist',{
+        //         onenav:4,
+        //         twonav:this.isdemohover01,
+        //         pagenum:++this.isdemohover03,
+        //         pagesize:15
+        //     })
+        //     .then(response => {  
+        //         this.listnew=response.data.data  
+        //         if(this.listnew.length<15){
+        //             this.numpage = true
+        //         }else{
+        //             this.numpage = true
+        //         }
+        //         this.listnew=response.data.data
+        //     })
+        // }
+
+        //获取当前页数
+        handleCurrentChange(val){
+            this.cur_page = val;
+            this.getData()
         },
-        // 选择跳转页数
-        Selectpageuser(){
-            if(this.pageuser<1||this.pageuser>10){
-                this.$message({
-                    message:'已经超过页数限制',
-                    center:true
-                })
-            }else{
-                this.isdemohover03 = this.pageuser
-                this.axios.post('/res/resourcelist',{
-                    onenav:4,
-                    twonav:this.isdemohover01,
-                    pagenum:this.pageuser,
-                    pagesize:15
-                })
-                .then(response => {  
-                    this.listnew=response.data.data  
-                    if(this.listnew.length<15){
-                        this.numpage = true
-                    }else{
-                        this.numpage = true
-                    }
-                    this.listnew=response.data.data
-                })
-            }
-        },
+
         // 前页数
         Selectpagebefore(){
-            if(this.isdemohover03<=1){
-                this.isdemohover03=1
-            }
-            this.axios.post('/res/resourcelist',{
-                onenav:4,
-                twonav:this.isdemohover01,
-                pagenum:--this.isdemohover03,
-                pagesize:15
-            })
-            .then(response => {  
-                this.listnew=response.data.data  
-                if(this.listnew.length<15){
-                    this.numpage = true
-                }else{
-                    this.numpage = true
-                }
-                this.listnew=response.data.data
-            })
+            this.cur_page = this.cur_page-1
+            this.getData()
         },
         // 后页数
         Selectpageafter(){
-            if(this.isdemohover03>=10){
-                this.isdemohover03=10
-            }
+            this.cur_page = this.cur_page+1
+            this.getData()
+        },
+        //根据页数获取数据
+        getData(){
             this.axios.post('/res/resourcelist',{
                 onenav:4,
                 twonav:this.isdemohover01,
-                pagenum:++this.isdemohover03,
+                threenav:this.isdemohover02,
+                pagenum:this.cur_page,
                 pagesize:15
             })
             .then(response => {  
                 this.listnew=response.data.data  
-                if(this.listnew.length<15){
-                    this.numpage = true
-                }else{
-                    this.numpage = true
-                }
                 this.listnew=response.data.data
             })
         }
@@ -584,6 +635,18 @@ export default{
     position: relative;
     left: 10px;
     top: -13px;
+}
+.container64 .sortpagenum{
+    position: absolute;
+    top: 1104px;
+    left: 260px;
+    width: 675px;
+    height: 32px;
+    text-align: center;
+}
+.container64 .sortpagenumcenter{
+    margin: 0 auto;
+    width: 575px;
 }
 
 .container64 .sortnum01{

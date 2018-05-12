@@ -1,7 +1,7 @@
 // cloud.js
 
 var SnapCloud = new Cloud(
-    'http://www.manykit.com/snap/'
+    'https://cloud.snap.berkeley.edu'
 );
 
 Cloud.prototype.originalSignup = Cloud.prototype.signup;

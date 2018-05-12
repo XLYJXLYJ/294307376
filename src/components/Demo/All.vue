@@ -8,7 +8,7 @@
                     <span>{{item.create_time|formatDate}}</span>
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id,item.state)">修改</button></router-link>
-                <button class="button02">加入</button>
+                <!-- <button class="button02">加入</button> -->
                 <span class="down"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
                 <span class="down"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
                 <span class="down"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
