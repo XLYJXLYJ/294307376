@@ -459,7 +459,8 @@ export default{
         }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../../assets/index.less';
 .container66{
     width: 100%;
     height: 1286px;
@@ -467,7 +468,7 @@ export default{
     position: relative;
     top: -70px;
     left: 0px;
-    background: #fff;
+    background: @background-color;
 }
 .container66 .sort01 ul{
     list-style: none;
@@ -481,8 +482,8 @@ export default{
     display: inline-block;
     position: relative;
     left: 46px;
-    color:#333;
-    font-size: 14px;
+    color:@gray;
+    font-size:@sm-size;
 }
 .container66 .sort01 ul p{
     display: inline-block;
@@ -494,17 +495,17 @@ export default{
     float: left;
     width: auto;
     height: 24px;
-    color:#F13232;
-    font-size: 14px;
-    border: 1px solid #F13232;
+    color:@main-color;
+    font-size:@sm-size;
+    border: 1px solid @main-color;
     margin-right: 14px;
     font-weight: 600;
     padding-right: 15px;
     cursor: pointer;
 }
 .container66 .sort01 ul li:hover{
-    color:#fff;
-    background: #F13232;
+    color:@background-color;
+    background: @main-color;
 }
 .container66 .sort0101{
     height: 50px;
@@ -526,8 +527,8 @@ export default{
     position: relative;
     left: -326px;
     top: 12px;
-    color:#333;
-    font-size: 14px;
+    color:@gray;
+    font-size:@sm-size;
 }
 .container66 .sort0101 ul p{
     display: inline-block;
@@ -539,8 +540,8 @@ export default{
     float: left;
     width: auto;
     height: 24px;
-    color:#F13232;
-    font-size: 14px;
+    color:@main-color;
+    font-size:@sm-size;
     border:1px solid red;
     text-align:center;
     margin-right: 14px;
@@ -550,8 +551,8 @@ export default{
     font-weight: 600;
 }
 .container66 .sort0101 ul li:hover{
-    color: #fff;
-    background: #F13232;
+    color: @background-color;
+    background: @main-color;
 }
 
 
@@ -578,7 +579,7 @@ export default{
    width: 114px;
    height: 22px;
    color:#7f6b6f;
-   font-size: 16px;
+   font-size:@xm-size;
    border: 1px solid #dcdcdc;
    border-radius: 20px;
    margin-right: 21px;
@@ -588,7 +589,7 @@ export default{
 .container66 .sort02{
     width: 1086px;
     height: 30px;
-    background: #f5f5f5;
+    background: @mainbg-color;
     position: relative;
     left: 47px;
     top: 28px;
@@ -605,8 +606,8 @@ export default{
 .container66 .sort02 .more{
     width: 86px;
     height: 26px;
-    color:#F13232;
-    font-size: 16px;
+    color:@main-color;
+    font-size:@xm-size;
     margin-right: 14px; 
     text-align: center;
     position: absolute;
@@ -618,8 +619,8 @@ export default{
 .container66 .sort02 .new{
     width: 86px;
     height: 26px;
-    color:#F13232;
-    font-size: 16px;
+    color:@main-color;
+    font-size:@xm-size;
     margin-right: 14px; 
     text-align: center;
     position: absolute;
@@ -629,8 +630,8 @@ export default{
     cursor: pointer;
 }
 .container66 .sort02 ul li:hover{
-    color:#FFF;
-    background: #F13232;
+    color:@background-color;
+    background: @main-color;
 }
 .container66 .sort02 .nobuy{
     width: 92px;
@@ -647,8 +648,8 @@ export default{
     float: left;
     width: 122px;
     height: 30px;
-    color:#F13232;
-    font-size: 16px;
+    color:@main-color;
+    font-size:@xm-size;
     position: relative;
     top: -26px;
     left: 886px;
@@ -680,31 +681,31 @@ export default{
     width: 198px;
     height: 277px;
     margin-right: 24px;
-    background: #f5f5f5;
+    background: @mainbg-color;
     margin-top: 30px;
     position: relative;
 }
 .container66 .first .roleup a{
-    color: #F13232;
+    color: @main-color;
     text-decoration: none; 
 
 }
 /* .container66 .first .roleup a:hover{
-    color: #fff; 
-    background: #F13232;
+    color: @background-color; 
+    background: @main-color;
 } */
 .container66 .first .roleup button:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
 }
 .container66 .first .roleup button{
     width: 60px;
     height: 26px;
-    color: #F13232; 
-    border: 1px solid #F13232;
-    font-size: 14px;
+    color: @main-color; 
+    border: 1px solid @main-color;
+    font-size:@sm-size;
     position: relative;
-    background: #f5f5f5;
+    background: @mainbg-color;
     left: 120px;
     top: 44px;
     cursor: pointer;
@@ -726,7 +727,7 @@ export default{
     margin-top: 20px;
 }
 .container66 .first .roleup .text{
-    font-size: 18px;
+    font-size:@md-size;
     position: relative;
     left: 10px;
     top: -13px;
@@ -754,14 +755,14 @@ export default{
     float: left;
     height: 25px;
     width: 32px;
-    border: 1px solid #dbdad7;
+    border: 1px solid @border-color;
     text-align: center;
     margin-right: 10px;
     cursor: pointer;
 }
 .container66 .sortnum01 ul li:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
 }
 .container66 .sortnum01 .endpage{
     float: left;
@@ -770,7 +771,7 @@ export default{
     position: relative;
     left: 34px;
     top: -21px;
-    border: 1px solid #dbdad7;
+    border: 1px solid @border-color;
     text-align: center;
     cursor: pointer;
 }
@@ -781,36 +782,36 @@ export default{
     position: relative;
     left: 48px;
     top: -21px;
-    border: 1px solid #dbdad7;text-align: center;
+    border: 1px solid @border-color;text-align: center;
     cursor: pointer;
 }
 .container66 .sortnum01 .endpage p{
     margin-top: 2px;
 }
 .container66 .sortnum01 .endpage:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
 }
 .container66 .sortnum01 .night{
     float: left;
     height: 25px;
     width: 32px;
-    border: 1px solid #dbdad7;
+    border: 1px solid @border-color;
     text-align: center;
     position: relative;
     left: 20px;
     top: -21px;
 }
 .container66 .sortnum01 .night:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
 }
 .container66 .sortnum01 .nextpage p{
     margin-top: 2px;
 }
 .container66 .sortnum01 .nextpage:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
 }
 .container66 .sortnum01 ul li p{
     margin-top: 2px;   
@@ -821,8 +822,8 @@ export default{
     top: -42px;
     width: 30px;
     height: 14px;
-    font-size: 12px;
-    color: #333;
+    font-size:@ss-size;
+    color: @gray;
 }
 .container66 .sortnum01 .sortfly .two{
     position: relative;
@@ -830,8 +831,8 @@ export default{
     height: 14px;
     left: 588px;
     top: -56px;
-    font-size: 12px;
-    color: #333;
+    font-size:@ss-size;
+    color: @gray;
 }
 .container66 .sortnum01 .sortfly input{
     position: relative;
@@ -843,7 +844,7 @@ export default{
     padding-left: 4px;
 }
 .container66 .sortnum01 .sortfly input:focus{
-    border: 1px solid #F13232;
+    border: 1px solid @main-color;
     padding-left: 4px;
 }
 .container66 .sortnum01 .sortfly button{
@@ -852,15 +853,15 @@ export default{
     top: -75px;
     width: 43px;
     height: 25px;
-    font-size: 12px;
+    font-size:@ss-size;
     color: #818181;
-    background: #fff;
+    background: @background-color;
     border: 1px solid #D2D2D2;
     cursor: pointer;
 }
 .container66 .sortnum01 .sortfly button:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
     border: none;
 }
 /* .container66 .endtext{
@@ -869,14 +870,14 @@ export default{
     position: relative;
     top: 1128px;
     left: 26px;
-    font-size: 12px;
+    font-size:@ss-size;
     display: inline-block;
 } */
 
 .demohover{
-    background:#F13232;
+    background:@main-color;
 }
 .demohover p{
-    color: #fff;
+    color: @background-color;
 }
 </style>

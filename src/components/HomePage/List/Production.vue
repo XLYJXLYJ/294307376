@@ -76,13 +76,14 @@ import { looksum } from '../../../public/seesum.js'
         }
     }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../../assets/index.less';
 .container02{
     width: 858px;
     height: auto;
 }
 .container02 .routetext{
-    color:#000;
+    color:@black;
     text-decoration: none;
 }
 .container02 .list_pic{
@@ -90,10 +91,10 @@ import { looksum } from '../../../public/seesum.js'
     height: 270px;
     width: 173px;
     cursor: pointer;
-    color: #707070;
+    color: @list-color;
 }
 /* .container01 .list_pic:hover{
-    background: #707070;
+    background: @list-color;
 } */
 .container02 .imgcon{
     height: 170px;
@@ -104,34 +105,34 @@ import { looksum } from '../../../public/seesum.js'
     height: 100%;
 }
 .container02 .imgcon img:hover{
-    border: 1px solid #d0d0d0;
+    border: 1px solid @img-color;
 }
 .container02 p{
-    font-size: 20px;
+    font-size:@lg-size;
     position: relative;
     top: 15px;
     height: 24px;
     width: 151px;
     overflow: hidden;
     text-align: left;
-    color:#000;
+    color:@black;
 }
 .container02 p:hover{
-    color:#F13232;
+    color:@main-color;
 }
 .container02 .game_cat{
     display: block;
-    font-size: 16px;
+    font-size:@xm-size;
     position: relative;
     top: 22px;
     text-align: left;
-    color: #707070;
+    color: @list-color;
     width: 170px;
     height: 20px;
     overflow: hidden;
 }
 .container02 .game_cat:hover{
-    color: #F13232;
+    color: @main-color;
 }
 .container02 .icon_see{
     background:url(../../../assets/home/icon_see.png) no-repeat;
@@ -148,8 +149,8 @@ import { looksum } from '../../../public/seesum.js'
     left: 320px;
     width: 192px;
     height: 50px;
-    background-color:#F13232;
-    color:#fff; 
+    background-color:@main-color;
+    color:@background-color; 
     border: none;
 }
 .container02 .buttonloaddown{
@@ -158,8 +159,8 @@ import { looksum } from '../../../public/seesum.js'
     left: 320px;
     width: 192px;
     height: 50px;
-    background-color:#707070;
-    color:#fff; 
+    background-color:@list-color;
+    color:@background-color; 
     border: none;
 }
 .container02 .down01{
@@ -194,8 +195,8 @@ import { looksum } from '../../../public/seesum.js'
     left: 10px;
     margin-left: 10px;
     font-style: normal;
-    color: #959595;
-    font-size: 16px;
+    color: @container0203-color;
+    font-size:@xm-size;
     top: 0px;
 }
 .container02 .down02 span{
@@ -203,21 +204,21 @@ import { looksum } from '../../../public/seesum.js'
     left: 10px;
     margin-left: 10px;
     font-style: normal;
-    color: #959595;
-    font-size: 16px;
+    color: @container0203-color;
+    font-size:@xm-size;
     top: 0px;
 }
 .container02 .down03 span{
     position: relative;
     margin-left: 18px;
     font-style: normal;
-    color: #959595;
-    font-size: 16px;
+    color: @container0203-color;
+    font-size:@xm-size;
     top: 0px;
 }
 .container02 .button:hover{
-    background-color: #dd2e2e;
-    color:#fff;
+    background-color: @main-color;
+    color:@background-color;
     cursor: pointer;
 }
 .container02 a{

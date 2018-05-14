@@ -211,11 +211,12 @@
         }
     }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container43{
     width:1200px;
     height: 221px;
-    background: #fff;
+    background: @background-color;
     margin: 0 auto;
     position: relative;
     margin-top: 60px;
@@ -224,15 +225,15 @@
     width:113px;
     height: 23px;
     font-weight: 600;
-    color: #333;
+    color: @gray;
     position: absolute;
     top: 22px;
     left: 19px;
-    font-size: 22px;   
+    font-size:@llg-size;   
 }
 .container43 .follow p{
-    font-size: 14px;
-    color: #999;
+    font-size:@sm-size;
+    color: @delete-color;
     position: relative;
     top: 0px;
     left: 0px;   
@@ -246,7 +247,7 @@
     left: 0px;   
     text-align: center;
     border-radius: 50px;
-    border: 1px solid #999;
+    border: 1px solid @delete-color;
 }
 .container43 ul{
     list-style: none;
@@ -287,8 +288,8 @@
 .container43 .makedemotext a{
     position: relative;
     top: 15px;
-    color: #f13232;
-    font-size: 16px;
+    color: @main-color;
+    font-size:@xm-size;
     display: inline-block;
 }
 .container43 .makedemotext p{
@@ -300,8 +301,8 @@
 .container43 .makedemotext span{
     position: relative;
     top: -10px;
-    font-size: 16px;
-    color: #999;
+    font-size:@xm-size;
+    color: @delete-color;
 }
 .container43 .sharebg{
     position: relative;

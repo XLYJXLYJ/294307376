@@ -124,7 +124,8 @@ import NodeRSA from 'node-rsa'
     }
   }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container34{
   width: 500px;
   height: 416px;
@@ -135,16 +136,16 @@ import NodeRSA from 'node-rsa'
 .container34 .input01{
   width: 360px;
   height: 43px;  
-  background:#F5F5F5;
+  background:@mainbg-color;
   border: none;
   padding-left: 10px;
 }
 .container34 .save{
   width: 370px;
   height: 43px;
-  color: #fff;
+  color: @background-color;
   margin-top: 20px;
-  background: #F13232;
+  background: @main-color;
   position: relative;
   left: 80px;
 }
@@ -154,8 +155,8 @@ import NodeRSA from 'node-rsa'
   width: 151px;
   left: -283px;
   top: 64px;
-  border: 3px solid #fff;
-  box-shadow:0px 6px 10px #bdbdbd;
+  border: 3px solid @background-color;
+  box-shadow:0px 6px 10px @shadow-color;
   border-radius: 100px;
 }
 .container34 .userpic input{
@@ -184,8 +185,8 @@ import NodeRSA from 'node-rsa'
     position: absolute;
     top: 230px;
     left: -320px;
-    font-size: 28px;
-    color: #91121B;
+    font-size:@lllg-size;
+    color: @gray;
     font:bold;
     text-align: center;
     width: 229px;

@@ -57,12 +57,13 @@ export default{
     }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../assets/index.less';
 .container25{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: #F5F5F5;
+    background: @mainbg-color;
 }
 .content05{
     flex: 1;
@@ -77,7 +78,7 @@ export default{
     margin: 0 auto;
     width: 1200px;
     height: 840px;
-    background:#FFf; 
+    background:@background-color; 
     position: relative;
 }
 .container25 .star01{
@@ -91,8 +92,8 @@ export default{
     position: relative;
     top: -62px;
     left: 38px;
-    font-size: 22px;
-    color: #333;
+    font-size:@llg-size;
+    color: @gray;
     font-weight: 600;
 }
 .container24 button{
@@ -101,9 +102,9 @@ export default{
     left: 1032px;
     height: 34px;
     width: 115px;
-    font-size: 16px;
-    color: #fff;
-    background: #333;
+    font-size:@xm-size;
+    color: @background-color;
+    background: @gray;
     border: none;
     cursor: pointer;
 }
@@ -114,7 +115,7 @@ export default{
     top: -60px;
     left: 0px;
     padding-bottom: 0px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid @gray;
 }
 .container24 .Mydemo{
     position: absolute;
@@ -122,8 +123,8 @@ export default{
     left: 24px;
     width: 101px;
     height: 38px;
-    font-size: 18px;
-    color: #333;
+    font-size:@md-size;
+    color: @gray;
     text-decoration: none;
     padding-top: 8px;
     padding-left: 60px;
@@ -134,8 +135,8 @@ export default{
     left: 189px;
     width: 109px;
     height: 38px;
-    font-size: 18px;
-    color: #333;
+    font-size:@md-size;
+    color: @gray;
     text-decoration: none;
     padding-top: 8px;
     padding-left: 60px;
@@ -144,7 +145,7 @@ export default{
 .container24 .block01{
     width: 162px;
     height: 10px;
-    background: #fff;
+    background: @background-color;
     position: absolute;
     top: 28px;
     left: 24px;
@@ -152,23 +153,23 @@ export default{
 .container24 .block02{
     width: 170px;
     height: 10px;
-    background: #fff;
+    background: @background-color;
     position: absolute;
     top: 28px;
     left: 190px;
 }
 .container24 .mydemo_frame .router-link-active{
-   border:1px solid #333;
+   border:1px solid @gray;
    border-radius:15px;
    border-bottom: none;
 }
 /* .container24 .mydemo_frame .router-link-active{
     text-decoration: none;
-    border-bottom: 3px solid #fff;  
-    border-top: 2px solid #333;
-    border-left: 2px solid #333;
-    border-right: 2px solid #333;
-    color: #000;
+    border-bottom: 3px solid @background-color;  
+    border-top: 2px solid @gray;
+    border-left: 2px solid @gray;
+    border-right: 2px solid @gray;
+    color: @black;
 }
 .container24 .mydemo_frame .router-link-active:before {
     content: '';

@@ -82,7 +82,8 @@ export default{
     }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .contain08{
     width: 100%;
     height: 640px;
@@ -106,7 +107,7 @@ export default{
 .contain08 .create{
     height: 221px;
     width: 1200px;
-    background: #fff;
+    background: @background-color;
     position: relative;
     top: 36px;
     margin: 0 auto;
@@ -187,7 +188,7 @@ export default{
     position: relative;
     left: 869px;
     top: -108px;
-    background: #000;
+    background: @black;
 }
 #videobox img{
     position: absolute;

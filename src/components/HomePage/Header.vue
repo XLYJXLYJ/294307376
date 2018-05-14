@@ -470,7 +470,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 /* 总样式开始 */
 .headercontainer04{
     position: fixed;
@@ -489,7 +490,7 @@ export default {
     height: 30px;
     top: 0px;
     left: 0px;
-    background: #333;
+    background: @gray;
     z-index: 200;
 }
 .headercontainer04 .headonecenter{
@@ -504,8 +505,8 @@ export default {
     position: relative;
     left: 2px;
     top: 2px;
-    font-size: 12px;
-    color: #fff;
+    font-size:@ss-size;
+    color: @background-color;
     cursor: pointer;
     z-index: 200;
 }
@@ -517,31 +518,31 @@ export default {
     position: relative;
     left: 916px;
     top: -14px;
-    font-size: 12px;
+    font-size:@ss-size;
     width: 60px;
     height: 30px;
-    color: #fff;
+    color: @background-color;
     cursor: pointer;
 }
 .headercontainer04 .headonecenter .shopping a{
-    color: #fff;
+    color: @background-color;
 }
 .headercontainer04 .headonecenter .appdownload{
     position: relative;
     left: 1006px;
     top: -42px;
-    font-size: 12px;
+    font-size:@ss-size;
     width: 60px;
     height: 13px;
     line-height: 5px;
     padding-left: 20px;
     padding-right: 20px;
-    border-left: 1px solid #fff;
-    border-right: 1px solid #fff;
+    border-left: 1px solid @background-color;
+    border-right: 1px solid @background-color;
     cursor: pointer;
 }
 .headercontainer04 .headonecenter .appdownload a{
-    color: #fff;
+    color: @background-color;
     position: relative;
     top: 4px;
 }
@@ -549,19 +550,19 @@ export default {
     position:relative;
     left:1104px;
     top: -34px;
-    color: #333;
+    color: @gray;
     width: 94px;
     height: 188px;
-    font-size: 12px;
+    font-size:@ss-size;
     z-index: 1000;
-    background: #fff;
-    border: 1px solid #333333;
+    background: @background-color;
+    border: 1px solid @gray;
 }
 .headercontainer04 .headonecenter .block-col-12 a{
-    color: #333;
+    color: @gray;
 }
 .headercontainer04 .headonecenter .block-col-12 a:hover{
-    color: #fff;
+    color: @background-color;
     text-decoration: none;
 }
 .headercontainer04 .headonecenter .block-col-12 li{
@@ -571,8 +572,8 @@ export default {
     cursor: pointer;
 }
 .headercontainer04 .headonecenter .block-col-12 li:hover{
-    background:#000;
-    color: #fff;
+    background:@black;
+    color: @background-color;
 }
 /* 头部样式结束 */
 
@@ -580,10 +581,10 @@ export default {
 .container04{
     width: 100%;
     height:84px;
-    background: #fff;
+    background: @background-color;
     position: relative;
     top: 30px;
-    box-shadow:0px 3px 5px #eee;
+    box-shadow:0px 3px 5px @shadow-color;
 }
 .container04 .container04center{
     width: 1200px;
@@ -603,14 +604,14 @@ export default {
     list-style: none;
     float: left; 
     margin-left: 41px;
-    font-size: 16px; 
+    font-size:@xm-size; 
     padding-bottom: 8px;
-    font-size: 20px;
+    font-size:@lg-size;
     z-index: 200;
     cursor: pointer;
 }
 .container04 ul li p{
-    color: #000;
+    color: @black;
     cursor: pointer;
     text-decoration: none;
 }
@@ -618,16 +619,16 @@ export default {
     text-decoration: none;
 }
 .container04 ul li p:hover{
-    color: #F13232;
+    color: @main-color;
     cursor: pointer;
 }
 .container04 .router-link-active{
     text-decoration: none;
     position: relative;
-    color: #F13232!important;
+    color: @main-color!important;
 }
 .container04 .router-link-active p{
-    color: #F13232!important;
+    color: @main-color!important;
 }
 .container04 .router-link-active:before {
     content: '';
@@ -638,7 +639,7 @@ export default {
     right: 0px;
     height: 2px;
     width: 22px;
-    background-color: #F13232;
+    background-color: @main-color;
     border-radius: 2px;
 }
 .headercontainer04 .logo{
@@ -663,7 +664,7 @@ export default {
      height: 50px;
      z-index: 200;
      border-radius: 10px;
-     color: #fff;
+     color: @background-color;
      cursor: pointer;
 }
 .headercontainer04 .login{
@@ -671,8 +672,8 @@ export default {
     position: absolute;
     top: 22px;
     left:20px;
-    font-size: 12px;
-    color: #fff;;
+    font-size:@ss-size;
+    color: @background-color;
     cursor: pointer;
 }
 .headercontainer04 .login01{
@@ -680,8 +681,8 @@ export default {
     position: absolute;
     top: 6px;
     left:1140px;
-    font-size: 12px;
-    color: #fff;;
+    font-size:@ss-size;
+    color: @background-color;;
     cursor: pointer;
 }
 .headercontainer04 .login:hover{
@@ -700,8 +701,8 @@ export default {
     position: absolute;
     top: 22px;
     left:52px;
-    font-size: 12px;
-    color: #fff;
+    font-size:@ss-size;
+    color: @background-color;
     cursor: pointer;
 }
 .headercontainer04 .sign:hover{
@@ -720,7 +721,7 @@ export default {
     padding: 0px;
     width: 100%;
     height: 364px;
-    background: #fff;
+    background: @background-color;
 }
 .headercontainer04 .container21 .sign_logo{
     width: 50px;
@@ -728,7 +729,7 @@ export default {
     position: relative;
     top: 44px;
     left: 162px;
-    color: #333;
+    color: @gray;
     font-size: 24px;
     margin-left: 30px;
 }
@@ -755,8 +756,8 @@ export default {
     width: 95px;
     top: 238px;
     left: 291px;
-    color: #F13232;
-    font-size: 14px;
+    color: @main-color;
+    font-size:@sm-size;
     cursor: pointer;
     font-weight: 600;
 }
@@ -766,9 +767,9 @@ export default {
     width: 310px;
     top: 266px;
     left: 60px;
-    background: #F13232;
-    color: #fff;
-    font-size: 18px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@md-size;
     cursor: pointer;
     border: none;
     outline: none;
@@ -779,16 +780,16 @@ export default {
     width: 142px;
     top: 317px;
     left: 137px;
-    font-size: 14px;
-    color: #000;
+    font-size:@sm-size;
+    color: @black;
     font-weight: 600;
 }
 .headercontainer04 .container21 .free_res span{
     position: absolute;
     top: 317px;
     left: 216px;
-    color: #F13232;
-    font-size: 14px;
+    color: @main-color;
+    font-size:@sm-size;
     cursor: pointer;
     font-weight: 600;
 }
@@ -797,7 +798,7 @@ export default {
     padding: 0px;
     width: 100%;
     height: 364px;
-    background: #fff;
+    background: @background-color;
 }
 .container44 .sign_logo{
     position: absolute;
@@ -805,7 +806,7 @@ export default {
     width: 106px;
     top: 44px;
     left: 155px;
-    color: #333;
+    color: @gray;
     font-size: 24px;
 }
 .container44 .tele{
@@ -830,9 +831,9 @@ export default {
     width: 310px;
     top: 254px;
     left: 60px;
-    background: #F13232;
-    color: #fff;
-    font-size: 18px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@md-size;
     cursor: pointer;
     border: none;
     outline: none;
@@ -842,13 +843,13 @@ export default {
     padding: 0px;
     width: 100%;
     height: 492px;
-    background: #fff;
+    background: @background-color;
 }
 .container19 .sign_logo{
     position: absolute;
     top: 44px;
     left: 184px;
-    color: #333;
+    color: @gray;
     font-size: 24px;
 }
 .container19 .tele{
@@ -889,9 +890,9 @@ export default {
     width: 301px;
     top: 394px;
     left: 60px;
-    background: #F13232;
-    color: #fff;
-    font-size: 18px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@md-size;
     cursor: pointer;
     border: none;
     outline: none;
@@ -912,7 +913,7 @@ export default {
     left: 75px;
     height: 14px;
     width: 141px;
-    color: #F13232;
+    color: @main-color;
     font-size: 15px;
     cursor: pointer;
     font-weight: 600;
@@ -922,13 +923,13 @@ export default {
     padding: 0px;
     width: 100%;
     height: 364px;
-    background: #fff;
+    background: @background-color;
 }
 .container46 .sign_logo{
     position: absolute;
     top: 44px;
     left: 159px;
-    color: #333;
+    color: @gray;
     font-size: 24px;
 }
 .container46 .tele{
@@ -954,9 +955,9 @@ export default {
     width: 111px;
     top: 170px;
     left: 250px;
-    background: #F13232;
-    color: #fff;
-    font-size: 16px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@xm-size;
     cursor: pointer;
     border: none;
 }
@@ -974,9 +975,9 @@ export default {
     width: 310px;
     top: 256px;
     left: 60px;
-    background: #F13232;
-    color: #fff;
-    font-size: 18px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@md-size;
     cursor: pointer;
     border: none;
     outline: none;
@@ -987,7 +988,7 @@ export default {
     width: 289px;
     top: 345px;
     left: 332px;
-    color: #44878D;
+    color: @back-color;
     font-size: 15px;
     cursor: pointer;
 }

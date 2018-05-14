@@ -167,7 +167,8 @@ export default{
     }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../../assets/index.less';
 .container640{
     width: 100%;
     height: 1286px;
@@ -175,7 +176,7 @@ export default{
     position: relative;
     top: -56px;
     left: 0px;
-    background: #fff;
+    background: @background-color;
     margin-bottom: 30px;
 }
 .container640 .sort01 ul{
@@ -190,8 +191,8 @@ export default{
     display: inline-block;
     position: relative;
     left: 46px;
-    color:#333;
-    font-size: 14px;
+    color:@gray;
+    font-size:@sm-size;
 }
 .container640 .sort01 ul p{
     display: inline-block;
@@ -203,15 +204,15 @@ export default{
     float: left;
     width: 60px;
     height: 24px;
-    color:#F13232;
-    font-size: 14px;
-    border: 1px solid #F13232;
+    color:@main-color;
+    font-size:@sm-size;
+    border: 1px solid @main-color;
     margin-right: 14px;
     font-weight: 600;
 }
 .container640 .sort01 ul li:hover{
-    color:#fff;
-    background: #F13232;
+    color:@background-color;
+    background: @main-color;
     position: relative;
     top: 2px;
 }
@@ -229,8 +230,8 @@ export default{
     position: relative;
     left: -406px;
     top: 12px;
-    color:#333;
-    font-size: 14px;
+    color:@gray;
+    font-size:@sm-size;
 }
 .container640 .sort0101 ul p{
     display: inline-block;
@@ -240,9 +241,8 @@ export default{
     float: left;
     width: auto;
     height: 24px;
-    color:#F13232;
-    font-size: 14px;
-    border:1px solid red;
+    color:@main-color;
+    font-size:@sm-size;
     text-align:center;
     margin-right: 14px;
     margin-bottom: 14px;
@@ -251,8 +251,8 @@ export default{
     font-weight: 600;
 }
 .container640 .sort0101 ul li:hover{
-    color: #fff;
-    background: #F13232;
+    color: @background-color;
+    background: @main-color;
 }
 
 
@@ -279,7 +279,7 @@ export default{
    width: 114px;
    height: 22px;
    color:#7f6b6f;
-   font-size: 16px;
+   font-size:@xm-size;
    border: 1px solid #dcdcdc;
    border-radius: 20px;
    margin-right: 21px;
@@ -289,7 +289,7 @@ export default{
 .container640 .sort02{
     width: 1086px;
     height: 30px;
-    background: #f5f5f5;
+    background: @mainbg-color;
     position: relative;
     left: 57px;
     top: 28px;
@@ -304,8 +304,8 @@ export default{
 .container640 .sort02 .more{
     width: 86px;
     height: 26px;
-    color:#F13232;
-    font-size: 16px;
+    color:@main-color;
+    font-size:@xm-size;
     margin-right: 14px; 
     text-align: center;
     position: absolute;
@@ -316,8 +316,8 @@ export default{
 .container640 .sort02 .new{
     width: 86px;
     height: 26px;
-    color:#F13232;
-    font-size: 16px;
+    color:@main-color;
+    font-size:@xm-size;
     margin-right: 14px; 
     text-align: center;
     position: absolute;
@@ -326,8 +326,8 @@ export default{
     padding-top: 4px;
 }
 .container640 .sort02 ul li:hover{
-    color:#FFF;
-    background: #F13232;
+    color:@background-color;
+    background: @main-color;
 }
 .container640 .sort02 .nobuy{
     width: 92px;
@@ -344,8 +344,8 @@ export default{
     float: left;
     width: 122px;
     height: 30px;
-    color:#F13232;
-    font-size: 16px;
+    color:@main-color;
+    font-size:@xm-size;
     position: relative;
     top: -26px;
     left: 886px;
@@ -360,7 +360,7 @@ export default{
 }
 .container640 .first .line{
     position: relative;
-    border-bottom: 1px solid #e6e6e6;  
+    border-bottom: 1px solid #e8e8e8;  
     position: relative;
     left: 63px;
     top: -20px;
@@ -372,22 +372,22 @@ export default{
     width: 198px;
     height: 277px;
     margin-right: 24px;
-    background: #f5f5f5;
+    background: @mainbg-color;
     margin-top: 30px;
     position: relative;
 }
 .container640 .first .roleup button:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
 }
 .container640 .first .roleup button{
     width: 60px;
     height: 26px;
-    color: #F13232; 
-    border: 1px solid #F13232;
-    font-size: 14px;
+    color: @main-color; 
+    border: 1px solid @main-color;
+    font-size:@sm-size;
     position: relative;
-    background: #f5f5f5;
+    background: @mainbg-color;
     left: 120px;
     top: 44px;
     cursor: pointer;
@@ -402,7 +402,7 @@ export default{
     background: url(../../../assets/source/bg1.png) no-repeat;
 }
 .container640 .first .roleup .text{
-    font-size: 18px;
+    font-size:@md-size;
     position: relative;
     left: 10px;
     top: -13px;
@@ -419,13 +419,12 @@ export default{
     float: left;
     height: 25px;
     width: 32px;
-    border: 1px solid #dbdad7;
     text-align: center;
     margin-right: 10px;
 }
 .container640 .sortnum01 ul li:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
 }
 .container640 .sortnum01 .endpage{
     float: left;
@@ -434,7 +433,6 @@ export default{
     position: relative;
     left: 34px;
     top: -21px;
-    border: 1px solid #dbdad7;
     text-align: center;
 }
 .container640 .sortnum01 .nextpage{
@@ -444,35 +442,34 @@ export default{
     position: relative;
     left: 48px;
     top: -21px;
-    border: 1px solid #dbdad7;text-align: center;
+    text-align: center;
 }
 .container640 .sortnum01 .endpage p{
     margin-top: 2px;
 }
 .container64 .sortnum01 .endpage:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
 }
 .container640 .sortnum01 .night{
     float: left;
     height: 25px;
     width: 32px;
-    border: 1px solid #dbdad7;
     text-align: center;
     position: relative;
     left: 20px;
     top: -21px;
 }
 .container640 .sortnum01 .night:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
 }
 .container64 .sortnum01 .nextpage p{
     margin-top: 2px;
 }
 .container640 .sortnum01 .nextpage:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
 }
 .container64 .sortnum01 ul li p{
     margin-top: 2px;   
@@ -483,8 +480,8 @@ export default{
     top: -42px;
     width: 30px;
     height: 14px;
-    font-size: 12px;
-    color: #333;
+    font-size:@ss-size;
+    color: @gray;
 }
 .container640 .sortnum01 .sortfly .two{
     position: relative;
@@ -492,8 +489,8 @@ export default{
     height: 14px;
     left: 752px;
     top: -56px;
-    font-size: 12px;
-    color: #333;
+    font-size:@ss-size;
+    color: @gray;
 }
 .container640 .sortnum01 .sortfly input{
     position: relative;
@@ -505,7 +502,7 @@ export default{
     padding-left: 4px;
 }
 .container640 .sortnum01 .sortfly input:focus{
-   border: 1px solid #F13232;
+   border: 1px solid @main-color;
    padding-left: 4px;
 }
 .container640 .sortnum01 .sortfly button{
@@ -514,12 +511,11 @@ export default{
     top: -75px;
     width: 53px;
     height: 25px;
-    font-size: 12px;
-    color: #818181;
+    font-size:@ss-size;
 }
 .container640 .sortnum01 .sortfly button:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
     border: none;
 }
 /* .container66 .endtext{
@@ -528,7 +524,7 @@ export default{
     position: relative;
     top: 1128px;
     left: 26px;
-    font-size: 12px;
+    font-size:@ss-size;
     display: inline-block;
 } */
 </style>

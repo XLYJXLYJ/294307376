@@ -65,19 +65,20 @@
   }
 
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container003{
   width: 100%!important;
   height: 323px;
   position: relative;
-  background-color: #1e1e1e;
+  background-color: @foot-color;
 }
 .container003 .container03{
   width: 1200px;
   margin: 0 auto;
   position:relative;
   height: 323px;
-  background-color: #1e1e1e;
+  background-color: @foot-color;
 }
 .container003 .container03 .imgfoot{
   position:absolute;
@@ -114,14 +115,14 @@
   top: 43px;
 }
 .container003 .container03 .big{
-  font-size: 22px;
-  color:#fff;
+  font-size:@llg-size;
+  color:@background-color;
   margin-bottom: 20px;
   text-align: left;
   font-family: “Microsoft YaHei” !important; 
 }
 .container003 .container03 .small{
-  font-size: 16px;
+  font-size:@xm-size;
   color: #949494;
   margin-top: 8px;
   text-align: left;
@@ -154,7 +155,7 @@
    position: absolute;
    left: 790px;
    top:254px;
-   border: 2px ridge #333;
-   box-shadow:0px 2px 2px #333; 
+   border: 2px ridge @gray;
+   box-shadow:0px 2px 2px @gray; 
 } */
 </style>

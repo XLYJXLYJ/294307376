@@ -49,7 +49,8 @@ import { looksum } from '../../public/seesum.js'
         }
     }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container06{
     height: 600px;
     width: 270px;
@@ -66,23 +67,23 @@ import { looksum } from '../../public/seesum.js'
 }
 .container06 .rank_list_top p{
     position: relative;
-    font-size: 22px;
-    color: #808080;
+    font-size:@llg-size;
+    color: @ranklist-color;
     left: 12px;
     height: 22px;
     width: 116px;
     top: 8px;
 }
 .container06 .rank_up p{
-   font-size: 18px;
+   font-size:@md-size;
    text-align: left;
    position: relative;
    left: 134px;
    top: -68px;
-   color:#2D2D2D;
+   color:@contain06-color;
 }
 .container06 .rank_up p:hover{
-   color: #F13232;
+   color: @main-color;
 }
 .container06 .rank_up .ranking{
     width: 69px;
@@ -96,7 +97,7 @@ import { looksum } from '../../public/seesum.js'
     height: 100%;
 }
 .container06 .rank_up .ranking img:hover{
-    border: 1px solid #d0d0d0;
+    border: 1px solid @img-color;
 }
 .container06 .rank_list_top img{ 
     float: left;
@@ -117,7 +118,7 @@ import { looksum } from '../../public/seesum.js'
     height: 14px;
     margin-left: 14px;
     font-style: normal;
-    color:#2D2D2D;
+    color:@contain06-color;
     display: inline-block;
 }
 .container06 .icon_love{
@@ -133,7 +134,7 @@ import { looksum } from '../../public/seesum.js'
     top: -3px;
     margin-left: 14px;
     font-style: normal;
-    color:#2D2D2D;
+    color:@contain06-color;
 }
 .container06 .icon_see_box{
     height: 12px;
@@ -154,13 +155,13 @@ import { looksum } from '../../public/seesum.js'
 .container06 .sort_num{
     width: 17px;
     height: 24px;
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
     float: left;
     border-radius: 25px;
     line-height: 24px;
     padding-left: 7px;
-    font-size: 18px;
+    font-size:@md-size;
     position: relative;
     left: 4px;
     top: 20px;

@@ -17,21 +17,22 @@
         </div>
     </div>
 </template>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .lesson_bg{
     position: relative;
     left: 0px;
     top: 114px;
     height: 635px;
     width: 100%;
-    background: #F5F5F5;
+    background: @mainbg-color;
     z-index: 1;
 }
 .container17{
     height: 420px;
     width: 1200px;
     margin: 0 auto;
-    background: #fff;
+    background: @background-color;
     position: relative;
     top: 100px;
     z-index: 10;  
@@ -42,14 +43,14 @@
     position: relative;
     left: 60px;
     top: 67px;
-    background: #f5f5f5;
+    background: @mainbg-color;
     z-index: 10; 
 }
 .container17 .starfish p{
     position: relative;
     left:60px;
     top:29px;
-    color: #333333;
+    color: @gray;
     font-size: 29px;
 }
 .logo_02{
@@ -66,7 +67,7 @@
     height: 24px;
     width: 352px;
     font-size: 29px;
-    color: #333333;
+    color: @gray;
 }
 .container18 .download_version{
     position: absolute;
@@ -74,8 +75,8 @@
     top: 79px;
     height: 15px;
     width: 340px;
-    font-size: 16px;
-    color: #666666;
+    font-size:@xm-size;
+    color: @cancel-color;
 }
 .an_download{
     position: absolute;
@@ -103,7 +104,7 @@
 .qr p{
     height: 14px;
     width: 154px;
-    color: #0e0e0e;
+    color: @qr-color;
     font-size: 15px;
     float: left;
 }

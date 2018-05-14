@@ -49,14 +49,15 @@ export default{
     },
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../../assets/index.less';
 .container65{
     width: 1200px;
     height: 925px;
     position: relative;
     top: -86px;
     left: 0px;
-    background: #fff;
+    background: @background-color;
 }
 .container65 .first .firstlogo{
     position: relative;
@@ -73,7 +74,7 @@ export default{
     width: 61px;
     height: 30px;
     font-size: 30px;
-    color: #333;
+    color: @gray;
      z-index: 100;
 }
 .container65 .first .role{
@@ -83,7 +84,7 @@ export default{
 }
 .container65 .first .line{
     position: relative;
-    border-bottom: 1px solid #333;  
+    border-bottom: 1px solid @gray;  
     position: relative;
     left: 63px;
     top: -20px;
@@ -95,25 +96,25 @@ export default{
     width: 198px;
     height: 277px;
     margin-right: 24px;
-    background: #f5f5f5;
+    background: @mainbg-color;
     margin-top: 30px;
     position: relative;
 }
 .container65 .first .roleup button{
     width: 60px;
     height: 26px;
-    color: #F13232; 
-    border: 1px solid #F13232;
-    font-size: 14px;
+    color: @main-color; 
+    border: 1px solid @main-color;
+    font-size:@sm-size;
     position: relative;
-    background: #f5f5f5;
+    background: @mainbg-color;
     left: 120px;
     top: 44px;
     cursor: pointer;
 }
 .container65 .first .roleup button:hover{
-    color: #fff; 
-    background: #F13232;
+    color: @background-color; 
+    background: @main-color;
 }
 .container65 .first .roleimg{
     height: 198px;
@@ -124,7 +125,7 @@ export default{
     width: 100%;
 }
 .container65 .first .roleup .text{
-    font-size: 18px;
+    font-size:@md-size;
     position: relative;
     left: 10px;
     top: -13px;

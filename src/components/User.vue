@@ -33,13 +33,14 @@ export default{
     }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../assets/index.less';
 .container38{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: #F5F5F5;
-    z-index: -1;
+    background: @mainbg-color;
+    z-index:-1;
 }
 .container38{
     flex: 1;

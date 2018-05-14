@@ -96,7 +96,8 @@ import Sourceshop from '@/components/Source/Sourceshop'
         }
     }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container64{
     width: 100%;
     height: auto;
@@ -105,14 +106,14 @@ import Sourceshop from '@/components/Source/Sourceshop'
     position: relative;
     top: 0px;
     left: 0px;
-    background: #f5f5f5;
+    background: @mainbg-color;
 }
 .container631{
     width: 1200px;
     margin: 0 auto;
     height: auto;
     padding-top: 166px;
-    background: #f5f5f5;
+    background: @mainbg-color;
     position: relative;
     top: 35px;
     z-index: 1000;
@@ -182,7 +183,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
     top: -70px;
     left: 0px; 
     padding-left: 57px; 
-    background: #fff;
+    background: @background-color;
 }
 .container64 .first .line{
     position: relative;
@@ -198,30 +199,30 @@ import Sourceshop from '@/components/Source/Sourceshop'
     width: 198px;
     height: 277px;
     margin-right: 24px;
-    background: #f5f5f5;
+    background: @mainbg-color;
     margin-top: 30px;
     position: relative;
 }
 .container64 .first .roleup button:hover{
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
 }
 .container64 .first .roleup a{
     text-decoration: none;
-    color: #F13232;
+    color: @main-color;
 }
 .container64 .first .roleup a:hover{
     text-decoration: none;
-    color: #fff;
+    color: @background-color;
 }
 .container64 .first .roleup button{
     width: 60px;
     height: 26px;
-    color: #F13232; 
-    border: 1px solid #F13232;
-    font-size: 14px;
+    color: @main-color; 
+    border: 1px solid @main-color;
+    font-size:@sm-size;
     position: relative;
-    background: #f5f5f5;
+    background: @mainbg-color;
     left: 120px;
     top: 44px;
     cursor: pointer;
@@ -237,7 +238,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
     background: url(../../assets/source/bg1.png) no-repeat;
 }
 .container64 .first .roleup .text{
-    font-size: 18px;
+    font-size:@md-size;
     position: relative;
     left: 10px;
     top: -13px;

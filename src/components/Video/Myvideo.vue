@@ -58,7 +58,8 @@ import { looksum } from '../../public/seesum.js'
     }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container37{
     height: auto;
     width: 300px;
@@ -89,18 +90,18 @@ import { looksum } from '../../public/seesum.js'
     position: absolute;
     top: 17px;
     left: 126px;
-    font-size: 22px;
+    font-size:@llg-size;
     color: #43455a;
 }
 .container37 .jinglingtext:hover{
-    color: #f13232;
+    color: @main-color;
 }
 .container37 .time{
     position: absolute;
     width: 200px;
     top: 55px;
     left: 126px;
-    font-size: 14px;
+    font-size:@sm-size;
     color: #b1b2ba;
 }
 .container37 .icon_zan{
@@ -127,7 +128,7 @@ import { looksum } from '../../public/seesum.js'
 .container37 .icon_see_zan{
     height: 16px;
     width: auto;
-    font-size: 14px;
+    font-size:@sm-size;
     position: relative;
     left: 32px;
     top: 77px;
@@ -135,7 +136,7 @@ import { looksum } from '../../public/seesum.js'
 .container37 .icon_see_star01{
     height: 16px;
     width: auto;
-    font-size: 14px;
+    font-size:@sm-size;
     position: relative;
     left: 126px;
     top: 77px;
@@ -143,7 +144,7 @@ import { looksum } from '../../public/seesum.js'
 .container37 .icon_see_see01{
     height: 16px;
     width: auto;
-    font-size: 14px;
+    font-size:@sm-size;
     position: relative;
     left: 150px;
     top: 77px;

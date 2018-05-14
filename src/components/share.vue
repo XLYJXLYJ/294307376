@@ -64,7 +64,8 @@ export default{
     }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../assets/index.less';
 .share{
    height: 880px;
     width: 170px;
@@ -72,7 +73,7 @@ export default{
 .share .header{
     height: 60px;
     width: 100%;
-    background: #fff;
+    background: @background-color;
     color: black;
     font-size: 30px;
     position: relative;
@@ -80,19 +81,19 @@ export default{
     left: 250px;
 }
 .share .one{
-    font-size: 20px;
+    font-size:@lg-size;
     position: relative;
     left: 30px;
     top:50px;
 }
 .share .two{
-    font-size: 20px;
+    font-size:@lg-size;
     position: relative;
     left: 200px;
     top:26px;
 }
 .share .three{
-    font-size: 20px;
+    font-size:@lg-size;
     position: relative;
     left: 430px;
     top:0px;
@@ -112,7 +113,7 @@ export default{
     position: relative;
     top: 60px;
     left: 30px;
-    font-size: 20px;
+    font-size:@lg-size;
 }
 .share .sharecomment ul li{
     margin-top: 10px;

@@ -35,12 +35,13 @@ export default{
     }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../assets/index.less';
 .container32{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background:#F5F5F5;
+    background:@mainbg-color;
     z-index: -1;
 }
 .footer07{
@@ -52,7 +53,7 @@ export default{
     margin: 0 auto;
     width: 1200px;
     height: 788px;
-    background:#FFF; 
+    background:@background-color; 
     margin-top: 214px;
 }
 .container31 .star01{
@@ -65,15 +66,15 @@ export default{
     position: relative;
     top: -68px;
     left: 66px;
-    font-size: 22px;
-    color: #333;
+    font-size:@llg-size;
+    color: @gray;
     font-weight: 600;
 }
 .container31 .two_text{
     position: relative;
     top: 127px;
     left: 50px;
-    font-size: 28px;
+    font-size:@lllg-size;
     color: #91121B;
     font:bold;
     text-align: center;
@@ -87,7 +88,7 @@ export default{
     top: 20px;
     left: 379px;
     z-index: 10;
-    border-bottom: 2px solid #333;
+    border-bottom: 2px solid @gray;
 }
  .container32 .Mydemo{
     position: absolute;
@@ -95,8 +96,8 @@ export default{
     left: 1px;
     width: 106px;
     height: 31px;
-    font-size: 18px;
-    color: #999;
+    font-size:@md-size;
+    color: @delete-color;
     text-decoration: none;
     padding-top: 10px;
     padding-left: 40px;
@@ -107,16 +108,16 @@ export default{
     left: 139px;
     width: 118px;
     height: 31px;
-    font-size: 18px;
-    color: #999;
+    font-size:@md-size;
+    color: @delete-color;
     text-decoration: none;
     padding-top: 10px;
     padding-left: 44px;
 }
 .container32 .mydemo_frame .router-link-active{
-   border:2px solid #333;
+   border:2px solid @gray;
    border-radius:15px;
    border-bottom:none;
-   border-bottom: 11px solid #fff;
+   border-bottom: 11px solid @background-color;
 }
 </style>

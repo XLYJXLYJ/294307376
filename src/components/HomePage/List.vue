@@ -22,7 +22,8 @@
     }
   
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container05{
     height: 1486px;
     width: 1200px;
@@ -38,22 +39,22 @@
     position: relative;
     top: 5px;
     left: 0px;  
-    font-size: 18px;
+    font-size:@md-size;
     margin-right: 44px;
 }
 .container05 .recommend{
-    color:#5f5f5f;
+    color:@contain05-color;
     text-decoration: none;
 }
 .container05 .production{
-    color:#5f5f5f;
+    color:@contain05-color;
     text-decoration: none;
 }
 .container05 .router-link-active{
     text-decoration: none;
-    border-bottom: 4px solid #fff;  
+    border-bottom: 4px solid @background-color;  
     position: relative;
-    color: #F13232;
+    color: @main-color;
 }
 .container05 .router-link-active:before {
     content: '';
@@ -64,7 +65,7 @@
     right: 0px;
     height: 4px;
     width: 20px;
-    background-color: #F13232;
+    background-color: @main-color;
     border-radius: 2px;
 }
 </style>

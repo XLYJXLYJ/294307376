@@ -82,7 +82,8 @@ import { formatDate } from '../../public/time.js'
         }
     }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container30 {
     margin: 0 auto;
     height: 550px;
@@ -113,7 +114,7 @@ import { formatDate } from '../../public/time.js'
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
-    background: #F5F5F5;
+    background: @mainbg-color;
 }
 .container30 .all_up img{
     position: absolute;
@@ -125,8 +126,8 @@ import { formatDate } from '../../public/time.js'
 .container30 .all_up p{
     height: 19px;
     width:auto;
-    color: #333;
-    font-size: 18px;
+    color: @gray;
+    font-size:@md-size;
     position: absolute;
     top: 180px;
     left: 13px;
@@ -134,8 +135,8 @@ import { formatDate } from '../../public/time.js'
 .container30 .deltime01{
     height: 14px;
     width:auto;
-    color: #999;
-    font-size: 14px;
+    color: @delete-color;
+    font-size:@sm-size;
     position: absolute;
     top: 224px;
     left: 15px;
@@ -143,8 +144,8 @@ import { formatDate } from '../../public/time.js'
 .container30 .deltime02{
     height: 14px;
     width:auto;
-    color: #999;
-    font-size: 14px;
+    color: @delete-color;
+    font-size:@sm-size;
     position: absolute;
     top: 208px;
     left: 12px;
@@ -152,25 +153,25 @@ import { formatDate } from '../../public/time.js'
 .container30 .button01{
   height: 50px;
   width: 157px;
-  background: #F13232;
-  color: #fff;
+  background: @main-color;
+  color: @background-color;
   position: absolute;
   left: 191px;
   top: 14px;
   border: none;
-  font-size: 20px;
+  font-size:@lg-size;
   cursor: pointer;
 }
 .container30 .button02{
   height: 50px;
   width: 157px;
-  background: #F13232;
-  color: #fff;
+  background: @main-color;
+  color: @background-color;
   position: absolute;
   left: 191px;
   top: 71px;
   border: none;
-  font-size: 20px;
+  font-size:@lg-size;
   cursor: pointer;
 }
 </style>

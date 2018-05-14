@@ -22,7 +22,8 @@ export default{
     }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container61{
     width: 100%;  
 }
@@ -36,20 +37,20 @@ export default{
     padding-top: 35px;
     padding-left: 30px;
     height: 92px;
-    background: #fff;
+    background: @background-color;
 }
 .container61 .tab_choice li{
     float: left;
     width: 98px;
     height: 42px;
     background: #FFE0E0;
-    border:1px solid #F13232;
-    color: #F13232;
+    border:1px solid @main-color;
+    color: @main-color;
     margin-right: 10px;
     text-align: center;
 }
 .container61 .tab_choice li p{
-    font-size: 16px;
+    font-size:@xm-size;
     position: relative;
     top: 12px;
     font-weight: 600;
@@ -76,15 +77,15 @@ export default{
     z-index: 100;
 } */
 .container61 .router-link-active li{
-    background: #fff;
-    border-bottom: 1px solid #fff;
+    background: @background-color;
+    border-bottom: 1px solid @background-color;
     position: relative;
     z-index: 1000;
 }
 .container61 .line{
     width: 1140px;
     height: 1px;
-    background-color: #F13232;
+    background-color: @main-color;
     position: relative;
     top: 43px;
     left: 0px;

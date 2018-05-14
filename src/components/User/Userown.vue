@@ -2,7 +2,8 @@
     <div class="container39">
         <div>
             <div>
-                <img class="head" :src="'data:image/png;base64,'+userimageUrl" alt="">
+                <img class="head" :src="'data:image/png;base64,'+userimageUrl" alt="" v-show="userownimg01">
+                <img class="head"  src="static/localpic.png" alt="" v-show="userownimg02">
                 <p class="name">{{username}}</p>
                 <p class="atten">编程达人</p>
             </div>
@@ -68,7 +69,9 @@ import { looksum } from '../../public/seesum.js'
                  praisetotal:'',
                  looktotal:'',
                  savedes:'',
-                 followother:''
+                 followother:'',
+                 userownimg01:'',
+                 userownimg02:'',
 
             } 
         },
@@ -98,7 +101,6 @@ import { looksum } from '../../public/seesum.js'
                         getinfostate:3
                     })
                     .then(response => {   
-
                         this.username= response.data.data.username   
                         this.userimageUrl= response.data.data.imgBuffer    
                         this.aboutme = response.data.data.aboutme,
@@ -115,6 +117,14 @@ import { looksum } from '../../public/seesum.js'
                             this.getdemoimg()
                             this.demonone=false,
                             this.demoimg=true
+                        }
+                        if(this.userimageUrl == 'null'){
+                            this.userownimg01=true,
+                            this.userownimg02=false
+
+                        }else{
+                            this.userownimg01=false,
+                            this.userownimg02=true
                         
                         }
                     })
@@ -231,11 +241,12 @@ import { looksum } from '../../public/seesum.js'
         }
     }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container39{
     width:1200px;
     height: 655px;
-    background: #fff;
+    background: @background-color;
     margin: 0 auto;
     position: relative;
     margin-top: 60px;
@@ -247,7 +258,7 @@ import { looksum } from '../../public/seesum.js'
     top: 12px;
     left: 9px;  
     border-radius: 40px;
-    box-shadow:0px 3px 5px #bdbdbd; 
+    box-shadow:0px 3px 5px @shadow-color; 
 }
 .container39 .name{
     width:128px;
@@ -255,8 +266,8 @@ import { looksum } from '../../public/seesum.js'
     position: absolute;
     top: 17px;
     left: 102px; 
-    color: #F13232;
-    font-size: 28px;  
+    color: @main-color;
+    font-size:@lllg-size;  
     font-weight: 600;
 }
 .container39 .atten{
@@ -265,8 +276,8 @@ import { looksum } from '../../public/seesum.js'
     position: absolute;
     top: 55px;
     left: 103px; 
-    color: #fff;
-    font-size: 18px;  
+    color: @background-color;
+    font-size:@md-size;  
     font-weight: 600;
     text-align: center;
     background: url(../../assets/user/rectan02.png)  
@@ -277,11 +288,11 @@ import { looksum } from '../../public/seesum.js'
     position: absolute;
     top: 24px;
     left: 1024px; 
-    color: #fff;
-    font-size: 16px;  
+    color: @background-color;
+    font-size:@xm-size;  
     font-weight: 600;
     border: none;
-    background: #F13232;
+    background: @main-color;
     cursor: pointer;
 }
 .container39 .attenbutton02{
@@ -290,11 +301,11 @@ import { looksum } from '../../public/seesum.js'
     position: absolute;
     top: 24px;
     left: 1024px; 
-    color: #fff;
-    font-size: 16px;  
+    color: @background-color;
+    font-size:@xm-size;  
     font-weight: 600;
     border: none;
-    background: #333;
+    background: @gray;
     cursor: pointer;
 }
 .container39 .aboutbox{
@@ -308,8 +319,8 @@ import { looksum } from '../../public/seesum.js'
     left: 0px;
     width: 67px;
     height: 22px;
-    color: #333;
-    font-size: 22px;
+    color: @gray;
+    font-size:@llg-size;
 }
 .container39 .aboutmetext{
     position: absolute;
@@ -318,8 +329,8 @@ import { looksum } from '../../public/seesum.js'
     width: 345px;
     height: 175px;
     color: #A9A9A9;
-    font-size: 18px;
-    background: #F5F5F5; 
+    font-size:@md-size;
+    background: @mainbg-color; 
     border: 2px dashed #d5d3cd;
     border-radius: 10px;
     text-indent: 1rem;
@@ -336,8 +347,8 @@ import { looksum } from '../../public/seesum.js'
     left: 0px;
     width: 135px;
     height: 23px;
-    color: #333;
-    font-size: 22px;
+    color: @gray;
+    font-size:@llg-size;
 }
 .container39 .medoingtext{
     position: absolute;
@@ -346,8 +357,8 @@ import { looksum } from '../../public/seesum.js'
     width: 345px;
     height: 175px;
     color: #A9A9A9;
-    font-size: 18px;
-    background: #F5F5F5; 
+    font-size:@md-size;
+    background: @mainbg-color; 
     border: 2px dashed #d5d3cd;
     border-radius: 10px;
     text-indent: 1rem;
@@ -370,35 +381,35 @@ import { looksum } from '../../public/seesum.js'
 .container39 .makedemotext a{
     position: absolute;
     left: 60px;
-    font-size: 16px;
-    color: #F13232;  
+    font-size:@xm-size;
+    color: @main-color;  
 }
 .container39 .makedemotext p{
     position: absolute;
-    font-size: 16px;
+    font-size:@xm-size;
     left: 92px;
     color: #3d4245;  
 }
 .container39 .makedemotext span{
-    color: #999;
-    font-size: 16px;
+    color: @delete-color;
+    font-size:@xm-size;
     position: absolute;
-    font-size: 14px;
+    font-size:@sm-size;
     left: 74px;
 }
 .container39 .name01{
     position: absolute;
     top: 123px;
     left: 435px;
-    color: #333;
-    font-size: 22px;
+    color: @gray;
+    font-size:@llg-size;
 }
 .container39 .atten01{
     position: absolute;
     top: 429px;
     left: 518px;
-    color: #000;
-    font-size: 16px;
+    color: @black;
+    font-size:@xm-size;
 }
 .container39 .sum{
     position: absolute;
@@ -407,7 +418,7 @@ import { looksum } from '../../public/seesum.js'
     left: 425px;
     top: 460px;
     border: 1px solid #e5e1d9;
-    background: #F5F5F5;
+    background: @mainbg-color;
 }
 .container39 .mydy{
     position: absolute;
@@ -415,8 +426,8 @@ import { looksum } from '../../public/seesum.js'
     height: 22px;
     left: 760px;
     top: 124px;
-    color: #333;
-    font-size: 22px;
+    color: @gray;
+    font-size:@llg-size;
 }
 .container39 .sum .sum01{
     position: absolute;
@@ -425,7 +436,7 @@ import { looksum } from '../../public/seesum.js'
     left: 27px;
     top: 23px;
     color: #ccc;
-    font-size: 16px;
+    font-size:@xm-size;
 }
 .container39 .sum .good{
     position: absolute;
@@ -437,57 +448,57 @@ import { looksum } from '../../public/seesum.js'
 .container39 .sum .good p{
     position: absolute;
     width: auto;
-    color: #000;
-    font-size: 20px;
+    color: @black;
+    font-size:@lg-size;
 }
 .container39 .sum .good span{
     position: absolute;
     left: 40px;
     top: 6px;
     color: #ccc;
-    font-size: 12px;
+    font-size:@ss-size;
 }
 .container39 .sum .store p{
     position: absolute;
     top: 58px;
     left: 119px;
     width: auto;
-    color: #000;
-    font-size: 20px;
+    color: @black;
+    font-size:@lg-size;
 }
 .container39 .sum .store span{
     position: absolute;
     top: 63px;
     left: 158px;
     color: #ccc;
-    font-size: 12px;
+    font-size:@ss-size;
 }
 .container39 .sum .make p{
     position: absolute;
     top: 99px;
     left: 28px;
-    color: #000;
-    font-size: 20px;
+    color: @black;
+    font-size:@lg-size;
 }
 .container39 .sum .make span{
     position: absolute;
     top: 105px;
     left: 64px;
     color: #ccc;
-    font-size: 12px;
+    font-size:@ss-size;
 }
 .container39 .sum .see p{
     position: absolute;
     top: 99px;
     left: 119px;
-    color: #000;
-    font-size: 20px;
+    color: @black;
+    font-size:@lg-size;
 }
 .container39 .sum .see span{
     position: absolute;
     top: 105px;
     left: 158px;
     color: #ccc;
-    font-size: 12px;
+    font-size:@ss-size;
 }
 </style>

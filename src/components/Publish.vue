@@ -184,7 +184,8 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped lang="less">
+@import '../assets/index.less';
 .container72{
     width: 100%;
     height: 970px;
@@ -193,14 +194,14 @@ export default {
 .container73{
     width: 1200px;
     height: 488px;
-    background: #fff;
+    background: @background-color;
     margin: 0 auto; 
     position: relative;
     top: 224px;
 }
 .container73 .publishdemo{
-    color: #333;
-    font-size: 22px;
+    color: @gray;
+    font-size:@llg-size;
     position: absolute;
     left: 25px;
     top: 29px;
@@ -210,7 +211,7 @@ export default {
     float: left;
 }
 .container72 .fengexian{
-    border-bottom: 2px solid #F5F5F5;
+    border-bottom: 2px solid @mainbg-color;
     position: relative;
     width: 1152px;
     top: 80px;
@@ -220,8 +221,8 @@ export default {
     position: absolute;
     left: 38px;
     top: 125px;
-    color: #333;
-    font-size: 16px;
+    color: @gray;
+    font-size:@xm-size;
 }
 .container72 .userpic{
     position: absolute;
@@ -229,10 +230,10 @@ export default {
     top: 109px;
     height: 168px;
     width: 168px;
-    color: #333;
-    font-size: 16px;
+    color: @gray;
+    font-size:@xm-size;
     overflow: hidden;
-    box-shadow:0px 6px 10px #bdbdbd;
+    box-shadow:0px 6px 10px @shadow-color;
     background: url(../assets/publish/publish.png) no-repeat;
     background-position: 60px 60px;
     opacity: 1;
@@ -243,8 +244,8 @@ export default {
     top: 80px;
     height: 188px;
     width: 168px;
-    color: #333;
-    font-size: 16px;
+    color: @gray;
+    font-size:@xm-size;
     overflow: hidden;
     z-index: 1000;
     opacity: 0;
@@ -260,9 +261,9 @@ export default {
     position: absolute;
     left: 121px;
     top: 108px;
-    color: #333;
-    font-size: 16px;
-    background: #f5f5f5;
+    color: @gray;
+    font-size:@xm-size;
+    background: @mainbg-color;
     border: none;
     padding-left: 25px;
     outline: none;
@@ -271,8 +272,8 @@ export default {
     position: absolute;
     left: 38px;
     top: 216px;
-    color: #333;
-    font-size: 16px;
+    color: @gray;
+    font-size:@xm-size;
 }
 .container72 .demodes textarea{
     height: 116px;
@@ -280,9 +281,9 @@ export default {
     position: absolute;
     left: 121px;
     top: 200px;
-    color: #333;
-    font-size: 16px;
-    background: #f5f5f5;
+    color: @gray;
+    font-size:@xm-size;
+    background: @mainbg-color;
     border: none;
     padding-left: 25px;
     padding-top:16px;
@@ -298,7 +299,7 @@ export default {
     position:absolute;
     left: 372px;
     top: 366px;
-    background: #fff;
+    background: @background-color;
     color: #bbb;
     border: 1px solid #bbb;
     cursor: pointer;
@@ -334,16 +335,16 @@ export default {
     width: 48px;
 }
 .container72 .uploadcover{
-    color: #333;
-    font-size: 16px;
+    color: @gray;
+    font-size:@xm-size;
     position:absolute;
     top:125px;
     left: 635px;
 
 }
 .container72 .uploadtext{
-    color: #333;
-    font-size: 14px;
+    color: @gray;
+    font-size:@sm-size;
     position:absolute;
     top:285px;
     left: 774px;
@@ -371,11 +372,11 @@ export default {
     position:absolute;
     left: 121px;
     top: 366px;
-    background: #F13232;
-    color: #fff;
+    background: @main-color;
+    color: @background-color;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size:@xm-size;
 }
 .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
@@ -384,10 +385,10 @@ export default {
     position: relative;
 } 
 .avatar-uploader .el-upload:hover {
-    border-color: #F13232;
+    border-color: @main-color;
 }
 .avatar-uploader-icon {
-    font-size: 28px;
+    font-size:@lllg-size;
     color: #8c939d;
     width: 178px;
     height: 178px;
@@ -444,11 +445,11 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
    margin-right:105px;
 }
 .unactive{
-    color:#000;
+    color:@black;
 }
 .container72 .uploadcovertag{
     color: #43455a;
-    font-size: 14px;
+    font-size:@sm-size;
     position:absolute;
     top:321px;
     left: 521px;

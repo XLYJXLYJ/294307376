@@ -10,7 +10,8 @@
                 </div>
                 <div>
                     <router-link to="/User">
-                        <img class="cat01" :src="'data:image/png;base64,'+list.imgBuffer" alt="" @click="lookusersdes">
+                        <img class="cat01" :src="'data:image/png;base64,'+list.imgBuffer" alt="" @click="lookusersdes" v-show="videoimg01">
+                        <img class="cat01" src="static/localpic.png" alt="" @click="lookusersdes" v-show="videoimg02">
                         <p class="four" @click="lookusersdes">{{list.name}}</p>
                     </router-link>
                     <div :class='{"jia":!isAttention,"jia1":isAttention}' @click="jia"></div>
@@ -96,6 +97,8 @@ export default{
             demoxml:'',
             publishtime:'',
             lookuserdes:'',
+            videoimg01:'',
+            videoimg02:'',
             item:{
                 // url:"static/ceshi/snap.html#present:Username=jens&ProjectName=tree%20animation"
                 url:'https://www.baidu.com/'
@@ -149,7 +152,14 @@ export default{
                 this.publishtime= response.data.data.publishtime
                 this.$store.state.authid= response.data.data.authid
                 this.$store.state.lookdemoname= response.data.data.name
-                this.demoid = sessionStorage.id  
+                this.demoid = sessionStorage.id 
+                if(this.list.imgBuffer){
+                    this.videoimg01 = true,
+                    this.videoimg02 = false
+                }else{
+                    this.videoimg01 = false,
+                    this.videoimg02 = true
+                }
             }) 
            
         },
@@ -317,10 +327,11 @@ export default{
     }
 }
 </script>
-<style>
+<style scoped lang="less">
+@import '../assets/index.less';
 .con3536{
     width: 100%;
-    background: #F5F5F5;
+    background: @mainbg-color;
 }
 .container35{
     margin: 0 auto;
@@ -333,14 +344,14 @@ export default{
     height: 158px;
     position: absolute;
     top: 139px;
-    background: #fff;
+    background: @background-color;
     z-index: 10;
 }
 .container36 .one{
     height: 28px;
     width: 268px;
     color: #43455a;
-    font-size: 28px;
+    font-size:@lllg-size;
     position: relative;
     top: 34px;
     left: 36px;
@@ -349,7 +360,7 @@ export default{
     height: 12px;
     width: 250px;
     color: #7b7d8b;
-    font-size: 16px;
+    font-size:@xm-size;
     position: relative;
     top: 54px;
     left: 36px;
@@ -358,7 +369,7 @@ export default{
     height: 17px;
     width: 109px;
     color: #43455A;
-    font-size: 16px;
+    font-size:@xm-size;
     position: relative;
     top: 73px;
     left: 35px;
@@ -369,7 +380,7 @@ export default{
     height: 60px;
     top: 49px;
     left: 540px;
-    box-shadow:0px 3px 5px #bdbdbd; 
+    box-shadow:0px 3px 5px @shadow-color; 
     border-radius: 40px;
 }
 .container36 .four{
@@ -377,7 +388,7 @@ export default{
     top: 53px;
     left: 614px;
     color:#43455A;
-    font-size: 22px;
+    font-size:@llg-size;
 }
 .container36 .jia{
     position: absolute;
@@ -402,7 +413,7 @@ export default{
     top: 78px;
     left: 529px;
     color: #ffca32;
-    font-size: 12px;
+    font-size:@ss-size;
     cursor: pointer;
 }
 .container36 .love{
@@ -419,7 +430,7 @@ export default{
     top: 30px;
     left: 14px;
     cursor: pointer;
-    font-size: 16px;
+    font-size:@xm-size;
     width: 28px;
     height: 28px;
     text-align: center;
@@ -446,7 +457,7 @@ export default{
     position: relative;
     top: 35px;
     left: 14px;
-    font-size: 16px;
+    font-size:@xm-size;
     width: 28px;
     height: 28px;
     text-align: center;
@@ -468,8 +479,8 @@ export default{
     border: none;
     height: 44px;
     width: 102px;
-    color: #fff;
-    background: #F13232;
+    color: @background-color;
+    background: @main-color;
     cursor: pointer;
 }
 .container36 .buy{
@@ -477,8 +488,8 @@ export default{
     top: 99px;
     left: 1051px;
     border: none;
-    color: #F13232;
-    font-size: 12px;
+    color: @main-color;
+    font-size:@ss-size;
 } */
 .container35 .video{
     width: 767px;
@@ -487,7 +498,7 @@ export default{
     top:0px; 
     left: 0px;
     z-index: 2;
-    background: #fff;
+    background: @background-color;
 }
 .container35 .mydemo_framebox{
     height: 627px;
@@ -507,27 +518,27 @@ export default{
     top: 0px;  
     height: 575px;
     width:414px;
-    background: #fff;
+    background: @background-color;
 }
 .container35  .mydemo_frame .Myvideo{
     position: absolute;
     left: 70px;
     top:22px;  
     color: #7E7E7E;
-    font-size: 16px;
+    font-size:@xm-size;
 }
 .container35  .mydemo_frame .Lovevideo{
     position: absolute;
     left: 281px;
     top:22px;  
     color: #7E7E7E;
-    font-size: 16px;
+    font-size:@xm-size;
 }
 .con3536 .comment{
     width: 100%;
     height: 182px;
     position: relative;
-    background: #fff;
+    background: @background-color;
     top: 0px;
     left: 0px;
     z-index: 0;
@@ -542,7 +553,7 @@ export default{
 .con3536 .comment01 .explain{
     height: 22px;
     width:auto;
-    font-size: 22px;
+    font-size:@llg-size;
     color: #43455a;
     position: absolute;
     top: 47px;
@@ -551,7 +562,7 @@ export default{
 .con3536 .comment01 .explaintext{
     height: 17px;
     width:auto;
-    font-size: 16px;
+    font-size:@xm-size;
     color: #43455a;
     position: absolute;
     top: 85px;
@@ -578,8 +589,8 @@ export default{
     position: absolute;
     top: 0px;
     left: 30px;
-    background: #f13232;
-    color:#fff;
+    background: @main-color;
+    color:@background-color;
     border: none;
 }
 .con3536 .comment01 .qrsharetext span{
@@ -589,7 +600,7 @@ export default{
     top: 74px;
     left: 0px;
     color: #43455a;
-    font-size: 18px;
+    font-size:@md-size;
     padding-left: 20px;
     background: url(../assets/Video/jiantou.png) no-repeat 0px 5px;
 }
@@ -600,7 +611,7 @@ export default{
     top: 46px;
     left: 55px;
     color: #b1b2ba;
-    font-size: 18px;
+    font-size:@md-size;
 }
 
 .con3536 .comment01 .qrsharetext button:hover{
@@ -621,6 +632,6 @@ export default{
 }
 .container35  .mydemo_frame .router-link-active{
     text-decoration: none;
-    color: #f13232;
+    color: @main-color;
 }
 </style>

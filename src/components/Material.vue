@@ -14,10 +14,11 @@ export default{
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="less">
+@import '../assets/index.less';
 .container15{
     width: 100%;
     height: auto;
-    background: #fff;
+    background: @background-color;
 }
 </style>

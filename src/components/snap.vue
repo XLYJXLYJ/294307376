@@ -876,7 +876,8 @@ export default{
 }
 
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../assets/index.less';
 .snapbcw{
     display: flex;
     flex-direction: column;
@@ -899,18 +900,18 @@ export default{
 }
 /* .snapboxhead .header01 a{
 	z-index: 10!important;
-	color: #fff;
+	color: @background-color;
 } */
 .snapboxhead .snapheaderleft{
 	width:100%;
 	height: 40px;
-	background: #333;
+	background: @gray;
 	list-style: none;
 	position: fixed;
 	top: 0px;
 	left: 0px;
-	color: #fff;
-    font-size: 16px;
+	color: @background-color;
+    font-size:@xm-size;
 }
 .snapboxhead .snapheaderleft img{
     position: relative;
@@ -935,25 +936,25 @@ export default{
     position: fixed;
     right:-33px;
     top: 12px;
-    font-size: 14px;
+    font-size:@sm-size;
 }
 .snapboxhead .borderlight05{
     position: fixed;
     right:-70px;
     top: 12px;
-    font-size: 14px;
+    font-size:@sm-size;
 }
 .snapboxhead .borderlight06{
     position: fixed;
     right: -40px;
     top: 12px;
-    font-size: 14px;
+    font-size:@sm-size;
 }
 .snapboxhead .borderlight07{
     position: fixed;
     left: 288px;
     top: 7px;
-    font-size: 14px;
+    font-size:@sm-size;
 }
 .snapedit{
     height: 10px;
@@ -968,7 +969,7 @@ export default{
 .snapboxhead .borderlight07 input{
     height: 26px;
     width: 160px;
-    font-size: 14px;
+    font-size:@sm-size;
     background-color: #4D4D4D;
     color: #C2C2C2;
     padding-left: 5px;
@@ -977,13 +978,13 @@ export default{
 
 
 .snapboxhead .bcw a{
-    color: #ffffff; 
+    color: @background-color; 
     position: fixed;
     width: 60px;
     height: 20px;
     left: 40px;
     top: 10px;
-    font-size: 12px;
+    font-size:@ss-size;
 }
 .snapboxhead .bcw img{
     position: fixed;
@@ -1009,18 +1010,18 @@ export default{
     position:relative;
     left:100px;
     top: 40px;
-    color: #333;
+    color: @gray;
     width: 94px;
     height: 94px;
-    font-size: 14px;
+    font-size:@sm-size;
     /* z-index: 1000; */
-    background: #fff;
+    background: @background-color;
     /* display: inline-block; */
-    border: 1px solid #333333;
+    border: 1px solid @gray;
 
 }
 .snapboxhead .snapdropdowm .block-col-12 a{
-    color: #333;
+    color: @gray;
     text-decoration: none;
 }
 .snapboxhead .snapdropdowm .block-col-12 li{
@@ -1031,8 +1032,8 @@ export default{
     cursor: pointer;
 }
 .snapboxhead .snapdropdowm .block-col-12 li:hover{
-    background:#000;
-    color: #fff;
+    background:@black;
+    color: @background-color;
 }
 
 
@@ -1040,17 +1041,17 @@ export default{
     position:fixed;
     right: 65px;
     top: 40px;
-    color: #333;
+    color: @gray;
     width: 74px;
     height: 48px;
-    font-size: 14px;
+    font-size:@sm-size;
     /* z-index: 1000; */
-    background: #fff;
+    background: @background-color;
     display: inline-block;
-    border: 1px solid #333333;
+    border: 1px solid @gray;
 }
 .snapboxhead .snapdemodropdowm .block-col-12 a{
-    color: #333;
+    color: @gray;
     text-decoration: none;
 }
 .snapboxhead .snapdemodropdowm .block-col-12 li{
@@ -1061,11 +1062,11 @@ export default{
     cursor: pointer;
 }
 .snapboxhead .snapdemodropdowm .block-col-12 li:hover{
-    background:#000;
-    color: #fff;
+    background:@black;
+    color: @background-color;
 }
 .snapboxhead .snapdemodropdowm .block-col-12 li p:hover{
-    color: #fff;
+    color: @background-color;
 }
 
 
@@ -1074,7 +1075,7 @@ export default{
     padding: 0px;
     width: 100%;
     height: 336px;
-    background: #fff;
+    background: @background-color;
 }
 /* .container50 .welcome{
     position: absolute;
@@ -1128,14 +1129,14 @@ export default{
     padding-left: 10px;
 }
 .container50 .texttitle{
-    color: #333;
+    color: @gray;
 }
 .container50 .textdes{
     height: 110px;
     width: 278px;
     padding: 8px;
     border: 1px solid #dcdfe6;
-    color: #333;
+    color: @gray;
 }
 .container50 .register{
     position: absolute;
@@ -1143,9 +1144,9 @@ export default{
     width: 297px;
     top: 246px;
     left: 68px;
-    background: #F13232;
-    color: #fff;
-    font-size: 18px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@md-size;
     cursor: pointer;
 }
 .borderlighttest{
@@ -1158,7 +1159,7 @@ export default{
     padding: 0px;
     width: 100%;
     height: 226px;
-    background: #fff;
+    background: @background-color;
 }
 .container501 .welcome{
     position: absolute;
@@ -1198,7 +1199,7 @@ export default{
     padding: 0px;
     width: 100%;
     height: 226px;
-    background: #fff;
+    background: @background-color;
 }
 /* .container502 .welcome{
     position: absolute;
@@ -1247,7 +1248,7 @@ export default{
     padding: 0px;
     width: 100%;
     height: 226px;
-    background: #fff;
+    background: @background-color;
 }
 /* .container5020 .welcome{
     position: absolute;
@@ -1296,7 +1297,7 @@ export default{
     padding: 0px;
     width: 100%;
     height: 266px;
-    background: #fff;
+    background: @background-color;
 }
 .container503 .welcome{
     position: absolute;
@@ -1352,7 +1353,7 @@ export default{
     padding: 0px;
     width: 100%;
     height: 364px;
-    background: #fff;
+    background: @background-color;
 }
 .container2101 .sign_logo{
     width: 50px;
@@ -1360,7 +1361,7 @@ export default{
     position: relative;
     top: 44px;
     left: 162px;
-    color: #333;
+    color: @gray;
     font-size: 24px;
     margin-left: 30px;
 }
@@ -1387,8 +1388,8 @@ export default{
     width: 95px;
     top: 238px;
     left: 291px;
-    color: #F13232;
-    font-size: 14px;
+    color: @main-color;
+    font-size:@sm-size;
     cursor: pointer;
     font-weight: 600;
 }
@@ -1398,9 +1399,9 @@ export default{
     width: 310px;
     top: 266px;
     left: 60px;
-    background: #F13232;
-    color: #fff;
-    font-size: 18px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@md-size;
     cursor: pointer;
     border: none;
     outline: none;
@@ -1411,16 +1412,16 @@ export default{
     width: 142px;
     top: 317px;
     left: 137px;
-    font-size: 14px;
-    color: #000;
+    font-size:@sm-size;
+    color: @black;
     font-weight: 600;
 }
 .container2101 .free_res span{
     position: absolute;
     top: 317px;
     left: 216px;
-    color: #F13232;
-    font-size: 14px;
+    color: @main-color;
+    font-size:@sm-size;
     cursor: pointer;
     font-weight: 600;
 }
@@ -1429,7 +1430,7 @@ export default{
     padding: 0px;
     width: 100%;
     height: 364px;
-    background: #fff;
+    background: @background-color;
 }
 .container4401 .sign_logo{
     position: absolute;
@@ -1437,7 +1438,7 @@ export default{
     width: 106px;
     top: 44px;
     left: 155px;
-    color: #333;
+    color: @gray;
     font-size: 24px;
 }
 .container4401 .tele{
@@ -1462,9 +1463,9 @@ export default{
     width: 310px;
     top: 254px;
     left: 60px;
-    background: #F13232;
-    color: #fff;
-    font-size: 18px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@md-size;
     cursor: pointer;
     border: none;
     outline: none;
@@ -1474,13 +1475,13 @@ export default{
     padding: 0px;
     width: 100%;
     height: 492px;
-    background: #fff;
+    background: @background-color;
 }
 .container1901 .sign_logo{
     position: absolute;
     top: 44px;
     left: 184px;
-    color: #333;
+    color: @gray;
     font-size: 24px;
 }
 .container1901 .tele{
@@ -1521,9 +1522,9 @@ export default{
     width: 301px;
     top: 394px;
     left: 60px;
-    background: #F13232;
-    color: #fff;
-    font-size: 18px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@md-size;
     cursor: pointer;
     border: none;
     outline: none;
@@ -1544,7 +1545,7 @@ export default{
     left: 75px;
     height: 14px;
     width: 141px;
-    color: #F13232;
+    color: @main-color;
     font-size: 15px;
     cursor: pointer;
     font-weight: 600;
@@ -1554,13 +1555,13 @@ export default{
     padding: 0px;
     width: 100%;
     height: 364px;
-    background: #fff;
+    background: @background-color;
 }
 .container4601 .sign_logo{
     position: absolute;
     top: 44px;
     left: 159px;
-    color: #333;
+    color: @gray;
     font-size: 24px;
 }
 .container4601 .tele{
@@ -1586,9 +1587,9 @@ export default{
     width: 111px;
     top: 170px;
     left: 250px;
-    background: #F13232;
-    color: #fff;
-    font-size: 16px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@xm-size;
     cursor: pointer;
     border: none;
 }
@@ -1606,9 +1607,9 @@ export default{
     width: 310px;
     top: 256px;
     left: 60px;
-    background: #F13232;
-    color: #fff;
-    font-size: 18px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@md-size;
     cursor: pointer;
     border: none;
     outline: none;
@@ -1619,7 +1620,7 @@ export default{
     width: 289px;
     top: 345px;
     left: 332px;
-    color: #44878D;
+    color: @back-color;
     font-size: 15px;
     cursor: pointer;
 }
@@ -1629,7 +1630,7 @@ export default{
     padding: 0px;
     width: 100%;
     height: 364px;
-    background: #fff;
+    background: @background-color;
 }
 .snapbcw .close{
     float: right;
@@ -1642,7 +1643,7 @@ export default{
     position: absolute;
     top: 44px;
     left: 155px;
-    color: #333;
+    color: @gray;
     font-size: 24px;
 } */
 .container4401 .tele{
@@ -1667,9 +1668,9 @@ export default{
     width: 310px;
     top: 284px;
     left: 60px;
-    background: #F13232;
-    color: #fff;
-    font-size: 18px;
+    background: @main-color;
+    color: @background-color;
+    font-size:@md-size;
     cursor: pointer;
 }
 </style>

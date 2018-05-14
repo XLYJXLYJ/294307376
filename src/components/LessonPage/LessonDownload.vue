@@ -17,21 +17,22 @@
         </div>
     </div>
 </template>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .lesson_bg{
     position: absolute;
     left: 0px;
     top: 83px;
     height: 1752px;
     width: 100%;
-    background: #F5F5F5;
+    background: @mainbg-color;
     z-index: -1;
 }
 .container10{
     height: 306px;
     width: 1200px;
     margin: 0 auto;
-    background: #fff;
+    background: @background-color;
     z-index: 1;  
     margin-top: 138px;
 }
@@ -56,8 +57,8 @@
     top: -37px;
     height: 15px;
     width: 266px;
-    font-size: 16px;
-    color: #c5c5d3;
+    font-size:@xm-size;
+    color: @lesson-color;
 }
 .WindowsDownload{
     position: relative;
@@ -72,11 +73,11 @@
     top: -56px;
     height: 17px;
     width: 169px;
-    color: #F13232;
-    font-size: 16px;
+    color: @main-color;
+    font-size:@xm-size;
 }
 .trouble_text_01 a{
-    color: #F13232;
+    color: @main-color;
 }
 .trouble_text_02{
     position: relative;
@@ -84,11 +85,11 @@
     top: -71px;
     height: 15px;
     width: 105px;
-    color: #c5c5d3;
-    font-size: 16px;
+    color: @lesson-color;
+    font-size:@xm-size;
 }
 .trouble_text_02 a{
-    color: #c5c5d3;
+    color: @lesson-color;
 }
 /* .qr{
     position: relative;
@@ -96,12 +97,12 @@
     top: -182px;
     height: 106px;
     width: 126px;
-    color: #c5c5d3;
-    font-size: 14px;
+    color: @lesson-color;
+    font-size:@sm-size;
 }
 .qr p{
     color: #595959;
-    font-size: 18px;
+    font-size:@md-size;
     float: left;
 }
 .qr .what{
@@ -122,7 +123,7 @@
     top: 15px;
     height: 21px;
     width: 367px;
-    font-size: 20px;
-    color: #000;
+    font-size:@lg-size;
+    color: @black;
 }
 </style>

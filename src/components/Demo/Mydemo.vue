@@ -20,7 +20,8 @@ export default{
     }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container26{
     position: relative;
     top: -687px;
@@ -33,17 +34,17 @@ export default{
     position: relative;
     width: 115px;
     height: 34px;
-    background: #FFF;
-    color: #000;
-    font-size: 16px;
+    background: @background-color;
+    color: @black;
+    font-size:@xm-size;
     margin:0px;
     padding: 0px;
     cursor: pointer;
     border: none;
 }
 .container26 .router-link-active button{
-    background-color: #F13232;
-    color: #FFF;
+    background-color: @main-color;
+    color: @background-color;
     border:none;
 }
 </style>

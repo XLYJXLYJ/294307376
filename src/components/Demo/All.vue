@@ -98,7 +98,9 @@ import { looksum } from '../../public/seesum.js'
         }
     }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
+
 .container27 {
     margin: 0 auto;
     height: 550px;
@@ -129,7 +131,7 @@ import { looksum } from '../../public/seesum.js'
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
-    background: #F5F5F5;
+    background: @mainbg-color;
 }
 .container27 .all_up img{
     position: absolute;
@@ -141,8 +143,8 @@ import { looksum } from '../../public/seesum.js'
 .container27 .all_up p{
     height: 19px;
     width:auto;
-    color: #333;
-    font-size: 18px;
+    color: @gray;
+    font-size:@md-size;
     position: absolute;
     top: 180px;
     left: 13px;
@@ -150,8 +152,8 @@ import { looksum } from '../../public/seesum.js'
 .container27 .all_up span{
     height: 14px;
     width:221px;
-    color: #999;
-    font-size: 14px;
+    color: @delete-color;
+    font-size:@sm-size;
     position: absolute;
     top: 215px;
     left: 15px;
@@ -159,25 +161,25 @@ import { looksum } from '../../public/seesum.js'
 .container27 .button01{
   height: 50px;
   width: 157px;
-  background: #F13232;
-  color: #fff;
+  background: @main-color;
+  color: @background-color;
   position: absolute;
   left: 191px;
   top: 14px;
   border: none;
-  font-size: 20px;
+  font-size:@lg-size;
   cursor: pointer;
 }
 .container27 .button02{
   height: 50px;
   width: 157px;
-  background: #F13232;
-  color: #fff;
+  background: @main-color;
+  color: @background-color;
   position: absolute;
   left: 191px;
   top: 71px;
   border: none;
-  font-size: 20px;
+  font-size:@lg-size;
   cursor: pointer;
 }
 .container27 .icon_see{
@@ -193,7 +195,7 @@ import { looksum } from '../../public/seesum.js'
     padding-right: 10px;
 }
 .container27 .down{
-    font-size: 14px;
+    font-size:@sm-size;
     position: relative;
     left: 190px;
     top: 152px;
@@ -208,8 +210,8 @@ import { looksum } from '../../public/seesum.js'
 .container27 .cancelpub{
   height: 14px;
   width: 77px;
-  color: #666;
-  font-size: 16px;
+  color: @cancel-color;
+  font-size:@xm-size;
   position: absolute;
   top: 221px;
   left: 275px;

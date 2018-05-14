@@ -70,7 +70,8 @@ export default{
     }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .search01{
     width: 804px;
     height: auto;
@@ -78,7 +79,7 @@ export default{
     margin-top: 24px;
 }
 .search01 .routetext{
-    color:#000;
+    color:@black;
     text-decoration: none;
 }
 .search01 .list_pic{
@@ -86,7 +87,7 @@ export default{
     height: 270px;
     width: 140px;
     cursor: pointer;
-    color: #707070;
+    color: @list-color;
 }
 .search01 .imgcon{
     height: 170px;
@@ -97,31 +98,31 @@ export default{
     height: 100%;
 }
 .search01 .imgcon img:hover{
-    border: 1px solid #d0d0d0;
+    border: 1px solid @img-color;
 }
 .search01 p{
-    font-size: 20px;
+    font-size:@lg-size;
     position: relative;
     top: 15px;
     text-align: left;
-    color:#000;
+    color:@black;
     }
 .search01 .game_cat{
     display: block;
-    font-size: 16px;
+    font-size:@xm-size;
     position: relative;
     top: 22px;
     text-align: left;
-    color: #707070;
+    color: @list-color;
     width: 170px;
     height: 20px;
     overflow: hidden;
 }
 .search01 .game_cat:hover{
-    color: #F13232;
+    color:@main-color;
 }
 .search01 p:hover{
-    color: #F13232;
+    color: @main-color;
 }
 .search01 .icon_see{
     background:url(../../assets/home/icon_see.png) no-repeat;
@@ -164,8 +165,8 @@ export default{
     left: 10px;
     margin-left: 10px;
     font-style: normal;
-    color: #959595;
-    font-size: 16px;
+    color: @container0203-color;
+    font-size:@xm-size;
     top: 0px;
 }
 .search01 .down02 span{
@@ -173,16 +174,16 @@ export default{
     left: 10px;
     margin-left: 10px;
     font-style: normal;
-    color: #959595;
-    font-size: 16px;
+    color: @container0203-color;
+    font-size:@xm-size;
     top: 0px;
 }
 .search01 .down03 span{
     position: relative;
     margin-left: 15px;
     font-style: normal;
-    color: #959595;
-    font-size: 16px;
+    color: @container0203-color;
+    font-size:@xm-size;
     top: 0px;
 }
 .container07{
@@ -197,15 +198,15 @@ export default{
 .container07 .search_input{
     width: 299px;
     height: 46px;
-    background: #F8F8F8;
-    border: 1px solid #B5B5B5;
+    background: @searchbg-color;
+    border: 1px solid @search-border-color;
     padding-left: 35px;
     position: relative;
     left: 20px;
     outline:none;
 }
 .container07 .search_input:focus{
-    border: 1px solid #F13232;
+    border: 1px solid @main-color;
 }
 .container07 .el-icon-search{
     position: relative;

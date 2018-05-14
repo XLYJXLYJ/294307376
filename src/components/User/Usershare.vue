@@ -178,11 +178,12 @@
         }
     }
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
 .container40{
     width:1200px;
     height: 316px;
-    background: #fff;
+    background: @background-color;
     margin: 0 auto;
     position: relative;
     margin-top: 60px;
@@ -191,14 +192,14 @@
     width:154px;
     height: 24px;
     font-weight: 600;
-    color: #333;
+    color: @gray;
     position: absolute;
     top: 19px;
     left: 19px;  
-    font-size: 22px; 
+    font-size:@llg-size; 
 }
 .container40 .block p{
-    font-size: 22px;
+    font-size:@llg-size;
     color: #555;
     text-align: left;
     position: relative;
@@ -206,8 +207,8 @@
     left: 0px;   
 }
 .container40 .block span{
-    font-size: 16px;
-    color: #999;
+    font-size:@xm-size;
+    color: @delete-color;
     position: relative;
     top: 0px;
     left: 0px;   
@@ -258,8 +259,8 @@
 .container40 .makedemotext a{
     position: relative;
     top: 15px;
-    color: #f13232;
-    font-size: 16px;
+    color: @main-color;
+    font-size:@xm-size;
     display: inline-block;
 }
 .container40 .makedemotext p{
@@ -271,7 +272,7 @@
 .container40 .makedemotext span{
     position: relative;
     top: -10px;
-    font-size: 16px;
-    color: #999;
+    font-size:@xm-size;
+    color: @delete-color;
 }
 </style>

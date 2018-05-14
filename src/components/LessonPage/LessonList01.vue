@@ -32,12 +32,13 @@
         </div>
     </div>
 </template>
-<style scoped>
+<style scoped lang="less">
+@import '../../assets/index.less';
  .container11{
      width: 1200px;
      height: 651px;
      z-index: 100;
-     background: #fff;
+     background: @background-color;
      margin: 0 auto;
      z-index: -1;
      margin-top: 26px;
@@ -51,7 +52,7 @@
      height: 24px;
      left: 60px;
      top: 26px;
-     font-size: 22px;
+     font-size:@llg-size;
  }
   .container11 .cut_off{
     position: absolute;
@@ -60,7 +61,7 @@
     height: 4px;
     z-index: 100;
     width: 1200px;
-    background: #e8e8e8;
+    background: @cut-color;
 }
  .container11 .container_up01{
     position: absolute;
@@ -69,7 +70,7 @@
     height:574px;
     z-index: 100;
     width: 1200px;
-    background: #fff;
+    background: @background-color;
 }
  .container11 .video{
     position: absolute;
@@ -86,8 +87,8 @@
     height: 25px;
     z-index: 100;
     width: 131px;
-    font-size: 22px;
-    color: #000;
+    font-size:@llg-size;
+    color: @black;
 }
  .container11 .snap_detail{
     position: absolute;
@@ -96,8 +97,8 @@
     height: 49px;
     z-index: 100;
     width: 433px;
-    font-size: 18px;
-    color: #959595;
+    font-size:@md-size;
+    color: @container0203-color;
     text-align:left;
     text-indent:2em;
 }
