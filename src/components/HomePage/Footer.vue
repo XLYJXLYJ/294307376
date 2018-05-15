@@ -48,23 +48,7 @@
       </div>
     </div>
 </template>
-<script>
-  export default{
-     methods:{
-        playClick(){
-            this._dom = document.getElementById('music');
-            if (this._dom.paused) {  
-                this._dom.play();  
-                play.value="播放";  
-            }else{ 
-                this._dom.pause();  
-                play.value="暂停";  
-            }  
-        },
-     }
-  }
 
-</script>
 <style scoped lang="less">
 @import '../../assets/index.less';
 .container003{

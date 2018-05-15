@@ -21,7 +21,7 @@
 <script>
 import { looksum } from '../../../public/seesum.js'
     export default{
-        filters: {
+        filters: {//数字转换过滤器
             looksums(n) {
                 var n = n;
                 return looksum(n);
@@ -29,34 +29,34 @@ import { looksum } from '../../../public/seesum.js'
         },
         data(){
             return{
-                list:[],
-                listnum:[],
-                j:1,
-                load:true,
-                loaddown:false
+                list:[],//初始化列表
+                listnum:[],//查看更多列表数据
+                j:1,//查看更多定义初始化第一页
+                load:true,//查看更多作品按钮红色样式
+                loaddown:false//查看更多作品按钮红色样式
             }
         },
         mounted: function () {      
-            this.getdemo02()
+            this.getdemo02()//获取初始化数据
         },
         methods:{
-            getdemo02(){
+            getdemo02(){//初始化函数
                 this.axios.post('/res/filelist',{
                     state:1,
                     pagesize:16
                 })
                 .then(response => {       
                     this.list=response.data.data
-                    this.$store.state.searchdemo=false
-                    this.$store.state.recommenddemo=false
-                    this.$store.state.productiondemo=true
+                    this.$store.state.searchdemo=false//搜索结果列表全局变量
+                    this.$store.state.recommenddemo=false//推荐结果列表全局变量
+                    this.$store.state.productiondemo=true//产品结果列表全局变量
                 })
             },
-            edit02(id){                 
+            edit02(id){//编辑                
                 sessionStorage.id = id
                 this.$store.state.shareid=id
             },
-            Seemoreproduction(){
+            Seemoreproduction(){//查看更多
                 this.j = this.j+1
                 this.axios.post('/res/filelist',{
                     state:1,

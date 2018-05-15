@@ -1,21 +1,22 @@
 <template>
-<div class="searchdemo">
+<div class="searchDemo">
         <div class="container07">
-            <input class="search_input" placeholder="搜索作品" v-model="searchname" @keyup.enter="searchdemo">
-            <i slot="prefix" class="el-input__icon el-icon-search" @click="searchdemo"></i>
+            <input class="search_input" placeholder="搜索作品" v-model="searchName" @keyup.enter="searchDemo">
+            <i slot="prefix" class="el-input__icon el-icon-search" @click="searchDemo"></i>
         </div>
-        <div class="search01"  v-show="$store.state.searchdemo">
+        <div class="search01"  v-show="$store.state.searchDemo">
         <el-row :gutter="10">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id'> 
                     <router-link to="/Video">
                         <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
                             <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
-                            <div class="imgcon"><img :src="'static/publish/'+item.surfaceplot+'l.png'" alt=""></div>
+                            <!-- <div class="imgcon"><img :src="'static/publish/'+item.surfaceplot+'l.png'" alt=""></div> -->
+                            <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>
                             <p>{{item.title}}</p>
                             <span class="game_cat">{{item.desc}}</span>
-                            <span class="down01"><i class="icon_see"><span>4k</span></i></span>
-                            <span class="down02"><i class="icon_love"><span>{{item.praisetotal}}</span></i></span>
-                            <span class="down03"><i class="icon_star"><span>{{item.collecttotal}}</span></i></span>
+                            <span class="down01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
+                            <span class="down02"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
+                            <span class="down03"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
                             </a>
                         </div>
                     </router-link>
@@ -27,43 +28,50 @@
 </template>
 
 <script>
-export default{
+import { looksum } from '../../public/seesum.js'
+    export default{
+        filters: {//数字过滤器
+            looksums(n) {
+                var n = n;
+                return looksum(n);
+            }
+        },
     data(){
         return{
-            searchname:'',
-            list:''
+            searchName:'',//搜索名字参数
+            list:''//数据列表
         }
     },
     mounted: function () {      
     },
     methods:{
-        searchdemo(){
+        searchDemo(){//搜索函数
             this.axios.post('/res/filelist',{
                 sortstate:3,
-                searchname:this.searchname
+                searchName:this.searchName
             })
             .then(response => {  
-                if(this.searchname ==''){
+                if(this.searchName ==''){
                     this.$message({
                         message:'搜索内容不能为空',
                         center:true
                     })
                 }
                 else if(response.data.data.msg == "这回真的没有了~"){
-                    this.$store.state.searchdemo=false
+                    this.$store.state.searchDemo=false
                     this.$message({
                         message:'没有找到相关的作品',
                         center:true
                     })
                 }else{
                 this.list=response.data.data
-                this.$store.state.searchdemo=true
+                this.$store.state.searchDemo=true
                 this.$store.state.recommenddemo=false
                 this.$store.state.productiondemo=false
                 }
             })
         },
-        edit01(id){                 
+        edit01(id){//观看函数             
             sessionStorage.id = id
             this.$store.state.shareid=id
         },
@@ -214,7 +222,7 @@ export default{
     top:-46px;
     cursor: pointer;
 }
-.searchdemo a{
+.searchDemo a{
     text-decoration: none;
 }
 </style>

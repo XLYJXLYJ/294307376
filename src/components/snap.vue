@@ -3,10 +3,10 @@
         <div class="snapboxhead" @click="issnapuserdropdowncontrol">
             <div class="snapheader">
                 <ul class="snapheaderleft">
-                    <li class="bcw"><a href="http://www.manykit.com/codeplay"><img @click.stop.prevent="Homepass" src="../assets/snappic/snapb.png" alt=""></a></li>
+                    <li class="bcw"><a href="http://www.manykit.com/codeplay" target="_blank"><img @click="Homepass" src="../assets/snappic/snapb.png" alt=""></a></li>
                     <li class="borderlight01" @click="snapdropdowmcontrol" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
                     <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click.stop.prevent="handiframe"></li>
-                    <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState" disabled="disabled"></li>
+                    <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState" disabled="disabled"></li> -->
                     <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState"></li> -->
                     <li class="borderlight03"><img src="../assets/snappic/snapu.png" alt="" @click.prevent="handiframepublish"></li>
                     <li><div @keyup.alt="handiframepublish"></div></li>
@@ -196,8 +196,8 @@
                         <el-form-item prop="code">
                                 <input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码">
                         </el-form-item>
-                            <button class="iden02" @click.prevent="Getcodebtn" :disabled="disabled">{{btntxt}}</button>
-                        <button class="register"  @click.stop.prevent="Getusercodebtn">下一步</button>
+                            <button v-bind:class="{iden0202:btntxtcolor01 , iden020202:btntxtcolor02}" @click.prevent="Getcodebtn" :disabled="disabled">{{btntxt}}</button>
+                        <button class="register"  @click.stop="Getusercodebtn">下一步</button>
                     </el-form>
                 </div>
                 <div v-show="dialogPassSure">
@@ -262,6 +262,8 @@ export default{
             disabled:false,
             time:0,
             btntxt:'获取验证码',
+            btntxtcolor01:true,//验证码按钮的颜色
+            btntxtcolor02:false,//验证码按钮的颜色
             formLogin: {
                 username: '',
                 password: '',
@@ -661,7 +663,7 @@ export default{
             })
             .then(response => {
                 var datamsg = response.data
-                this.msg = response.data.errmsg
+                // this.msg = response.data.errmsg
                 if(!response.data.data){
                     this.$message({
                         message:datamsg.errmsg,
@@ -736,16 +738,20 @@ export default{
                 });
             }
         },
-                //验证60s
+        //验证60s
         timer() {
             if (this.time > 0) {
                     this.time--;
                     this.btntxt=this.time+"s";
                     setTimeout(this.timer, 1000);
+                    this.btntxtcolor01=false
+                    this.btntxtcolor02=true
             } else{
                     this.time=0;
                     this.btntxt="获取验证码";
                     this.disabled=false;
+                    this.btntxtcolor01=true
+                    this.btntxtcolor02=false
             }
         },
         //获取验证码
@@ -766,6 +772,9 @@ export default{
                     message: response.data.data.msg,
                     center: true
                     });
+                    this.time=60;
+                    this.disabled=true;
+                    this.timer();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -813,7 +822,7 @@ export default{
                     mail:this.formReset.mail
             })
             .then(response => {
-                this.dialogPassSure = false
+                this.dialogLogin = false
                 this.$message({
                     message: '修改密码成功',
                     center: true
@@ -929,7 +938,7 @@ export default{
 }
 .snapboxhead .borderlight03 img{
     position: fixed;
-    left: 485px;
+    left: 290px;
     top: 13px;
 }
 .snapboxhead .borderlight04{
@@ -1581,13 +1590,25 @@ export default{
     padding-left: 10px;
     margin: 0px!important;
 }
-.container4601 .iden02{
+.container4601 .iden0202{
     position: absolute;
     height: 52px;
     width: 111px;
     top: 170px;
     left: 250px;
     background: @main-color;
+    color: @background-color;
+    font-size:@xm-size;
+    cursor: pointer;
+    border: none;
+}
+.container4601 .iden020202{
+    position: absolute;
+    height: 52px;
+    width: 111px;
+    top: 170px;
+    left: 250px;
+    background:@cancel-color;
     color: @background-color;
     font-size:@xm-size;
     cursor: pointer;

@@ -15,7 +15,7 @@
             </el-col>         
         </el-row>
         <button class="button" v-show="load" @click="Seemorerecommend">查看更多作品</button>
-        <button class="buttonloaddown" v-show="loaddown">已加载完全部作品</button>
+        <button class="buttonloadDown" v-show="loadDown">已加载完全部作品</button>
     </div>
 </template>
 <script>
@@ -29,17 +29,18 @@ import { looksum } from '../../../public/seesum.js'
         },
         data(){
             return{
-                list:[],
-                i:1,
-                load:true,
-                loaddown:false
+                list:[],//初始化列表
+                listNum:[],//查看更多列表数据
+                i:1,//查看更多定义初始化第一页
+                load:true,//查看更多作品按钮红色样式
+                loadDown:false//查看更多作品按钮红色样式
             }
         },
         mounted: function () {      
-            this.getdemo01()
+            this.Getdemo01()//初始化数据
         },
         methods:{
-            getdemo01(){
+            Getdemo01(){//初始化函数
                 this.axios.post('/res/filelist',{
                     state:4,
                     sortstate:2,
@@ -47,16 +48,16 @@ import { looksum } from '../../../public/seesum.js'
                 })
                 .then(response => {   
                     this.list=response.data.data
-                    this.$store.state.searchdemo=false
-                    this.$store.state.recommenddemo=true
-                    this.$store.state.productiondemo=false
+                    this.$store.state.searchdemo=false//搜索结果列表全局变量
+                    this.$store.state.recommenddemo=true//推荐结果列表全局变量
+                    this.$store.state.productiondemo=false//产品结果列表全局变量
                 })
             },
-            edit01(id){                 
+            edit01(id){   //编辑              
                 sessionStorage.id = id
                 this.$store.state.shareid=id
             },
-            Seemorerecommend(){
+            Seemorerecommend(){//查看更多
                 this.i = this.i+1
                 this.axios.post('/res/filelist',{
                     state:4,
@@ -67,10 +68,10 @@ import { looksum } from '../../../public/seesum.js'
                 .then(response => {  
                 if(response.data.data.msg =="这回真的没有了~"){
                     this.load = false,
-                    this.loaddown = true
+                    this.loadDown = true
                 }else{
-                    this.listnum = response.data.data   
-                    this.list = this.list.concat(this.listnum)
+                    this.listNum = response.data.data   
+                    this.list = this.list.concat(this.listNum)
                 }
                 }) 
             },
@@ -154,7 +155,7 @@ import { looksum } from '../../../public/seesum.js'
     color:@background-color; 
     border: none;
 }
-.container01 .buttonloaddown{
+.container01 .buttonloadDown{
     position: relative;
     top: 46px;
     left: 320px;

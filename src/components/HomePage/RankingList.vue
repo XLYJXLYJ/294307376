@@ -19,7 +19,7 @@
 <script>
 import { looksum } from '../../public/seesum.js'
     export default{
-        filters: {
+        filters: {//数字过滤器
             looksums(n) {
                 var n = n;
                 return looksum(n);
@@ -27,11 +27,11 @@ import { looksum } from '../../public/seesum.js'
         },
         data(){
             return{
-                list:[],
+                list:[],//数据列表
             }
         },
         mounted: function () {      
-            this.getdemo03()
+            this.getdemo03()//获取初始化数据
         },
         methods:{
             getdemo03(){

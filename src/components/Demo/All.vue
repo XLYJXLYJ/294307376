@@ -1,6 +1,6 @@
 <template>
     <div class="container27">
-        <ul v-for="item in list" :key='item.id' v-show="nosend">
+        <ul v-for="item in list" :key='item.id' v-show="noSend">
             <li>
                 <div class="all_up">
                     <img :src="item.imgBuffer" alt="">
@@ -19,8 +19,8 @@
 </template>
 <script>
 import { mapGetters,mapActions} from 'vuex'
-import { formatDate } from '../../public/time.js'
-import { looksum } from '../../public/seesum.js'
+import { formatDate } from '../../public/time.js'//事件转换函数
+import { looksum } from '../../public/seesum.js'//观看总数转换函数(数字超过一千转成以K为单位)
     export default{
         filters: {//时间转换
             formatDate(time) {
@@ -34,28 +34,28 @@ import { looksum } from '../../public/seesum.js'
         },
         data(){
             return{
-                nosend:true,
-                list:[],
-                userid:sessionStorage.userid
+                noSend:true,//是否显示列表
+                list:[],//数据列表
+                userid:sessionStorage.userid//用户id
             }
         },
         mounted: function () {      
-            this.getalldemo()
+            this.getalldemo()//初始化请求数据
         },
         methods:{
-            edit(id,state){
+            edit(id,state){//编辑文件
                 id:id,     
                 this.$store.state.demoxmlid = id             
                 sessionStorage.snapdemoid = id
                 this.$store.state.publicstate = state
             },
-            getalldemo(){
+            getalldemo(){//舒适化请求数据函数定义
                 this.axios.post('/res/filelist',{
-                    userid:this.$store.state.userid,
+                    userid:sessionStorage.userid,
                 })
                 .then(response => {   
                     if(response.data.data.msg=='这回真的没有了~'){
-                        this.nosend = false
+                        this.noSend = false
                         this.$message({
                         message: '暂时没有作品',
                         center: true
@@ -65,8 +65,8 @@ import { looksum } from '../../public/seesum.js'
                     }
                 })
             },
-            Canpublic(id,state){
-                if(state==0){
+            Canpublic(id,state){//处理文件函数
+                if(state==0){//删除文件函数
                     this.axios.post('/res/dealfile',{
                         id:id,
                         userid:sessionStorage.userid,
@@ -77,10 +77,9 @@ import { looksum } from '../../public/seesum.js'
                         message: '删除成功，如需还原，请到回收站',
                         center: true
                         }); 
-                        location.reload();
-                        this,$route.push({name: 'Mydemo'})
+                        this.getalldemo()
                     })
-                }else{
+                }else{//取消文件函数
                     this.axios.post('/res/dealfile',{
                             id:id,
                             userid:sessionStorage.userid,
@@ -91,7 +90,7 @@ import { looksum } from '../../public/seesum.js'
                             message: '取消发布成功',
                             center: true
                         }); 
-                        location.reload();
+                        this.getalldemo()
                     })
                 }
             }

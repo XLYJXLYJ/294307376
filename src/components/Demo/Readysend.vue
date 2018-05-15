@@ -1,6 +1,6 @@
 <template>
     <div class="container28">
-        <ul v-show="nosend">
+        <ul v-show="noSend">
             <li v-for="item in list" :key='item.id'>
                 <div class="all_up">
                     <img :src="item.imgBuffer" alt="">
@@ -34,24 +34,22 @@ export default{
     },
     data(){
         return{
-            nosend:true,
-            list:'',
-            demoid:'',
-            surfaceplot:''
+            noSend:true,//是否显示列表
+            list:'',//获取数据
         }
     },
     created: function () {      
-        this.Getalldemo()
+        this.Getalldemo()//初始化数据
     },
     methods:{
-        Getalldemo(){
+        Getalldemo(){//初始化数据函数
             this.axios.post('/res/filelist',{
                 userid:this.$store.state.userid,
                 state:1
             })
             .then(response => {           
                 if(response.data.data.msg=='这回真的没有了~'){
-                    this.nosend = false
+                    this.noSend = false
                         this.$message({
                         message: '没有已发布的作品',
                         center: true
@@ -61,13 +59,13 @@ export default{
                 }
             })
             },
-        edit(id){
+        edit(id){//编辑
             id:id,                  
             this.$store.state.demoxmlid = id
             this.$store.state.publicstate = 1
             sessionStorage.snapdemoid = id
         },
-        Canpublic(id){
+        Canpublic(id){//取消发布
             this.axios.post('/res/dealfile',{
                     id:id,
                     userid:sessionStorage.userid,
@@ -78,7 +76,7 @@ export default{
                     message: '取消发布成功',
                     center: true
                 }); 
-                location.reload();
+                this.Getalldemo()
             })
         }
     }

@@ -25,16 +25,18 @@ import NodeRSA from 'node-rsa'
     data() {
       return {
         labelPosition: 'right',
-        imageUrl:'static/localpic.png',
-        imageUrl02:'',
-        userpic:'',
-        localpic:'',
-        publicKey:'',
-        formLabelAlign: {
-          oldpass: '',
-          newpass: '',
-          conpass: '',
-          conpassss:''
+        imageUrl:'static/localpic.png',//默认图片
+        imageUrl02:'',//获取后台显示用户自选图片
+        userpic:'',//用户
+        localpic:'',//本地图片
+        publicKey:'',//公钥
+        errmsg:'',//错误信息
+        formLabelAlign: {//修改个人密码
+          oldpass: '',//旧密码
+          oldpassss: '',//就、旧密码加密上传
+          newpass: '',//新密码
+          conpass: '',//确认新密码
+          conpassss:''//新密码加密上传
         }
       };
     },
@@ -66,6 +68,7 @@ import NodeRSA from 'node-rsa'
               let logintextpassword = this.publicKey;
               var privatekey = new NodeRSA(logintextpassword);
               this.formLabelAlign.conpassss = privatekey.encrypt(this.formLabelAlign.conpass, 'base64');
+              this.formLabelAlign.oldpassss = privatekey.encrypt(this.formLabelAlign.oldpass, 'base64');
             //  var picsource = this.$refs.file_el.files[0]
             if(this.formLabelAlign.newpass!==this.formLabelAlign.conpass||this.formLabelAlign.newpass<6||this.formLabelAlign.conpass<6){
                 this.$message({
@@ -73,18 +76,26 @@ import NodeRSA from 'node-rsa'
                 center: true
                 });
             }else{
-
-                this.axios.post('/res/setpassword',{
-                    password:this.formLabelAlign.conpassss,
+                this.axios.post('/res/updatepassword',{
+                    oldpass:this.formLabelAlign.oldpassss,
+                    newpass:this.formLabelAlign.conpassss,
                     userid:this.$store.state.userid,
-                    // fiels:picsource
-                   
+                    // fiels:picsource                  
             })
             .then(response => {
-                // this.$message({
-                //     message: '修改密码成功',
-                //     center: true
-                // }); 
+              if(response.data.data){
+                    this.$message({
+                    message:'修改密码成功',
+                    center: true
+                }); 
+              }else{
+                this.errmsg = response.data.errmsg
+                this.$message({
+                    message: this.errmsg,
+                    center: true
+                }); 
+              }
+
             })
             .catch(function (error) {
                 console.log(error);

@@ -33,14 +33,15 @@ export default{
     mounted(){
         this.demoroute()
     },
+    watch:{
+      '$route':'isTab'
+    },
     methods:{
         clickblock01(){
-            console.log(123)
             this.block01=true,
             this.block02=false
         },
         clickblock02(){
-            console.log(123)
             this.block02=true,
             this.block01=false
         },
@@ -50,6 +51,11 @@ export default{
         clearsession(){
             sessionStorage.snapdemoid = ''
         },
+        isTab(){
+            if(this.$route.path==='/Demo'){
+                this.$router.push({ name: 'Alldemohaha' })
+            }
+        }
     },
     components:{
         Header,

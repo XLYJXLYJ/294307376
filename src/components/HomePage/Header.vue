@@ -4,27 +4,27 @@
             <!-- 头部 -->
             <div class="headonecenter">
                 <!-- 语言设置 -->
-                <span class="el-dropdown-link" @click="language">
+                <span class="el-dropdown-link" @click="Language">
                     中文<i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
                 <div class="shopping"><a href="https://shop194048616.taobao.com/" target="_blank">官方商城</a></div>
                 <div class="appdownload"><router-link to="/Download">APP下载</router-link></div>
                 <!-- 登录注册 -->
-                <div class="login_sign" v-show="loginsign"> 
+                <div class="login_sign" v-show="loginSign"> 
                     <p class="login" type="text"  
                     @click="dialogLogin = true, 
-                    dialogLoginshow = true, 
+                    dialogLoginShow = true, 
                     dialogRegister = false, 
-                    dialogForgetpass= false">登录</p>   
+                    dialogForgetPassword= false">登录</p>   
                     <p class="sign"  type="text" 
                     @click="dialogLogin = true, 
-                    dialogLoginshow = false, 
+                    dialogLoginShow = false, 
                     dialogRegister = true, 
-                    dialogForgetpass= false, 
-                    dialogPassSure=false">注册</p>   
+                    dialogForgetPassword= false, 
+                    dialogPasswordSure=false">注册</p>   
                 </div>
-                <div class="username"  v-show="usercenter" id="myPanel"> 
-                    <p class="login01" type="text"  @click="dropdowmcontrol">{{this.$store.state.usernamesession02}}</p>   
+                <div class="username"  v-show="userCenter" id="myPanel"> 
+                    <p class="login01" type="text"  @click="dropDowmcontrol">{{this.$store.state.usernamesession02}}</p>   
                 </div> 
                 <!-- 下拉框  -->
                 <div v-show="$store.state.isdropdownparent">
@@ -64,23 +64,23 @@
          <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
             <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false" :lock-scroll="false">
-                <img class="close" @click="close" src="../../assets/login/close.png" alt="">
+                <img class="close" @click="Close" src="../../assets/login/close.png" alt="">
                 <div>
-                    <div class="container21" v-show="dialogLoginshow">
+                    <div class="container21" v-show="dialogLoginShow">
                         <form action="">
                             <p class="sign_logo">登录</p>
-                            <input type="text" v-model="formLogin.username" class="tele" placeholder="请输入用户名">
+                            <input type="text" v-model="formLogin.userName" class="tele" placeholder="请输入用户名">
                             <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
-                            <p class="ap_text" @click="dialogLoginshow= false,dialogForgetpass = true">忘记密码?</p>
+                            <p class="ap_text" @click="dialogLoginShow= false,dialogForgetPassword = true">忘记密码?</p>
                             <button class="register" @click.prevent="Loginbtn">登录</button>
-                            <div class="free_res"><p>没有账号?</p><span @click="dialogLoginshow = false,dialogRegister = true">免费注册</span></div>    
+                            <div class="free_res"><p>没有账号?</p><span @click="dialogLoginShow = false,dialogRegister = true">免费注册</span></div>    
                         </form> 
                     </div>
                     <div class="container19" v-show="dialogRegister">
                         <el-form :model="formRegister" :rules="rules">
                             <p class="sign_logo">注册</p>
-                            <el-form-item prop="username">
-                                <input v-model="formRegister.username"  class="tele" auto-complete="off" placeholder="请输入用户名">
+                            <el-form-item prop="userName">
+                                <input v-model="formRegister.userName"  class="tele" auto-complete="off" placeholder="请输入用户名">
                             </el-form-item>
                             <el-form-item prop="mail">
                                 <input type="email"  class="iden01" v-model="formRegister.mail" auto-complete="off" placeholder="请输入邮箱">
@@ -89,15 +89,15 @@
                                 <input type="password" class="iden02" v-model="formRegister.password" auto-complete="off" placeholder="请输入密码">
                             </el-form-item>
                             <el-form-item prop="password">
-                                <input type="password" class="iden03" v-model="formRegister.checkpassword" auto-complete="off" placeholder="请确认密码">
+                                <input type="password" class="iden03" v-model="formRegister.checkPassword" auto-complete="off" placeholder="请确认密码">
                             </el-form-item>
                             <el-button type="primary" class="register" @click.prevent="Registerbtn">注册</el-button>
                         </el-form>
                         <div>
-                            <span class="free_res">已有账号?<span @click="dialogLoginshow = true,dialogRegister = false">点击登录</span></span>
+                            <span class="free_res">已有账号?<span @click="dialogLoginShow = true,dialogRegister = false">点击登录</span></span>
                         </div>
                     </div>
-                    <div class="container46" v-show="dialogForgetpass">
+                    <div class="container46" v-show="dialogForgetPassword">
                         <el-form action="" :rules="rules">
                             <p class="sign_logo">忘记密码</p>
                             <el-form-item >
@@ -106,16 +106,16 @@
                             <el-form-item prop="code">
                                     <input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码">
                             </el-form-item>
-                            <button class="iden02" @click.prevent="Getcodebtn" :disabled="disabled">{{btntxt}}</button>
+                            <button v-bind:class="{iden0202:btnTxtColor01 , iden020202:btnTxtColor02}" @click.prevent="Getcodebtn" :disabled="disabled">{{btnTxt}}</button>
                             <button class="register"  @click.prevent="Getusercodebtn">下一步</button>
                         </el-form>
                     </div>
-                    <div v-show="dialogPassSure">
+                    <div v-show="dialogPasswordSure">
                         <div class="container44">
                             <form action="">
                                 <p class="sign_logo">确认密码</p>
                                 <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
-                                <input type="password" v-model="formReset.checkpassword" class="iden01" placeholder="再次确认密码">                  
+                                <input type="password" v-model="formReset.checkPassword" class="iden01" placeholder="再次确认密码">                  
                                 <button class="register" @click.prevent="Getuserpassbtn">确认</button>
                             </form> 
                         </div>
@@ -130,46 +130,48 @@
 import Vue from 'vue'
 import axios from 'axios'
 import { mapGetters,mapActions} from 'vuex'
-import NodeRSA from 'node-rsa'
+import NodeRSA from 'node-rsa'//获取公钥插件
 
 export default {
     data() {
         return {
-            dialogRegister: false,
-            dialogLogin: false,
-            dialogLoginshow:false,
-            dialogForgetpass: false,
-            dialogPassSure:false,
-            loginsign: true,
-            usercenter: false,
-            msg:'',
-            publicKey:'',
-            disabled:false,
-            time:0,
-            btntxt:'获取验证码',
-            // dropdowm:false,
-            formLogin: {
-                username: '',
-                password: '',
-                passwordrsc:''
+            dialogRegister: false,//控制注册框显示隐藏变量
+            dialogLogin: false,//控制模态框显示隐藏变量
+            dialogLoginShow:false,//控制登录显示隐藏变量
+            dialogForgetPassword: false,//控制忘记密码显示隐藏变量
+            dialogPasswordSure:false,//控制确认密码显示隐藏变量
+            loginSign: true,//控制登录注册显示隐藏变量
+            userCenter: false,//控制用户名显示隐藏变量
+            msg:'',//后台提示的返回的数据
+            publicKey:'',//后台请求的公钥
+            disabled:false,//控制按钮是否可点击
+            time:0,//验证码时间初始化
+            btnTxt:'获取验证码',//验证码按钮文字
+            btnTxtColor01:true,//验证码按钮的颜色
+            btnTxtColor02:false,//验证码按钮的颜色
+            // dropDowm:false,
+            formLogin: {//登录表单
+                userName: '',//用户输入的名称
+                password: '',//用户输入的密码
+                passwordrsc:''//加密后的密码
             },
-            formRegister: {
-                username: '',
-                password: '',
-                checkpassword: '',
-                formRegisterpasswordrsc:'',
-                mail:'',
+            formRegister: {//注册表单
+                userName: '',//用户输入的名称
+                password: '',//用户输入的密码
+                checkPassword: '',//用户输入的确认密码
+                encryptPassword:'',//注册加密后的密码
+                mail:'',//用户输入的邮箱
             },
-            formReset: {
-                password: '',
-                ckeckpassword: '',
-                formResetpasswordrsc:'',
-                mail:'',
-                code:'',
-                msg:'',
+            formReset: {//重置密码表单表单
+                password: '',//用户输入密码
+                checkPassword: '',//用户再次输入密码
+                encryptPassword:'',//加密后的密码
+                mail:'',//邮箱
+                code:'',//验证码
+                msg:'',//后台返回的提示数据
             },
-            rules:{
-                username: [
+            rules:{//element验证规则
+                userName: [
                     { required: true, message: '请输入用户名', trigger: 'blur' },
                     { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' },
                     {pattern:/^[a-zA-Z]w{1,4}$/,message: '以字母开头，长度在2-5之间， 只能包含字符、数字和下划线'}],
@@ -181,7 +183,7 @@ export default {
                     { required: true, message: '请输入密码', trigger: 'blur' },
                     {min:6,max:12, message: '长度在 6 到 12 个英文与数字', trigger: 'blur' }
                 ],
-                checkpassword:[
+                checkPassword:[
                     { required: true, message: '请输入密码', trigger: 'blur' },
                     {min:6,max:12, message: '长度在 6 到 12 个英文与数字', trigger: 'blur' }
                 ],
@@ -200,18 +202,18 @@ export default {
             sessionStorage.lookuserdes=''
             // location.reload();
         },
-
-        close(){
+        //模态款黑色的关闭按钮
+        Close(){
             this.dialogLogin = false
         },
         // 语言设置 
-        language(){
+        Language(){
             this.$message({
                 message:'敬请期待更多语言功能'
             })
         },
         // 下拉菜单
-        dropdowmcontrol(){
+        dropDowmcontrol(){
             this.$store.state.isdropdownparent = !this.$store.state.isdropdownparent
         },
         //登陆
@@ -220,7 +222,7 @@ export default {
             let logintextpassword = this.publicKey;
             var privatekey = new NodeRSA(logintextpassword);
             this.formLogin.passwordrsc = privatekey.encrypt(this.formLogin.password, 'base64');
-            if(this.formLogin.username == ''){
+            if(this.formLogin.userName == ''){
                 this.$message({
                 message: '请输入用户名',
                 center: true
@@ -240,7 +242,7 @@ export default {
             }
             else{
                  this.axios.post('/res/login', {
-                username:this.formLogin.username,
+                username:this.formLogin.userName,
                 password:this.formLogin.passwordrsc,
             })
             .then(response => {
@@ -264,13 +266,13 @@ export default {
         },
         // 注册
         Registerbtn() {
-            var regusername = /^[a-zA-Z0-9]\w{3,16}$/;
+            var reguserName = /^[a-zA-Z0-9]\w{3,16}$/;
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
             var regEmail= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
             let logintextpassword = this.publicKey;
             var privatekey = new NodeRSA(logintextpassword);
-            this.formRegister.formRegisterpasswordrsc = privatekey.encrypt(this.formRegister.password, 'base64');
-            if(!regusername.test(this.formRegister.username)){
+            this.formRegister.encryptPassword = privatekey.encrypt(this.formRegister.password, 'base64');
+            if(!reguserName.test(this.formRegister.userName)){
                 this.$message({
                 message: '用户名长度在4-16之间， 只能包含字母、数字',
                 center: true
@@ -293,7 +295,7 @@ export default {
                 center: true
                 });
             }
-            else if( this.formRegister.password!==this.formRegister.checkpassword){
+            else if( this.formRegister.password!==this.formRegister.checkPassword){
                 this.$message({
                 message: '密码输入不一致',
                 center: true
@@ -302,8 +304,8 @@ export default {
             else
             {    
                 this.axios.post('/res/signup', {
-                    username:this.formRegister.username,
-                    password:this.formRegister.formRegisterpasswordrsc,
+                    username:this.formRegister.userName,
+                    password:this.formRegister.encryptPassword,
                     mail:this.formRegister.mail
                 })
                 .then(response => {
@@ -347,7 +349,7 @@ export default {
                     });
                     this.time=60;
                     this.disabled=true;
-                    this.timer();
+                    this.Timer();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -355,15 +357,19 @@ export default {
             }
         },
         //验证60s
-        timer() {
+        Timer() {
             if (this.time > 0) {
                     this.time--;
-                    this.btntxt=this.time+"s";
-                    setTimeout(this.timer, 1000);
+                    this.btnTxt=this.time+"s";
+                    setTimeout(this.Timer, 1000);
+                    this.btnTxtColor01=false
+                    this.btnTxtColor02=true
             } else{
                     this.time=0;
-                    this.btntxt="获取验证码";
+                    this.btnTxt="获取验证码";
                     this.disabled=false;
+                    this.btnTxtColor01=true
+                    this.btnTxtColor02=false
             }
         },
         //获取用户验证码
@@ -378,8 +384,8 @@ export default {
                     message: '验证成功',
                     center: true
                     });
-                    this.dialogPassSure = true
-                    this.dialogForgetpass = false
+                    this.dialogPasswordSure = true
+                    this.dialogForgetPassword = false
                 }else{
                     this.$message({
                     message:'验证失败',
@@ -395,19 +401,19 @@ export default {
         Getuserpassbtn() {
             let logintextpassword = this.publicKey;
             var privatekey = new NodeRSA(logintextpassword);
-            this.formReset.formResetpasswordrsc = privatekey.encrypt(this.formReset.password, 'base64');
-            if(this.formReset.password!==this.formReset.checkpassword||this.formReset.password<6||this.formReset.checkpassword<6){
+            this.formReset.encryptPassword = privatekey.encrypt(this.formReset.password, 'base64');
+            if(this.formReset.password!==this.formReset.checkPassword||this.formReset.password<6||this.formReset.checkPassword<6){
                 this.$message({
                 message: '两次输入的密码不一致或密码长度不足6位',
                 center: true
                 });
             }else{
                 this.axios.post('/res/setpassword',{
-                password:this.formReset.formResetpasswordrsc,
+                password:this.formReset.encryptPassword,
                 mail:this.formReset.mail
             })
             .then(response => {
-                this.dialogPassSure = false
+                this.dialogLogin = false
                 this.$message({
                     message: '修改密码成功',
                     center: true
@@ -423,18 +429,20 @@ export default {
             this.axios.get('/res/verify')
             .then(response =>{
                 if(response.data.data.userid){
+                    
                     this.publicKey = response.data.data.publicKey
                     this.dialogLogin = false;
-                    this.loginsign = false;
+                    this.loginSign = false;
                     sessionStorage.userid = response.data.data.userid
                     sessionStorage.usernamesession = response.data.data.username
                     this.$store.state.usernamesession02 = sessionStorage.usernamesession
                     this.$store.state.userid = sessionStorage.userid  
-                    this.usercenter = true;  
+                    this.userCenter = true; 
+                    console.log(this.userCenter) 
                 }else{
                     this.dialogLogin = false;
-                    this.usercenter = false;
-                    this.loginsign = true;
+                    this.userCenter = false;
+                    this.loginSign = true;
                     this.publicKey = response.data.data.publicKey
                 }
             }) 
@@ -443,11 +451,11 @@ export default {
         //     console.log(sessionStorage.userid)
         //     if(sessionStorage.userid!=null){
         //         console.log(333)
-        //         this.$store.state.usernamesession02 = sessionStorage.usernamesession
+        //         this.$store.state.userNamesession02 = sessionStorage.userNamesession
         //         this.$store.state.userid = sessionStorage.userid
         //         this.dialogLogin = false;
-        //         this.loginsign = false;
-        //         this.usercenter = true;
+        //         this.loginSign = false;
+        //         this.userCenter = true;
         //         console.log(444)
         //     }
         // },
@@ -455,13 +463,14 @@ export default {
         Cancellogout() {
             this.axios.get('/res/logout')
             .then(response =>{  
-                this.loginsign = true;
-                this.usercenter = false;
-                this.dropdowm = false;  
+                this.loginSign = true;
+                this.userCenter = false;
+                this.dropDowm = false;  
                 sessionStorage.usernamesession =''  
                 sessionStorage.userid ='' 
                 this.$store.state.userid = ''
-                this.$router.push({ name: 'Home' })   
+                this.$router.push({ name: 'Home' })
+                location.reload()   
             }) 
         }
     }
@@ -548,10 +557,10 @@ export default {
 }
 .headercontainer04 .headonecenter .block-col-12{
     position:relative;
-    left:1104px;
-    top: -34px;
+    left:1106px;
+    top: -35px;
     color: @gray;
-    width: 94px;
+    width: 92px;
     height: 188px;
     font-size:@ss-size;
     z-index: 1000;
@@ -949,7 +958,7 @@ export default {
     padding-left: 10px;
     margin: 0px!important;
 }
-.container46 .iden02{
+.container46 .iden0202{
     position: absolute;
     height: 52px;
     width: 111px;
@@ -961,6 +970,19 @@ export default {
     cursor: pointer;
     border: none;
 }
+.container46 .iden020202{
+    position: absolute;
+    height: 52px;
+    width: 111px;
+    top: 170px;
+    left: 250px;
+    background:@cancel-color;
+    color: @background-color;
+    font-size:@xm-size;
+    cursor: pointer;
+    border: none;
+}
+
 .container46 .setpass{
     position: absolute;
     height: 48px;

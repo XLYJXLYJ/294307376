@@ -1,6 +1,6 @@
 <template>
     <div class="container30">
-        <ul v-for="item in list" :key='item.id' v-show="nosend">
+        <ul v-for="item in list" :key='item.id' v-show="noSend">
             <li>
                 <div class="all_up">
                     <img :src="item.imgBuffer" alt="">
@@ -26,22 +26,22 @@ import { formatDate } from '../../public/time.js'
         },
         data(){
             return{
-                nosend:true,
-                list:[],
+                noSend:true,//是否显示列表
+                list:[],//数据
             }
         },
         mounted: function () {      
             this.getalldemo()
         },
         methods:{
-            getalldemo(){
+            getalldemo(){//初始化函数
                 this.axios.post('/res/filelist',{
                     userid:this.$store.state.userid,
                     state:2
                 })
                 .then(response => {
                     if(response.data.data.msg=='这回真的没有了~'){
-                        this.nosend = false
+                        this.noSend = false
                         this.$message({
                         message: '没有删除的作品',
                         center: true
@@ -51,7 +51,7 @@ import { formatDate } from '../../public/time.js'
                     }
                 })
             },
-            restore(id){
+            restore(id){//还原文件函数
                 this.axios.post('/res/dealfile',{
                         id:id,
                         userid:sessionStorage.userid,
@@ -62,10 +62,10 @@ import { formatDate } from '../../public/time.js'
                         message: '还原成功',
                         center: true
                     }); 
-                    location.reload();
+                    this.getalldemo()
                 })
             },
-            deletedemo(id){
+            deletedemo(id){//删除文件函数
                 this.axios.post('/res/dealfile',{
                     id:id,
                     userid:sessionStorage.userid,
@@ -76,7 +76,7 @@ import { formatDate } from '../../public/time.js'
                     message: '删除成功',
                     center: true
                     }); 
-                    location.reload();
+                    this.getalldemo()
                 })
             }
         }

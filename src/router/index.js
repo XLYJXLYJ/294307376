@@ -259,7 +259,7 @@ export default new Router({
                   children:[
                       { path: '/Demo/Mydemo/All', name: 'Alldemohaha',component: resolve =>require(['@/components/Demo/All'],resolve)},
                       { path: '/Demo/Mydemo/Readysend', component: resolve =>require(['@/components/Demo/Readysend'],resolve)},
-                      { path: '/Demo/Mydemo/Nosend', component: resolve =>require(['@/components/Demo/Nosend'],resolve)},
+                      { path: '/Demo/Mydemo/Nosend', name: 'Nosend',component: resolve =>require(['@/components/Demo/Nosend'],resolve)},
                   ]
             },
             { path: '/Demo/Delete', component: resolve =>require(['@/components/Demo/Delete'],resolve)},

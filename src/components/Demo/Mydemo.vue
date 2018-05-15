@@ -11,11 +11,19 @@
 <script>
 export default{
     mounted(){
-        this.Mydemoroute()
+        this.Mydemoroute()//路由跳转
+    },
+    watch:{//路由监控
+      '$route':'isTab'
     },
     methods:{
-        Mydemoroute(){
+        Mydemoroute(){//路由跳转函数
             this.$router.push({ name: 'Alldemohaha' })
+        },
+        isTab(){//路由监控函数
+            if(this.$route.path==='/Demo/Mydemo'){
+                this.$router.push({ name: 'Alldemohaha' })
+            }
         }
     }
 }

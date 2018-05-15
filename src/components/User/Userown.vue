@@ -23,7 +23,7 @@
         <div>
             <div class="demonone" v-show="demonone">
                 <img class="userdemo" src="../../assets/user/bg01.png" alt="">
-                <div class="makedemotext"><router-link to="snap">创作</router-link><p>你的封面作品</p> <br/><span>还没有封面作品</span></div>
+                <div class="makedemotext"><router-link to="snap" target="_blank">创作</router-link><p>你的封面作品</p> <br/><span>还没有封面作品</span></div>
             </div>  
             <div class="demoimg" v-show="demoimg">
                 <img class="userdemo" :src="demoimageUrl" alt="">
@@ -91,8 +91,18 @@ import { looksum } from '../../public/seesum.js'
                 this.buttoncolor=!this.buttoncolor
                 this.atten=!this.atten;
             },
-            Getuseinfo(){//需要加昵称信息和是否关注信息
+            isuserimg(){
+                if(this.userimageUrl == 'null'){
+                    this.userownimg02=true,
+                    this.userownimg01=false
 
+                }else{
+                    this.userownimg02=false,
+                    this.userownimg01=true
+                
+                }
+            },
+            Getuseinfo(){//需要加昵称信息和是否关注信息
                 if(!sessionStorage.lookuserdes==''){
                     this.savedes=false,
                     this.followother=true
@@ -114,22 +124,13 @@ import { looksum } from '../../public/seesum.js'
                             this.demoimg=false
 
                         }else{
-                            this.getdemoimg()
+                            this.getdemoimg()//是否显示封面做作品
                             this.demonone=false,
                             this.demoimg=true
                         }
-                        if(this.userimageUrl == 'null'){
-                            this.userownimg01=true,
-                            this.userownimg02=false
-
-                        }else{
-                            this.userownimg01=false,
-                            this.userownimg02=true
-                        
-                        }
+                        this.isuserimg()//是否显示默认的头像
                     })
-                }else{
-                
+                }else{              
                     this.savedes=true,
                     this.followother=false
                     this.axios.post('/res/userinfo',{
@@ -137,7 +138,6 @@ import { looksum } from '../../public/seesum.js'
                         getinfostate:3
                     })
                     .then(response => {   
-                    
                         this.username= response.data.data.username   
                         this.userimageUrl= response.data.data.imgBuffer    
                         this.aboutme = response.data.data.aboutme,
@@ -153,9 +153,9 @@ import { looksum } from '../../public/seesum.js'
                         }else{
                             this.getdemoimg()
                             this.demonone=false,
-                            this.demoimg=true
-                           
+                            this.demoimg=true                    
                         }
+                        this.isuserimg()
                     })
                 }
 

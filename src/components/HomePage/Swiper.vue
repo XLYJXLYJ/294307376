@@ -9,8 +9,8 @@
         </div>
         <div class="create">
             <div>
-                <!-- <a href="http://www.manykit.com/codeplay/#/snap" target="_blank"><div class="creat01" @click="clearsession"><img src="../../assets/home/s.png" alt=""></div></a> -->
-                <router-link to="/snap" target="_blank"><div class="creat01" @click="clearsession"><img src="../../assets/home/s.png" alt=""></div></router-link>
+                <!-- <a href="http://www.manykit.com/codeplay/#/snap" target="_blank"><div class="creat01" @click="clearSession"><img src="../../assets/home/s.png" alt=""></div></a> -->
+                <router-link to="/snap" target="_blank"><div class="creat01" @click="clearSession"><img src="../../assets/home/s.png" alt=""></div></router-link>
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat02"><img src="../../assets/home/p.png" alt=""></div></a>  
                 <a href="static/logo.png" download><div class="creat03"><img src="../../assets/home/g.png" alt=""></div></a>
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat04"><img src="../../assets/home/b.png" alt=""></div></a> 
@@ -18,17 +18,17 @@
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat06"><img src="../../assets/home/p1.png" alt=""></div></a>       
             </div> 
             <div id="videobox">
-                 <img src="static/homelesson.png"   @click="videoscreen">
-                 <img class="play" src="../../assets/home/player.png"  @click="videoscreen" alt="">
+                 <img src="static/homelesson.png"   @click="videoScreen">
+                 <img class="play" src="../../assets/home/player.png"  @click="videoScreen" alt="">
             </div>
             <!-- <div id="videobox">
                  <video id="video" src="/static/homelesson.mp4"  :autoplay="playStatus" @click="playClick" height="224px" width="100%">
 
                 </video> 
             </div> -->
-            <el-dialog :visible.sync="dialogvideo"  width="63%" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close='false'>
+            <el-dialog :visible.sync="dialogVideo"  width="63%" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close='false'>
                 <div>
-                    <div class="containervideo" v-show="dialogvideo">  
+                    <div class="containervideo" v-show="dialogVideo">  
                         <video id="video" src="static/homelesson.mp4"  :autoplay="playStatus" controls @click="playClick" height="100%" width="100%">
                         <img src="../../assets/home/player.png" alt="">
                         </video> 
@@ -40,7 +40,7 @@
 </template>
 <script>
 import Vue from 'vue'
-    const DataImg =[
+    const DataImg =[//默认图片
         {url: 'static/1.png'},
         {url: 'static/2.png'},
         {url: 'static/3.png'}, 
@@ -48,20 +48,22 @@ import Vue from 'vue'
 export default{
     data(){
         return{
-            DataImg:DataImg,
-            index: 0,
-            playStatus:false,
-            dialogvideo:false
+            DataImg:DataImg,//默认图片赋值
+            index: 0,//默认显示第一张图片
+            playStatus:false,//默认的播放状态
+            dialogVideo:false//播放模态款状态，默认时关闭
         }
     },
     watch:{
-        dialogvideo:function(){
+        //监控视频窗口，只要变化，则暂停播放
+        dialogVideo:function(){
             this._dom = document.getElementById('video');
             this._dom.pause();  
             play.value="暂停"; 
         }
     },
     methods:{
+        //控制视频播放，暂停
         playClick(){
             this._dom = document.getElementById('video');
             if (this._dom.paused) {  
@@ -72,12 +74,14 @@ export default{
                 play.value="暂停";  
             }  
         },
-        clearsession(){
+        //清除作品缓存
+        clearSession(){
             sessionStorage.snapdemoid = ''
             this.$store.state.demoxmlid = ''
         },
-        videoscreen(){
-            this.dialogvideo = true
+        //点击视频播放框变大
+        videoScreen(){
+            this.dialogVideo = true
         },
     }
 }

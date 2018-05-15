@@ -13,11 +13,9 @@
     import RankingList from '@/components/HomePage/RankingList'
     import Search from '@/components/HomePage/Search'
     export default{
-        methods:{
-        },
         components:{
-        RankingList,
-        Search
+            RankingList,
+            Search
         }
     }
   

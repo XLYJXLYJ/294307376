@@ -1,7 +1,7 @@
 <template>
     <div class="container29">
-        <ul v-show="nosend">
-            <li v-for="item in title" :key='item.id'>
+        <ul v-show="noSend">
+            <li v-for="item in list" :key='item.id'>
                 <div class="all_up">
                     <img :src="item.imgBuffer" alt="">
                     <p>{{item.title}}</p>
@@ -18,7 +18,7 @@
 import { mapGetters,mapActions} from 'vuex' 
 import { formatDate } from '../../public/time.js'
     export default{
-        filters: {
+        filters: {//时间处理函数
             formatDate(time) {
             var date = new Date(time);
             return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
@@ -26,29 +26,29 @@ import { formatDate } from '../../public/time.js'
         },
         data(){
             return{
-                nosend:true,
-                title:[],
-                projectid:''
+                noSend:true,//是否显示列表
+                list:[],//获取数据
             }
         },
         mounted: function () {      
-            this.getnosenddemo()
+            this.getnoSenddemo()
         },
         methods:{
-            getnosenddemo(){
+            getnoSenddemo(){
+                // this.$router.push({ name: 'noSend' })
                 this.axios.post('/res/filelist',{
                     userid:this.$store.state.userid,
                     state:0
                 })
                 .then(response => {
-                    if(response.data.data.msg=='这回真的没有了~'){
-                        this.nosend = false
+                    if(response.data.data.msg=="这回真的没有了~"){
+                        this.noSend = false
                         this.$message({
                         message: '没有未发布的作品',
                         center: true
                         }); 
                     }else{
-                        this.title=response.data.data
+                        this.list=response.data.data
                     }
                 })
             },
@@ -86,7 +86,7 @@ import { formatDate } from '../../public/time.js'
                     message: '删除成功，请刷新，如需还原，请到回收站',
                     center: true
                     }); 
-                    location.reload();
+                     this.getnoSenddemo()
                 })
             }
         }
