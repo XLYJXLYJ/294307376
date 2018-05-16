@@ -10,7 +10,7 @@
                 </div>
                 <div>
                     <router-link to="/User">
-                        <img class="cat01" :src="'data:image/png;base64,'+list.imgBuffer" alt="" @click="lookusersdes" v-show="videoimg01">
+                        <img class="cat01" :src="'data:image/png;base64,'+imgBuffer" alt="" @click="lookusersdes" v-show="videoimg01">
                         <img class="cat01" src="static/localpic.png" alt="" @click="lookusersdes" v-show="videoimg02">
                         <p class="four" @click="lookusersdes">{{list.name}}</p>
                     </router-link>
@@ -58,13 +58,21 @@
                         </div>
                     </div>
                     <div class="qrsharetext">
-                        <!-- <button>分享</button> -->
+                        <button @click="shareVideo">分享测试</button>
                         <!-- <p>or</p> -->
                         <span>扫码在手机上玩</span>
                     </div>
                 </div>
             </div>
-        </div>      
+        </div> 
+
+        <!-- 模态框 -->      
+        <transition name="el-fade-in-linear">
+            <el-dialog :visible.sync="dialogVideo"  width="680px" :modal="true" :modal-append-to-body="false" :lock-scroll="false">
+                    <iframe  frameborder="0" :src="bannerUrl" id="myFrameId"  name="snapplay" width="667" height="675"></iframe>   
+            </el-dialog> 
+        </transition>  
+   
         <Footer/>
     </div>
 </template>
@@ -72,10 +80,10 @@
 import Header from '@/components/HomePage/header'
 import Footer from '@/components/HomePage/Footer'
 import { formatDate } from '../public/time.js'
-var QRCode = require('qrcode')
+var QRCode = require('qrcode')//二维码生成插件
 var canvas = '';
 export default{
-    filters: {
+    filters: {//时间过滤器
         formatDate(time) {
         var date = new Date(time);
         return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
@@ -83,60 +91,64 @@ export default{
     },
     data(){
         return{
+            dialogVideo: false,//控制模态框显示隐藏变量
             list:[
-                {collecttotal:''},
-                {praisetotal:''},
-
+                {collecttotal:''},//收藏量
+                {praisetotal:''},//点赞
             ],
-            isAttention:'',
-            isCollect:'',
-            isPraise:'',
-            authid:'',
-            demoid:'',
-            bannerUrl: '',
-            demoxml:'',
-            publishtime:'',
-            lookuserdes:'',
-            videoimg01:'',
-            videoimg02:'',
-            item:{
-                // url:"static/ceshi/snap.html#present:Username=jens&ProjectName=tree%20animation"
-                url:'https://www.baidu.com/'
-            }
+            isAttention:'',//是否关注
+            isCollect:'',//是否收藏
+            isPraise:'',//是否点赞
+            authid:'',//作者id
+            demoid:'',//作品id
+            bannerUrl: '',//分享链接
+            demoxml:'',//作品数据
+            publishtime:'',//发布时间
+            lookuserdes:'',//赋值sessionStorage作者id
+            videoimg01:'',//控制用户头像是否显示
+            videoimg02:'',//控制默认头像是否显示
+            imgBuffer:''//用户自选头像imgbuffer
         }
     },
-
+    created(){
+        this.loadproject()
+    },
     mounted(){
-        this.recommendroute()
-        this.loadproject()     
+        this.recommendRoute()
+        // this.loadproject()
         this.loadprojectplay()
-          
         this.$store.state.shareid = sessionStorage.id  
-
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username=lynnn&ProjectName='+this.demoid
-         this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+this.$store.state.authid+'&ProjectName='+this.$store.state.shareid
         //  this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+11111+'&ProjectName='+this.$store.state.shareid
         // this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/index.html#present:ProjectName='+this.demoid
-        this.$nextTick(function () {
+        this.$nextTick(function () {//生成二维码
         // DOM操作
         canvas = document.getElementById('qrccode')
         this.createQrc()
         })
+        this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+ sessionStorage.authid +'&ProjectName='+this.$store.state.shareid
     },
     
     methods:{
-        lookusersdes(){
-            sessionStorage.lookuserdes = this.$store.state.authid
+        //分享按钮函数
+        shareVideo(){
+             this.dialogVideo=true
         },
-        // 加载默认数据
+        //赋值作品的作者id给sessionStorage,用于跳转到个人中心获取数据
+        lookusersdes(){
+            sessionStorage.lookuserdes = sessionStorage.authid
+        },
+        // 加载默认路由
         shareid(){
             if(this.$route.path==='/video'){  
                 this.$store.state.shareid = sessionStorage.id  
             }
         },
-        recommendroute(){
+        //路由跳转
+        recommendRoute(){
             this.$router.push({ name: 'Lovevideo' })
         },
+        //加载默认数据
         async loadproject(){
             // if(sessionStorage.userid!=='unfined')
             await this.axios.post('/res/getfile',{
@@ -146,12 +158,13 @@ export default{
             })
             .then(response => {                        
                 this.list = response.data.data
+                this.imgBuffer= response.data.data.imgBuffer
                 this.isCollect = response.data.data.isCollect
                 this.isPraise = response.data.data.isPraise
                 this.isAttention= response.data.data.isAttention
                 this.publishtime= response.data.data.publishtime
-                this.$store.state.authid= response.data.data.authid
-                this.$store.state.lookdemoname= response.data.data.name
+                this.$store.state.authid= response.data.data.authid//赋值全局的作者名称
+                sessionStorage.authid= response.data.data.authid//赋值video的作者名称
                 this.demoid = sessionStorage.id 
                 if(this.list.imgBuffer){
                     this.videoimg01 = true,
@@ -162,9 +175,6 @@ export default{
                 }
             }) 
            
-        },
-        lookother(){
-            sessionStorage.userid = this.$store.state.authid
         },
         // 播放文件获取数据
         loadprojectplay(){
@@ -284,7 +294,7 @@ export default{
                     this.axios.post('/res/useropreate',{
                             userid:sessionStorage.userid,
                             state:5,
-                            attentionid:this.$store.state.authid
+                            attentionid:sessionStorage.authid
                         })
                         .then(response => {           
                            
@@ -293,7 +303,7 @@ export default{
                     this.axios.post('/res/useropreate',{
                             userid:sessionStorage.userid,
                             state:6,
-                            attentionid:this.$store.state.authid
+                            attentionid:sessionStorage.authid
                         })
                         .then(response => {           
                             

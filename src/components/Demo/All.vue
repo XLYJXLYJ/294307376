@@ -8,11 +8,11 @@
                     <span>{{item.create_time|formatDate}}</span>
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id,item.state)">修改</button></router-link>
-                <!-- <button class="button02">加入</button> -->
+                <button class="button02" @click.prevent.stop="isPublic(item.id,item.state)">{{item.state==0?'发布':'取消发布'}}</button>
                 <span class="down"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
                 <span class="down"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
                 <span class="down"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
-                <p class="cancelpub" @click.prevent.stop="Canpublic(item.id,item.state)">{{item.state==0?'删除':'取消发布'}}</p>
+                <p class="cancelpub" @click.prevent.stop="Canpublic(item.id,item.state)">{{item.state==0?'删除':''}}</p>
             </li>
         </ul>  
     </div>
@@ -92,6 +92,26 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
                         }); 
                         this.getalldemo()
                     })
+                }
+            },
+            isPublic(id,state){//处理文件函数
+                if(state==0){//发布文件函数
+                    this.$store.state.demoxmlid = id
+                    this.$store.state.publicstate = 0
+                    this.$router.push({name: 'Publish'})
+                }else{//取消发布
+                    this.axios.post('/res/dealfile',{
+                        id:id,
+                        userid:sessionStorage.userid,
+                        state:6
+                        })
+                    .then(response => {
+                        this.$message({
+                        message: '取消发布成功',
+                        center: true
+                        }); 
+                    })
+                    this.getalldemo()
                 }
             }
         }

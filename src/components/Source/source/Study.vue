@@ -56,9 +56,8 @@
                 </li>
             </ul>
         </div>
-
-            <!-- element分页 -->
-        <div class="sortpagenum" v-show="numpage">
+        <!-- element分页 -->
+        <div class="sortpagenum">
             <div class="sortpagenumcenter">
                 <el-pagination
                 background
@@ -72,27 +71,6 @@
                 </el-pagination>
             </div>
         </div>
-        <!-- <div class="sortnum01" v-show="numpage">
-            <ul>
-                <li v-for="(item,index) in pageitem" :key="item.pageid" v-if="index<6" @click="Selectpage(item.pageid)" :class="{demohover:index+1==isdemohover03}"><p>{{item.pageid}}</p></li>
-            </ul>
-            <div> -->
-                <!-- <p>...</p>
-                <p class="night" @click="Selectpage(2)">2</p> -->
-                <!-- <p class="endpage" @click="Selectpagebefore">上一页</p>
-                <p class="nextpage" @click="Selectpageafter">下一页</p>
-            </div>
-
-            <div class="sortfly">
-                <p class="one">到第</p>
-                <div>
-                    <input type="text" v-model="pageuser">
-                </div>
-                <p class="two">页</p>
-                <button @click="Selectpageuser">确定</button>
-            </div>
-        </div> -->
-        <!-- <p class="endtext">部分素材来源自网络，版权归原作者所有。所有素材仅供个人创作娱乐使用，禁止做任何商业用途，由此产生的任何法律纠纷本网站不予承担</p> -->
     </div>
 </template>
 <script>
@@ -100,36 +78,25 @@ import Sourcehead from '@/components/Source/Sourcehead'
 export default{
     data() {
       return {
-        numpage:true,
         list:'',
-        listnew:'',
-        nowid:1,
-        pageuser:'',
-        checked: true,
-        sort0101:false,
-        sort0102:false,
-        sort0103:false,
-        isdemohover01:'',
-        isdemohover02:0,
-        isdemohover03:1,
+        listnew:'',//展示数据
+        isdemohover01:'',//第二级参数
+        isdemohover02:0,//第三级参数
         listnewlength:'',//请求数据的长度
         listnumtotal:0,//请求的总页数
         cur_page:'',//当前页数
-        oneidbox:[
+        oneidbox:[//tab数据
             {oneid:0,name:"全部"},
             {oneid:1,name:"其他"},
             {oneid:2,name:"学习用品"},
-        ],
-        pageitem:[
-            {pageid:1},
-            {pageid:2},
-        ],
+        ]
       };
     },
     mounted(){
         this.Getsource()
     },
     methods:{
+        //第一级tab选择
         select01(id){
             this.isdemohover01 = id
             this.isdemohover02 = 0
@@ -215,7 +182,6 @@ export default{
 
         //最近更新
         resentchange(){
-            this.isdemohover03 = 1
             this.axios.post('/res/resourcelist',{
                 onenav:3,
                 state:1,
@@ -346,7 +312,7 @@ export default{
         //     })
         // }
 
-                //获取当前页数
+        //获取当前页数
         handleCurrentChange(val){
             this.cur_page = val;
             this.getData()
@@ -373,7 +339,6 @@ export default{
             })
             .then(response => {  
                 this.listnew=response.data.data  
-                this.listnew=response.data.data
             })
         }
     },

@@ -438,7 +438,6 @@ export default {
                     this.$store.state.usernamesession02 = sessionStorage.usernamesession
                     this.$store.state.userid = sessionStorage.userid  
                     this.userCenter = true; 
-                    console.log(this.userCenter) 
                 }else{
                     this.dialogLogin = false;
                     this.userCenter = false;
@@ -469,7 +468,7 @@ export default {
                 sessionStorage.usernamesession =''  
                 sessionStorage.userid ='' 
                 this.$store.state.userid = ''
-                this.$router.push({ name: 'Home' })
+                this.$router.push({ name: 'Recommend' })
                 location.reload()   
             }) 
         }

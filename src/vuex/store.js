@@ -8,28 +8,24 @@ Vue.use(VueAxios, axios)
 Vue.use(Vuex);
 
 const state = {
-    userid: '',
-    usernamesession:'',
-    demoxmlid:'',
-    recommenddemo:'',
-    productiondemo:'',
-    searchdemo:'',
-    isdropdownparent:false,
-    bgid:'',
-    shareid:'',
-    sourcesearch:false,
-    sourcebackg:false,
-    sourcegame:false,
-    sourcegsource:false,
-    sourcemusic:false,
-    sourcesource01:false,
-    sourcelesson:false,
-    sourcestudy:false,
-    authid:'',
-    publicstate:'',
-    directxmlid:'',
-    shareid:'',
-    lookdemoname:''
+    userid: '',//用户id
+    usernamesession:'',//用户名称
+    demoxmlid:'',//作品id
+    recommenddemo:'',//首页推荐列表
+    productiondemo:'',//首页产品列表
+    searchdemo:'',//首页搜索列表
+    isdropdownparent:false,//首页下拉框
+    sourcesearch:false,//素材搜索
+    sourcebackg:false,//素材背景
+    sourcegame:false,//素材游戏
+    sourcegsource:false,//总素材
+    sourcemusic:false,//素材音乐
+    sourcesource01:false,//素材
+    sourcelesson:false,//素材课程
+    sourcestudy:false,//素材学习
+    authid:'',//其他作者id
+    publicstate:'',//个人作品中作品的存储状态(是处于发布状态还是处于保存状态)
+    shareid:'',//分享作品id
 }
 
 const actions = {

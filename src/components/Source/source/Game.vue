@@ -31,7 +31,7 @@
     </div>
 
         <!-- element分页 -->
-        <div class="sortpagenum" v-show="numpage">
+        <div class="sortpagenum">
             <div class="sortpagenumcenter">
                 <el-pagination
                 background
@@ -73,18 +73,13 @@ import Sourcehead from '@/components/Source/Sourcehead'
 export default{
     data() {
       return {
-        numpage:true,
         list:'',
-        listnew:'',
-        nowid:1,
-        pageuser:'',
-        checked: true,
-        sort0101:false,
-        sort0102:false,
-        sort0103:false,
-        isdemohover01:'',
-        isdemohover02:0,
-        isdemohover03:1,
+        listnew:'',//展示数据
+        sort0101:false,//第二级作品分类
+        sort0102:false,//第二级作品分类
+        sort0103:false,//第二级作品分类
+        isdemohover01:'',//第二级分类数据
+        isdemohover02:0,//第三级分类数据
         pagesum:'',//页面的页数
         listnewlength:'',//请求数据的长度
         listnumtotal:0,//请求的总页数

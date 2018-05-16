@@ -48,7 +48,7 @@
             </ul>
         </div>
             <!-- element分页 -->
-        <div class="sortpagenum" v-show="numpage">
+        <div class="sortpagenum">
             <div class="sortpagenumcenter">
                 <el-pagination
                 background
@@ -92,18 +92,13 @@ import Sourcehead from '@/components/Source/Sourcehead'
 export default{
     data() {
       return {
-        numpage:true,
         list:'',
-        listnew:'',
-        nowid:1,
-        pageuser:'',
-        checked: true,
-        sort0101:false,
-        sort0102:false,
-        sort0103:false,
-        isdemohover01:'',
-        isdemohover02:0,
-        isdemohover03:1,
+        listnew:'',//展示数据
+        sort0101:false,//第二级作品分类
+        sort0102:false,//第二级作品分类
+        sort0103:false,//第二级作品分类
+        isdemohover01:'',//第二级数据
+        isdemohover02:0,//第三级数据
         listnewlength:'',//请求数据的长度
         listnumtotal:0,//请求的总页数
         cur_page:'',//当前页数
@@ -167,8 +162,9 @@ export default{
         // 第一级选择
         select01(id){
             this.isdemohover01 = id
+            this.isdemohover02=0
             switch(id){                
-                case id=0:
+                case id=0:  
                     this.sort0101=false;
                     this.sort0102=false;
                     this.sort0103=false;
@@ -181,6 +177,7 @@ export default{
                     this.listnumtotal = Math.ceil(this.listnewlength/15)*10
                     this.list=response.data.data
                     this.listnew=response.data.data
+                    this.cur_page=1
                     })
                 break
                 case id=1:
@@ -197,6 +194,7 @@ export default{
                     this.listnumtotal = Math.ceil(this.listnewlength/15)*10
                     this.list=response.data.data
                     this.listnew=response.data.data
+                    this.cur_page=1
                     })
                 break;
                 case id=2:
@@ -213,6 +211,7 @@ export default{
                     this.listnumtotal = Math.ceil(this.listnewlength/15)*10
                     this.list=response.data.data
                     this.listnew=response.data.data
+                    this.cur_page=1
                     })
                 break;
                 case id=3:
@@ -229,6 +228,7 @@ export default{
                     this.listnumtotal = Math.ceil(this.listnewlength/15)*10
                     this.list=response.data.data
                     this.listnew=response.data.data
+                    this.cur_page=1
                     })
                 break;
                 case id=4:
@@ -246,6 +246,7 @@ export default{
                     this.listnewlength = response.data.total 
                     this.list=response.data.data
                     this.listnew=response.data.data
+                    this.cur_page=1
                     })
                 break;
             }
@@ -253,7 +254,6 @@ export default{
         },
          // 第二级选择
         select0101(id){
-            this.isdemohover03 = 1
             this.isdemohover02 = id
             this.axios.post('/res/resourcelist',{
                 onenav:1,
@@ -265,6 +265,7 @@ export default{
                 this.listnew=response.data.data  
                 this.listnewlength = response.data.total
                 this.listnumtotal = Math.ceil(this.listnewlength/15)*10
+                this.cur_page=1
             })
         },
         // 默认加载的数据
@@ -291,7 +292,6 @@ export default{
         },
         //最近更新
         resentchange(){
-            this.isdemohover03 = 1
             this.axios.post('/res/resourcelist',{
                 onenav:1,
                 state:1,

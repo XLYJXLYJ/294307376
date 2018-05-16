@@ -70,8 +70,17 @@ import { looksum } from '../../../public/seesum.js'
                     this.load = false,
                     this.loadDown = true
                 }else{
-                    this.listNum = response.data.data   
+                this.listLength=response.data.data.length
+                this.listNum = response.data.data  
+                 if(this.listLength<16){
                     this.list = this.list.concat(this.listNum)
+                    this.load = false,
+                    this.loadDown = true 
+                }
+                else{
+                    this.listNum = response.data.data   
+                    this.list = this.list.concat(this.listnum)  
+                }
                 }
                 }) 
             },

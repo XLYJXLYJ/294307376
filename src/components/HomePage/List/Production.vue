@@ -15,7 +15,7 @@
             </el-col>         
         </el-row>
         <button class="button" v-show="load" @click="Seemoreproduction">查看更多作品</button>
-        <button class="buttonloaddown" v-show="loaddown">已加载完全部作品</button>
+        <button class="buttonloaddown" v-show="loadDown">已加载完全部作品</button>
     </div>
 </template>
 <script>
@@ -33,7 +33,7 @@ import { looksum } from '../../../public/seesum.js'
                 listnum:[],//查看更多列表数据
                 j:1,//查看更多定义初始化第一页
                 load:true,//查看更多作品按钮红色样式
-                loaddown:false//查看更多作品按钮红色样式
+                loadDown:false//查看更多作品按钮红色样式
             }
         },
         mounted: function () {      
@@ -63,13 +63,17 @@ import { looksum } from '../../../public/seesum.js'
                     pagenum:this.j,
                     pagesize:16
                 })
-                .then(response => {  
-                if(response.data.data.msg =="这回真的没有了~"){
+                .then(response => { 
+                this.listLength=response.data.data.length
+                this.listNum = response.data.data  
+                 if(this.listLength<16){
+                    this.list = this.list.concat(this.listNum)
                     this.load = false,
-                    this.loaddown = true
-                }else{
-                    this.listnum = response.data.data   
-                    this.list = this.list.concat(this.listnum)   
+                    this.loadDown = true 
+                }
+                else{
+                    this.listNum = response.data.data   
+                    this.list = this.list.concat(this.listnum)  
                 }
                 })  
             },

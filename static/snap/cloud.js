@@ -153,7 +153,7 @@ Cloud.prototype.request = function (
                 }
             }
         };
-        request.send(body);
+        // request.send(body);//注释代码
     } catch (err) {
         onError.call(this, err.toString(), 'Cloud Error');
     }

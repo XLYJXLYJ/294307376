@@ -26,14 +26,14 @@
     export default{
         data(){
             return{
-                myfollow:'',
-                shefollow:'',
-                list:'',
-                list01:'',
-                nosend:false,
-                sharebg:true,
-                i:1,
-                name:''
+                myfollow:'',//加载关注我的人文字
+                shefollow:'',//加载关注ta的人文字
+                list:'',//负责存储总数据
+                list01:'',//负责展示数据
+                nosend:'',//是否显示列表
+                sharebg:'',//没有作品时展示的背景
+                i:1,//默认加载页数
+                name:''//作者名称
             }
         },
         mounted: function () {      
@@ -41,7 +41,7 @@
         },
         methods:{
             Getalldemo(){
-                if(!sessionStorage.lookuserdes==''){
+                if(!sessionStorage.lookuserdes==''){ //加载其他作者分享的信息
                     this.myfollow=false,
                     this.shefollow=true,
                     this.axios.post('/res/filelist',{//
@@ -63,7 +63,7 @@
                 }else{
                     this.myfollow=true,
                     this.shefollow=false,
-                    this.axios.post('/res/filelist',{
+                    this.axios.post('/res/filelist',{ //加载作者本人收藏的信息
                         userid:sessionStorage.userid,
                         state:1,
                     })

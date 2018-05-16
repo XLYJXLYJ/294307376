@@ -17,7 +17,7 @@
                 <input class="input01" v-model.number="formLabelAlign.age">
             </el-form-item>
             <el-form-item label="真实姓名">
-                <input class="input01" v-model="formLabelAlign.name01">
+                <input class="input01" v-model="formLabelAlign.realName">
             </el-form-item>
             <el-button class="save" @click="uploadmessage">保存</el-button>
         </el-form>
@@ -28,17 +28,17 @@
     data() {
       return {
         labelPosition: 'right',
-        imageUrl:'static/localpic.png',
-        imageUrl01:'',
-        userpic:'',
-        localpic:'',
-        formLabelAlign: {
-          name: '',
-          sex: '',
-          age: '',
-          name01: '',
+        imageUrl:'static/localpic.png',//静态图片
+        imageUrl01:'',//用户自选的图片
+        userpic:'',//是否显示用户选择的图片
+        localpic:'',//是否选择本地图片
+        formLabelAlign: {//个人信息表单
+          name: '',//姓名
+          sex: '',//性别
+          age: '',//年龄
+          realName: '',//真实姓名
         },
-        rules:{
+        rules:{//验证规则
           age:[
             { required: true, message: '年龄不能为空'},
             { type: 'number', message: '年龄必须为数字值'}
@@ -59,7 +59,7 @@
                   this.formLabelAlign.name = this.$store.state.usernamesession02
                   this.formLabelAlign.age = response.data.data.age,
                   this.formLabelAlign.sex = response.data.data.sex
-                  this.formLabelAlign.name01 = response.data.data.realname
+                  this.formLabelAlign.realName = response.data.data.realname
                   this.imageUrl01 = response.data.data.imgBuffer
                   if(this.formLabelAlign.sex===1){
                       this.formLabelAlign.sex='男'
@@ -71,8 +71,8 @@
                   }else{
                      this.formLabelAlign.age = this.formLabelAlign.age
                   }
-                  if(this.formLabelAlign.name01=='null'){
-                      this.formLabelAlign.name01 = ''
+                  if(this.formLabelAlign.realName=='null'){
+                      this.formLabelAlign.realName = ''
                   }else{
                      this.formLabelAlign.age = this.formLabelAlign.age
                   }
@@ -108,7 +108,7 @@
                 formData.append('state',1);
                 formData.append('age',this.formLabelAlign.age);
                 formData.append('sex',this.formLabelAlign.sex==='男'?1:2);
-                formData.append('realname',this.formLabelAlign.name01);
+                formData.append('realname',this.formLabelAlign.realName);
                 formData.append('files',picsource);
                 let config = {
                     headers:{

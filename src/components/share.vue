@@ -1,4 +1,6 @@
+<!-- 这个模块已弃用 -->
 <template>
+
     <div class="share">
         <div class="header">编程玩</div>
         <div class="sharetitle">
@@ -29,11 +31,11 @@ export default{
     data(){
         return{
             list:[
-                {collecttotal:''},
-                {praisetotal:''},
+                {collecttotal:''},//收藏量
+                {praisetotal:''},//点赞量
 
             ],
-            isAttention:'',
+            isAttention:'',//是否关注
             isCollect:'',
             isPraise:'',
             authid:'',

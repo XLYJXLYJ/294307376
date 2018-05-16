@@ -26,22 +26,23 @@
     export default{
         data(){
             return{
-                myfollow:'',
-                shefollow:'',
+                myfollow:'',//加载关注我的人文字
+                shefollow:'',//加载关注ta的人文字
                 list:'',//负责存储数据
                 list01:'',//负责展示数据
                 list02:'',//负责初始化数据
-                nosend:true,
-                sharebg:'',
-                i:1
+                nosend:'',//是否显示列表
+                sharebg:'',//没有作品时展示的背景
+                i:1//默认加载页数
             }
         },
         mounted: function () {      
             this.Getalldemo()
         },
         methods:{
+        //加载默认数据
         Getalldemo(){
-            if(!sessionStorage.lookuserdes==''){
+            if(!sessionStorage.lookuserdes==''){//加载其他作者关注的信息
             this.myfollow=false,
             this.shefollow=true,
             this.axios.post('/res/userinfo',{
@@ -62,7 +63,7 @@
                     this.sharebg=false
                 }  
             })
-            }else{
+            }else{                      //加载作者本人关注的信息
             this.myfollow=true,
             this.shefollow=false,
             this.axios.post('/res/userinfo',{
@@ -86,50 +87,51 @@
             }
         },
 
-
-            Pagingup(){ 
-                this.i=this.i+1
-                this.axios.post('/res/userinfo',{
-                        userid:sessionStorage.userid,
-                        state:5,
-                        pagenum:this.i,
-                        pagesize:10
-                })
-                .then(response => {   
-                    this.list01 = response.data.data  
-                    this.list=this.list.concat(this.list01)
-                    if(this.list01.length==0){
-                        this.i=1
-                        this.list=[]
-                        this.list01 = this.list03
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });           
-            },
-            Pagingdown(){
-                 --this.i
-                 console.log(this.i) 
-                 if(this.i<=1){
+        //下一页
+        Pagingup(){ 
+            this.i=this.i+1
+            this.axios.post('/res/userinfo',{
+                    userid:sessionStorage.userid,
+                    state:5,
+                    pagenum:this.i,
+                    pagesize:10
+            })
+            .then(response => {   
+                this.list01 = response.data.data  
+                this.list=this.list.concat(this.list01)
+                if(this.list01.length==0){
                     this.i=1
-                    this.$message({
-                        message:'已经到第一页了~',
-                        center:true
-                    })
-                    this.list01 = this.list03 
-                    this.list = []      
-                    // console.log(this.list) 
-                 }else{
-                    this.list01 = this.list.slice(this.list.length-10,this.list.length)  
-                    this.list = this.list.slice(0,this.list.length-10)
-                    if(this.list01.length<6){
-                        this.i=1
-                        this.list=[]
-                        this.list01 = this.list03
-                    }   
-                 }
-            },
+                    this.list=[]
+                    this.list01 = this.list03
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });           
+        },
+        //上一页
+        Pagingdown(){
+                --this.i
+                console.log(this.i) 
+                if(this.i<=1){
+                this.i=1
+                this.$message({
+                    message:'已经到第一页了~',
+                    center:true
+                })
+                this.list01 = this.list03 
+                this.list = []      
+                // console.log(this.list) 
+                }else{
+                this.list01 = this.list.slice(this.list.length-10,this.list.length)  
+                this.list = this.list.slice(0,this.list.length-10)
+                if(this.list01.length<6){
+                    this.i=1
+                    this.list=[]
+                    this.list01 = this.list03
+                }   
+                }
+        },
 
 
         // Pagingup(){

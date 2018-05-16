@@ -11,7 +11,7 @@
                          </div>
                     </div>
                     <div class="roleup">
-                        <a :href="'/codeplay'+item.content" download><button>下载</button></a>
+                        <a :href="'/codeplay'+item.content" download @click="collectmaster01(item.id)"><button>下载</button></a>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>  
@@ -25,7 +25,7 @@
                 <li v-for="(item,index) in list02" :key="item.id" v-if='index<10'>
                     <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div>
                     <div class="roleup">
-                       <a :href="'/codeplay'+item.content" download><button>下载</button></a>
+                       <a :href="'/codeplay'+item.content" download @click="collectmaster02(item.id)"><button>下载</button></a>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>  
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="roleup">
-                        <a :href="'/codeplay'+item.content" download><button>下载</button></a>
+                        <a :href="'/codeplay'+item.content" download @click="collectmaster03(item.id)"><button>下载</button></a>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>
@@ -105,6 +105,7 @@ export default{
                 this.list03=response.data.data
             })
         },
+        //采集函数01
         collectmaster01(id){
                 this.axios.post('/res/collectmaterial',{
                 userid:sessionStorage.userid,
@@ -115,6 +116,7 @@ export default{
             .then(response => {   
             })
         },
+         //采集函数02
         collectmaster02(id){
                 this.axios.post('/res/collectmaterial',{
                 userid:sessionStorage.userid,
@@ -126,6 +128,7 @@ export default{
 
             })
         },
+         //采集函数03
         collectmaster03(id){
                 this.axios.post('/res/collectmaterial',{
                 userid:sessionStorage.userid,

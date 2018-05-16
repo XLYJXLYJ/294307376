@@ -3,7 +3,7 @@
         <div class="snapboxhead" @click="issnapuserdropdowncontrol">
             <div class="snapheader">
                 <ul class="snapheaderleft">
-                    <li class="bcw"><a href="http://www.manykit.com/codeplay" target="_blank"><img @click="Homepass" src="../assets/snappic/snapb.png" alt=""></a></li>
+                    <li class="bcw"><a href="http://www.manykit.com/codeplay" target="_blank"><img src="../assets/snappic/snapb.png" alt=""></a></li>
                     <li class="borderlight01" @click="snapdropdowmcontrol" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
                     <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click.stop.prevent="handiframe"></li>
                     <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState" disabled="disabled"></li> -->
@@ -113,7 +113,7 @@
 
         <!-- <transition name="el-fade-in-linear">
             <div>
-                <el-dialog :visible.sync="dialogupload" :modal="false" width="420px">
+                <el-dialog :visible.sync="dialogUpload" :modal="false" width="420px">
                     <div class="container5020">
                         <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
                             <img class="welcome" src="../assets/login/welcome.png" alt="">
@@ -122,7 +122,7 @@
                                 <h1>确定发布吗？</h1>      
                             </el-form-item>
                              <el-button  class="iden02"  @click="getdemopublish"><router-link to="/Publish">确定</router-link></el-button>
-                            <el-button  class="iden03" @click="dialogupload=false">取消</el-button>
+                            <el-button  class="iden03" @click="dialogUpload=false">取消</el-button>
                         </el-form>
                     </div>
                 </el-dialog>
@@ -225,58 +225,50 @@ export default{
     
     data(){
         return{
-            dialogSave: false,
-            dialogExport: false,
-            dialogNew: false,
-            dialogOpen: false,
-            dialogupload:false,
-            snapdropdown01:false,
-            snapdemodropdowm:false,
-            login:true,
-            sign:true,
-            down:false,
-            user:false,
-            savestate:'',
-            edittittle:'',
-            editdes:'',
-            snapshow:'作品名称',
-            focusState:'',
-            snapdemoid:'',
-            snap01:'',
-            snap02:'',
+            dialogSave: false,//模态框显示控制隐藏
+            dialogExport: false,//控制输出文件模态框显示隐藏
+            dialogNew: false,//控制新建模态框显示隐藏
+            dialogOpen: false,//控制打开模态框显示隐藏
+            dialogUpload:false,//控制上传模态框显示隐藏
+            snapdropdown01:false,//控制左侧下拉框显示隐藏
+            snapdemodropdowm:false,//控制右侧下拉框显示隐藏
+            login:true,//控制登录
+            sign:true,//控制注册
+            user:false,//控制用户名
+            savestate:'',//是否保存
+            edittittle:'',//作品title
+            editdes:'',//作品描述
+            // snapshow:'作品名称',输入框默认
+            // focusState:'',输入框是否聚焦
+            snapdemoid:'',//作品id
+            snap01:'',//没有作品的snap
+            snap02:'',//有作品的snap
             // 登录注册变量
-            dialogRegister: false,
-            dialogLoginshow:false,
-            dialogSetpass:false,
-            dialogLogin: false,
-            dialogForgetpass: false,
-            dialogPassSure:false,
-            loginsign: true,
-            usercenter: false,
-            dropdowm:false,
-            stata:'',
-            resgistermsg:'',
-            directpublic:'',
-            usernamesession01:this.$store.state.usernamesession01,
-            publicKey:'',
-            disabled:false,
-            time:0,
-            btntxt:'获取验证码',
+            dialogRegister: false,//注册模态框
+            dialogLoginshow:false,//登录模态框
+            dialogSetpass:false,//重置密码模态框
+            dialogLogin: false,//模态框
+            dialogForgetpass: false,//忘记密码模态框
+            dialogPassSure:false,//确认密码
+            publicKey:'',//公钥
+            disabled:false,//获取验证码按钮不可点击
+            time:0,//获取验证码默认时间
+            btntxt:'获取验证码',//获取验证码默认文字
             btntxtcolor01:true,//验证码按钮的颜色
             btntxtcolor02:false,//验证码按钮的颜色
-            formLogin: {
+            formLogin: {//登录
                 username: '',
                 password: '',
                 passwordrsc:''
             },
-            formRegister: {
+            formRegister: {//注册
                 username: '',
                 password: '',
                 checkpassword: '',
                 formRegisterpasswordrsc:'',
                 mail:'',
             },
-            formReset: {
+            formReset: {//重置密码
                 password: '',
                 ckeckpassword: '',
                 formResetpasswordrsc:'',
@@ -300,6 +292,7 @@ export default{
                 login:'',
                 user:'',
             },
+            //element验证规则，已弃用
             rules:{
                 username: [
                     { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -328,9 +321,7 @@ export default{
         this.Getsession()
         this.loadprojectxml()
         this.loadprojectdes()
-
         this.formSave.userid = sessionStorage.userid
-
         //作品是否存在，如果存在，则使用snap02，如果不存在，则使用snap01
         this.snapdemoid= sessionStorage.snapdemoid
         if(sessionStorage.snapdemoid == undefined||sessionStorage.snapdemoid == ''){
@@ -376,12 +367,15 @@ export default{
                 });
             }
         },
+        //输入框聚焦，已删除
         snapedit(){
             this.focusState = true
         },
+        //模态框中的关闭按钮
         close(){
             this.dialogLogin = false
         },
+        //左侧下拉框
         snapdropdowmcontrol(){
             this.snapdropdown01 = !this.snapdropdown01          
         },
@@ -390,6 +384,7 @@ export default{
                 this.snapdropdowm = false
           }
         },
+         //右侧下拉框
         snapdemodropdowmcontrol(){
             this.snapdemodropdowm = !this.snapdemodropdowm
         },
@@ -412,6 +407,7 @@ export default{
                 //window.frames["snap"].ide.rawOpenProjectString(this.demoxml,'OPEN')   
             })   
         },
+        //获取保存过文件的数据
         loadprojectdes(){
             // if(sessionStorage.userid!=='unfined')
             this.axios.post('/res/getfile',{
@@ -449,8 +445,6 @@ export default{
                     window.frames["snap01"].ide.droppedText(this.readfilebinary,'HHH')   
                 } 
             }
-
-        
         },
 
         // 新建文件
@@ -471,13 +465,11 @@ export default{
                 this.formSave.file = window.frames["snap02"].ide.exportProject (name)
             }else{
                 this.formSave.file = window.frames["snap01"].ide.exportProject (name)
-            }
-            
-            
+            }    
             this.dialogExport=false
         },
 
-        // 保存文件
+        // 保存文件第一步
         handiframe() {
             this.snapdropdown01=false
         　　if(window.navigator.onLine==true) {　
@@ -515,6 +507,7 @@ export default{
         　　}
 
         },
+        // 保存文件第二步
         submitUpload() {
             if(this.savestate==1){
                 if(this.formSave.title==''||this.formSave.desc==''){//检测项目名和文件名不能为空
@@ -536,8 +529,7 @@ export default{
                     }
                     this.axios.post('/res/upload',formData,config)
                     .then(function(response){
-                        console.log(response.data.data.id)
-                        // this.$store.state.demoxmlid = response.data.data.id//保存后赋值作品值，这样会覆盖之前保存的项目，如果要新建项目，必须要按新建按钮
+                        this.$store.state.demoxmlid = response.data.data.id//保存后赋值作品值，这样会覆盖之前保存的项目，如果要新建项目，必须要按新建按钮
                         // location.reload()
                     })
                     this.dialogSave = false;
@@ -585,7 +577,7 @@ export default{
                             });
                         }
                     }else{
-                        this.dialogupload = true
+                        this.dialogUpload = true
                         this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT('o')
                         let filebir = this.formSave.file
                         this.filebinary = new Blob([filebir]);
@@ -603,6 +595,7 @@ export default{
                         this.axios.post('/res/upload',formData,config)
                         .then(response => {
                             this.$store.state.demoxmlid=response.data.data.id
+                            console.log(response.data.data.id)
                             window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
                             // this.$router.push({name:'Publish'})
                         })                      
@@ -864,9 +857,9 @@ export default{
         //         this.$store.state.userid = sessionStorage.userid
         //     }
         // },
-        Homepass(){
-            this.$router.push({name:'Home'})
-        },
+        // Homepass(){
+        //     this.$router.push({name:'Home'})
+        // },
         // 退出登陆
         Cancellogout() {
             this.axios.get('/res/logout')
@@ -875,7 +868,6 @@ export default{
                 this.login = true;
                 this.sign = true;
                 this.user = false;
-                this.dropdowm = false;  
                 sessionStorage.usernamesession =''  
                 this.$store.state.userid = '' 
                 sessionStorage.userid = ''  
@@ -1102,14 +1094,14 @@ export default{
     width: 297px;
     top: 10px;
     left: 60px;
-    padding-left: 10px;
+    padding-left: 8px;
 }
 .container50 .iden01{
     position: absolute;
     height: 49px;
-    width: 286px;
+    width: 296px;
     top: 58px;
-    left: 68px;
+    left: 70px;
     padding-left: 0px;
 }
 .container50 .iden02{

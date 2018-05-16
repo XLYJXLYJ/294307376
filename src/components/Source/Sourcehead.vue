@@ -35,15 +35,16 @@ import Sourceshop from '@/components/Source/Sourceshop'
     export default{
         data(){
             return{
-                sourcename:'',
-                list:'',
-                listnew:''
+                sourcename:'',//搜索名称
+                list:'',//数据
+                listnew:''//展示数据
             }
         },
         watch:{
             '$route':'islogin'
          },
         methods:{
+            //检测是否登录，如果登录，才可以跳转我的素材，该功能已删除
             islogin(){
                 if(this.$route.path==='/source/mysourceshop'){
                     if(this.$store.state.userid){
@@ -57,6 +58,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
                     }
                 }
             },
+            //获取默认数据
             Getsearch(){
                 this.$store.state.sourcesearch=true,
                 this.$store.state.sourcebackg=false,

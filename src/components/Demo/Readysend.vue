@@ -8,11 +8,11 @@
                     <span>{{item.update_time|formatDate}}</span>
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
-                <!-- <button class="button02">加入</button> -->
+                <button class="button02" @click.prevent.stop="Canpublic(item.id)">取消发布</button>
                 <span class="down"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
                 <span class="down"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
                 <span class="down"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
-                <p class="cancelpub" @click.prevent.stop="Canpublic(item.id)">取消发布</p>
+                <!-- <p class="cancelpub" @click.prevent.stop="Canpublic(item.id)">取消发布</p> -->
             </li>    
         </ul>  
     </div>

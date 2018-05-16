@@ -176,7 +176,7 @@ export default new Router({
         {
             path: '/Home',
             component: resolve =>require(['@/components/Home'],resolve),
-            name: 'Home',
+            // name: 'Home',
             children:[
                 { path: '/Home/Production', component: resolve =>require(['@/components/HomePage/List/Production'],resolve)},
                 { path: '/Home/Recommend', name: 'Recommend',component: resolve =>require(['@/components/HomePage/List/Recommend'],resolve)},
@@ -195,7 +195,7 @@ export default new Router({
       }, 
       {
           path: '/source',
-          name: 'Source',
+        //   name: 'Source',
           component: resolve =>require(['@/components/Source'],resolve),
           children:[
             {path: '/source/sourceshop', component: resolve =>require(['@/components/Source/Sourceshop'],resolve),
@@ -210,7 +210,7 @@ export default new Router({
                     {path: '', component:resolve =>require(['@/components/Source/source/Gsource'],resolve)}
                 ]
           },
-            {path: '/source/mysourceshop', name: 'mysourceshop',component: resolve =>require(['@/components/Source/Mysourceshop'],resolve),
+            {path: '/source/mysourceshop',component: resolve =>require(['@/components/Source/Mysourceshop'],resolve),
                 children:[
                     {path: '/source/mysourceshop/Mybg', component: resolve =>require(['@/components/Source/mysource/Mybg'],resolve)},
                     {path: '/source/mysourceshop/Myrole', name: 'Myrole',component: resolve =>require(['@/components/Source/mysource/Myrole'],resolve)},
@@ -236,7 +236,6 @@ export default new Router({
       },
       {
           path: '/Video',
-          name: 'Video',
           component: resolve =>require(['@/components/Video'],resolve),
           children:[
               {path: '/Video/Myvideo', name: 'Myvideo',component: resolve =>require(['@/components/Video/Myvideo'],resolve)},

@@ -1,6 +1,6 @@
 <template>
     <div class="container37">
-            <ul>
+            <ul v-show="uservideo">
                 <router-link to="/Video">
                     <li v-for="(item,index) in list" :key='item.id' v-if='index<5' @click="edit03(item.id)">
                         <img class="jinglin" :src="item.imgBuffer" alt="">
@@ -18,26 +18,27 @@
 import { formatDate } from '../../public/time.js'
 import { looksum } from '../../public/seesum.js'
     export default{
-        filters: {
+        filters: {//时间过滤器
             formatDate(time) {
                 var date = new Date(time);
                 return formatDate(date, 'yyyy-MM-dd');
             },
-            looksums(n) {
+            looksums(n) {//数字过滤器
                 var n = n;
                 return looksum(n);
             }
         },
     data(){
         return{
-            uservideo:true,
-            list:'',
+            uservideo:true,//控制是否显示list
+            list:'',//list数据列表
         }
     },
     created: function () {      
         this.Getalldemo()
     },
     methods:{
+        //加载默认数据
         Getalldemo(){
             this.axios.post('/res/filelist',{
                 userid:this.$store.state.authid,
@@ -51,6 +52,7 @@ import { looksum } from '../../public/seesum.js'
                 }
             })
         },
+        //点击加载数据
         edit03(id){                 
             sessionStorage.id = id
             location.reload()

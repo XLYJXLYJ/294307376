@@ -46,33 +46,30 @@ import Vue from 'vue'
 import { looksum } from '../../public/seesum.js'
     export default{
         filters: {
-            looksums(n) {
+            looksums(n) {//数字转换
                 var n = n;
                 return looksum(n);
             }
         },
         data(){
             return{
-                 atten:true,
-                 buttoncolor:true,
-                 listdemo:'',
-                 postlistdemo:'',
-                 username:'',
-                 aboutme:'',
-                 doing:'',
-                 userimageUrl:'',
-                 demoimageUrl:'',
-                 demonone:false,
-                 demoimg:true,
-                 demoimageid:'',
-                 collecttotal:'',
-                 praisetotal:'',
-                 looktotal:'',
-                 savedes:'',
-                 followother:'',
-                 userownimg01:'',
-                 userownimg02:'',
-
+                //  atten:true,是否关注
+                //  buttoncolor:true,//关注按钮颜色
+                 username:'',//名字
+                 aboutme:'',//关于我
+                 doing:'',//我正在做什么
+                 userimageUrl:'',//用户头像图片
+                 demoimageUrl:'',//作品封面
+                 demonone:'',//默认的作品封面背景(作者没有封面)
+                 demoimg:'',//作者的封面图片
+                 demoimageid:'',//作者封面作品的id
+                 collecttotal:'',//收藏数量
+                 praisetotal:'',//点赞数量
+                 looktotal:'',//观看总数
+                 savedes:'',//保存按钮
+                //  followother:'',关注按钮
+                 userownimg01:'',//显示用户选择的头像
+                 userownimg02:'',//显示默认的头像
             } 
         },
         // watch:{
@@ -87,10 +84,13 @@ import { looksum } from '../../public/seesum.js'
             this.Getuseinfo()
         },
         methods:{
-            attenbutton(atten){
-                this.buttoncolor=!this.buttoncolor
-                this.atten=!this.atten;
-            },
+
+            // attenbutton(atten){关注按钮与颜色的切换
+            //     this.buttoncolor=!this.buttoncolor
+            //     this.atten=!this.atten;
+            // },
+
+            //控制显示默认头像还是用户选择头像
             isuserimg(){
                 if(this.userimageUrl == 'null'){
                     this.userownimg02=true,
@@ -102,8 +102,9 @@ import { looksum } from '../../public/seesum.js'
                 
                 }
             },
+            //加载默认数据
             Getuseinfo(){//需要加昵称信息和是否关注信息
-                if(!sessionStorage.lookuserdes==''){
+                if(!sessionStorage.lookuserdes==''){//加载其他作者的信息
                     this.savedes=false,
                     this.followother=true
                     this.axios.post('/res/userinfo',{
@@ -133,7 +134,7 @@ import { looksum } from '../../public/seesum.js'
                 }else{              
                     this.savedes=true,
                     this.followother=false
-                    this.axios.post('/res/userinfo',{
+                    this.axios.post('/res/userinfo',{//加载作者本人的信息
                         userid:sessionStorage.userid,
                         getinfostate:3
                     })
@@ -162,36 +163,36 @@ import { looksum } from '../../public/seesum.js'
             },
 
             // 关注
-            jia(){
-                if(this.$store.state.userid){//是否登录
-                    if(this.buttoncolor){
-                        this.axios.post('/res/useropreate',{
-                                userid:sessionStorage.userid,
-                                state:5,
-                                attentionid:sessionStorage.lookuserdes
-                            })
-                            .then(response => {           
+            // jia(){
+            //     if(this.$store.state.userid){//是否登录
+            //         if(this.buttoncolor){
+            //             this.axios.post('/res/useropreate',{
+            //                     userid:sessionStorage.userid,
+            //                     state:5,
+            //                     attentionid:sessionStorage.lookuserdes
+            //                 })
+            //                 .then(response => {           
                                 
-                        })
-                    }else{
-                        this.axios.post('/res/useropreate',{
-                                userid:sessionStorage.userid,
-                                state:6,
-                                attentionid:sessionStorage.lookuserdes
-                            })
-                            .then(response => {           
+            //             })
+            //         }else{
+            //             this.axios.post('/res/useropreate',{
+            //                     userid:sessionStorage.userid,
+            //                     state:6,
+            //                     attentionid:sessionStorage.lookuserdes
+            //                 })
+            //                 .then(response => {           
                                 
-                        })
-                    }
-                }else{
-                        this.$message({
-                        message: '请先登录',
-                        center: true,
-                    });
-                }
-            }, 
+            //             })
+            //         }
+            //     }else{
+            //             this.$message({
+            //             message: '请先登录',
+            //             center: true,
+            //         });
+            //     }
+            // }, 
 
-
+            //根据封面作品id获取封面
             getdemoimg(){
                 this.axios.post('/res/getfile',{
                     userid:sessionStorage.userid,
@@ -207,6 +208,7 @@ import { looksum } from '../../public/seesum.js'
                     }
                 })
             },
+            //保存信息
             Postuseinfo(){
             　　if(window.navigator.onLine==true) {                     //是否联网　
                     if(sessionStorage.userid){                          //是否登录
@@ -217,7 +219,6 @@ import { looksum } from '../../public/seesum.js'
                             doing:this.doing
                         })
                     .then(response => {           
-                        this.postlistdemo = response.data
                         this.$message({
                             message:'保存成功',
                             center:true

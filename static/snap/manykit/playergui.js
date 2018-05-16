@@ -150,28 +150,29 @@ IDE_Morph.prototype.openIn = function (world) {
             return '';
         }
     }
-    dict = SnapCloud.parseDict(location.hash.substr(9));
-    dict.Username = dict.Username.toLowerCase();
-    function applyFlags(dict) {
-        if (dict.embedMode) {
-            myself.setEmbedMode();
-        }
-        if (dict.editMode) {
-            myself.toggleAppMode(false);
-        } else {
-            myself.toggleAppMode(true);
-        }
-        if (!dict.noRun) {
-            myself.runScripts();
-        }
-        if (dict.hideControls) {
-            myself.controlBar.hide();
-            window.onbeforeunload = nop;
-        }
-        if (dict.noExitWarning) {
-            window.onbeforeunload = nop;
-        }
-    }
+    // dict = SnapCloud.parseDict(location.hash.substr(9));
+    // dict.Username = dict.Username.toLowerCase();
+    // function applyFlags(dict) {
+    //     dict.embedMode = 0
+    //     if (dict.embedMode) {
+    //         myself.setEmbedMode();
+    //     }
+    //     if (dict.editMode) {
+    //         myself.toggleAppMode(false);
+    //     } else {
+    //         myself.toggleAppMode(true);
+    //     }
+    //     if (!dict.noRun) {
+    //         myself.runScripts();
+    //     }
+    //     if (dict.hideControls) {
+    //         myself.controlBar.hide();
+    //         window.onbeforeunload = nop;
+    //     }
+    //     if (dict.noExitWarning) {
+    //         window.onbeforeunload = nop;
+    //     }
+    // }
 
     // dynamic notifications from non-source text files
     // has some issues, commented out for now
@@ -219,7 +220,7 @@ IDE_Morph.prototype.openIn = function (world) {
             } else {
                 this.rawOpenProjectString(getURL(hash));
             }
-            applyFlags(SnapCloud.parseDict(location.hash.substr(5)));
+            // applyFlags(SnapCloud.parseDict(location.hash.substr(5)));
         } else if (location.hash.substr(0, 9) === '#present:') {
             this.shield = new Morph();
             this.shield.color = this.color;
@@ -261,7 +262,7 @@ IDE_Morph.prototype.openIn = function (world) {
                         myself.shield.destroy();
                         myself.shield = null;
                         msg.destroy();
-                        applyFlags(dict);
+                        // applyFlags(dict);
                     }
                 ]);
             }
@@ -805,4 +806,15 @@ IDE_Morph.prototype.createControlBar = function () {
         this.label.setCenter(this.center());
         this.label.setLeft(this.settingsButton.right() + padding);
     };
+};
+
+//暂停播放
+IDE_Morph.prototype.togglePauseResume = function () {
+    document.getElementById('playerimg').style.cssText="display:block"
+    if (this.stage.threads.isPaused()) {
+        this.stage.threads.resumeAll(this.stage);
+    } else {
+        this.stage.threads.pauseAll(this.stage);
+    }
+    this.controlBar.pauseButton.refresh();
 };

@@ -45,6 +45,7 @@ import NodeRSA from 'node-rsa'
       this.Getsession()
     },
     methods:{
+      //下载初始化数据
             loadmessage(){
             this.axios.post('/res/userinfo',{
                     userid:sessionStorage.userid,
@@ -64,6 +65,7 @@ import NodeRSA from 'node-rsa'
                 console.log(error);
             });
       },
+      //修改密码
           changepassbtn() {
               let logintextpassword = this.publicKey;
               var privatekey = new NodeRSA(logintextpassword);
@@ -102,6 +104,7 @@ import NodeRSA from 'node-rsa'
             });
             }     
         },
+        //获取公钥
           Getsession() {  
             this.axios.get('/res/verify')
             .then(response =>{

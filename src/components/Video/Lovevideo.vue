@@ -17,11 +17,11 @@ import { formatDate } from '../../public/time.js'
 import { looksum } from '../../public/seesum.js'
     export default{
         filters: {
-            formatDate(time) {
+            formatDate(time) {//时间过滤器
                 var date = new Date(time);
                 return formatDate(date, 'yyyy-MM-dd');
             },
-            looksums(n) {
+            looksums(n) {//观看次数转换器
                 var n = n;
                 return looksum(n);
             }
@@ -36,6 +36,7 @@ import { looksum } from '../../public/seesum.js'
             this.getdemo01()
         },
         methods:{
+            //加载默认数据
             getdemo01(){
                 this.axios.post('/res/filelist',{
                     state:4,
@@ -49,6 +50,7 @@ import { looksum } from '../../public/seesum.js'
                     this.$store.state.productiondemo=false
                 })
             },
+            //点击加载数据
             edit04(id){                 
                 sessionStorage.id = id
                 location.reload()

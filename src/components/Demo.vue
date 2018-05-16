@@ -30,13 +30,16 @@ export default{
             block02:false
         }
     },
+    //默认跳转路由
     mounted(){
         this.demoroute()
     },
+    //监控路由
     watch:{
       '$route':'isTab'
     },
     methods:{
+        //控制tab
         clickblock01(){
             this.block01=true,
             this.block02=false
@@ -45,12 +48,15 @@ export default{
             this.block02=true,
             this.block01=false
         },
+        //默认路由跳转
         demoroute(){
             this.$router.push({ name: 'Mydemo' })
         },
+        //新建作品，清除缓存
         clearsession(){
             sessionStorage.snapdemoid = ''
         },
+        //监控路由跳转
         isTab(){
             if(this.$route.path==='/Demo'){
                 this.$router.push({ name: 'Alldemohaha' })
@@ -149,7 +155,7 @@ export default{
 }
 
 .container24 .block01{
-    width: 162px;
+    width: 163px;
     height: 10px;
     background: @background-color;
     position: absolute;
@@ -157,16 +163,16 @@ export default{
     left: 24px;
 }
 .container24 .block02{
-    width: 170px;
+    width: 171px;
     height: 10px;
     background: @background-color;
     position: absolute;
     top: 28px;
-    left: 190px;
+    left: 189px;
 }
 .container24 .mydemo_frame .router-link-active{
    border:1px solid @gray;
-   border-radius:15px;
+   border-radius:15px 15px 0px 0px;//学习了
    border-bottom: none;
 }
 /* .container24 .mydemo_frame .router-link-active{

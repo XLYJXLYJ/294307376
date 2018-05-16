@@ -28,18 +28,15 @@ import Vue from 'vue'
 export default {
     data() {
         return {
-            dialogImageUrl: '',
-            isactive: true,
-            dialogVisible: false,
-            urllarge:'static/publish/9l.png',
-            imageUrl: 'static/publish/1l.png',
-            indexdemoid:1,
-            demoname:'',
-            demodes:'',
-            readpicbinary:'',
-            picdemo:'',
+            // isactive: true,
+            urllarge:'static/publish/8l.png',//默认图片
+            imageUrl: 'static/publish/1l.png',//用户自己选的图片
+            indexdemoid:1,//默认图片加载
+            demoname:'',//作品名称
+            demodes:'',//作品描述
+            readpicbinary:'',//读取图片二进制数据
             result:'',
-            Urlimg:[
+            Urlimg:[//默认图片
                 {url:'static/publish/1.png'},
                 {url:'static/publish/2.png'},
                 {url:'static/publish/3.png'},
@@ -49,14 +46,14 @@ export default {
                 {url:'static/publish/7.png'},
                 {url:'static/publish/8.png'},
             ],
-            uploadimg:{
-                    id:this.$store.state.demoxmlid,
-                    userid:sessionStorage.userid,
-                    title:this.demoname,
-                    desc:this.demodes,
-                    state:3,
-                    surfaceplot:this.indexdemoid
-            },
+            // uploadimg:{
+            //         id:this.$store.state.demoxmlid,
+            //         userid:sessionStorage.userid,
+            //         title:this.demoname,
+            //         desc:this.demodes,
+            //         state:3,
+            //         surfaceplot:this.indexdemoid
+            // },
             rules:{
             demoname: [
                 { required: true, message: '请输入作品名称', trigger: 'blur' },
@@ -82,6 +79,7 @@ export default {
         this.loadprojectdes()
     },
     methods: {
+        //选择默认照片
         pickimg(indexid){  
             this.imageUrl = ''  
             this.indexdemoid=indexid+1
@@ -96,17 +94,15 @@ export default {
                 state:1
             })
             .then(response => {  
-                      
                 this.demoname = response.data.data.title
                 this.demodes = response.data.data.desc
             }) 
         },
 
-
+        //发布用户带自己选择的作品
         submitUpload(){
             if(this.indexdemoid==19){//用户自己上传图片
-                this.picdemo = this.$store.state.demoxmlid
-                sessionStorage.picdemo = this.picdemo
+                sessionStorage.picdemo = this.$store.state.demoxmlid
                 sessionStorage.demoname = this.demoname
                 sessionStorage.demodes = this.demodes   
                 var picsource = this.$refs.file_el.files[0]
@@ -138,10 +134,12 @@ export default {
                 })
             }
         },
+        //返回上一级及赋值sessionStroage，让snap可以打开作品
         returngo(){
             sessionStorage.snapdemoid = this.$store.state.demoxmlid
             this.$router.go(-1)
         },
+        //发布带默认图片的作品
         uploadFile(picsource){
             let formData = new FormData();
             formData.append('id',sessionStorage.picdemo);
@@ -166,6 +164,7 @@ export default {
                 center: true
             });  
         },
+        //选择图片
         choise_file () {
             this.indexdemoid=19
             this.urllarge=''
