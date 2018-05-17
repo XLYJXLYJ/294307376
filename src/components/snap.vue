@@ -528,10 +528,23 @@ export default{
                         }
                     }
                     this.axios.post('/res/upload',formData,config)
-                    .then(function(response){
-                        this.$store.state.demoxmlid = response.data.data.id//保存后赋值作品值，这样会覆盖之前保存的项目，如果要新建项目，必须要按新建按钮
-                        // location.reload()
+                    .then( res => {
+                        this.$store.state.demoxmlid = res.data.data.id//保存后赋值作品值，这样会覆盖之前保存的项目，如果要新建项目，必须要按新建按钮
+                        this.$store.state.publicstate==0
+                    }).catch( res => {
+                        console.log(res)
                     })
+                    // {
+                    //     console.log(response)
+                    //     this.$store.state.demoxmlid = response.data.data.id//保存后赋值作品值，这样会覆盖之前保存的项目，如果要新建项目，必须要按新建按钮
+                    //     // location.reload()
+                    //     this.$store.state.publicstate==0
+                        
+                    //     // console.log(response.data.data.id)
+                    //     // console.log(this.$store.state.demoxmlid)
+                    // }
+                    
+
                     this.dialogSave = false;
                     this.$message({
                         message: '上传成功',
@@ -566,10 +579,10 @@ export default{
         　　if(window.navigator.onLine==true) {                     //是否联网　
                 if(sessionStorage.userid){                          //是否登录
                     if(this.$store.state.demoxmlid){                //是否是发布和未发布状态
-                        if(this.$store.state.publicstate==0){       //未发布
+                        if(this.$store.state.publicstate==0){       //未发布已保存
                             this.$store.state.demoxmlid = this.$store.state.demoxmlid
-                            window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
-                            // this.$router.push({name:'Publish'})
+                            // window.open('/#/Publish'); 
+                            this.$router.push({name:'Publish'})
                         }else{                                      //已发布
                                 this.$message({
                                 message: '该作品已经发布，请重新保存',
@@ -596,8 +609,9 @@ export default{
                         .then(response => {
                             this.$store.state.demoxmlid=response.data.data.id
                             console.log(response.data.data.id)
-                            window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
-                            // this.$router.push({name:'Publish'})
+                            // window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
+                            // window.open('/#/Publish'); 
+                             this.$router.push({name:'Publish'})
                         })                      
                         }
                 }else{

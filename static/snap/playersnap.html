@@ -50,13 +50,17 @@
 	</head>
 	<body style="margin: 0;">
 		<div id="playerimg" onclick="videoPlay()"><img src="./player.png" alt=""></div>
-		<canvas id="world" tabindex="1" width="767" height="575" style="position: absolute;" />
+		<canvas id="world"  tabindex="1" width="767" height="575" style="position: absolute;" />
 	</body>
 	<script>
 		function videoPlay(){
 			document.getElementById('playerimg').style.cssText="display:none"
 			ide.pressStart() 
 		}
+		// function videostop(){
+		// 	document.getElementById('playerimg').style.cssText="display:block"
+		// 	ide.togglePauseResume() 
+		// }
 	</script>
 </html>
 <style>

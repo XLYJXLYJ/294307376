@@ -92,7 +92,7 @@ import { looksum } from '../../public/seesum.js'
 
             //控制显示默认头像还是用户选择头像
             isuserimg(){
-                if(this.userimageUrl == 'null'){
+                if(this.userimageUrl == ''){
                     this.userownimg02=true,
                     this.userownimg01=false
 
@@ -120,14 +120,14 @@ import { looksum } from '../../public/seesum.js'
                         this.collecttotal = response.data.data.collecttotal
                         this.praisetotal = response.data.data.praisetotal
                         this.looktotal = response.data.data.looktotal
-                        if(response.data.data.coverworkid == 'null'){
+                        if(!response.data.data.coverworkid){
                             this.demonone=true,
                             this.demoimg=false
 
                         }else{
-                            this.getdemoimg()//是否显示封面做作品
                             this.demonone=false,
                             this.demoimg=true
+                            this.getdemoimg()//是否显示封面做作品
                         }
                         this.isuserimg()//是否显示默认的头像
                     })
@@ -147,14 +147,14 @@ import { looksum } from '../../public/seesum.js'
                         this.collecttotal = response.data.data.collecttotal
                         this.praisetotal = response.data.data.praisetotal
                         this.looktotal = response.data.data.looktotal
-                        if(response.data.data.coverworkid == 'null'){
+                        if(!response.data.data.coverworkid){
                             this.demonone=true,
                             this.demoimg=false
                            
                         }else{
-                            this.getdemoimg()
                             this.demonone=false,
-                            this.demoimg=true                    
+                            this.demoimg=true   
+                            this.getdemoimg()                 
                         }
                         this.isuserimg()
                     })
@@ -200,10 +200,12 @@ import { looksum } from '../../public/seesum.js'
                     state:1
                 })
                 .then(response =>{
-                    if(response.data.data){
+                    if(!response.data.data.imgBuffer){
                         this.demonone=true,
                         this.demoimg=false
                     }else{
+                        this.demonone=false,
+                        this.demoimg=true
                         this.demoimageUrl=response.data.data.imgBuffer
                     }
                 })

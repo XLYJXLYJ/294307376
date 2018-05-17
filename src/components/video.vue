@@ -68,8 +68,8 @@
 
         <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
-            <el-dialog :visible.sync="dialogVideo"  width="680px" :modal="true" :modal-append-to-body="false" :lock-scroll="false">
-                    <iframe  frameborder="0" :src="bannerUrl" id="myFrameId"  name="snapplay" width="667" height="675"></iframe>   
+            <el-dialog :visible.sync="dialogVideo"  width="580px" height="600px" :modal="true" :modal-append-to-body="false" :lock-scroll="false">
+                    <iframe class="videoiframe" :src="bannerUrl" ></iframe>   
             </el-dialog> 
         </transition>  
    
@@ -115,18 +115,8 @@ export default{
     },
     mounted(){
         this.recommendRoute()
-        // this.loadproject()
         this.loadprojectplay()
         this.$store.state.shareid = sessionStorage.id  
-        // this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username=lynnn&ProjectName='+this.demoid
-        //  this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+11111+'&ProjectName='+this.$store.state.shareid
-        // this.bannerUrl = 'http://www.manykit.com/codeplay/static/js/index.html#present:ProjectName='+this.demoid
-        this.$nextTick(function () {//生成二维码
-        // DOM操作
-        canvas = document.getElementById('qrccode')
-        this.createQrc()
-        })
-        this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+ sessionStorage.authid +'&ProjectName='+this.$store.state.shareid
     },
     
     methods:{
@@ -136,7 +126,7 @@ export default{
         },
         //赋值作品的作者id给sessionStorage,用于跳转到个人中心获取数据
         lookusersdes(){
-            sessionStorage.lookuserdes = sessionStorage.authid
+            sessionStorage.lookuserdes = this.authid
         },
         // 加载默认路由
         shareid(){
@@ -149,9 +139,9 @@ export default{
             this.$router.push({ name: 'Lovevideo' })
         },
         //加载默认数据
-        async loadproject(){
+        loadproject(){
             // if(sessionStorage.userid!=='unfined')
-            await this.axios.post('/res/getfile',{
+            this.axios.post('/res/getfile',{
                 userid:sessionStorage.userid,
                 id:sessionStorage.id,
                 state:3
@@ -164,8 +154,14 @@ export default{
                 this.isAttention= response.data.data.isAttention
                 this.publishtime= response.data.data.publishtime
                 this.$store.state.authid= response.data.data.authid//赋值全局的作者名称
-                sessionStorage.authid= response.data.data.authid//赋值video的作者名称
+                this.authid= response.data.data.authid//赋值video的作者名称
                 this.demoid = sessionStorage.id 
+                this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+ this.authid +'&ProjectName='+this.$store.state.shareid
+                //  this.bannerUrl = 'localhost:8080/static/snap/playersharesnap.html#present:Username=10004&ProjectName=20'
+                this.$nextTick(function () {//生成二维码
+                    canvas = document.getElementById('qrccode')
+                    this.createQrc()
+                })
                 if(this.list.imgBuffer){
                     this.videoimg01 = true,
                     this.videoimg02 = false
@@ -294,7 +290,7 @@ export default{
                     this.axios.post('/res/useropreate',{
                             userid:sessionStorage.userid,
                             state:5,
-                            attentionid:sessionStorage.authid
+                            attentionid:this.authid
                         })
                         .then(response => {           
                            
@@ -303,7 +299,7 @@ export default{
                     this.axios.post('/res/useropreate',{
                             userid:sessionStorage.userid,
                             state:6,
-                            attentionid:sessionStorage.authid
+                            attentionid:this.authid
                         })
                         .then(response => {           
                             
@@ -643,5 +639,11 @@ export default{
 .container35  .mydemo_frame .router-link-active{
     text-decoration: none;
     color: @main-color;
+}
+
+.container3536 .videoiframe{
+    position:absolute;
+    width: 100%;
+    height: 550px;
 }
 </style>

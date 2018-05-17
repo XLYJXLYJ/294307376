@@ -36,6 +36,7 @@ export default {
             demodes:'',//作品描述
             readpicbinary:'',//读取图片二进制数据
             result:'',
+            picdemo:'',//该组件内的demoid
             Urlimg:[//默认图片
                 {url:'static/publish/1.png'},
                 {url:'static/publish/2.png'},
@@ -87,11 +88,12 @@ export default {
         },
         //加载项目信息
         loadprojectdes(){
+            console.log(this.$store.state.demoxmlid)
             // if(sessionStorage.userid!=='unfined')
             this.axios.post('/res/getfile',{
                 userid:sessionStorage.userid,
                 id:this.$store.state.demoxmlid,
-                state:1
+                state:3
             })
             .then(response => {  
                 this.demoname = response.data.data.title
@@ -102,7 +104,7 @@ export default {
         //发布用户带自己选择的作品
         submitUpload(){
             if(this.indexdemoid==19){//用户自己上传图片
-                sessionStorage.picdemo = this.$store.state.demoxmlid
+                this.picdemo = this.$store.state.demoxmlid
                 sessionStorage.demoname = this.demoname
                 sessionStorage.demodes = this.demodes   
                 var picsource = this.$refs.file_el.files[0]
@@ -142,7 +144,7 @@ export default {
         //发布带默认图片的作品
         uploadFile(picsource){
             let formData = new FormData();
-            formData.append('id',sessionStorage.picdemo);
+            formData.append('id',this.picdemo);
             formData.append('userid',sessionStorage.userid);
             formData.append('title',sessionStorage.demoname);
             formData.append('desc',sessionStorage.demodes);

@@ -55,26 +55,29 @@
 	<h1>微信:Manykits</h1>
 	<body style="margin: 0;">
 		<div id="playerimg" onclick="videoPlay()"><img src="./player.png" alt=""></div>
-		<canvas id="world" tabindex="1"  style="position: absolute;" />
+		<canvas id="world" onclick="videostop()" tabindex="1"  style="position: absolute;" />
 	</body>
 	<script>
 		function videoPlay(){
 			document.getElementById('playerimg').style.cssText="display:none"
 			ide.pressStart() 
 		}
+		function videostop(){
+			document.getElementById('playerimg').style.cssText="display:block"
+			ide.togglePauseResume() 
+		}
 	</script>
 </html>
 <style>
 #world{
 	height: 650px!important;
-	width: 650px!important;
-	margin-top: 30px;
+	width: 100%!important;
 	display: block;
 }
 #playerimg{
 	position:absolute;
 	width: 100%;
-	height: 100%;
+	height: 42%;
 	z-index: 1000;
 	background: #333;
 	opacity: 0.8;

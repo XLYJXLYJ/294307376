@@ -154,19 +154,19 @@ import { looksum } from '../../public/seesum.js'
 .container37 .icon_zan span{
     position: relative;
     left: 8px;
-    margin-left: 12px;
+    margin-left: 18px;
     font-style: normal;
 }
 .container37 .icon_star span{
     position: relative;
     left: 8px;
-    margin-left: 12px;
+    margin-left: 18px;
     font-style: normal;
 }
 .container37 .icon_see span{
     position: relative;
     left: 8px;
-    margin-left: 12px;
+    margin-left: 18px;
     font-style: normal;
 }
 </style>

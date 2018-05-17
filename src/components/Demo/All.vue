@@ -123,7 +123,7 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
 .container27 {
     margin: 0 auto;
     height: 550px;
-    width: 1140px;
+    width: 1160px;
     position: relative;
     left: -20px;
     top: 33px;

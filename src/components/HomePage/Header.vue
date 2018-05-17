@@ -429,7 +429,6 @@ export default {
             this.axios.get('/res/verify')
             .then(response =>{
                 if(response.data.data.userid){
-                    
                     this.publicKey = response.data.data.publicKey
                     this.dialogLogin = false;
                     this.loginSign = false;
@@ -450,7 +449,7 @@ export default {
         //     console.log(sessionStorage.userid)
         //     if(sessionStorage.userid!=null){
         //         console.log(333)
-        //         this.$store.state.userNamesession02 = sessionStorage.userNamesession
+        //         this.$store.state.userNamesession02 = sessionStorage.usernamesession
         //         this.$store.state.userid = sessionStorage.userid
         //         this.dialogLogin = false;
         //         this.loginSign = false;

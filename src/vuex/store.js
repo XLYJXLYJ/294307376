@@ -51,3 +51,12 @@ export default new Vuex.Store({
     actions,
     mutations
 })
+
+
+//sessionStorage定义
+// sessionStorage.snapdemoid//作品id
+// sessionStorage.userid//登录者id
+// sessionStorage.lookuserdes//其他作者id
+// sessionStorage.usernamesession//登录者昵称
+// sessionStorage.demoname//作品名称
+// sessionStorage.demodes//描述作品
