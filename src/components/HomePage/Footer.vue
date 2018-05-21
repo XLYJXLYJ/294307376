@@ -53,6 +53,7 @@
 @import '../../assets/index.less';
 .container003{
   width: 100%!important;
+  min-width: 1300px;
   height: 323px;
   position: relative;
   background-color: @foot-color;

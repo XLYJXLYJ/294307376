@@ -81,6 +81,7 @@ export default{
     flex: 1;
     padding-top: 154px;
     padding-left: 5px;
+    height:890px;
 }
 .footer05{
     margin-top: 36px;

@@ -6,10 +6,12 @@
                         <div class="grid-content bg-purple list_pic" @click="edit02(item.id)">
                             <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>
                             <p>{{item.title}}</p>
-                            <span class="game_cat">{{item.desc}}</span>
-                             <span class="down01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
-                            <span class="down02"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
-                            <span class="down03"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
+                            <span class="game_cat" :title=item.desc>{{item.desc}}</span>
+                            <div class="downbox">
+                                <span class="down01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
+                                <span class="down02"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
+                                <span class="down03"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
+                            </div>
                         </div>
                     </router-link>
             </el-col>         
@@ -19,7 +21,9 @@
     </div>
 </template>
 <script>
-import { looksum } from '../../../public/seesum.js'
+import { looksum } from '../../../public/seesum.js'//引入计数转换器
+import api from '../../../ajax/getData.js'//引入路径
+import http from '../../../ajax/fetch.js'//引入封装的axios
     export default{
         filters: {//数字转换过滤器
             looksums(n) {
@@ -37,21 +41,34 @@ import { looksum } from '../../../public/seesum.js'
             }
         },
         mounted: function () {      
-            this.getdemo02()//获取初始化数据
+            this.getProduct()//获取初始化数据
+            // this.getdemo02()//获取初始化数据
         },
         methods:{
-            getdemo02(){//初始化函数
-                this.axios.post('/res/filelist',{
+            async getProduct() {
+                let params = {
                     state:1,
                     pagesize:16
-                })
-                .then(response => {       
-                    this.list=response.data.data
-                    this.$store.state.searchdemo=false//搜索结果列表全局变量
-                    this.$store.state.recommenddemo=false//推荐结果列表全局变量
-                    this.$store.state.productiondemo=true//产品结果列表全局变量
-                })
+                }
+                const res = await http.post(api.getDemo, params)
+                this.list=res.data.data
+                this.$store.state.searchdemo=false//搜索结果列表全局变量
+                this.$store.state.recommenddemo=false//推荐结果列表全局变量
+                this.$store.state.productiondemo=true//产品结果列表全局变量
             },
+
+            // getdemo02(){//初始化函数
+            //     this.axios.post('/res/filelist',{
+            //         state:1,
+            //         pagesize:16
+            //     })
+            //     .then(response => {       
+            //         this.list=response.data.data
+            //         this.$store.state.searchdemo=false//搜索结果列表全局变量
+            //         this.$store.state.recommenddemo=false//推荐结果列表全局变量
+            //         this.$store.state.productiondemo=true//产品结果列表全局变量
+            //     })
+            // },
             edit02(id){//编辑                
                 sessionStorage.id = id
                 this.$store.state.shareid=id
@@ -167,32 +184,34 @@ import { looksum } from '../../../public/seesum.js'
     color:@background-color; 
     border: none;
 }
+.container02 .downbox{
+    width: 172px;
+    height: 16px;
+    position: relative;
+    top: 32px;
+}
 .container02 .down01{
     font-size: 13px;
     width: 80px;
     height: 14px;
-    margin: 10px;
-    position: relative;
-    left: -9px;
-    top: 36px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
 }
 .container02 .down02{
     font-size: 13px;
     width: 80px;
     height: 14px;
-    margin: 10px;
-    position: relative;
-    left: 9px;
-    top: 36px;
+    position: absolute;
+    left: 40%;
+    margin: 0 auto;
 }
 .container02 .down03{
     font-size: 13px;
     width: 80px;
     height: 14px;
-    margin: 10px;
-    position: relative;
-    left: 24px;
-    top: 35px;
+    position: absolute;
+    left: 75%;
 }
 .container02 .down01 span{
     position: relative;

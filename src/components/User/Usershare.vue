@@ -70,6 +70,7 @@
                     .then(response => {           
                         this.list = response.data.data
                         this.list01 = response.data.data
+                        this.name = response.data.auth
                         if(response.data.data.msg == "这回真的没有了~"){
                             this.nosend=false,
                             this.sharebg=true

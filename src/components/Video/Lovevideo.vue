@@ -3,7 +3,7 @@
             <ul>
                 <li v-for="(item,index) in list" :key='item.id' v-if='index<5' @click="edit04(item.id)">
                     <img class="jinglin" :src="item.imgBuffer" alt="">
-                    <p class="jinglingtext">{{item.title}}</p>
+                    <p class="jinglingtext" :title="item.title">{{item.title}}</p>
                     <span class="time">分享于：{{item.create_time|formatDate}}</span>
                     <span class="icon_see_zan"><i class="icon_zan"><span>{{item.praisetotal|looksums}}</span></i></span>
                     <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
@@ -88,10 +88,13 @@ import { looksum } from '../../public/seesum.js'
 }
 .container38 .jinglingtext{
     position: absolute;
+    height: 26px;
+    width: 152px;
     top: 17px;
     left: 126px;
     font-size:@llg-size;
     color: #43455a;
+    overflow: hidden;
 }
 .container38 .jinglingtext:hover{
     color: @main-color;
@@ -131,22 +134,25 @@ import { looksum } from '../../public/seesum.js'
     position: relative;
     left: 32px;
     top: 77px;
+    text-decoration: none;
 }
 .container38 .icon_see_star01{
     height: 16px;
     width: auto;
     font-size:@sm-size;
     position: relative;
-    left: 126px;
+    left: 124px;
     top: 77px;
+    text-decoration: none;
 }
 .container38 .icon_see_see01{
     height: 16px;
     width: auto;
     font-size:@sm-size;
     position: relative;
-    left: 150px;
+    left: 146px;
     top: 77px;
+    text-decoration: none;
 }
 .container38 .icon_zan span{
     position: relative;

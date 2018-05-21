@@ -37,8 +37,8 @@
     </div> -->
         <div class="sort02">
         <ul>
-            <li class="more"><p @click="resentchange">最近更新</p></li>
-            <li class="new"><p @click="mostuse">最多下载</p></li>
+            <li class="more" :class="{active:isresentshow}"><p @click="resentchange">最近更新</p></li>
+            <li class="new" :class="{active:isdownshow}"><p @click="mostuse">最多下载</p></li>
         </ul>
         <!-- <el-checkbox class="nobuy" v-model="checked">仅显示未购买</el-checkbox> -->
         <p class="all">共有{{listnewlength}}个素材</p>
@@ -108,6 +108,8 @@ export default{
         listnewlength:'',//请求数据的长度
         listnumtotal:0,//请求的总页数
         cur_page:'',//当前页数
+        isresentshow:'',//最近更新背景
+        isdownshow:'',//最多下载背景
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"卡通场景"},
@@ -145,6 +147,8 @@ export default{
     },
     methods:{
         select01(id){
+            this.isresentshow=false
+            this.isdownshow=false
             this.isdemohover01 = id
             this.isdemohover02 = 0
             switch(id){                
@@ -220,6 +224,8 @@ export default{
         },
             // 第二级选择
         select0101(id){
+            this.isresentshow=false
+            this.isdownshow=false
             this.isdemohover02 = id
             if(id==0){
                 this.isdemohover03=1
@@ -255,6 +261,8 @@ export default{
 
         //最近更新
         resentchange(){
+            this.isresentshow=true
+            this.isdownshow=false
             this.isdemohover03 = 1
             this.axios.post('/res/resourcelist',{
                 onenav:2,
@@ -271,6 +279,8 @@ export default{
         },
         //最多使用
         mostuse(){
+            this.isresentshow=false
+            this.isdownshow=true
             this.axios.post('/res/resourcelist',{
                 onenav:2,
                 state:2,
@@ -605,6 +615,13 @@ export default{
    left: 0px;
    padding-top: 4px;
    cursor: pointer;
+}
+.container63 .active{
+   color:@background-color;
+   background: @main-color;
+}
+.container63 .active p{
+   color:@background-color;
 }
 .container63 .sort02 .new{
    width: 86px;

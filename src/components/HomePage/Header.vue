@@ -467,6 +467,7 @@ export default {
                 sessionStorage.usernamesession =''  
                 sessionStorage.userid ='' 
                 this.$store.state.userid = ''
+                this.$router.push({ name: 'Home' })
                 this.$router.push({ name: 'Recommend' })
                 location.reload()   
             }) 
@@ -483,6 +484,7 @@ export default {
 .headercontainer04{
     position: fixed;
     width: 100%;
+    min-width: 1300px;
     height: 114px;
     top: 0px;
     left: 0px;
@@ -494,6 +496,7 @@ export default {
 .headercontainer04 .headone{
     position: fixed;
     width: 100%;
+    min-width: 1300px;
     height: 30px;
     top: 0px;
     left: 0px;

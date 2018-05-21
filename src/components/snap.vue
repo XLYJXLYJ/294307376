@@ -5,10 +5,10 @@
                 <ul class="snapheaderleft">
                     <li class="bcw"><a href="http://www.manykit.com/codeplay" target="_blank"><img src="../assets/snappic/snapb.png" alt=""></a></li>
                     <li class="borderlight01" @click="snapdropdowmcontrol" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
-                    <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click.stop.prevent="handiframe"></li>
+                    <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
                     <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState" disabled="disabled"></li> -->
                     <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState"></li> -->
-                    <li class="borderlight03"><img src="../assets/snappic/snapu.png" alt="" @click.prevent="handiframepublish"></li>
+                    <li class="borderlight03"><img src="../assets/snappic/snapu.png" alt="" @click="handiframepublish"></li>
                     <li><div @keyup.alt="handiframepublish"></div></li>
                     <li class="borderlight04" v-show="login"
                     @click="dialogLogin = true, 
@@ -43,10 +43,10 @@
         </div>
         <!-- 参数播放 -->
 
-            <iframe class="snap" v-show="snap01" src="static/snap/pxsnap.html" name="snap01" frameborder="0" ></iframe>
+            <iframe class="snap" v-show="snap01" src="static/snap/pxsnap.html" name="snap01" id="myFrameId01" frameborder="0" ></iframe>
 
 
-            <iframe class="snap" frameborder="0" v-show="snap02" :src="'static/snap/pxsnap.html#present:Username=lynn&ProjectName='+snapdemoid" id="myFrameId"  name="snap02"></iframe>
+            <iframe class="snap" frameborder="0" v-show="snap02" :src="'static/snap/pxsnap.html#present:Username=lynn&ProjectName='+snapdemoid" id="myFrameId02"  name="snap02"></iframe>
 
 
         <!-- 接口播放 -->
@@ -345,6 +345,20 @@ export default{
     },
 
     methods: {
+        // downDisappear01(){
+        //     console.log(123)
+        //     document.getElementById("myFrameId01").onclick=function(){
+        //         this.snapdropdown01 = false
+        //         this.snapdemodropdowm = false
+        //     }
+        // },
+        // downDisappear02(){
+        //     console.log(456)
+        //     document.getElementById("myFrameId02").onclick=function(){
+        //         this.snapdropdown01 = false
+        //         this.snapdemodropdowm = false
+        //     }
+        // },
         //另存为  
         anothersave(){
             this.snap02=true
@@ -1024,7 +1038,7 @@ export default{
 .snapboxhead .snapdropdowm .block-col-12{
     position:relative;
     left:100px;
-    top: 40px;
+    top: 30px;
     color: @gray;
     width: 94px;
     height: 94px;

@@ -4,12 +4,11 @@
             <input class="search_input" placeholder="搜索作品" v-model="searchName" @keyup.enter="searchDemo">
             <i slot="prefix" class="el-input__icon el-icon-search" @click="searchDemo"></i>
         </div>
-        <div class="search01"  v-show="$store.state.searchDemo">
+        <div class="search01"  v-show="$store.state.searchdemo">
         <el-row :gutter="10">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id'> 
                     <router-link to="/Video">
                         <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
-                            <a href="https://snap.berkeley.edu/snapsource/snap.html#present:Username=jens&ProjectName=tree%20animation">
                             <!-- <div class="imgcon"><img :src="'static/publish/'+item.surfaceplot+'l.png'" alt=""></div> -->
                             <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>
                             <p>{{item.title}}</p>
@@ -17,7 +16,6 @@
                             <span class="down01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
                             <span class="down02"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
                             <span class="down03"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
-                            </a>
                         </div>
                     </router-link>
             </el-col>         
@@ -48,7 +46,7 @@ import { looksum } from '../../public/seesum.js'
         searchDemo(){//搜索函数
             this.axios.post('/res/filelist',{
                 sortstate:3,
-                searchName:this.searchName
+                searchname:this.searchName
             })
             .then(response => {  
                 if(this.searchName ==''){
@@ -58,14 +56,14 @@ import { looksum } from '../../public/seesum.js'
                     })
                 }
                 else if(response.data.data.msg == "这回真的没有了~"){
-                    this.$store.state.searchDemo=false
+                    this.$store.state.searchdemo=false
                     this.$message({
                         message:'没有找到相关的作品',
                         center:true
                     })
                 }else{
                 this.list=response.data.data
-                this.$store.state.searchDemo=true
+                this.$store.state.searchdemo=true
                 this.$store.state.recommenddemo=false
                 this.$store.state.productiondemo=false
                 }

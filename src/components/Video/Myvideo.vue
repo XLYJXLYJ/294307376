@@ -4,7 +4,7 @@
                 <router-link to="/Video">
                     <li v-for="(item,index) in list" :key='item.id' v-if='index<5' @click="edit03(item.id)">
                         <img class="jinglin" :src="item.imgBuffer" alt="">
-                        <p class="jinglingtext">{{item.title}}</p>
+                        <p class="jinglingtext" :title="item.title">{{item.title}}</p>
                         <span class="time">分享于：{{item.create_time|formatDate}}</span>
                         <span class="icon_see_zan"><i class="icon_zan"><span>{{item.praisetotal|looksums}}</span></i></span>
                         <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
@@ -68,7 +68,9 @@ import { looksum } from '../../public/seesum.js'
     position: relative;
     left:818px;
     top: -261px;
+    text-decoration: none;
 }
+
 .container37 ul li{
     height: 77px;
     width: 300px;
@@ -76,6 +78,7 @@ import { looksum } from '../../public/seesum.js'
     left:0px;
     margin-bottom: 18px;
     cursor: pointer;
+    text-decoration: none;
 }
  .container37 .jinglin{
     position: absolute;
@@ -90,10 +93,13 @@ import { looksum } from '../../public/seesum.js'
 }
 .container37 .jinglingtext{
     position: absolute;
+    height: 26px;
+    width: 152px;
     top: 17px;
     left: 126px;
     font-size:@llg-size;
     color: #43455a;
+    overflow:hidden;
 }
 .container37 .jinglingtext:hover{
     color: @main-color;
@@ -134,22 +140,25 @@ import { looksum } from '../../public/seesum.js'
     position: relative;
     left: 32px;
     top: 77px;
+    text-decoration: none;
 }
 .container37 .icon_see_star01{
     height: 16px;
     width: auto;
     font-size:@sm-size;
     position: relative;
-    left: 126px;
+    left: 124px;
     top: 77px;
+    text-decoration: none;
 }
 .container37 .icon_see_see01{
     height: 16px;
     width: auto;
     font-size:@sm-size;
     position: relative;
-    left: 150px;
+    left: 146px;
     top: 77px;
+    text-decoration: none;
 }
 .container37 .icon_zan span{
     position: relative;
@@ -168,6 +177,9 @@ import { looksum } from '../../public/seesum.js'
     left: 8px;
     margin-left: 18px;
     font-style: normal;
+}
+.container37 a{
+    text-decoration: none;
 }
 </style>
 

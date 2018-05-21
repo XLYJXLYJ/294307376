@@ -93,25 +93,32 @@ export default {
         },
         //下一页
         Pagingup(){ 
-            this.i=this.i+1
-            this.axios.post('/res/userinfo',{
-                    userid:sessionStorage.userid,
-                    state:3,
-                    pagenum:this.i,
-                    pagesize:6
-            })
-            .then(response => {   
-                this.list01 = response.data.data  
-                this.list=this.list.concat(this.list01)
-                if(this.list01.length==0){
-                    this.i=1
-                    this.list=[]
-                    this.list01 = this.list03
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });           
+            if(!this.list){
+                this.$message({
+                    message:'暂时还没有收藏的作品哦~',
+                    center:true
+                })
+            }else{
+                this.i=this.i+1
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.userid,
+                        state:3,
+                        pagenum:this.i,
+                        pagesize:6
+                })
+                .then(response => {   
+                    this.list01 = response.data.data  
+                    this.list=this.list.concat(this.list01)
+                    if(this.list01.length==0){
+                        this.i=1
+                        this.list=[]
+                        this.list01 = this.list03
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });   
+            }        
         },
         //上一页
         Pagingdown(){
@@ -308,6 +315,7 @@ export default {
 }
 .container41 .makedemotext{
     position: relative;
+    width: 400px;
     top: -170px;
     left: 20px;
 }
@@ -334,5 +342,6 @@ export default {
     position: relative;
     left: 449px;
     top: 58px;
+    width: 400px;
 }
 </style>

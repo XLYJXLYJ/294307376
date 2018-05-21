@@ -17,8 +17,8 @@
                     <div :class='{"jia":!isAttention,"jia1":isAttention}' @click="jia"></div>
                 </div>
                 <div>
-                    <div :class='{"love":!isPraise,"love1":isPraise}' @click="love"><span class="lovenum">{{list.praisetotal}}</span></div>
-                    <div :class='{"star":!isCollect,"star1":isCollect}' @click="star"><span class="starnum">{{list.collecttotal}}</span></div>
+                    <div :class='{"love":!isPraise,"love1":isPraise}' @click="love"  title='点赞'><span class="lovenum">{{list.praisetotal}}</span></div>
+                    <div :class='{"star":!isCollect,"star1":isCollect}' @click="star" title='收藏'><span class="starnum">{{list.collecttotal}}</span></div>
                     <!-- <button class="buycode">购买代码</button>
                     <span class="buy">已有4人购买</span> -->
                     <!-- <a class="avideo" href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation" target="myFrameName"><button>点击播放</button></a> -->
@@ -107,7 +107,7 @@ export default{
             lookuserdes:'',//赋值sessionStorage作者id
             videoimg01:'',//控制用户头像是否显示
             videoimg02:'',//控制默认头像是否显示
-            imgBuffer:''//用户自选头像imgbuffer
+            imgBuffer:'',//用户自选头像imgbuffer
         }
     },
     created(){
@@ -566,13 +566,15 @@ export default{
     left: 0px;
 }
 .con3536 .comment01 .explaintext{
-    height: 17px;
-    width:auto;
+    height: 84px;
+    width:780px;
     font-size:@xm-size;
     color: #43455a;
     position: absolute;
     top: 85px;
     left: 0px;
+    word-wrap: break-word;
+    overflow-y: hidden;
 }
 .con3536 .comment01 .qrshare{
     width:117px;

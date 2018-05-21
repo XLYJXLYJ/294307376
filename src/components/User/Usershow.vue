@@ -55,13 +55,8 @@
                 this.list = response.data.data
                 this.list01 = response.data.data
                 this.list02 = response.data.data
-                if(!response.data.data){
-                    this.nosend=false,
-                    this.sharebg=true
-                }else{
-                    this.nosend=true,
-                    this.sharebg=false
-                }  
+                this.list03 = response.data.data
+                this.showuserimg() 
             })
             }else{                      //加载作者本人关注的信息
             this.myfollow=true,
@@ -76,38 +71,54 @@
                  this.list = response.data.data
                  this.list01 = response.data.data
                  this.list02 = response.data.data
-                    if(!response.data.data){
-                        this.nosend=false,
-                        this.sharebg=true
-                    }else{
-                        this.nosend=true,
-                        this.sharebg=false
-                    }  
+                 this.list03 = response.data.data
+                 this.showuserimg()
                 })
             }
         },
-
+        //是否显示用户头像
+        showuserimg(){
+            if(!this.list){
+                this.nosend=false,
+                this.sharebg=true
+            }else{
+                if(!this.list.imgBuffer){
+                    this.imgBuffer='static/localpic.png'
+                }else{
+                    this.imgBuffer=this.list.imgBuffer
+                }
+                this.nosend=true,
+                this.sharebg=false
+            }  
+        },
         //下一页
         Pagingup(){ 
-            this.i=this.i+1
-            this.axios.post('/res/userinfo',{
-                    userid:sessionStorage.userid,
-                    state:5,
-                    pagenum:this.i,
-                    pagesize:10
-            })
-            .then(response => {   
-                this.list01 = response.data.data  
-                this.list=this.list.concat(this.list01)
-                if(this.list01.length==0){
-                    this.i=1
-                    this.list=[]
-                    this.list01 = this.list03
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });           
+            if(!this.list){
+                this.$message({
+                    message:'还没有关注你的人哦~',
+                    center:true
+                })
+            }else{
+                this.i=this.i+1
+                this.axios.post('/res/userinfo',{
+                        userid:sessionStorage.userid,
+                        state:5,
+                        pagenum:this.i,
+                        pagesize:10
+                })
+                .then(response => {   
+                    this.list01 = response.data.data  
+                    this.list=this.list.concat(this.list01)
+                    if(this.list01.length==0){
+                        this.i=0
+                        this.list=[]
+                        this.list01 = this.list03
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });           
+            }
         },
         //上一页
         Pagingdown(){

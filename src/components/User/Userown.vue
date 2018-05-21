@@ -26,7 +26,7 @@
                 <div class="makedemotext"><router-link to="snap" target="_blank">创作</router-link><p>你的封面作品</p> <br/><span>还没有封面作品</span></div>
             </div>  
             <div class="demoimg" v-show="demoimg">
-                <img class="userdemo" :src="demoimageUrl" alt="">
+                <img class="userdemo" :src="'data:image/png;base64,'+demoimageUrl" alt="">
             </div>   
             <p class="name01">封面作品</p>
             <p class="atten01">暂无作品</p>
@@ -70,6 +70,7 @@ import { looksum } from '../../public/seesum.js'
                 //  followother:'',关注按钮
                  userownimg01:'',//显示用户选择的头像
                  userownimg02:'',//显示默认的头像
+                 imgBuffer:''//封面作品
             } 
         },
         // watch:{
@@ -111,7 +112,7 @@ import { looksum } from '../../public/seesum.js'
                         userid:sessionStorage.lookuserdes,
                         getinfostate:3
                     })
-                    .then(response => {   
+                    .then(response => { 
                         this.username= response.data.data.username   
                         this.userimageUrl= response.data.data.imgBuffer    
                         this.aboutme = response.data.data.aboutme,
@@ -131,14 +132,14 @@ import { looksum } from '../../public/seesum.js'
                         }
                         this.isuserimg()//是否显示默认的头像
                     })
-                }else{              
+                }else{             
                     this.savedes=true,
                     this.followother=false
                     this.axios.post('/res/userinfo',{//加载作者本人的信息
                         userid:sessionStorage.userid,
                         getinfostate:3
                     })
-                    .then(response => {   
+                    .then(response => {     
                         this.username= response.data.data.username   
                         this.userimageUrl= response.data.data.imgBuffer    
                         this.aboutme = response.data.data.aboutme,
@@ -147,7 +148,7 @@ import { looksum } from '../../public/seesum.js'
                         this.collecttotal = response.data.data.collecttotal
                         this.praisetotal = response.data.data.praisetotal
                         this.looktotal = response.data.data.looktotal
-                        if(!response.data.data.coverworkid){
+                        if(!this.demoimageid){
                             this.demonone=true,
                             this.demoimg=false
                            
@@ -200,7 +201,9 @@ import { looksum } from '../../public/seesum.js'
                     state:1
                 })
                 .then(response =>{
-                    if(!response.data.data.imgBuffer){
+                    this.imgBuffer=response.data.data.imgBuffer
+                    console.log(response)
+                    if(!this.imgBuffer){
                         this.demonone=true,
                         this.demoimg=false
                     }else{

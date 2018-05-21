@@ -193,7 +193,7 @@ import { formatDate } from '../../public/time.js'
     color: @cancel-color;
     font-size:@xm-size;
     position: absolute;
-    top: 221px;
+    top: 214px;
     left: 275px;
     cursor: pointer;
 }

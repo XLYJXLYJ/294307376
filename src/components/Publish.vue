@@ -133,6 +133,7 @@ export default {
                     message: '发布成功',
                     center: true
                     }); 
+                setTimeout(this.$router.go(-1),3000)
                 })
             }
         },
@@ -162,9 +163,10 @@ export default {
                 
             })
             this.$message({
-                message: '上传成功',
+                message: '发布成功',
                 center: true
-            });  
+            }); 
+            setTimeout(this.$router.go(-1),3000)
         },
         //选择图片
         choise_file () {
