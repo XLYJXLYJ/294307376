@@ -60,3 +60,5 @@ export default new Vuex.Store({
 // sessionStorage.usernamesession//登录者昵称
 // sessionStorage.demoname//作品名称
 // sessionStorage.demodes//描述作品
+// sessionStorage.sharenameid//分享作者id
+// sessionStorage.sharedesid//分享作品id

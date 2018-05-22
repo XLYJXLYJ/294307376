@@ -58,7 +58,8 @@
                         </div>
                     </div>
                     <div class="qrsharetext">
-                        <button @click="shareVideo">全屏播放</button>
+                        <!-- <button @click="shareVideo">全屏播放</button> -->
+                        <router-link to="/Share" target="_blank"><button>全屏播放</button></router-link>
                         <!-- <p>or</p> -->
                         <span>扫码在手机上玩</span>
                     </div>
@@ -67,11 +68,17 @@
         </div> 
 
         <!-- 模态框 -->      
-        <transition name="el-fade-in-linear">
+        <!-- <transition name="el-fade-in-linear">
             <el-dialog :visible.sync="dialogVideo"  width="1200px" height="600px" style="background: black" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close="false">
                     <iframe class="videoiframe" style="height:550px;width:1196px;" :src="'static/snap/playersnap.html#present:Username=Lynn&ProjectName='+demoid" ></iframe>   
             </el-dialog> 
-        </transition>  
+        </transition>   -->
+
+        <!-- <transition name="el-fade-in-linear">
+            <el-dialog :visible.sync="dialogVideo"  width="1200px" height="600px" style="background: black" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close="false">
+                <iframe class="videoiframe" style="height:550px;width:1196px;" :src="this.bannerUrl" ></iframe>   
+            </el-dialog> 
+        </transition>   -->
    
         <Footer/>
     </div>
@@ -158,6 +165,8 @@ export default{
                 this.demoid = sessionStorage.id 
                 this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+ this.authid +'&ProjectName='+this.$store.state.shareid
                 //  this.bannerUrl = 'localhost:8080/static/snap/playersharesnap.html#present:Username=10004&ProjectName=20'
+                sessionStorage.sharenameid=this.authid
+                sessionStorage.sharedesid=this.$store.state.shareid
                 this.$nextTick(function () {//生成二维码
                     canvas = document.getElementById('qrccode')
                     this.createQrc()
@@ -333,12 +342,11 @@ export default{
     }
 }
 </script>
-<style scoped lang="less">
+<style lang="less">//去掉了限制全局变量
 @import '../assets/index.less';
-// .el-dialog__body{
-//     margin: 0px;
-//     padding: 0px;
-// }
+.el-dialog__body{
+    background: #333!important;
+}
 .con3536{
     width: 100%;
     background: @mainbg-color;
@@ -596,7 +604,7 @@ export default{
     left: 1050px;
 }
 .con3536 .comment01 .qrsharetext button{
-    width:70px;
+    width:90px;
     height: 38px;
     position: absolute;
     top: 0px;
