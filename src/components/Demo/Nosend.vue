@@ -9,9 +9,25 @@
                 </div>
                 <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
                 <router-link to="/publish"><button class="button02" @click="publish(item.id)">发布</button></router-link> 
-                <p class="cancelpub" @click.prevent.stop="deletedemo(item.id)">删除</p>
+                <p class="cancelpub" @click.prevent.stop="deletedemo01(item.id)">删除</p>
             </li>    
-        </ul>  
+        </ul> 
+
+        <transition name="el-fade-in-linear">
+            <div>
+                <el-dialog :visible.sync="dialogdelete" :modal="false" width="320px" :show-close="false">
+                    <div class="containerdelete">
+                        <el-form>
+                            <el-form-item class="iden01">
+                                <h1>确定删除项目吗？</h1>      
+                            </el-form-item>
+                             <el-button  class="iden02"  @click="deletedemo02">确定</el-button>
+                            <el-button  class="iden03" @click="dialogdelete=false">取消</el-button>
+                        </el-form>
+                    </div>
+                </el-dialog>
+            </div>
+        </transition> 
     </div>
 </template>
 <script>
@@ -28,6 +44,8 @@ import { formatDate } from '../../public/time.js'
             return{
                 noSend:true,//是否显示列表
                 list:[],//获取数据
+                dialogdelete:false,//删除弹出框
+                deleteId:''//删除文件ID
             }
         },
         mounted: function () {      
@@ -75,20 +93,26 @@ import { formatDate } from '../../public/time.js'
             //         location.reload();
             //     })
             // },
-            deletedemo(id){
+            deletedemo01(id){
+                this.deleteId = id
+                this.dialogdelete=true
+            },
+            //删除文件函数
+            deletedemo02(){
+                this.dialogdelete=false
                 this.axios.post('/res/dealfile',{
-                    id:id,
+                    id:this.deleteId,
                     userid:sessionStorage.userid,
                     state:4
                 })
                 .then(response => {
                     this.$message({
-                    message: '删除成功，请刷新，如需还原，请到回收站',
+                    message: '删除成功，如需还原，请到回收站',
                     center: true
                     }); 
-                     this.getnoSenddemo()
+                    this.getnoSenddemo()
                 })
-            }
+            },
         }
     }
 </script>
@@ -96,7 +120,7 @@ import { formatDate } from '../../public/time.js'
 @import '../../assets/index.less';
 .container29 {
     margin: 0 auto;
-    height: 550px;
+    height: auto;
     width: 1140px;
     position: relative;
     left: -20px;
@@ -105,7 +129,7 @@ import { formatDate } from '../../public/time.js'
 }
 .container29 ul{
     position: relative;
-    left: 0px;
+    left: 20px;
     top: 0px;
     height: auto;
     z-index: 100;
@@ -134,8 +158,9 @@ import { formatDate } from '../../public/time.js'
     top: 12px;
 }
 .container29 .all_up p{
-    height: 19px;
-    width:auto;
+    height: 24px;
+    width:340px;
+    overflow: hidden;
     color: @gray;
     font-size:@md-size;
     position: absolute;
@@ -196,5 +221,20 @@ import { formatDate } from '../../public/time.js'
     top: 214px;
     left: 275px;
     cursor: pointer;
+}
+.container29 .containerdelete .iden01{
+    position: relative;
+    left: 35%;
+    top: 20px;
+}
+.container29 .containerdelete .iden02{
+    position: relative;
+    left: 19%;
+    margin-bottom: 20px;
+}
+.container29 .containerdelete .iden03{
+    position: relative;
+    left: 37%;
+    margin-bottom: 20px;
 }
 </style>

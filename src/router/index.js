@@ -198,7 +198,7 @@ export default new Router({
         //   name: 'Source',
           component: resolve =>require(['@/components/Source'],resolve),
           children:[
-            {path: '/source/sourceshop', component: resolve =>require(['@/components/Source/Sourceshop'],resolve),
+            {path: '/source/sourceshop', name: 'sourceshop',component: resolve =>require(['@/components/Source/Sourceshop'],resolve),
                 children:[
                     {path: '/source/sourceshop/Backg', component: resolve =>require(['@/components/Source/source/Backg'],resolve)},
                     {path: '/source/sourceshop/Game', component: resolve =>require(['@/components/Source/source/Game'],resolve)},

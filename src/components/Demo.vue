@@ -81,7 +81,8 @@ export default{
     flex: 1;
     padding-top: 154px;
     padding-left: 5px;
-    height:890px;
+    height: auto;
+    display: inline-block;
 }
 .footer05{
     margin-top: 36px;
@@ -90,7 +91,9 @@ export default{
 .container24{
     margin: 0 auto;
     width: 1200px;
-    height: 840px;
+    height:auto!important;
+    height:200px;
+    min-height:200px;
     background:@background-color; 
     position: relative;
 }

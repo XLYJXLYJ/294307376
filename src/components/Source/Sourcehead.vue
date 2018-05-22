@@ -60,6 +60,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
             },
             //获取默认数据
             Getsearch(){
+                this.$router.push({name:'sourceshop'})
                 this.$store.state.sourcesearch=true,
                 this.$store.state.sourcebackg=false,
                 this.$store.state.sourcegame=false,
@@ -78,18 +79,20 @@ import Sourceshop from '@/components/Source/Sourceshop'
                     searchname:this.sourcename,
                     pagesize:15
                 })
-                    .then(response => {  
-                        var searchresult = response.data.data.msg
-                        if(searchresult=="这回真的没有了~"){
-                                this.$message({
-                                message: '没有搜索到相关素材',
-                                center: true,
-                        })
-                        }else{
+                .then(response => {  
+                    var searchresult = response.data.data.msg
+                    if(searchresult=="这回真的没有了~"){
                             this.list=response.data.data
                             this.listnew=response.data.data
-                        }
+                            this.$message({
+                            message: '没有搜索到相关素材',
+                            center: true,
                     })
+                    }else{
+                        this.list=response.data.data
+                        this.listnew=response.data.data
+                    }
+                })
                 }
             },
         },

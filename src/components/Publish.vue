@@ -190,8 +190,9 @@ export default {
 <style scoped lang="less">
 @import '../assets/index.less';
 .container72{
+    position: absolute;
     width: 100%;
-    height: 970px;
+    height: 100%;
     background: #F1F1F1;
 }
 .container73{
@@ -200,7 +201,8 @@ export default {
     background: @background-color;
     margin: 0 auto; 
     position: relative;
-    top: 224px;
+    top: 15%;
+    vertical-align:middle;
 }
 .container73 .publishdemo{
     color: @gray;

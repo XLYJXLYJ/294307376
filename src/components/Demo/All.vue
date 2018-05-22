@@ -15,6 +15,22 @@
                 <p class="cancelpub" @click.prevent.stop="Canpublic(item.id,item.state)">{{item.state==0?'删除':''}}</p>
             </li>
         </ul>  
+
+        <transition name="el-fade-in-linear">
+            <div>
+                <el-dialog :visible.sync="dialogdelete" :modal="false" width="320px" :show-close="false">
+                    <div class="containerdelete">
+                        <el-form>
+                            <el-form-item class="iden01">
+                                <h1>确定删除项目吗？</h1>      
+                            </el-form-item>
+                             <el-button  class="iden02"  @click="deletedemo">确定</el-button>
+                            <el-button  class="iden03" @click="dialogdelete=false">取消</el-button>
+                        </el-form>
+                    </div>
+                </el-dialog>
+            </div>
+        </transition>
     </div>
 </template>
 <script>
@@ -36,7 +52,9 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
             return{
                 noSend:true,//是否显示列表
                 list:[],//数据列表
-                userid:sessionStorage.userid//用户id
+                userid:sessionStorage.userid,//用户id
+                dialogdelete:false,//删除弹出框
+                deleteId:''//删除文件ID
             }
         },
         mounted: function () {      
@@ -66,19 +84,9 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
                 })
             },
             Canpublic(id,state){//处理文件函数
-                if(state==0){//删除文件函数
-                    this.axios.post('/res/dealfile',{
-                        id:id,
-                        userid:sessionStorage.userid,
-                        state:4
-                    })
-                    .then(response => {
-                        this.$message({
-                        message: '删除成功，如需还原，请到回收站',
-                        center: true
-                        }); 
-                        this.getalldemo()
-                    })
+                if(state==0){//删除文件
+                    this.deleteId = id
+                    this.dialogdelete=true
                 }else{//取消文件函数
                     this.axios.post('/res/dealfile',{
                             id:id,
@@ -94,7 +102,24 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
                     })
                 }
             },
-            isPublic(id,state){//处理文件函数
+            //删除文件函数
+            deletedemo(){
+                this.dialogdelete=false
+                this.axios.post('/res/dealfile',{
+                    id:this.deleteId,
+                    userid:sessionStorage.userid,
+                    state:4
+                })
+                .then(response => {
+                    this.$message({
+                    message: '删除成功，如需还原，请到回收站',
+                    center: true
+                    }); 
+                    this.getalldemo()
+                })
+            },
+            //处理文件函数
+            isPublic(id,state){
                 if(state==0){//发布文件函数
                     this.$store.state.demoxmlid = id
                     this.$store.state.publicstate = 0
@@ -122,7 +147,7 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
 
 .container27 {
     margin: 0 auto;
-    height: 550px;
+    height: auto;
     width: 1160px;
     position: relative;
     left: -20px;
@@ -131,7 +156,7 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
 }
 .container27 ul{
     position: relative;
-    left: 0px;
+    left: 20px;
     top: 0px;
     height: auto;
     z-index: 100;
@@ -160,8 +185,9 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
     top: 12px;
 }
 .container27 .all_up p{
-    height: 19px;
-    width:auto;
+    height: 24px;
+    width:340px;
+    overflow: hidden;
     color: @gray;
     font-size:@md-size;
     position: absolute;
@@ -236,5 +262,20 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
   left: 275px;
   cursor: pointer;
   text-align: center;
+}
+.container27 .containerdelete .iden01{
+    position: relative;
+    left: 35%;
+    top: 20px;
+}
+.container27 .containerdelete .iden02{
+    position: relative;
+    left: 19%;
+    margin-bottom: 20px;
+}
+.container27 .containerdelete .iden03{
+    position: relative;
+    left: 37%;
+    margin-bottom: 20px;
 }
 </style>

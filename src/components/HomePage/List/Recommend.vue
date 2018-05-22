@@ -144,6 +144,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     overflow: hidden;
     text-align: left;
     color:@black;
+    font-weight: 100;
 }
 .container01 p:hover{
     color:@main-color;

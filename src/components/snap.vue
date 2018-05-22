@@ -497,15 +497,13 @@ export default{
                         let filebir = this.formSave.file
                         this.filebinary = new Blob([filebir]);
                     }else{                             //未保存保存
-                            sessionStorage.formSavetitle = this.formSave.title
-                            sessionStorage.formSavedesc = this.formSave.desc
-                            this.savestate=1
-                            this.dialogSave = true
-                            this.formSave.title=sessionStorage.formSavetitle//赋值上一次保存的值
-                            this.formSave.desc=sessionStorage.formSavedesc//赋值上一次保存的值
-                            this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT(' ')
-                            let filebir = this.formSave.file
-                            this.filebinary = new Blob([filebir]);
+                        this.savestate=1
+                        this.dialogSave = true
+                        this.formSave.title=this.edittittle//赋值上一次保存的值
+                        this.formSave.desc=this.editdes//赋值上一次保存的值
+                        this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT(' ')
+                        let filebir = this.formSave.file
+                        this.filebinary = new Blob([filebir]);
                     }
                 }else{
                     this.$message({
@@ -543,6 +541,8 @@ export default{
                     }
                     this.axios.post('/res/upload',formData,config)
                     .then( res => {
+                        this.edittittle = this.formSave.title
+                        this.editdes = this.formSave.desc
                         this.$store.state.demoxmlid = res.data.data.id//保存后赋值作品值，这样会覆盖之前保存的项目，如果要新建项目，必须要按新建按钮
                         this.$store.state.publicstate==0
                     }).catch( res => {

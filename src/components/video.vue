@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="qrsharetext">
-                        <button @click="shareVideo">分享测试</button>
+                        <button @click="shareVideo">全屏播放</button>
                         <!-- <p>or</p> -->
                         <span>扫码在手机上玩</span>
                     </div>
@@ -68,8 +68,8 @@
 
         <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
-            <el-dialog :visible.sync="dialogVideo"  width="580px" height="600px" :modal="true" :modal-append-to-body="false" :lock-scroll="false">
-                    <iframe class="videoiframe" :src="bannerUrl" ></iframe>   
+            <el-dialog :visible.sync="dialogVideo"  width="1200px" height="600px" style="background: black" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close="false">
+                    <iframe class="videoiframe" style="height:550px;width:1196px;" :src="'static/snap/playersnap.html#present:Username=Lynn&ProjectName='+demoid" ></iframe>   
             </el-dialog> 
         </transition>  
    
@@ -335,6 +335,10 @@ export default{
 </script>
 <style scoped lang="less">
 @import '../assets/index.less';
+// .el-dialog__body{
+//     margin: 0px;
+//     padding: 0px;
+// }
 .con3536{
     width: 100%;
     background: @mainbg-color;
@@ -644,8 +648,8 @@ export default{
 }
 
 .container3536 .videoiframe{
-    position:absolute;
-    width: 100%;
-    height: 550px;
+    // position:absolute;
+    // width: 1200px!important;
+    // height: 100%!important;
 }
 </style>

@@ -86,7 +86,7 @@ export default{
 @import '../../assets/index.less';
 .container28 {
     margin: 0 auto;
-    height: 550px;
+    height: auto;
     width: 1140px;
     position: relative;
     left: -20px;
@@ -95,7 +95,7 @@ export default{
 }
 .container28 ul{
     position: relative;
-    left: 0px;
+    left: 20px;
     top: 0px;
     height: auto;
     z-index: 100;
@@ -124,8 +124,9 @@ export default{
     top: 12px;
 }
 .container28 .all_up p{
-    height: 19px;
-    width:auto;
+    height: 24px;
+    width:340px;
+    overflow: hidden;
     color: @gray;
     font-size:@md-size;
     position: absolute;

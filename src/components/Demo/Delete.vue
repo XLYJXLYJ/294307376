@@ -1,4 +1,5 @@
 <template>
+<div class="container24">
     <div class="container30">
         <ul v-for="item in list" :key='item.id' v-show="noSend">
             <li>
@@ -9,10 +10,27 @@
                     <!-- <span class="deltime02">上午11：12：51</span> -->
                 </div>
                 <button class="button01" @click.prevent.stop="restore(item.id)">还原</button>
-                <button class="button02" @click.prevent.stop="deletedemo(item.id)">删除</button>
+                <button class="button02" @click.prevent.stop="deletedemo01(item.id)">删除</button>
             </li>
         </ul>  
     </div>
+
+    <transition name="el-fade-in-linear">
+        <div>
+            <el-dialog :visible.sync="dialogdelete" :modal="false" width="320px" :show-close="false">
+                <div class="containerdelete">
+                    <el-form>
+                        <el-form-item class="iden01">
+                            <h1>确定删除项目吗？</h1>      
+                        </el-form-item>
+                            <el-button  class="iden02"  @click="deletedemo02">确定</el-button>
+                        <el-button  class="iden03" @click="dialogdelete=false">取消</el-button>
+                    </el-form>
+                </div>
+            </el-dialog>
+        </div>
+        </transition> 
+</div>
 </template>
 <script>
 import { mapGetters,mapActions} from 'vuex'
@@ -28,6 +46,8 @@ import { formatDate } from '../../public/time.js'
             return{
                 noSend:true,//是否显示列表
                 list:[],//数据
+                dialogdelete:false,//删除弹出框
+                deleteId:''//删除文件ID
             }
         },
         mounted: function () {      
@@ -65,9 +85,15 @@ import { formatDate } from '../../public/time.js'
                     this.getalldemo()
                 })
             },
-            deletedemo(id){//删除文件函数
-                this.axios.post('/res/dealfile',{
-                    id:id,
+            deletedemo01(id){//删除文件函数
+                this.deleteId = id
+                this.dialogdelete=true
+            },
+            //删除文件函数
+            deletedemo02(){
+                 this.dialogdelete=false
+                 this.axios.post('/res/dealfile',{
+                    id:this.deleteId,
                     userid:sessionStorage.userid,
                     state:5
                 })
@@ -78,7 +104,7 @@ import { formatDate } from '../../public/time.js'
                     }); 
                     this.getalldemo()
                 })
-            }
+            },
         }
     }
 </script>
@@ -86,12 +112,12 @@ import { formatDate } from '../../public/time.js'
 @import '../../assets/index.less';
 .container30 {
     margin: 0 auto;
-    height: 550px;
-    width: 1140px;
+    height: auto;
+    width: 1160px;
     position: relative;
-    left: -20px;
-    overflow: auto;
-    top:-640px;
+    left: 10px;
+    top:-30px;
+    display: inline-block;
 }
 .container30 ul{
     position: relative;
@@ -103,7 +129,6 @@ import { formatDate } from '../../public/time.js'
     text-align:left;    
     float: left;
     list-style: none;
-    overflow: hidden;
 }
 .container30 li{
     position: relative;
@@ -124,8 +149,9 @@ import { formatDate } from '../../public/time.js'
     top: 12px;
 }
 .container30 .all_up p{
-    height: 19px;
-    width:auto;
+    height: 24px;
+    width:340px;
+    overflow: hidden;
     color: @gray;
     font-size:@md-size;
     position: absolute;
@@ -173,5 +199,20 @@ import { formatDate } from '../../public/time.js'
   border: none;
   font-size:@lg-size;
   cursor: pointer;
+}
+.container24 .containerdelete .iden01{
+    position: relative;
+    left: 35%;
+    top: 20px;
+}
+.container24 .containerdelete .iden02{
+    position: relative;
+    left: 19%;
+    margin-bottom: 20px;
+}
+.container24 .containerdelete .iden03{
+    position: relative;
+    left: 37%;
+    margin-bottom: 20px;
 }
 </style>

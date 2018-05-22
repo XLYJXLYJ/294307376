@@ -74,11 +74,6 @@ IDE_Morph.prototype.exportProject_MANYKIT= function (name, plain) {
     }
 };
 
-
-
-
-
-
 IDE_Morph.prototype.openIn = function (world) {
     var hash, myself = this, urlLanguage = null;
     var projectData;
@@ -150,8 +145,8 @@ IDE_Morph.prototype.openIn = function (world) {
             return '';
         }
     }
-    // dict = SnapCloud.parseDict(location.hash.substr(9));
-    // dict.Username = dict.Username.toLowerCase();
+    dict = SnapCloud.parseDict(location.hash.substr(9));
+    dict.Username = dict.Username.toLowerCase();
     // function applyFlags(dict) {
     //     dict.embedMode = 0
     //     if (dict.embedMode) {
@@ -393,6 +388,17 @@ IDE_Morph.prototype.openIn = function (world) {
     }
 };
 
+//暂停播放
+IDE_Morph.prototype.togglePauseResume = function () {
+    document.getElementById('playerimg').style.cssText="display:block"
+    if (this.stage.threads.isPaused()) {
+        this.stage.threads.resumeAll(this.stage);
+    } else {
+        this.stage.threads.pauseAll(this.stage);
+    }
+    this.controlBar.pauseButton.refresh();
+};
+
 IDE_Morph.prototype.createControlBar = function () {
     // assumes the logo has already been created
     var padding = 5,
@@ -465,8 +471,8 @@ IDE_Morph.prototype.createControlBar = function () {
         myself, // the IDE is the target
         'toggleAppMode',
         [
-            new SymbolMorph('fullScreen', 0),
-            new SymbolMorph('normalScreen', 0)
+            new SymbolMorph('fullScreen', 14),
+            new SymbolMorph('normalScreen', 14)
         ],
         function () {  // query
             return myself.isAppMode;
@@ -654,7 +660,7 @@ IDE_Morph.prototype.createControlBar = function () {
     // button.hint = 'open, save, & annotate project';
     button.fixLayout();
     projectButton = button;
-    this.controlBar.add(projectButton);
+    // this.controlBar.add(projectButton);//注释
     this.controlBar.projectButton = projectButton; // for menu positioning
 
     // settingsButton
@@ -701,7 +707,7 @@ IDE_Morph.prototype.createControlBar = function () {
     // button.hint = 'cloud operations';
     button.fixLayout();
     cloudButton = button;
-    this.controlBar.add(cloudButton);
+    // this.controlBar.add(cloudButton);//注释
     this.controlBar.cloudButton = cloudButton; // for menu positioning
 
     this.controlBar.fixLayout = function () {
@@ -806,15 +812,4 @@ IDE_Morph.prototype.createControlBar = function () {
         this.label.setCenter(this.center());
         this.label.setLeft(this.settingsButton.right() + padding);
     };
-};
-
-//暂停播放
-IDE_Morph.prototype.togglePauseResume = function () {
-    document.getElementById('playerimg').style.cssText="display:block"
-    if (this.stage.threads.isPaused()) {
-        this.stage.threads.resumeAll(this.stage);
-    } else {
-        this.stage.threads.pauseAll(this.stage);
-    }
-    this.controlBar.pauseButton.refresh();
 };

@@ -80,6 +80,10 @@ import { looksum } from '../../public/seesum.js'
    position: relative;
    left: 134px;
    top: -68px;
+   width: 166px;
+   height: 24px;
+   overflow: hidden;
+   font-weight: 100;
    color:@contain06-color;
 }
 .container06 .rank_up p:hover{
