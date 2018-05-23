@@ -109,21 +109,25 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
 .container01{
     width: 858px;
     height: auto;
+    position: relative;
+    left: -20px;
 }
 .container01 .routetext{
     color:@black;
     text-decoration: none;
 }
 .container01 .list_pic{
-    margin-top: 44px;
+    margin-top: 24px;
     height: 270px;
     width: 173px;
     cursor: pointer;
     color: @list-color;
+    border-radius: 10px;
+    padding: 20px;
 }
-/* .container01 .list_pic:hover{
-    background: @list-color;
-} */
+ .container01 .list_pic:hover{
+    background: #f3f3f3;
+} 
 .container01 .imgcon{
     height: 170px;
     width: 173px;
@@ -131,10 +135,11 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
 .container01 .imgcon img{
     width: 100%;
     height: 100%;
-}
-.container01 .imgcon img:hover{
     border: 1px solid @img-color;
 }
+// .container01 .imgcon img:hover{
+    
+// }
 .container01 p{
     font-size:@lg-size;
     position: relative;
@@ -196,7 +201,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     width: 172px;
     height: 16px;
     position: relative;
-    top: 32px;
+    top: 42px;
 }
 .container01 .down01{
     font-size: 13px;

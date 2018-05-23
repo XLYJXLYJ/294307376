@@ -594,7 +594,8 @@ export default {
     background: @background-color;
     position: relative;
     top: 30px;
-    box-shadow:0px 3px 5px @shadow-color;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.2), 0 -6px 11px 0 rgba(0,0,0,.2);
+    // box-shadow:0px 3px 5px @shadow-color;
 }
 .container04 .container04center{
     width: 1200px;

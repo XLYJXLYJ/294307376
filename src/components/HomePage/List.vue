@@ -41,11 +41,13 @@
     margin-right: 44px;
 }
 .container05 .recommend{
-    color:@contain05-color;
+    font-size: 22px;
+    color:@black;
     text-decoration: none;
 }
 .container05 .production{
-    color:@contain05-color;
+    font-size: 22px;
+    color:@black;
     text-decoration: none;
 }
 .container05 .router-link-active{
@@ -57,12 +59,12 @@
 .container05 .router-link-active:before {
     content: '';
     position: absolute;
-    left: 5px;
-    top: 29px;
+    left: 8px;
+    top: 32px;
     bottom: 0;
     right: 0px;
     height: 4px;
-    width: 20px;
+    width: 24px;
     background-color: @main-color;
     border-radius: 2px;
 }

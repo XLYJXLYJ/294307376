@@ -82,7 +82,7 @@ import { looksum } from '../../public/seesum.js'
     width: 804px;
     height: auto;
     position:absolute;
-    margin-top: 24px;
+    margin-top: 22px;
 }
 .search01 .routetext{
     color:@black;
@@ -211,9 +211,9 @@ import { looksum } from '../../public/seesum.js'
     left: 20px;
     outline:none;
 }
-.container07 .search_input:focus{
-    border: 1px solid @main-color;
-}
+// .container07 .search_input:focus{
+//     border: 1px solid @main-color;
+// }
 .container07 .el-icon-search{
     position: relative;
     left: 300px;

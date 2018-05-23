@@ -43,7 +43,7 @@ import Vue from 'vue'
     const DataImg =[//默认图片
         {url: 'static/1.png'},
         {url: 'static/2.png'},
-        {url: 'static/3.png'}, 
+        // {url: 'static/3.png'}, 
     ]
 export default{
     data(){

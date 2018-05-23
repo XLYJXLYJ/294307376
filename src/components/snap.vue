@@ -4,7 +4,7 @@
             <div class="snapheader">
                 <ul class="snapheaderleft">
                     <li class="bcw"><a href="http://www.manykit.com/codeplay" target="_blank"><img src="../assets/snappic/snapb.png" alt=""></a></li>
-                    <li class="borderlight01" @click="snapdropdowmcontrol" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
+                    <li class="borderlight01" @click.stop="snapdropdowmcontrol" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
                     <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
                     <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState" disabled="disabled"></li> -->
                     <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState"></li> -->
@@ -54,19 +54,20 @@
 
         <transition name="el-fade-in-linear">
             <div>
-                <el-dialog :visible.sync="dialogSave" :modal="false" width="420px">
+                <el-dialog :visible.sync="dialogSave" :modal="false" width="420px" :show-close="false">
                     <div class="container50">
                         <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
                             <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">
                             <img class="sign_logo" src="../assets/login/login_logo.png" alt=""> -->
+                            <img class="sign_logo" @click="dialogSave=false" src="../assets/snappic/close.png" alt=""> 
                             <el-form-item class="iden01">
                                 <el-input type="text" class="texttitle" v-model="formSave.title" auto-complete="off" placeholder="请输入项目名称"></el-input>
                             </el-form-item>
                             <el-form-item  class="iden02">
                                 <textarea type="text" class="textdes" v-model="formSave.desc" auto-complete="off" placeholder="请输入项目描述"></textarea>
                             </el-form-item>
-                            <el-form-item  class="iden03">
-                                <el-button  @click.stop.prevent="submitUpload()">确定保存</el-button>
+                            <el-form-item>
+                                <el-button  class="iden03" @click.stop.prevent="submitUpload()">确定保存</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -76,11 +77,12 @@
 
         <transition name="el-fade-in-linear">
             <div>
-                <el-dialog :visible.sync="dialogExport" :modal="false" width="420px">
+                <el-dialog :visible.sync="dialogExport" :modal="false" width="420px" :show-close="false">
                     <div class="container501">
                         <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
                             <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">
                             <img class="sign_logo" src="../assets/login/login_logo.png" alt=""> -->
+                            <img class="sign_logo" @click="dialogExport=false" src="../assets/snappic/close.png" alt=""> 
                             <el-form-item class="iden01">
                                 <el-input type="text" v-model="formSave.exporttitle" auto-complete="off" placeholder="请输入项目名称"></el-input>       
                             </el-form-item>
@@ -94,15 +96,15 @@
         
         <transition name="el-fade-in-linear">
             <div>
-                <el-dialog :visible.sync="dialogNew" :modal="false" width="420px">
+                <el-dialog :visible.sync="dialogNew" :modal="false" width="420px" :show-close="false">
                     <div class="container502">
                         <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
-                            <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">
-                            <img class="sign_logo" src="../assets/login/login_logo.png" alt=""> -->
+                            <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">-->
+                            <img class="sign_logo" @click="dialogNew=false" src="../assets/snappic/close.png" alt=""> 
                             <el-form-item class="iden01">
-                                <h1>确定放弃当前项目，新建新的项目吗？</h1>      
+                                <p>确定新建新的项目吗？</p>      
                             </el-form-item>
-                             <el-button  class="iden02"  @click.stop.prevent="newproject">确定</el-button>
+                             <el-button  class="iden02"  @click="newproject">确定</el-button>
                             <el-button  class="iden03" @click.stop.prevent="dialogNew=false">取消</el-button>
                         </el-form>
                     </div>
@@ -131,7 +133,7 @@
 
         <transition name="el-fade-in-linear">
             <div>
-                <el-dialog :visible.sync="dialogOpen" :modal="false" width="420px">
+                <el-dialog :visible.sync="dialogOpen" :modal="false" width="420px" :show-close="false">
                     <div class="container503">
                         <el-form :model="formSave" :rules="rules" enctype="multipart/form-data">
                             <!-- <img class="welcome" src="../assets/login/welcome.png" alt="">
@@ -139,9 +141,15 @@
                             <!-- <el-form-item class="tele">
                                 <el-input type="text" v-model="formSave.userid" auto-complete="off" placeholder="请输入用户名" v-show="true"></el-input>
                             </el-form-item> -->
+                            <!-- <img class="sign_logo" @click="dialogOpen=false" src="../assets/snappic/close.png" alt="">  -->
+                            <img class="sign_logo" @click="dialogOpen=false" src="../assets/snappic/close.png" alt="">
                             <el-form-item class="iden01">
-                                <input class="iden04" type="file" ref="file" id='xml_seq' multiple/>     
+                                <!-- <input class="iden04" type="file" ref="file" id='xml_seq' multiple/>   -->
+                                <a href="javascript:;" class="file">选择文件
+                                    <input class="iden04" type="file" ref="file" id='xml_seq' multiple/> 
+                                </a>
                             </el-form-item>
+                             <!-- <p>{{inputtext}}</p> -->
                              <el-button  class="iden02"  @click.stop.prevent="open">确定</el-button>
                             <el-button  class="iden03" @click.stop.prevent="dialogOpen=false">取消</el-button>
                         </el-form>
@@ -256,6 +264,7 @@ export default{
             btntxt:'获取验证码',//获取验证码默认文字
             btntxtcolor01:true,//验证码按钮的颜色
             btntxtcolor02:false,//验证码按钮的颜色
+            inputtext:'文件名称',//input选择的文件名
             formLogin: {//登录
                 username: '',
                 password: '',
@@ -363,7 +372,7 @@ export default{
         anothersave(){
             this.snap02=true
             this.snap01=false
-            if(this.snapshow){
+            if(this.snapshow||this.$store.state.demoxmlid){
                 this.snapshow = this.snapshow + '-1'
                 this.snapdropdown01 = false
                 this.savestate=1
@@ -466,6 +475,7 @@ export default{
             this.snap02=false
             this.snap01=true
             window.frames["snap02"].ide.newProject()
+            window.frames["snap01"].ide.newProject()
             this.dialogNew=false
             sessionStorage.snapdemoid = ''
             this.$store.state.demoxmlid = ''
@@ -541,6 +551,7 @@ export default{
                     }
                     this.axios.post('/res/upload',formData,config)
                     .then( res => {
+                        this.snapshow = this.formSave.title//另存为title
                         this.edittittle = this.formSave.title
                         this.editdes = this.formSave.desc
                         this.$store.state.demoxmlid = res.data.data.id//保存后赋值作品值，这样会覆盖之前保存的项目，如果要新建项目，必须要按新建按钮
@@ -1116,6 +1127,12 @@ export default{
     top: 56px;
     left: 266px;
 } */
+.container50 .sign_logo{
+    position: absolute;
+    top: 8px;
+    left: 394px;
+    cursor: pointer;
+} 
 .container50 .tele{
     position: absolute;
     height: 49px;
@@ -1151,19 +1168,25 @@ export default{
 }
 .container50 .iden03{
     position: absolute;
-    height: 29px;
-    width: 297px;
+    height: 38px;
+    width: 107px;
     top: 274px;
     left: 160px;
-    padding-left: 10px;
+    padding-left: 16px;
+}
+.container50 .iden03:hover{
+    border:1px solid #ff7979;
+    background: #ffe7e7;
+    color: #f13232;
+    cursor: pointer;
 }
 .container50 .texttitle{
     color: @gray;
 }
 .container50 .textdes{
     height: 110px;
-    width: 278px;
-    padding: 8px;
+    width: 266px;
+    padding: 14px;
     border: 1px solid #dcdfe6;
     color: @gray;
 }
@@ -1197,9 +1220,10 @@ export default{
 }
 .container501 .sign_logo{
     position: absolute;
-    top: 56px;
-    left: 266px;
-}
+    top: 8px;
+    left: 394px;
+    cursor: pointer;
+} 
 .container501 .tele{
     position: absolute;
     height: 49px;
@@ -1210,18 +1234,24 @@ export default{
 }
 .container501 .iden01{
     position: absolute;
-    height: 49px;
+    height: 40px;
     width: 297px;
-    top: 78px;
-    left: 60px;
+    top: 59px;
+    left: 62px;
     padding-left: 10px;
 }
 .container501 .iden02{
     position: absolute;
-    height: 39px;
-    width: 197px;
-    top: 148px;
-    left: 125px;
+    height: 38px;
+    width: 107px;
+    top: 135px;
+    left: 157px;
+}
+.container501 .iden02:hover{
+    border:1px solid #ff7979;
+    background: #ffe7e7;
+    color: #f13232;
+    cursor: pointer;
 }
 .container502{
     margin: 0px;
@@ -1235,11 +1265,13 @@ export default{
     top: 56px;
     left: 60px;
 }
+*/
 .container502 .sign_logo{
     position: absolute;
-    top: 56px;
-    left: 266px;
-} */
+    top: 8px;
+    left: 394px;
+    cursor: pointer;
+} 
 .container502 .tele{
     position: absolute;
     height: 49px;
@@ -1248,27 +1280,40 @@ export default{
     left: 60px;
     padding-left: 10px;
 }
-.container502 .iden01{
+.container502 .iden01 p{
     position: absolute;
     height: 49px;
     width: 297px;
-    top: 78px;
+    top: 68px;
     left: 90px;
+    font-size: 18px;
     padding-left: 10px;
 }
 .container502 .iden02{
     position: absolute;
     height: 39px;
     width: 77px;
-    top: 138px;
-    left: 115px;
+    top: 135px;
+    left: 101px;
 }
 .container502 .iden03{
     position: absolute;
     height: 39px;
     width: 77px;
-    top: 138px;
-    left: 225px;
+    top: 135px;
+    left: 234px;
+}
+.container502 .iden02:hover{
+    border:1px solid #ff7979;
+    background: #ffe7e7;
+    color: #f13232;
+    cursor: pointer;
+}
+.container502 .iden03:hover{
+    border:1px solid #ff7979;
+    background: #ffe7e7;
+    color: #f13232;
+    cursor: pointer;
 }
 
 
@@ -1335,9 +1380,10 @@ export default{
 }
 .container503 .sign_logo{
     position: absolute;
-    top: 56px;
-    left: 266px;
-}
+    top: 8px;
+    left: 394px;
+    cursor: pointer;
+} 
 .container503 .tele{
     position: absolute;
     height: 49px;
@@ -1368,14 +1414,56 @@ export default{
     top: 158px;
     left: 225px;
 }
-.container503 .iden04{
-    position: absolute;
-    height: 39px;
-    width: 187px;
-    top: 8px;
-    left: 55px;
-    z-index: 1000;
+.container503 .iden02:hover{
+    border:1px solid #ff7979;
+    background: #ffe7e7;
+    color: #f13232;
+    cursor: pointer;
 }
+.container503 .iden03:hover{
+    border:1px solid #ff7979;
+    background: #ffe7e7;
+    color: #f13232;
+    cursor: pointer;
+}
+// .container503 .iden04{
+//     border:1px solid #ff7979;
+//     background: #ffe7e7;
+//     color: #f13232;
+// }
+
+.container503 .file {
+    position: relative;
+    left: 100px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #6a6f77;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #333;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.container503 .file input {
+    position: absolute;
+    font-size: 100px;
+    width: 80px;
+    height: 30px;
+    right: 0;
+    left: 0px;
+    top: 0;
+    opacity: 0;
+}
+.container503 .file:hover {
+    border:1px solid #ff7979;
+    background: #ffe7e7;
+    color: #f13232;
+    text-decoration: none;
+}
+
+
 
 .container2101{
     margin: 0px;

@@ -64,6 +64,7 @@ import { looksum } from '../../public/seesum.js'
     width: 100px;
     position: absolute;
     top: -48px;
+
 }
 .container06 .rank_list_top p{
     position: relative;
@@ -99,10 +100,11 @@ import { looksum } from '../../public/seesum.js'
 .container06 .rank_up .ranking img{
     width: 100%;
     height: 100%;
-}
-.container06 .rank_up .ranking img:hover{
     border: 1px solid @img-color;
 }
+// .container06 .rank_up .ranking img:hover{
+    
+// }
 .container06 .rank_list_top img{ 
     float: left;
     border-radius: 3px;
@@ -174,13 +176,19 @@ import { looksum } from '../../public/seesum.js'
     width: 100%;
     height: 210px;
     list-style: none;
-    margin-top: -30px;
+    margin-top: -10px;
+    margin-left: -10px;
 }
 .container06 .rank_up ul li{
-    width: 100%;
-    height: 56px;
-    margin-top: 40px;
+    width: 340px;
+    height: 68px;
+    margin-top: 10px;
     cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+}
+.container06 .rank_up ul li:hover{
+    background: #f3f3f3;
 }
 .container06 a{
     text-decoration: none;

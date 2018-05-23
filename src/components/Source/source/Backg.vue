@@ -59,6 +59,7 @@
     <div class="sortpagenum">
         <div class="sortpagenumcenter">
             <el-pagination
+            :current-page.sync="currentPage3"
             background
             @current-change ="handleCurrentChange"
             @prev-click="Selectpagebefore"
@@ -110,6 +111,7 @@ export default{
         cur_page:'',//当前页数
         isresentshow:'',//最近更新背景
         isdownshow:'',//最多下载背景
+        currentPage3:1,//当前页数
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"卡通场景"},
@@ -147,11 +149,12 @@ export default{
     },
     methods:{
         select01(id){
+            this.handleCurrentChange(1)
             this.isresentshow=false
             this.isdownshow=false
             this.isdemohover01 = id
             this.isdemohover02 = 0
-            switch(id){                
+            switch(id){               
                 case id=0:
                     this.sort0101=false;
                     this.sort0102=false;
@@ -224,6 +227,7 @@ export default{
         },
             // 第二级选择
         select0101(id){
+            this.handleCurrentChange(1)
             this.isresentshow=false
             this.isdownshow=false
             this.isdemohover02 = id
@@ -261,6 +265,7 @@ export default{
 
         //最近更新
         resentchange(){
+            this.handleCurrentChange(1)
             this.isresentshow=true
             this.isdownshow=false
             this.isdemohover03 = 1
@@ -279,6 +284,7 @@ export default{
         },
         //最多使用
         mostuse(){
+            this.handleCurrentChange(1)
             this.isresentshow=false
             this.isdownshow=true
             this.axios.post('/res/resourcelist',{
@@ -421,6 +427,7 @@ export default{
         //获取当前页数
         handleCurrentChange(val){
             this.cur_page = val;
+            this.currentPage3=val;
             this.getData()
         },
 
