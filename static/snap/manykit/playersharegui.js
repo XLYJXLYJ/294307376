@@ -407,6 +407,18 @@ IDE_Morph.prototype.openIn = function (world) {
     }
 };
 
+
+//暂停播放
+IDE_Morph.prototype.togglePauseResume = function () {
+    if (this.stage.threads.isPaused()) {
+        this.stage.threads.resumeAll(this.stage);
+    } else {
+        this.stage.threads.pauseAll(this.stage);
+    }
+    this.controlBar.pauseButton.refresh();
+};
+
+
 IDE_Morph.prototype.createControlBar = function () {
     // assumes the logo has already been created
     var padding = 5,
@@ -479,8 +491,8 @@ IDE_Morph.prototype.createControlBar = function () {
         myself, // the IDE is the target
         'toggleAppMode',
         [
-            new SymbolMorph('fullScreen', 0),
-            new SymbolMorph('normalScreen', 0)
+            new SymbolMorph('fullScreen', 14),
+            new SymbolMorph('normalScreen', 14)
         ],
         function () {  // query
             return myself.isAppMode;
@@ -535,7 +547,7 @@ IDE_Morph.prototype.createControlBar = function () {
     button.fixLayout();
     button.refresh();
     steppingButton = button;
-    // this.controlBar.add(steppingButton);
+    this.controlBar.add(steppingButton);
     this.controlBar.steppingButton = steppingButton; // for refreshing
 
     // stopButton
@@ -570,7 +582,7 @@ IDE_Morph.prototype.createControlBar = function () {
     button.fixLayout();
     button.refresh();
     stopButton = button;
-    // this.controlBar.add(stopButton);
+    this.controlBar.add(stopButton);
     this.controlBar.stopButton = stopButton; // for refreshing
 
     //pauseButton
@@ -602,7 +614,7 @@ IDE_Morph.prototype.createControlBar = function () {
     button.fixLayout();
     button.refresh();
     pauseButton = button;
-    // this.controlBar.add(pauseButton);
+    this.controlBar.add(pauseButton);
     this.controlBar.pauseButton = pauseButton; // for refreshing
 
     // startButton
@@ -625,7 +637,7 @@ IDE_Morph.prototype.createControlBar = function () {
     // button.hint = 'start green\nflag scripts';
     button.fixLayout();
     startButton = button;
-    // this.controlBar.add(startButton);
+    this.controlBar.add(startButton);
     this.controlBar.startButton = startButton;
 
     // steppingSlider
@@ -644,7 +656,7 @@ IDE_Morph.prototype.createControlBar = function () {
     slider.color = new Color(153, 255, 213);
     slider.alpha = 0.3;
     slider.setExtent(new Point(50, 14));
-    // this.controlBar.add(slider);
+    this.controlBar.add(slider);
     this.controlBar.steppingSlider = slider;
 
     // projectButton
@@ -668,7 +680,7 @@ IDE_Morph.prototype.createControlBar = function () {
     // button.hint = 'open, save, & annotate project';
     button.fixLayout();
     projectButton = button;
-    // this.controlBar.add(projectButton);
+    // this.controlBar.add(projectButton);//注释
     this.controlBar.projectButton = projectButton; // for menu positioning
 
     // settingsButton
@@ -692,7 +704,7 @@ IDE_Morph.prototype.createControlBar = function () {
     // button.hint = 'edit settings';
     button.fixLayout();
     settingsButton = button;
-    // this.controlBar.add(settingsButton);
+    this.controlBar.add(settingsButton);
     this.controlBar.settingsButton = settingsButton; // for menu positioning
 
     // cloudButton
@@ -715,7 +727,7 @@ IDE_Morph.prototype.createControlBar = function () {
     // button.hint = 'cloud operations';
     button.fixLayout();
     cloudButton = button;
-    // this.controlBar.add(cloudButton);
+    // this.controlBar.add(cloudButton);//注释
     this.controlBar.cloudButton = cloudButton; // for menu positioning
 
     this.controlBar.fixLayout = function () {
@@ -765,7 +777,7 @@ IDE_Morph.prototype.createControlBar = function () {
     this.controlBar.refreshSlider = function () {
         if (Process.prototype.enableSingleStepping && !myself.isAppMode) {
             slider.drawNew();
-            slider.hide();
+            slider.show();
         } else {
             slider.hide();
         }
@@ -820,14 +832,4 @@ IDE_Morph.prototype.createControlBar = function () {
         this.label.setCenter(this.center());
         this.label.setLeft(this.settingsButton.right() + padding);
     };
-};
-
-//暂停播放
-IDE_Morph.prototype.togglePauseResume = function () {
-    if (this.stage.threads.isPaused()) {
-        this.stage.threads.resumeAll(this.stage);
-    } else {
-        this.stage.threads.pauseAll(this.stage);
-    }
-    this.controlBar.pauseButton.refresh();
 };

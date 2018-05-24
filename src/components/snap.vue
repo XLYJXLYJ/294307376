@@ -1116,6 +1116,7 @@ export default{
     width: 100%;
     height: 336px;
     background: @background-color;
+    border-radius: 5px;
 }
 /* .container50 .welcome{
     position: absolute;
@@ -1212,6 +1213,7 @@ export default{
     width: 100%;
     height: 226px;
     background: @background-color;
+    border-radius: 5px;
 }
 .container501 .welcome{
     position: absolute;
@@ -1259,6 +1261,7 @@ export default{
     width: 100%;
     height: 226px;
     background: @background-color;
+    border-radius: 5px;
 }
 /* .container502 .welcome{
     position: absolute;
@@ -1372,6 +1375,7 @@ export default{
     width: 100%;
     height: 266px;
     background: @background-color;
+    border-radius: 5px;
 }
 .container503 .welcome{
     position: absolute;

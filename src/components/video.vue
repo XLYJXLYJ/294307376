@@ -412,7 +412,7 @@ export default{
     position: absolute;
     top: 94px;
     left: 614px;
-    height: 16px;
+    height: 18px;
     width: 82px;
     background: url(../assets/Video/guanzhu1.png) no-repeat;
     cursor: pointer;

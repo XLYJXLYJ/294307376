@@ -9,29 +9,28 @@
                 <span class="snap_detail">阿Snap课程飞第三方的萨达是的撒打萨达的萨吉继木阿Snap课程飞第三方的萨达是的撒打萨达的萨吉继木</span>
             </div>
             <div class="block">
-                <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                    <li>6</li>
-                    <li>7</li>
-                    <li>8</li>
-                    <li>9</li>
-                    <li>10</li>
-                    <li>11</li>
-                    <li>12</li>
-                    <li>13</li>
-                    <li>14</li>
-                    <li>15</li>
-                    <li>16</li>
-                    <li>17</li>
+                 <ul>
+                    <li v-for="(item,index) in lessonLength" :key='index' @click="selectLesson(index)" :class="{lessonhover:index===isLessonHover}"><p>{{item}}</p></li>
                 </ul>
             </div>
         </div>
     </div>
 </template>
+<script>
+    export default{
+        data(){
+            return{
+                lessonLength:18,
+                isLessonHover:''
+            }
+        },
+        methods:{
+            selectLesson(index){
+                this.isLessonHover=index
+            }
+        }
+    }
+</script>
 <style scoped lang="less">
 @import '../../assets/index.less';
  .container11{
@@ -118,7 +117,22 @@
     height: 71px;
     z-index: 100;
     width: 68px;
-    border: 1px solid red;
+    border: 1px solid #ffe7e7;
     display: inline-block;
+    font-size: 20px;
+    text-align: center;
+    background: #ff7979;
+    cursor: pointer;
+}
+ .container11 .block li:hover{
+    background: #f13232;
+}
+.lessonhover{
+    background: #f13232;
+ }
+.container11 .block li p{
+    position: relative;
+    top: 20px;
+    color: #fff;
 }
 </style>

@@ -3,69 +3,81 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>编程玩-开源编程玩法社区</title>
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<script type="text/javascript" src="manykit/jquery-3.2.1.min.js"></script>
-		<link rel="shortcut icon" href="manykit/manykit.ico">
-		<script type="text/javascript" src="morphic.js"></script>
-		<script type="text/javascript" src="widgets.js"></script>
-		<script type="text/javascript" src="blocks.js"></script>
-		<script type="text/javascript" src="manykit/blocks.js"></script>
-		<script type="text/javascript" src="manykit/pxframe.js"></script>
-		<script type="text/javascript" src="threads.js"></script>
-		<script type="text/javascript" src="manykit/threads.js"></script>
-		<script type="text/javascript" src="objects.js"></script>
-		<script type="text/javascript" src="manykit/objects.js"></script>
-		<script type="text/javascript" src="gui.js"></script>
-		<script type="text/javascript" src="manykit/playersharegui.js"></script>
-		<script type="text/javascript" src="paint.js"></script>
-		<script type="text/javascript" src="lists.js"></script>
-		<script type="text/javascript" src="byob.js"></script>
-		<script type="text/javascript" src="tables.js"></script>
-		<script type="text/javascript" src="symbols.js"></script>
-		<script type="text/javascript" src="xml.js"></script>
-		<script type="text/javascript" src="store.js"></script>
-		<script type="text/javascript" src="locale.js"></script>
-		<script type="text/javascript" src="cloud.js"></script>
-		<script type="text/javascript" src="manykit/cloud.js"></script>
-		<script type="text/javascript" src="sha512.js"></script>
-		<script type="text/javascript" src="FileSaver.min.js"></script>
-		<script type="text/javascript" src="manykit/base64.js"></script>
-		<script type="text/javascript">
-			var world;
-			var ide;
-			window.onload = function () {
-				world = new WorldMorph(document.getElementById('world'));
-                world.worldCanvas.focus();
-				ide = new IDE_Morph();
-				ide.openIn(world);
-				ide.toggleAppMode(true);
-				// ide.toggleAppMode(true);
-				// setInterval(loop, 30);
-				loop();
-			};
-			function loop() {
-        		requestAnimationFrame(loop);
-				world.doOneCycle();
-			}
-		</script>
 	</head>
 	<h1>编程玩-开源编程玩法社区</h1>
 	<h1>作者：<span id="demouser"></span></h1>
 	<h1>作品名称：<span id="demoxml"></span></h1>
 	<h1>微信:Manykits</h1>
 	<body style="margin: 0;">
-		<div id="playerimg" onclick="videoPlay()"><img src="./player.png" alt=""></div>
-		<canvas id="world" onclick="videostop()" tabindex="1"  style="position: absolute;" />
+		<div id="playerimg"><img src="./player.png" alt=""></div>
+		<canvas id="world" tabindex="1"  style="position: absolute;" />
 	</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="manykit/jquery-3.2.1.min.js"></script>
+<link rel="shortcut icon" href="manykit/manykit.ico">
+<script type="text/javascript" src="morphic.js"></script>
+<script type="text/javascript" src="widgets.js"></script>
+<script type="text/javascript" src="blocks.js"></script>
+<script type="text/javascript" src="manykit/blocks.js"></script>
+<script type="text/javascript" src="manykit/pxframe.js"></script>
+<script type="text/javascript" src="threads.js"></script>
+<script type="text/javascript" src="manykit/threads.js"></script>
+<script type="text/javascript" src="objects.js"></script>
+<script type="text/javascript" src="manykit/objects.js"></script>
+<script type="text/javascript" src="gui.js"></script>
+<script type="text/javascript" src="manykit/playersharegui.js"></script>
+<script type="text/javascript" src="paint.js"></script>
+<script type="text/javascript" src="lists.js"></script>
+<script type="text/javascript" src="byob.js"></script>
+<script type="text/javascript" src="tables.js"></script>
+<script type="text/javascript" src="symbols.js"></script>
+<script type="text/javascript" src="xml.js"></script>
+<script type="text/javascript" src="store.js"></script>
+<script type="text/javascript" src="locale.js"></script>
+<script type="text/javascript" src="cloud.js"></script>
+<script type="text/javascript" src="manykit/cloud.js"></script>
+<script type="text/javascript" src="sha512.js"></script>
+<script type="text/javascript" src="FileSaver.min.js"></script>
+<script type="text/javascript" src="manykit/base64.js"></script>
+<script type="text/javascript">
+	var world;
+	var ide;
+	window.onload = function () {
+		world = new WorldMorph(document.getElementById('world'));
+		world.worldCanvas.focus();
+		ide = new IDE_Morph();
+		ide.openIn(world);
+		ide.toggleAppMode(true);
+		// ide.toggleAppMode(true);
+		// setInterval(loop, 30);
+		loop();
+	};
+	function loop() {
+		requestAnimationFrame(loop);
+		world.doOneCycle();
+	}
+</script>
 	<script>
-		function videoPlay(){
+		var player = document.getElementById('playerimg')
+		player.addEventListener('touchstart', function(event){
 			document.getElementById('playerimg').style.cssText="display:none"
 			ide.pressStart() 
-		}
-		function videostop(){
+			}
+		)
+		var video = document.getElementById('world')
+		video.addEventListener('touchstart', function(event){
 			document.getElementById('playerimg').style.cssText="display:block"
-			ide.togglePauseResume() 
-		}
+			ide.togglePauseResume()
+			}
+		)
+		// function videoPlay01(){
+		// 	document.getElementById('playerimg').style.cssText="display:none"
+		// 	ide.pressStart() 
+		// }
+		// function videostop01(){
+		// 	document.getElementById('playerimg').style.cssText="display:block"
+		// 	ide.togglePauseResume() 
+		// }
 	</script>
 </html>
 <style>
