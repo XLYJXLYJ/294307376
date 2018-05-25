@@ -13,7 +13,8 @@
         <div class="first">
             <ul class="role">
                 <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
-                    <div class="roleimg"><img class="imglesson" :src="'/codeplay'+item.content"></div>
+                    <!-- <div class="roleimg"><img class="imglesson" :src="'/codeplay'+item.content"></div> -->
+                    <div class="roleimg"><img class="imglesson" :src="isbgcolor(item.type,item.content)"></div>
                     <div class="roleup">
                         <!-- <button @click="collectmaster(item.id)">采集</button> -->
                         <a :href="'/codeplay'+item.content" download><button @click="downloadmaster(item.id)">下载</button></a>
@@ -22,24 +23,21 @@
                 </li>
             </ul>
         </div>
-        <div class="sortnum01">
-            <ul>
-                <li v-for="(item,index) in pageitem" :key="item.pageid" @click="Selectpage(item.pageid)" :class="{demohover:index==isdemohover03-1}"><p>{{item.pageid}}</p></li>
-            </ul>
-            <div>
-                <p>...</p>
-                <p class="night" @click="Selectpage(9)">9</p>
-                <p class="endpage" @click="Selectpagebefore">上一页</p>
-                <p class="nextpage" @click="Selectpageafter">下一页</p>
-            </div>
 
-            <div class="sortfly">
-                <p class="one">到第</p>
-                <div>
-                    <input type="text" v-model="pageuser">
-                </div>
-                <p class="two">页</p>
-                <button>确定</button>
+        <!-- element分页 -->
+        <div class="sortpagenum">
+            <div class="sortpagenumcenter">
+                <el-pagination
+                :current-page.sync="currentPage3"
+                background
+                @current-change ="handleCurrentChange"
+                @prev-click="Selectpagebefore"
+                @next-click="Selectpageafter"
+                layout="prev, pager, next, jumper"
+                :total.sync="listnumtotal"
+                prev-text='上一页'
+                next-text='下一页'>
+                </el-pagination>
             </div>
         </div>
         <!-- <p class="endtext">部分素材来源自网络，版权归原作者所有。所有素材仅供个人创作娱乐使用，禁止做任何商业用途，由此产生的任何法律纠纷本网站不予承担</p> -->
@@ -60,6 +58,10 @@ export default{
         sort0102:false,
         sort0103:false,
         isdemohover03:'',
+        listnewlength:'',//请求数据的长度
+        listnumtotal:0,//请求的总页数
+        cur_page:'',//当前页数
+        currentPage3:1,//当前页数
         // oneidbox:[
         //     {oneid:0,name:"全部"},
         //     {oneid:1,name:"NPC"},
@@ -84,6 +86,7 @@ export default{
     },
     mounted(){
         this.Getsource()
+        this.isbgcolor()
     },
     methods:{
         // select01(id){
@@ -108,6 +111,14 @@ export default{
         //         })
         //     }
         // },
+        isbgcolor(i,j){
+            if(i=='png'){
+                return "codeplay"+j;
+            }else{
+                return 'static/musicbg.png';
+            }
+        },
+
         Getsource(){
                 this.$store.state.sourcesearch=false,
                 this.$store.state.sourcebackg=false,
@@ -122,9 +133,10 @@ export default{
                 pagesize:15
             })
             .then(response => {   
-                // this.list=response.data.data
-                // this.listnew=response.data.data
-       
+                this.list=response.data.data
+                this.listnew=response.data.data
+                this.listnewlength = response.data.total
+                this.listnumtotal = Math.ceil(this.listnewlength/15)*10
             })
         },
         // Getsourcetwo(id){
@@ -148,35 +160,67 @@ export default{
                 
             })
         },
-        Selectpage(id){
-            this.nowid = id?id:1
-            var head01 = 16*(id-1)
-            var foot01 = 16*id-1
-     
-            this.listnew=this.list.slice(head01,foot01)
+
+                //获取当前页数
+        handleCurrentChange(val){
+            this.cur_page = val;
+            this.currentPage3=val;
+            this.getData()
         },
-        Selectpageuser(id){
-            var head01 = 16*(this.pageuser-1)
-            var foot01 = 16*this.pageuser-1
-           
-            this.listnew=this.list.slice(head01,foot01)
-        },
+
+        // 前页数
         Selectpagebefore(){
-            var id =this.nowid
-            var head01 = 16*(id-2)
-            var foot01 = 16*(id-1)-1
-            this.nowid=this.nowid-1
-          
-            this.listnew=this.list.slice(head01,foot01)
+            this.cur_page = this.cur_page-1
+            this.getData()
         },
+        // 后页数
         Selectpageafter(){
-            var id =this.nowid
-            var head01 = 16*(id)
-            var foot01 = 16*(id+1)-1
-            this.nowid=this.nowid+1
-          
-            this.listnew=this.list.slice(head01,foot01)
+            this.cur_page = this.cur_page+1
+            this.getData()
+        },
+        //根据页数获取数据
+        getData(){
+            this.axios.post('/res/resourcelist',{
+                onenav:2,
+                twonav:this.isdemohover01,
+                threenav:this.isdemohover02,
+                pagenum:this.cur_page,
+                pagesize:15
+            })
+            .then(response => {  
+                this.listnew=response.data.data  
+                this.listnew=response.data.data
+            })
         }
+        // Selectpage(id){
+        //     this.nowid = id?id:1
+        //     var head01 = 16*(id-1)
+        //     var foot01 = 16*id-1
+     
+        //     this.listnew=this.list.slice(head01,foot01)
+        // },
+        // Selectpageuser(id){
+        //     var head01 = 16*(this.pageuser-1)
+        //     var foot01 = 16*this.pageuser-1
+           
+        //     this.listnew=this.list.slice(head01,foot01)
+        // },
+        // Selectpagebefore(){
+        //     var id =this.nowid
+        //     var head01 = 16*(id-2)
+        //     var foot01 = 16*(id-1)-1
+        //     this.nowid=this.nowid-1
+          
+        //     this.listnew=this.list.slice(head01,foot01)
+        // },
+        // Selectpageafter(){
+        //     var id =this.nowid
+        //     var head01 = 16*(id)
+        //     var foot01 = 16*(id+1)-1
+        //     this.nowid=this.nowid+1
+          
+        //     this.listnew=this.list.slice(head01,foot01)
+        // }
     },
     components:{
         Sourcehead
@@ -187,12 +231,14 @@ export default{
 @import '../../../assets/index.less';
 .container6400{
     width: 100%;
-    height: 1286px;
+    min-height:456px;
     z-index: 100;
     position: relative;
-    top: -86px;
+    top: -70px;
     left: 0px;
+    display: inline-block;
     background: @background-color;
+    padding-bottom: 140px;
 }
 .container6400 .sort01 ul{
     list-style: none;
@@ -367,11 +413,18 @@ export default{
    top: -26px;
    left: 886px;
 }
+.container6400 .first {
+    width: 1200px;
+    height: 3px;
+    margin-top:60px;
+}
 .container6400 .first .role{
-    position: absolute;
-    top: 110px;
+    position: relative;
+    top: -20px;
     left: 46px;  
-    margin-top: -40px;
+    margin-top: 10px;
+    display: block;
+    
 }
 .container6400 .first .line{
     position: relative;
@@ -419,11 +472,15 @@ export default{
     height: 198px!important;
     width: 198px!important;
     overflow: hidden;
+    background: url(../../../assets/source/bg1.png) no-repeat;
+    text-align: center;
 }
 .container6400 .first .roleimg img{
-    height: 100%;
-    width: 100%;
-    background: url(../../../assets/source/bg1.png) no-repeat;
+    height: 60%;
+    width: 60%;
+    position: relative;
+    top: 40px;
+
 }
 .container6400 .first .roleup .text{
     font-size:@md-size;
@@ -560,4 +617,69 @@ export default{
     font-size:@ss-size;
     display: inline-block;
 } */
+
+.container6400 .sortpagenum{
+    float: left;
+    position: absolute;
+    bottom:60px;
+    left: 260px;
+    width: 675px;
+    height: 32px;
+    text-align: center;
+    display: block;
+}
+.container6400 .sortpagenumcenter{
+    margin: 0 auto;
+    width: 575px;
+}
+
+.container6400 .sortnum01{
+    position: absolute;
+    top: 1374px;
+    left:320px;
+    width: 995px;
+    height: 32px;
+}
+.container6400 .sortnum01 ul li{
+    float: left;
+    height: 25px;
+    width: 32px;
+    border: 1px solid @border-color;
+    text-align: center;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.container6400 .sortnum01 ul li:hover{
+    background: @main-color;
+    color: @background-color;
+}
+.container6400 .sortnum01 .endpage{
+    float: left;
+    height: 25px;
+    width: 70px;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    border: 1px solid @border-color;
+    text-align: center;
+    cursor: pointer;
+}
+.container6400 .sortnum01 .nextpage{
+    float: left;
+    height: 25px;
+    width: 70px;
+    position: relative;
+    left: 14px;
+    top: 0px;
+    border: 1px solid @border-color;
+    text-align: center;
+    cursor: pointer;
+}
+.container6400 .sortnum01 .endpage p{
+    margin-top: 2px;
+}
+.container6400 .sortnum01 .endpage:hover{
+    background: @main-color;
+    color: @background-color;
+}
 </style>

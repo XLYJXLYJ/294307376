@@ -361,12 +361,14 @@ export default{
 @import '../../../assets/index.less';
 .container67{
     width: 100%;
-    height: 1286px;
+    min-height:456px;
     z-index: 100;
     position: relative;
     top: -70px;
     left: 0px;
+    display: inline-block;
     background: @background-color;
+    padding-bottom: 140px;
 }
 .container67 .sort01 ul{
     list-style: none;
@@ -550,12 +552,18 @@ export default{
     left: 886px;
 }
 
-
+.container67 .first {
+    width: 1200px;
+    height: 3px;
+    margin-top:60px;
+}
 .container67 .first .role{
-    position: absolute;
-    top: 150px;
+    position: relative;
+    top: -20px;
     left: 46px;  
-    margin-top: -40px;
+    margin-top: 10px;
+    display: block;
+    
 }
 .container67 .first .line{
     position: relative;
@@ -623,12 +631,14 @@ export default{
     top: -13px;
 }
 .container67 .sortpagenum{
+    float: left;
     position: absolute;
-    top: 1104px;
+    bottom:60px;
     left: 260px;
     width: 675px;
     height: 32px;
     text-align: center;
+    display: block;
 }
 .container67 .sortpagenumcenter{
     margin: 0 auto;

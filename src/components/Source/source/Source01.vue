@@ -473,12 +473,14 @@ export default{
 @import '../../../assets/index.less';
 .container66{
     width: 100%;
-    height: 1286px;
+    min-height: 456px;
     z-index: 100;
     position: relative;
     top: -70px;
     left: 0px;
+    display: inline-block;
     background: @background-color;
+    padding-bottom: 140px;
 }
 .container66 .sort01 ul{
     list-style: none;
@@ -682,7 +684,8 @@ export default{
     top: -20px;
     left: 46px;  
     margin-top: 10px;
-    display: block;
+    min-height: 300px;
+    min-width: 300px;
 }
 .container66 .first .line{
     position: relative;
@@ -691,7 +694,8 @@ export default{
     left: 63px;
     top: -20px;
     width: 910px;
-     z-index: 100;
+    min-height: 300px;
+    z-index: 100;
 }
 .container66 .first .role li{
     float: left;
@@ -750,12 +754,14 @@ export default{
     top: -13px;
 }
 .container66 .sortpagenum{
+    float: left;
     position: absolute;
-    top: 1124px;
+    bottom:60px;
     left: 260px;
     width: 675px;
     height: 32px;
     text-align: center;
+    display: block;
 }
 .container66 .sortpagenumcenter{
     margin: 0 auto;

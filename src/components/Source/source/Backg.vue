@@ -465,12 +465,14 @@ export default{
 @import '../../../assets/index.less';
 .container63{
     width: 100%;
-    height: 1556px;
+    min-height: 456px;
     z-index: 100;
     position: relative;
     top: -70px;
     left: 0px;
+    display: inline-block;
     background: @background-color;
+    padding-bottom: 140px;
 }
 .container63 .baozhu{
     width: 100%;
@@ -688,7 +690,7 @@ export default{
     left: 63px;
     top: -20px;
     width: 910px;
-     z-index: 100;
+    z-index: 100;
 }
 .container63 .first .role li{
     float: left;
@@ -740,12 +742,14 @@ export default{
     top: -13px;
 }
 .container63 .sortpagenum{
+    float: left;
     position: absolute;
-    top: 1404px;
+    bottom:60px;
     left: 260px;
     width: 675px;
     height: 32px;
     text-align: center;
+    display: block;
 }
 .container63 .sortpagenumcenter{
     margin: 0 auto;
