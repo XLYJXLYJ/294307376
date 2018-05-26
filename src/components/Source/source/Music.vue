@@ -40,10 +40,18 @@
     <div class="first">
         <ul class="role">
             <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
-                <div class="roleimg" v-bind:style="{background:isbgcolor(index)}"><img src="../../../assets/source/musicbg.png"></div>
+                <div class="roleimg" v-bind:style="{background:isbgcolor(index)}" @mouseenter='musicstartbutton(index)' @mouseleave='musicendbutton'> 
+                    <img class="musicbg" v-show="musicbg==index?false:true" src="../../../assets/source/musicbg.png">
+                    <img v-show="musicstart==index?true:false" src="../../../assets/source/end.png" @click="musicplay(index)">
+                    <img v-show="musicend==index?true:false" src="../../../assets/source/start.png" @click="musicstop(index)">
+                    <el-progress class="progress" :text-inside="false" v-show="progressbg==index?true:false" :stroke-width="4" :percentage="0"></el-progress>
+                    <!-- <el-progress class="progress" v-show="progressbg==index?true:false" type="circle" :percentage="50" :width="75" :show-text="false"></el-progress> -->
+                </div>
                 <div class="roleup">
+
                 <a :href="'/codeplay/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
                     <p class="text">{{item.name}}</p>
+                    <p class="clock">2:00</p>
                 </div>
             </li>
         </ul>
@@ -107,6 +115,10 @@ export default{
         isdownshow:'',//最多下载背景
         currentPage3:1,//当前页数
         iscolor:'',//音乐背景颜色
+        progressbg:-1,//是否显示进度条
+        musicbg:-1,//是否显示音乐背景
+        musicstart:-1,//音乐开始图标
+        musicend:-1,//音乐结束图标
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"音乐"},
@@ -144,6 +156,33 @@ export default{
 
     },
     methods:{
+        //点击播放
+        musicplay(index){
+            console.log(123)
+            this.musicstart=-1
+            this.musicend=index
+            this.progressbg=i
+        },
+        //点击暂停
+        musicstop(index){
+            console.log(456)
+            this.musicstart=index
+            this.musicend=-1
+            this.progressbg=i
+        },
+        //鼠标进入是背景的变化
+        musicstartbutton(i){
+            this.progressbg=i
+            this.musicbg=i
+            this.musicstart=i
+        },
+        //鼠标离开是背景的变化
+        musicendbutton(){
+            this.progressbg=-1
+            this.musicbg=-1
+            this.musicstart=-1
+            this.musicend=-1
+        },
         //背景颜色选择
         isbgcolor(i){
             if(i%5==1){
@@ -746,12 +785,31 @@ export default{
     width: 75px;
     margin-top: 30px;
 }
+.container80 .first .roleimg .progress{
+    margin-top: 14px;
+}
+.container80 .first .roleimg .musicbg{
+    position: relative;
+    left: -2px;
+}
 .container80 .first .roleup .text{
     font-size:@md-size;
     position: relative;
     left: 10px;
     top: -13px;
 }
+.container80 .first .roleup .clock{
+    font-size:@sm-size;
+    color: #bebebe;
+    position: relative;
+    left: 10px;
+    top: 0px;
+    height: 18px;
+    width:32px;
+    padding-left: 20px;
+    background:url(../../../assets/source/clock.png) no-repeat;
+}
+
 .container80 .sortpagenum{
     float: left;
     position: absolute;

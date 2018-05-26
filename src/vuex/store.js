@@ -26,6 +26,7 @@ const state = {
     authid:'',//其他作者id
     publicstate:'',//个人作品中作品的存储状态(是处于发布状态还是处于保存状态)
     shareid:'',//分享作品id
+    coverid:''//封面作品id
 }
 
 const actions = {

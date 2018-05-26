@@ -121,6 +121,7 @@ import { looksum } from '../../public/seesum.js'
                         this.collecttotal = response.data.data.collecttotal
                         this.praisetotal = response.data.data.praisetotal
                         this.looktotal = response.data.data.looktotal
+                        console.log(response.data.data.coverworkid )
                         if(!response.data.data.coverworkid){
                             this.demonone=true,
                             this.demoimg=false
