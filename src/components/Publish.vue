@@ -144,29 +144,54 @@ export default {
         },
         //发布带默认图片的作品
         uploadFile(picsource){
-            let formData = new FormData();
-            formData.append('id',this.picdemo);
-            formData.append('userid',sessionStorage.userid);
-            formData.append('title',sessionStorage.demoname);
-            formData.append('desc',sessionStorage.demodes);
-            formData.append('state',3);
-            formData.append('surfaceplot',9);
-            formData.append('files',picsource);
-            formData.append('coverworkid',this.$store.state.demoxmlid);
-            let config = {
-                headers:{
-                    'Content-Type':'application/x-jpg'
+            if(this.$store.state.coverid=2){//创建封面作品发布
+                let formData = new FormData();
+                formData.append('id',this.picdemo);
+                formData.append('userid',sessionStorage.userid);
+                formData.append('title',sessionStorage.demoname);
+                formData.append('desc',sessionStorage.demodes);
+                formData.append('state',3);
+                formData.append('surfaceplot',9);
+                formData.append('files',picsource);
+                formData.append('coverworkid',this.$store.state.demoxmlid);
+                let config = {
+                    headers:{
+                        'Content-Type':'application/x-jpg'
+                    }
                 }
-            }
-            this.axios.post('/res/dealfile',formData,config)
-            .then(function(response){
-                
-            })
-            this.$message({
-                message: '发布成功',
-                center: true
-            }); 
-            setTimeout(this.$router.go(-1),3000)
+                this.axios.post('/res/dealfile',formData,config)
+                .then(function(response){
+                    
+                })
+                this.$message({
+                    message: '发布成功',
+                    center: true
+                }); 
+                setTimeout(this.$router.go(-1),3000)
+            }else{//作品发布
+                let formData = new FormData();
+                formData.append('id',this.picdemo);
+                formData.append('userid',sessionStorage.userid);
+                formData.append('title',sessionStorage.demoname);
+                formData.append('desc',sessionStorage.demodes);
+                formData.append('state',3);
+                formData.append('surfaceplot',9);
+                formData.append('files',picsource);
+                let config = {
+                    headers:{
+                        'Content-Type':'application/x-jpg'
+                    }
+                }
+                this.axios.post('/res/dealfile',formData,config)
+                .then(function(response){
+                    
+                })
+                this.$message({
+                    message: '发布成功',
+                    center: true
+                }); 
+                setTimeout(this.$router.go(-1),3000)
+                }
         },
         //选择图片
         choise_file () {

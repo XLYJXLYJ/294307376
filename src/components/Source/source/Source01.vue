@@ -84,7 +84,7 @@
                 <button @click="Selectpageuser">确定</button>
             </div>
         </div> -->
-        <!-- <p class="endtext">部分素材来源自网络，版权归原作者所有。所有素材仅供个人创作娱乐使用，禁止做任何商业用途，由此产生的任何法律纠纷本网站不予承担</p> -->
+        <p class="endtext">部分素材来源自网络，版权归原作者所有。所有素材仅供个人创作娱乐使用，禁止做任何商业用途，由此产生的任何法律纠纷本网站不予承担</p>
     </div>
 </template>
 <script>
@@ -887,15 +887,18 @@ export default{
     color: @background-color;
     border: none;
 }
-/* .container66 .endtext{
-    width: 900px;
-    height: 12px;
-    position: relative;
-    top: 1128px;
-    left: 26px;
-    font-size:@ss-size;
-    display: inline-block;
-} */
+.container66 .endtext{
+    float: left;
+    position: absolute;
+    bottom:10px;
+    left: 100px;
+    width: 1000px;
+    height: 32px;
+    text-align: center;
+    display: block;
+    color: #999;
+    font-size: @ss-size;
+} 
 
 .demohover{
     background:@main-color;

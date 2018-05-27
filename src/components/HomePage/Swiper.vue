@@ -78,6 +78,7 @@ export default{
         clearSession(){
             sessionStorage.snapdemoid = ''
             this.$store.state.demoxmlid = ''
+            this.$store.state.coverid=0
         },
         //点击视频播放框变大
         videoScreen(){

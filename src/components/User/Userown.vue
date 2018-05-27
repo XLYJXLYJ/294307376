@@ -23,7 +23,7 @@
         <div>
             <div class="demonone" v-show="demonone">
                 <img class="userdemo" src="../../assets/user/bg01.png" alt="">
-                <div class="makedemotext"><router-link to="snap" target="_blank">创作</router-link><p>你的封面作品</p> <br/><span>还没有封面作品</span></div>
+                <div class="makedemotext"><router-link to="snap" target="_blank" @click="makecover">创作</router-link><p>你的封面作品</p> <br/><span>还没有封面作品</span></div>
             </div>  
             <div class="demoimg" v-show="demoimg">
                 <img class="userdemo" :src="'data:image/png;base64,'+demoimageUrl" alt="">
@@ -85,7 +85,9 @@ import { looksum } from '../../public/seesum.js'
             this.Getuseinfo()
         },
         methods:{
-
+            makecover(){
+                this.$store.state.coverid=1
+            },
             // attenbutton(atten){关注按钮与颜色的切换
             //     this.buttoncolor=!this.buttoncolor
             //     this.atten=!this.atten;

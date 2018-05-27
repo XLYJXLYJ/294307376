@@ -615,29 +615,56 @@ export default{
                             });
                         }
                     }else{
-                        this.dialogUpload = true
-                        this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT('o')
-                        let filebir = this.formSave.file
-                        this.filebinary = new Blob([filebir]);
-                        let formData = new FormData();
-                        formData.append('userid',this.formSave.userid);
-                        formData.append('state',1);
-                        formData.append('title','未发布成功的作品');
-                        formData.append('desc','未发布成功的作品');
-                        formData.append('files',this.filebinary);
-                        let config = {
-                            headers:{
-                                'Content-Type':'multipart/form-data'
+                        if(this.$store.state.coverid=1){
+                            this.$store.state.coverid=2//创建封面作品发布
+                            this.dialogUpload = true
+                            this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT('o')
+                            let filebir = this.formSave.file
+                            this.filebinary = new Blob([filebir]);
+                            let formData = new FormData();
+                            formData.append('userid',this.formSave.userid);
+                            formData.append('state',1);
+                            formData.append('title','未发布成功的作品');
+                            formData.append('desc','未发布成功的作品');
+                            formData.append('files',this.filebinary);
+                            let config = {
+                                headers:{
+                                    'Content-Type':'multipart/form-data'
+                                }
                             }
+                            this.axios.post('/res/upload',formData,config)
+                            .then(response => {
+                                this.$store.state.demoxmlid=response.data.data.id
+                                console.log(response.data.data.id)
+                                // window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
+                                // window.open('/#/Publish'); 
+                                this.$router.push({name:'Publish'})
+                            }) 
+                        }else{
+                            this.dialogUpload = true//新建作品发布
+                            this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT('o')
+                            let filebir = this.formSave.file
+                            this.filebinary = new Blob([filebir]);
+                            let formData = new FormData();
+                            formData.append('userid',this.formSave.userid);
+                            formData.append('state',1);
+                            formData.append('title','未发布成功的作品');
+                            formData.append('desc','未发布成功的作品');
+                            formData.append('files',this.filebinary);
+                            let config = {
+                                headers:{
+                                    'Content-Type':'multipart/form-data'
+                                }
+                            }
+                            this.axios.post('/res/upload',formData,config)
+                            .then(response => {
+                                this.$store.state.demoxmlid=response.data.data.id
+                                console.log(response.data.data.id)
+                                // window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
+                                // window.open('/#/Publish'); 
+                                this.$router.push({name:'Publish'})
+                            }) 
                         }
-                        this.axios.post('/res/upload',formData,config)
-                        .then(response => {
-                            this.$store.state.demoxmlid=response.data.data.id
-                            console.log(response.data.data.id)
-                            // window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
-                            // window.open('/#/Publish'); 
-                             this.$router.push({name:'Publish'})
-                        })                      
                         }
                 }else{
                     this.$message(

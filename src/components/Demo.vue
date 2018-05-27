@@ -55,6 +55,8 @@ export default{
         //新建作品，清除缓存
         clearsession(){
             sessionStorage.snapdemoid = ''
+            this.$store.state.demoxmlid = ''
+            this.$store.state.coverid=0
         },
         //监控路由跳转
         isTab(){
