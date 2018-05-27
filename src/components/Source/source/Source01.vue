@@ -52,6 +52,7 @@
             <div class="sortpagenumcenter">
                 <el-pagination
                 background
+                :current-page.sync="currentPage3"
                 @current-change ="handleCurrentChange"
                 @prev-click="Selectpagebefore"
                 @next-click="Selectpageafter"
@@ -102,6 +103,7 @@ export default{
         listnewlength:'',//请求数据的长度
         listnumtotal:0,//请求的总页数
         cur_page:'',//当前页数
+        currentPage3:1,//初始化当前页数
         isresentshow:'',//最近更新背景
         isdownshow:'',//最多下载背景
         oneidbox:[
@@ -163,6 +165,7 @@ export default{
 
         // 第一级选择
         select01(id){
+            this.handleCurrentChange(1)
             this.isresentshow=false
             this.isdownshow=false
             this.isdemohover01 = id
@@ -258,6 +261,7 @@ export default{
         },
          // 第二级选择
         select0101(id){
+            this.handleCurrentChange(1)
             this.isresentshow=false
             this.isdownshow=false
             this.isdemohover02 = id
@@ -276,6 +280,7 @@ export default{
         },
         // 默认加载的数据
         Getsource(){
+                this.handleCurrentChange(1)
                 this.$store.state.sourcesearch=false,
                 this.$store.state.sourcebackg=false,
                 this.$store.state.sourcegame=false,
@@ -298,6 +303,7 @@ export default{
         },
         //最近更新
         resentchange(){
+            this.handleCurrentChange(1)
             this.isresentshow=true
             this.isdownshow=false
             this.axios.post('/res/resourcelist',{
@@ -314,6 +320,7 @@ export default{
         },
         //最多使用
         mostuse(){
+            this.handleCurrentChange(1)
             this.isresentshow=false
             this.isdownshow=true
             this.axios.post('/res/resourcelist',{
@@ -436,6 +443,7 @@ export default{
 
         handleCurrentChange(val){//获取当前页数
             this.cur_page = val;
+            this.currentPage3=val;
             this.getData()
        },
 

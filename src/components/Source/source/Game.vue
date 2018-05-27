@@ -35,6 +35,7 @@
             <div class="sortpagenumcenter">
                 <el-pagination
                 background
+                :current-page.sync="currentPage3"
                 @current-change ="handleCurrentChange"
                 @prev-click="Selectpagebefore"
                 @next-click="Selectpageafter"
@@ -86,6 +87,7 @@ export default{
         cur_page:'',//当前页数
         isresentshow:'',//最近更新背景
         isdownshow:'',//最多下载背景
+        currentPage3:1,//初始化当前页数
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"NPC"},
@@ -160,6 +162,7 @@ export default{
         // },
         // 加载默认数据
         Getsource(){
+                this.handleCurrentChange(1)
                 this.$store.state.sourcesearch=false,
                 this.$store.state.sourcebackg=false,
                 this.$store.state.sourcegame=true,
@@ -182,6 +185,7 @@ export default{
         },
         // 二级菜单
         Getsourcetwo(id){
+            this.handleCurrentChange(1)
             this.isresentshow=false
             this.isdownshow=false
             this.isdemohover01 = id
@@ -213,6 +217,7 @@ export default{
 
           //最近更新
         resentchange(){
+            this.handleCurrentChange(1)
             this.isresentshow=true
             this.isdownshow=false
             this.axios.post('/res/resourcelist',{
@@ -230,6 +235,7 @@ export default{
         },
         //最多使用
         mostuse(){
+            this.handleCurrentChange(1)
             this.isresentshow=false
             this.isdownshow=true
             this.axios.post('/res/resourcelist',{
@@ -349,6 +355,7 @@ export default{
         //获取当前页数
         handleCurrentChange(val){
             this.cur_page = val;
+            this.currentPage3=val;
             this.getData()
         },
 

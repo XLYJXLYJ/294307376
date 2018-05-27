@@ -111,7 +111,7 @@ export default{
         cur_page:'',//当前页数
         isresentshow:'',//最近更新背景
         isdownshow:'',//最多下载背景
-        currentPage3:1,//当前页数
+        currentPage3:1,//初始化当前页数
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"卡通场景"},
@@ -303,6 +303,7 @@ export default{
 
         // 默认加载的数据
         Getsource(){
+                this.handleCurrentChange(1)
                 this.$store.state.sourcesearch=false,
                 this.$store.state.sourcebackg=true,
                 this.$store.state.sourcegame=false,

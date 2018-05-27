@@ -120,6 +120,7 @@ export default{
         },
 
         Getsource(){
+                this.handleCurrentChange(1)
                 this.$store.state.sourcesearch=false,
                 this.$store.state.sourcebackg=false,
                 this.$store.state.sourcegame=false,
@@ -161,7 +162,7 @@ export default{
             })
         },
 
-                //获取当前页数
+        //获取当前页数
         handleCurrentChange(val){
             this.cur_page = val;
             this.currentPage3=val;

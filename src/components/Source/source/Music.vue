@@ -408,6 +408,7 @@ export default{
 
         // 默认加载的数据
         Getsource(){
+                this.handleCurrentChange(1)
                 this.$store.state.sourcesearch=false,
                 this.$store.state.sourcebackg=true,
                 this.$store.state.sourcegame=false,
