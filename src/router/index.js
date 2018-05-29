@@ -202,7 +202,7 @@ export default new Router({
                 children:[
                     {path: '/source/sourceshop/Backg', component: resolve =>require(['@/components/Source/source/Backg'],resolve)},
                     {path: '/source/sourceshop/Game', component: resolve =>require(['@/components/Source/source/Game'],resolve)},
-                    {path: '/source/sourceshop/Gsource', component: resolve =>require(['@/components/Source/source/Gsource'],resolve)},
+                    {path: '/source/sourceshop/Gsource',  name: 'Gsource',component: resolve =>require(['@/components/Source/source/Gsource'],resolve)},
                     {path: '/source/sourceshop/Source01', component: resolve =>require(['@/components/Source/source/Source01'],resolve)},
                     {path: '/source/sourceshop/Study', component: resolve =>require(['@/components/Source/source/Study'],resolve)},
                     {path: '/source/sourceshop/Music', component: resolve =>require(['@/components/Source/source/Music'],resolve)},

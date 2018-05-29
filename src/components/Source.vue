@@ -2,7 +2,9 @@
     <div class="container60">
         <Header/>
         <div class="content10">
-            <Sourcehead/>
+            <keep-alive>
+                <Sourcehead/>
+            </keep-alive>
         </div>
         <div class="footer10">
             <Footer/>
@@ -15,9 +17,13 @@ import Header from '@/components/HomePage/header'
 import Sourcehead from '@/components/Source/Sourcehead'
 import Footer from '@/components/HomePage/Footer'
 export default{
-    mounted:function() {
-    }, 
+    mounted(){
+        this.recommendroute()
+    },
     methods:{
+        recommendroute(){
+            this.$router.push({ name: 'Gsource' })
+        }
     },
     components:{
         Header,

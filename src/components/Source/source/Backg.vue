@@ -35,7 +35,7 @@
             <li><p>大象3</p><span>(1965)</span></li>
         </ul>
     </div> -->
-        <div class="sort02">
+    <div class="sort02">
         <ul>
             <li class="more" :class="{active:isresentshow}"><p @click="resentchange">最近更新</p></li>
             <li class="new" :class="{active:isdownshow}"><p @click="mostuse">最多下载</p></li>
@@ -149,7 +149,8 @@ export default{
     },
     methods:{
         select01(id){
-            this.handleCurrentChange(1)
+            // this.handleCurrentChange(1)
+            this.currentPage3=1
             this.isresentshow=false
             this.isdownshow=false
             this.isdemohover01 = id
@@ -227,7 +228,8 @@ export default{
         },
             // 第二级选择
         select0101(id){
-            this.handleCurrentChange(1)
+            // this.handleCurrentChange(1)
+            this.currentPage3=1
             this.isresentshow=false
             this.isdownshow=false
             this.isdemohover02 = id
@@ -265,7 +267,8 @@ export default{
 
         //最近更新
         resentchange(){
-            this.handleCurrentChange(1)
+            // this.handleCurrentChange(1)
+            this.currentPage3=1
             this.isresentshow=true
             this.isdownshow=false
             this.isdemohover03 = 1
@@ -284,7 +287,8 @@ export default{
         },
         //最多使用
         mostuse(){
-            this.handleCurrentChange(1)
+            // this.handleCurrentChange(1)
+            this.currentPage3=1
             this.isresentshow=false
             this.isdownshow=true
             this.axios.post('/res/resourcelist',{
@@ -303,7 +307,8 @@ export default{
 
         // 默认加载的数据
         Getsource(){
-                this.handleCurrentChange(1)
+                // this.handleCurrentChange(1)
+                this.currentPage3=1
                 this.$store.state.sourcesearch=false,
                 this.$store.state.sourcebackg=true,
                 this.$store.state.sourcegame=false,
@@ -482,7 +487,7 @@ export default{
 .container63 .sort01 ul{
     list-style: none;
     position: relative;
-    left: 122px;
+    left: 132px;
     top: -20px;
     width: 1040px;
     height: 24px;
@@ -490,7 +495,7 @@ export default{
 .container63 .sort01text{
     display: inline-block;
     position: relative;
-    left: 46px;
+    left: 57px;
     color:@gray;
     font-size:@sm-size;
 }
@@ -525,7 +530,7 @@ export default{
 .container63 .sort0101 ul{
     list-style: none;
     position: absolute;
-    left: 122px;
+    left: 132px;
     top: 60px;
     width: 1040px;
     height: auto;
@@ -534,7 +539,7 @@ export default{
 .container63 .sort0101text{
     display: inline-block;
     position: relative;
-    left: -336px;
+    left: -325px;
     top: 14px;
     color:@gray;
     font-size:@sm-size;
@@ -601,7 +606,7 @@ export default{
    height: 30px;
    background: @mainbg-color;
    position: relative;
-   left: 47px;
+   left: 57px;
    top: 28px;
    margin-bottom: 40px;
    display: block;
@@ -669,7 +674,7 @@ export default{
    font-size:@xm-size;
    position: relative;
    top: -26px;
-   left: 886px;
+   left: 966px;
 }
 
 .container63 .first {
@@ -680,7 +685,7 @@ export default{
 .container63 .first .role{
     position: relative;
     top: -20px;
-    left: 46px;  
+    left: 57px;  
     margin-top: 10px;
     display: block;
 }

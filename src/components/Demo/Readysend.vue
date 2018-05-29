@@ -64,6 +64,7 @@ export default{
             this.$store.state.demoxmlid = id
             this.$store.state.publicstate = 1
             sessionStorage.snapdemoid = id
+            sessionStorage.publishid = id
         },
         Canpublic(id){//取消发布
             this.axios.post('/res/dealfile',{

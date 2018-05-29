@@ -162,7 +162,8 @@ export default{
         // },
         // 加载默认数据
         Getsource(){
-                this.handleCurrentChange(1)
+                // this.handleCurrentChange(1)
+                this.currentPage3=1
                 this.$store.state.sourcesearch=false,
                 this.$store.state.sourcebackg=false,
                 this.$store.state.sourcegame=true,
@@ -185,7 +186,8 @@ export default{
         },
         // 二级菜单
         Getsourcetwo(id){
-            this.handleCurrentChange(1)
+            // this.handleCurrentChange(1)
+            this.currentPage3=1
             this.isresentshow=false
             this.isdownshow=false
             this.isdemohover01 = id
@@ -217,7 +219,8 @@ export default{
 
           //最近更新
         resentchange(){
-            this.handleCurrentChange(1)
+            // this.handleCurrentChange(1)
+            this.currentPage3=1
             this.isresentshow=true
             this.isdownshow=false
             this.axios.post('/res/resourcelist',{
@@ -235,7 +238,8 @@ export default{
         },
         //最多使用
         mostuse(){
-            this.handleCurrentChange(1)
+            // this.handleCurrentChange(1)
+            this.currentPage3=1
             this.isresentshow=false
             this.isdownshow=true
             this.axios.post('/res/resourcelist',{
@@ -405,7 +409,7 @@ export default{
 .container64 .sort01 ul{
     list-style: none;
     position: relative;
-    left: 122px;
+    left: 132px;
     top: -20px;
     width: 1040px;
     height: 24px;
@@ -413,7 +417,7 @@ export default{
 .container64 .sort01text{
     display: inline-block;
     position: relative;
-    left: 46px;
+    left: 57px;
     color:@gray;
     font-size:@sm-size;
 }
@@ -442,7 +446,7 @@ export default{
 .container64 .sort0101 ul{
     list-style: none;
     position: absolute;
-    left: 122px;
+    left: 132px;
     top: 60px;
     width: 1040px;
     height: auto;
@@ -451,7 +455,7 @@ export default{
 .container64 .sort0101text{
     display: inline-block;
     position: relative;
-    left: 46px;
+    left: 57px;
     top: 12px;
     color:@gray;
     font-size:@sm-size;
@@ -515,7 +519,7 @@ export default{
     height: 30px;
     background: @mainbg-color;
     position: relative;
-    left: 47px;
+    left: 57px;
     top: 28px;
 }
 .container64 .sort02 ul{
@@ -581,7 +585,7 @@ export default{
     font-size:@xm-size;
     position: relative;
     top: -26px;
-    left: 886px;
+    left: 966px;
 }
 
 
@@ -593,7 +597,7 @@ export default{
 .container64 .first .role{
     position: relative;
     top: -20px;
-    left: 46px;  
+    left: 57px;  
     margin-top: 10px;
     display: block;
     

@@ -66,6 +66,7 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
                 this.$store.state.demoxmlid = id             
                 sessionStorage.snapdemoid = id
                 this.$store.state.publicstate = state
+                sessionStorage.publishid = id
             },
             getalldemo(){//舒适化请求数据函数定义
                 this.axios.post('/res/filelist',{
@@ -123,6 +124,7 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
                 if(state==0){//发布文件函数
                     this.$store.state.demoxmlid = id
                     this.$store.state.publicstate = 0
+                    sessionStorage.publishid = id
                     this.$router.push({name: 'Publish'})
                 }else{//取消发布
                     this.axios.post('/res/dealfile',{

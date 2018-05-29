@@ -38,13 +38,16 @@
         <p class="all">共有{{listnewlength}}个素材</p>
     </div>
     <div class="first">
-        <ul class="role">
+        <ul class="role"> 
             <li v-for="(item,index) in listnew" :key="item.index" v-if="index<15">
-                <div class="roleimg" v-bind:style="{background:isbgcolor(index)}"  v-on:mouseleave='musicendbutton(index)'> 
-                    <img class="musicbg" v-show="musicbg!==index?true:false" src="../../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'>
-                    <div @click="musicplay01(index)"><img v-show="musicstart01==index" src="../../../assets/source/end.png"></div>
+                <div class="roleimg" v-bind:style="{background:isbgcolor(index)}"> 
+                      <!-- v-on:mouseleave='musicendbutton(index)' -->
+                    <!-- <img class="musicbg" v-show="musicbg!==index?true:false||musicstart01==item.id" src="../../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'> -->
+                     <img class="musicbg" v-show="!(musicbg==index||musicstart001==index)" src="../../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'>
+                    <!-- 三角形图标 -->
+                    <div @click="musicplay01(index,item.id)"><img v-show="musicstart01==index||musicstart0001==item.id" src="../../../assets/source/end.png"></div>
                     <!-- 这里是个坑 -->
-                    <div @click="musicstop(index)"><img v-show="musicend==index" src="../../../assets/source/start.png"></div>
+                    <div @click="musicstop(index,item.id)"><img v-show="musicend==index||musicend01==item.id" src="../../../assets/source/start.png"></div>
                     <audio :src="'/codeplay'+item.content" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime(index)" controls="controls" preload="metadata"></audio>
                     <!-- <audio src="static/1.mp3" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime" controls="controls" preload="metadata"></audio> -->
                     <el-progress class="progress" :text-inside="false" v-show="progressbg==index" :stroke-width="4" :percentage="scale"></el-progress>
@@ -118,16 +121,20 @@ export default{
         isdownshow:'',//最多下载背景
         currentPage3:1,//当前页数
         iscolor:'',//音乐背景颜色
-        progressbg:'',//是否显示进度条
-        musicbg:'',//是否显示音乐背景
-        musicstart01:'',//音乐开始图标
-        musicend:'',//音乐结束图标
+        progressbg:-1,//是否显示进度条
+        musicbg:-1,//是否显示音乐背景
+        musicstart01:-1,//音乐开始图标（hover）
+        musicstart001:-1,//音乐开始图标(点击和背景相关联)
+        musicstart0001:-1,//音乐开始图标（点击）
+        musicend:-1,//音乐结束图标（hover）
+        musicend01:-1,//音乐结束图标（点击）
         musicplace:'',//音乐播放地址
         duration01:'',//播放时长(进度条)
         duration02:'',//播放时长(展示)
         currentTime:'',//当前播放时间
         scale:0,//比例
-        isduration:false,//是否显示播放时长
+        isduration:-1,//是否显示播放时长
+        isplay:[ ],//播放数组，为了记录上一次的播放的记录
         oneidbox:[
             {oneid:0,name:"全部"},
             {oneid:1,name:"流行"},
@@ -182,35 +189,57 @@ export default{
         //     this.duration02 = parseInt(audiotime.duration)
         // },
         //点击播放
-        musicplay01(j,item){
-            this.musicend=j
-            this.musicstart01=-1
-            this.progressbg=j
+        musicplay01(j,i){
+            this.musicend=-1//移动竖形消失
+            this.musicend01=i//点击竖形显示
+            this.musicstart001=j//点击音乐背景消失
+            this.musicstart0001=-1//点击三角形消失
+            this.musicstart01=-1//移动三角形消失
+            this.progressbg=j//进度条
+            this.isplay.push(j)
             // var audio01 = document.getElementById("bgmusic");
-            var audio01 = this.$refs.audio[j];
+            // var audio01 = this.$refs.audio[j];
+            if(this.isplay.length==1){
+                var audio01 = this.$refs.audio[j];
+                audio01.play();
+            }else{
+                var audio001 = this.$refs.audio[j];
+                var beforej = this.isplay[this.isplay.length-2]
+                var audiobefore = this.$refs.audio[beforej];
+                audiobefore.pause();
+                audio001.play();
+            }
+            // var audio01 = this.$refs.audio[j];
+            // let beforej = this.isplay[this.isplay.length-2]
+            // var audiobefore = this.$refs.audio[beforej];
+            // audiobefore.pause();
+            // audio01.play();
+            // console.log(beforej)
             // console.log(j)
-            // console.log(item)
             // console.log(audio01)
-            audio01.play();
+            // console.log(this.isplay)  
         },
         //点击暂停
-        musicstop(i){
-            this.musicstart01=i
+        musicstop(i,j){
+            // this.musicstart01=i
             this.musicend=-1
-            this.progressbg=i
+            this.musicend01=-1
+            this.musicstart0001=j//点击三角形显示
+            // this.progressbg=i
+            this.isplay.push['i']
             // var audio02 = document.getElementById("bgmusic");
             var audio02 = this.$refs.audio[i];
             audio02.pause();
         },
-        //鼠标进入是背景的变化
+        // //鼠标进入是背景的变化
         musicstartbutton(i){
-            this.progressbg=i
+            // this.progressbg=-1
             this.musicbg=i
             this.musicstart01=i
             this.musicend=-1
             this.isduration=i
             var audiotime = this.$refs.audio[i];
-            this.duration02 = parseInt(audiotime.duration)
+            this.duration02 = Math.ceil(audiotime.duration)
             let s = this.duration02%60
             let m = (this.duration02-s)/60
             if(s>9){
@@ -227,8 +256,8 @@ export default{
             this.musicstart01=-1
             this.musicend=-1
             this.isduration=-1
-            var audio03 = this.$refs.audio[i];
-            audio03.pause();
+            // var audio03 = this.$refs.audio[i];
+            // audio03.pause();
             this.scale=0;
         },
         //背景颜色选择
@@ -247,7 +276,17 @@ export default{
         },
         //第二级获取数据
         select01(id){
-            this.handleCurrentChange(1)
+            // 初始化数据
+            this.progressbg=-1,//是否显示进度条
+            this.musicbg=-1,//是否显示音乐背景
+            this.musicstart01=-1,//音乐开始图标（hover）
+            this.musicstart001=-1,//音乐开始图标(点击和背景相关联)
+            this.musicstart0001=-1,//音乐开始图标（点击）
+            this.musicend=-1,//音乐结束图标（hover）
+            this.musicend01=-1,//音乐结束图标（点击）
+            this.isduration=-1,//是否显示播放时长
+            // this.handleCurrentChange(1)
+            this.currentPage3=1
             this.isresentshow=false
             this.isdownshow=false
             this.isdemohover01 = id
@@ -329,7 +368,16 @@ export default{
         },
             // 第二级选择
         select0101(id){
-            this.handleCurrentChange(1)
+            this.progressbg=-1,//是否显示进度条
+            this.musicbg=-1,//是否显示音乐背景
+            this.musicstart01=-1,//音乐开始图标（hover）
+            this.musicstart001=-1,//音乐开始图标(点击和背景相关联)
+            this.musicstart0001=-1,//音乐开始图标（点击）
+            this.musicend=-1,//音乐结束图标（hover）
+            this.musicend01=-1,//音乐结束图标（点击）
+            this.isduration=-1,//是否显示播放时长
+            // this.handleCurrentChange(1)
+            this.currentPage3=1
             this.isresentshow=false
             this.isdownshow=false
             this.isdemohover02 = id
@@ -369,7 +417,16 @@ export default{
 
         //最近更新
         resentchange(){
-            this.handleCurrentChange(1)
+            this.progressbg=-1,//是否显示进度条
+            this.musicbg=-1,//是否显示音乐背景
+            this.musicstart01=-1,//音乐开始图标（hover）
+            this.musicstart001=-1,//音乐开始图标(点击和背景相关联)
+            this.musicstart0001=-1,//音乐开始图标（点击）
+            this.musicend=-1,//音乐结束图标（hover）
+            this.musicend01=-1,//音乐结束图标（点击）
+            this.isduration=-1,//是否显示播放时长
+            // this.handleCurrentChange(1)
+            this.currentPage3=1
             this.isresentshow=true
             this.isdownshow=false
             this.isdemohover03 = 1
@@ -389,7 +446,16 @@ export default{
         },
         //最多使用
         mostuse(){
-            this.handleCurrentChange(1)
+            this.progressbg=-1,//是否显示进度条
+            this.musicbg=-1,//是否显示音乐背景
+            this.musicstart01=-1,//音乐开始图标（hover）
+            this.musicstart001=-1,//音乐开始图标(点击和背景相关联)
+            this.musicstart0001=-1,//音乐开始图标（点击）
+            this.musicend=-1,//音乐结束图标（hover）
+            this.musicend01=-1,//音乐结束图标（点击）
+            this.isduration=-1,//是否显示播放时长
+            // this.handleCurrentChange(1)
+            this.currentPage3=1
             this.isresentshow=false
             this.isdownshow=true
             this.axios.post('/res/resourcelist',{
@@ -408,7 +474,8 @@ export default{
 
         // 默认加载的数据
         Getsource(){
-                this.handleCurrentChange(1)
+                // this.handleCurrentChange(1)
+                this.currentPage3=1
                 this.$store.state.sourcesearch=false,
                 this.$store.state.sourcebackg=true,
                 this.$store.state.sourcegame=false,
@@ -549,6 +616,14 @@ export default{
         },
         //根据页数获取数据
         getData(){
+            this.progressbg=-1,//是否显示进度条
+            this.musicbg=-1,//是否显示音乐背景
+            this.musicstart01=-1,//音乐开始图标（hover）
+            this.musicstart001=-1,//音乐开始图标(点击和背景相关联)
+            this.musicstart0001=-1,//音乐开始图标（点击）
+            this.musicend=-1,//音乐结束图标（hover）
+            this.musicend01=-1,//音乐结束图标（点击）
+            this.isduration=-1,//是否显示播放时长
             this.axios.post('/res/resourcelist',{
                 onenav:5,
                 twonav:this.isdemohover01,
@@ -587,7 +662,7 @@ export default{
 .container80 .sort01 ul{
     list-style: none;
     position: relative;
-    left: 122px;
+    left: 132px;
     top: -20px;
     width: 1040px;
     height: 24px;
@@ -595,7 +670,7 @@ export default{
 .container80 .sort01text{
     display: inline-block;
     position: relative;
-    left: 46px;
+    left: 57px;
     color:@gray;
     font-size:@sm-size;
 }
@@ -630,7 +705,7 @@ export default{
 .container80 .sort0101 ul{
     list-style: none;
     position: absolute;
-    left: 122px;
+    left: 132px;
     top: 60px;
     width: 1040px;
     height: auto;
@@ -639,7 +714,7 @@ export default{
 .container80 .sort0101text{
     display: inline-block;
     position: relative;
-    left: -177px;
+    left: -166px;
     top: 14px;
     color:@gray;
     font-size:@sm-size;
@@ -706,7 +781,7 @@ export default{
    height: 30px;
    background: @mainbg-color;
    position: relative;
-   left: 47px;
+   left: 57px;
    top: 28px;
    margin-bottom: 40px;
    display: block;
@@ -774,7 +849,7 @@ export default{
    font-size:@xm-size;
    position: relative;
    top: -26px;
-   left: 886px;
+   left: 966px;
 }
 
 .container80 .first {
@@ -785,7 +860,7 @@ export default{
 .container80 .first .role{
     position: relative;
     top: -20px;
-    left: 46px;  
+    left: 57px;  
     margin-top: 10px;
     display: block;
 }

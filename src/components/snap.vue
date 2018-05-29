@@ -4,7 +4,7 @@
             <div class="snapheader">
                 <ul class="snapheaderleft">
                     <li class="bcw"><a href="http://www.manykit.com/codeplay" target="_blank"><img src="../assets/snappic/snapb.png" alt=""></a></li>
-                    <li class="borderlight01" @click.stop="snapdropdowmcontrol" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
+                    <li class="borderlight01" @mouseenter="snapdropdowmcontrol01" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
                     <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
                     <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState" disabled="disabled"></li> -->
                     <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState"></li> -->
@@ -22,10 +22,10 @@
                     dialogRegister = true, 
                     dialogForgetpass= false, 
                     dialogPassSure=false">注册</li>
-                    <li class="borderlight06" v-show="user" @click="snapdemodropdowmcontrol" id="sanpuserPanel">{{$store.state.usernamesession02}}</li>
+                    <li class="borderlight06" v-show="user" @mouseenter="snapdemodropdowmcontrol01" id="sanpuserPanel">{{$store.state.usernamesession02}}</li>
                 </ul>
                 <div class="snapedit" @click="snapedit"></div>
-                <div v-if="snapdropdown01" class="snapdropdowm">
+                <div v-if="snapdropdown01" class="snapdropdowm" @mouseleave="snapdropdowmcontrol02">
                     <ul class="block-col-12">
                         <li><p @click.stop.prevent="dialogNew=true,snapdropdown01=false">新建</p></li>
                         <li><p @click.stop.prevent="anothersave">另存为</p></li>
@@ -33,7 +33,7 @@
                         <li><p @click.stop.prevent="dialogOpen=true,snapdropdown01=false">打开本地作品</p></li>    
                     </ul>
                 </div>
-                <div v-show="snapdemodropdowm" class="snapdemodropdowm" >
+                <div v-show="snapdemodropdowm" class="snapdemodropdowm" @mouseleave="snapdemodropdowmcontrol02">
                     <ul class="block-col-12">
                         <li><a href="http://www.manykit.com/codeplay/#/Demo/Mydemo" target="_blank"><p>我的作品</p></a></li>
                         <li><p @click.prevent="Cancellogout">退出登录</p></li>  
@@ -399,8 +399,12 @@ export default{
             this.dialogLogin = false
         },
         //左侧下拉框
-        snapdropdowmcontrol(){
-            this.snapdropdown01 = !this.snapdropdown01          
+        snapdropdowmcontrol01(){
+            this.snapdropdown01 = true       
+        },
+        //左侧下拉框
+        snapdropdowmcontrol02(){
+            this.snapdropdown01 = false         
         },
         issnapdropdowncontrol(event){
             if(!document.getElementById("sanpPanel").contains(event.target)){ 
@@ -408,8 +412,11 @@ export default{
           }
         },
          //右侧下拉框
-        snapdemodropdowmcontrol(){
-            this.snapdemodropdowm = !this.snapdemodropdowm
+        snapdemodropdowmcontrol01(){
+            this.snapdemodropdowm = true
+        },
+        snapdemodropdowmcontrol02(){
+            this.snapdemodropdowm = false
         },
         issnapuserdropdowncontrol(event){
             if(!document.getElementById("sanpuserPanel").contains(event.target)){ 
@@ -606,6 +613,7 @@ export default{
                     if(this.$store.state.demoxmlid){                //是否是发布和未发布状态
                         if(this.$store.state.publicstate==0){       //未发布已保存
                             this.$store.state.demoxmlid = this.$store.state.demoxmlid
+                            sessionStorage.publishid= this.$store.state.demoxmlid
                             // window.open('/#/Publish'); 
                             this.$router.push({name:'Publish'})
                         }else{                                      //已发布
@@ -615,56 +623,58 @@ export default{
                             });
                         }
                     }else{
-                        if(this.$store.state.coverid=1){
-                            this.$store.state.coverid=2//创建封面作品发布
-                            this.dialogUpload = true
-                            this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT('o')
-                            let filebir = this.formSave.file
-                            this.filebinary = new Blob([filebir]);
-                            let formData = new FormData();
-                            formData.append('userid',this.formSave.userid);
-                            formData.append('state',1);
-                            formData.append('title','未发布成功的作品');
-                            formData.append('desc','未发布成功的作品');
-                            formData.append('files',this.filebinary);
-                            let config = {
-                                headers:{
-                                    'Content-Type':'multipart/form-data'
+                            if(this.$store.state.coverid=1){
+                                this.$store.state.coverid=2//创建封面作品发布
+                                this.dialogUpload = true
+                                this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT('o')
+                                let filebir = this.formSave.file
+                                this.filebinary = new Blob([filebir]);
+                                let formData = new FormData();
+                                formData.append('userid',this.formSave.userid);
+                                formData.append('state',1);
+                                formData.append('title','未发布成功的作品');
+                                formData.append('desc','未发布成功的作品');
+                                formData.append('files',this.filebinary);
+                                let config = {
+                                    headers:{
+                                        'Content-Type':'multipart/form-data'
+                                    }
                                 }
-                            }
-                            this.axios.post('/res/upload',formData,config)
-                            .then(response => {
-                                this.$store.state.demoxmlid=response.data.data.id
-                                console.log(response.data.data.id)
-                                // window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
-                                // window.open('/#/Publish'); 
-                                this.$router.push({name:'Publish'})
-                            }) 
-                        }else{
-                            this.dialogUpload = true//新建作品发布
-                            this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT('o')
-                            let filebir = this.formSave.file
-                            this.filebinary = new Blob([filebir]);
-                            let formData = new FormData();
-                            formData.append('userid',this.formSave.userid);
-                            formData.append('state',1);
-                            formData.append('title','未发布成功的作品');
-                            formData.append('desc','未发布成功的作品');
-                            formData.append('files',this.filebinary);
-                            let config = {
-                                headers:{
-                                    'Content-Type':'multipart/form-data'
+                                this.axios.post('/res/upload',formData,config)
+                                .then(response => {
+                                    this.$store.state.demoxmlid=response.data.data.id
+                                    sessionStorage.publishid= response.data.data.id//开新窗口传值
+                                    console.log(response.data.data.id+'1111')
+                                    // window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
+                                    window.open('/#/Publish'); 
+                                    // this.$router.push({name:'Publish'})
+                                }) 
+                            }else{
+                                this.dialogUpload = true//新建作品发布
+                                this.formSave.file = window.frames["snap01"].ide.exportProject_MANYKIT('o')
+                                let filebir = this.formSave.file
+                                this.filebinary = new Blob([filebir]);
+                                let formData = new FormData();
+                                formData.append('userid',this.formSave.userid);
+                                formData.append('state',1);
+                                formData.append('title','未发布成功的作品');
+                                formData.append('desc','未发布成功的作品');
+                                formData.append('files',this.filebinary);
+                                let config = {
+                                    headers:{
+                                        'Content-Type':'multipart/form-data'
+                                    }
                                 }
+                                this.axios.post('/res/upload',formData,config)
+                                .then(response => {
+                                    this.$store.state.demoxmlid=response.data.data.id
+                                    sessionStorage.publishid= response.data.data.id//开新窗口传值
+                                    console.log(response.data.data.id+'0000')
+                                    // window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
+                                    window.open('/#/Publish'); 
+                                    // this.$router.push({name:'Publish'})
+                                }) 
                             }
-                            this.axios.post('/res/upload',formData,config)
-                            .then(response => {
-                                this.$store.state.demoxmlid=response.data.data.id
-                                console.log(response.data.data.id)
-                                // window.open('http://www.manykit.com/codeplay/#/Publish','_blank'); 
-                                // window.open('/#/Publish'); 
-                                this.$router.push({name:'Publish'})
-                            }) 
-                        }
                         }
                 }else{
                     this.$message(
@@ -882,6 +892,7 @@ export default{
             })
             .then(response => {
                 this.dialogLogin = false
+                this.dialogPasswordSure = false
                 this.$message({
                     message: '修改密码成功',
                     center: true

@@ -66,6 +66,7 @@ import { formatDate } from '../../public/time.js'
                         center: true
                         }); 
                     }else{
+                        console.log(response)
                         this.list=response.data.data
                     }
                 })
@@ -74,10 +75,12 @@ import { formatDate } from '../../public/time.js'
                 id:id,                  
                 this.$store.state.demoxmlid = id
                 sessionStorage.snapdemoid = id
+                sessionStorage.publishid = id
             },
             publish(id){
                 this.$store.state.demoxmlid = id
                 this.$store.state.publicstate = 0
+                sessionStorage.publishid = id
             },
             // publish(id){
             //     this.axios.post('/res/dealfile',{

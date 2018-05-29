@@ -414,6 +414,7 @@ export default {
             })
             .then(response => {
                 this.dialogLogin = false
+                this.dialogPasswordSure = false
                 this.$message({
                     message: '修改密码成功',
                     center: true

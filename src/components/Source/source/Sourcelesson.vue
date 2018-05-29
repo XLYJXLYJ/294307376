@@ -120,7 +120,8 @@ export default{
         },
 
         Getsource(){
-                this.handleCurrentChange(1)
+                // this.handleCurrentChange(1)
+                this.currentPage3=1
                 this.$store.state.sourcesearch=false,
                 this.$store.state.sourcebackg=false,
                 this.$store.state.sourcegame=false,
@@ -244,7 +245,7 @@ export default{
 .container6400 .sort01 ul{
     list-style: none;
     position: relative;
-    left: 122px;
+    left: 132px;
     top: -60px;
     width: 1040px;
     height: 24px;
@@ -252,7 +253,7 @@ export default{
 .container6400 .sort01text{
     display: inline-block;
     position: relative;
-    left: 46px;
+    left: 57px;
     color:@gray;
     font-size:@sm-size;
 }
@@ -282,7 +283,7 @@ export default{
 .container6400 .sort0101 ul{
     list-style: none;
     position: absolute;
-    left: 122px;
+    left: 132px;
     top: 60px;
     width: 1040px;
     height: auto;
@@ -291,7 +292,7 @@ export default{
 .container6400 .sort0101text{
     display: inline-block;
     position: relative;
-    left: -406px;
+    left: -395px;
     top: 12px;
     color:@gray;
     font-size:@sm-size;
@@ -412,7 +413,7 @@ export default{
    font-size:@xm-size;
    position: relative;
    top: -26px;
-   left: 886px;
+   left: 966px;
 }
 .container6400 .first {
     width: 1200px;
@@ -422,7 +423,7 @@ export default{
 .container6400 .first .role{
     position: relative;
     top: -20px;
-    left: 46px;  
+    left: 57px;  
     margin-top: 10px;
     display: block;
     

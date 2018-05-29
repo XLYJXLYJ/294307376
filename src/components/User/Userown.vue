@@ -26,7 +26,7 @@
                 <div class="makedemotext"><router-link to="snap" target="_blank" @click="makecover">创作</router-link><p>你的封面作品</p> <br/><span>还没有封面作品</span></div>
             </div>  
             <div class="demoimg" v-show="demoimg">
-                <img class="userdemo" :src="'data:image/png;base64,'+demoimageUrl" alt="">
+                <router-link to="/video"><img @click="seedemo" class="userdemo" :src="'data:image/png;base64,'+demoimageUrl" alt=""></router-link>
             </div>   
             <p class="name01">封面作品</p>
             <p class="atten01">暂无作品</p>
@@ -85,6 +85,11 @@ import { looksum } from '../../public/seesum.js'
             this.Getuseinfo()
         },
         methods:{
+            //查看封面作品
+            seedemo(){
+                sessionStorage.id = this.demoimageid
+            },
+            //设置封面作品跟踪coverid
             makecover(){
                 this.$store.state.coverid=1
             },

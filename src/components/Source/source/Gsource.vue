@@ -35,21 +35,29 @@
         <div class="three">
             <img class="threelogo" src="../../../assets/source/music.png" alt=""><p class="rolemain">音乐</p>
             <div class="line"></div>
-            <ul class="role">
-                <li v-for="(item,index) in list03" :key="item.id" v-if='index<10'>
-                    <div class="roleimg">
-                        <div class="roleimgbox">
-                             <img :src="'/codeplay/'+item.content" alt="">
-                        </div>
+            <ul class="role"> 
+                <li v-for="(item,index) in list03" :key="item.index" v-if="index<15">
+                    <div class="roleimg" v-bind:style="{background:isbgcolor(index)}"  v-on:mouseleave='musicendbutton(index)'> 
+                        <img class="musicbg" v-show="musicbg!==index?true:false" src="../../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'>
+                        <div @click="musicplay01(index)"><img v-show="musicstart01==index" src="../../../assets/source/end.png"></div>
+                        <!-- 这里是个坑 -->
+                        <div @click="musicstop(index)"><img v-show="musicend==index" src="../../../assets/source/start.png"></div>
+                        <audio :src="'/codeplay'+item.content" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime(index)" controls="controls" preload="metadata"></audio>
+                        <!-- <audio src="static/1.mp3" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime" controls="controls" preload="metadata"></audio> -->
+                        <el-progress class="progress" :text-inside="false" v-show="progressbg==index" :stroke-width="4" :percentage="scale"></el-progress>
+                        <!-- <el-progress class="progress" v-show="progressbg==index?true:false" type="circle" :percentage="scale" :width="75" :show-text="false"></el-progress> -->
                     </div>
                     <div class="roleup">
-                        <a :href="'/codeplay'+item.content" download @click="collectmaster03(item.id)"><button>下载</button></a>
+
+                    <a :href="'/codeplay/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
                         <p class="text">{{item.name}}</p>
+                        <p class="clock" v-show="isduration==index">{{duration02}}</p>
                     </div>
                 </li>
             </ul>
             <router-link to="/source/sourceshop/Music"><button class="seeall">查看全部 ></button></router-link>
         </div>
+        <p class="endtext">部分素材来源自网络，版权归原作者所有。所有素材仅供个人创作娱乐使用，禁止做任何商业用途，由此产生的任何法律纠纷本网站不予承担</p>
     </div>
 </template>
 <script>
@@ -58,7 +66,19 @@ export default{
       return {
         list01:'',
         list02:'',
-        list03:'',
+        list03:'',//展示音乐数据
+        iscolor:'',//音乐背景颜色
+        progressbg:'',//是否显示进度条
+        musicbg:'',//是否显示音乐背景
+        musicstart01:'',//音乐开始图标
+        musicend:'',//音乐结束图标
+        musicplace:'',//音乐播放地址
+        duration01:'',//播放时长(进度条)
+        duration02:'',//播放时长(展示)
+        currentTime:'',//当前播放时间
+        scale:0,//比例
+        isduration:false,//是否显示播放时长
+        isplay:[ ],//播放数组，为了记录上一次的播放的记录
       }
     },
     mounted(){
@@ -98,11 +118,11 @@ export default{
          // 加载音乐
         Getsource03(){
             this.axios.post('/res/resourcelist',{
-                onenav:3,
+                onenav:5,
                 pagesize:15
             })
             .then(response => {   
-                this.list03=response.data.data
+                this.list03 = response.data.data
             })
         },
         //采集函数01
@@ -140,6 +160,103 @@ export default{
    
             })
         },
+        //进度条函数
+        updateTime(j) {
+            // this.currentTime = document.getElementById('bgmusic').currentTime
+            // this.duration01 = document.getElementById('bgmusic').duration
+            this.currentTime = this.$refs.audio[j].currentTime
+            this.duration01 = this.$refs.audio[j].duration
+            // console.log(this.currentTime)
+            // console.log(this.duration01)
+            this.scale=parseInt(this.currentTime/this.duration01*100)
+        },
+        //获取播放时长
+        // time(index){
+        //     var audiotime =  this.$refs.audio[index];
+        //     this.duration02 = parseInt(audiotime.duration)
+        // },
+        //点击播放
+        musicplay01(j){
+            this.musicend=j
+            this.musicstart01=-1
+            this.progressbg=j
+            this.progressbg=j
+            this.isplay.push(j)
+            // var audio01 = document.getElementById("bgmusic");
+            // var audio01 = this.$refs.audio[j];
+            if(this.isplay.length==1){
+                var audio01 = this.$refs.audio[j];
+                audio01.play();
+            }else{
+                var audio001 = this.$refs.audio[j];
+                var beforej = this.isplay[this.isplay.length-2]
+                var audiobefore = this.$refs.audio[beforej];
+                audiobefore.pause();
+                audio001.play();
+            }
+            // var audio01 = this.$refs.audio[j];
+            // let beforej = this.isplay[this.isplay.length-2]
+            // var audiobefore = this.$refs.audio[beforej];
+            // audiobefore.pause();
+            // audio01.play();
+            // console.log(beforej)
+            // console.log(j)
+            // console.log(audio01)
+            // console.log(this.isplay)  
+        },
+        //点击暂停
+        musicstop(i){
+            this.musicstart01=i
+            this.musicend=-1
+            this.progressbg=i
+            this.isplay.push['i']
+            // var audio02 = document.getElementById("bgmusic");
+            var audio02 = this.$refs.audio[i];
+            audio02.pause();
+        },
+        //鼠标进入是背景的变化
+        musicstartbutton(i){
+            this.progressbg=-1
+            this.musicbg=i
+            this.musicstart01=i
+            this.musicend=-1
+            this.isduration=i
+            var audiotime = this.$refs.audio[i];
+            this.duration02 = Math.ceil(audiotime.duration)
+            let s = this.duration02%60
+            let m = (this.duration02-s)/60
+            if(s>9){
+                s=s
+            }else{
+                s='0'+s
+            }
+            this.duration02=m+':'+s
+        },
+        //鼠标离开是背景的变化
+        musicendbutton(i){
+            this.progressbg=-1
+            this.musicbg=-1
+            this.musicstart01=-1
+            this.musicend=-1
+            this.isduration=-1
+            // var audio03 = this.$refs.audio[i];
+            // audio03.pause();
+            this.scale=0;
+        },
+        //背景颜色选择
+        isbgcolor(i){
+            if(i%5==1){
+                return this.iscolor='#f13232';
+            }else if(i%5==2){
+                return this.iscolor='#0e74be';
+            }else if(i%5==3){
+                return this.iscolor='#00BC59';
+            }else if(i%5==4){
+                return this.iscolor='#FF9C00';
+            }else{
+                return this.iscolor='#C711DD';
+            }
+        },
     },
 }
 </script>
@@ -147,7 +264,7 @@ export default{
 @import '../../../assets/index.less';
 .container65{
     width: 1200px;
-    height: 2805px;
+    height: 3045px;
     position: relative;
     top: -86px;
     left: 0px;
@@ -158,7 +275,7 @@ export default{
     height: 29px;
     width: 29px;
     top: 10px;
-    left: 47px;
+    left: 57px;
     z-index: 100;
 }
 .container65 .first .rolemain{
@@ -174,13 +291,13 @@ export default{
 .container65 .first .role{
     position: relative;
     top: -18px;
-    left: 44px;  
+    left: 57px;  
 }
 .container65 .first .line{
     position: relative;
     border-bottom: 1px solid @gray;  
     position: relative;
-    left: 46px;
+    left: 57px;
     top: -20px;
     width: 1086px;
     z-index: 100;
@@ -240,7 +357,7 @@ export default{
 }
 .container65 .first .seeall{
     position: absolute;
-    left: 40px;
+    left: 57px;
     top: 1010px;
     width: 1086px;
     height: 40px;
@@ -261,7 +378,7 @@ export default{
     height: 28px;
     width: 29px;
     top: 10px;
-    left: 47px;
+    left: 57px;
     z-index: 100;
 }
 .container65 .second .rolemain{
@@ -277,13 +394,13 @@ export default{
 .container65 .second .role{
     position: relative;
     top: -18px;
-    left: 44px;  
+    left: 57px;  
 }
 .container65 .second .line{
     position: relative;
     border-bottom: 1px solid @gray;  
     position: relative;
-    left: 46px;
+    left: 57px;
     top: -20px;
     width: 1086px;
     z-index: 100;
@@ -335,7 +452,7 @@ export default{
 }
 .container65 .second .seeall{
     position: relative;
-    left: 40px;
+    left: 57px;
     top: 39px;
     width: 1086px;
     height: 40px;
@@ -355,7 +472,7 @@ export default{
     height: 28px;
     width: 29px;
     top: 10px;
-    left: 47px;
+    left: 57px;
     z-index: 100;
 }
 .container65 .three .rolemain{
@@ -371,13 +488,13 @@ export default{
 .container65 .three .role{
     position: relative;
     top: -18px;
-    left: 44px;  
+    left: 57px;
 }
 .container65 .three .line{
     position: relative;
     border-bottom: 1px solid @gray;  
     position: relative;
-    left: 46px;
+    left: 57px;
     top: -20px;
     width: 1086px;
     z-index: 100;
@@ -415,6 +532,7 @@ export default{
 .container65 .three .roleimg{
     height: 140px;
     width: 198px;
+    text-align: center;
     background: url(../../../assets/source/bg1.png) no-repeat;
 }
 .container65 .three .roleimg  .roleimgbox{
@@ -424,9 +542,13 @@ export default{
     margin: 0 auto;
 }
 .container65 .three .roleimg img{
-    height: 100%;
-    width: 100%;
-    margin-top: 20px;
+    height: 75px;
+    width: 75px;
+    margin-top: 30px;
+    margin-left: -2px;
+}
+.container65 .three .clock{
+    margin-left: 10px;
 }
 .container65 .three .roleup .text{
     font-size:@md-size;
@@ -436,7 +558,7 @@ export default{
 }
 .container65 .three .seeall{
     position: relative;
-    left: 40px;
+    left: 57px;
     top: 39px;
     width: 1086px;
     height: 40px;
@@ -447,4 +569,16 @@ export default{
     background: @main-color;
     color: @background-color;
 }
+.container65 .endtext{
+    float: left;
+    position: absolute;
+    bottom:10px;
+    left: 100px;
+    width: 1000px;
+    height: 32px;
+    text-align: center;
+    display: block;
+    color: #999;
+    font-size: @ss-size;
+} 
 </style>

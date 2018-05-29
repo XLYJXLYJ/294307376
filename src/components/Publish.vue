@@ -48,7 +48,7 @@ export default {
                 {url:'static/publish/8.png'},
             ],
             // uploadimg:{
-            //         id:this.$store.state.demoxmlid,
+            //         id:sessionStorage.publishid,
             //         userid:sessionStorage.userid,
             //         title:this.demoname,
             //         desc:this.demodes,
@@ -78,6 +78,7 @@ export default {
     },
     mounted(){
         this.loadprojectdes()
+        console.log(this.$store.state.coverid)
     },
     methods: {
         //选择默认照片
@@ -88,11 +89,11 @@ export default {
         },
         //加载项目信息
         loadprojectdes(){
-            console.log(this.$store.state.demoxmlid)
+            console.log(sessionStorage.publishid)
             // if(sessionStorage.userid!=='unfined')
             this.axios.post('/res/getfile',{
                 userid:sessionStorage.userid,
-                id:this.$store.state.demoxmlid,
+                id:sessionStorage.publishid,
                 state:3
             })
             .then(response => {  
@@ -104,7 +105,7 @@ export default {
         //发布用户带自己选择的作品
         submitUpload(){
             if(this.indexdemoid==19){//用户自己上传图片
-                this.picdemo = this.$store.state.demoxmlid
+                this.picdemo = sessionStorage.publishid
                 sessionStorage.demoname = this.demoname
                 sessionStorage.demodes = this.demodes   
                 var picsource = this.$refs.file_el.files[0]
@@ -120,13 +121,12 @@ export default {
                 // }  
             }else{
                 this.axios.post('/res/dealfile',{//选择默认图片
-                    id:this.$store.state.demoxmlid,
+                    id:sessionStorage.publishid,
                     userid:sessionStorage.userid,
                     title:this.demoname,
                     desc:this.demodes,
                     state:3,
                     surfaceplot:this.indexdemoid,
-                    coverworkid:this.$store.state.demoxmlid
                 })
                 .then(response => {
                     this.$message({
@@ -139,21 +139,21 @@ export default {
         },
         //返回上一级及赋值sessionStroage，让snap可以打开作品
         returngo(){
-            sessionStorage.snapdemoid = this.$store.state.demoxmlid
+            sessionStorage.snapdemoid = sessionStorage.publishid
             this.$router.go(-1)
         },
         //发布带默认图片的作品
         uploadFile(picsource){
             if(this.$store.state.coverid=2){//创建封面作品发布
                 let formData = new FormData();
-                formData.append('id',this.picdemo);
+                formData.append('id',sessionStorage.publishid);
                 formData.append('userid',sessionStorage.userid);
                 formData.append('title',sessionStorage.demoname);
                 formData.append('desc',sessionStorage.demodes);
                 formData.append('state',3);
                 formData.append('surfaceplot',9);
                 formData.append('files',picsource);
-                formData.append('coverworkid',this.$store.state.demoxmlid);
+                formData.append('coverworkid',sessionStorage.publishid);
                 let config = {
                     headers:{
                         'Content-Type':'application/x-jpg'
