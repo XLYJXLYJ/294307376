@@ -4,24 +4,66 @@
             <div class="logo04_p"><p>Snap课程</p></div>
             <div class="cut_off"></div>
             <div class="container_up02">
-                <img class="video" src="../../assets/Lesson/video.png" alt="">
+                <img class="video" src="../../assets/Lesson/video.png" alt="" @click="videoScreen">
                 <p class="snap">01 Snap课程</p>
                 <span class="snap_detail">阿Snap课程飞第三方的萨达是的撒打萨达的萨吉继木阿Snap课程飞第三方的萨达是的撒打萨达的萨吉继木</span>
             </div>
             <div class="block">
-                <ul>
-                    <li v-for="(item,index) in lessonLength" :key='index'><p>{{item}}</p></li>
+                 <ul>
+                    <li v-for="(item,index) in lessonLength" :key='index' @click="selectLesson(index)" :class="{lessonhover:index==isLessonHover}"><p>{{item}}</p></li>
                 </ul>
             </div>
         </div>
+
+        <el-dialog :visible.sync="dialogVideo"  width="63%" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close='false'>
+            <div>
+                <div class="containervideo" v-show="dialogVideo">  
+                    <video id="video" src="static/homelesson.mp4"  :autoplay="playStatus" controls @click="playClick" height="100%" width="100%">
+                    <img src="../../assets/home/player.png" alt="">
+                    </video> 
+                </div>
+            </div> 
+        </el-dialog>  
+
     </div>
 </template>
 <script>
-    export default{
+export default{
         data(){
             return{
-                lessonLength:18
+                lessonLength:18,
+                isLessonHover:'',
+                playStatus:false,//默认的播放状态
+                dialogVideo:false//播放模态款状态，默认时关闭
             }
+        },
+        watch:{
+            //监控视频窗口，只要变化，则暂停播放
+            dialogVideo:function(){
+                this._dom = document.getElementById('video');
+                this._dom.pause();  
+                play.value="暂停"; 
+            }
+        },
+        methods:{
+            selectLesson(index){
+                this.isLessonHover=index
+            },
+                    //控制视频播放，暂停
+            playClick(){
+                this._dom = document.getElementById('video');
+                if (this._dom.paused) {  
+                    this._dom.play();  
+                    play.value="播放";  
+                }else{ 
+                    this._dom.pause();  
+                    play.value="暂停";  
+                }  
+            },
+            //点击视频播放框变大
+            videoScreen(){
+                this.dialogVideo = true
+            },
         }
     }
 </script>
@@ -121,6 +163,9 @@
  .container16 .block li:hover{
     background: #f13232;
 }
+.lessonhover{
+    background: #f13232!important;
+ }
 .container16 .block li p{
     position: relative;
     top: 20px;
