@@ -9,6 +9,17 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Vuex from 'vuex'
 import store from './vuex/store'
+import VueLazyload from 'vue-lazyload'
+
+Vue.use(VueLazyload)
+
+// 懒加载配置
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: 'dist/error.png',
+  loading: 'dist/loading.gif',
+  attempt: 1
+})
 
 Vue.use(Vuex);
  

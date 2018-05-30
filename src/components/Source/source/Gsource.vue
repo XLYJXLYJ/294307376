@@ -37,15 +37,18 @@
             <div class="line"></div>
             <ul class="role"> 
                 <li v-for="(item,index) in list03" :key="item.index" v-if="index<15">
-                    <div class="roleimg" v-bind:style="{background:isbgcolor(index)}"  v-on:mouseleave='musicendbutton(index)'> 
-                        <img class="musicbg" v-show="musicbg!==index?true:false" src="../../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'>
-                        <div @click="musicplay01(index)"><img v-show="musicstart01==index" src="../../../assets/source/end.png"></div>
-                        <!-- 这里是个坑 -->
-                        <div @click="musicstop(index)"><img v-show="musicend==index" src="../../../assets/source/start.png"></div>
-                        <audio :src="'/codeplay'+item.content" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime(index)" controls="controls" preload="metadata"></audio>
-                        <!-- <audio src="static/1.mp3" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime" controls="controls" preload="metadata"></audio> -->
-                        <el-progress class="progress" :text-inside="false" v-show="progressbg==index" :stroke-width="4" :percentage="scale"></el-progress>
-                        <!-- <el-progress class="progress" v-show="progressbg==index?true:false" type="circle" :percentage="scale" :width="75" :show-text="false"></el-progress> -->
+                    <div class="roleimg" v-bind:style="{background:isbgcolor(index)}"> 
+                    <!-- v-on:mouseleave='musicendbutton(index)' -->
+                    <!-- <img class="musicbg" v-show="musicbg!==index?true:false||musicstart01==item.id" src="../../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'> -->
+                     <img class="musicbg" v-show="!(musicbg==index||musicstart001==index)" src="../../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'>
+                    <!-- 三角形图标 -->
+                    <div @click="musicplay01(index,item.id)"><img v-show="musicstart01==index||musicstart0001==item.id" src="../../../assets/source/end.png"></div>
+                    <!-- 这里是个坑 -->
+                    <div @click="musicstop(index,item.id)"><img v-show="musicend==index||musicend01==item.id" src="../../../assets/source/start.png"></div>
+                    <audio :src="'/codeplay'+item.content" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime(index)" controls="controls" preload="metadata"></audio>
+                    <!-- <audio src="static/1.mp3" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime" controls="controls" preload="metadata"></audio> -->
+                    <el-progress class="progress" :text-inside="false" v-show="progressbg==index" :stroke-width="4" :percentage="scale"></el-progress>
+                    <!-- <el-progress class="progress" v-show="progressbg==index?true:false" type="circle" :percentage="scale" :width="75" :show-text="false"></el-progress> -->
                     </div>
                     <div class="roleup">
 
@@ -68,16 +71,19 @@ export default{
         list02:'',
         list03:'',//展示音乐数据
         iscolor:'',//音乐背景颜色
-        progressbg:'',//是否显示进度条
-        musicbg:'',//是否显示音乐背景
-        musicstart01:'',//音乐开始图标
-        musicend:'',//音乐结束图标
+        progressbg:-1,//是否显示进度条
+        musicbg:-1,//是否显示音乐背景
+        musicstart01:-1,//音乐开始图标（hover）
+        musicstart001:-1,//音乐开始图标(点击和背景相关联)
+        musicstart0001:-1,//音乐开始图标（点击）
+        musicend:-1,//音乐结束图标（hover）
+        musicend01:-1,//音乐结束图标（点击）
         musicplace:'',//音乐播放地址
         duration01:'',//播放时长(进度条)
         duration02:'',//播放时长(展示)
         currentTime:'',//当前播放时间
         scale:0,//比例
-        isduration:false,//是否显示播放时长
+        isduration:-1,//是否显示播放时长
         isplay:[ ],//播放数组，为了记录上一次的播放的记录
       }
     },
@@ -176,11 +182,13 @@ export default{
         //     this.duration02 = parseInt(audiotime.duration)
         // },
         //点击播放
-        musicplay01(j){
-            this.musicend=j
-            this.musicstart01=-1
-            this.progressbg=j
-            this.progressbg=j
+        musicplay01(j,i){
+            this.musicend=-1//移动竖形消失
+            this.musicend01=i//点击竖形显示
+            this.musicstart001=j//点击音乐背景消失
+            this.musicstart0001=-1//点击三角形消失
+            this.musicstart01=-1//移动三角形消失
+            this.progressbg=j//进度条
             this.isplay.push(j)
             // var audio01 = document.getElementById("bgmusic");
             // var audio01 = this.$refs.audio[j];
@@ -205,18 +213,20 @@ export default{
             // console.log(this.isplay)  
         },
         //点击暂停
-        musicstop(i){
-            this.musicstart01=i
+        musicstop(i,j){
+            // this.musicstart01=i
             this.musicend=-1
-            this.progressbg=i
+            this.musicend01=-1
+            this.musicstart0001=j//点击三角形显示
+            // this.progressbg=i
             this.isplay.push['i']
             // var audio02 = document.getElementById("bgmusic");
             var audio02 = this.$refs.audio[i];
             audio02.pause();
         },
-        //鼠标进入是背景的变化
+        // //鼠标进入是背景的变化
         musicstartbutton(i){
-            this.progressbg=-1
+            // this.progressbg=-1
             this.musicbg=i
             this.musicstart01=i
             this.musicend=-1
@@ -572,7 +582,7 @@ export default{
 .container65 .endtext{
     float: left;
     position: absolute;
-    bottom:10px;
+    bottom:-60px;
     left: 100px;
     width: 1000px;
     height: 32px;

@@ -15,20 +15,20 @@
             </div>
         </div>
 
-        <el-dialog :visible.sync="dialogVideo"  width="63%" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close='false'>
-            <div>
-                <div class="containervideo" v-show="dialogVideo">  
-                    <video id="video" src="static/homelesson.mp4"  :autoplay="playStatus" controls @click="playClick" height="100%" width="100%">
-                    <img src="../../assets/home/player.png" alt="">
-                    </video> 
-                </div>
-            </div> 
-        </el-dialog>  
+            <el-dialog :visible.sync="dialogVideo"  width="63%" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close='false'>
+                <div>
+                    <div class="containervideo" v-show="dialogVideo">  
+                        <video id="video" src="static/homelesson.mp4"  :autoplay="playStatus" controls @click="playClick" height="100%" width="100%">
+                        <img src="../../assets/home/player.png" alt="">
+                        </video> 
+                    </div>
+                </div> 
+            </el-dialog>  
 
     </div>
 </template>
 <script>
-export default{
+    export default{
         data(){
             return{
                 lessonLength:18,
@@ -42,7 +42,6 @@ export default{
             dialogVideo:function(){
                 this._dom = document.getElementById('video');
                 this._dom.pause();  
-                play.value="暂停"; 
             }
         },
         methods:{
@@ -53,11 +52,9 @@ export default{
             playClick(){
                 this._dom = document.getElementById('video');
                 if (this._dom.paused) {  
-                    this._dom.play();  
-                    play.value="播放";  
+                    this._dom.play();
                 }else{ 
                     this._dom.pause();  
-                    play.value="暂停";  
                 }  
             },
             //点击视频播放框变大
@@ -153,11 +150,11 @@ export default{
     height: 71px;
     z-index: 100;
     width: 68px;
-    border: 1px solid #ffe7e7;
+    border: 1px solid #FF7878;
     display: inline-block;
     font-size: 20px;
     text-align: center;
-    background: #ff7979;
+    background: #FF9797;
     cursor: pointer;
 }
  .container16 .block li:hover{

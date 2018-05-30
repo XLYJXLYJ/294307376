@@ -43,7 +43,6 @@
             dialogVideo:function(){
                 this._dom = document.getElementById('video');
                 this._dom.pause();  
-                play.value="暂停"; 
             }
         },
         methods:{
@@ -54,11 +53,9 @@
             playClick(){
                 this._dom = document.getElementById('video');
                 if (this._dom.paused) {  
-                    this._dom.play();  
-                    play.value="播放";  
+                    this._dom.play();
                 }else{ 
                     this._dom.pause();  
-                    play.value="暂停";  
                 }  
             },
             //点击视频播放框变大
@@ -154,11 +151,11 @@
     height: 71px;
     z-index: 100;
     width: 68px;
-    border: 1px solid #ffe7e7;
+    border: 1px solid #FF7878;
     display: inline-block;
     font-size: 20px;
     text-align: center;
-    background: #ff7979;
+    background: #FF9797;
     cursor: pointer;
 }
  .container11 .block li:hover{

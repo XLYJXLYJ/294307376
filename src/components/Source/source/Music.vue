@@ -54,7 +54,7 @@
                     <!-- <el-progress class="progress" v-show="progressbg==index?true:false" type="circle" :percentage="scale" :width="75" :show-text="false"></el-progress> -->
                 </div>
                 <div class="roleup">
-
+ 
                 <a :href="'/codeplay/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
                     <p class="text">{{item.name}}</p>
                     <p class="clock" v-show="isduration==index">{{duration02}}</p>
@@ -1081,7 +1081,7 @@ export default{
 .container80 .endtext{
     float: left;
     position: absolute;
-    bottom:10px;
+    bottom:-60px;
     left: 100px;
     width: 1000px;
     height: 32px;

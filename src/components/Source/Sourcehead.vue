@@ -15,9 +15,9 @@
                 <p class="rolemain">素材</p>
                 <div class="line"></div>
                 <ul class="role">
-                    <li v-for="(item,index) in list01" :key="item.id" v-if="index<15">
+                    <li v-for="(item) in list" :key="item.id" v-show="item.onenav==1">
                         <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
-                        <div class="roleimg"><img src="static/11.png" alt=""></div>
+                        <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
                         <div class="roleup">
                         <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
                             <p class="text">{{item.name}}</p>
@@ -30,9 +30,9 @@
             <p class="rolemain">背景</p>
             <div class="line"></div>
             <ul class="role">
-                <li v-for="(item,index) in list02" :key="item.id" v-if='index<10'>
+                <li v-for="(item) in list" :key="item.id" v-show="item.onenav==2">
                     <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div> -->
-                    <div class="roleimg"><img src="static/12.png" alt=""></div>
+                    <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
                     <div class="roleup">
                        <a :href="'/codeplay'+item.content" download @click="collectmaster02(item.id)"><button>下载</button></a>
                         <p class="text">{{item.name}}</p>
@@ -45,9 +45,9 @@
                 <p class="rolemain">学习</p>
                 <div class="line"></div>
                 <ul class="role">
-                    <li v-for="(item,index) in list03" :key="item.id" v-if="index<15">
+                    <li v-for="(item) in list" :key="item.id" v-show="item.onenav==3">
                         <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
-                        <div class="roleimg"><img src="static/11.png" alt=""></div>
+                        <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
                         <div class="roleup">
                         <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
                             <p class="text">{{item.name}}</p>
@@ -61,9 +61,9 @@
                 <p class="rolemain">游戏</p>
                 <div class="line"></div>
                 <ul class="role">
-                    <li v-for="(item,index) in list04" :key="item.id" v-if="index<15">
+                    <li v-for="(item) in list" :key="item.id" v-show="item.onenav==4">
                         <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
-                        <div class="roleimg"><img src="static/11.png" alt=""></div>
+                        <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
                         <div class="roleup">
                         <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
                             <p class="text">{{item.name}}</p>
@@ -76,7 +76,7 @@
                 <p class="rolemain">音乐</p>
                 <div class="line"></div>
                 <ul class="role"> 
-                    <li v-for="(item,index) in list05" :key="item.index" v-if="index<15">
+                    <li v-for="(item,index) in list" :key="item.index" v-show="item.onenav==5">
                         <div class="roleimg" v-bind:style="{background:isbgcolor(index)}"  v-on:mouseleave='musicendbutton(index)'> 
                             <img class="musicbg" v-show="musicbg!==index?true:false" src="../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'>
                             <div @click="musicplay01(index)"><img v-show="musicstart01==index" src="../../assets/source/end.png"></div>
@@ -101,9 +101,9 @@
                 <p class="rolemain">课程</p>
                 <div class="line"></div>
                 <ul class="role">
-                    <li v-for="(item,index) in list01" :key="item.id" v-if="index<15">
+                    <li v-for="(item) in list" :key="item.id" v-show="item.onenav==6">
                         <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
-                        <div class="roleimg"><img src="static/11.png" alt=""></div>
+                        <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
                         <div class="roleup">
                         <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
                             <p class="text">{{item.name}}</p>
@@ -198,14 +198,6 @@ import Sourceshop from '@/components/Source/Sourceshop'
                     })
                     }else{
                         this.list=response.data.data
-                        this.list01=response.data.data
-                        this.list02=response.data.data
-                        this.list03=response.data.data
-                        this.list04=response.data.data
-                        this.list05=response.data.data
-                        this.list06=response.data.data
-                        this.type=response.data.data.type
-                        console.log(response)
                     }
                 })
                 }
@@ -325,6 +317,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
     left: 0px;
     display: inline-block;
     background: @mainbg-color;
+    padding-bottom: 60px;
 }
 .container631{
     width: 1200px;
@@ -397,7 +390,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
 .container64 .container631 .first .role{
     position: relative;
     width: 1143px;
-    min-height: 234px;
+    min-height: 0px;
     top: -70px;
     left: 0px; 
     padding-left: 57px; 
@@ -468,6 +461,8 @@ import Sourceshop from '@/components/Source/Sourceshop'
 .container64 .first .roleup .text{
     font-size:@md-size;
     position: relative;
+    width: 90%;
+    overflow: hidden;
     left: 10px;
     top: -13px;
 }
@@ -552,6 +547,8 @@ import Sourceshop from '@/components/Source/Sourceshop'
 .container64 .second .roleup .text{
     font-size:@md-size;
     position: relative;
+    width: 90%;
+    overflow: hidden;
     left: 10px;
     top: -13px;
 }
@@ -645,6 +642,8 @@ import Sourceshop from '@/components/Source/Sourceshop'
 .container64 .three .roleup .text{
     font-size:@md-size;
     position: relative;
+    width: 90%;
+    overflow: hidden;
     left: 10px;
     top: -13px;
 }
@@ -725,13 +724,15 @@ import Sourceshop from '@/components/Source/Sourceshop'
 .container64 .four .roleup .text{
     font-size:@md-size;
     position: relative;
+    width: 90%;
+    overflow: hidden;
     left: 10px;
     top: -13px;
 }
 
 
 .container64 .five{
-    margin-top: 40px;
+    margin-top: 0px;
     display: inline-block;
     margin-bottom: 120px;
 }
@@ -821,6 +822,8 @@ import Sourceshop from '@/components/Source/Sourceshop'
 .container64 .five .roleup .text{
     font-size:@md-size;
     position: relative;
+    width: 90%;
+    overflow: hidden;
     left: 10px;
     top: -13px;
 }
@@ -843,7 +846,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
 .container64 .container631 .six .role{
     position: relative;
     width: 1143px;
-    min-height: 234px;
+    min-height: 0px;
     top: -90px;
     left: 0px; 
     padding-left: 57px; 
@@ -914,6 +917,8 @@ import Sourceshop from '@/components/Source/Sourceshop'
 .container64 .six .roleup .text{
     font-size:@md-size;
     position: relative;
+    width: 90%;
+    overflow: hidden;
     left: 10px;
     top: -13px;
 }

@@ -903,7 +903,7 @@ export default{
 .container66 .endtext{
     float: left;
     position: absolute;
-    bottom:10px;
+    bottom:-60px;
     left: 100px;
     width: 1000px;
     height: 32px;
