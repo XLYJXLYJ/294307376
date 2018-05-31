@@ -11,8 +11,27 @@
             </div>
             <router-view></router-view>
             <!-- <Sourceshop/> -->
-            <div class="first" v-show="$store.state.sourcesearch">
-                <p class="rolemain">素材</p>
+            <!-- 显示类型 -->
+            <div v-show="$store.state.sourcesearch&&one">
+            <p class="listtotal">为你找到"{{sourcename}}"的相关结果共{{listtotal}}个</p>
+            <div class="listradio">
+                <p>显示类型</p>
+                <el-radio-group v-model="radio" @change='selectradio'>
+                    <el-radio :label="0" text-color="#f13232">全部</el-radio>
+                    <el-radio :label="1">素材</el-radio>
+                    <el-radio :label="2">场景</el-radio>
+                    <el-radio :label="3">学习</el-radio>
+                    <el-radio :label="4">游戏</el-radio>
+                    <el-radio :label="5">音乐</el-radio>
+                    <el-radio :label="6">课程</el-radio>
+                </el-radio-group>
+            </div>
+            </div>
+
+
+
+            <div class="first" v-show="$store.state.sourcesearch&&one">
+                <!-- <p class="rolemain">素材</p> -->
                 <div class="line"></div>
                 <ul class="role">
                     <li v-for="(item) in list" :key="item.id" v-show="item.onenav==1">
@@ -26,8 +45,8 @@
                 </ul>
             </div>
 
-            <div class="second" v-show="$store.state.sourcesearch">
-            <p class="rolemain">背景</p>
+            <div class="second" v-show="$store.state.sourcesearch&&two">
+            <!-- <p class="rolemain">背景</p> -->
             <div class="line"></div>
             <ul class="role">
                 <li v-for="(item) in list" :key="item.id" v-show="item.onenav==2">
@@ -41,8 +60,8 @@
             </ul>
             </div>
 
-            <div class="three" v-show="$store.state.sourcesearch">
-                <p class="rolemain">学习</p>
+            <div class="three" v-show="$store.state.sourcesearch&&three">
+                <!-- <p class="rolemain">学习</p> -->
                 <div class="line"></div>
                 <ul class="role">
                     <li v-for="(item) in list" :key="item.id" v-show="item.onenav==3">
@@ -57,8 +76,8 @@
             </div>
 
 
-            <div class="four" v-show="$store.state.sourcesearch">
-                <p class="rolemain">游戏</p>
+            <div class="four" v-show="$store.state.sourcesearch&&four">
+                <!-- <p class="rolemain">游戏</p> -->
                 <div class="line"></div>
                 <ul class="role">
                     <li v-for="(item) in list" :key="item.id" v-show="item.onenav==4">
@@ -72,8 +91,8 @@
                 </ul>
             </div>
 
-            <div class="five" v-show="$store.state.sourcesearch">
-                <p class="rolemain">音乐</p>
+            <div class="five" v-show="$store.state.sourcesearch&&five">
+                <!-- <p class="rolemain">音乐</p> -->
                 <div class="line"></div>
                 <ul class="role"> 
                     <li v-for="(item,index) in list" :key="item.index" v-show="item.onenav==5">
@@ -97,8 +116,8 @@
                 </ul>
             </div>
 
-            <div class="six" v-show="$store.state.sourcesearch">
-                <p class="rolemain">课程</p>
+            <div class="six" v-show="$store.state.sourcesearch&&six">
+                <!-- <p class="rolemain">课程</p> -->
                 <div class="line"></div>
                 <ul class="role">
                     <li v-for="(item) in list" :key="item.id" v-show="item.onenav==6">
@@ -145,7 +164,16 @@ import Sourceshop from '@/components/Source/Sourceshop'
                 scale:0,//比例
                 isduration:false,//是否显示播放时长
                 isplay:[ ],//播放数组，为了记录上一次的播放的记录
-                type:''
+                type:'',
+                radio: 0,//单选框选项
+                listtotal:'',//搜索结果个数
+                listsortnum:[],//搜索结果的分类数
+                one:true,
+                two:true,
+                three:true,
+                four:true,
+                five:true,
+                six:true,
             }
         },
         watch:{
@@ -164,6 +192,104 @@ import Sourceshop from '@/components/Source/Sourceshop'
                         })
                         this.$router.push({ name: 'Home' })
                     }
+                }
+            },
+            //radio选择的值
+            selectradio(val){
+                switch(val){
+                    case 0:
+                    this.Getsearch()
+                    break;
+                    case 1:
+                    this.one=true;
+                    this.two=false;
+                    this.three=false;
+                    this.four=false;
+                    this.five=false;
+                    this.six=false;
+                    if(this.listsortnum.includes("1")){
+                        this.one=true
+                    }else{
+                        this.$message({
+                            message:'该分类下没有相应的素材'
+                        })
+                    }
+                    break;
+                    case 2:
+                    this.one=false;
+                    this.two=true;
+                    this.three=false;
+                    this.four=false;
+                    this.five=false;
+                    this.six=false;
+                    if(this.listsortnum.includes("2")){
+                        this.two=true
+                    }else{
+                        this.$message({
+                            message:'该分类下没有相应的素材'
+                        })
+                    }
+                    break;
+                    case 3:
+                    this.one=false;
+                    this.two=false;
+                    this.three=true;
+                    this.four=false;
+                    this.five=false;
+                    this.six=false;
+                    if(this.listsortnum.includes("3")){
+                        this.three=true
+                    }else{
+                        this.$message({
+                            message:'该分类下没有相应的素材'
+                        })
+                    }
+                    break;
+                    case 4:
+                    this.one=false;
+                    this.two=false;
+                    this.three=false;
+                    this.four=true;
+                    this.five=false;
+                    this.six=false;
+                    if(this.listsortnum.includes("4")){
+                        this.four=true
+                    }else{
+                        this.$message({
+                            message:'该分类下没有相应的素材'
+                        })
+                    }
+                    break;
+                    case 5:
+                    this.one=false;
+                    this.two=false;
+                    this.three=false;
+                    this.four=false;
+                    this.five=true;
+                    this.six=false;
+                    if(this.listsortnum.includes("5")){
+                        this.five=true
+                    }else{
+                        this.$message({
+                            message:'该分类下没有相应的素材'
+                        })
+                    }
+                    break;
+                    case 6:
+                    this.one=false;
+                    this.two=false;
+                    this.three=false;
+                    this.four=false;
+                    this.five=false;
+                    this.six=true;
+                    if(this.listsortnum.includes("6")){
+                        this.six=true
+                    }else{
+                        this.$message({
+                            message:'该分类下没有相应的素材'
+                        })
+                    }
+                    break;
                 }
             },
             //获取默认数据
@@ -198,6 +324,53 @@ import Sourceshop from '@/components/Source/Sourceshop'
                     })
                     }else{
                         this.list=response.data.data
+                        this.listtotal=response.data.total
+                        let listsort = this.list
+                        let sortnum01 = []//第一次循环赋值
+                        let sortnum02 = []//第二次循环赋值
+                        listsort.forEach(function(a){
+                            sortnum01.push(a.onenav)
+                        })
+                        sortnum01.forEach(function(currentValue){
+                            sortnum02.push(currentValue)
+                        })
+                        this.listsortnum = sortnum02
+                        //判断是否含有分类项目
+                        if(sortnum02.includes("1")){
+                            this.one=true
+                        }else{
+                            this.one=false
+                        }
+                        if(sortnum02.includes("1")){
+                            this.one=true
+                        }else{
+                            this.one=false
+                        }
+                        if(sortnum02.includes("2")){
+                            this.two=true
+                        }else{
+                            this.two=false
+                        }
+                        if(sortnum02.includes("3")){
+                            this.three=true
+                        }else{
+                            this.three=false
+                        }
+                        if(sortnum02.includes("4")){
+                            this.four=true
+                        }else{
+                            this.four=false
+                        }
+                        if(sortnum02.includes("5")){
+                            this.five=true
+                        }else{
+                            this.five=false
+                        }
+                        if(sortnum02.includes("6")){
+                            this.six=true
+                        }else{
+                            this.six=false
+                        }
                     }
                 })
                 }
@@ -387,6 +560,9 @@ import Sourceshop from '@/components/Source/Sourceshop'
     background: url(../../assets/source/xuanzhong.png);
 }
 
+.container64 .first{
+    display: inline-block;
+}
 .container64 .container631 .first .role{
     position: relative;
     width: 1143px;
@@ -398,7 +574,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
 }
 .container64 .first .line{
     position: relative;
-    border-bottom: 1px solid @gray;  
+    border-bottom: 1px solid #e6e6e6;  
     position: relative;
     left: 57px;
     top: -70px;
@@ -498,7 +674,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
 }
 .container64 .second .line{
     position: relative;
-    border-bottom: 1px solid @gray;  
+    border-bottom: 1px solid #e6e6e6;  
     position: relative;
     left: 57px;
     top: -20px;
@@ -566,6 +742,9 @@ import Sourceshop from '@/components/Source/Sourceshop'
     color: @background-color;
 }
 
+.container64 .three{
+    display: inline-block;
+}
 .container64 .container631 .three .role{
     position: relative;
     width: 1143px;
@@ -579,7 +758,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
 }
 .container64 .three .line{
     position: relative;
-    border-bottom: 1px solid @gray;  
+    border-bottom: 1px solid #e6e6e6;  
     position: relative;
     left: 57px;
     top: -30px;
@@ -648,7 +827,9 @@ import Sourceshop from '@/components/Source/Sourceshop'
     top: -13px;
 }
 
-
+.container64 .four{
+    display: inline-block;
+}
 .container64 .container631 .four .role{
     position: relative;
     width: 1143px;
@@ -661,7 +842,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
 }
 .container64 .four .line{
     position: relative;
-    border-bottom: 1px solid @gray;  
+    border-bottom: 1px solid #e6e6e6;  
     position: relative;
     left: 57px;
     top: -30px;
@@ -734,7 +915,6 @@ import Sourceshop from '@/components/Source/Sourceshop'
 .container64 .five{
     margin-top: 0px;
     display: inline-block;
-    margin-bottom: 120px;
 }
 .container64 .five .fivelogo{
     position: relative;
@@ -761,7 +941,7 @@ import Sourceshop from '@/components/Source/Sourceshop'
 }
 .container64 .five .line{
     position: relative;
-    border-bottom: 1px solid @gray;  
+    border-bottom: 1px solid #e6e6e6;  
     position: relative;
     left: 57px;
     top: -20px;
@@ -842,22 +1022,24 @@ import Sourceshop from '@/components/Source/Sourceshop'
 }
 
 
-
+.container64 .six{
+    display: inline-block;
+}
 .container64 .container631 .six .role{
     position: relative;
     width: 1143px;
     min-height: 0px;
-    top: -90px;
+    top: 0px;
     left: 0px; 
     padding-left: 57px; 
     background: @background-color;
 }
 .container64 .six .line{
     position: relative;
-    border-bottom: 1px solid @gray;  
+    border-bottom: 1px solid #e6e6e6;  
     position: relative;
     left: 57px;
-    top: -90px;
+    top: 0px;
     width: 1086px;
     z-index: 100;
 }
@@ -921,5 +1103,25 @@ import Sourceshop from '@/components/Source/Sourceshop'
     overflow: hidden;
     left: 10px;
     top: -13px;
+}
+
+.container64 .listtotal{
+    position: relative;
+    top: -50px;
+    left: 57px;
+    width: 400px;
+    color: #928374;
+}
+.container64 .listradio{
+    position: relative;
+    top: -92px;
+    left: 580px;
+    width: 600px;
+}
+.container64 .listradio p{
+    position: relative;
+    top: 22px;
+    left: -80px;
+    color:#b0a69d;
 }
 </style>

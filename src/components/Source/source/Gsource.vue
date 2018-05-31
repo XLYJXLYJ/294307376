@@ -40,7 +40,7 @@
                     <div class="roleimg" v-bind:style="{background:isbgcolor(index)}"> 
                     <!-- v-on:mouseleave='musicendbutton(index)' -->
                     <!-- <img class="musicbg" v-show="musicbg!==index?true:false||musicstart01==item.id" src="../../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'> -->
-                     <img class="musicbg" v-show="!(musicbg==index||musicstart001==index)" src="../../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'>
+                     <div class="musicbg" v-on:mouseenter='musicstartbutton(index)' v-show="!(musicbg==index||musicstart001==index)"><img src="../../../assets/source/musicbg.png" ></div>
                     <!-- 三角形图标 -->
                     <div @click="musicplay01(index,item.id)"><img v-show="musicstart01==index||musicstart0001==item.id" src="../../../assets/source/end.png"></div>
                     <!-- 这里是个坑 -->
@@ -189,6 +189,7 @@ export default{
             this.musicstart0001=-1//点击三角形消失
             this.musicstart01=-1//移动三角形消失
             this.progressbg=j//进度条
+            this.musicbg=-1//背景还原
             this.isplay.push(j)
             // var audio01 = document.getElementById("bgmusic");
             // var audio01 = this.$refs.audio[j];
@@ -551,12 +552,25 @@ export default{
     text-align: center;
     margin: 0 auto;
 }
-.container65 .three .roleimg img{
+// .container65 .three .roleimg img{
+//     height: 75px;
+//     width: 75px;
+//     margin-top: 30px;
+//     margin-left: -2px;
+// }
+.container65 .three .musicbg{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    left: -2px;
+}
+.container65 .three  img{
     height: 75px;
     width: 75px;
     margin-top: 30px;
     margin-left: -2px;
 }
+
 .container65 .three .clock{
     margin-left: 10px;
 }
