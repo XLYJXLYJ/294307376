@@ -17,7 +17,7 @@
             </el-col>         
         </el-row>
         <button class="button" v-show="load" @click="Seemorerecommend">查看更多作品</button>
-        <button class="buttonloadDown" v-show="loadDown">已加载完全部作品</button>
+        <button class="buttonloaddown" v-show="loadDown">已加载完全部作品</button>
     </div>
 </template>
 <script>
@@ -117,7 +117,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     text-decoration: none;
 }
 .container01 .list_pic{
-    margin-top: 24px;
+    margin-top: 25px;
     height: 270px;
     width: 173px;
     cursor: pointer;
@@ -138,7 +138,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     border: 1px solid @img-color;
 }
 // .container01 .imgcon img:hover{
-    
+
 // }
 .container01 p{
     font-size:@lg-size;
@@ -179,7 +179,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
 }
 .container01 .button{
     position: relative;
-    top: 46px;
+    top: 43px;
     left: 320px;
     width: 192px;
     height: 50px;
@@ -187,9 +187,9 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     color:@background-color; 
     border: none;
 }
-.container01 .buttonloadDown{
+.container01 .buttonloaddown{
     position: relative;
-    top: 46px;
+    top: 20px;
     left: 320px;
     width: 192px;
     height: 50px;

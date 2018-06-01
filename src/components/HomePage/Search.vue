@@ -82,7 +82,7 @@ import { looksum } from '../../public/seesum.js'
     width: 804px;
     height: auto;
     position:absolute;
-    margin-top: 22px;
+    margin-top: 18px;
 }
 .search01 .routetext{
     color:@black;

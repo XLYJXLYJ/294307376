@@ -167,14 +167,16 @@ export default{
             })
         },
         //进度条函数
-        updateTime(j) {
+        async updateTime(j) {
+            this.isduration=-1
             // this.currentTime = document.getElementById('bgmusic').currentTime
             // this.duration01 = document.getElementById('bgmusic').duration
-            this.currentTime = this.$refs.audio[j].currentTime
-            this.duration01 = this.$refs.audio[j].duration
+            this.currentTime = await this.$refs.audio[j].currentTime
+            this.duration01 = await this.$refs.audio[j].duration
             // console.log(this.currentTime)
             // console.log(this.duration01)
             this.scale=parseInt(this.currentTime/this.duration01*100)
+            this.isduration=j
         },
         //获取播放时长
         // time(index){
@@ -182,7 +184,7 @@ export default{
         //     this.duration02 = parseInt(audiotime.duration)
         // },
         //点击播放
-        musicplay01(j,i){
+        async musicplay01(j,i){
             this.musicend=-1//移动竖形消失
             this.musicend01=i//点击竖形显示
             this.musicstart001=j//点击音乐背景消失
@@ -194,12 +196,12 @@ export default{
             // var audio01 = document.getElementById("bgmusic");
             // var audio01 = this.$refs.audio[j];
             if(this.isplay.length==1){
-                var audio01 = this.$refs.audio[j];
+                var audio01 = await this.$refs.audio[j];
                 audio01.play();
             }else{
-                var audio001 = this.$refs.audio[j];
-                var beforej = this.isplay[this.isplay.length-2]
-                var audiobefore = this.$refs.audio[beforej];
+                var audio001 = await this.$refs.audio[j];
+                var beforej = await this.isplay[this.isplay.length-2]
+                var audiobefore = await this.$refs.audio[beforej];
                 audiobefore.pause();
                 audio001.play();
             }

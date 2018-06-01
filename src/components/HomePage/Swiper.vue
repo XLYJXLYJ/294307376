@@ -10,12 +10,12 @@
         <div class="create">
             <div>
                 <!-- <a href="http://www.manykit.com/codeplay/#/snap" target="_blank"><div class="creat01" @click="clearSession"><img src="../../assets/home/s.png" alt=""></div></a> -->
-                <router-link to="/snap" target="_blank"><div class="creat01" @click="clearSession"><img src="../../assets/home/s.png" alt=""></div></router-link>
-                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat02"><img src="../../assets/home/p.png" alt=""></div></a>  
-                <a href="static/logo.png" download><div class="creat03"><img src="../../assets/home/g.png" alt=""></div></a>
-                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat04"><img src="../../assets/home/b.png" alt=""></div></a> 
-                <a href="https://shop194048616.taobao.com"><div class="creat05"><img src="../../assets/home/m.png" alt=""></div></a>
-                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat06"><img src="../../assets/home/p1.png" alt=""></div></a>       
+                <router-link to="/snap" target="_blank"><div class="creat01" @click="clearSession"><img src="../../assets/home/s.png" alt=""><p>Snap</p></div></router-link>
+                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat02"><img src="../../assets/home/p.png" alt=""><p>Blockly</p></div></a>  
+                <a href="static/logo.png" download><div class="creat03"><img src="../../assets/home/g.png" alt=""><p>PHOENIXEngine</p></div></a>
+                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat04"><img src="../../assets/home/b.png" alt=""><p>GitHub</p></div></a> 
+                <a href="https://shop194048616.taobao.com"><div class="creat05"><img src="../../assets/home/m.png" alt=""><p>商城</p></div></a>
+                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat06"><img src="../../assets/home/p1.png" alt=""><p>编程对战车</p></div></a>       
             </div> 
             <div id="videobox">
                  <img src="static/homelesson.png"   @click="videoScreen">
@@ -42,7 +42,7 @@
 import Vue from 'vue'
     const DataImg =[//默认图片
         {url: 'static/1.png'},
-        {url: 'static/2.png'},
+        // {url: 'static/2.png'},
         // {url: 'static/3.png'}, 
     ]
 export default{
@@ -93,7 +93,8 @@ export default{
     width: 100%;
     height: 640px;
     position: relative;
-    top: 60px;
+    // top: 60px;
+    top: 44px;
     margin-top: 0px;
 }
 .contain08 .container09{
@@ -114,6 +115,7 @@ export default{
     width: 1200px;
     background: @background-color;
     position: relative;
+    // top: 36px;
     top: 36px;
     margin: 0 auto;
 }
@@ -124,10 +126,20 @@ export default{
     position: relative;
     left: 0px;
     top:0px;
+    background-color: @main-color;
 }
 .contain08 .creat01 img{
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    left: 24px;
+    top: 33px;
+}
+.contain08 .creat01 p{
+    font-size: 20px;
+    position: absolute;
+    left: 95px;
+    top: 16px;
+    color: #fff;
+    font-weight: 1000;
 }
 .contain08 .creat02{
     height: 104px;
@@ -135,10 +147,20 @@ export default{
     display: inline-block;
     position: absolute;
     left: 282px;
+    background-color: #2E8BCD;
 }
 .contain08 .creat02 img{
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    left: 24px;
+    top: 33px;
+}
+.contain08 .creat02 p{
+    font-size: 20px;
+    position: absolute;
+    left: 95px;
+    top: 16px;
+    color: #fff;
+    font-weight: 1000;
 }
 .contain08 .creat03{
     height: 104px;
@@ -146,10 +168,20 @@ export default{
     display: inline-block;
     position: absolute;
     left: 561px;
+    background-color: #20608F;
 }
 .contain08 .creat03 img{
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    left: 24px;
+    top: 33px;
+}
+.contain08 .creat03 p{
+    font-size: 20px;
+    position: absolute;
+    left: 95px;
+    top: 16px;
+    color: #fff;
+    font-weight: 1000;
 }
 .contain08 .creat04{
     height: 104px;
@@ -158,10 +190,20 @@ export default{
     position: absolute;
     left: 0px;
     top:117px;
+    background-color: #008740;
 }
 .contain08 .creat04 img{
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    left: 24px;
+    top: 33px;
+}
+.contain08 .creat04 p{
+    font-size: 20px;
+    position: absolute;
+    left: 95px;
+    top: 16px;
+    color: #fff;
+    font-weight: 1000;
 }
 .contain08 .creat05{
     height: 104px;
@@ -170,10 +212,20 @@ export default{
     position: absolute;
     left: 282px;
     top:117px;
+    background-color: #FF9C00;
 }
 .contain08 .creat05 img{
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    left: 24px;
+    top: 33px;
+}
+.contain08 .creat05 p{
+    font-size: 20px;
+    position: absolute;
+    left: 95px;
+    top: 16px;
+    color: #fff;
+    font-weight: 1000;
 }
 .contain08 .creat06{
     height: 104px;
@@ -182,18 +234,30 @@ export default{
     position: absolute;
     left: 561px;
     top:117px;
+    background-color: #C711DD;
 }
 .contain08 .creat06 img{
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    left: 24px;
+    top: 33px;
+}
+.contain08 .creat06 p{
+    font-size: 20px;
+    position: absolute;
+    left: 95px;
+    top: 16px;
+    color: #fff;
+    font-weight: 1000;
 }
 #videobox{
-    width: 328px;
-    height: 224px;
+    width: 322px;
+    height: 218px;
     position: relative;
     left: 869px;
     top: -108px;
     background: @black;
+    border: 2px solid #b5b5b5;
+    opacity:0.77;
 }
 #videobox img{
     position: absolute;

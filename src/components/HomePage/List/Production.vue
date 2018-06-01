@@ -110,7 +110,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     text-decoration: none;
 }
 .container02 .list_pic{
-    margin-top: 44px;
+    margin-top: 25px;
     height: 270px;
     width: 173px;
     cursor: pointer;
@@ -172,7 +172,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
 }
 .container02 .button{
     position: relative;
-    top: 46px;
+    top: 43px;
     left: 320px;
     width: 192px;
     height: 50px;
@@ -182,7 +182,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
 }
 .container02 .buttonloaddown{
     position: relative;
-    top: 46px;
+    top: 20px;
     left: 320px;
     width: 192px;
     height: 50px;

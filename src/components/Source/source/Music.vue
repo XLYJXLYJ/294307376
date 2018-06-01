@@ -38,29 +38,32 @@
         <p class="all">共有{{listnewlength}}个素材</p>
     </div>
     <div class="first">
-        <ul class="role"> 
-            <li v-for="(item,index) in listnew" :key="item.index" v-if="index<15">
-                <div class="roleimg" v-bind:style="{background:isbgcolor(index)}"> 
-                      <!-- v-on:mouseleave='musicendbutton(index)' -->
-                    <!-- <img class="musicbg" v-show="musicbg!==index?true:false||musicstart01==item.id" src="../../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'> -->
-                     <div class="musicbg" v-on:mouseenter='musicstartbutton(index)' v-show="!(musicbg==index||musicstart001==index)"><img src="../../../assets/source/musicbg.png" ></div>
-                    <!-- 三角形图标 -->
-                    <div @click="musicplay01(index,item.id)"><img v-show="musicstart01==index||musicstart0001==item.id" src="../../../assets/source/end.png"></div>
-                    <!-- 这里是个坑 -->
-                    <div @click="musicstop(index,item.id)"><img v-show="musicend==index||musicend01==item.id" src="../../../assets/source/start.png"></div>
-                    <audio :src="'/codeplay'+item.content" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime(index)" controls="controls" preload="metadata"></audio>
-                    <!-- <audio src="static/1.mp3" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime" controls="controls" preload="metadata"></audio> -->
-                    <el-progress class="progress" :text-inside="false" v-show="progressbg==index" :stroke-width="4" :percentage="scale"></el-progress>
-                    <!-- <el-progress class="progress" v-show="progressbg==index?true:false" type="circle" :percentage="scale" :width="75" :show-text="false"></el-progress> -->
-                </div>
-                <div class="roleup">
- 
-                <a :href="'/codeplay/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
-                    <p class="text">{{item.name}}</p>
-                    <p class="clock" v-show="isduration==index">{{duration02}}</p>
-                </div>
-            </li>
-        </ul>
+        <keep-alive>
+            <ul class="role"> 
+                <li v-for="(item,index) in listnew" :key="item.index" v-if="index<15">
+                    <div class="roleimg" v-bind:style="{background:isbgcolor(index)}"> 
+                        <!-- v-on:mouseleave='musicendbutton(index)' -->
+                        <!-- <img class="musicbg" v-show="musicbg!==index?true:false||musicstart01==item.id" src="../../../assets/source/musicbg.png" v-on:mouseenter='musicstartbutton(index)'> -->
+                        <div class="musicbg" v-on:mouseenter='musicstartbutton(index)' v-show="!(musicbg==index||musicstart001==index)"><img src="../../../assets/source/musicbg.png" ></div>
+                        <!-- 三角形图标 -->
+                        <div @click="musicplay01(index,item.id)"><img v-show="musicstart01==index||musicstart0001==item.id" src="../../../assets/source/end.png"></div>
+                        <!-- 这里是个坑 -->
+                        <div @click="musicstop(index,item.id)"><img v-show="musicend==index||musicend01==item.id" src="../../../assets/source/start.png"></div>
+                        <audio :src="'/codeplay'+item.content" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime(index)" controls="controls" preload="metadata"></audio>
+                        <!-- <audio src="static/1.mp3" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime" controls="controls" preload="metadata"></audio> -->
+                        <el-progress class="progress" :text-inside="false" v-show="progressbg==index" :stroke-width="4" :percentage="scale"></el-progress>
+                        <!-- <el-progress class="progress" v-show="progressbg==index?true:false" type="circle" :percentage="scale" :width="75" :show-text="false"></el-progress> -->
+                    </div>
+                    <div class="roleup">
+    
+                    <a :href="'/codeplay/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
+                        <p class="text">{{item.name}}</p>
+                        <p class="clock" v-show="isduration==index">{{duration02}}</p>
+                    </div>
+                </li>
+            </ul>
+        </keep-alive>
+
     </div>
 
     <!-- element分页 -->
@@ -174,11 +177,12 @@ export default{
 
     },
     methods:{
-        updateTime(j) {
+        async updateTime(j) {
+
             // this.currentTime = document.getElementById('bgmusic').currentTime
             // this.duration01 = document.getElementById('bgmusic').duration
-            this.currentTime = this.$refs.audio[j].currentTime
-            this.duration01 = this.$refs.audio[j].duration
+            this.currentTime = await this.$refs.audio[j].currentTime
+            this.duration01 = await this.$refs.audio[j].duration
             // console.log(this.currentTime)
             // console.log(this.duration01)
             this.scale=parseInt(this.currentTime/this.duration01*100)
@@ -189,7 +193,7 @@ export default{
         //     this.duration02 = parseInt(audiotime.duration)
         // },
         //点击播放
-        musicplay01(j,i){
+        async musicplay01(j,i){
             this.musicend=-1//移动竖形消失
             this.musicend01=i//点击竖形显示
             this.musicstart001=j//点击音乐背景消失
@@ -201,12 +205,12 @@ export default{
             // var audio01 = document.getElementById("bgmusic");
             // var audio01 = this.$refs.audio[j];
             if(this.isplay.length==1){
-                var audio01 = this.$refs.audio[j];
+                var audio01 = await this.$refs.audio[j];
                 audio01.play();
             }else{
-                var audio001 = this.$refs.audio[j];
-                var beforej = this.isplay[this.isplay.length-2]
-                var audiobefore = this.$refs.audio[beforej];
+                var audio001 = await this.$refs.audio[j];
+                var beforej = await this.isplay[this.isplay.length-2]
+                var audiobefore = await this.$refs.audio[beforej];
                 audiobefore.pause();
                 audio001.play();
             }

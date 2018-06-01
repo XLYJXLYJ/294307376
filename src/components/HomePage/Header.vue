@@ -56,7 +56,7 @@
                         <router-link to="/Download"><p>下载</p></router-link>
                     </li>  
                     <li>
-                        <a href="http://www.manykit.com" target="_blank"><p>Manykit</p></a> 
+                        <a href="http://www.manykit.com" target="_blank"><p>许多米</p></a> 
                     </li>  
                 </ul> 
             </div>
@@ -517,9 +517,12 @@ export default {
     left: 2px;
     top: 2px;
     font-size:@ss-size;
-    color: @background-color;
+    color: @img-color;
     cursor: pointer;
     z-index: 200;
+}
+.headercontainer04 .headonecenter .el-dropdown-link:hover{
+    color: @background-color;
 }
 .headercontainer04 .headonecenter .el-dropdown-link02{
     position: relative;
@@ -532,10 +535,14 @@ export default {
     font-size:@ss-size;
     width: 60px;
     height: 30px;
-    color: @background-color;
+    color: @img-color;
     cursor: pointer;
 }
 .headercontainer04 .headonecenter .shopping a{
+    color: @img-color;
+    text-decoration: none;
+}
+.headercontainer04 .headonecenter .shopping a:hover{
     color: @background-color;
 }
 .headercontainer04 .headonecenter .appdownload{
@@ -553,9 +560,13 @@ export default {
     cursor: pointer;
 }
 .headercontainer04 .headonecenter .appdownload a{
-    color: @background-color;
+    color: @img-color;
     position: relative;
     top: 4px;
+    text-decoration: none;
+}
+.headercontainer04 .headonecenter .appdownload a:hover{
+    color: @background-color;
 }
 .headercontainer04 .headonecenter .block-col-12{
     position:relative;
@@ -608,17 +619,16 @@ export default {
 }
 .container04 ul{
     position: absolute;
-    left: 186px;
+    left: 167px;
     margin-top: 32px; 
     z-index: 200;
 }
 .container04 ul li{
     list-style: none;
     float: left; 
-    margin-left: 41px;
+    margin-left: 44px;
     font-size:@xm-size; 
     padding-bottom: 8px;
-    font-size:@lg-size;
     z-index: 200;
     cursor: pointer;
 }
@@ -645,8 +655,8 @@ export default {
 .container04 .router-link-active:before {
     content: '';
     position: absolute;
-    left: 8px;
-    top: 34px;
+    left: 4px;
+    top: 28px;
     bottom: 0px;
     right: 0px;
     height: 2px;
@@ -685,8 +695,9 @@ export default {
     top: 22px;
     left:20px;
     font-size:@ss-size;
-    color: @background-color;
+    color: @img-color;
     cursor: pointer;
+    text-decoration: none;
 }
 .headercontainer04 .login01{
     display: inline;
@@ -694,11 +705,12 @@ export default {
     top: 6px;
     left:1140px;
     font-size:@ss-size;
-    color: @background-color;;
+    color: @background-color;
     cursor: pointer;
 }
 .headercontainer04 .login:hover{
-    text-decoration: underline;
+    text-decoration: none;
+    color: @background-color;
 }
 .headercontainer04 .dialog{
     z-index: 200;
@@ -714,11 +726,13 @@ export default {
     top: 22px;
     left:52px;
     font-size:@ss-size;
-    color: @background-color;
+    color: @img-color;
     cursor: pointer;
+    text-decoration: none;
 }
 .headercontainer04 .sign:hover{
-    text-decoration: underline;
+    text-decoration: none;
+    color: @background-color;
 }
 .headercontainer04 #dropdown-menu-8301{
     position: fixed;
