@@ -12,7 +12,7 @@
             <router-view></router-view>
             <!-- <Sourceshop/> -->
             <!-- 显示类型 -->
-            <div v-show="$store.state.sourcesearch&&one">
+            <div v-show="$store.state.sourcesearch">
             <p class="listtotal">为你找到"{{sourcename}}"的相关结果共{{listtotal}}个</p>
             <div class="listradio">
                 <p>显示类型</p>
@@ -38,7 +38,7 @@
                         <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
                         <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
                         <div class="roleup">
-                        <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
+                        <button><a :href="'/codeplay/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
                             <p class="text">{{item.name}}</p>
                         </div>
                     </li>
@@ -68,7 +68,7 @@
                         <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
                         <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
                         <div class="roleup">
-                        <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
+                        <button><a :href="'/codeplay/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
                             <p class="text">{{item.name}}</p>
                         </div>
                     </li>
@@ -84,7 +84,7 @@
                         <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
                         <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
                         <div class="roleup">
-                        <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
+                        <button><a :href="'/codeplay/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
                             <p class="text">{{item.name}}</p>
                         </div>
                     </li>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="roleup">
 
-                        <a :href="'/codeplay'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
+                        <a :href="'/codeplay'+item.content" download><button @click="collectmaster02(item.id)">下载</button></a>
                             <p class="text">{{item.name}}</p>
                             <p class="clock" v-show="isduration==index">{{duration02}}</p>
                         </div>
@@ -124,7 +124,7 @@
                         <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
                         <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
                         <div class="roleup">
-                        <button><a :href="'/codeplay/'+item.content" download>下载</a></button>
+                        <button><a :href="'/codeplay/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
                             <p class="text">{{item.name}}</p>
                         </div>
                     </li>
@@ -180,6 +180,15 @@ import Sourceshop from '@/components/Source/Sourceshop'
             '$route':'islogin'
          },
         methods:{
+            //采集函数
+            collectmaster(id){
+                    this.axios.post('/res/collectmaterial',{
+                    id:id,
+                })
+                .then(response => {   
+
+                })
+            },
             //检测是否登录，如果登录，才可以跳转我的素材，该功能已删除
             islogin(){
                 if(this.$route.path==='/source/mysourceshop'){

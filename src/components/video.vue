@@ -19,8 +19,8 @@
                 <div>
                     <div :class='{"love":!isPraise,"love1":isPraise}' @click="love"  title='点赞'><span class="lovenum">{{list.praisetotal}}</span></div>
                     <div :class='{"star":!isCollect,"star1":isCollect}' @click="star" title='收藏'><span class="starnum">{{list.collecttotal}}</span></div>
-                    <!-- <button class="buycode">购买代码</button>
-                    <span class="buy">已有4人购买</span> -->
+                    <router-link to="/snap"><button @click="seecode" class="buycode">查看代码</button></router-link>
+                    <!--<span class="buy">已有4人购买</span> -->
                     <!-- <a class="avideo" href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation" target="myFrameName"><button>点击播放</button></a> -->
                 </div>
             </div>
@@ -127,6 +127,10 @@ export default{
     },
     
     methods:{
+        //查看代码
+        seecode(){
+            sessionStorage.snapdemoid = this.demoid
+        },
         //分享按钮函数
         shareVideo(){
              this.dialogVideo=true
@@ -490,7 +494,7 @@ export default{
     background: url(../assets/Video/star1.png) no-repeat;
     cursor: pointer;
 }
-/* .container36 .buycode{
+ .container36 .buycode{
     position: absolute;
     top: 48px;
     left: 1036px;
@@ -508,7 +512,7 @@ export default{
     border: none;
     color: @main-color;
     font-size:@ss-size;
-} */
+} 
 .container35 .video{
     width: 767px;
     height: 575px;

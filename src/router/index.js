@@ -275,6 +275,11 @@ export default new Router({
           component: resolve =>require(['@/components/Snap'],resolve)
       },
       {
+        path: '/Blockly',
+        name: 'Blockly',
+        component: resolve =>require(['@/components/Blockly'],resolve)
+        },
+      {
         path: '/Setting',
         name: 'Setting',
         component: resolve =>require(['@/components/Setting'],resolve),

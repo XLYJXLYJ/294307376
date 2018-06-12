@@ -4,13 +4,13 @@
          <div class="imgfoot"><img src="../../assets/home/qr_code.png" alt=""></div>
          <div class="foot_list_one">
           <ul>
-            <li class="big">联系我们</li>
+            <!-- <li class="big">联系我们</li> -->
             <li class="small">商务合作与课程咨询：133 8230 4658</li>
             <li class="small">微信号：Manykits</li>
-            <li class="small">QQ群：398680146</li>
+            <!-- <li class="small">QQ群：398680146</li> -->
           </ul>
         </div>
-          <div class="foot_list_two">
+          <!-- <div class="foot_list_two">
           <ul>
             <li class="big">合作方式</li>
             <li class="small">商务/投资：133 8230 4658</li>
@@ -28,11 +28,8 @@
           <ul>
             <li class="big">设备检测</li>
             <li class="small">电脑设备检测</li>
-            <!-- <li class="big spacial">产品链接</li>
-            <li class="small">Blockly</li>
-            <li class="small">snap</li> -->
           </ul>
-        </div>
+        </div> -->
           <div class="foot_list_five">
           <ul>
             <li class="small1">许多米创造社区@2018</li>
@@ -54,7 +51,7 @@
 .container003{
   width: 100%!important;
   min-width: 1300px;
-  height: 323px;
+  height: 164px;
   position: relative;
   background-color: @foot-color;
 }
@@ -62,15 +59,15 @@
   width: 1200px;
   margin: 0 auto;
   position:relative;
-  height: 323px;
+  height: 164px;
   background-color: @foot-color;
 }
 .container003 .container03 .imgfoot{
   position:absolute;
-  top:45px;
+  top:39px;
   left: 0px;
-  width: 122px;
-  height: 120px;
+  width: 87px;
+  height: 86px;
 }
 .container003 .container03 .imgfoot img{
   width: 100%;
@@ -78,9 +75,9 @@
 }
 .container003 .container03 .foot_list_one{
   position: relative;
-  left: 172px;
+  left: 113px;
   width: 283px;
-  top: 42px;
+  top: 69px;
 }
 .container003 .container03 .foot_list_two{
   position: absolute;
@@ -100,16 +97,16 @@
   top: 43px;
 }
 .container003 .container03 .big{
-  font-size:@llg-size;
+  font-size:@md-size;
   color:@background-color;
   margin-bottom: 20px;
   text-align: left;
   font-family: “Microsoft YaHei” !important; 
 }
 .container003 .container03 .small{
-  font-size:@xm-size;
+  font-size:@sm-size;
   color: #949494;
-  margin-top: 8px;
+  margin-top: 20px;
   text-align: left;
 }
 .container003 .container03 .spacial{
@@ -117,15 +114,21 @@
 }
 .container003 .container03 .foot_list_five{
   position: absolute;
-  left: 420px;
-  top: 246px;
+  left: 523px;
+  top: 68px;
 }
 .container003 .container03 .small1{
   font-size: 13px;
   color: #7c7c7c;
   position: relative;
   left: 0px;
+  top:10px;
   text-align: center;
+}
+.container003 .container03 .foot_list_five .small{
+  position: relative;
+  left: 0px;
+  top: 4px;
 }
 .container003 .container03 .beizhu{
   position: absolute;
@@ -133,8 +136,8 @@
 }
 .container003 .container03 .gov_icon{
    position: absolute;
-   left: 347px;
-   top:246px;
+   left: 450px;
+   top:61px;
 }
 /* .container003 .container03 .music{
    position: absolute;

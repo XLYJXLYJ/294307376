@@ -4,7 +4,7 @@
             <div class="snapheader">
                 <ul class="snapheaderleft">
                     <li class="bcw"><a href="http://www.manykit.com/codeplay" target="_blank"><img src="../assets/snappic/snapb.png" alt=""></a></li>
-                    <li class="borderlight01" @mouseenter="snapdropdowmcontrol01" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
+                    <li class="borderlight01" @click="snapdropdowmcontrol001" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
                     <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
                     <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState" disabled="disabled"></li> -->
                     <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState"></li> -->
@@ -161,7 +161,7 @@
         
          <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
-            <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false">
+            <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false" :show-close="false">
                 <img class="close" @click="close" src="../assets/login/close.png" alt="">
                 <div>
                     <div class="container2101" v-show="dialogLoginshow">
@@ -402,6 +402,9 @@ export default{
         snapdropdowmcontrol01(){
             this.snapdropdown01 = true       
         },
+        snapdropdowmcontrol001(){
+            this.snapdropdown01 = !this.snapdropdown01       
+        },
         //左侧下拉框
         snapdropdowmcontrol02(){
             this.snapdropdown01 = false         
@@ -423,7 +426,7 @@ export default{
                 this.snapdemodropdowm  = false
           }
         },
-        // 编辑文件
+        // 编辑文件(被弃用)
         loadprojectxml(){
              this.axios.post('/res/getfile',{
                 id:this.$store.state.demoxmlid,
@@ -1000,10 +1003,18 @@ export default{
     left: 210px;
     top: 14px;
 }
+.snapboxhead .borderlight01{
+	width:45px;
+	height: 15px;
+}
 .snapboxhead .borderlight01 img{
     position: fixed;
     left: 120px;
     top: 15px;
+}
+.snapboxhead .borderlight03{
+	width:45px;
+	height: 15px;
 }
 .snapboxhead .borderlight03 img{
     position: fixed;
@@ -1012,19 +1023,23 @@ export default{
 }
 .snapboxhead .borderlight04{
     position: fixed;
-    right:-33px;
+    right:33px;
     top: 12px;
     font-size:@sm-size;
+	width:45px;
+	height: 15px;
 }
 .snapboxhead .borderlight05{
     position: fixed;
-    right:-70px;
+    right:0px;
     top: 12px;
     font-size:@sm-size;
+	width:20px;
+    height: 15px;
 }
 .snapboxhead .borderlight06{
     position: fixed;
-    right: -40px;
+    right: 30px;
     top: 12px;
     font-size:@sm-size;
 }
@@ -1054,7 +1069,10 @@ export default{
     border: 1px dashed #c2c2c2;
 }
 
-
+.snapboxhead .bcw {
+    width: 60px;
+    height: 20px;
+}
 .snapboxhead .bcw a{
     color: @background-color; 
     position: fixed;
@@ -1071,10 +1089,11 @@ export default{
 .snapboxhead .snapheaderleft li{
 	float: left;
 	height: 20px;
-	width: 160px;
+	width: 45px;
 	cursor: pointer;
 	opacity: 1;
     z-index: 1000;
+    margin-right: 60px;
 }
 .snapboxhead .snapheaderleft li p{
 	position: relative;
@@ -1545,7 +1564,7 @@ export default{
     position: absolute;
     height: 14px;
     width: 95px;
-    top: 238px;
+    top: 228px;
     left: 291px;
     color: @main-color;
     font-size:@sm-size;
@@ -1556,7 +1575,7 @@ export default{
     position: absolute;
     height: 48px;
     width: 310px;
-    top: 266px;
+    top: 256px;
     left: 60px;
     background: @main-color;
     color: @background-color;
@@ -1569,7 +1588,7 @@ export default{
     position: absolute;
     height: 14px;
     width: 142px;
-    top: 317px;
+    top: 307px;
     left: 137px;
     font-size:@sm-size;
     color: @black;
@@ -1577,7 +1596,7 @@ export default{
 }
 .container2101 .free_res span{
     position: absolute;
-    top: 317px;
+    top: 307px;
     left: 216px;
     color: @main-color;
     font-size:@sm-size;
@@ -1620,7 +1639,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 310px;
-    top: 254px;
+    top: 244px;
     left: 60px;
     background: @main-color;
     color: @background-color;
@@ -1655,7 +1674,7 @@ export default{
     position: absolute;
     height: 48px;
     width: 287px;
-    top: 122px;
+    top: 112px;
     left: 60px;
     padding-left: 10px;
 }
@@ -1663,7 +1682,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 287px;
-    top: 164px;
+    top: 154px;
     left: 60px;
     padding-left: 10px;
 }
@@ -1671,7 +1690,7 @@ export default{
     position: absolute;
     height: 48px;
     width: 287px;
-    top: 206px;
+    top: 196px;
     left: 60px;
     padding-left: 10px;
 }
@@ -1679,7 +1698,7 @@ export default{
     position: absolute;
     height: 49px;
     width: 301px;
-    top: 394px;
+    top: 384px;
     left: 60px;
     background: @main-color;
     color: @background-color;
@@ -1692,7 +1711,7 @@ export default{
     position: absolute;
     height: 14px;
     width: 141px;
-    top: 365px;
+    top: 355px;
     left: 60px;
     font-size: 15px;
     cursor: pointer;
@@ -1735,7 +1754,7 @@ export default{
     position: absolute;
     height: 48px;
     width: 170px;
-    top: 126px;
+    top: 116px;
     left: 60px;
     padding-left: 10px;
     margin: 0px!important;
@@ -1756,7 +1775,7 @@ export default{
     position: absolute;
     height: 52px;
     width: 111px;
-    top: 170px;
+    top: 160px;
     left: 250px;
     background:@cancel-color;
     color: @background-color;
@@ -1768,7 +1787,7 @@ export default{
     position: absolute;
     height: 48px;
     width: 287px;
-    top: 220px;
+    top: 210px;
     left: 70px;
     padding-left: 10px;
 }
@@ -1776,7 +1795,7 @@ export default{
     position: absolute;
     height: 48px;
     width: 310px;
-    top: 256px;
+    top: 246px;
     left: 60px;
     background: @main-color;
     color: @background-color;
@@ -1789,7 +1808,7 @@ export default{
     position: absolute;
     height: 16px;
     width: 289px;
-    top: 345px;
+    top: 335px;
     left: 332px;
     color: @back-color;
     font-size: 15px;
@@ -1806,8 +1825,10 @@ export default{
 .snapbcw .close{
     float: right;
     position: relative;
-    right: 13px;
-    top: 13px;
+    height: 32px;
+    width: 32px;
+    right: 12px;
+    top: 12px;
     cursor: pointer;
 }
 /* .container21 .sign_logo{

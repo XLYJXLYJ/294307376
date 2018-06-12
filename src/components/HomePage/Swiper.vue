@@ -1,8 +1,8 @@
 <template>
     <div class="contain08">
         <div class="container09">
-            <el-carousel :interval="3000">
-                <el-carousel-item v-for="(item,index) in DataImg" :key="index" height="380px">
+            <el-carousel :interval="3000" height="380px">
+                <el-carousel-item v-for="(item,index) in DataImg" :key="index">
                     <img :src="item.url" alt="">
                 </el-carousel-item>
             </el-carousel>
@@ -11,9 +11,9 @@
             <div>
                 <!-- <a href="http://www.manykit.com/codeplay/#/snap" target="_blank"><div class="creat01" @click="clearSession"><img src="../../assets/home/s.png" alt=""></div></a> -->
                 <router-link to="/snap" target="_blank"><div class="creat01" @click="clearSession"><img src="../../assets/home/s.png" alt=""><p>Snap</p></div></router-link>
-                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat02"><img src="../../assets/home/p.png" alt=""><p>Blockly</p></div></a>  
+                <router-link to="/Blockly" target="_blank"><div class="creat02"><img src="../../assets/home/p.png" alt=""><p>Blockly</p></div></router-link> 
                 <a href="static/logo.png" download><div class="creat03"><img src="../../assets/home/g.png" alt=""><p>PHOENIXEngine</p></div></a>
-                <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat04"><img src="../../assets/home/b.png" alt=""><p>GitHub</p></div></a> 
+                <a href="/blockly" target="_blank"><div class="creat04"><img src="../../assets/home/b.png" alt=""><p>GitHub</p></div></a> 
                 <a href="https://shop194048616.taobao.com"><div class="creat05"><img src="../../assets/home/m.png" alt=""><p>商城</p></div></a>
                 <a href="http://www.manykit.com/blockly" target="_blank"><div class="creat06"><img src="../../assets/home/p1.png" alt=""><p>编程对战车</p></div></a>       
             </div> 
@@ -105,7 +105,7 @@ export default{
     top: 70px;
 }
 .contain08 .container09 img{
-    height: 320px;
+    height: 380px;
     width: 1200px; 
     /* height: 100%;
     width: 100%;  */
@@ -116,7 +116,7 @@ export default{
     background: @background-color;
     position: relative;
     // top: 36px;
-    top: 36px;
+    top: 105px;
     margin: 0 auto;
 }
 .contain08 .creat01{

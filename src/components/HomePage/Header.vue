@@ -63,7 +63,7 @@
         </div> 
          <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
-            <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false" :lock-scroll="false">
+            <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close="false">
                 <img class="close" @click="Close" src="../../assets/login/close.png" alt="">
                 <div>
                     <div class="container21" v-show="dialogLoginShow">
@@ -602,7 +602,7 @@ export default {
 /* 头部列表开始 */
 .container04{
     width: 100%;
-    height:84px;
+    height:100px;
     background: @background-color;
     position: relative;
     top: 30px;
@@ -611,7 +611,7 @@ export default {
 }
 .container04 .container04center{
     width: 1200px;
-    height:84px;
+    height:100px;
     margin: 0 auto;
     position: relative;
     top: 0px;
@@ -620,7 +620,7 @@ export default {
 .container04 ul{
     position: absolute;
     left: 167px;
-    margin-top: 32px; 
+    margin-top: 40px; 
     z-index: 200;
 }
 .container04 ul li{
@@ -669,13 +669,15 @@ export default {
     width: 132px;;
     position: absolute;
     left: 0px;
-    top: 21px; 
+    top: 29px; 
 }
 .headercontainer04 .close{
     float: right;
     position: relative;
     right: 13px;
     top: 13px;
+    height: 32px;
+    width: 32px;
     cursor: pointer;
 }
 .headercontainer04 .login_sign{
@@ -780,7 +782,7 @@ export default {
     position: absolute;
     height: 14px;
     width: 95px;
-    top: 238px;
+    top: 228px;
     left: 291px;
     color: @main-color;
     font-size:@sm-size;
@@ -791,7 +793,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 310px;
-    top: 266px;
+    top: 256px;
     left: 60px;
     background: @main-color;
     color: @background-color;
@@ -804,7 +806,7 @@ export default {
     position: absolute;
     height: 14px;
     width: 142px;
-    top: 317px;
+    top: 307px;
     left: 137px;
     font-size:@sm-size;
     color: @black;
@@ -812,7 +814,7 @@ export default {
 }
 .headercontainer04 .container21 .free_res span{
     position: absolute;
-    top: 317px;
+    top: 307px;
     left: 216px;
     color: @main-color;
     font-size:@sm-size;
@@ -854,8 +856,8 @@ export default {
 .container44 .register{
     position: absolute;
     height: 49px;
-    width: 310px;
-    top: 254px;
+    width: 302px;
+    top: 244px;
     left: 60px;
     background: @main-color;
     color: @background-color;
@@ -890,7 +892,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 287px;
-    top: 122px;
+    top: 112px;
     left: 60px;
     padding-left: 10px;
 }
@@ -898,7 +900,7 @@ export default {
     position: absolute;
     height: 49px;
     width: 287px;
-    top: 164px;
+    top: 154px;
     left: 60px;
     padding-left: 10px;
 }
@@ -906,7 +908,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 287px;
-    top: 206px;
+    top: 196px;
     left: 60px;
     padding-left: 10px;
 }
@@ -914,7 +916,7 @@ export default {
     position: absolute;
     height: 49px;
     width: 301px;
-    top: 394px;
+    top: 384px;
     left: 60px;
     background: @main-color;
     color: @background-color;
@@ -927,7 +929,7 @@ export default {
     position: absolute;
     height: 14px;
     width: 141px;
-    top: 365px;
+    top: 355px;
     left: 60px;
     font-size: 15px;
     cursor: pointer;
@@ -970,7 +972,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 170px;
-    top: 126px;
+    top: 116px;
     left: 60px;
     padding-left: 10px;
     margin: 0px!important;
@@ -1012,7 +1014,7 @@ export default {
     position: absolute;
     height: 48px;
     width: 310px;
-    top: 256px;
+    top: 246px;
     left: 60px;
     background: @main-color;
     color: @background-color;
