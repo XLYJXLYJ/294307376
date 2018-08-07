@@ -459,7 +459,7 @@ function init() {
                         <img src="save.png" />
                     </div>
 					
-                    <div class="upload-wraper" onclick="px2_uploadArduino()" >
+                    <div class="upload-wraper" onclick="uploadxml()" >
                         <img src="upload.png" />
                     </div>
                 </div>
@@ -1054,7 +1054,24 @@ function init() {
     <script>
 	if(third_block!=null){
 		$('#toolbox').append(third_block);
-	}
+	};
+    
+    function uploadxml(){
+        var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+        var data = Blockly.Xml.domToText(xml);
+        var fileName = window.prompt('输入你要保存的文件名', 'BlocklyDuino');
+        // Store data in blob.
+        // var builder = new BlobBuilder();
+        // builder.append(data);
+        // saveAs(builder.getBlob('text/plain;charset=utf-8'), 'blockduino.xml');
+        if(fileName){
+            var blob = new Blob([data], {type: 'text/xml'});
+            saveAs(blob, fileName + ".xml");
+        }
+        console.log(xml + '============')
+        console.log(data + '============')
+        console.log(fileName)
+    }
     </script>
     
     <script>

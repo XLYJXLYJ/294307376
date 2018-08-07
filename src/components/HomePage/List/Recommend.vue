@@ -45,6 +45,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
             this.getProduct()//获取初始化数据
         },
         methods:{
+ 
             async getProduct() {//初始化函数
                 let params = {
                     state:4,

@@ -707,9 +707,9 @@ export default{
           //登陆
         Loginbtn() {
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
-            let logintextpassword = this.publicKey;
-            var privatekey = new NodeRSA(logintextpassword);
-            this.formLogin.passwordrsc = privatekey.encrypt(this.formLogin.password, 'base64');
+            // let logintextpassword = this.publicKey;
+            // var privatekey = new NodeRSA(logintextpassword);
+            // this.formLogin.passwordrsc = privatekey.encrypt(this.formLogin.password, 'base64');
             if(this.formLogin.username == ''){
                 this.$message({
                 message: '请输入用户名',
@@ -731,7 +731,7 @@ export default{
             else{
                  this.axios.post('/res/login', {
                 username:this.formLogin.username,
-                password:this.formLogin.passwordrsc,
+                password:this.formLogin.password,
             })
             .then(response => {
                 var datamsg = response.data
@@ -758,9 +758,9 @@ export default{
             var regusername = /^[a-zA-Z0-9]\w{3,16}$/;
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
             var regEmail= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-            let logintextpassword = this.publicKey;
-            var privatekey = new NodeRSA(logintextpassword);
-            this.formRegister.formRegisterpasswordrsc = privatekey.encrypt(this.formRegister.password, 'base64');
+            // let logintextpassword = this.publicKey;
+            // var privatekey = new NodeRSA(logintextpassword);
+            // this.formRegister.formRegisterpasswordrsc = privatekey.encrypt(this.formRegister.password, 'base64');
             if(!regusername.test(this.formRegister.username)){
                 this.$message({
                 message: '用户名长度在4-16之间， 只能包含字母、数字',
@@ -794,7 +794,7 @@ export default{
             {    
                 this.axios.post('/res/signup', {
                     username:this.formRegister.username,
-                    password:this.formRegister.formRegisterpasswordrsc,
+                    password:this.formRegister.password,
                     mail:this.formRegister.mail
                 })
                 .then(response => {
@@ -881,8 +881,8 @@ export default{
         // 修改密码
         Getuserpassbtn() {
             let logintextpassword = this.publicKey;
-            var privatekey = new NodeRSA(logintextpassword);
-            this.formReset.formResetpasswordrsc = privatekey.encrypt(this.formReset.password, 'base64');
+            // var privatekey = new NodeRSA(logintextpassword);
+            // this.formReset.formResetpasswordrsc = privatekey.encrypt(this.formReset.password, 'base64');
             if(this.formReset.password!==this.formReset.checkpassword||this.formReset.password<6||this.formReset.checkpassword<6){
                 this.$message({
                 message: '两次输入的密码不一致或密码长度不足6位',
@@ -890,7 +890,7 @@ export default{
                 });
             }else{
                 this.axios.post('/res/setpassword',{
-                    password:this.formReset.formResetpasswordrsc,
+                    password:this.formReset.password,
                     mail:this.formReset.mail
             })
             .then(response => {

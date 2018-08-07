@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>编程玩</title>
-		<link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <!-- <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101442688" data-redirecturi="http://www.manykit.com/codeplay/#/Home/Recommend" charset="utf-8"></script> -->
   </head>
   <body>
     <!-- <div class="wrapper"> -->
@@ -12,7 +13,29 @@
     <!-- </div> -->
     <!-- built files will be auto injected -->
   </body>
+  
 </html>
+<!-- 
+<script type="text/javascript">
+    var cbLoginFun = function(oInfo, oOpts) {
+        console.log(oInfo);
+        QC.Login.getMe(function(openId, accessToken) {
+            console.log(openId);
+            console.log(accessToken);
+        })
+    };
+    var cbLogoutFun = function() {
+        console.log("注销成功!");
+    };
+    var quit = function() {
+        QC.Login.signOut()
+    }
+
+    QC.Login({
+        btnId: "qqLoginBtn" //插入按钮的节点id
+    }, cbLoginFun, cbLogoutFun);
+</script> -->
+
 <style>
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; font-family:"微软雅黑";}
 body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; outline: none;}

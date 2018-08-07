@@ -7,8 +7,9 @@
                 <span class="el-dropdown-link" @click="Language">
                     中文<i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
-                <div class="shopping"><a href="https://shop194048616.taobao.com/" target="_blank">官方商城</a></div>
-                <div class="appdownload"><router-link to="/Download">APP下载</router-link></div>
+                <div class="xuduo"><a href="https://www.manykit.com/" target="_blank">许多米</a><span class="one">|</span></div>
+                <div class="shopping"><a href="https://shop194048616.taobao.com/" target="_blank">官方商城</a><span class="two">|</span></div>
+                <div class="appdownload"><router-link to="/Download">APP下载</router-link><span class="three">|</span></div>
                 <!-- 登录注册 -->
                 <div class="login_sign" v-show="loginSign"> 
                     <p class="login" type="text"  
@@ -21,10 +22,11 @@
                     dialogLoginShow = false, 
                     dialogRegister = true, 
                     dialogForgetPassword= false, 
-                    dialogPasswordSure=false">注册</p>   
+                    dialogPasswordSure=false">注册<span class="four">|</span></p>
+    
                 </div>
                 <div class="username"  v-show="userCenter" id="myPanel"> 
-                    <p class="login01" type="text"  @click="dropDowmcontrol">{{this.$store.state.usernamesession02}}</p>   
+                    <p class="login01" type="text"  @click="dropDowmcontrol">{{this.$store.state.usernamesession02}}</p>
                 </div> 
                 <!-- 下拉框  -->
                 <div v-show="$store.state.isdropdownparent">
@@ -75,6 +77,13 @@
                             <button class="register" @click.prevent="Loginbtn">登录</button>
                             <div class="free_res"><p>没有账号?</p><span @click="dialogLoginShow = false,dialogRegister = true">免费注册</span></div>    
                         </form> 
+                        <div class="threelogin">
+                            <span class="line">.</span>
+                            <p class="lo">第三方登录</p>
+                             <div id="qqLoginBtn"><img class="qq" src="../../assets/login/qq2.png" alt=""></div>
+                            <div><img class="wechat" src="../../assets/login/wechat2.png" alt=""></div>
+                            <span id="qq_login_btn"></span>
+                        </div>
                     </div>
                     <div class="container19" v-show="dialogRegister">
                         <el-form :model="formRegister" :rules="rules">
@@ -131,6 +140,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import { mapGetters,mapActions} from 'vuex'
 import NodeRSA from 'node-rsa'//获取公钥插件
+import { loginqq } from '../../public/qq.js'//qq第三方登录
 
 export default {
     data() {
@@ -193,11 +203,45 @@ export default {
     mounted:function() { 
         // 判断session值是否存在，如果存在，则执行
         this.Getsession()
+        // this.loginqq()
+        // this.getData()
         // this.Getsessionname()
-    }, 
-    methods: {
+        }, 
+        methods: {
+
+        // loginqq(){var ver="1.0.1";try{ver=opener.QC.getVersion();}catch(e){}
+        // ver=ver?"-"+ver:ver;var qc_script;var reg=/\/qzone\/openapi\/qc_loader\.js/i;var scripts=document.getElementsByTagName("script");for(var i=0,script,l=scripts.length;i<l;i++){script=scripts[i];var src=script.src||"";var mat=src.match(reg);if(mat){qc_script=script;break;}}
+        // var s_src='http://qzonestyle.gtimg.cn/qzone/openapi/qc'+ver+'.js';var arr=['src='+s_src+''];for(var i=0,att;i<qc_script.attributes.length;i++){att=qc_script.attributes[i];if(att.name!="src"&&att.specified){arr.push([att.name.toLowerCase(),'"'+att.value+'"'].join("="));}}
+        // if(document.readyState!='complete'){document.write('<script '+arr.join(" ")+' ><'+'/script>');}else{var s=document.createElement("script"),attr;s.type="text/javascript";s.src=s_src;for(var i=arr.length;i--;){attr=arr[i].split("=");if(attr[0]=="data-appid"||attr[0]=="data-redirecturi"||attr[0]=="data-callback"){s.setAttribute(attr[0],attr[1].replace(/\"/g,""));}}
+        // var h=document.getElementsByTagName("head");if(h&&h[0]){h[0].appendChild(s);}}},
+
+
+ 
+        // cbLogoutFun() {
+        //     console.log("注销成功!");
+        // },
+        // quit() {
+        //     QC.Login.signOut()
+        // },
+        
+        // testqq(){
+        //     console.log(123)
+        //     QC.Login({
+        //             btnId: "qqLoginBtn" //插入按钮的节点id
+        //         },function(oInfo, oOpts) {
+        //             console.log(222)
+        //             console.log(oInfo)
+        //             QC.Login.getMe(function(openId, accessToken) {
+        //             console.log(openId);
+        //             console.log(accessToken);
+        //         })
+        //     });     
+        // },
+
+
         ...mapActions(['Getsession01']),  
         //清除session
+
         clearsessionlookuser(){
             sessionStorage.lookuserdes=''
             // location.reload();
@@ -220,8 +264,8 @@ export default {
         async Loginbtn() {
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
             let logintextpassword = this.publicKey;
-            var privatekey = new NodeRSA(logintextpassword);
-            this.formLogin.passwordrsc = privatekey.encrypt(this.formLogin.password, 'base64');
+            // var privatekey = new NodeRSA(logintextpassword);
+            // this.formLogin.passwordrsc = privatekey.encrypt(this.formLogin.password, 'base64');
             if(this.formLogin.userName == ''){
                 this.$message({
                 message: '请输入用户名',
@@ -243,7 +287,7 @@ export default {
             else{
                  this.axios.post('/res/login', {
                 username:this.formLogin.userName,
-                password:this.formLogin.passwordrsc,
+                password:this.formLogin.password,
             })
             .then(response => {
                 var datamsg = response.data
@@ -270,8 +314,8 @@ export default {
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
             var regEmail= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
             let logintextpassword = this.publicKey;
-            var privatekey = new NodeRSA(logintextpassword);
-            this.formRegister.encryptPassword = privatekey.encrypt(this.formRegister.password, 'base64');
+            // var privatekey = new NodeRSA(logintextpassword);
+            // this.formRegister.encryptPassword = privatekey.encrypt(this.formRegister.password, 'base64');
             if(!reguserName.test(this.formRegister.userName)){
                 this.$message({
                 message: '用户名长度在4-16之间， 只能包含字母、数字',
@@ -305,7 +349,7 @@ export default {
             {    
                 this.axios.post('/res/signup', {
                     username:this.formRegister.userName,
-                    password:this.formRegister.encryptPassword,
+                    password:this.formRegister.password,
                     mail:this.formRegister.mail
                 })
                 .then(response => {
@@ -400,8 +444,8 @@ export default {
         // 修改密码
         Getuserpassbtn() {
             let logintextpassword = this.publicKey;
-            var privatekey = new NodeRSA(logintextpassword);
-            this.formReset.encryptPassword = privatekey.encrypt(this.formReset.password, 'base64');
+            // var privatekey = new NodeRSA(logintextpassword);
+            // this.formReset.encryptPassword = privatekey.encrypt(this.formReset.password, 'base64');
             if(this.formReset.password!==this.formReset.checkPassword||this.formReset.password<6||this.formReset.checkPassword<6){
                 this.$message({
                 message: '两次输入的密码不一致或密码长度不足6位',
@@ -409,7 +453,7 @@ export default {
                 });
             }else{
                 this.axios.post('/res/setpassword',{
-                password:this.formReset.encryptPassword,
+                password:this.formReset.password,
                 mail:this.formReset.mail
             })
             .then(response => {
@@ -528,10 +572,57 @@ export default {
     position: relative;
     left: -20px;
 }
+.headercontainer04 .headonecenter .one{
+    position: relative;
+    left: 15px;
+    color: @img-color;
+}
+.headercontainer04 .headonecenter .two{
+    position: relative;
+    left: 15px;
+    color: @img-color;
+}
+.headercontainer04 .headonecenter .three{
+    position: relative;
+    left: 15px;
+    top: 4px;
+    color: @img-color;
+}
+.headercontainer04 .headonecenter .four{
+    position: relative;
+    top: -1px;
+    left: 15px;
+    color: @img-color;
+    overflow: hidden;
+}
+// .headercontainer04 .headonecenter .five{
+//     position: relative;
+//     top: -1px;
+//     left: 20px;
+//     color: @img-color;
+//     overflow: hidden;
+// }
+.headercontainer04 .headonecenter .xuduo{
+    position: relative;
+    left: 881px;
+    top: -14px;
+    font-size:@ss-size;
+    width: 60px;
+    height: 30px;
+    color: @img-color;
+    cursor: pointer;
+}
+.headercontainer04 .headonecenter .xuduo a{
+    color: @img-color;
+    text-decoration: none;
+}
+.headercontainer04 .headonecenter .xuduo a:hover{
+    color: @background-color;
+}
 .headercontainer04 .headonecenter .shopping{
     position: relative;
-    left: 916px;
-    top: -14px;
+    left: 951px;
+    top: -44px;
     font-size:@ss-size;
     width: 60px;
     height: 30px;
@@ -547,16 +638,12 @@ export default {
 }
 .headercontainer04 .headonecenter .appdownload{
     position: relative;
-    left: 1006px;
-    top: -42px;
+    left: 1030px;
+    top: -72px;
     font-size:@ss-size;
     width: 60px;
     height: 13px;
     line-height: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-left: 1px solid @background-color;
-    border-right: 1px solid @background-color;
     cursor: pointer;
 }
 .headercontainer04 .headonecenter .appdownload a{
@@ -570,10 +657,10 @@ export default {
 }
 .headercontainer04 .headonecenter .block-col-12{
     position:relative;
-    left:1106px;
-    top: -35px;
+    left:1094px;
+    top: -65px;
     color: @gray;
-    width: 92px;
+    width: 104px;
     height: 188px;
     font-size:@ss-size;
     z-index: 1000;
@@ -683,7 +770,7 @@ export default {
 .headercontainer04 .login_sign{
      position: absolute;
      top: -14px;
-     left: 1124px;
+     left: 1115px;
      width: 90px;
      height: 50px;
      z-index: 200;
@@ -695,7 +782,7 @@ export default {
     display: inline;
     position: absolute;
     top: 22px;
-    left:20px;
+    left:0px;
     font-size:@ss-size;
     color: @img-color;
     cursor: pointer;
@@ -726,7 +813,7 @@ export default {
     display: inline;
     position: absolute;
     top: 22px;
-    left:52px;
+    left:45px;
     font-size:@ss-size;
     color: @img-color;
     cursor: pointer;
@@ -748,7 +835,7 @@ export default {
     margin: 0px;
     padding: 0px;
     width: 100%;
-    height: 364px;
+    height: 516px;
     background: @background-color;
 }
 .headercontainer04 .container21 .sign_logo{
@@ -821,6 +908,53 @@ export default {
     cursor: pointer;
     font-weight: 600;
 }
+.headercontainer04 .container21 .threelogin .line{
+    position: absolute;
+    top: 391px;
+    width: 420px;
+    height:2px;
+    background-color:#f1f1f1;
+    // overflow:hidden;
+}
+.headercontainer04 .container21 .threelogin .line{
+    position: absolute;
+    top: 391px;
+    width: 420px;
+    height:1px;
+    background-color:#f1f1f1;
+    // overflow:hidden;
+}
+.headercontainer04 .container21 .threelogin .lo{
+    position: absolute;
+    top: 383px;
+    left: 171px;
+    width: 81px;
+    height:17px;
+    color:#999999;
+    background: #fff;
+    text-align: center;
+    font-size: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+    // overflow:hidden;
+}
+.headercontainer04 .container21 .threelogin .qq{
+    position: absolute;
+    top: 424px;
+    left: 120px;
+    width: 50px;
+    height:50px;
+    cursor: pointer;
+}
+.headercontainer04 .container21 .threelogin .wechat{
+    position: absolute;
+    top: 424px;
+    left: 251px;
+    width: 50px;
+    height:50px;
+    cursor: pointer;
+}
+
 .container44{
     margin: 0px;
     padding: 0px;
