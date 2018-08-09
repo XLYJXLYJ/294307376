@@ -1,18 +1,27 @@
 <template>
     <div class="container06">
-        <div class="rank_list_top"><img src="../../assets/home/rank_list.png" alt=""><p>排行榜</p></div>
-        <div class="rank_up">
+        <div class="sort-sp">
             <ul>
-                <li v-for="(item, index) in list" v-if='index<8' :key="index"  @click="edit03(item.id)">
-                     <router-link to="/Video">
-                        <span class="sort_num">{{index+1}}</span>
-                        <div class="ranking"><img :src="item.imgBuffer" alt=""></div>
-                        <p>{{item.title}}</p>
-                        <span class="icon_see_box"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
-                        <span class="icon_see_love"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
-                     </router-link>
-                </li>
+                <li>Scrath</li>
+                <li>Python</li>
+                <li>其他</li>
             </ul>
+        </div>
+        <div class="one">
+            <div class="rank_list_top"><img src="../../assets/home/rank_list.png" alt=""><p>排行榜</p></div>
+            <div class="rank_up">
+                <ul>
+                    <li v-for="(item, index) in list" v-if='index<8' :key="index"  @click="edit03(item.id)">
+                        <router-link to="/Video">
+                            <span class="sort_num">{{index+1}}</span>
+                            <div class="ranking"><img :src="item.imgBuffer" alt=""></div>
+                            <p>{{item.title}}</p>
+                            <span class="icon_see_box"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
+                            <span class="icon_see_love"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
+                        </router-link>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -53,17 +62,34 @@ import { looksum } from '../../public/seesum.js'
 @import '../../assets/index.less';
 .container06{
     height: 600px;
-    width: 270px;
+    width: 330px;
     position: absolute;
-    left: 865px;
-    top: 160px;  
+    left: 836px;
+    top: 0px;  
+}
+.container06 .sort-sp{
+    width: 336px;
+    height: 22px;
+}
+.container06 .sort-sp ul{
+    width: 336px;
+    height: 22px;
+    list-style: none;
+    position: absolute;
+    top: 50px;
+}
+.container06 .sort-sp ul li{
+    float: left;
+    font-size: 20px;
+    margin-right: 22px;
+    cursor: pointer;
 }
 .container06 .rank_list_top{
     float: left;
     height: auto;
     width: 100px;
     position: absolute;
-    top: -48px;
+    top: 112px;
 
 }
 .container06 .rank_list_top p{
@@ -75,16 +101,33 @@ import { looksum } from '../../public/seesum.js'
     width: 116px;
     top: 8px;
 }
+.container06 .rank_up ul{
+    width: 100%;
+    min-height: 210px;
+    list-style: none;
+    position: absolute;
+    top: 167px;
+}
+.container06 .rank_up ul li{
+    width: 305px;
+    height: 68px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+}
+.container06 .rank_up ul li:hover{
+    background: #f3f3f3;
+}
 .container06 .rank_up p{
-   font-size:@md-size;
+   font-size:16px;
    text-align: left;
    position: relative;
    left: 134px;
-   top: -68px;
+   top: -63px;
    width: 166px;
    height: 24px;
    overflow: hidden;
-   font-weight: 100;
+   font-weight: 400;
    color:@contain06-color;
 }
 .container06 .rank_up p:hover{
@@ -95,12 +138,15 @@ import { looksum } from '../../public/seesum.js'
     height: 68px;
     position: relative;
     left: 50px;
-    top: -25px;
+    top: 0px;
 }
 .container06 .rank_up .ranking img{
     width: 100%;
     height: 100%;
     border: 1px solid @img-color;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 // .container06 .rank_up .ranking img:hover{
     
@@ -114,6 +160,7 @@ import { looksum } from '../../public/seesum.js'
     height: 14px;
     position: relative;
     left: 20px;
+    top: 5px;
     background: url(../../assets/home/icon_see.png) no-repeat;
 }
 .container06 .icon_see span{
@@ -132,6 +179,7 @@ import { looksum } from '../../public/seesum.js'
     width: 15px;
     height: 14px;
     position: relative;
+    top: 5px;
     left: 16px;
 }
 .container06 .icon_love span{
@@ -145,7 +193,7 @@ import { looksum } from '../../public/seesum.js'
 .container06 .icon_see_box{
     height: 12px;
     width: 65px;
-    font-size: 15px;
+    font-size: 12px;
     position: relative;
     left: 114px;
     top: -53px;
@@ -153,7 +201,7 @@ import { looksum } from '../../public/seesum.js'
 .container06 .icon_see_love{
     height: 12px;
     width: 65px;
-    font-size: 15px;
+    font-size: 12px;
     position: relative;
     left: 126px;
     top: -53px;
@@ -171,24 +219,6 @@ import { looksum } from '../../public/seesum.js'
     position: relative;
     left: 4px;
     top: 20px;
-}
-.container06 .rank_up ul{
-    width: 100%;
-    height: 210px;
-    list-style: none;
-    margin-top: -10px;
-    margin-left: -10px;
-}
-.container06 .rank_up ul li{
-    width: 340px;
-    height: 68px;
-    margin-top: 10px;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 10px;
-}
-.container06 .rank_up ul li:hover{
-    background: #f3f3f3;
 }
 .container06 a{
     text-decoration: none;

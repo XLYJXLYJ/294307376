@@ -1,23 +1,23 @@
 <template>
     <div class="headercontainer04">
-        <div class="headone">
-            <!-- 头部 -->
+        <!-- <div class="headone">
+            头部
             <div class="headonecenter">
-                <!-- 语言设置 -->
+                语言设置
                 <span class="el-dropdown-link" @click="Language">
                     中文<i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
                 <div class="xuduo"><a href="https://www.manykit.com/" target="_blank">许多米</a><span class="one">|</span></div>
                 <div class="shopping"><a href="https://shop194048616.taobao.com/" target="_blank">官方商城</a><span class="two">|</span></div>
                 <div class="appdownload"><router-link to="/Download">APP下载</router-link><span class="three">|</span></div>
-                <!-- 登录注册 -->
+                登录注册
                 <div class="login_sign" v-show="loginSign"> 
                     <p class="login" type="text"  
                     @click="dialogLogin = true, 
                     dialogLoginShow = true, 
                     dialogRegister = false, 
                     dialogForgetPassword= false">登录</p>   
-                    <p class="sign"  type="text" 
+                    <p class="sign"  type="text"
                     @click="dialogLogin = true, 
                     dialogLoginShow = false, 
                     dialogRegister = true, 
@@ -28,7 +28,7 @@
                 <div class="username"  v-show="userCenter" id="myPanel"> 
                     <p class="login01" type="text"  @click="dropDowmcontrol">{{this.$store.state.usernamesession02}}</p>
                 </div> 
-                <!-- 下拉框  -->
+                下拉框 
                 <div v-show="$store.state.isdropdownparent">
                     <ul class="block-col-12">
                         <router-link to="/Demo"><li><p>作品管理</p></li></router-link>
@@ -39,7 +39,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- 头部列表 -->
         <div class="container04">  
             <div class="container04center">
@@ -47,7 +47,10 @@
                 <ul>
                     <li>
                         <router-link to="/Home"><p>首页</p></router-link>
-                    </li>    
+                    </li>   
+                    <li>
+                        <router-link to="/Download"><p>下载</p></router-link>
+                    </li>   
                     <li>
                         <router-link to="/Lesson"><p>课程</p></router-link>
                     </li> 
@@ -55,13 +58,43 @@
                         <router-link to="/source/sourceshop"><p>素材</p></router-link>
                     </li> 
                     <li>
-                        <router-link to="/Download"><p>下载</p></router-link>
+                        <a href="http://www.manykit.com" target="_blank"><p>帮助</p></a> 
                     </li>  
                     <li>
-                        <a href="http://www.manykit.com" target="_blank"><p>许多米</p></a> 
+                        <a href="http://www.manykit.com/forum" target="_blank"><p>社区</p></a> 
                     </li>  
                 </ul> 
             </div>
+
+            <!-- 登录注册 -->
+            <div class="login_sign" v-show="loginSign"> 
+                <p class="login" type="text"  
+                @click="dialogLogin = true, 
+                dialogLoginShow = true, 
+                dialogRegister = false, 
+                dialogForgetPassword= false">登录/</p>  
+                <p class="sign"  type="text"
+                @click="dialogLogin = true, 
+                dialogLoginShow = false, 
+                dialogRegister = true, 
+                dialogForgetPassword= false, 
+                dialogPasswordSure=false">注册</p>
+
+            </div>
+            <div class="username"  v-show="userCenter" id="myPanel"> 
+                <p class="login01" type="text"  @click="dropDowmcontrol">{{this.$store.state.usernamesession02}}</p>
+            </div> 
+            <!-- 下拉框  -->
+            <div v-show="$store.state.isdropdownparent">
+                <ul class="block-col-12">
+                    <router-link to="/Demo"><li>作品管理</li></router-link>
+                    <router-link to="#"><li>社区消息</li></router-link>
+                    <router-link to="/User"><li @click="clearsessionlookuser">个人中心</li></router-link> 
+                    <router-link to="/setting"><li>账号设置</li></router-link>  
+                    <li @click="Cancellogout">退出登陆</li>
+                </ul>
+            </div>
+
         </div> 
          <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
@@ -527,25 +560,28 @@ export default {
 @import '../../assets/index.less';
 /* 总样式开始 */
 .headercontainer04{
-    position: fixed;
-    width: 100%;
-    min-width: 1300px;
-    height: 114px;
-    top: 0px;
-    left: 0px;
+    position: relative;
+    width: 1200px;
+    min-width: 1200px;
+    height: 75px;
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
     z-index: 200;
 }
 /* 总样式结束 */
 
 /* 头部样式开始 */
 .headercontainer04 .headone{
-    position: fixed;
-    width: 100%;
-    min-width: 1300px;
+    position: relative;
+    width: 1200px;
+    min-width: 1202px;
     height: 30px;
     top: 0px;
-    left: 0px;
-    background: @gray;
+    left: 2px;
+    margin: 0 auto;
+    background:@background-color;
     z-index: 200;
 }
 .headercontainer04 .headonecenter{
@@ -655,32 +691,34 @@ export default {
 .headercontainer04 .headonecenter .appdownload a:hover{
     color: @background-color;
 }
-.headercontainer04 .headonecenter .block-col-12{
+.headercontainer04 .block-col-12{
     position:relative;
-    left:1094px;
-    top: -65px;
+    left:1070px;
+    top: 0px;
     color: @gray;
-    width: 104px;
-    height: 188px;
+    width: 128px;
+    height: 180px;
     font-size:@ss-size;
     z-index: 1000;
     background: @background-color;
     border: 1px solid @gray;
 }
-.headercontainer04 .headonecenter .block-col-12 a{
+.headercontainer04 .block-col-12 a{
     color: @gray;
 }
-.headercontainer04 .headonecenter .block-col-12 a:hover{
+.headercontainer04 .block-col-12 a:hover{
     color: @background-color;
     text-decoration: none;
 }
-.headercontainer04 .headonecenter .block-col-12 li{
-    padding-top: 10px;
-    padding-left: 24px;
+.headercontainer04 .block-col-12 li{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 20px;
     height: 28px;
+    width: 87px;
     cursor: pointer;
 }
-.headercontainer04 .headonecenter .block-col-12 li:hover{
+.headercontainer04 .block-col-12 li:hover{
     background:@black;
     color: @background-color;
 }
@@ -688,17 +726,18 @@ export default {
 
 /* 头部列表开始 */
 .container04{
-    width: 100%;
-    height:100px;
+    width:1200px;
+    height:75px;
     background: @background-color;
     position: relative;
-    top: 30px;
+    left: 2px;
+    margin: 0 auto;
     box-shadow: 0 0 5px 0 rgba(0,0,0,.2), 0 -6px 11px 0 rgba(0,0,0,.2);
     // box-shadow:0px 3px 5px @shadow-color;
 }
 .container04 .container04center{
     width: 1200px;
-    height:100px;
+    height:75px;
     margin: 0 auto;
     position: relative;
     top: 0px;
@@ -706,29 +745,35 @@ export default {
 }
 .container04 ul{
     position: absolute;
-    left: 167px;
-    margin-top: 40px; 
+    height: 75px;
+    left: 372px;
     z-index: 200;
 }
 .container04 ul li{
     list-style: none;
     float: left; 
-    margin-left: 44px;
-    font-size:@xm-size; 
-    padding-bottom: 8px;
+    height: 46px;
+    padding-top: 29px; 
+    padding-left: 20px;
+    padding-right: 21px;
+    font-size:21px; 
     z-index: 200;
     cursor: pointer;
+}
+.container04 ul li:hover{
+    background: #e6e6e6;
 }
 .container04 ul li p{
     color: @black;
     cursor: pointer;
     text-decoration: none;
+    font-family: '黑体';
 }
 .container04 ul li a{
     text-decoration: none;
 }
 .container04 ul li p:hover{
-    color: @main-color;
+    // color: @main-color;
     cursor: pointer;
 }
 .container04 .router-link-active{
@@ -748,15 +793,15 @@ export default {
     right: 0px;
     height: 2px;
     width: 22px;
-    background-color: @main-color;
+    // background-color: @main-color;
     border-radius: 2px;
 }
 .headercontainer04 .logo{
-    height: 52px;
-    width: 132px;;
+    height: 69px;
+    width: 287px;;
     position: absolute;
-    left: 0px;
-    top: 29px; 
+    left: 3px;
+    top: 3px; 
 }
 .headercontainer04 .close{
     float: right;
@@ -769,37 +814,39 @@ export default {
 }
 .headercontainer04 .login_sign{
      position: absolute;
-     top: -14px;
-     left: 1115px;
-     width: 90px;
-     height: 50px;
+     top: 0px;
+     left: 1095px;
+     width: 96px;
+     height: 100px;
      z-index: 200;
      border-radius: 10px;
-     color: @background-color;
+     color: @black;
      cursor: pointer;
 }
 .headercontainer04 .login{
     display: inline;
     position: absolute;
-    top: 22px;
+    top: 29px;
     left:0px;
-    font-size:@ss-size;
-    color: @img-color;
+    font-size:21px;
+    color:@black;;
     cursor: pointer;
     text-decoration: none;
+    font-family: '黑体';
 }
 .headercontainer04 .login01{
     display: inline;
     position: absolute;
-    top: 6px;
-    left:1140px;
-    font-size:@ss-size;
-    color: @background-color;
+    top: 29px;
+    left:1115px;
+    font-size:21px;
+    color: @black;
     cursor: pointer;
+    font-family: '黑体';
 }
 .headercontainer04 .login:hover{
     text-decoration: none;
-    color: @background-color;
+    color: @black;
 }
 .headercontainer04 .dialog{
     z-index: 200;
@@ -812,16 +859,17 @@ export default {
 .headercontainer04 .sign{
     display: inline;
     position: absolute;
-    top: 22px;
-    left:45px;
-    font-size:@ss-size;
-    color: @img-color;
+    top: 29px;
+    left:51px;
+    font-size:21px;
+    color: @black;
     cursor: pointer;
     text-decoration: none;
+    font-family: '黑体';
 }
 .headercontainer04 .sign:hover{
     text-decoration: none;
-    color: @background-color;
+    color: @black;
 }
 .headercontainer04 #dropdown-menu-8301{
     position: fixed;

@@ -34,7 +34,8 @@ export default{
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="less">
+@import '../assets/index.less';
 .container60{
     display: flex;
     flex-direction: column;
@@ -43,10 +44,12 @@ export default{
 .content10 {
     flex: 1;
     padding-left: 5px;
+    margin-top: -128px;
 }
 .footer10 {
     flex: 0;
     z-index: 1000;
-    /* margin-top: 20px; */
+    margin-top: -20px;
+    background: @mainbg-color;
 }
 </style>

@@ -5,8 +5,8 @@
          <div class="foot_list_one">
           <ul>
             <!-- <li class="big">联系我们</li> -->
-            <li class="small">商务合作与课程咨询：133 8230 4658</li>
-            <li class="small">微信号：Manykits</li>
+            <li class="small">商务/投资：133 8230 4658</li>
+            <!-- <li class="small">微信号：Manykits</li> -->
             <!-- <li class="small">QQ群：398680146</li> -->
           </ul>
         </div>
@@ -32,7 +32,7 @@
         </div> -->
           <div class="foot_list_five">
           <ul>
-            <li class="small1">许多米创造社区@2018</li>
+            <!-- <li class="small1">许多米创造社区@2018</li> -->
             <li class="small">深圳许多米科技有限公司/粤ICP备17130138号-1</li>    
           </ul>
         </div>
@@ -50,34 +50,41 @@
 @import '../../assets/index.less';
 .container003{
   width: 100%!important;
-  min-width: 1300px;
-  height: 164px;
+  min-width: 1200px;
+  height: 88px;
   position: relative;
-  background-color: @foot-color;
 }
 .container003 .container03{
   width: 1200px;
   margin: 0 auto;
   position:relative;
-  height: 164px;
+  height: 88px;
   background-color: @foot-color;
 }
 .container003 .container03 .imgfoot{
   position:absolute;
-  top:39px;
-  left: 0px;
-  width: 87px;
-  height: 86px;
+  top:14px;
+  right: 50px;
+  width: 60px;
+  height: 60px;
 }
 .container003 .container03 .imgfoot img{
   width: 100%;
   height: 100%;
 }
-.container003 .container03 .foot_list_one{
+// .container003 .container03 .foot_list_one{
+//   position: relative;
+//   left: 113px;
+//   width: 283px;
+//   top: 69px;
+// }
+.container003 .container03 .foot_list_one .small{
   position: relative;
-  left: 113px;
+  left: 900px;
   width: 283px;
-  top: 69px;
+  top: 38px;
+  font-size: 12px;
+  color: #fff;
 }
 .container003 .container03 .foot_list_two{
   position: absolute;
@@ -112,11 +119,11 @@
 .container003 .container03 .spacial{
   margin-top: 20px;
 }
-.container003 .container03 .foot_list_five{
-  position: absolute;
-  left: 523px;
-  top: 68px;
-}
+// .container003 .container03 .foot_list_five{
+//   position: absolute;
+//   left: 523px;
+//   top: 68px;
+// }
 .container003 .container03 .small1{
   font-size: 13px;
   color: #7c7c7c;
@@ -126,9 +133,11 @@
   text-align: center;
 }
 .container003 .container03 .foot_list_five .small{
-  position: relative;
-  left: 0px;
-  top: 4px;
+  position: absolute;
+  left: 113px;
+  top: 19px;
+  font-size: 12px;
+  color: #fff;
 }
 .container003 .container03 .beizhu{
   position: absolute;
@@ -136,8 +145,8 @@
 }
 .container003 .container03 .gov_icon{
    position: absolute;
-   left: 450px;
-   top:61px;
+   left: 49px;
+   top:19px;
 }
 /* .container003 .container03 .music{
    position: absolute;

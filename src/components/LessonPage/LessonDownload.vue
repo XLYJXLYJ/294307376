@@ -22,7 +22,7 @@
 .lesson_bg{
     position: absolute;
     left: 0px;
-    top: 83px;
+    top: 0px;
     height: 1752px;
     width: 100%;
     background: @mainbg-color;

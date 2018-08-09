@@ -48,6 +48,7 @@ export default{
     height: auto;
     padding-bottom: 36px;
     padding-left: 5px;
+    margin-top: -128px;
 }
 .footer06{
     flex: 0;

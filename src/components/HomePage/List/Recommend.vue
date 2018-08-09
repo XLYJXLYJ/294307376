@@ -1,16 +1,20 @@
 <template>
     <div class="container01" v-show="$store.state.recommenddemo">
-        <el-row :gutter="10">
-            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id'> 
+        <el-row :gutter="10" class="el-row">
+            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id' class="el-col"> 
                     <router-link to="/Video">
                         <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
                             <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>
-                            <p>{{item.title}}</p>
-                            <span class="game_cat" :title=item.desc>{{item.desc}}</span>
+                            <p class="item-title">{{item.title}}</p>
+                            <!-- <span class="game_cat" :title=item.desc>{{item.desc}}</span> -->
                             <div class="downbox">
                                 <span class="down01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
                                 <span class="down02"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
-                                <span class="down03"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
+                                <!-- <span class="down03"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span> -->
+                            </div>
+                            <div class="author">
+                                <img :src="item.imgBuffer" alt="">
+                                <p>manykit</p>
                             </div>
                         </div>
                     </router-link>
@@ -50,7 +54,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
                 let params = {
                     state:4,
                     sortstate:2,
-                    pagesize:16
+                    pagesize:12
                 }
                 const res = await http.post(api.getDemo, params)
                 this.list=res.data.data
@@ -81,7 +85,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
                     state:4,
                     sortstate:2,
                     pagenum:this.i,
-                    pagesize:16
+                    pagesize:12
                 })
                 .then(response => {  
                 if(response.data.data.msg =="这回真的没有了~"){
@@ -108,23 +112,28 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
 <style scoped lang="less">
 @import '../../../assets/index.less';
 .container01{
-    width: 858px;
+    width: 766px;
     height: auto;
     position: relative;
-    left: -20px;
+    padding-left: 20px;
+    margin-left: 19px;
 }
-.container01 .routetext{
-    color:@black;
-    text-decoration: none;
+.container01 .el-row{
+    margin-top: 28px;
+}
+.container01 .el-col{
+    background: #f9f9f9;
+    margin-bottom: 59px;
+    padding-bottom: 31px;
 }
 .container01 .list_pic{
     margin-top: 25px;
-    height: 270px;
+    height: 254px;
     width: 173px;
     cursor: pointer;
-    color: @list-color;
+    background:@background-color;
     border-radius: 10px;
-    padding: 20px;
+    position: relative;
 }
  .container01 .list_pic:hover{
     background: #f3f3f3;
@@ -136,34 +145,36 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
 .container01 .imgcon img{
     width: 100%;
     height: 100%;
-    border: 1px solid @img-color;
+    border-radius: 4px;
 }
 // .container01 .imgcon img:hover{
 
 // }
-.container01 p{
-    font-size:@lg-size;
+.container01 .item-title{
+    font-size:16px;
     position: relative;
-    top: 15px;
-    height: 24px;
+    top: 10px;
+    left: 9px;
+    height: 20px;
     width: 151px;
     overflow: hidden;
     text-align: left;
     color:@black;
-    font-weight: 100;
+    font-weight: 400;
+    // font-family: '黑体';
 }
-.container01 p:hover{
+.container01 .item-title:hover{
     color:@main-color;
 }
 .container01 .game_cat{
     display: block;
-    font-size:@xm-size;
+    font-size:12px;
     position: relative;
-    top: 22px;
+    top: 18px;
     text-align: left;
     color: @list-color;
     width: 170px;
-    height: 20px;
+    height: 18px;
     overflow: hidden;
 }
 .container01 .game_cat:hover{
@@ -180,7 +191,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
 }
 .container01 .button{
     position: relative;
-    top: 43px;
+    top: 0px;
     left: 320px;
     width: 192px;
     height: 50px;
@@ -190,7 +201,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
 }
 .container01 .buttonloaddown{
     position: relative;
-    top: 20px;
+    top: 0px;
     left: 320px;
     width: 192px;
     height: 50px;
@@ -199,42 +210,44 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     border: none;
 }
 .container01 .downbox{
-    width: 172px;
-    height: 16px;
+    width: 162px;
+    height: 13px;
     position: relative;
-    top: 42px;
+    top: 20px;
+    left: 9px;
 }
 .container01 .down01{
-    font-size: 13px;
+    font-size: 10px;
     width: 80px;
-    height: 14px;
+    height: 13px;
     position: absolute;
     left: 0px;
     top: 0px;
 }
 .container01 .down02{
-    font-size: 13px;
+    font-size: 10px;
     width: 80px;
-    height: 14px;
+    height: 13px;
     position: absolute;
-    left: 40%;
+    left: 81px;
+    top: 0px;
     margin: 0 auto;
 }
-.container01 .down03{
-    font-size: 13px;
-    width: 80px;
-    height: 14px;
-    position: absolute;
-    left: 75%;
-}
+// .container01 .down03{
+//     font-size: 13px;
+//     width: 80px;
+//     height: 14px;
+//     position: absolute;
+//     left: 75%;
+// }
 .container01 .down01 span{
     position: relative;
     left: 10px;
     margin-left: 10px;
     font-style: normal;
     color: @container0203-color;
-    font-size:@xm-size;
-    top: 0px;
+    font-size:10px;
+    top: -2px;
 }
 .container01 .down02 span{
     position: relative;
@@ -242,16 +255,37 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     margin-left: 10px;
     font-style: normal;
     color: @container0203-color;
-    font-size:@xm-size;
-    top: 0px;
+    font-size:10px;
+    top: -1px;
 }
-.container01 .down03 span{
-    position: relative;
-    margin-left: 18px;
-    font-style: normal;
-    color: @container0203-color;
-    font-size:@xm-size;
+// .container01 .down03 span{
+//     position: relative;
+//     margin-left: 18px;
+//     font-style: normal;
+//     color: @container0203-color;
+//     font-size:@xm-size;
+//     top: 0px;
+// }
+.container01 .list_pic .author{
+    height: 18px;
+    width: 400px;
+    position: absolute;
+    top: 230px;
+    left: 9px;
+}
+.container01 .list_pic .author img{
+    width: 17px;
+    height: 17px;
+    border-radius: 8px;
+}
+.container01 .list_pic .author p{
+    width: 200px;
+    height: 14px;
+    font-size: 10px;
+    position: absolute;
+    left: 22px;
     top: 0px;
+    color: #757575;
 }
 .container01 .button:hover{
     background-color: @main-color;

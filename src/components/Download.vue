@@ -24,18 +24,21 @@ export default{
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="less">
+@import '../assets/index.less';
 .container12{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background: @mainbg-color;
 }
 .content03 {
     flex: 1;
     padding-left: 5px;
+    margin-top: -128px;
 }
 .footer03 {
     flex: 0;
-    margin-top: 110px;
+    background: @mainbg-color;
 }
 </style>
