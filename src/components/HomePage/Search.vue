@@ -1,8 +1,8 @@
 <template>
 <div class="searchDemo">
         <div class="container07">
-            <input class="search_input" placeholder="搜索作品" v-model="searchName" @keyup.enter="searchDemo">
-            <i slot="prefix" class="el-input__icon el-icon-search" @click="searchDemo"></i>
+            <!-- <input class="search_input" placeholder="搜索作品" v-model="searchName" @keyup.enter="searchDemo">
+            <i slot="prefix" class="el-input__icon el-icon-search" @click="searchDemo"></i> -->
         </div>
         <div class="search01"  v-show="$store.state.searchdemo">
         <el-row :gutter="10" class="el-row">

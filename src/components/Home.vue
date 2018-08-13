@@ -64,7 +64,6 @@ export default{
 } */
 .content01{
     flex: 1;
-    padding-left: 5px;
     margin: 0 auto;
     background: #ffffff;
 }
@@ -78,7 +77,7 @@ export default{
     width: 1200px;
     margin: 0 auto;
     position: relative;
-    background: #ffffff;
+    background: #d3e1f2;
     margin-bottom: -20px;
 }
 .footer01 .bcw img{
@@ -102,6 +101,7 @@ export default{
     margin-top: 21px;
     font-size: 14px;
     color: #000;
-    font-family: "黑体";
+    font-weight: bold;
+    // font-family: "黑体";
 } 
 </style>

@@ -296,7 +296,7 @@ export default {
         //登陆
         async Loginbtn() {
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
-            let logintextpassword = this.publicKey;
+            // let logintextpassword = this.publicKey;
             // var privatekey = new NodeRSA(logintextpassword);
             // this.formLogin.passwordrsc = privatekey.encrypt(this.formLogin.password, 'base64');
             if(this.formLogin.userName == ''){
@@ -318,7 +318,7 @@ export default {
                 });   
             }
             else{
-                 this.axios.post('/res/login', {
+                this.axios.post('/res/login', {
                 username:this.formLogin.userName,
                 password:this.formLogin.password,
             })
@@ -576,10 +576,10 @@ export default {
 .headercontainer04 .headone{
     position: relative;
     width: 1200px;
-    min-width: 1202px;
+    min-width: 1200px;
     height: 30px;
     top: 0px;
-    left: 2px;
+    left: 0px;
     margin: 0 auto;
     background:@background-color;
     z-index: 200;
@@ -590,7 +590,6 @@ export default {
     margin: 0 auto;
     z-index: 0;
     position: relative;
-    padding-left: 5px;
 }
 .headercontainer04 .headonecenter .el-dropdown-link{
     position: relative;
@@ -730,9 +729,9 @@ export default {
     height:75px;
     background: @background-color;
     position: relative;
-    left: 2px;
+    left: 0px;
     margin: 0 auto;
-    box-shadow: 0 0 5px 0 rgba(0,0,0,.2), 0 -6px 11px 0 rgba(0,0,0,.2);
+    // box-shadow: 0 0 5px 0 rgba(0,0,0,.2), 0 -6px 11px 0 rgba(0,0,0,.2);
     // box-shadow:0px 3px 5px @shadow-color;
 }
 .container04 .container04center{
@@ -741,7 +740,6 @@ export default {
     margin: 0 auto;
     position: relative;
     top: 0px;
-    padding-left: 5px;
 }
 .container04 ul{
     position: absolute;
@@ -767,7 +765,7 @@ export default {
     color: @black;
     cursor: pointer;
     text-decoration: none;
-    font-family: '黑体';
+    font-family: 'SimHei';
 }
 .container04 ul li a{
     text-decoration: none;
@@ -800,7 +798,7 @@ export default {
     height: 69px;
     width: 287px;;
     position: absolute;
-    left: 3px;
+    left: 0px;
     top: 3px; 
 }
 .headercontainer04 .close{
@@ -832,7 +830,7 @@ export default {
     color:@black;;
     cursor: pointer;
     text-decoration: none;
-    font-family: '黑体';
+    font-family: 'SimHei';
 }
 .headercontainer04 .login01{
     display: inline;
@@ -842,7 +840,7 @@ export default {
     font-size:21px;
     color: @black;
     cursor: pointer;
-    font-family: '黑体';
+    font-family: 'SimHei';
 }
 .headercontainer04 .login:hover{
     text-decoration: none;
@@ -865,7 +863,7 @@ export default {
     color: @black;
     cursor: pointer;
     text-decoration: none;
-    font-family: '黑体';
+    font-family: 'SimHei';
 }
 .headercontainer04 .sign:hover{
     text-decoration: none;

@@ -2,8 +2,8 @@
     <div class="container06">
         <div class="sort-sp">
             <ul>
-                <li>Scrath</li>
-                <li>Python</li>
+                <li>Snap</li>
+                <!-- <li>Python</li> -->
                 <li>其他</li>
             </ul>
         </div>
@@ -114,6 +114,7 @@ import { looksum } from '../../public/seesum.js'
     cursor: pointer;
     padding: 10px;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 .container06 .rank_up ul li:hover{
     background: #f3f3f3;

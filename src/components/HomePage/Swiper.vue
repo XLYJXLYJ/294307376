@@ -1,33 +1,44 @@
 <template>
     <div class="contain08">
         <div class="container09">
-            <el-carousel :interval="3000">
-                <el-carousel-item v-for="(item,index) in DataImg" :key="index">
-                    <img :src="item.url" alt="">
-                </el-carousel-item>
-            </el-carousel>
+            <!-- <el-carousel :interval="3000">
+                <el-carousel-item v-for="(item,index) in DataImg" :key="index"> -->
+                    <img class="bottom-img" src="static/1.png" alt="">
+                    <img class="one-img" src="static/left-up.png" alt="">
+                    <p class="ot1">一台小而强大的单片机</p>
+                    <p class="ot2">非常适合用来学习编程，物联网，机器人</p>
+                    <p class="ot3">从零开始进入科技的世界</p>
+                    <button class="headbutton">查看课程</button>
+                    <p class="buyzod">购买ZODuino套件 ></p>
+                    <p class="ot4">ZODuino是非常适合学习C语言的平台，C语言是计算机语言的基础，是每一个学习</p>
+                    <p class="ot5">工科的学生必须掌握的语言。使用ZODUINO，在开发机器人的过程中学习C语言，将</p>
+                    <p class="ot6">更加直观，有趣，获得一种全新的学习体验！</p>
+                    <img class="two-img" src="static/right.png" alt="">
+                <!-- </el-carousel-item>
+            </el-carousel> -->
         </div>
         <div class="book">
             <P class="booktitle">推荐你学习的书籍</P>
             <ul>
                 <li>
                     <img src="../../assets/home/book1.png" alt="">
-                    <p>THe Raspberry Pi Beginner's Book</p>
+                    <p>Scratch少儿趣味编程</p>
                 </li>
                 <li>
-                    <img src="../../assets/home/book1.png" alt="">
-                    <p>THe Raspberry Pi Beginner's Book</p>
+                    <img src="../../assets/home/book3.png" alt="">
+                    <p>创客空间搭建指南</p>
                 </li>
                 <li>
-                    <img src="../../assets/home/book1.png" alt="">
-                    <p>THe Raspberry Pi Beginner's Book</p>
+                    <img src="../../assets/home/book2.png" alt="">
+                    <p>Arduino开发从零开始学</p>
                 </li>
                 <li>
-                    <img src="../../assets/home/book1.png" alt="">
-                    <p>THe Raspberry Pi Beginner's Book</p>
+                    <img src="../../assets/home/book4.png" alt="">
+                    <p>Doom启示录</p>
                 </li>
             </ul>
             <img class="bookshopimg" src="../../assets/home/shopbook.png" alt="">
+            <p class="see-more-book">查看更多>> </p>
         </div>
         <div class="create">
             <div>
@@ -119,17 +130,95 @@ export default{
     // top: 60px;
     margin-top: 0px;
 }
-.contain08 .container09{
+.contain08 .container09 .bottom-img{
     height: 417px;
     width: 1200px; 
     margin: 0 auto;
-    position: relative;
 }
-.contain08 .container09 img{
-    height: 417px;
-    width: 1200px; 
-    /* height: 100%;
-    width: 100%;  */
+.contain08 .container09 .one-img{
+    position: absolute;
+    left: 28px;
+    top: 60px;
+}
+.contain08 .container09 .ot1{
+    position: absolute;
+    left: 28px;
+    top: 110px;
+    font-size: 15px;
+    color: #fff;
+    font-family: 'light';
+}
+.contain08 .container09 .ot2{
+    position: absolute;
+    left: 28px;
+    top: 129px;
+    font-size: 15px;
+    color: #fff;
+    font-family: 'light';
+}
+.contain08 .container09 .ot3{
+    position: absolute;
+    left: 28px;
+    top: 147px;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'light';
+}
+.contain08 .container09 .ot4{
+    position: absolute;
+    left: 517px;
+    top: 327px;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'light';
+}
+.contain08 .container09 .ot5{
+    position: absolute;
+    left: 517px;
+    top: 344px;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'light';
+}
+.contain08 .container09 .ot6{
+    position: absolute;
+    left: 517px;
+    top: 361px;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'light';
+}
+.contain08 .container09 .headbutton{
+    width: 179px;
+    height: 46px;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    font-size: 23px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'light';
+    letter-spacing: 2px;
+    position: absolute;
+    left: 28px;
+    top: 224px;
+}
+.contain08 .container09 .buyzod{
+    cursor: pointer;
+    position: absolute;
+    left: 28px;
+    top: 327px;
+    font-size: 18px;
+    color: #ffff00;
+    font-weight:bold;
+}
+.contain08 .container09 .two-img{
+    position: absolute;
+    right: 0px;
+    top: 292px;
+    cursor: pointer;
+    width: 141px;
+    height: 125px;
 }
 .contain08 .book{
     height: 395px;
@@ -141,7 +230,7 @@ export default{
     top: 36px;
     left: 21px;
     font-size: 18px;
-    font-family: "黑体";
+    // font-family: "黑体";
 }
 .contain08 .bookshopimg{
     position: absolute;
@@ -152,14 +241,14 @@ export default{
 }
 .contain08 .book ul{
     height: 309px;
-    width: 800px;
+    width: 820px;
     position: absolute;
     left: -2px;
     top:88px; 
 }
 .contain08 .book ul li{
     height: 309px;
-    width: 159px;
+    width: auto;
     position: relative;
     left: 0px;
     top:0px; 
@@ -167,7 +256,27 @@ export default{
     font-family: "黑体";
     font-size: 16px;
     text-align: center;
-    margin-left: 36px;
+    margin-left: 29px;
+}
+.contain08 .book ul li img{
+    border: 1px solid #e1e1e1;
+    width: auto;
+    height: 255px;
+}
+.contain08 .book ul li p{
+    position: relative;
+    top: 12px;
+    font-weight: bold;
+    min-width: 34px;
+    height: 34px;
+}
+.contain08 .book .see-more-book{
+    position: absolute;
+    top: 46px;
+    left: 732px;
+    font-size: 14px;
+    color: #999999;
+    font-family: "黑体";
 }
 .contain08 .create{
     height: 169px;
@@ -185,7 +294,7 @@ export default{
     // top: 36px;
     top: 50px;
     left: 21px;
-    font-family: "黑体";
+    // font-family: "黑体";
 }
 .contain08 .create .creat01{
     height: 74px;
@@ -254,7 +363,7 @@ export default{
     width: 38px;
 }
 .contain08 .create .creat03 p{
-    font-size: 16px;
+    font-size: 14px;
     position: absolute;
     left: 64px;
     top: 16px;

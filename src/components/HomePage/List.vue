@@ -5,6 +5,7 @@
           <li><router-link class="recommend" to="/Home/Recommend">别人创造的玩法</router-link></li>
           <!-- <li><router-link class="production" to="/Home/Production">作品</router-link></li> -->
       </ul>
+      <p class="see-more-rem">查看更多>></p>
       <router-view></router-view>
       <RankingList/>
   </div>
@@ -23,7 +24,7 @@
 <style scoped lang="less">
 @import '../../assets/index.less';
 .container05{
-    height: 1286px;
+    height: 1176px;
     width: 1200px;
     margin: 0 auto;
     position: relative;
@@ -42,13 +43,21 @@
     font-size: 18px;
     color:@black;
     text-decoration: none;
-    font-family: '黑体';
+    // font-family: '黑体';
     color: #000;
     position: absolute;
     height: 22px;
     width: 160px;
     top: 0px;
     left: 21px;
+}
+.container05 .see-more-rem{
+    position: absolute;
+    top: 59px;
+    left: 732px;
+    font-size: 14px;
+    color: #999999;
+    // font-family: "黑体";
 }
 // .container05 .production{
 //     font-size: 22px;
