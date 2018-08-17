@@ -50,10 +50,10 @@ export default{
             .then(response => {           
                 if(response.data.data.msg=='这回真的没有了~'){
                     this.noSend = false
-                        this.$message({
-                        message: '没有已发布的作品',
-                        center: true
-                        }); 
+                        // this.$message({
+                        // message: '没有已发布的作品',
+                        // center: true
+                        // }); 
                 }else{
                     this.list=response.data.data
                 }

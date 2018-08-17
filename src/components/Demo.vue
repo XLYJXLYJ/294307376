@@ -3,14 +3,14 @@
         <Header/>
         <div class="content05">   
             <div class="container24">
-                <img class="star01" src="../assets/Download/starfish.png" alt="">  
-                <p>我的管理中心</p>
+                <img class="star01" src="../assets/all/starall.png" alt="">  
+                <!-- <p>我的管理中心</p> -->
                 <router-link to="/snap"><button @click="clearsession">新建作品</button></router-link>
                 <div class="mydemo_frame">
-                    <div @click="clickblock01"><router-link class="Mydemo" to="/Demo/Mydemo">作品</router-link></div>
-                    <div @click="clickblock02"><router-link class="Delete" to="/Demo/Delete">废纸篓</router-link></div>
-                    <div class="block01" v-show="block01"></div>
-                    <div class="block02" v-show="block02"></div>
+                    <div @click="clickblock01"><router-link class="Mydemo" v-bind:class="{ blockblue: isblue, blockblack: !isblack}" to="/Demo/Mydemo">我的管理中心</router-link></div>
+                    <div @click="clickblock02"><router-link class="Delete" v-bind:class="{ blockblue: !isblue, blockblack: isblack }" to="/Demo/Delete">废纸篓</router-link></div>
+                    <!-- <div class="block01" v-show="block01"></div>
+                    <div class="block02" v-show="block02"></div> -->
                 </div>
             </div>      
             <router-view></router-view>
@@ -26,8 +26,8 @@ import Footer from '@/components/HomePage/Footer'
 export default{
     data(){
         return{
-            block01:true,
-            block02:false
+            isblue:true,
+            isblack:true,
         }
     },
     //默认跳转路由
@@ -41,12 +41,12 @@ export default{
     methods:{
         //控制tab
         clickblock01(){
-            this.block01=true,
-            this.block02=false
+            this.isblue=true
+            this.isblack=true
         },
         clickblock02(){
-            this.block02=true,
-            this.block01=false
+            this.isblue=false
+            this.isblack=false
         },
         //默认路由跳转
         demoroute(){
@@ -81,30 +81,25 @@ export default{
 }
 .content05{
     flex: 1;
-    padding-top: 154px;
-    padding-left: 5px;
     height: auto;
     display: inline-block;
 }
 .footer05{
-    margin-top: 36px;
     flex: 0;
 }
 .container24{
     margin: 0 auto;
     width: 1200px;
-    height:auto!important;
-    height:200px;
-    min-height:200px;
+    min-height:374px;
     background:@background-color; 
     position: relative;
 }
-.container25 .star01{
-    position: relative;
-    left: -18px;
-    top: -30px; 
-    z-index: 50;
-    opacity: 0;
+.container25 .container24 .star01{
+    position: absolute;
+    left: 38px;
+    top: 8px; 
+    width: auto;
+    height: 200px;
 }
 .container24 p{
     position: relative;
@@ -114,73 +109,61 @@ export default{
     color: @gray;
     font-weight: 600;
 }
-.container24 button{
-    position: relative;
-    top: -88px;
-    left: 1032px;
-    height: 34px;
-    width: 115px;
-    font-size:@xm-size;
+.container25 .container24 button{
+    position: absolute;
+    top: 149px;
+    left: 859px;
+    height: 45px;
+    width: 144px;
+    font-size:24px;
     color: @background-color;
-    background: @gray;
+    background: #c51d4a;
     border: none;
     cursor: pointer;
 }
- .container24 .mydemo_frame{
-    position:relative;
-    width: 643px;
+.container25 .container24 .mydemo_frame{
+    position:absolute;
+    width: 1136px;
     height: 28px;
-    top: -60px;
-    left: 0px;
+    top: 171px;
+    left: 35px;
     padding-bottom: 0px;
-    border-bottom: 1px solid @gray;
+    border-bottom: 3px solid #1969c7;
 }
-.container24 .Mydemo{
+.container25 .container24 .Mydemo{
     position: absolute;
-    top: -10px;
-    left: 24px;
-    width: 101px;
-    height: 38px;
-    font-size:@md-size;
-    color: @gray;
+    top: -26px;
+    left: 367px;
+    width: 159px;
+    height: 44px;
+    font-size:24px;
     text-decoration: none;
-    padding-top: 8px;
-    padding-left: 60px;
+    text-align: center;
+    padding-top: 10px;
 }
-.container24 .Delete{
+.container25 .container24 .Delete{
     position: absolute;
-    top: -10px;
-    left: 189px;
-    width: 109px;
-    height: 38px;
-    font-size:@md-size;
-    color: @gray;
+    top: -26px;
+    left: 547px;
+    width: 159px;
+    height: 44px;
+    font-size:24px;
     text-decoration: none;
-    padding-top: 8px;
-    padding-left: 60px;
+    text-align: center;
+    padding-top: 10px;
 }
-
-.container24 .block01{
-    width: 163px;
-    height: 10px;
-    background: @background-color;
-    position: absolute;
-    top: 28px;
-    left: 24px;
+.blockblue{
+    background: #1969c7;
+    color: #fff;
 }
-.container24 .block02{
-    width: 171px;
-    height: 10px;
-    background: @background-color;
-    position: absolute;
-    top: 28px;
-    left: 189px;
+.blockblack{
+    color: #000;
 }
-.container24 .mydemo_frame .router-link-active{
-   border:1px solid @gray;
-   border-radius:15px 15px 0px 0px;//学习了
-   border-bottom: none;
-}
+// .container24 .mydemo_frame .router-link-active{
+//    border:1px solid @gray;
+//    border-radius:15px 15px 0px 0px;//学习了
+//    border-bottom: none;
+// }
 /* .container24 .mydemo_frame .router-link-active{
     text-decoration: none;
     border-bottom: 3px solid @background-color;  

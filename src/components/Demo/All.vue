@@ -75,10 +75,10 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
                 .then(response => {   
                     if(response.data.data.msg=='这回真的没有了~'){
                         this.noSend = false
-                        this.$message({
-                        message: '暂时没有作品',
-                        center: true
-                        }); 
+                        // this.$message({
+                        // message: '暂时没有作品',
+                        // center: true
+                        // }); 
                     }else{
                         this.list=response.data.data
                     }

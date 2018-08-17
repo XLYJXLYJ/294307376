@@ -89,7 +89,7 @@
             <div v-show="$store.state.isdropdownparent">
                 <ul class="block-col-12">
                     <router-link to="/Demo"><li>作品管理</li></router-link>
-                    <router-link to="#"><li>社区消息</li></router-link>
+                    <!-- <router-link to="#"><li>社区消息</li></router-link> -->
                     <router-link to="/User"><li @click="clearsessionlookuser">个人中心</li></router-link> 
                     <router-link to="/setting"><li>账号设置</li></router-link>  
                     <li @click="Cancellogout">退出登陆</li>
@@ -692,16 +692,15 @@ export default {
     color: @background-color;
 }
 .headercontainer04 .block-col-12{
-    position:relative;
-    left:1070px;
-    top: 0px;
+    position:absolute;
+    left:1098px;
+    top: 68px;
     color: @gray;
-    width: 128px;
-    height: 186px;
+    width: 88px;
+    height: 90px;
     font-size:18px;
     z-index: 1000;
     background: @background-color;
-    border: 1px solid @gray;
 }
 .headercontainer04 .block-col-12 a{
     color: @gray;
@@ -711,11 +710,12 @@ export default {
     text-decoration: none;
 }
 .headercontainer04 .block-col-12 li{
-    padding-top: 8px;
-    padding-bottom: 2px;
-    padding-left: 28px;
-    height: 28px;
-    width: 79px;
+    padding-top: 2px;
+    padding-bottom: 0px;
+    padding-left: 8px;
+    padding-right: 8px;
+    height: 20px;
+    width: 72px;
     cursor: pointer;
     font-size:18px;
     font-family: 'SimHei';
@@ -842,9 +842,9 @@ export default {
 .headercontainer04 .login01{
     display: inline;
     position: absolute;
-    top: 29px;
-    left:1115px;
-    font-size:21px;
+    top: 24px;
+    left:1110px;
+    font-size:32px;
     color: @black;
     cursor: pointer;
     font-family: 'SimHei';

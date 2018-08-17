@@ -32,7 +32,7 @@ export default{
 @import '../../assets/index.less';
 .container26{
     position: relative;
-    top: -57px;
+    top: -107px;
     left: 24px;
 }
 .container24{
