@@ -53,7 +53,8 @@
   float: left;
   margin-right: 50px;
   color: #fff;
-  font-size: 14px;
+  font-size: 15px;
+  font-family: 'SimHei';
 }
 .container003 .container03 .imgfoot01{
   position:absolute;

@@ -2,7 +2,7 @@
   <div class="container05">
       <Search/>
       <ul>
-          <li><router-link class="recommend" to="/Home/Recommend">别人创造的玩法</router-link></li>
+          <li><router-link class="recommend" to="/Home/Recommend">大家创造的玩法</router-link></li>
           <!-- <li><router-link class="production" to="/Home/Production">作品</router-link></li> -->
       </ul>
       <p class="see-more-rem">查看更多>></p>
@@ -40,10 +40,10 @@
     margin-right: 44px;
 }
 .container05 .recommend{
-    font-size: 18px;
+    font-size: 20px;
     color:@black;
     text-decoration: none;
-    // font-family: '黑体';
+    font-family: 'SimHei';
     color: #000;
     position: absolute;
     height: 22px;
@@ -54,10 +54,10 @@
 .container05 .see-more-rem{
     position: absolute;
     top: 59px;
-    left: 732px;
-    font-size: 14px;
+    left: 694px;
+    font-size: 15px;
     color: #999999;
-    // font-family: "黑体";
+    font-family: 'SimHei';
 }
 // .container05 .production{
 //     font-size: 22px;

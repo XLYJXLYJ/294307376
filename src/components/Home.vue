@@ -83,7 +83,7 @@ export default{
 .footer01 .bcw img{
     position: absolute;
     left: 35px;
-    top: 60px;
+    top: 71px;
 }
 .footer01 .bcw ul{
     height: 232px;
@@ -99,9 +99,8 @@ export default{
     top: 0px;
     left: 0px;
     margin-top: 21px;
-    font-size: 14px;
+    font-size: 15px;
     color: #000;
-    font-weight: bold;
-    // font-family: "黑体";
+    font-family: 'SimHei';
 } 
 </style>

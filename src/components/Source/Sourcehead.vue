@@ -3,10 +3,13 @@
         <div class="container631">
             <!-- <div class="backsource"></div> -->
             <div class="source_header01">
-                <ul class="sourceshop">
-                    <router-link to="/source/sourceshop"><li><img src="../../assets/source/source01.png" alt=""></li></router-link> 
+                <p>素材商城</p>
+                <span>(下载美术资源，创作你的作品吧)</span>
+                <!-- <ul class="sourceshop"> -->
+                    <!-- <router-link to="/source/sourceshop"><li><img src="../../assets/source/source01.png" alt=""></li></router-link>  -->
                     <!-- <router-link to="/source/mysourceshop"><li><img src="../../assets/source/source02.png" alt=""></li></router-link>  -->
-                </ul>
+                <!-- </ul> -->
+                <img src="../../assets/source/qiqiu.png" alt="">
                 <input class="source_search" type="text" @keyup.enter="Getsearch" placeholder="搜索素材" v-model="sourcename"><div class="searchicon" @click="Getsearch"></div>
             </div>
             <router-view></router-view>
@@ -514,9 +517,31 @@ import Sourceshop from '@/components/Source/Sourceshop'
 .container631 .source_header01{
     width: 1200px;
     height: 196px;
-    background: url(../../assets/source/sourcehead.png) no-repeat;
+    // background: url(../../assets/source/sourcehead.png) no-repeat;
     position: relative;
-    top: 0px;
+    top: 0px; 
+}
+.container631 .source_header01 p{
+    font-size: 30px;
+    color: @main-color;
+    position: absolute;
+    top: 40px;
+    left: 30px;
+}
+.container631 .source_header01  span{
+    font-size: 14px;
+    color: #000;
+    position: absolute;
+    top: 59px;
+    left: 160px;
+}
+.container631 .source_header01 img{
+    width: 168px;
+    height: auto;
+    // background: url(../../assets/source/sourcehead.png) no-repeat;
+    position: absolute;
+    top: 0px; 
+    right: 140px;
 }
 /* .container63 .backsource{
     width: 876px;
@@ -548,12 +573,13 @@ import Sourceshop from '@/components/Source/Sourceshop'
 .container631 .source_search{
     width: 324px;
     height: 48px;
-    border-radius: 20px;
+    border-radius: 6px;
     padding-left: 15px;
     position:relative;
-    left: 830px;
-    top:-30px;
-    border: none;
+    left: 812px;
+    top:155px;
+    border: 1px solid @main-color;
+    z-index: 1000;
 }
 .container631 .searchicon{
     height: 21px;
@@ -561,9 +587,9 @@ import Sourceshop from '@/components/Source/Sourceshop'
     background: url(../../assets/source/searchicon.png) no-repeat;
     position: relative;
     left: 1118px;
-    top: -62px;
+    top: 119px;
     cursor: pointer;
-    
+    z-index: 1000;
 }
 .container631 .router-link-active li{
     background: url(../../assets/source/xuanzhong.png);
@@ -637,11 +663,13 @@ import Sourceshop from '@/components/Source/Sourceshop'
     height: 198px!important;
     width: 198px!important;
     overflow: hidden;
+    background: url(../../assets/source/bg1.png) no-repeat;
+    text-align: center;
 }
 .container64 .first .roleimg img{
-    height: 100%;
-    width: 100%;
-    background: url(../../assets/source/bg1.png) no-repeat;
+    height: 80%;
+    width: auto;
+    margin-top: 15px;
 }
 .container64 .first .roleup .text{
     font-size:@md-size;
@@ -821,11 +849,13 @@ import Sourceshop from '@/components/Source/Sourceshop'
     height: 198px!important;
     width: 198px!important;
     overflow: hidden;
+    background: url(../../assets/source/bg1.png) no-repeat;
+    text-align: center;
 }
 .container64 .three .roleimg img{
-    height: 100%;
-    width: 100%;
-    background: url(../../assets/source/bg1.png) no-repeat;
+    height: 60%;
+    width: auto;
+    margin-top: 35px;
 }
 .container64 .three .roleup .text{
     font-size:@md-size;
@@ -905,11 +935,13 @@ import Sourceshop from '@/components/Source/Sourceshop'
     height: 198px!important;
     width: 198px!important;
     overflow: hidden;
+    background: url(../../assets/source/bg1.png) no-repeat;
+    text-align: center;
 }
 .container64 .four .roleimg img{
-    height: 100%;
-    width: 100%;
-    background: url(../../assets/source/bg1.png) no-repeat;
+    height: 60%;
+    width: auto;
+    margin-top: 35px;
 }
 .container64 .four .roleup .text{
     font-size:@md-size;

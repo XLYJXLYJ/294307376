@@ -2,14 +2,13 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<title>PXSnap! create your robots from 0 to 1</title>
-		<link rel="shortcut icon" href="manykit/manykit.ico">
+		<title>编程玩SNAP-寓教于乐学编程</title>
+		<link rel="shortcut icon" href="manykit/bianchengwan_w.ico">
 		<script type="text/javascript" src="morphic.js"></script>
 		<script type="text/javascript" src="widgets.js"></script>
 		<script type="text/javascript" src="blocks.js"></script>
 		<script type="text/javascript" src="manykit/blocks.js"></script>
-		<script type="text/javascript" src="manykit/pxframe.js"></script>
+		<script type="text/javascript" src="manykit/arduino.js"></script>
 		<script type="text/javascript" src="threads.js"></script>
 		<script type="text/javascript" src="manykit/threads.js"></script>
 		<script type="text/javascript" src="objects.js"></script>
@@ -24,19 +23,20 @@
 		<script type="text/javascript" src="xml.js"></script>
 		<script type="text/javascript" src="store.js"></script>
 		<script type="text/javascript" src="locale.js"></script>
+		<script type="text/javascript" src="manykit/locale.js"></script>
 		<script type="text/javascript" src="cloud.js"></script>
 		<script type="text/javascript" src="manykit/cloud.js"></script>
 		<script type="text/javascript" src="sha512.js"></script>
 		<script type="text/javascript" src="FileSaver.min.js"></script>
 		<script type="text/javascript" src="manykit/base64.js"></script>
+		<script type="text/javascript" src="plugin/plugin.js"></script>
+		<script type="text/javascript" src="plugin/gui.js"></script>
 		<script type="text/javascript">
 			var world;
 			var ide;
 			window.onload = function () {
 				world = new WorldMorph(document.getElementById('world'));
-				
                 world.worldCanvas.focus();
-				
 				ide = new IDE_Morph();
 				ide.openIn(world);
         		loop();

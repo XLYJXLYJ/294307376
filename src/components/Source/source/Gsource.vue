@@ -168,7 +168,7 @@ export default{
         },
         //进度条函数
         async updateTime(j) {
-            this.isduration=-1
+            // this.isduration=-1
             // this.currentTime = document.getElementById('bgmusic').currentTime
             // this.duration01 = document.getElementById('bgmusic').duration
             this.currentTime = await this.$refs.audio[j].currentTime
@@ -176,7 +176,7 @@ export default{
             // console.log(this.currentTime)
             // console.log(this.duration01)
             this.scale=parseInt(this.currentTime/this.duration01*100)
-            this.isduration=j
+            // this.isduration=j
         },
         //获取播放时长
         // time(index){
@@ -358,9 +358,9 @@ export default{
     margin: 0 auto;
 }
 .container65 .first .roleimg .roleimgbox img{
-    height: 100%;
-    width: 100%;
-    margin-top: 20px;   
+    height: 70%;
+    width: auto;
+    margin-top: 40px;   
 }
 .container65 .first .roleup .text{
     font-size:@md-size;

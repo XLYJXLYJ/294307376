@@ -657,9 +657,9 @@ export default{
     margin: 0 auto;
 }
 .container64 .first .roleimg img{
-    height: 100%;
-    width: 100%;
-    margin-top: 20px;
+    height: 60%;
+    width: auto;
+    margin-top: 40px;
 }
 .container64 .first .roleup .text{
     font-size:@md-size;

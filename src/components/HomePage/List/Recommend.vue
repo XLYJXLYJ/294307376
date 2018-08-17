@@ -58,9 +58,14 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
                 }
                 const res = await http.post(api.getDemo, params)
                 this.list=res.data.data
-                this.$store.state.searchdemo=false//搜索结果列表全局变量
-                this.$store.state.recommenddemo=true//推荐结果列表全局变量
-                this.$store.state.productiondemo=false//产品结果列表全局变量
+                if(this.list.msg=='这回真的没有了~'){
+                    this.$store.state.recommenddemo=false
+                }else{
+                    this.$store.state.searchdemo=false//搜索结果列表全局变量
+                    this.$store.state.recommenddemo=true//推荐结果列表全局变量
+                    this.$store.state.productiondemo=false//产品结果列表全局变量
+                }
+
             },
             // Getdemo01(){//初始化函数
             //     this.axios.post('/res/filelist',{

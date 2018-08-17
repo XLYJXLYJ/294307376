@@ -38,86 +38,87 @@
 	"502" //OT_SEGMENT
 */
 
+// PXFrame
 // has massage to tell me
-Process.prototype.pxf_GetServerMessage = function (pin) {
+Process.prototype._GetServerMessage = function (pin) {
     var sprite = this.homeContext.receiver;
 
-	return PXFrame.prototype.getURL('phoenix', "777", null);
+	return Arduino.prototype.getURL('phoenix', "777", null);
 };
 
 // gpio
-Process.prototype.pxf_PinMode = function (pin, mode) {
+Process.prototype.pinMode = function (pin, mode) {
     var sprite = this.homeContext.receiver;
 	
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_PM
         var cntStr = "0" + "," + pin + "," + mode;        
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     }
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }
 };
 
-Process.prototype.pxf_DigitalWrite = function (pin, val) {
+Process.prototype.digitalWrite = function (pin, val) {
     var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_DW
 		var cntStr = "1" + "," + pin + "," + val;        
-		return PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     } 
     else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }
 };
 
-Process.prototype.pxf_PwmWrite = function (pin, val) {
+Process.prototype.pwmWrite = function (pin, val) {
     var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_AW
 		var cntStr = "2" + "," + pin + "," + val;        
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }
 };
 
-Process.prototype.pxf_AnalogWrite = function (pin, val) {
+Process.prototype.analogWrite = function (pin, val) {
     var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_AW
 		var cntStr = "2" + "," + pin + "," + val;        
-		return PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }
 };
 
-Process.prototype.pxf_DigitalRead = function (pin) {
+Process.prototype.digitalRead = function (pin) {
     var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// "OT_RETURN_DR
 		var cntStr = "3" + "," + pin;        
-		return PXFrame.prototype.getURL('pxframe', cntStr, null);
+		return Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }
 };
 
-Process.prototype.pxf_AnalogRead = function (pin) {
+Process.prototype.analogRead = function (pin) {
     var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_RETURN_AR
 		var cntStr = "4" + "," + pin;        
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		return Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
@@ -125,26 +126,26 @@ Process.prototype.pxf_AnalogRead = function (pin) {
 };
 
 // server
-Process.prototype.pxf_ServerInit = function (index, pin) {
+Process.prototype.servoInit = function (index, pin) {
     var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_SVR_I
 		var cntStr = "5" + "," + index + "," + pin;        
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }	
 };
 
-Process.prototype.pxf_ServerWrite = function (index, val) {
+Process.prototype.servoWrite = function (index, val) {
     var sprite = this.homeContext.receiver;
 	
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_SVR_W
 		var cntStr = "6" + "," + index + "," + val;        
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
@@ -152,262 +153,262 @@ Process.prototype.pxf_ServerWrite = function (index, val) {
 };
 
 // dist
-Process.prototype.pxf_DistInit = function (pin, pin1) {
+Process.prototype.ultrasonicInit = function (pin, pin1) {
     var sprite = this.homeContext.receiver;
 	
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_DST_I
 		var cntStr = "7" + "," + pin + "," + pin1;        
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }	
 };
 
-Process.prototype.pxf_DistTest = function () {
+Process.prototype._DistTest = function () {
     var sprite = this.homeContext.receiver;
 	
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_DST_T
 		var cntStr = "8";        
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }	
 };
 
-Process.prototype.pxf_GetDist = function () {
+Process.prototype.ultrasonicMeasure = function () {
     var sprite = this.homeContext.receiver;
 	
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_RETURN_DIST
 		var cntStr = "9";        
-		return PXFrame.prototype.getURL('pxframe', cntStr, null);
+		return Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }	
 };
 
-Process.prototype.pxf_VehicleInit_MotoBoard = function () {
+Process.prototype._MotoInit10111213 = function () {
     var sprite = this.homeContext.receiver;
 	
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MOTO_I
 		var cntStr = "10";
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }	
 };
 
-Process.prototype.pxf_VehicleRun = function (index, dir, speed) {
+Process.prototype._VehicleRun = function (index, dir, speed) {
     var sprite = this.homeContext.receiver;
 	
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MOTO_RUN
 		var cntStr = "11" + "," + index + "," + dir + "," + speed; 				
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }	
 };
 
-Process.prototype.pxf_VehicleSimpleRun = function (dir, speed) {
+Process.prototype._VehicleSimpleRun = function (dir, speed) {
     var sprite = this.homeContext.receiver;
 	
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MOTO_RUNSIMPLE
 		var cntStr = "12" + "," + dir + "," + speed; 		      
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }	
 };
 
-Process.prototype.pxf_VehicleStop = function () {
+Process.prototype._VehicleStop = function () {
     var sprite = this.homeContext.receiver;
 	
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MOTO_STOP
 		var cntStr = "13";        
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	
     }	
 };
 
-Process.prototype.pxf_VehicleSpeedEncorderInit = function (pinLA, pinLB, pinRA, pinRB)
+Process.prototype._VehicleSpeedEncorderInit = function (pinLA, pinLB, pinRA, pinRB)
 {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MOTO_I_SPD
 		var cntStr = "14" + "," + pinLA + "," + pinLB + "," + pinRA + "," + pinRB;
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_VehicleGetSpeed = function (index)
+Process.prototype._VehicleGetSpeed = function (index)
 {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_RETURN_MOTOSPD
 		var cntStr = "15" + "," + index;
-		return PXFrame.prototype.getURL('pxframe', cntStr, null);
+		return Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_VehicleInit_MotoBoard4567 = function () {
+Process.prototype._MotoInit4567 = function () {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MOTO_I_DRIVER4567
 		var cntStr = "16";
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_VehicleInit_MotoBoard298N = function (pinL0, pinL1, pinLS, pinR0, pinR1, pinRS) {
+Process.prototype._VehicleInit_MotoBoard298N = function (pinL0, pinL1, pinLS, pinR0, pinR1, pinRS) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MOTO_I_DRIVER298N
 		var cntStr = "17" + "," + pinL0 + "," + pinL1 + "," + pinLS + "," + pinR0 + "," + pinR1 + "," + pinRS;    
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_MP3Init = function (pinR, pinT) {
+Process.prototype._MP3Init = function (pinR, pinT) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MP3_INIT
 		var cntStr = "18" + "," + pinR + "," + pinT;    
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_MP3Play = function () {
+Process.prototype._MP3Play = function () {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MP3_PLAY
 		var cntStr = "19";    
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_MP3PlayIndex = function (index) {
+Process.prototype._MP3PlayIndex = function (index) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MP3_INDEX
 		var cntStr = "20" + "," + index;
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_MP3Next = function () {
+Process.prototype._MP3Next = function () {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MP3_NEXT
 		var cntStr = "21";
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_MP3PlayStop = function () {
+Process.prototype._MP3PlayStop = function () {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MP3_STOP
 		var cntStr = "22";
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_MP3SetVolume = function (volume) {
+Process.prototype._MP3SetVolume = function (volume) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MP3_STOP
 		var cntStr = "23" + "," + volume;
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_IRInit = function (pinR) {
+Process.prototype._IRInit = function (pinR) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_MP3_VOLUME
 		var cntStr = "24" + "," + pinR;
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_IRSend = function (val) {
+Process.prototype._IRSend = function (val) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_IR_INIT
 		var cntStr = "25" + "," + val;
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_WeightInit = function (i, pinOut, pinClk) {
+Process.prototype._WeightInit = function (i, pinOut, pinClk) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_HX711_I
 		var cntStr = "27" + "," + i + "," + pinOut + "," + pinClk;
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
@@ -415,117 +416,117 @@ Process.prototype.pxf_WeightInit = function (i, pinOut, pinClk) {
 };
 
 
-Process.prototype.pxf_WeightTest = function (i) {
+Process.prototype._WeightTest = function (i) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_HX711_TEST
 		var cntStr = "28" + "," + i;
-		PXFrame.prototype.getURL('pxframe', cntStr, null);
+		Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_GetWeight = function (i) {
+Process.prototype._GetWeight = function (i) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_RETURN_HX711
 		var cntStr = "29" + "," + i;
-		return PXFrame.prototype.getURL('pxframe', cntStr, null);
+		return Arduino.prototype.getURL('arduino', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_MC_LightInternal = function (val) {
+Process.prototype._MC_LightInternal = function (val) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_INTERNAL_LIGHT
 		var cntStr = "500" + "," + val;
-		PXFrame.prototype.getURL('makerclock', cntStr, null);
+		Arduino.prototype.getURL('makerclock', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_MC_LED = function (pin, val) {
+Process.prototype._MC_LED = function (pin, val) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_LIGHT
 		var cntStr = "501" + "," + pin + "," + val;
-		PXFrame.prototype.getURL('makerclock', cntStr, null);
+		Arduino.prototype.getURL('makerclock', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_MC_Buzzer = function (pin, val) {
+Process.prototype._MC_Buzzer = function (pin, val) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_LIGHT=BUZZER
 		var cntStr = "501" + "," + pin + "," + val;
-		PXFrame.prototype.getURL('makerclock', cntStr, null);
+		Arduino.prototype.getURL('makerclock', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_MC_Segment = function (pin, val) {
+Process.prototype._MC_Segment = function (pin, val) {
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_SEGMENT
 		var cntStr = "502" + "," + pin + "," + val;
-		PXFrame.prototype.getURL('makerclock', cntStr, null);
+		Arduino.prototype.getURL('makerclock', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 };
 
-Process.prototype.pxf_MC_Moto = function (pin, speed){
+Process.prototype._MC_Moto = function (pin, speed){
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_SEGMENT
 		var cntStr = "503" + "," + pin + "," + speed;
-		PXFrame.prototype.getURL('makerclock', cntStr, null);
+		Arduino.prototype.getURL('makerclock', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 }
 
-Process.prototype.pxf_MC_DistTest = function (pin){
+Process.prototype._MC_DistTest = function (pin){
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_DISTTEST
 		var cntStr = "504" + "," + pin;
-		PXFrame.prototype.getURL('makerclock', cntStr, null);
+		Arduino.prototype.getURL('makerclock', cntStr, null);
 	}
 	else {
 		throw new Error(localize('PHOENIXFrame Arduino board not connected'));
 	}
 }
 
-Process.prototype.pxf_MC_GetDist = function (pin){
+Process.prototype._MC_GetDist = function (pin){
 	var sprite = this.homeContext.receiver;
 
-	if (sprite.pxframe.isBoardReady()) {
+	if (sprite.arduino.isBoardReady()) {
 		// OT_RETURN_DIST
 		var cntStr = "9";        
-		return PXFrame.prototype.getURL('makerclock', cntStr, null);
+		return Arduino.prototype.getURL('makerclock', cntStr, null);
     } 
 	else {
         throw new Error(localize('PHOENIXFrame Arduino board not connected'));	

@@ -146,7 +146,7 @@ export default{
     top: 110px;
     font-size: 15px;
     color: #fff;
-    font-family: 'light';
+    font-family: 'SimHei';
 }
 .contain08 .container09 .ot2{
     position: absolute;
@@ -154,7 +154,7 @@ export default{
     top: 129px;
     font-size: 15px;
     color: #fff;
-    font-family: 'light';
+    font-family: 'SimHei';
 }
 .contain08 .container09 .ot3{
     position: absolute;
@@ -162,7 +162,7 @@ export default{
     top: 147px;
     font-size: 14px;
     color: #fff;
-    font-family: 'light';
+    font-family: 'SimHei';
 }
 .contain08 .container09 .ot4{
     position: absolute;
@@ -170,7 +170,7 @@ export default{
     top: 327px;
     font-size: 14px;
     color: #fff;
-    font-family: 'light';
+    font-family: 'SimHei';
 }
 .contain08 .container09 .ot5{
     position: absolute;
@@ -178,7 +178,7 @@ export default{
     top: 344px;
     font-size: 14px;
     color: #fff;
-    font-family: 'light';
+    font-family: 'SimHei';
 }
 .contain08 .container09 .ot6{
     position: absolute;
@@ -186,7 +186,7 @@ export default{
     top: 361px;
     font-size: 14px;
     color: #fff;
-    font-family: 'light';
+    font-family: 'SimHei';
 }
 .contain08 .container09 .headbutton{
     width: 179px;
@@ -202,6 +202,7 @@ export default{
     position: absolute;
     left: 28px;
     top: 224px;
+    font-family: 'SimHei';
 }
 .contain08 .container09 .buyzod{
     cursor: pointer;
@@ -211,6 +212,7 @@ export default{
     font-size: 18px;
     color: #ffff00;
     font-weight:bold;
+    font-family: 'SimHei';
 }
 .contain08 .container09 .two-img{
     position: absolute;
@@ -229,8 +231,8 @@ export default{
     position: absolute;
     top: 36px;
     left: 21px;
-    font-size: 18px;
-    // font-family: "黑体";
+    font-size: 20px;
+    font-family: 'SimHei';
 }
 .contain08 .bookshopimg{
     position: absolute;
@@ -253,7 +255,7 @@ export default{
     left: 0px;
     top:0px; 
     float: left;
-    font-family: "黑体";
+    font-family: 'SimHei';
     font-size: 16px;
     text-align: center;
     margin-left: 29px;
@@ -274,9 +276,9 @@ export default{
     position: absolute;
     top: 46px;
     left: 732px;
-    font-size: 14px;
+    font-size: 15px;
     color: #999999;
-    font-family: "黑体";
+    font-family: 'SimHei';
 }
 .contain08 .create{
     height: 169px;
@@ -289,12 +291,12 @@ export default{
 .contain08 .creattitle{
     height: 20px;
     width: 120px;
-    font-size: 18px;
+    font-size: 20px;
     position: absolute;
     // top: 36px;
     top: 50px;
     left: 21px;
-    // font-family: "黑体";
+    font-family: 'SimHei';
 }
 .contain08 .create .creat01{
     height: 74px;
@@ -319,7 +321,7 @@ export default{
     top: 16px;
     color: #fff;
     font-weight: 1000;
-    font-family: '黑体';
+    font-family: 'SimHei';
 }
 .contain08 .create .creat02{
     height: 74px;
@@ -344,7 +346,7 @@ export default{
     top: 16px;
     color: #fff;
     font-weight: 1000;
-    font-family: '黑体';
+    font-family: 'SimHei';
 }
 .contain08 .create .creat03{
     height: 74px;
@@ -369,7 +371,7 @@ export default{
     top: 16px;
     color: #fff;
     font-weight: 1000;
-    font-family: '黑体';
+    font-family: 'SimHei';
 }
 .contain08 .create .creat04{
     height: 74px;
@@ -394,7 +396,7 @@ export default{
     top: 16px;
     color: #fff;
     font-weight: 1000;
-    font-family: '黑体';
+    font-family: 'SimHei';
 }
 .contain08 .create .creat05{
     height: 74px;
@@ -419,7 +421,7 @@ export default{
     top: 16px;
     color: #fff;
     font-weight: 1000;
-    font-family: '黑体';
+    font-family: 'SimHei';
 }
 .contain08 .create .creat06{
     height: 74px;
@@ -444,7 +446,7 @@ export default{
     top: 16px;
     color: #fff;
     font-weight: 1000;
-    font-family: '黑体';
+    font-family: 'SimHei';
 }
 #videobox{
     width: 322px;

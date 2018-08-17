@@ -83,7 +83,7 @@ export default{
     z-index: 1000;
 }
 .container61 .line{
-    width: 1140px;
+    width: 760px;
     height: 1px;
     background-color: @main-color;
     position: relative;

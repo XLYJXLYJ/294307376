@@ -1,8 +1,20 @@
 // cloud.js
 
 var SnapCloud = new Cloud(
-    'https://cloud.snap.berkeley.edu'
+    'http://www.manykit.com/snap/'
 );
+
+Cloud.prototype.initSession = function (onSuccess) {
+    /*var myself = this;
+    this.request(
+        'POST',
+        '/init',
+        function () { myself.checkCredentials(onSuccess); },
+        nop,
+        null,
+        true
+    );*/
+};
 
 Cloud.prototype.originalSignup = Cloud.prototype.signup;
 Cloud.prototype.signup = function (username, email, callBack, errorCall) {
@@ -10,15 +22,10 @@ Cloud.prototype.signup = function (username, email, callBack, errorCall) {
     var request = new XMLHttpRequest(),
         myself = this;
 
-    // var strPath = this.url + 'signup' + '?username='
-    //     + encodeURIComponent(username) + '&email='
-    //     + encodeURIComponent(email);
-    /*修改strPath 新增密码字段 start*/
     var strPath = this.url + 'signup' + '?username='
         + encodeURIComponent(username) + '&email='
-        + encodeURIComponent(errorCall) + '&password='
         + encodeURIComponent(email);
-    /*end*/
+
     try {
         request.open(
             "GET",

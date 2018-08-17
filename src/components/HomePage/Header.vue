@@ -72,7 +72,8 @@
                 @click="dialogLogin = true, 
                 dialogLoginShow = true, 
                 dialogRegister = false, 
-                dialogForgetPassword= false">登录/</p>  
+                dialogForgetPassword= false
+                dialogPasswordSure=false">登录/</p>  
                 <p class="sign"  type="text"
                 @click="dialogLogin = true, 
                 dialogLoginShow = false, 
@@ -98,40 +99,40 @@
         </div> 
          <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
-            <el-dialog :visible.sync="dialogLogin"  width="420px" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close="false">
-                <img class="close" @click="Close" src="../../assets/login/close.png" alt="">
+            <el-dialog :visible.sync="dialogLogin"  width="600px" :modal="true" :modal-append-to-body="false" :lock-scroll="false" :show-close="false">
+                <!-- <img class="close" @click="Close" src="../../assets/login/close.png" alt=""> -->
                 <div>
                     <div class="container21" v-show="dialogLoginShow">
-                        <form action="">
+                        <form>
                             <p class="sign_logo">登录</p>
-                            <input type="text" v-model="formLogin.userName" class="tele" placeholder="请输入用户名">
-                            <input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码">
+                            <el-input type="text" v-model="formLogin.userName" class="tele" placeholder="请输入用户名"></el-input>
+                            <el-input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码"></el-input>
                             <p class="ap_text" @click="dialogLoginShow= false,dialogForgetPassword = true">忘记密码?</p>
                             <button class="register" @click.prevent="Loginbtn">登录</button>
                             <div class="free_res"><p>没有账号?</p><span @click="dialogLoginShow = false,dialogRegister = true">免费注册</span></div>    
                         </form> 
-                        <div class="threelogin">
+                        <!-- <div class="threelogin">
                             <span class="line">.</span>
                             <p class="lo">第三方登录</p>
                              <div id="qqLoginBtn"><img class="qq" src="../../assets/login/qq2.png" alt=""></div>
                             <div><img class="wechat" src="../../assets/login/wechat2.png" alt=""></div>
                             <span id="qq_login_btn"></span>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="container19" v-show="dialogRegister">
                         <el-form :model="formRegister" :rules="rules">
                             <p class="sign_logo">注册</p>
                             <el-form-item prop="userName">
-                                <input v-model="formRegister.userName"  class="tele" auto-complete="off" placeholder="请输入用户名">
+                                <el-input v-model="formRegister.userName"  class="tele" auto-complete="off" placeholder="请输入用户名"></el-input>
                             </el-form-item>
                             <el-form-item prop="mail">
-                                <input type="email"  class="iden01" v-model="formRegister.mail" auto-complete="off" placeholder="请输入邮箱">
+                                <el-input type="email"  class="iden01" v-model="formRegister.mail" auto-complete="off" placeholder="请输入邮箱"></el-input>
                             </el-form-item>
                             <el-form-item prop="password">
-                                <input type="password" class="iden02" v-model="formRegister.password" auto-complete="off" placeholder="请输入密码">
+                                <el-input type="password" class="iden02" v-model="formRegister.password" auto-complete="off" placeholder="请输入密码"></el-input>
                             </el-form-item>
                             <el-form-item prop="password">
-                                <input type="password" class="iden03" v-model="formRegister.checkPassword" auto-complete="off" placeholder="请确认密码">
+                                <el-input type="password" class="iden03" v-model="formRegister.checkPassword" auto-complete="off" placeholder="请确认密码"></el-input>
                             </el-form-item>
                             <el-button type="primary" class="register" @click.prevent="Registerbtn">注册</el-button>
                         </el-form>
@@ -140,13 +141,13 @@
                         </div>
                     </div>
                     <div class="container46" v-show="dialogForgetPassword">
-                        <el-form action="" :rules="rules">
+                        <el-form :rules="rules">
                             <p class="sign_logo">忘记密码</p>
                             <el-form-item >
-                                    <input type="email"  class="tele" v-model="formReset.mail" auto-complete="off" placeholder="请输入邮箱">
+                                    <el-input type="email"  class="tele" v-model="formReset.mail" auto-complete="off" placeholder="请输入邮箱"></el-input>
                                 </el-form-item>
                             <el-form-item prop="code">
-                                    <input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码">
+                                    <el-input v-model="formReset.code"  class="iden01" auto-complete="off"  placeholder="验证码"></el-input>
                             </el-form-item>
                             <button v-bind:class="{iden0202:btnTxtColor01 , iden020202:btnTxtColor02}" @click.prevent="Getcodebtn" :disabled="disabled">{{btnTxt}}</button>
                             <button class="register"  @click.prevent="Getusercodebtn">下一步</button>
@@ -154,10 +155,10 @@
                     </div>
                     <div v-show="dialogPasswordSure">
                         <div class="container44">
-                            <form action="">
+                            <form>
                                 <p class="sign_logo">确认密码</p>
-                                <input type="password" v-model="formReset.password" class="tele" placeholder="输入密码">
-                                <input type="password" v-model="formReset.checkPassword" class="iden01" placeholder="再次确认密码">                  
+                                <el-input type="password" v-model="formReset.password" class="tele" placeholder="输入密码"></el-input>
+                                <el-input type="password" v-model="formReset.checkPassword" class="iden01" placeholder="再次确认密码"></el-input>                
                                 <button class="register" @click.prevent="Getuserpassbtn">确认</button>
                             </form> 
                         </div>
@@ -214,22 +215,22 @@ export default {
                 msg:'',//后台返回的提示数据
             },
             rules:{//element验证规则
-                userName: [
-                    { required: true, message: '请输入用户名', trigger: 'blur' },
-                    { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' },
-                    {pattern:/^[a-zA-Z]w{1,4}$/,message: '以字母开头，长度在2-5之间， 只能包含字符、数字和下划线'}],
-                mail:[
-                    { required: true, message: '请输入邮箱', trigger: 'blur' },
-                    { type:'email', message: '请输入合法的email邮箱', trigger: 'blur,change' }
-                ],
-                password:[
-                    { required: true, message: '请输入密码', trigger: 'blur' },
-                    {min:6,max:12, message: '长度在 6 到 12 个英文与数字', trigger: 'blur' }
-                ],
-                checkPassword:[
-                    { required: true, message: '请输入密码', trigger: 'blur' },
-                    {min:6,max:12, message: '长度在 6 到 12 个英文与数字', trigger: 'blur' }
-                ],
+                // userName: [
+                //     { required: true, message: '请输入用户名', trigger: 'blur' },
+                //     { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' },
+                //     {pattern:/^[a-zA-Z]w{1,4}$/,message: '以字母开头，长度在2-5之间， 只能包含字符、数字和下划线'}],
+                // mail:[
+                //     { required: true, message: '请输入邮箱', trigger: 'blur' },
+                //     { type:'email', message: '请输入合法的email邮箱', trigger: 'blur,change' }
+                // ],
+                // password:[
+                //     { required: true, message: '请输入密码', trigger: 'blur' },
+                //     {min:6,max:12, message: '长度在 6 到 12 个英文与数字', trigger: 'blur' }
+                // ],
+                // checkPassword:[
+                //     { required: true, message: '请输入密码', trigger: 'blur' },
+                //     {min:6,max:12, message: '长度在 6 到 12 个英文与数字', trigger: 'blur' }
+                // ],
             },
         };
     },
@@ -294,7 +295,7 @@ export default {
             this.$store.state.isdropdownparent = !this.$store.state.isdropdownparent
         },
         //登陆
-        async Loginbtn() {
+        Loginbtn() {
             var reguserpassword = /^[a-zA-Z0-9]\w{4,16}$/;
             // let logintextpassword = this.publicKey;
             // var privatekey = new NodeRSA(logintextpassword);
@@ -696,8 +697,8 @@ export default {
     top: 0px;
     color: @gray;
     width: 128px;
-    height: 180px;
-    font-size:@ss-size;
+    height: 186px;
+    font-size:18px;
     z-index: 1000;
     background: @background-color;
     border: 1px solid @gray;
@@ -710,12 +711,14 @@ export default {
     text-decoration: none;
 }
 .headercontainer04 .block-col-12 li{
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 20px;
+    padding-top: 8px;
+    padding-bottom: 2px;
+    padding-left: 28px;
     height: 28px;
-    width: 87px;
+    width: 79px;
     cursor: pointer;
+    font-size:18px;
+    font-family: 'SimHei';
 }
 .headercontainer04 .block-col-12 li:hover{
     background:@black;
@@ -754,9 +757,12 @@ export default {
     padding-top: 29px; 
     padding-left: 20px;
     padding-right: 21px;
-    font-size:21px; 
+    font-size:22px; 
     z-index: 200;
     cursor: pointer;
+}
+.container04 ul li{
+    font-family: bold;
 }
 .container04 ul li:hover{
     background: #e6e6e6;
@@ -766,6 +772,7 @@ export default {
     cursor: pointer;
     text-decoration: none;
     font-family: 'SimHei';
+    
 }
 .container04 ul li a{
     text-decoration: none;
@@ -798,7 +805,7 @@ export default {
     height: 69px;
     width: 287px;;
     position: absolute;
-    left: 0px;
+    left: 4px;
     top: 3px; 
 }
 .headercontainer04 .close{
@@ -877,84 +884,85 @@ export default {
 /* 头部列表结束 */
 
 /* 模态框开始 */
-.headercontainer04 .container21{
+.container21{
     margin: 0px;
     padding: 0px;
     width: 100%;
-    height: 516px;
+    height: 356px;
     background: @background-color;
+    border-radius: 6px;
 }
-.headercontainer04 .container21 .sign_logo{
-    width: 50px;
+.container21 .sign_logo{
+    width: 55%;
     height: 23px;
     position: relative;
-    top: 44px;
-    left: 162px;
+    top: 18px;
+    padding-bottom: 18px;
+    padding-left: 45%;
     color: @gray;
     font-size: 24px;
-    margin-left: 30px;
+    border-bottom: 1px solid #e5e5e5;
 }
-.headercontainer04 .container21 .tele{
+.container21 .tele{
     position: absolute;
     height: 48px;
-    width: 297px;
+    width: 90%;
     top: 102px;
-    left: 60px;
-    padding-left: 10px;
+    left: 5%;
 }
-.headercontainer04 .container21 .iden01{
+.container21 .iden01{
     position: absolute;
     height: 48px;
-    width: 297px;
+    width:90%;
     top: 166px;
-    left: 60px;
-    padding-left: 10px;
+    left: 5%;
 }
 
-.headercontainer04 .container21 .ap_text{
+.container21 .ap_text{
     position: absolute;
     height: 14px;
     width: 95px;
     top: 228px;
-    left: 291px;
+    right: 0%;
     color: @main-color;
     font-size:@sm-size;
     cursor: pointer;
     font-weight: 600;
 }
-.headercontainer04 .container21 .register{
+.container21 .register{
     position: absolute;
-    height: 48px;
-    width: 310px;
+    height: 38px;
+    width: 110px;
     top: 256px;
-    left: 60px;
+    left: 41%;
     background: @main-color;
     color: @background-color;
     font-size:@md-size;
     cursor: pointer;
     border: none;
     outline: none;
+    border-radius: 4px;
 }
-.headercontainer04 .container21 .free_res p{
+.container21 .free_res p{
     position: absolute;
     height: 14px;
     width: 142px;
     top: 307px;
-    left: 137px;
+    left: 5%;
     font-size:@sm-size;
     color: @black;
     font-weight: 600;
 }
-.headercontainer04 .container21 .free_res span{
+.container21 .free_res span{
     position: absolute;
     top: 307px;
-    left: 216px;
+    left: 16%;
     color: @main-color;
     font-size:@sm-size;
     cursor: pointer;
     font-weight: 600;
 }
-.headercontainer04 .container21 .threelogin .line{
+.container21 .threelogin .line{
     position: absolute;
     top: 391px;
     width: 420px;
@@ -962,7 +970,7 @@ export default {
     background-color:#f1f1f1;
     // overflow:hidden;
 }
-.headercontainer04 .container21 .threelogin .line{
+.container21 .threelogin .line{
     position: absolute;
     top: 391px;
     width: 420px;
@@ -970,7 +978,7 @@ export default {
     background-color:#f1f1f1;
     // overflow:hidden;
 }
-.headercontainer04 .container21 .threelogin .lo{
+.container21 .threelogin .lo{
     position: absolute;
     top: 383px;
     left: 171px;
@@ -984,7 +992,7 @@ export default {
     padding-right: 8px;
     // overflow:hidden;
 }
-.headercontainer04 .container21 .threelogin .qq{
+.container21 .threelogin .qq{
     position: absolute;
     top: 424px;
     left: 120px;
@@ -992,7 +1000,7 @@ export default {
     height:50px;
     cursor: pointer;
 }
-.headercontainer04 .container21 .threelogin .wechat{
+.container21 .threelogin .wechat{
     position: absolute;
     top: 424px;
     left: 251px;
@@ -1005,99 +1013,102 @@ export default {
     margin: 0px;
     padding: 0px;
     width: 100%;
-    height: 364px;
+    height: 314px;
     background: @background-color;
+    border-radius: 15px;
 }
 .container44 .sign_logo{
     position: absolute;
     height: 24px;
-    width: 106px;
-    top: 44px;
-    left: 155px;
+    width: 58%;
+    padding-left: 42%;
+    padding-bottom: 18px;
+    top: 18px;
     color: @gray;
     font-size: 24px;
+    border-bottom: 1px solid #e5e5e5;
 }
 .container44 .tele{
     position: absolute;
     height: 49px;
-    width: 287px;
+    width: 90%;
     top: 102px;
-    left: 60px;
-    padding-left: 10px;
+    left: 5%;
 }
 .container44 .iden01{
     position: absolute;
     height: 49px;
-    width: 287px;
+    width: 90%;
     top: 166px;
-    left: 60px;
-    padding-left: 10px;
+    left: 5%;
 }
 .container44 .register{
     position: absolute;
-    height: 49px;
-    width: 302px;
+    height: 39px;
+    width: 110px;
     top: 244px;
-    left: 60px;
+    left: 41%;
     background: @main-color;
     color: @background-color;
     font-size:@md-size;
     cursor: pointer;
     border: none;
     outline: none;
+    border-radius: 4px;
 }
 .container19{
     margin: 0px;
     padding: 0px;
     width: 100%;
-    height: 492px;
+    height: 452px;
     background: @background-color;
+    border-radius: 15px;
 }
 .container19 .sign_logo{
     position: absolute;
-    top: 44px;
-    left: 184px;
+    top: 28px;
+    padding-left: 45%;
+    padding-bottom: 28px;
+    height: 24px;
+    width: 55%;
     color: @gray;
     font-size: 24px;
+    border-bottom: 1px solid #e5e5e5;
 }
 .container19 .tele{
     position: absolute;
     height: 48px;
-    width: 287px;
-    top: 102px;
-    left: 60px;
-    padding-left: 10px;
+    width: 90%;
+    top: 110px;
+    left: 5%;
 }
 .container19 .iden01{
     position: absolute;
     height: 48px;
-    width: 287px;
-    top: 112px;
-    left: 60px;
-    padding-left: 10px;
+    width: 90%;
+    top: 150px;
+    left: 5%;
 }
 .container19 .iden02{
     position: absolute;
     height: 49px;
-    width: 287px;
-    top: 154px;
-    left: 60px;
-    padding-left: 10px;
+    width: 90%;
+    top: 190px;
+    left: 5%;
 }
 .container19 .iden03{
     position: absolute;
     height: 48px;
-    width: 287px;
-    top: 196px;
-    left: 60px;
-    padding-left: 10px;
+    width: 90%;
+    top: 230px;
+    left: 5%;
 }
 .container19 .register{
     position: absolute;
-    height: 49px;
-    width: 301px;
+    height: 39px;
+    width: 101px;
     top: 384px;
-    left: 60px;
+    left: 41%;
     background: @main-color;
     color: @background-color;
     font-size:@md-size;
@@ -1110,7 +1121,7 @@ export default {
     height: 14px;
     width: 141px;
     top: 355px;
-    left: 60px;
+    left: 5%;
     font-size: 15px;
     cursor: pointer;
     font-weight: 600;
@@ -1130,56 +1141,60 @@ export default {
     margin: 0px;
     padding: 0px;
     width: 100%;
-    height: 364px;
+    height: 314px;
     background: @background-color;
+    border-radius: 15px;
 }
 .container46 .sign_logo{
     position: absolute;
-    top: 44px;
-    left: 159px;
+    top: 18px;
+    padding-left:42%;
+    padding-bottom: 18px;
+    height: 24px;
+    width: 55%;
     color: @gray;
     font-size: 24px;
+    height: 24px;
+    border-bottom: 1px solid #e5e5e5;
 }
 .container46 .tele{
     position: absolute;
     height: 48px;
-    width: 287px;
+    width: 90%;
     top: 102px;
-    left: 60px;
-    padding-left: 10px;
+    left: 5%;
 }
 .container46 .iden01{
     position: absolute;
     height: 48px;
-    width: 170px;
-    top: 116px;
-    left: 60px;
-    padding-left: 10px;
-    margin: 0px!important;
+    width: 50%;
+    top: 148px;
+    left: 5%;
 }
 .container46 .iden0202{
     position: absolute;
-    height: 52px;
-    width: 111px;
-    top: 170px;
-    left: 250px;
+    height: 36px;
+    width: 35%;
+    top: 172px;
+    left: 60%;
     background: @main-color;
     color: @background-color;
     font-size:@xm-size;
     cursor: pointer;
     border: none;
+    border-radius: 4px;
 }
 .container46 .iden020202{
     position: absolute;
-    height: 52px;
-    width: 111px;
-    top: 170px;
-    left: 250px;
+    height: 36px;
+    width: 35%;
+    top: 172px;
+    left: 60%;
     background:@cancel-color;
     color: @background-color;
     font-size:@xm-size;
-    cursor: pointer;
     border: none;
+    border-radius: 4px;
 }
 
 .container46 .setpass{
@@ -1192,16 +1207,17 @@ export default {
 }
 .container46 .register{
     position: absolute;
-    height: 48px;
-    width: 310px;
+    height: 38px;
+    width: 110px;
     top: 246px;
-    left: 60px;
+    left: 41%;
     background: @main-color;
     color: @background-color;
     font-size:@md-size;
     cursor: pointer;
     border: none;
     outline: none;
+    border-radius: 4px;
 }
 .container46 .back_login{
     position: absolute;

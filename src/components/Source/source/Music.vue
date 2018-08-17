@@ -38,7 +38,7 @@
         <p class="all">共有{{listnewlength}}个素材</p>
     </div>
     <div class="first">
-        <keep-alive>
+        <!-- <keep-alive> -->
             <ul class="role"> 
                 <li v-for="(item,index) in listnew" :key="item.index" v-if="index<15">
                     <div class="roleimg" v-bind:style="{background:isbgcolor(index)}"> 
@@ -62,7 +62,7 @@
                     </div>
                 </li>
             </ul>
-        </keep-alive>
+        <!-- </keep-alive> -->
 
     </div>
 

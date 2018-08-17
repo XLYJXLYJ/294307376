@@ -3,439 +3,503 @@
 SpriteMorph.prototype.originalInit = SpriteMorph.prototype.init;
 SpriteMorph.prototype.init = function(globals) {
     this.originalInit(globals);
-	this.pxframe = new PXFrame(this);
+	this.arduino = new Arduino(this);
 };
 
+SpriteMorph.prototype.categories.push('Arduino');
+SpriteMorph.prototype.blockColor['Arduino'] = new Color(0, 151, 156);
+
 SpriteMorph.prototype.categories.push('PXFrame');
-SpriteMorph.prototype.blockColor['PXFrame'] = new Color(0, 151, 156);
+SpriteMorph.prototype.blockColor['PXFrame'] = new Color(63, 72, 204);
 
 // makerclock
-SpriteMorph.prototype.categories.push('MakerClock');
+//SpriteMorph.prototype.categories.push('MakerClock');
 SpriteMorph.prototype.blockColor['MakerClock'] = new Color(0, 151, 200);
 
 SpriteMorph.prototype.originalInitBlocks = SpriteMorph.prototype.initBlocks;
-SpriteMorph.prototype.initPXFBlocks = function () {
+SpriteMorph.prototype.initArduinoBlocks = function () {
+    this.blocks.pinMode =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'Arduino',
+        spec: 'PinMode %_Pin as %_PinMode',
+        defaults: ["2", 'output'],
+        transpilable: true
+    };
 
-    this.blocks.pxf_GetServerMessage =
+    this.blocks.digitalWrite =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'Arduino',
+        spec: 'DigitalWrite %_Pin as %_HighLow',
+        defaults: ["2", "high"],
+        transpilable: true
+    };
+
+    this.blocks.pwmWrite =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'Arduino',
+        spec: 'PwmWrite %_PwmPin as %n',
+        defaults: ["3", 255],
+        transpilable: true
+    };
+    
+    this.blocks.digitalRead =
+    {
+        only: SpriteMorph,
+        type: 'predicate',
+        category: 'Arduino',
+        spec: 'DigitalRead %_Pin',
+        defaults: ["2"],
+        transpilable: true
+    };
+
+    this.blocks.analogWrite =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'Arduino',
+        spec: 'AnalogWrite %_AnalogPin as %n',
+        defaults: ["A0", 255],
+        transpilable: true
+    };
+
+    this.blocks.analogRead =
+    {
+        only: SpriteMorph,
+        type: 'reporter',
+        category: 'Arduino',
+        spec: 'AnalogRead %_AnalogPin',
+        defaults: ["A0"],
+        transpilable: true
+    };
+
+    this.blocks.servoInit =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'Arduino',
+        spec: 'Servo index %n init at pin %_Pin',
+        defaults: [0, "A0"],
+        transpilable: true
+    };
+
+    this.blocks.servoWrite =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'Arduino',
+        spec: 'Servo index %n write value %n',
+        defaults: [0, 45],
+        transpilable: true
+    };
+
+    this.blocks.ultrasonicInit =
+    {
+        only: SpriteMorph,
+        type: 'command',
+        category: 'Arduino',
+        spec: 'UltrasonicInit at pinTriger %_Pin and pinEcho %_Pin',
+        defaults: ["A0", "A1"],
+        transpilable: true
+    };
+
+    this.blocks.ultrasonicMeasure =
+    {
+        only: SpriteMorph,
+        type: 'reporter',
+        category: 'Arduino',
+        spec: 'UltrasonicMeasure',
+        transpilable: true
+    };
+}
+SpriteMorph.prototype.initPXFrameBlocks = function () {
+
+    this.blocks._GetServerMessage =
     {
         only: SpriteMorph,
         type: 'predicate',
         category: 'PXFrame',
         spec: 'GetServerMessage',
-        transpilable: true
+        transpilable: false
     };
 
-    this.blocks.pxf_PinMode =
+    this.blocks._MotoInit10111213 =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
-        spec: 'PinMode %pxf_Pin as %pxf_PinMode',
-        defaults: ["2", 'output'],
-        transpilable: true
-    };
-	
-	this.blocks.pxf_DigitalWrite =
-    {
-        only: SpriteMorph,
-        type: 'command',
-        category: 'PXFrame',
-        spec: 'DigitalWrite %pxf_Pin as %b',
-        defaults: ["2", true],
-        transpilable: true
+        spec: 'VehicleInitMotoBoard10111213',
+        transpilable: false
     };
 
-    this.blocks.pxf_PwmWrite =
-    {
-        only: SpriteMorph,
-        type: 'command',
-        category: 'PXFrame',
-        spec: 'PwmWrite %pxf_PwmPin as %n',
-        defaults: ["2", 255],
-        transpilable: true
-    };
-
-    this.blocks.pxf_AnalogWrite =
-    {
-        only: SpriteMorph,
-        type: 'command',
-        category: 'PXFrame',
-        spec: 'AnalogWrite %pxf_AnalogPin as %n',
-        defaults: ["A0", 255],
-        transpilable: true
-    };
-
-    this.blocks.pxf_DigitalRead =
-    {
-        only: SpriteMorph,
-        type: 'predicate',
-        category: 'PXFrame',
-        spec: 'DigitalRead %pxf_Pin',
-        defaults: ["2"],
-        transpilable: true
-    };
-
-    this.blocks.pxf_AnalogRead =
-    {
-        only: SpriteMorph,
-        type: 'reporter',
-        category: 'PXFrame',
-        spec: 'AnalogRead %pxf_AnalogPin',
-        defaults: ["A0"],
-        transpilable: true
-    };
-
-    this.blocks.pxf_ServerInit =
-    {
-        only: SpriteMorph,
-        type: 'command',
-        category: 'PXFrame',
-        spec: 'Server index %n init at pin %pxf_Pin',
-        defaults: [0, "A0"],
-        transpilable: true
-    };
-
-    this.blocks.pxf_ServerWrite =
-    {
-        only: SpriteMorph,
-        type: 'command',
-        category: 'PXFrame',
-        spec: 'Server index %n write value %n',
-        defaults: [0, 90],
-        transpilable: true
-    };
-
-    this.blocks.pxf_DistInit =
-    {
-        only: SpriteMorph,
-        type: 'command',
-        category: 'PXFrame',
-        spec: 'DistInit at pin0 %pxf_Pin and pin1 %pxf_Pin',
-        defaults: ["A4", "A5"],
-        transpilable: true
-    };
-
-    this.blocks.pxf_DistTest =
-    {
-        only: SpriteMorph,
-        type: 'command',
-        category: 'PXFrame',
-        spec: 'DistTest',
-        transpilable: true
-    };
-
-    this.blocks.pxf_GetDist =
-    {
-        only: SpriteMorph,
-        type: 'reporter',
-        category: 'PXFrame',
-        spec: 'GetDist',
-        transpilable: true
-    };
-
-    this.blocks.pxf_VehicleInit_MotoBoard =
-    {
-        only: SpriteMorph,
-        type: 'command',
-        category: 'PXFrame',
-        spec: 'VehicleInitMotoBoard',
-        transpilable: true
-    };
-
-    this.blocks.pxf_VehicleInit_MotoBoard4567 =
+    this.blocks._MotoInit4567 =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
         spec: 'VehicleInitMotoBoard4567',
-        transpilable: true
+        transpilable: false
     };
 
-    this.blocks.pxf_VehicleInit_MotoBoard298N =
+    this.blocks._VehicleInit_MotoBoard298N =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
-        spec: 'VehicleInitMotoBoard298N at pinLA %pxf_Pin and pinLB %pxf_Pin and pinLS %pxf_Pin and pinRA %pxf_Pin and pinRB %pxf_Pin pinRS %pxf_Pin',
-        defaults: [4, 5, 6, 7, 8, 9],
-        transpilable: true
+        spec: 'VehicleInitMotoBoard298N at pinLA %_Pin and pinLB %_Pin and pinLS %_Pin and pinRA %_Pin and pinRB %_Pin pinRS %_Pin',
+        defaults: ["P_4", "P_5", "P_6", "P_7", "P_8", "P_9"],
+        transpilable: false
     };
 
-    this.blocks.pxf_VehicleRun =
+    this.blocks._VehicleRun =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
-        spec: 'moto %n run %pxf_dirtype at speed %n',
+        spec: 'moto %n run %_dirtype at speed %n',
         defaults: [0, "forward", 255],
-        transpilable: true
+        transpilable: false
     };
 
-    this.blocks.pxf_VehicleSimpleRun =
+    this.blocks._VehicleSimpleRun =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
-        spec: 'moto run %pxf_simpledirtype at speed %n',
-        defaults: ["forward", 255],
-        transpilable: true
+        spec: 'moto run %_simpledirtype at speed %n',
+        defaults: ["go", 255],
+        transpilable: false
     };
 
-    this.blocks.pxf_VehicleStop =
+    this.blocks._VehicleStop =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
         spec: 'stop motos',
-        transpilable: true
+        transpilable: false
     };
 
-    this.blocks.pxf_VehicleSpeedEncorderInit =
+    this.blocks._VehicleSpeedEncorderInit =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
-        spec: 'VehicleSpeedEncorderInit at pinLA %pxf_Pin and pinLB %pxf_Pin and pinRA %pxf_Pin and pinRB %pxf_Pin',
-        defaults: [2, "A0", 3, "A1"],
-        transpilable: true
+        spec: 'VehicleSpeedEncorderInit at pinLA %_Pin and pinLB %_Pin and pinRA %_Pin and pinRB %_Pin',
+        defaults: [2, "P_A0", 3, "P_A1"],
+        transpilable: false
     };
 
-    this.blocks.pxf_VehicleGetSpeed =
+    this.blocks._VehicleGetSpeed =
     {
         only: SpriteMorph,
         type: 'reporter',
         category: 'PXFrame',
         spec: 'GetSpeed of moto %n',
         defaults: [0],
-        transpilable: true
+        transpilable: false
     };
 
-    this.blocks.pxf_MP3Init =
+    this.blocks._MP3Init =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
-        spec: 'MP3 init at pinR %pxf_Pin pinT %pxf_Pin',
-        defaults: [7, 8],
-        transpilable: true
+        spec: 'MP3 init at pinR %_Pin pinT %_Pin',
+        defaults: ["P_7", "P_8"],
+        transpilable: false
     };
 
-    this.blocks.pxf_MP3Play =
+    this.blocks._MP3Play =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
         spec: 'MP3 play',
-        transpilable: true
+        transpilable: false
     };
 
-    this.blocks.pxf_MP3PlayIndex =
+    this.blocks._MP3PlayIndex =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
         spec: 'MP3 play at index %n',
         defaults: [1],
-        transpilable: true
+        transpilable: false
     };
 
-    this.blocks.pxf_MP3PlayStop =
+    this.blocks._MP3PlayStop =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
         spec: 'MP3 stop',
-        transpilable: true
+        transpilable: false
     };
     
-    this.blocks.pxf_MP3SetVolume =
+    this.blocks._MP3SetVolume =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
         spec: 'MP3 set volume at %n',
         defaults: [25],
-        transpilable: true
+        transpilable: false
     };
 
-    this.blocks.pxf_MP3Next =
+    this.blocks._MP3Next =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
         spec: 'MP3 next',
-        transpilable: true
+        transpilable: false
     };
 
-    this.blocks.pxf_IRInit =
+    this.blocks._IRInit =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
-        spec: 'infrared recviver init at pin %pxf_Pin',
-        defaults: [7],
-        transpilable: true
+        spec: 'infrared recviver init at pin %_Pin',
+        defaults: ["P_7"],
+        transpilable: false
     };
 
-    this.blocks.pxf_IRSend =
+    this.blocks._IRSend =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
         spec: 'infrared send value %n',
         defaults: [100],
-        transpilable: true
+        transpilable: false
     };
 	
-	this.blocks.pxf_WeightInit =
+	this.blocks._WeightInit =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
-        spec: 'weight tester %n init at pinOut %pxf_Pin pinClk %pxf_Pin',
-        defaults: [0, 7, 8],
-        transpilable: true
+        spec: 'weight tester %n init at pinOut %_Pin pinClk %_Pin',
+        defaults: [0, "P_7", "P_8"],
+        transpilable: false
     };
 	
-	this.blocks.pxf_WeightTest =
+	this.blocks._WeightTest =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'PXFrame',
         spec: 'test the weight of %n',
         defaults: [0],
-        transpilable: true
+        transpilable: false
     };
 	
-	this.blocks.pxf_GetWeight =
+	this.blocks._GetWeight =
     {
         only: SpriteMorph,
         type: 'reporter',
         category: 'PXFrame',
         spec: 'get weight of %n',
 		defaults: [0],
-        transpilable: true
+        transpilable: false
     };
 
     // makerclock
-    this.blocks.pxf_MC_LightInternal =
+    this.blocks._MC_LightInternal =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'MakerClock',
         spec: 'LED internal as %b',
         defaults: [true],
-        transpilable: true
+        transpilable: false
     };
 
-    this.blocks.pxf_MC_LED =
+    this.blocks._MC_LED =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'MakerClock',
-        spec: 'LED %pxf_Pin_mc as %b',
-        defaults: ["1", true],
-        transpilable: true
+        spec: 'LED %_Pin_mc as %b',
+        defaults: ["P_1", true],
+        transpilable: false
     };
 
-    this.blocks.pxf_MC_Buzzer =
+    this.blocks._MC_Buzzer =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'MakerClock',
-        spec: 'Buzzer %pxf_Pin_mc as %b',
-        defaults: ["1", true],
-        transpilable: true
+        spec: 'Buzzer %_Pin_mc as %b',
+        defaults: ["P_1", true],
+        transpilable: false
     };
 
-    this.blocks.pxf_MC_Segment =
+    this.blocks._MC_Segment =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'MakerClock',
-        spec: 'LEDSegment %pxf_Pin_mc as %n',
-        defaults: ["3", 100],
-        transpilable: true
+        spec: 'LEDSegment %_Pin_mc as %n',
+        defaults: ["P_3", 100],
+        transpilable: false
     };
 
-    this.blocks.pxf_MC_Moto =
+    this.blocks._MC_Moto =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'MakerClock',
-        spec: 'Moto %pxf_PinMoto_mc as speed %n',
-        defaults: ["1", 100],
-        transpilable: true
+        spec: 'Moto %_PinMoto_mc as speed %n',
+        defaults: ["P_1", 100],
+        transpilable: false
     };
 
-    this.blocks.pxf_MC_DistTest =
+    this.blocks._MC_DistTest =
     {
         only: SpriteMorph,
         type: 'command',
         category: 'MakerClock',
-        spec: 'UltraSensor %pxf_Pin_mc Get dist',
-        defaults: ["1"],
-        transpilable: true
+        spec: 'UltraSensor %_Pin_mc Get dist',
+        defaults: ["P_1"],
+        transpilable: false
     };
 
-    this.blocks.pxf_MC_GetDist =
+    this.blocks._MC_GetDist =
     {
         only: SpriteMorph,
         type: 'reporter',
         category: 'MakerClock',
         spec: 'UltraSensor getDist',
-        transpilable: true
+        transpilable: false
     };
 
-    StageMorph.prototype.codeMappings['pxf_GetServerMessage'] = 'manykit.pxf_GetServerMessage();';
+    this.blocks.receiveGo.transpilable = true;
+    this.blocks.receiveMessage.transpilable = true;
+    this.blocks.doBroadcastAndWait.transpilable = true;
+    this.blocks.doWait.transpilable = true;
+    this.blocks.doWaitUntil.transpilable = true;
+    this.blocks.doForever.transpilable = true;
+    this.blocks.doRepeat.transpilable = true;
+    this.blocks.doUntil.transpilable = true;
+    this.blocks.doIf.transpilable = true;
+    this.blocks.doIfElse.transpilable = true;
+    this.blocks.reportSum.transpilable = true;
+    this.blocks.reportDifference.transpilable = true;
+    this.blocks.reportProduct.transpilable = true;
+    this.blocks.reportQuotient.transpilable = true;
+    this.blocks.reportModulus.transpilable = true;
+    this.blocks.reportRound.transpilable = true;
+    this.blocks.reportMonadic.transpilable = true;
+    this.blocks.reportRandom.transpilable = true;
+    this.blocks.reportLessThan.transpilable = true;
+    this.blocks.reportEquals.transpilable = true;
+    this.blocks.reportGreaterThan.transpilable = true;
+    this.blocks.reportAnd.transpilable = true;
+    this.blocks.reportOr.transpilable = true;
+    this.blocks.reportNot.transpilable = true;
+    this.blocks.reportBoolean.transpilable = true;
+    this.blocks.doSetVar.transpilable = true;
+    this.blocks.doChangeVar.transpilable = true;
+    this.blocks.doDeclareVariables.transpilable = true;
 
-	StageMorph.prototype.codeMappings['pxf_PinMode'] = 'manykit.pxf_PinMode(<#1>, <#2>);';
-	StageMorph.prototype.codeMappings['pxf_DigitalWrite'] = 'manykit.pxf_DigitalWrite(<#1>, <#2>);';
-    StageMorph.prototype.codeMappings['pxf_PwmWrite'] = 'manykit.pxf_PwmWrite(<#1>, <#2>);';
-    StageMorph.prototype.codeMappings['pxf_DigitalRead'] = 'manykit.pxf_DigitalRead(<#1>);';
-    StageMorph.prototype.codeMappings['pxf_AnalogWrite'] = 'manykit.pxf_AnalogWrite(<#1>, <#2>);';
-    StageMorph.prototype.codeMappings['pxf_AnalogRead'] = 'manykit.pxf_AnalogRead(<#1>);';
-	
-	StageMorph.prototype.codeMappings['pxf_ServerInit'] = 'manykit.pxf_ServerInit(<#1>, <#2>);';
-    StageMorph.prototype.codeMappings['pxf_ServerWrite'] = 'manykit.pxf_ServerWrite(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['delim'] = ',';
+    StageMorph.prototype.codeMappings['tempvars_delim'] = ', ';
+    StageMorph.prototype.codeMappings['string'] = '"<#1>"';
+
+    StageMorph.prototype.codeMappings['receiveGo'] = 'void setup() {';
+    StageMorph.prototype.codeMappings['doBroadcastAndWait'] = '  !call!<#1>();';
+    StageMorph.prototype.codeMappings['receiveMessage'] = 'void <#1>() {';
+
+    StageMorph.prototype.codeMappings['doWait'] = '  delay(<#1> * 1000);';
+    StageMorph.prototype.codeMappings['doWaitUntil'] = '  while(!<#1>){\n  }\n';
+    StageMorph.prototype.codeMappings['doForever'] = '}\n\nvoid loop() {\n  <#1>\n}';
+    StageMorph.prototype.codeMappings['doRepeat'] = '  for (int i = 0; i < <#1>; i++) {\n  <#2>\n  }';
+    StageMorph.prototype.codeMappings['doUntil'] = '  while(!<#1>){\n  <#2>\n  }';
+    StageMorph.prototype.codeMappings['doIf'] = '  if (<#1>) {\n  <#2>\n}';
+    StageMorph.prototype.codeMappings['doIfElse'] = '  if (<#1>) {\n  <#2>\n} else {\n  <#3>\n}';
+
+    StageMorph.prototype.codeMappings['reportSum'] = '(<#1> + <#2>)';
+    StageMorph.prototype.codeMappings['reportDifference'] = '(<#1> - <#2>)';
+    StageMorph.prototype.codeMappings['reportProduct'] = '(<#1> * <#2>)';
+    StageMorph.prototype.codeMappings['reportQuotient'] = '(<#1> / <#2>)';
+    StageMorph.prototype.codeMappings['reportModulus'] = '(<#1> % <#2>)';
+    StageMorph.prototype.codeMappings['reportRound'] = 'round(<#1>)';
+    StageMorph.prototype.codeMappings['reportMonadic'] = 'manykit.math(<#1>,<#2>)';
+    StageMorph.prototype.codeMappings['reportRandom'] = 'random(<#1>, <#2>+1)';
+    StageMorph.prototype.codeMappings['reportLessThan'] = '(<#1> < <#2>)';
+    StageMorph.prototype.codeMappings['reportEquals'] = '(<#1> == <#2>)';
+    StageMorph.prototype.codeMappings['reportGreaterThan'] = '(<#1> > <#2>)';
+    StageMorph.prototype.codeMappings['reportAnd'] = '(<#1> && <#2>)';
+    StageMorph.prototype.codeMappings['reportOr'] = '(<#1> || <#2>)';
+    StageMorph.prototype.codeMappings['reportNot'] = '!(<#1>)';
+    StageMorph.prototype.codeMappings['reportBoolean'] = '<#1>';
+
+    StageMorph.prototype.codeMappings['doSetVar'] = '  <#1> = <#2>;';
+    StageMorph.prototype.codeMappings['doChangeVar'] = '  <#1> += <#2>;';
+    StageMorph.prototype.codeMappings['doDeclareVariables'] = 'int <#1> = 0;'; // How do we deal with types? Damn types...
+
+    // Arduino
+    StageMorph.prototype.codeMappings['pinMode'] = 'manykit.pinMode(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['digitalWrite'] = 'manykit.digitalWrite(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['pwmWrite'] = 'manykit.analogWrite(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['digitalRead'] = 'manykit.digitalRead(<#1>)';
+
+    StageMorph.prototype.codeMappings['analogWrite'] = 'manykit.analogWrite(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['analogRead'] = 'manykit.analogRead(<#1>)';
+
+    StageMorph.prototype.codeMappings['servoInit'] = 'manykit.servoInit(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['servoWrite'] = 'manykit.servoWrite(<#1>, <#2>);';
     
-    StageMorph.prototype.codeMappings['pxf_DistInit'] = 'manykit.pxf_DistInit(<#1>, <#2>);';
-    StageMorph.prototype.codeMappings['pxf_DistTest'] = 'manykit.pxf_DistTest();';
-    StageMorph.prototype.codeMappings['pxf_GetDist'] = 'manykit.pxf_GetDist();';
+    StageMorph.prototype.codeMappings['ultrasonicInit'] = 'manykit.ultrasonicInit(<#1>, <#2>)';
+    StageMorph.prototype.codeMappings['ultrasonicMeasure'] = 'manykit.ultrasonicMeasure()';
     
-    StageMorph.prototype.codeMappings['pxf_VehicleInit_MotoBoard'] = 'manykit.pxf_VehicleInit_MotoBoard();';
-    StageMorph.prototype.codeMappings['pxf_VehicleInit_MotoBoard4567'] = 'manykit.pxf_VehicleInit_MotoBoard4567();';
-	StageMorph.prototype.codeMappings['pxf_VehicleRun'] = 'manykit.pxf_VehicleRun(<#1>, <#2>, <#3>);';
-	StageMorph.prototype.codeMappings['pxf_VehicleSimpleRun'] = 'manykit.pxf_VehicleSimpleRun(<#1>,<#2>);';
-    StageMorph.prototype.codeMappings['pxf_VehicleStop'] = 'manykit.pxf_VehicleStop();';
-    StageMorph.prototype.codeMappings['pxf_VehicleSpeedEncorderInit'] = 'manykit.pxf_VehicleSpeedEncorderInit(<#1>, <#2>, <#3>, <#4>);';
-    StageMorph.prototype.codeMappings['pxf_VehicleGetSpeed'] = 'manykit.pxf_VehicleGetSpeed(<#1>);';
+    // PXFrame
+    //StageMorph.prototype.codeMappings['_GetServerMessage'] = 'manykit._GetServerMessage();';
+    //StageMorph.prototype.codeMappings['_DistTest'] = 'manykit._DistTest();';
+    
+    StageMorph.prototype.codeMappings['_MotoInit4567'] = 'manykit._MotoInit4567();';
+    StageMorph.prototype.codeMappings['_MotoInit10111213'] = 'manykit._MotoInit10111213();';
+	StageMorph.prototype.codeMappings['_VehicleRun'] = 'manykit._VehicleRun(<#1>, <#2>, <#3>);';
+	StageMorph.prototype.codeMappings['_VehicleSimpleRun'] = 'manykit._VehicleSimpleRun(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['_VehicleStop'] = 'manykit._VehicleStop();';
+    StageMorph.prototype.codeMappings['_VehicleSpeedEncorderInit'] = 'manykit._VehicleSpeedEncorderInit(<#1>, <#2>, <#3>, <#4>);';
+    StageMorph.prototype.codeMappings['_VehicleGetSpeed'] = 'manykit._VehicleGetSpeed(<#1>)';
 
-    StageMorph.prototype.codeMappings['pxf_MP3Init'] = 'manykit.pxf_MP3Init(<#1>, <#2>);';
-    StageMorph.prototype.codeMappings['pxf_MP3Play'] = 'manykit.pxf_MP3Play();';
-    StageMorph.prototype.codeMappings['pxf_MP3PlayIndex'] = 'manykit.pxf_MP3PlayIndex(<#1>);';
-    StageMorph.prototype.codeMappings['pxf_MP3PlayStop'] = 'manykit.pxf_MP3PlayStop();';
-    StageMorph.prototype.codeMappings['pxf_MP3SetVolume'] = 'manykit.pxf_MP3SetVolume(<#1>);';
-    StageMorph.prototype.codeMappings['pxf_MP3Next'] = 'manykit.pxf_MP3Next();';
+    StageMorph.prototype.codeMappings['_MP3Init'] = 'manykit._MP3Init(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['_MP3Play'] = 'manykit._MP3Play();';
+    StageMorph.prototype.codeMappings['_MP3PlayIndex'] = 'manykit._MP3PlayIndex(<#1>);';
+    StageMorph.prototype.codeMappings['_MP3PlayStop'] = 'manykit._MP3PlayStop();';
+    StageMorph.prototype.codeMappings['_MP3SetVolume'] = 'manykit._MP3SetVolume(<#1>);';
+    StageMorph.prototype.codeMappings['_MP3Next'] = 'manykit._MP3Next();';
 
-    StageMorph.prototype.codeMappings['pxf_IRInit'] = 'manykit.pxf_IRInit(<#1>);';
-    StageMorph.prototype.codeMappings['pxf_IRSend'] = 'manykit.pxf_IRSend();';
-	
-	StageMorph.prototype.codeMappings['pxf_WeightInit'] = 'manykit.pxf_WeightInit(<#1>, <#2>, <#3>);';
-    StageMorph.prototype.codeMappings['pxf_WeightTest'] = 'manykit.pxf_WeightTest(<#1>);';
-	StageMorph.prototype.codeMappings['pxf_GetWeight'] = 'manykit.pxf_GetWeight(<#1>);';
+    StageMorph.prototype.codeMappings['_WeightInit'] = 'manykit._WeightInit(<#1>, <#2>, <#3>);';
+    StageMorph.prototype.codeMappings['_WeightTest'] = 'manykit._WeightTest(<#1>);';
+	StageMorph.prototype.codeMappings['_GetWeight'] = 'manykit._GetWeight(<#1>)';
 
-    StageMorph.prototype.codeMappings['pxf_MC_LightInternal'] = 'manykit.pxf_MC_LightInternal(<#1>)';
-    StageMorph.prototype.codeMappings['pxf_MC_LED'] = 'manykit.pxf_MC_LED(<#1>, <#2>)';
-    StageMorph.prototype.codeMappings['pxf_MC_Buzzer'] = 'manykit.pxf_MC_Buzzer(<#1>, <#2>)';
-    StageMorph.prototype.codeMappings['pxf_MC_Segment'] = 'manykit.pxf_MC_Segment(<#1>, <#2>)';
-    StageMorph.prototype.codeMappings['pxf_MC_DistTest'] = 'manykit.pxf_MC_DistTest(<#1>)';
-    StageMorph.prototype.codeMappings['pxf_MC_GetDist'] = 'manykit.pxf_MC_GetDist()';
+    StageMorph.prototype.codeMappings['_IRInit'] = 'manykit._IRInit(<#1>);';
+    StageMorph.prototype.codeMappings['_IRSend'] = 'manykit._IRSend(<#1>);';
+
+    StageMorph.prototype.codeMappings['_MC_LightInternal'] = 'manykit._MC_LightInternal(<#1>);';
+    StageMorph.prototype.codeMappings['_MC_LED'] = 'manykit._MC_LED(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['_MC_Buzzer'] = 'manykit._MC_Buzzer(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['_MC_Segment'] = 'manykit._MC_Segment(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['_MC_DistTest'] = 'manykit._MC_DistTest(<#1>);';
+    StageMorph.prototype.codeMappings['_MC_GetDist'] = 'manykit._MC_GetDist()';
 }
 
 SpriteMorph.prototype.initBlocks =  function() {
     this.originalInitBlocks();
-    this.initPXFBlocks();
+    this.initArduinoBlocks();
+    this.initPXFrameBlocks();
 };
 
 SpriteMorph.prototype.initBlocks();
@@ -458,7 +522,7 @@ SpriteMorph.prototype.blockTemplates = function (category) {
     this.arduinoConnectPXLauncher = new PushButtonMorph(
         null,
         function () {
-            myself.pxframe.attemptConnectPXLauncher();
+            myself.arduino.attemptConnectPXLauncher();
         },
         'Connect PXLauncher'
         );
@@ -466,7 +530,7 @@ SpriteMorph.prototype.blockTemplates = function (category) {
     this.arduinoDisConnectPXLauncher = new PushButtonMorph(
         null,
         function () {
-            myself.pxframe.attemptDisConnectPXLauncher();
+            myself.arduino.attemptDisConnectPXLauncher();
         },
         'DisConnect PXLauncher'
         );
@@ -474,74 +538,79 @@ SpriteMorph.prototype.blockTemplates = function (category) {
     this.arduinoConnectButton = new PushButtonMorph(
             null,
             function () {
-                myself.pxframe.attemptConnection();
+                myself.arduino.attemptConnection();
             },
-            'Connect PXFrame'
+            'Connect Arduino'
             );
     
     this.arduinoConnectWifiButton = new PushButtonMorph(
         null,
         function () {
-            myself.pxframe.attemptWifiConnection();
+            myself.arduino.attemptWifiConnection();
         },
-        'Connect PXFrame Wifi'
+        'Connect Arduino Wifi'
     );
 
     //  Button that triggers a disconnection from board
     this.arduinoDisconnectButton = new PushButtonMorph(
             null,
             function () {
-                myself.pxframe.disconnect();
+                myself.arduino.disconnect();
             },
-            'Disconnect PXFrame'
+            'Disconnect Arduino'
             );
-
-    if (category === 'PXFrame') {
-        //blocks.push(this.arduinoConnectPXLauncher);
-        //blocks.push(this.arduinoDisConnectPXLauncher);
-        //blocks.push('-'); 
+    
+    if (category == 'Arduino')
+    {
         blocks.push(this.arduinoConnectButton);
         blocks.push(this.arduinoConnectWifiButton);
         blocks.push(this.arduinoDisconnectButton);
         blocks.push('-'); 
-        blocks.push(blockBySelector('pxf_GetServerMessage'));
+        blocks.push(blockBySelector('pinMode'));
+        blocks.push(blockBySelector('digitalWrite'));
+        blocks.push(blockBySelector('pwmWrite'));
+        blocks.push(blockBySelector('digitalRead'));
         blocks.push('-'); 
-        blocks.push(blockBySelector('pxf_PinMode'));
-		blocks.push(blockBySelector('pxf_DigitalWrite'));
-		blocks.push(blockBySelector('pxf_PwmWrite'));
-		blocks.push(blockBySelector('pxf_DigitalRead'));
-		blocks.push(blockBySelector('pxf_AnalogWrite'));
-		blocks.push(blockBySelector('pxf_AnalogRead'));
-        blocks.push('-');      
-		blocks.push(blockBySelector('pxf_ServerInit'));
-		blocks.push(blockBySelector('pxf_ServerWrite'));
-		blocks.push('-');
-		blocks.push(blockBySelector('pxf_DistInit'));	
-		blocks.push(blockBySelector('pxf_DistTest'));	
-		blocks.push(blockBySelector('pxf_GetDist'));
-		blocks.push('-');
-        blocks.push(blockBySelector('pxf_VehicleInit_MotoBoard'));
-        blocks.push(blockBySelector('pxf_VehicleInit_MotoBoard4567'));
-        blocks.push(blockBySelector('pxf_VehicleInit_MotoBoard298N'));
-		blocks.push(blockBySelector('pxf_VehicleRun'));
-		blocks.push(blockBySelector('pxf_VehicleSimpleRun'));
-        blocks.push(blockBySelector('pxf_VehicleStop'));
-        blocks.push(blockBySelector('pxf_VehicleSpeedEncorderInit'));
-        blocks.push(blockBySelector('pxf_VehicleGetSpeed'));
+		blocks.push(blockBySelector('analogWrite'));
+        blocks.push(blockBySelector('analogRead'));
+        blocks.push('-'); 
+        blocks.push(blockBySelector('servoInit'));
+        blocks.push(blockBySelector('servoWrite'));
+        blocks.push('-'); 
+        blocks.push(blockBySelector('ultrasonicInit'));
+        blocks.push(blockBySelector('ultrasonicMeasure'));
+    }
+    
+    if (category === 'PXFrame') {
+        //blocks.push(this.arduinoConnectPXLauncher);
+        //blocks.push(this.arduinoDisConnectPXLauncher);
+        //blocks.push('-'); 
+        //blocks.push(blockBySelector('_GetServerMessage'));
+		//blocks.push('-');
+		//blocks.push(blockBySelector('_DistTest'));	
+        //blocks.push('-');
+        blocks.push(blockBySelector('_MotoInit4567'));
+        blocks.push(blockBySelector('_MotoInit10111213'));
+        blocks.push(blockBySelector('_VehicleInit_MotoBoard298N'));
+		blocks.push(blockBySelector('_VehicleRun'));
+		blocks.push(blockBySelector('_VehicleSimpleRun'));
+        blocks.push(blockBySelector('_VehicleStop'));
+        blocks.push(blockBySelector('_VehicleSpeedEncorderInit'));
+        blocks.push(blockBySelector('_VehicleGetSpeed'));
         blocks.push('-');
-        blocks.push(blockBySelector('pxf_MP3Init'));
-        blocks.push(blockBySelector('pxf_MP3Play'));
-        blocks.push(blockBySelector('pxf_MP3PlayIndex'));
-        blocks.push(blockBySelector('pxf_MP3PlayStop'));
-        blocks.push(blockBySelector('pxf_MP3SetVolume'));
-        blocks.push(blockBySelector('pxf_MP3Next'));
+        blocks.push(blockBySelector('_MP3Init'));
+        blocks.push(blockBySelector('_MP3Play'));
+        blocks.push(blockBySelector('_MP3PlayIndex'));
+        blocks.push(blockBySelector('_MP3PlayStop'));
+        blocks.push(blockBySelector('_MP3SetVolume'));
+        blocks.push(blockBySelector('_MP3Next'));
 		blocks.push('-');
-		blocks.push(blockBySelector('pxf_WeightInit'));
-        blocks.push(blockBySelector('pxf_WeightTest'));
-		blocks.push(blockBySelector('pxf_GetWeight'));
+		blocks.push(blockBySelector('_WeightInit'));
+        blocks.push(blockBySelector('_WeightTest'));
+		blocks.push(blockBySelector('_GetWeight'));
         blocks.push('-');
-        blocks.push(blockBySelector('pxf_IRInit'));
-        blocks.push(blockBySelector('pxf_IRSend'));
+        blocks.push(blockBySelector('_IRInit'));
+        blocks.push(blockBySelector('_IRSend'));
     }
 
     if (category === 'MakerClock') {
@@ -552,14 +621,348 @@ SpriteMorph.prototype.blockTemplates = function (category) {
         blocks.push(this.arduinoConnectWifiButton);
         blocks.push(this.arduinoDisconnectButton);
         blocks.push('-');
-        blocks.push(blockBySelector('pxf_MC_LightInternal'));
-        blocks.push(blockBySelector('pxf_MC_LED'));
-        blocks.push(blockBySelector('pxf_MC_Buzzer'));
-        blocks.push(blockBySelector('pxf_MC_Segment'));
-        blocks.push(blockBySelector('pxf_MC_Moto'));
-        blocks.push(blockBySelector('pxf_MC_DistTest'));
-        blocks.push(blockBySelector('pxf_MC_GetDist'));   
+        blocks.push(blockBySelector('_MC_LightInternal'));
+        blocks.push(blockBySelector('_MC_LED'));
+        blocks.push(blockBySelector('_MC_Buzzer'));
+        blocks.push(blockBySelector('_MC_Segment'));
+        blocks.push(blockBySelector('_MC_Moto'));
+        blocks.push(blockBySelector('_MC_DistTest'));
+        blocks.push(blockBySelector('_MC_GetDist'));   
     }
 
     return blocks;
+};
+
+// Removing 'other' blocks from 'variables' category
+SpriteMorph.prototype.freshPalette = function (category) {
+    var palette = new ScrollFrameMorph(null, null, this.sliderColor),
+        unit = SyntaxElementMorph.prototype.fontSize,
+        x = 0,
+        y = 5,
+        ry = 0,
+        blocks,
+        hideNextSpace = false,
+        myself = this,
+        stage = this.parentThatIsA(StageMorph),
+        oldFlag = Morph.prototype.trackChanges,
+        shade = new Color(140, 140, 140),
+        searchButton,
+        makeButton;
+
+    Morph.prototype.trackChanges = false;
+
+    palette.owner = this;
+    palette.padding = unit / 2;
+    palette.color = this.paletteColor;
+    palette.growth = new Point(0, MorphicPreferences.scrollBarSize);
+
+    // toolbar:
+    
+    palette.toolBar = new AlignmentMorph('column');
+
+    searchButton = new PushButtonMorph(
+        this,
+        "searchBlocks",
+        new SymbolMorph("magnifierOutline", 16)
+    );
+    searchButton.alpha = 0.2;
+    searchButton.padding = 1;
+    searchButton.hint = localize('find blocks') + '...';
+    searchButton.labelShadowColor = shade;
+    searchButton.drawNew();
+    searchButton.fixLayout();
+	palette.toolBar.add(searchButton);
+
+    makeButton = new PushButtonMorph(
+        this,
+        "makeBlock",
+        new SymbolMorph("cross", 16)
+    );
+    makeButton.alpha = 0.2;
+    makeButton.padding = 1;
+    makeButton.hint = localize('Make a block') + '...';
+    makeButton.labelShadowColor = shade;
+    makeButton.drawNew();
+    makeButton.fixLayout();
+    palette.toolBar.add(makeButton);
+
+	palette.toolBar.fixLayout();
+    palette.add(palette.toolBar);
+
+    // menu:
+    palette.userMenu = function () {
+        var menu = new MenuMorph(),
+            ide = this.parentThatIsA(IDE_Morph),
+            more = {
+                operators:
+                    ['reifyScript', 'reifyReporter', 'reifyPredicate'],
+                control:
+                    ['doWarp'],
+                variables:
+                    [
+                        'doDeclareVariables',
+                        'reportNewList',
+                        'reportCONS',
+                        'reportListItem',
+                        'reportCDR',
+                        'reportListLength',
+                        'reportListContainsItem',
+                        'doAddToList',
+                        'doDeleteFromList',
+                        'doInsertInList',
+                        'doReplaceInList'
+                    ]
+            };
+
+        function hasHiddenPrimitives() {
+            var defs = SpriteMorph.prototype.blocks,
+                hiddens = StageMorph.prototype.hiddenPrimitives;
+            return Object.keys(hiddens).some(function (any) {
+                return !isNil(defs[any]) && (defs[any].category === category
+                    || contains((more[category] || []), any));
+            });
+        }
+
+        function canHidePrimitives() {
+            return palette.contents.children.some(function (any) {
+                return contains(
+                    Object.keys(SpriteMorph.prototype.blocks),
+                    any.selector
+                );
+            });
+        }
+
+        menu.addPair(
+            [
+                new SymbolMorph(
+                    'magnifyingGlass',
+                    MorphicPreferences.menuFontSize
+                ),
+                localize('find blocks') + '...'
+            ],
+            function () {myself.searchBlocks(); },
+            '^F'
+        );
+        if (canHidePrimitives()) {
+            menu.addItem(
+                'hide primitives',
+                function () {
+                    var defs = SpriteMorph.prototype.blocks;
+                    Object.keys(defs).forEach(function (sel) {
+                        if (defs[sel].category === category) {
+                            StageMorph.prototype.hiddenPrimitives[sel] = true;
+                        }
+                    });
+                    (more[category] || []).forEach(function (sel) {
+                        StageMorph.prototype.hiddenPrimitives[sel] = true;
+                    });
+                    ide.flushBlocksCache(category);
+                    ide.refreshPalette();
+                }
+            );
+        }
+        if (hasHiddenPrimitives()) {
+            menu.addItem(
+                'show primitives',
+                function () {
+                    var hiddens = StageMorph.prototype.hiddenPrimitives,
+                        defs = SpriteMorph.prototype.blocks;
+                    Object.keys(hiddens).forEach(function (sel) {
+                        if (defs[sel] && (defs[sel].category === category)) {
+                            delete StageMorph.prototype.hiddenPrimitives[sel];
+                        }
+                    });
+                    (more[category] || []).forEach(function (sel) {
+                        delete StageMorph.prototype.hiddenPrimitives[sel];
+                    });
+                    ide.flushBlocksCache(category);
+                    ide.refreshPalette();
+                }
+            );
+        }
+        return menu;
+    };
+
+    // primitives:
+
+    blocks = this.blocksCache[category];
+    if (!blocks) {
+        blocks = this.blockTemplates(category);
+        if (this.isCachingPrimitives) {
+            this.blocksCache[category] = blocks;
+        }
+    }
+
+    blocks.forEach(function (block) {
+        if (block === null) {
+            return;
+        }
+        if (block === '-') {
+            if (hideNextSpace) {return; }
+            y += unit * 0.8;
+            hideNextSpace = true;
+        } else if (block === '=') {
+            if (hideNextSpace) {return; }
+            y += unit * 1.6;
+            hideNextSpace = true;
+        } else if (block === '#') {
+            x = 0;
+            y = ry;
+        } else {
+            hideNextSpace = false;
+            if (x === 0) {
+                y += unit * 0.3;
+            }
+            block.setPosition(new Point(x, y));
+            palette.addContents(block);
+            if (block instanceof ToggleMorph
+                    || (block instanceof RingMorph)) {
+                x = block.right() + unit / 2;
+                ry = block.bottom();
+            } else {
+                // if (block.fixLayout) {block.fixLayout(); }
+                x = 0;
+                y += block.height();
+            }
+        }
+    });
+
+    // global custom blocks:
+
+    if (stage) {
+        y += unit * 1.6;
+
+        stage.globalBlocks.forEach(function (definition) {
+            var block;
+            if (definition.category === category ||
+                    (category === 'variables'
+                        && contains(
+                            ['lists'],
+                            definition.category
+                        ))) {
+                block = definition.templateInstance();
+                y += unit * 0.3;
+                block.setPosition(new Point(x, y));
+                palette.addContents(block);
+                x = 0;
+                y += block.height();
+            }
+        });
+    }
+
+    // local custom blocks:
+
+    y += unit * 1.6;
+    this.customBlocks.forEach(function (definition) {
+        var block;
+        if (definition.category === category ||
+                (category === 'variables'
+                    && contains(
+                        ['lists'],
+                        definition.category
+                    ))) {
+            block = definition.templateInstance();
+            y += unit * 0.3;
+            block.setPosition(new Point(x, y));
+            palette.addContents(block);
+            x = 0;
+            y += block.height();
+        }
+    });
+
+    // inherited custom blocks:
+
+    // y += unit * 1.6;
+    if (this.exemplar) {
+        this.inheritedBlocks(true).forEach(function (definition) {
+            var block;
+            if (definition.category === category ||
+                    (category === 'variables'
+                        && contains(
+                            ['lists'],
+                            definition.category
+                        ))) {
+                block = definition.templateInstance();
+                y += unit * 0.3;
+                block.setPosition(new Point(x, y));
+                palette.addContents(block);
+                block.ghost();
+                x = 0;
+                y += block.height();
+            }
+        });
+    }
+
+    //layout
+
+    palette.scrollX(palette.padding);
+    palette.scrollY(palette.padding);
+
+    Morph.prototype.trackChanges = oldFlag;
+    return palette;
+};
+
+
+// List exporting
+WatcherMorph.prototype.originalUserMenu = WatcherMorph.prototype.userMenu;
+WatcherMorph.prototype.userMenu = function () {
+    var menu = this.originalUserMenu(),
+        submenu;
+    if (this.target instanceof VariableFrame && this.currentValue instanceof List) {
+        subMenu = new MenuMorph(this.currentValue);
+        if (!this.currentValue.contents.some(
+                function (any) {
+                    return any instanceof List;
+                })) {
+            subMenu.addItem('Plain text', this.valueExporter('plain'));
+        }
+        subMenu.addItem('JSON', this.valueExporter('json'));
+        subMenu.addItem('XML', this.valueExporter('xml'));
+        subMenu.addItem('CSV', this.valueExporter('csv'));
+        menu.addMenu('export...', subMenu);
+
+    }
+    return menu;
+};
+
+WatcherMorph.prototype.valueExporter = function (format) {
+    var myself = this,
+        value = this.currentValue,
+        contents,
+        format = format || 'plain',
+        ide = myself.parentThatIsA(IDE_Morph);
+
+    return function () {
+        switch (format) {
+            case 'plain':
+                contents = value instanceof List ? 
+                    value.asArray().join('\n') : 
+                    value.toString();
+                break;
+            case 'json':
+                contents = JSON.stringify(value);
+                break;
+            case 'xml':
+                contents = ide.serializer.serialize(value);
+                break;
+            case 'csv':
+                try {
+                    contents = value.toCSV();
+                } catch (err) {
+                    if (Process.prototype.isCatchingErrors) {
+                        ide.showMessage('List cannot be converted into CSV', 2);
+                    } else {
+                        throw err;
+                    }
+                    return;
+                }
+                break;
+        }
+
+        ide.saveFileAs(
+            contents,
+            'text/' + format + ';charset=utf-8',
+            myself.getter // variable name
+            );
+    };
 };

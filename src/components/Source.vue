@@ -2,9 +2,9 @@
     <div class="container60">
         <Header/>
         <div class="content10">
-            <keep-alive>
+            <!-- <keep-alive> -->
                 <Sourcehead/>
-            </keep-alive>
+            <!-- </keep-alive> -->
         </div>
         <div class="footer10">
             <Footer/>
