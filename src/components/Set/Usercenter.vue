@@ -154,7 +154,7 @@
   width: 500px;
   height: 416px;
   position: relative;
-  top: -40px;
+  top: 240px;
   left: 363px;
 }
 .container33 .input01{
@@ -195,7 +195,7 @@
   position: relative;
   height: 151px;
   width: 151px;
-  top: -90px;
+  top: -50px;
   left: -280px;
   border-radius: 100px;
 }
@@ -208,7 +208,7 @@
 }
 .container33 .two_text{
     position: absolute;
-    top: 230px;
+    top: 270px;
     left: -320px;
     font-size:@lllg-size;
     color: @gray;

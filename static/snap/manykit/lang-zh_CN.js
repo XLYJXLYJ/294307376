@@ -8,6 +8,9 @@ pxframeDict = {
     'ManyKit GitHub':
         '代码仓库',
 
+    'Singup From ManyKit':
+        '从官网注册',
+
     'New Arduino translatable project':
         '新建Arduino项目',
 

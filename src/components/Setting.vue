@@ -2,13 +2,13 @@
     <div  class="container32">
         <Header/>
         <div class="container31">  
-            <img class="star01" src="../assets/Download/starfish.png" alt="">
-            <div class="setaccount">
+            <img class="star01" src="../assets/all/starall.png" alt=""> 
+            <!-- <div class="setaccount">
             <p class="one_text">账号设置</p>
-            </div>  
+            </div>   -->
             <div class="mydemo_frame">
-            <router-link class="Mydemo" to="/Setting/Usercenter">个人中心</router-link>
-            <router-link class="Delete" to="/Setting/Copassword">修改密码</router-link>
+                <div @click="clickblock01"><router-link class="Mydemo" v-bind:class="{ blockblue: isblue, blockblack: !isblack}" to="/Setting/Usercenter">个人中心</router-link></div>
+                <div @click="clickblock02"><router-link class="Delete" v-bind:class="{ blockblue: !isblue, blockblack: isblack }" to="/Setting/Copassword">修改密码</router-link></div>
             </div>
             <router-view></router-view>     
         </div>   
@@ -21,10 +21,25 @@
 import Header from '@/components/HomePage/header'
 import Footer from '@/components/HomePage/Footer'
 export default{
+    data(){
+        return{
+            isblue:true,
+            isblack:true,
+        }
+    },
     mounted(){
         this.Settingroute()
     },
     methods:{
+        //控制tab
+        clickblock01(){
+            this.isblue=true
+            this.isblack=true
+        },
+        clickblock02(){
+            this.isblue=false
+            this.isblack=false
+        },
         Settingroute(){
             this.$router.push({ name: 'Usercenter' })
         }
@@ -52,15 +67,16 @@ export default{
     flex: 1;
     margin: 0 auto;
     width: 1200px;
-    height: 788px;
+    min-height:374px;
     background:@background-color; 
-    margin-top: 214px;
-}
-.container31 .star01{
     position: relative;
-    left: -12px;
-    top: -35px; 
-    z-index: 50;
+}
+.container32 .container31 .star01{
+    position: absolute;
+    left: 38px;
+    top: 8px; 
+    width: auto;
+    height: 200px;
 }
 .container31 .one_text{
     position: relative;
@@ -81,43 +97,42 @@ export default{
     width: 229px;
     height: 29px;
 }
- .container32 .mydemo_frame{
-    position: relative;
-    width: 522px;
-    height: 20px;
-    top: 20px;
-    left: 379px;
-    z-index: 10;
-    border-bottom: 2px solid @gray;
+.container32 .container31 .mydemo_frame{
+    position:absolute;
+    width: 1136px;
+    height: 28px;
+    top: 171px;
+    left: 35px;
+    padding-bottom: 0px;
+    border-bottom: 3px solid #1969c7;
 }
- .container32 .Mydemo{
+.container32 .container31 .Mydemo{
     position: absolute;
-    top: -23px;
-    left: 1px;
-    width: 106px;
-    height: 31px;
-    font-size:@md-size;
-    color: @delete-color;
+    top: -26px;
+    left: 367px;
+    width: 159px;
+    height: 44px;
+    font-size:24px;
     text-decoration: none;
+    text-align: center;
     padding-top: 10px;
-    padding-left: 40px;
 }
- .container32 .Delete{
+.container32 .container31 .Delete{
     position: absolute;
-    top: -23px;
-    left: 139px;
-    width: 118px;
-    height: 31px;
-    font-size:@md-size;
-    color: @delete-color;
+    top: -26px;
+    left: 547px;
+    width: 159px;
+    height: 44px;
+    font-size:24px;
     text-decoration: none;
+    text-align: center;
     padding-top: 10px;
-    padding-left: 44px;
 }
-.container32 .mydemo_frame .router-link-active{
-   border:2px solid @gray;
-   border-radius:15px;
-   border-bottom:none;
-   border-bottom: 11px solid @background-color;
+.blockblue{
+    background: #1969c7;
+    color: #fff;
+}
+.blockblack{
+    color: #000;
 }
 </style>

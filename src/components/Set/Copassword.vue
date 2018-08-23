@@ -144,7 +144,7 @@ import NodeRSA from 'node-rsa'
   width: 500px;
   height: 416px;
   position: relative;
-  top: -40px;
+  top: 240px;
   left: 363px;
 }
 .container34 .input01{
@@ -186,7 +186,7 @@ import NodeRSA from 'node-rsa'
   position: relative;
   height: 151px;
   width: 151px;
-  top: -90px;
+  top: -50px;
   left: -280px;
   border-radius: 100px;
 }
@@ -197,7 +197,7 @@ import NodeRSA from 'node-rsa'
 }
 .container34 .two_text{
     position: absolute;
-    top: 230px;
+    top: 270px;
     left: -320px;
     font-size:@lllg-size;
     color: @gray;

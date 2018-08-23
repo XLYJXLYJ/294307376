@@ -844,7 +844,7 @@ export default {
     position: absolute;
     top: 24px;
     left:1110px;
-    font-size:32px;
+    font-size:22px;
     color: @black;
     cursor: pointer;
     font-family: 'SimHei';

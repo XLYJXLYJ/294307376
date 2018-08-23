@@ -231,11 +231,11 @@ IDE_Morph.prototype.doSaveAndShare = function () {
     this.showMessage('Saving project\nto the cloud...');
     this.setProjectName(projectName);
 
-    SnapCloud.saveProject(
+    Cloud.saveProject(
         this,
         function () {
             myself.showMessage('sharing\nproject...');
-            SnapCloud.shareProject(
+            Cloud.shareProject(
                 projectName,
                 null, // username is implicit
                 function () {
@@ -651,7 +651,7 @@ IDE_Morph.prototype.cloudMenu = function () {
             'initializeCloud'
         );
         menu.addItem(
-            'Signup...',
+            'Singup From ManyKit',
             function() {
                 window.open('http://www.manykit.com/codeplay', 'BianChengWanWebsite'); 
             }
@@ -663,4 +663,516 @@ IDE_Morph.prototype.cloudMenu = function () {
         );
     }
     menu.popup(world, pos);
+};
+
+IDE_Morph.prototype.initializeCloud = function () {
+    var myself = this,
+        world = this.world();
+    new DialogBoxMorph(
+        null,
+        function (user) {
+            myself.cloud.login(
+                user.username.toLowerCase(),
+                user.password,
+                user.choice,
+                function (username, isadmin, response) {
+                    myself.source = 'cloud';
+                    if (!isNil(response.days_left)) {
+                        new DialogBoxMorph().inform(
+                            'Unverified account: ' +
+                            response.days_left +
+                            ' days left',
+                            'You are now logged in, and your account\n' +
+                            'is enabled for three days.\n' +
+                            'Please use the verification link that\n' +
+                            'was sent to your email address when you\n' +
+                            'signed up.\n\n' +
+                            'If you cannot find that email, please\n' +
+                            'check your spam folder. If you still\n' +
+                            'cannot find it, please use the "Resend\n' +
+                            'Verification Email..." option in the cloud\n' +
+                            'menu.\n\n' +
+                            'You have ' + response.days_left + ' days left.',
+                            world,
+                            myself.cloudIcon(null, new Color(0, 180, 0))
+                        );
+                    } else {
+                        myself.showMessage(response.message, 2);
+                    }
+                },
+                myself.cloudError()
+            );
+        }
+    ).withKey('cloudlogin').promptCredentials(
+        'Sign in',
+        'login',
+        null,
+        null,
+        null,
+        null,
+        'stay signed in on this computer\nuntil logging out',
+        world,
+        myself.cloudIcon(),
+        myself.cloudMsg
+    );
+};
+
+IDE_Morph.prototype.createLogo = function () {
+    var myself = this;
+
+    if (this.logo) {
+        this.logo.destroy();
+    }
+
+    this.logo = new Morph();
+    this.logo.texture = 'manykit/bianchengwan.ico'; // Overriden
+    this.logo.drawNew = function () {
+        this.image = newCanvas(this.extent());
+        var context = this.image.getContext('2d'),
+            gradient = context.createLinearGradient(
+                0,
+                0,
+                this.width(),
+                0
+        );
+        gradient.addColorStop(0, 'black');
+        gradient.addColorStop(0.5, myself.frameColor.toString());
+        context.fillStyle = myself.frameColor.toString();
+        if (this.texture) {
+            this.drawTexture(this.texture);
+        }
+    };
+
+    this.logo.drawCachedTexture = function () {
+        var context = this.image.getContext('2d');
+        context.drawImage(
+            this.cachedTexture,
+            1,
+            Math.round((this.height() - this.cachedTexture.height) / 2)
+        );
+        this.changed();
+    };
+
+    this.logo.mouseClickLeft = function () {
+        myself.snapMenu();
+    };
+
+    this.logo.color = new Color();
+    this.logo.setExtent(new Point(64, 28)); // dimensions are fixed
+    this.add(this.logo);
+};
+
+IDE_Morph.prototype.createControlBar = function () {
+    // assumes the logo has already been created
+    var padding = 5,
+        button,
+        slider,
+        stopButton,
+        pauseButton,
+        startButton,
+        projectButton,
+        settingsButton,
+        stageSizeButton,
+        appModeButton,
+        steppingButton,
+        cloudButton,
+        x,
+        colors = [
+            this.groupColor,
+            this.frameColor.darker(50),
+            this.frameColor.darker(50)
+        ],
+        myself = this;
+
+    if (this.controlBar) {
+        this.controlBar.destroy();
+    }
+
+    this.controlBar = new Morph();
+    this.controlBar.color = this.frameColor;
+    this.controlBar.setHeight(this.logo.height()); // height is fixed
+    this.controlBar.mouseClickLeft = function () {
+        this.world().fillPage();
+    };
+    this.add(this.controlBar);
+
+    //smallStageButton
+    button = new ToggleButtonMorph(
+        null, //colors,
+        myself, // the IDE is the target
+        'toggleStageSize',
+        [
+            new SymbolMorph('smallStage', 14),
+            new SymbolMorph('normalStage', 14)
+        ],
+        function () {  // query
+            return myself.isSmallStage;
+        }
+    );
+
+    button.corner = 6;
+    button.color = colors[0];
+    button.highlightColor = colors[1];
+    button.pressColor = colors[2];
+    button.labelMinExtent = new Point(36, 18);
+    button.padding = 0;
+    button.labelShadowOffset = new Point(-1, -1);
+    button.labelShadowColor = colors[1];
+    button.labelColor = this.buttonLabelColor;
+    button.contrast = this.buttonContrast;
+    button.drawNew();
+    // button.hint = 'stage size\nsmall & normal';
+    button.fixLayout();
+    button.refresh();
+    stageSizeButton = button;
+    this.controlBar.add(stageSizeButton);
+    this.controlBar.stageSizeButton = button; // for refreshing
+
+    //appModeButton
+    button = new ToggleButtonMorph(
+        null, //colors,
+        myself, // the IDE is the target
+        'toggleAppMode',
+        [
+            new SymbolMorph('fullScreen', 14),
+            new SymbolMorph('normalScreen', 14)
+        ],
+        function () {  // query
+            return myself.isAppMode;
+        }
+    );
+
+    button.corner = 6;
+    button.color = colors[0];
+    button.highlightColor = colors[1];
+    button.pressColor = colors[2];
+    button.labelMinExtent = new Point(36, 18);
+    button.padding = 0;
+    button.labelShadowOffset = new Point(-1, -1);
+    button.labelShadowColor = colors[1];
+    button.labelColor = this.buttonLabelColor;
+    button.contrast = this.buttonContrast;
+    button.drawNew();
+    // button.hint = 'app & edit\nmodes';
+    button.fixLayout();
+    button.refresh();
+    appModeButton = button;
+    this.controlBar.add(appModeButton);
+    this.controlBar.appModeButton = appModeButton; // for refreshing
+
+    //steppingButton
+    button = new ToggleButtonMorph(
+        null, //colors,
+        myself, // the IDE is the target
+        'toggleSingleStepping',
+        [
+            new SymbolMorph('footprints', 16),
+            new SymbolMorph('footprints', 16)
+        ],
+        function () {  // query
+            return Process.prototype.enableSingleStepping;
+        }
+    );
+
+    button.corner = 6;
+    button.color = colors[0];
+    button.highlightColor = colors[1];
+    button.pressColor = new Color(153, 255, 213);
+//    button.pressColor = colors[2];
+    button.labelMinExtent = new Point(36, 18);
+    button.padding = 0;
+    button.labelShadowOffset = new Point(-1, -1);
+    button.labelShadowColor = colors[1];
+    button.labelColor = this.buttonLabelColor;
+    button.contrast = this.buttonContrast;
+    button.drawNew();
+    button.hint = 'Visible stepping';
+    button.fixLayout();
+    button.refresh();
+    steppingButton = button;
+    this.controlBar.add(steppingButton);
+    this.controlBar.steppingButton = steppingButton; // for refreshing
+
+    // stopButton
+    button = new ToggleButtonMorph(
+        null, // colors
+        this, // the IDE is the target
+        'stopAllScripts',
+        [
+            new SymbolMorph('octagon', 14),
+            new SymbolMorph('square', 14)
+        ],
+        function () {  // query
+            return myself.stage ?
+                    myself.stage.enableCustomHatBlocks &&
+                        myself.stage.threads.pauseCustomHatBlocks
+                        : true;
+        }
+    );
+
+    button.corner = 6;
+    button.color = colors[0];
+    button.highlightColor = colors[1];
+    button.pressColor = colors[2];
+    button.labelMinExtent = new Point(36, 18);
+    button.padding = 0;
+    button.labelShadowOffset = new Point(-1, -1);
+    button.labelShadowColor = colors[1];
+    button.labelColor = new Color(200, 0, 0);
+    button.contrast = this.buttonContrast;
+    button.drawNew();
+    // button.hint = 'stop\nevery-\nthing';
+    button.fixLayout();
+    button.refresh();
+    stopButton = button;
+    this.controlBar.add(stopButton);
+    this.controlBar.stopButton = stopButton; // for refreshing
+
+    //pauseButton
+    button = new ToggleButtonMorph(
+        null, //colors,
+        this, // the IDE is the target
+        'togglePauseResume',
+        [
+            new SymbolMorph('pause', 12),
+            new SymbolMorph('pointRight', 14)
+        ],
+        function () {  // query
+            return myself.isPaused();
+        }
+    );
+
+    button.corner = 6;
+    button.color = colors[0];
+    button.highlightColor = colors[1];
+    button.pressColor = colors[2];
+    button.labelMinExtent = new Point(36, 18);
+    button.padding = 0;
+    button.labelShadowOffset = new Point(-1, -1);
+    button.labelShadowColor = colors[1];
+    button.labelColor = new Color(255, 220, 0);
+    button.contrast = this.buttonContrast;
+    button.drawNew();
+    // button.hint = 'pause/resume\nall scripts';
+    button.fixLayout();
+    button.refresh();
+    pauseButton = button;
+    this.controlBar.add(pauseButton);
+    this.controlBar.pauseButton = pauseButton; // for refreshing
+
+    // startButton
+    button = new PushButtonMorph(
+        this,
+        'pressStart',
+        new SymbolMorph('flag', 14)
+    );
+    button.corner = 6;
+    button.color = colors[0];
+    button.highlightColor = colors[1];
+    button.pressColor = colors[2];
+    button.labelMinExtent = new Point(36, 18);
+    button.padding = 0;
+    button.labelShadowOffset = new Point(-1, -1);
+    button.labelShadowColor = colors[1];
+    button.labelColor = new Color(0, 200, 0);
+    button.contrast = this.buttonContrast;
+    button.drawNew();
+    // button.hint = 'start green\nflag scripts';
+    button.fixLayout();
+    startButton = button;
+    this.controlBar.add(startButton);
+    this.controlBar.startButton = startButton;
+
+    // steppingSlider
+    slider = new SliderMorph(
+        61,
+        1,
+        Process.prototype.flashTime * 100 + 1,
+        6,
+        'horizontal'
+    );
+    slider.action = function (num) {
+        Process.prototype.flashTime = (num - 1) / 100;
+        myself.controlBar.refreshResumeSymbol();
+    };
+    // slider.alpha = MorphicPreferences.isFlat ? 0.1 : 0.3;
+    slider.color = new Color(153, 255, 213);
+    slider.alpha = 0.3;
+    slider.setExtent(new Point(50, 14));
+    this.controlBar.add(slider);
+    this.controlBar.steppingSlider = slider;
+
+    // projectButton
+    button = new PushButtonMorph(
+        this,
+        'projectMenu',
+        new SymbolMorph('file', 14)
+        //'\u270E'
+    );
+    button.corner = 12;
+    button.color = colors[0];
+    button.highlightColor = colors[1];
+    button.pressColor = colors[2];
+    button.labelMinExtent = new Point(36, 18);
+    button.padding = 0;
+    button.labelShadowOffset = new Point(-1, -1);
+    button.labelShadowColor = colors[1];
+    button.labelColor = this.buttonLabelColor;
+    button.contrast = this.buttonContrast;
+    button.drawNew();
+    // button.hint = 'open, save, & annotate project';
+    button.fixLayout();
+    projectButton = button;
+    this.controlBar.add(projectButton);
+    this.controlBar.projectButton = projectButton; // for menu positioning
+
+    // settingsButton
+    button = new PushButtonMorph(
+        this,
+        'settingsMenu',
+        new SymbolMorph('gears', 14)
+        //'\u2699'
+    );
+    button.corner = 12;
+    button.color = colors[0];
+    button.highlightColor = colors[1];
+    button.pressColor = colors[2];
+    button.labelMinExtent = new Point(36, 18);
+    button.padding = 0;
+    button.labelShadowOffset = new Point(-1, -1);
+    button.labelShadowColor = colors[1];
+    button.labelColor = this.buttonLabelColor;
+    button.contrast = this.buttonContrast;
+    button.drawNew();
+    // button.hint = 'edit settings';
+    button.fixLayout();
+    settingsButton = button;
+    this.controlBar.add(settingsButton);
+    this.controlBar.settingsButton = settingsButton; // for menu positioning
+
+    // cloudButton
+    button = new PushButtonMorph(
+        this,
+        'cloudMenu',
+        new SymbolMorph('cloud', 11)
+    );
+    button.corner = 12;
+    button.color = colors[0];
+    button.highlightColor = colors[1];
+    button.pressColor = colors[2];
+    button.labelMinExtent = new Point(36, 18);
+    button.padding = 0;
+    button.labelShadowOffset = new Point(-1, -1);
+    button.labelShadowColor = colors[1];
+    button.labelColor = this.buttonLabelColor;
+    button.contrast = this.buttonContrast;
+    button.drawNew();
+    // button.hint = 'cloud operations';
+    button.fixLayout();
+    cloudButton = button;
+    this.controlBar.add(cloudButton);
+    this.controlBar.cloudButton = cloudButton; // for menu positioning
+
+    this.controlBar.fixLayout = function () {
+        x = this.right() - padding;
+        [stopButton, pauseButton, startButton].forEach(
+            function (button) {
+                button.setCenter(myself.controlBar.center());
+                button.setRight(x);
+                x -= button.width();
+                x -= padding;
+            }
+        );
+
+        x = Math.min(
+            startButton.left() - (3 * padding + 2 * stageSizeButton.width()),
+            myself.right() - StageMorph.prototype.dimensions.x *
+                (myself.isSmallStage ? myself.stageRatio : 1)
+        );
+        [stageSizeButton, appModeButton].forEach(
+            function (button) {
+                x += padding;
+                button.setCenter(myself.controlBar.center());
+                button.setLeft(x);
+                x += button.width();
+            }
+        );
+
+        slider.setCenter(myself.controlBar.center());
+        slider.setRight(stageSizeButton.left() - padding);
+
+        steppingButton.setCenter(myself.controlBar.center());
+        steppingButton.setRight(slider.left() - padding);
+
+        projectButton.setCenter(myself.controlBar.center());
+        projectButton.setLeft(this.left() + padding*1.5);
+
+        cloudButton.setCenter(myself.controlBar.center());
+        cloudButton.setLeft(projectButton.right() + padding);
+
+        settingsButton.setCenter(myself.controlBar.center());
+        settingsButton.setLeft(cloudButton.right() + padding);
+
+        this.refreshSlider();
+        this.updateLabel();
+    };
+
+    this.controlBar.refreshSlider = function () {
+        if (Process.prototype.enableSingleStepping && !myself.isAppMode) {
+            slider.drawNew();
+            slider.show();
+        } else {
+            slider.hide();
+        }
+        this.refreshResumeSymbol();
+    };
+
+    this.controlBar.refreshResumeSymbol = function () {
+        var pauseSymbols;
+        if (Process.prototype.enableSingleStepping &&
+                Process.prototype.flashTime > 0.5) {
+            myself.stage.threads.pauseAll(myself.stage);
+            pauseSymbols = [
+                new SymbolMorph('pause', 12),
+                new SymbolMorph('stepForward', 14)
+            ];
+        } else {
+            pauseSymbols = [
+                new SymbolMorph('pause', 12),
+                new SymbolMorph('pointRight', 14)
+            ];
+        }
+        pauseButton.labelString = pauseSymbols;
+        pauseButton.createLabel();
+        pauseButton.fixLayout();
+        pauseButton.refresh();
+    };
+
+    this.controlBar.updateLabel = function () {
+        var suffix = myself.world().isDevMode ?
+                ' - ' + localize('development mode') : '';
+
+        if (this.label) {
+            this.label.destroy();
+        }
+        if (myself.isAppMode) {
+            return;
+        }
+
+        this.label = new StringMorph(
+            (myself.projectName || localize('untitled')) + suffix,
+            14,
+            'sans-serif',
+            true,
+            false,
+            false,
+            MorphicPreferences.isFlat ? null : new Point(2, 1),
+            myself.frameColor.darker(myself.buttonContrast)
+        );
+        this.label.color = myself.buttonLabelColor;
+        this.label.drawNew();
+        this.add(this.label);
+        this.label.setCenter(this.center());
+        this.label.setLeft(this.settingsButton.right() + padding);
+    };
 };

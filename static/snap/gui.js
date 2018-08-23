@@ -301,7 +301,7 @@ IDE_Morph.prototype.openIn = function (world) {
     world.add(this);
     world.userMenu = this.userMenu;
 
-    // override SnapCloud's user message with Morphic
+    // override Cloud's user message with Morphic
     this.cloud.message = function (string) {
         var m = new MenuMorph(null, string),
             intervalHandle;

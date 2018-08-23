@@ -750,15 +750,15 @@ export default{
     background: url(../../../assets/source/bg1.png) no-repeat;
 }
 .container66 .first .roleimg .roleimgbox{
-    height: 163px;
-    width: 170px;
+    height: 198px;
+    width: 198px;
+    display: table-cell;
+    vertical-align: middle;
     text-align: center;
-    margin: 0 auto;
 }
 .container66 .first .roleimg .roleimgbox img{
-    height: 70%;
-    width: auto;
-    margin-top: 40px;
+    height: auto;
+    width: 50%;
 }
 .container66 .first .roleup .text{
     font-size:@md-size;

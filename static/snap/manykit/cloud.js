@@ -1,128 +1,11 @@
 // cloud.js
 
-var SnapCloud = new Cloud(
-    'http://www.manykit.com/snap/'
-);
+Cloud.prototype.determineCloudDomain = function () {
+    return "http://www.manykit.com/res/";
+};
 
 Cloud.prototype.initSession = function (onSuccess) {
-    /*var myself = this;
-    this.request(
-        'POST',
-        '/init',
-        function () { myself.checkCredentials(onSuccess); },
-        nop,
-        null,
-        true
-    );*/
-};
 
-Cloud.prototype.originalSignup = Cloud.prototype.signup;
-Cloud.prototype.signup = function (username, email, callBack, errorCall) {
-
-    var request = new XMLHttpRequest(),
-        myself = this;
-
-    var strPath = this.url + 'signup' + '?username='
-        + encodeURIComponent(username) + '&email='
-        + encodeURIComponent(email);
-
-    try {
-        request.open(
-            "GET",
-            strPath,
-            true
-        );
-        request.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
-        );
-        request.withCredentials = true;
-        request.onreadystatechange = function () {
-            if (request.readyState === 4) {
-                if (request.responseText) {
-                    if (request.responseText.indexOf('ERROR') === 0) {
-                        errorCall.call(
-                            this,
-                            request.responseText,
-                            'Signup'
-                        );
-                    } else {
-                        callBack.call(
-                            null,
-                            request.responseText,
-                            'Signup'
-                        );
-                    }
-                } else {
-                    errorCall.call(
-                        null,
-                        myself.url + 'SignUp',
-                        localize('could not connect to:')
-                    );
-                }
-            }
-        };
-        request.send(null);
-    } catch (err) {
-        errorCall.call(this, err.toString(), 'Snap!Cloud');
-    }
-};
-
-Cloud.prototype.originalGetPublicProject = Cloud.prototype.getPublicProject;
-Cloud.prototype.getPublicProject = function (id, callBack, errorCall) {
-
-};
-
-Cloud.prototype.originalResetPassword = Cloud.prototype.resetPassword;
-Cloud.prototype.resetPassword = function (username, callBack, errorCall) {
-    var request = new XMLHttpRequest(),
-        myself = this;
-
-    var strPath = this.url + 'resetpw' + '?username=' + encodeURIComponent(username);
-
-    try {
-        request.open(
-            "GET",
-            strPath,
-            true
-        );
-        request.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
-        );
-        request.withCredentials = true;
-        request.onreadystatechange = function () {
-            if (request.readyState === 4) {
-                if (request.responseText) {
-                    if (request.responseText.indexOf('ERROR') === 0) {
-
-                        errorCall.call(
-                            this,
-                            request.responseText,
-                            'resetpw failed!'
-                        );
-                    } else {
-                        myself.password = "";
-
-                        callBack.call(
-                            null,
-                            request.responseText,
-                            'resetpw suc!'
-                        );
-                    }
-                } else {
-                    errorCall.call(
-                        null,
-                        myself.url + 'login',
-                        localize('could not connect to:')
-                    );
-                }
-            }
-        };
-        request.send(null);
-    } catch (err) {
-        errorCall.call(this, err.toString(), 'Snap!Cloud');
-    }
 };
 
 Cloud.prototype.originalLogin = Cloud.prototype.login;
@@ -135,7 +18,7 @@ Cloud.prototype.login = function (
     var request = new XMLHttpRequest(),
         myself = this;
 
-    var strPath = this.url + 'login' + '?username='
+    var strPath = this.url + 'snaplogin' + '?username='
         + encodeURIComponent(username) + '&password='
         + encodeURIComponent(password);
 
