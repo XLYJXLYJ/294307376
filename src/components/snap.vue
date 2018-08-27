@@ -1,13 +1,13 @@
 <template>
     <div class="snapbcw" @click="issnapdropdowncontrol">
-        <div class="snapboxhead" @click="issnapuserdropdowncontrol">
+        <!-- <div class="snapboxhead" @click="issnapuserdropdowncontrol">
             <div class="snapheader">
                 <ul class="snapheaderleft">
                     <li class="bcw"><a href="http://www.manykit.com/codeplay" target="_blank"><img src="../assets/snappic/snapb.png" alt=""></a></li>
                     <li class="borderlight01" @click="snapdropdowmcontrol001" id="sanpPanel"><img src="../assets/snappic/snapn.png" alt=""></li>
                     <li class="borderlight"><img src="../assets/snappic/snaps.png" alt="" @click="handiframe"></li>
-                    <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState" disabled="disabled"></li> -->
-                    <!-- <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState"></li> -->
+                    <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState" disabled="disabled"></li>
+                     <li class="borderlight07"><input type="text" placeholder="" v-model="snapshow" @blur="focusState = false" v-focus="focusState"></li>
                     <li class="borderlight03"><img src="../assets/snappic/snapu.png" alt="" @click="handiframepublish"></li>
                     <li><div @keyup.alt="handiframepublish"></div></li>
                     <li class="borderlight04" v-show="login"
@@ -40,7 +40,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- 参数播放 -->
 
             <iframe class="snap" v-show="snap01" src="static/snap/pxsnap.html" name="snap01" id="myFrameId01" frameborder="0" ></iframe>
@@ -970,7 +970,6 @@ export default{
 .snap{
     width: 100%;
     height: 542px;
-    margin-top: 40px;
 }
 .snapboxhead{
     width: 100%;

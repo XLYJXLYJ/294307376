@@ -123,8 +123,8 @@ import { formatDate } from '../../public/time.js'
 @import '../../assets/index.less';
 .container29 {
     margin: 0 auto;
-    height: auto;
-    width: 1140px;
+    height: 530px;
+    width: 1160px;
     position: relative;
     left: -20px;
     top: 33px;
@@ -140,14 +140,14 @@ import { formatDate } from '../../public/time.js'
     text-align:left;    
     float: left;
     list-style: none;
-    overflow: hidden;
+    overflow: auto;
 }
 .container29 li{
     position: relative;
     left: 0px; 
     height: 252px;
     z-index: 100;
-    width: 359px;
+    width: 358px;
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;

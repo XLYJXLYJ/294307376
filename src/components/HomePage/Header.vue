@@ -545,6 +545,8 @@ export default {
                 this.dropDowm = false;  
                 sessionStorage.usernamesession =''  
                 sessionStorage.userid ='' 
+                sessionStorage.username ='' 
+                sessionStorage.password ='' 
                 this.$store.state.userid = ''
                 this.$router.push({ name: 'Home' })
                 this.$router.push({ name: 'Recommend' })

@@ -90,7 +90,7 @@ export default{
 .container24{
     margin: 0 auto;
     width: 1200px;
-    min-height:374px;
+    min-height:440px;
     background:@background-color; 
     position: relative;
 }

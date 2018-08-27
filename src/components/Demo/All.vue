@@ -149,7 +149,7 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
 
 .container27 {
     margin: 0 auto;
-    height: auto;
+    height: 530px;
     width: 1160px;
     position: relative;
     left: -20px;
@@ -166,7 +166,7 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
     text-align:left;    
     float: left;
     list-style: none;
-    overflow: hidden;
+    overflow: auto;
 }
 .container27 li{
     position: relative;

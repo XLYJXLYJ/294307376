@@ -1,5 +1,19 @@
 // cloud.js
 
+ProjectObj = function()
+{
+    this.projectname = "";
+    this.ispublic = false;
+    this.ispublished = false;
+}
+
+Cloud.prototype.init = function () {
+    this.url = this.determineCloudDomain();
+    this.username = null;
+    this.password = null;
+    this.id = null;
+};
+
 Cloud.prototype.determineCloudDomain = function () {
     return "http://www.manykit.com/res/";
 };
@@ -9,9 +23,12 @@ Cloud.prototype.initSession = function (onSuccess) {
 };
 
 Cloud.prototype.originalLogin = Cloud.prototype.login;
+Cloud.prototype.getCurrentUser = Cloud.prototype.login;
+
 Cloud.prototype.login = function (
     username,
     password,
+    persist,
     callBack,
     errorCall
 ) {
@@ -36,10 +53,11 @@ Cloud.prototype.login = function (
         request.onreadystatechange = function () {
             if (request.readyState === 4) {
                 if (request.responseText) {
-                    if (request.responseText.indexOf('ERROR') === 0) {
+                    if (request.responseText.indexOf('errmsg') === 0) {
 
-                        myself.username = "";
-                        myself.password = "";
+                        myself.username = null;
+                        myself.password = null;
+                        myself.id = null;
 
                         errorCall.call(
                             this,
@@ -49,6 +67,10 @@ Cloud.prototype.login = function (
                     } else {
                         myself.username = username;
                         myself.password = password;
+
+                        var objStr = JSON.parse(request.responseText);
+
+                        myself.id = objStr.data.id;
 
                         callBack.call(
                             null,
@@ -71,7 +93,8 @@ Cloud.prototype.login = function (
     }
 };
 
-Cloud.prototype.originalReconnect = Cloud.prototype.reconnect;
+
+
 Cloud.prototype.reconnect = function (
     callBack,
     errorCall
@@ -83,13 +106,46 @@ Cloud.prototype.reconnect = function (
     this.login(
         this.username,
         this.password,
+        true,
         callBack,
         errorCall
     );
 };
 
 Cloud.prototype.originalSaveProject = Cloud.prototype.saveProject;
-Cloud.prototype.saveProject = function (ide, callBack, errorCall) {
+Cloud.prototype.saveProject = function (ide,proj) {
+	console.log(ide.projectName);
+	console.log(ide.projectNotes);
+	console.log(normalizeCanvas(ide.stage.thumbnail(SnapSerializer.prototype.thumbnailSize)).toDataURL());
+	console.log(ide.serializer.serialize(ide.stage));
+	console.log(sessionStorage.userid);
+	
+    let formData = new FormData();
+	let filebir = ide.serializer.serialize(ide.stage)
+	let filebinary = new Blob([filebir]);
+	formData.append('userid',sessionStorage.userid);
+	formData.append('title',ide.projectName);
+	formData.append('desc',ide.projectNotes);
+	formData.append('state',1);
+	formData.append('files',filebinary);
+	let config = {
+		headers:{
+			'Content-Type':'application/x-jpg'
+		}
+	}
+				
+	 $.ajax({
+		url: '/res/upload',
+		method: 'POST',
+		data: formData,
+		contentType: false, // 注意这里应设为false
+		processData: false,
+		cache: false,
+		success: function(data) {
+			console.log(data)
+		},
+	})		
+				
 }
 
 Cloud.prototype.originalGetProjectList = Cloud.prototype.getProjectList;
@@ -98,9 +154,9 @@ Cloud.prototype.getProjectList = function (callBack, errorCall) {
     this.reconnect(
         function () {
             myself.callService(
-                'getprojectlist',
-                function (response, url) {
-                    callBack.call(null, response, url);
+                'filelist',
+                function (list) {
+                    callBack.call(null, list);
                     myself.disconnect();
                 },
                 errorCall
@@ -108,16 +164,6 @@ Cloud.prototype.getProjectList = function (callBack, errorCall) {
         },
         errorCall
     );
-};
-
-Cloud.prototype.originalChangePassword= Cloud.prototype.changePassword;
-Cloud.prototype.changePassword = function (
-    oldPW,
-    newPW,
-    callBack,
-    errorCall
-) {
-
 };
 
 Cloud.prototype.originalLogout = Cloud.prototype.logout;
@@ -141,7 +187,7 @@ Cloud.prototype.logout = function (callBack, errorCall) {
         request.onreadystatechange = function () {
             if (request.readyState === 4) {
                 if (request.responseText) {
-                    if (request.responseText.indexOf('ERROR') === 0) {
+                    if (request.responseText.indexOf('errmsg') === 0) {
 
                         myself.username = "";
                         myself.password = "";
@@ -193,7 +239,9 @@ Cloud.prototype.callService = function (
         service = serviceName,
         myself = this,
         stickyUrl,
-        postDict;
+        postDict,
+		getdata,
+		titledata;
 
     if (!service) {
         errorCall.call(
@@ -207,39 +255,71 @@ Cloud.prototype.callService = function (
         postDict = args;
     }
     try {
-        stickyUrl = this.url + service + '?username='
-            + encodeURIComponent(this.username) + '&param=' + postDict;
-        request.open("POST", stickyUrl, true);
-        request.withCredentials = true;
-        request.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
+        stickyUrl = this.url + service + '?userid='
+            + this.id;
+        request.open(
+            "POST",
+            stickyUrl,
+            true
         );
-        request.setRequestHeader('MioCracker', this.session);
-        request.setRequestHeader('SESSIONGLUE', this.route);
+        request.withCredentials = true;
         request.onreadystatechange = function () {
             if (request.readyState === 4) {
                 var responseList = [];
-                if (request.responseText &&
-                    request.responseText.indexOf('ERROR') === 0) {
+
+                var objStr = JSON.parse(request.responseText);
+                if (null!=objStr.errmsg)
+                {
                     errorCall.call(
                         this,
                         request.responseText,
                         localize('Service:') + ' ' + localize(serviceName)
                     );
-                    return;
+
+                  //  return;
                 }
-                if (serviceName === 'login') {
+                if (serviceName === 'login') 
+                {
                     myself.api = myself.parseAPI(request.responseText);
                 }
-                if (serviceName === 'getRawProject') {
+                if (serviceName === 'getRawProject') 
+                {
                     responseList = request.responseText;
-                } else {
-                    responseList = myself.parseResponse(
-                        request.responseText
-                    );
                 }
-                callBack.call(null, responseList, service.url);
+                else 
+                {
+					var datalist={
+						userid:myself.id,
+					}
+
+					$.ajax({
+						type : "POST",
+						url:"/res/filelist",
+						headers : {
+							'Content-Type' : 'application/json; charset=utf-8'
+						},
+						data: JSON.stringify(datalist),
+						dataType: "json",
+						async:false,
+						success:function(res){
+							getdata=res.data;
+							
+							for(var i=0;i<res.data.length;i++){
+								var projectObj3 = new ProjectObj();
+								projectObj3.projectname = getdata[i].title;
+								projectObj3.projectid = getdata[i].id;
+								projectObj3.ispublic = true;
+								projectObj3.ispublished = false;
+								responseList[i] = projectObj3;
+							}
+
+							
+					}
+					});
+                }
+                callBack.call(null, responseList);
+
+                responseList = null;
             }
         };
         request.send(this.encodeDict(postDict));

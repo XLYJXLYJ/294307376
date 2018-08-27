@@ -677,6 +677,7 @@ IDE_Morph.prototype.initializeCloud = function () {
                 user.choice,
                 function (username, isadmin, response) {
                     myself.source = 'cloud';
+                    /*
                     if (!isNil(response.days_left)) {
                         new DialogBoxMorph().inform(
                             'Unverified account: ' +
@@ -696,9 +697,10 @@ IDE_Morph.prototype.initializeCloud = function () {
                             world,
                             myself.cloudIcon(null, new Color(0, 180, 0))
                         );
-                    } else {
-                        myself.showMessage(response.message, 2);
-                    }
+                    //} else {
+                    */
+                        myself.showMessage("login suc!", 2);
+                    //}
                 },
                 myself.cloudError()
             );
@@ -1175,4 +1177,223 @@ IDE_Morph.prototype.createControlBar = function () {
         this.label.setCenter(this.center());
         this.label.setLeft(this.settingsButton.right() + padding);
     };
+};
+
+ProjectDialogMorph.prototype.setSource = function (source) {
+    var myself = this,
+        msg;
+
+    this.source = source; //this.task === 'save' ? 'local' : source;
+    this.srcBar.children.forEach(function (button) {
+        button.refresh();
+    });
+    switch (this.source) {
+    case 'cloud':
+        msg = myself.ide.showMessage('Updating\nproject list...');
+        this.projectList = [];
+        myself.ide.cloud.getProjectList(
+            function (projects) {
+                // Don't show cloud projects if user has since switch panes.
+                if (myself.source === 'cloud') {
+                    myself.installCloudProjectList(projects);
+                }
+                msg.destroy();
+            },
+            function (err, lbl) {
+                msg.destroy();
+                myself.ide.cloudError().call(null, err, lbl);
+            }
+        );
+        return;
+    case 'examples':
+        this.projectList = this.getExamplesProjectList();
+        break;
+    case 'local':
+        this.projectList = this.getLocalProjectList();
+        break;
+    }
+
+    this.listField.destroy();
+    this.listField = new ListMorph(
+        this.projectList,
+        this.projectList.length > 0 ?
+                function (element) {
+                    return element.name || element;
+                } : null,
+        null,
+        function () {myself.ok(); }
+    );
+
+    this.fixListFieldItemColors();
+    this.listField.fixLayout = nop;
+    this.listField.edge = InputFieldMorph.prototype.edge;
+    this.listField.fontSize = InputFieldMorph.prototype.fontSize;
+    this.listField.typeInPadding = InputFieldMorph.prototype.typeInPadding;
+    this.listField.contrast = InputFieldMorph.prototype.contrast;
+    this.listField.drawNew = InputFieldMorph.prototype.drawNew;
+    this.listField.drawRectBorder = InputFieldMorph.prototype.drawRectBorder;
+
+    if (this.source === 'local') {
+        this.listField.action = function (item) {
+            var src, xml;
+
+            if (item === undefined) {return; }
+            if (myself.nameField) {
+                myself.nameField.setContents(item.name || '');
+            }
+            if (myself.task === 'open') {
+
+                src = localStorage['-snap-project-' + item.name];
+
+                if (src) {
+                    xml = myself.ide.serializer.parse(src);
+
+                    myself.notesText.text = xml.childNamed('notes').contents
+                        || '';
+                    myself.notesText.drawNew();
+                    myself.notesField.contents.adjustBounds();
+                    myself.preview.texture =
+                        xml.childNamed('thumbnail').contents || null;
+                    myself.preview.cachedTexture = null;
+                    myself.preview.drawNew();
+                }
+            }
+            myself.edit();
+        };
+    } else { // 'examples'; 'cloud' is initialized elsewhere
+        this.listField.action = function (item) {
+            var src, xml;
+            if (item === undefined) {return; }
+            if (myself.nameField) {
+                myself.nameField.setContents(item.name || '');
+            }
+            src = myself.ide.getURL(
+                myself.ide.resourceURL('Examples', item.fileName)
+            );
+
+            xml = myself.ide.serializer.parse(src);
+            myself.notesText.text = xml.childNamed('notes').contents
+                || '';
+            myself.notesText.drawNew();
+            myself.notesField.contents.adjustBounds();
+            myself.preview.texture = xml.childNamed('thumbnail').contents
+                || null;
+            myself.preview.cachedTexture = null;
+            myself.preview.drawNew();
+            myself.edit();
+        };
+    }
+    this.body.add(this.listField);
+    this.shareButton.hide();
+    this.unshareButton.hide();
+
+    if (this.task === 'open') {
+        this.recoverButton.hide();
+    }
+
+    /*
+    this.publishButton.hide();
+    this.unpublishButton.hide();
+    */
+    if (this.source === 'local') {
+        this.deleteButton.show();
+    } else { // examples
+        this.deleteButton.hide();
+    }
+    this.buttons.fixLayout();
+    this.fixLayout();
+    if (this.task === 'open') {
+        this.clearDetails();
+    }
+};
+
+ProjectDialogMorph.prototype.rawOpenCloudProject = function (proj) {
+    var myself = this;
+	var clouddata;
+		proj.projectid,
+        proj.projectname,
+		$.ajax({
+			type : "POST",
+			url:"/res/getfile",
+			async: false,
+			headers : {
+				'Content-Type' : 'application/json; charset=utf-8'
+			},
+			data: JSON.stringify({id:proj.projectid}),
+			dataType: "json",
+			success:function(data){
+				clouddata=data;
+				alter(clouddata);
+			},
+			error:function(data){
+				console.log(data.responseText);
+				clouddata=data.responseText;
+				myself.ide.droppedText(clouddata);
+			},
+
+		})
+    this.destroy();
+};
+
+ProjectDialogMorph.prototype.deleteProject = function () {
+    var myself = this,
+        proj,
+        idx,
+        name;
+
+    if (this.source === 'cloud') {
+        proj = this.listField.selected;
+		sessionStorage.proj=proj;
+        if (proj) {
+            this.ide.confirm(
+                localize(
+                    'Are you sure you want to delete'
+                ) + '\n"' + proj.projectname + '"?',
+                'Delete Project',
+                function () {
+					let objStr = sessionStorage.proj;
+					var deletedata={
+						userid:sessionStorage.id,
+						id:proj.projectid,
+						state:4
+					}
+
+					$.ajax({
+						type : "POST",
+						url:"/res/dealfile",
+						headers : {
+							'Content-Type' : 'application/json; charset=utf-8'
+						},
+						data: JSON.stringify(deletedata),
+						dataType: "json",
+						async:false,
+						success:function(res){
+							console.log('成功');
+					}
+					});
+
+					myself.ide.hasChangedMedia = true;
+					idx = myself.projectList.indexOf(proj);
+					myself.projectList.splice(idx, 1);
+					myself.installCloudProjectList(
+						myself.projectList
+					); // refresh list
+				}
+            );
+		}
+	}	else { // 'local, examples'
+        if (this.listField.selected) {
+            name = this.listField.selected.name;
+            this.ide.confirm(
+                localize(
+                    'Are you sure you want to delete'
+                ) + '\n"' + name + '"?',
+                'Delete Project',
+                function () {
+                    delete localStorage['-snap-project-' + name];
+                    myself.setSource(myself.source); // refresh list
+                }
+            );
+        }
+    }
 };
