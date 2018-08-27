@@ -333,6 +333,8 @@ export default {
                     })
                 }else{
                     this.dialogLogin = false
+                    sessionStorage.username= this.formLogin.userName;
+                    sessionStorage.password= this.formLogin.password;
                     this.Getsession()
                     // this.Getsessionname()  
                 }
