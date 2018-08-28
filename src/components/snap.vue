@@ -46,7 +46,7 @@
             <iframe class="snap" v-show="snap01" src="static/snap/pxsnap.html" name="snap01" id="myFrameId01" frameborder="0" ></iframe>
 
 
-            <iframe class="snap" frameborder="0" v-show="snap02" :src="'static/snap/pxsnap.html#present:Username=lynn&ProjectName='+snapdemoid" id="myFrameId02"  name="snap02"></iframe>
+            <!-- <iframe class="snap" frameborder="0" v-show="snap02" :src="'static/snap/pxsnap.html#present:Username=lynn&ProjectName='+snapdemoid" id="myFrameId02"  name="snap02"></iframe> -->
 
 
         <!-- 接口播放 -->
@@ -450,9 +450,9 @@ export default{
             })
             .then(response => {                      
                 this.list = response.data.data
-                this.edittittle = response.data.data.title
-                this.editdes = response.data.data.desc
-                this.snapshow = response.data.data.title
+                // this.edittittle = response.data.data.title
+                // this.editdes = response.data.data.desc
+                // this.snapshow = response.data.data.title
             }) 
         },
         // 打开文件

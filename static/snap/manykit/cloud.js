@@ -318,38 +318,26 @@ Cloud.prototype.login = function (
         request.withCredentials = true;
         request.onreadystatechange = function () {
             if (request.readyState === 4) {
-                if (request.responseText) {
-                    if (request.responseText.indexOf('errmsg') === 0) {
-
-                        myself.username = null;
-                        myself.password = null;
-                        myself.id = null;
-
-                        errorCall.call(
-                            this,
-                            request.responseText,
-                            'login failed!'
-                        );
-                    } else {
-                        myself.username = username;
-                        myself.password = password;
-
-                        var objStr = JSON.parse(request.responseText);
-
-                        myself.id = objStr.data.id;
-
-                        callBack.call(
-                            null,
-                            request.responseText,
-                            'login suc!'
-                        );
-                    }
+				var objStr = JSON.parse(request.responseText);
+                if (objStr.data.id) {
+					myself.username = username;
+					myself.password = password;
+					myself.id = objStr.data.id;
+					callBack.call(
+						null,
+						request.responseText,
+						'login suc!'
+					);
                 } else {
-                    errorCall.call(
-                        null,
-                        myself.url + 'login',
-                        localize('could not connect to:')
-                    );
+					myself.username = null;
+					myself.password = null;
+					myself.id = null;
+
+					errorCall.call(
+						this,
+						request.responseText,
+						'login failed!'
+					);
                 }
             }
         };
@@ -380,11 +368,6 @@ Cloud.prototype.reconnect = function (
 
 Cloud.prototype.originalSaveProject = Cloud.prototype.saveProject;
 Cloud.prototype.saveProject = function (ide,proj) {
-	console.log(ide.projectName);
-	console.log(ide.projectNotes);
-	console.log(normalizeCanvas(ide.stage.thumbnail(SnapSerializer.prototype.thumbnailSize)).toDataURL());
-	console.log(ide.serializer.serialize(ide.stage));
-	console.log(sessionStorage.userid);
 	
     let formData = new FormData();
 	let filebir = ide.serializer.serialize(ide.stage)
@@ -593,4 +576,20 @@ Cloud.prototype.callService = function (
     } catch (err) {
         errorCall.call(this, err.toString(), service.url);
     }
+};
+
+Cloud.prototype.getPublicProject = function (
+	projectName,
+    username,
+    onSuccess,
+    onError
+) {
+    this.request(
+        'post',
+        'filelist/?1',
+        onSuccess,
+        onError,
+        'Could not fetch project ' + projectName,
+        true
+    );
 };
