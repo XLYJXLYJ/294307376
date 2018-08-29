@@ -13,12 +13,12 @@ IDE_Morph.prototype.openIn = function (world) {
 			localStorage.username=res.data.username
 			localStorage.password=res.data.password
 			if(res.data.userid){
-					myself.cloud.login(
-					localStorage.username,
-					localStorage.password,    
-					0,
-					0,
-					0)
+				myself.cloud.login(
+				localStorage.username,
+				localStorage.password,    
+				null,
+				null,
+				null)
 			}
 		}
 	});
@@ -284,9 +284,9 @@ Cloud.prototype.determineCloudDomain = function () {
     return "http://www.manykit.com/res/";
 };
 
-Cloud.prototype.initSession = function (onSuccess) {
+// Cloud.prototype.initSession = function (onSuccess) {
 
-};
+// };
 
 Cloud.prototype.originalLogin = Cloud.prototype.login;
 Cloud.prototype.getCurrentUser = Cloud.prototype.login;
@@ -323,11 +323,14 @@ Cloud.prototype.login = function (
 					myself.username = username;
 					myself.password = password;
 					myself.id = objStr.data.id;
-					callBack.call(
+					if(callBack!==null){
+						callBack.call(
 						null,
 						request.responseText,
-						'login suc!'
-					);
+						'logout suc!'
+						);
+					}
+
                 } else {
 					myself.username = null;
 					myself.password = null;
@@ -368,21 +371,25 @@ Cloud.prototype.reconnect = function (
 
 Cloud.prototype.originalSaveProject = Cloud.prototype.saveProject;
 Cloud.prototype.saveProject = function (ide,proj) {
-	
+
     let formData = new FormData();
+	let thumbnail = normalizeCanvas(
+		ide.stage.thumbnail(
+			SnapSerializer.prototype.thumbnailSize
+	)).toDataURL()
 	let filebir = ide.serializer.serialize(ide.stage)
 	let filebinary = new Blob([filebir]);
 	formData.append('userid',sessionStorage.userid);
 	formData.append('title',ide.projectName);
 	formData.append('desc',ide.projectNotes);
+	formData.append('cover',thumbnail);
 	formData.append('state',1);
 	formData.append('files',filebinary);
 	let config = {
 		headers:{
 			'Content-Type':'application/x-jpg'
 		}
-	}
-				
+	}			
 	 $.ajax({
 		url: '/res/upload',
 		method: 'POST',
@@ -392,9 +399,9 @@ Cloud.prototype.saveProject = function (ide,proj) {
 		cache: false,
 		success: function(data) {
 			console.log(data)
+			console.log(ide)
 		},
-	})		
-				
+	})					
 }
 
 Cloud.prototype.originalGetProjectList = Cloud.prototype.getProjectList;
@@ -451,11 +458,13 @@ Cloud.prototype.logout = function (callBack, errorCall) {
                         myself.password = "";
 						sessionStorage.username= '';
 						sessionStorage.password= '';
-                        callBack.call(
+						if(null!==callBack){
+							callBack.call(
                             null,
                             request.responseText,
                             'logout suc!'
-                        );
+							);
+						}
                     }
                 } else {
                     errorCall.call(
@@ -541,7 +550,6 @@ Cloud.prototype.callService = function (
 					var datalist={
 						userid:myself.id,
 					}
-
 					$.ajax({
 						type : "POST",
 						url:"/res/filelist",
@@ -553,7 +561,6 @@ Cloud.prototype.callService = function (
 						async:false,
 						success:function(res){
 							getdata=res.data;
-							
 							for(var i=0;i<res.data.length;i++){
 								var projectObj3 = new ProjectObj();
 								projectObj3.projectname = getdata[i].title;
@@ -561,10 +568,8 @@ Cloud.prototype.callService = function (
 								projectObj3.ispublic = true;
 								projectObj3.ispublished = false;
 								responseList[i] = projectObj3;
-							}
-
-							
-					}
+							}		
+						}
 					});
                 }
                 callBack.call(null, responseList);

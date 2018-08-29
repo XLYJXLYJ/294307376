@@ -43,7 +43,7 @@
         </div> -->
         <!-- 参数播放 -->
 
-            <iframe class="snap" v-show="snap01" src="static/snap/pxsnap.html" name="snap01" id="myFrameId01" frameborder="0" ></iframe>
+            <iframe class="snap" v-show="snap01" :src="'static/snap/pxsnap.html#present:Username=lynn&ProjectName='+snapdemoid" name="snap" id="myFrameId01" frameborder="0" ></iframe>
 
 
             <!-- <iframe class="snap" frameborder="0" v-show="snap02" :src="'static/snap/pxsnap.html#present:Username=lynn&ProjectName='+snapdemoid" id="myFrameId02"  name="snap02"></iframe> -->
@@ -337,8 +337,8 @@ export default{
             this.snap02=false
             this.snap01=true
         }else{
-            this.snap02=true
-            this.snap01=false
+            this.snap02=false
+            this.snap01=true
         }
         // window.frames["snap"].ide.droppedText(this.demoxml,'OPEN') 
         // window.frames["snap"].ide.haha()
@@ -370,8 +370,8 @@ export default{
         // },
         //另存为  
         anothersave(){
-            this.snap02=true
-            this.snap01=false
+            this.snap02=false
+            this.snap01=true
             if(this.snapshow||this.$store.state.demoxmlid){
                 this.snapshow = this.snapshow + '-1'
                 this.snapdropdown01 = false

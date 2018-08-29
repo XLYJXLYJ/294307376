@@ -1,4 +1,44 @@
-// gui.js
+// IDE_Morph preferences settings and skins
+
+IDE_Morph.prototype.setDefaultDesign = function () {
+	 var myself = this;
+    MorphicPreferences.isFlat = false;
+    SpriteMorph.prototype.paletteColor = new Color(55, 55, 55);
+    SpriteMorph.prototype.paletteTextColor = new Color(230, 230, 230);
+    StageMorph.prototype.paletteTextColor
+        = SpriteMorph.prototype.paletteTextColor;
+    StageMorph.prototype.paletteColor = SpriteMorph.prototype.paletteColor;
+    SpriteMorph.prototype.sliderColor
+        = SpriteMorph.prototype.paletteColor.lighter(30);
+
+    IDE_Morph.prototype.buttonContrast = 30;
+    IDE_Morph.prototype.backgroundColor = new Color(40, 40, 40);
+    IDE_Morph.prototype.frameColor = SpriteMorph.prototype.paletteColor;
+
+    IDE_Morph.prototype.groupColor
+        = SpriteMorph.prototype.paletteColor.lighter(8);
+    IDE_Morph.prototype.sliderColor = SpriteMorph.prototype.sliderColor;
+    IDE_Morph.prototype.buttonLabelColor = new Color(255, 255, 255);
+    IDE_Morph.prototype.tabColors = [
+        IDE_Morph.prototype.groupColor.darker(40),
+        IDE_Morph.prototype.groupColor.darker(60),
+        IDE_Morph.prototype.groupColor
+    ];
+    IDE_Morph.prototype.rotationStyleColors = IDE_Morph.prototype.tabColors;
+    IDE_Morph.prototype.appModeColor = new Color();
+    IDE_Morph.prototype.scriptsPaneTexture = this.scriptsTexture();
+    IDE_Morph.prototype.padding = 5;
+
+    SpriteIconMorph.prototype.labelColor
+        = IDE_Morph.prototype.buttonLabelColor;
+    CostumeIconMorph.prototype.labelColor
+        = IDE_Morph.prototype.buttonLabelColor;
+    SoundIconMorph.prototype.labelColor
+        = IDE_Morph.prototype.buttonLabelColor;
+    TurtleIconMorph.prototype.labelColor
+        = IDE_Morph.prototype.buttonLabelColor;
+};
+
 
 IDE_Morph.prototype.originalSnapMenu = IDE_Morph.prototype.snapMenu;
 IDE_Morph.prototype.snapMenu = function () {
@@ -228,7 +268,7 @@ IDE_Morph.prototype.doSaveAndShare = function () {
     var myself = this,
         projectName = this.projectName;
 
-    this.showMessage('Saving project\nto the cloud...');
+    this.showMessage('Saving project\nto the cloud...',1);
     this.setProjectName(projectName);
 
     Cloud.saveProject(
@@ -1397,3 +1437,75 @@ ProjectDialogMorph.prototype.deleteProject = function () {
         }
     }
 };
+
+
+IDE_Morph.prototype.openProjectString = function (str) {
+    var msg,
+        myself = this;
+    this.nextSteps([
+        function () {
+            msg = myself.showMessage('Opening project...');
+        },
+        function () {nop(); }, // yield (bug in Chrome)
+        function () {
+            myself.rawOpenProjectString(str);
+        },
+        function () {
+            msg.destroy();
+        }
+    ]);
+};
+
+IDE_Morph.prototype.rawOpenProjectString = function (str) {
+    this.toggleAppMode(false);
+    this.spriteBar.tabBar.tabTo('scripts');
+    StageMorph.prototype.hiddenPrimitives = {};
+    StageMorph.prototype.codeMappings = {};
+    StageMorph.prototype.codeHeaders = {};
+    StageMorph.prototype.enableCodeMapping = false;
+    StageMorph.prototype.enableInheritance = true;
+    StageMorph.prototype.enableSublistIDs = false;
+    Process.prototype.enableLiveCoding = false;
+    if (Process.prototype.isCatchingErrors) {
+        try {
+            this.serializer.openProject(
+                this.serializer.load(str, this),
+                this
+            );
+        } catch (err) {
+            this.showMessage('Load failed: ' + err);
+        }
+    } else {
+        this.serializer.openProject(
+            this.serializer.load(str, this),
+            this
+        );
+    }
+    this.stopFastTracking();
+};
+
+		
+	console.log(sessionStorage.snapdemoid);
+	if(sessionStorage.snapdemoid){
+		var sessiondata;
+		var myself=new IDE_Morph();
+		$.ajax({
+			type : "POST",
+			url:"/res/getfile",
+			async: true,
+			headers : {
+				'Content-Type' : 'application/json; charset=utf-8'
+			},
+			data: JSON.stringify({id:sessionStorage.snapdemoid}),
+			dataType: "json",
+			success:function(data){
+				sessiondata=data.responseText;
+				myself.droppedText(sessiondata);
+			},
+			error:function(data){
+				sessiondata = data.responseText;
+				myself.droppedText(sessiondata);
+			}
+		})
+	}
+
