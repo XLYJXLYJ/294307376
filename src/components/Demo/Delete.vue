@@ -112,23 +112,24 @@ import { formatDate } from '../../public/time.js'
 @import '../../assets/index.less';
 .container30 {
     margin: 0 auto;
-    height: auto;
+    height: 530px;
     width: 1160px;
     position: relative;
-    left: 10px;
-    top:-30px;
-    display: inline-block;
+    left: -20px;
+    top: -200px;
+    overflow: auto;
 }
 .container30 ul{
     position: relative;
-    left: 30px;
-    top: 0px;
+    left: 20px;
+    top: 10px;
     height: auto;
     z-index: 100;
     width:auto;
     text-align:left;    
     float: left;
     list-style: none;
+    overflow: auto;
 }
 .container30 li{
     position: relative;

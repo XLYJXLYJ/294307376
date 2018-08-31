@@ -32,7 +32,7 @@
                     <!-- <iframe class="video" frameborder="0" src="static/player/index.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
                     <!-- <iframe class="video" frameborder="0" src="static/ceshi/snap.html" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
                     <!-- <iframe class="video" frameborder="0" :src="'static/ceshi/snap.html#run:'+demoxml+'.xml'" id="myFrameId"  name="snapplay" width="767" height="575"></iframe> -->
-                    <iframe class="video" frameborder="0" :src="'static/snap/playersnap.html#present:Username=Lynn&ProjectName='+demoid" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
+                    <iframe class="video" frameborder="0" :src="'static/snap/playsnap.html#present:Username=Lynn&ProjectName='+demoid" id="myFrameId"  name="snapplay" width="767" height="575"></iframe>
                     <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
                 </div>
                 <div class="mydemo_frame">

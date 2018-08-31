@@ -44,7 +44,8 @@ export default{
 }
 .footer02{
     flex: 0;
-    margin-top: -28px;
+    margin-top: -8px;
+    left: 4px;
     background: @mainbg-color;
 }
 </style>

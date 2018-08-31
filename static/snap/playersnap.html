@@ -15,7 +15,6 @@
 		<script type="text/javascript" src="objects.js"></script>
 		<script type="text/javascript" src="manykit/objects.js"></script>
 		<script type="text/javascript" src="gui.js"></script>
-		<script type="text/javascript" src="manykit/playergui.js"></script>
 		<script type="text/javascript" src="paint.js"></script>
 		<script type="text/javascript" src="lists.js"></script>
 		<script type="text/javascript" src="byob.js"></script>
@@ -25,10 +24,10 @@
 		<script type="text/javascript" src="store.js"></script>
 		<script type="text/javascript" src="locale.js"></script>
 		<script type="text/javascript" src="cloud.js"></script>
-		<script type="text/javascript" src="manykit/cloud.js"></script>
 		<script type="text/javascript" src="sha512.js"></script>
 		<script type="text/javascript" src="FileSaver.min.js"></script>
 		<script type="text/javascript" src="manykit/base64.js"></script>
+		<script type="text/javascript" src="manykit/playergui.js"></script>
 		<script type="text/javascript">
 			var world;
 			var ide;
@@ -46,6 +45,10 @@
         		requestAnimationFrame(loop);
 				world.doOneCycle();
 			}
+		function videoPlay(){
+			document.getElementById('playerimg').style.cssText="display:none"
+			ide.pressStart() 
+		}
 		</script>
 	</head>
 	<body style="margin: 0;">
@@ -53,10 +56,7 @@
 		<canvas id="world"  tabindex="1" width="767" height="575" style="position: absolute;" />
 	</body>
 	<script>
-		function videoPlay(){
-			document.getElementById('playerimg').style.cssText="display:none"
-			ide.pressStart() 
-		}
+
 		// function videostop(){
 		// 	document.getElementById('playerimg').style.cssText="display:block"
 		// 	ide.togglePauseResume() 

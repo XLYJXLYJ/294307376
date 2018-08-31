@@ -57,9 +57,9 @@
                     <li>
                         <router-link to="/source/sourceshop"><p>素材</p></router-link>
                     </li> 
-                    <li>
+                    <!-- <li>
                         <a href="http://www.manykit.com" target="_blank"><p>帮助</p></a> 
-                    </li>  
+                    </li>   -->
                     <li>
                         <a href="http://www.manykit.com/forum" target="_blank"><p>社区</p></a> 
                     </li>  

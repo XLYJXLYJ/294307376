@@ -1366,11 +1366,9 @@ ProjectDialogMorph.prototype.rawOpenCloudProject = function (proj) {
 				alter(clouddata);
 			},
 			error:function(data){
-				console.log(data.responseText);
 				clouddata=data.responseText;
 				myself.ide.droppedText(clouddata);
 			},
-
 		})
     this.destroy();
 };
@@ -1438,74 +1436,4 @@ ProjectDialogMorph.prototype.deleteProject = function () {
     }
 };
 
-
-IDE_Morph.prototype.openProjectString = function (str) {
-    var msg,
-        myself = this;
-    this.nextSteps([
-        function () {
-            msg = myself.showMessage('Opening project...');
-        },
-        function () {nop(); }, // yield (bug in Chrome)
-        function () {
-            myself.rawOpenProjectString(str);
-        },
-        function () {
-            msg.destroy();
-        }
-    ]);
-};
-
-IDE_Morph.prototype.rawOpenProjectString = function (str) {
-    this.toggleAppMode(false);
-    this.spriteBar.tabBar.tabTo('scripts');
-    StageMorph.prototype.hiddenPrimitives = {};
-    StageMorph.prototype.codeMappings = {};
-    StageMorph.prototype.codeHeaders = {};
-    StageMorph.prototype.enableCodeMapping = false;
-    StageMorph.prototype.enableInheritance = true;
-    StageMorph.prototype.enableSublistIDs = false;
-    Process.prototype.enableLiveCoding = false;
-    if (Process.prototype.isCatchingErrors) {
-        try {
-            this.serializer.openProject(
-                this.serializer.load(str, this),
-                this
-            );
-        } catch (err) {
-            this.showMessage('Load failed: ' + err);
-        }
-    } else {
-        this.serializer.openProject(
-            this.serializer.load(str, this),
-            this
-        );
-    }
-    this.stopFastTracking();
-};
-
-		
-	console.log(sessionStorage.snapdemoid);
-	if(sessionStorage.snapdemoid){
-		var sessiondata;
-		var myself=new IDE_Morph();
-		$.ajax({
-			type : "POST",
-			url:"/res/getfile",
-			async: true,
-			headers : {
-				'Content-Type' : 'application/json; charset=utf-8'
-			},
-			data: JSON.stringify({id:sessionStorage.snapdemoid}),
-			dataType: "json",
-			success:function(data){
-				sessiondata=data.responseText;
-				myself.droppedText(sessiondata);
-			},
-			error:function(data){
-				sessiondata = data.responseText;
-				myself.droppedText(sessiondata);
-			}
-		})
-	}
 

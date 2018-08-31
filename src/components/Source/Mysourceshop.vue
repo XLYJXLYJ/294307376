@@ -7,7 +7,7 @@
             <router-link to="/source/mysourceshop/Mystudy"><li><p>学习</p></li></router-link>
             <router-link to="/source/mysourceshop/Mygame"><li><p>游戏</p></li></router-link>
             <router-link to="/source/mysourceshop/Mymusic"><li><p>音乐</p></li></router-link>
-            <router-link to="/source/mysourceshop/Mysourcelesson"><li><p>课程</p></li></router-link>
+            <!-- <router-link to="/source/mysourceshop/Mysourcelesson"><li><p>课程</p></li></router-link> -->
             <div class="line"></div>        
         </ul>  
         <router-view></router-view>

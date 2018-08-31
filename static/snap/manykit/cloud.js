@@ -22,8 +22,7 @@ IDE_Morph.prototype.openIn = function (world) {
 			}
 		}
 	});
-
-
+		
     this.buildPanes();
     world.add(this);
     world.userMenu = this.userMenu;
@@ -152,42 +151,79 @@ IDE_Morph.prototype.openIn = function (world) {
             this.shield.color = this.color;
             this.shield.setExtent(this.parent.extent());
             this.parent.add(this.shield);
-            myself.showMessage('Fetching project\nfrom the cloud...');
+            // myself.showMessage('Fetching project\nfrom the cloud...');
+            var demoxml
+            demoxml = location.hash.substr(35, 5)
+            var playerresultxml = new Promise((resolve,reject) =>{
+                axios.post('/res/getfile',{
+                    id:demoxml,
+                })
+                .then(function(response) { 
+                    resolve(response.data)
+                    // console.log(response.data)
+                })
+            })
+			playerresultxml.then(function (projectData) {
+				var msg;
+				if(!demoxml){
+					projectData=' '
+				}else{
+					myself.nextSteps([
+						function () {
+						   if (
+								projectData.indexOf('<project') === 0
+							) {
+								myself.rawOpenProjectString(projectData);
+							}
+							else if (
+								projectData === ' '   
+							) {
+								myself.toggleAppMode(false)
+								myself.shield.destroy();
+								myself.shield = null;
+								msg.destroy();
+								myself.toggleAppMode(false);
+							}
+							myself.hasChangedMedia = true;
+							myself.toggleAppMode(false);
+							myself.shield.destroy();
+							myself.shield = null;
+							msg.destroy();
+							myself.toggleAppMode(false);
+						},
+						function () {
+							myself.shield.destroy();
+							myself.shield = null;
+							msg.destroy();
+							myself.toggleAppMode(false);
+							}
+						]);
+					}
+				}
+            ) 
+        } else if (sessionStorage.snapdemoid) {
 
-            // make sure to lowercase the username
-            dict = myself.cloud.parseDict(location.hash.substr(9));
-            dict.Username = dict.Username.toLowerCase();
-
-            myself.cloud.getPublicProject(
-                dict.ProjectName,
-                dict.Username,
-                function (projectData) {
-                    var msg;
-                    myself.nextSteps([
-                        function () {
-                            msg = myself.showMessage('Opening project...');
-                        },
-                        function () {nop(); }, // yield (bug in Chrome)
-                        function () {
-                            if (projectData.indexOf('<snapdata') === 0) {
-                                myself.rawOpenCloudDataString(projectData);
-                            } else if (
-                                projectData.indexOf('<project') === 0
-                            ) {
-                                myself.rawOpenProjectString(projectData);
-                            }
-                            myself.hasChangedMedia = true;
-                        },
-                        function () {
-                            myself.shield.destroy();
-                            myself.shield = null;
-                            msg.destroy();
-                            applyFlags(dict);
-                        }
-                    ]);
-                },
-                this.cloudError()
-            );
+			var clouddata;
+			$.ajax({
+				type : "POST",
+				url:"/res/getfile",
+				async: true,
+				headers : {
+					'Content-Type' : 'application/json; charset=utf-8'
+				},
+				data: JSON.stringify({id: sessionStorage.snapdemoid}),
+				dataType: "json",
+				success:function(data){
+					clouddata=data.responseText;
+					myself.droppedText(clouddata);
+					sessionStorage.snapdemoid='';
+				},
+				error:function(data){
+					clouddata=data.responseText;
+					myself.droppedText(clouddata);
+					sessionStorage.snapdemoid='';
+				},
+			})
         } else if (location.hash.substr(0, 7) === '#cloud:') {
             this.shield = new Morph();
             this.shield.alpha = 0;
@@ -264,8 +300,8 @@ IDE_Morph.prototype.openIn = function (world) {
         interpretUrlAnchors.call(this);
     }
 };
-
-
+	
+	
 ProjectObj = function()
 {
     this.projectname = "";
@@ -371,12 +407,12 @@ Cloud.prototype.reconnect = function (
 
 Cloud.prototype.originalSaveProject = Cloud.prototype.saveProject;
 Cloud.prototype.saveProject = function (ide,proj) {
-
     let formData = new FormData();
 	let thumbnail = normalizeCanvas(
 		ide.stage.thumbnail(
 			SnapSerializer.prototype.thumbnailSize
-	)).toDataURL()
+	)).toDataURL();
+	
 	let filebir = ide.serializer.serialize(ide.stage)
 	let filebinary = new Blob([filebir]);
 	formData.append('userid',sessionStorage.userid);
@@ -398,8 +434,6 @@ Cloud.prototype.saveProject = function (ide,proj) {
 		processData: false,
 		cache: false,
 		success: function(data) {
-			console.log(data)
-			console.log(ide)
 		},
 	})					
 }
@@ -583,18 +617,4 @@ Cloud.prototype.callService = function (
     }
 };
 
-Cloud.prototype.getPublicProject = function (
-	projectName,
-    username,
-    onSuccess,
-    onError
-) {
-    this.request(
-        'post',
-        'filelist/?1',
-        onSuccess,
-        onError,
-        'Could not fetch project ' + projectName,
-        true
-    );
-};
+

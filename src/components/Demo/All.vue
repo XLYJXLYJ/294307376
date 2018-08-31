@@ -54,7 +54,8 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
                 list:[],//数据列表
                 userid:sessionStorage.userid,//用户id
                 dialogdelete:false,//删除弹出框
-                deleteId:''//删除文件ID
+                deleteId:'',//删除文件ID
+                allimgbuffer:''//图片流
             }
         },
         mounted: function () {      

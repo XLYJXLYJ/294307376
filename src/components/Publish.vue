@@ -110,6 +110,7 @@ export default {
                 sessionStorage.demodes = this.demodes   
                 var picsource = this.$refs.file_el.files[0]
                 this.uploadFile(picsource)
+                console.log(picsource)
                 // reader.onload = function () {   
                 //     this.readpicbinary = new Blob([this.result])
                 //     this.useruploadimg(this.result)

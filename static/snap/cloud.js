@@ -215,24 +215,24 @@ Cloud.prototype.withCredentialsRequest = function (
     wantsRawResponse,
     body) {
 
-    var myself = this;
-    this.checkCredentials(
-        function (username) {
-            if (username) {
-                myself.request(
-                    method,
-                    // %username is replaced by the actual username
-                    path.replace('%username', encodeURIComponent(username)),
-                    onSuccess,
-                    onError,
-                    errorMsg,
-                    wantsRawResponse,
-                    body);
-            } else {
-                onError.call(this, 'You are not logged in', 'Snap!Cloud');
-            }
-        }
-    );
+    // var myself = this;
+    // this.checkCredentials(
+        // function (username) {
+            // if (username) {
+                // myself.request(
+                    // method,
+                    // // %username is replaced by the actual username
+                    // path.replace('%username', encodeURIComponent(username)),
+                    // onSuccess,
+                    // onError,
+                    // errorMsg,
+                    // wantsRawResponse,
+                    // body);
+            // } else {
+                // onError.call(this, 'You are not logged in', 'Snap!Cloud');
+            // }
+        // }
+    // );
 };
 
 // Credentials management
