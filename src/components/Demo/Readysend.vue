@@ -7,7 +7,7 @@
                     <p>{{item.title}}</p>
                     <span>{{item.update_time|formatDate}}</span>
                 </div>
-                <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
+                <a href="/codeplay/#/snap" target='_blank'><button class="button01" @click="edit(item.id)">修改</button></a>
                 <button class="button02" @click.prevent.stop="Canpublic(item.id)">取消发布</button>
                 <span class="down"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
                 <span class="down"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>

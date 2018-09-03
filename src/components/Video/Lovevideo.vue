@@ -65,7 +65,7 @@ import { looksum } from '../../public/seesum.js'
     width: 300px;
     position: relative;
     left:818px;
-    top: -261px;
+    top: -401px;
 }
 .container38 ul li{
     height: 77px;

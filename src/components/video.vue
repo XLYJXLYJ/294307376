@@ -357,7 +357,7 @@ export default{
 }
 .container35{
     margin: 0 auto;
-    height: 934px;
+    height: 734px;
     width: 1200PX;
     z-index: -1;
 }
@@ -365,18 +365,19 @@ export default{
     width: 1200px;
     height: 158px;
     position: absolute;
-    top: 139px;
+    top: 85px;
     background: @background-color;
     z-index: 10;
 }
 .container36 .one{
     height: 28px;
-    width: 268px;
+    width: 468px;
     color: #43455a;
-    font-size:@lllg-size;
+    font-size:@llg-size;
     position: relative;
     top: 34px;
     left: 36px;
+    overflow: hidden;
 }
 .container36 .two{
     height: 12px;
@@ -527,8 +528,8 @@ export default{
     width: 1200px;
     margin: 0 auto;
     position: relative;
-    top: 317px;
-        overflow-y:visible;
+    top: 178px;
+    overflow-y:visible;
 }
 .container35 .mydemo_framebox img{
     width: 100%;
@@ -557,13 +558,15 @@ export default{
     font-size:@xm-size;
 }
 .con3536 .comment{
-    width: 100%;
+    width: 1200px;
     height: 182px;
     position: relative;
     background: @background-color;
-    top: 0px;
+    top: 30px;
     left: 0px;
     z-index: 0;
+    margin: 0 auto;
+    margin-bottom: 30px;
 }
 .con3536 .comment01{
     margin: 0 auto;
@@ -579,7 +582,7 @@ export default{
     color: #43455a;
     position: absolute;
     top: 47px;
-    left: 0px;
+    left: 36px;
 }
 .con3536 .comment01 .explaintext{
     height: 84px;
@@ -588,7 +591,7 @@ export default{
     color: #43455a;
     position: absolute;
     top: 85px;
-    left: 0px;
+    left: 36px;
     word-wrap: break-word;
     overflow-y: hidden;
 }
@@ -605,7 +608,7 @@ export default{
     height: 87px;
     position: absolute;
     top: 45px;
-    left: 1050px;
+    left: 1014px;
 }
 .con3536 .comment01 .qrsharetext button{
     width:90px;

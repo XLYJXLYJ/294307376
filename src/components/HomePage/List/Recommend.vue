@@ -146,11 +146,15 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
 .container01 .imgcon{
     height: 170px;
     width: 173px;
+    display: table-cell;
+    vertical-align: middle;
+    overflow: hidden;
 }
 .container01 .imgcon img{
     width: 100%;
-    height: 100%;
+    height:auto;
     border-radius: 4px;
+    overflow: hidden;
 }
 // .container01 .imgcon img:hover{
 

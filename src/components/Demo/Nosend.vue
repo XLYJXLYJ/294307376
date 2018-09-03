@@ -7,7 +7,7 @@
                     <p>{{item.title}}</p>
                     <span>{{item.update_time|formatDate}}</span>
                 </div>
-                <router-link to="/Snap"><button class="button01" @click="edit(item.id)">修改</button></router-link>
+                <a href="/codeplay/#/snap" target='_blank'><button class="button01" @click="edit(item.id)">修改</button></a>
                 <router-link to="/publish"><button class="button02" @click="publish(item.id)">发布</button></router-link> 
                 <p class="cancelpub" @click.prevent.stop="deletedemo01(item.id)">删除</p>
             </li>    

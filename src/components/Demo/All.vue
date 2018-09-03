@@ -6,8 +6,8 @@
                     <img :src="item.imgBuffer" alt="">
                     <p>{{item.title}}</p>
                     <span>{{item.create_time|formatDate}}</span>
-                </div>
-                <router-link to="/Snap"><button class="button01" @click="edit(item.id,item.state)">修改</button></router-link>
+                </div><a></a>
+                <a href="/codeplay/#/snap" target='_blank'><button class="button01" @click="edit(item.id,item.state)">修改</button></a>
                 <button class="button02" @click.prevent.stop="isPublic(item.id,item.state)">{{item.state==0?'发布':'取消发布'}}</button>
                 <span class="down"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
                 <span class="down"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>

@@ -67,7 +67,7 @@ import { looksum } from '../../public/seesum.js'
     width: 300px;
     position: relative;
     left:818px;
-    top: -261px;
+    top: -401px;
     text-decoration: none;
 }
 
