@@ -69,11 +69,7 @@
             <!-- 登录注册 -->
             <div class="login_sign" v-show="loginSign"> 
                 <p class="login" type="text"  
-                @click="dialogLogin = true, 
-                dialogLoginShow = true, 
-                dialogRegister = false, 
-                dialogForgetPassword= false
-                dialogPasswordSure=false">登录/</p>  
+                @click="totallogin()">登录/</p>  
                 <p class="sign"  type="text"
                 @click="dialogLogin = true, 
                 dialogLoginShow = false, 
@@ -111,13 +107,12 @@
                             <button class="register" @click.prevent="Loginbtn">登录</button>
                             <div class="free_res"><p>没有账号?</p><span @click="dialogLoginShow = false,dialogRegister = true">免费注册</span></div>    
                         </form> 
-                        <!-- <div class="threelogin">
-                            <span class="line">.</span>
-                            <p class="lo">第三方登录</p>
-                             <div id="qqLoginBtn"><img class="qq" src="../../assets/login/qq2.png" alt=""></div>
-                            <div><img class="wechat" src="../../assets/login/wechat2.png" alt=""></div>
-                            <span id="qq_login_btn"></span>
-                        </div> -->
+                        <div class="threelogin">
+                            <!-- <div id="qqLoginBtn"><img class="qq" src="../../assets/login/qq2.png" alt=""></div> -->
+                            <div id="qqLoginBtn" class="qq" @click="qqlogin"><img src="../../assets/login/qq2.png" alt=""></div>
+                            <!-- <div><img class="wechat" src="../../assets/login/wechat2.png" alt=""></div>
+                            <span id="qq_login_btn"></span> -->
+                        </div>
                     </div>
                     <div class="container19" v-show="dialogRegister">
                         <el-form :model="formRegister" :rules="rules">
@@ -193,6 +188,7 @@ export default {
             btnTxt:'获取验证码',//验证码按钮文字
             btnTxtColor01:true,//验证码按钮的颜色
             btnTxtColor02:false,//验证码按钮的颜色
+            nickname:'',
             // dropDowm:false,
             formLogin: {//登录表单
                 userName: '',//用户输入的名称
@@ -236,41 +232,72 @@ export default {
     },
     mounted:function() { 
         // 判断session值是否存在，如果存在，则执行
-        this.Getsession()
-        // this.loginqq()
+        // this.qqlogin()
         // this.getData()
         // this.Getsessionname()
+         this.Getsession()
+        //     QC.Login({
+        //         btnId:"qqLoginBtn"    //插入按钮的节点id
+        //     });
         }, 
         methods: {
+        totallogin(){
+            this.dialogLogin = true, 
+            this.dialogLoginShow = true, 
+            this.dialogRegister = false, 
+            this.dialogForgetPassword= false,
+            this.dialogPasswordSure=false,
+            this.qqlogin()
+        },
+        qqlogin(){
+            let that = this
+            QC.Login({
+                    btnId: "qqLoginBtn" //插入按钮的节点id
+                },function(oInfo, oOpts) {
+                    let nickname=oInfo.nickname
+                    QC.Login.getMe(function(openId, accessToken) {
+                    that.axios.post('/res/thirdlogin', {
+				        openid:openId,
+                        accesstoken:accessToken, 
+                        info:nickname,
+                        type:1
+                    })
+                    .then(response => {
+                        var datamsg = response.data
+                        that.msg = response.data.errmsg
+                        if(!response.data.data){
+                            this.$message({
+                                message:datamsg.errmsg,
+                                center:true
+                            })
+                        }else{
+                            that.dialogLogin = false
+                            sessionStorage.username= datamsg.userName;
+                            that.Getsession()
+                        }
+                    })      
+                })
+            });     
+        },
 
-        // loginqq(){var ver="1.0.1";try{ver=opener.QC.getVersion();}catch(e){}
-        // ver=ver?"-"+ver:ver;var qc_script;var reg=/\/qzone\/openapi\/qc_loader\.js/i;var scripts=document.getElementsByTagName("script");for(var i=0,script,l=scripts.length;i<l;i++){script=scripts[i];var src=script.src||"";var mat=src.match(reg);if(mat){qc_script=script;break;}}
-        // var s_src='http://qzonestyle.gtimg.cn/qzone/openapi/qc'+ver+'.js';var arr=['src='+s_src+''];for(var i=0,att;i<qc_script.attributes.length;i++){att=qc_script.attributes[i];if(att.name!="src"&&att.specified){arr.push([att.name.toLowerCase(),'"'+att.value+'"'].join("="));}}
-        // if(document.readyState!='complete'){document.write('<script '+arr.join(" ")+' ><'+'/script>');}else{var s=document.createElement("script"),attr;s.type="text/javascript";s.src=s_src;for(var i=arr.length;i--;){attr=arr[i].split("=");if(attr[0]=="data-appid"||attr[0]=="data-redirecturi"||attr[0]=="data-callback"){s.setAttribute(attr[0],attr[1].replace(/\"/g,""));}}
-        // var h=document.getElementsByTagName("head");if(h&&h[0]){h[0].appendChild(s);}}},
+        qq_user_info: function(){
+            let that = this
+            QC.Login({
+                //请求成功后的回调
+            },function(oInfo,oOpts){
+                that.set_user({
+                    name: oInfo.nickname,
+                    imgUrl: oInfo.figureurl_qq_1,
+                    email: ""
+                })
+                that.handleMask(false)
+                that.setLocal()
+            },function(){
+                console.log("退出成功")
+            })
+        },
 
 
- 
-        // cbLogoutFun() {
-        //     console.log("注销成功!");
-        // },
-        // quit() {
-        //     QC.Login.signOut()
-        // },
-        
-        // testqq(){
-        //     console.log(123)
-        //     QC.Login({
-        //             btnId: "qqLoginBtn" //插入按钮的节点id
-        //         },function(oInfo, oOpts) {
-        //             console.log(222)
-        //             console.log(oInfo)
-        //             QC.Login.getMe(function(openId, accessToken) {
-        //             console.log(openId);
-        //             console.log(accessToken);
-        //         })
-        //     });     
-        // },
 
 
         ...mapActions(['Getsession01']),  
@@ -966,40 +993,12 @@ export default {
     cursor: pointer;
     font-weight: 600;
 }
-.container21 .threelogin .line{
-    position: absolute;
-    top: 391px;
-    width: 420px;
-    height:2px;
-    background-color:#f1f1f1;
-    // overflow:hidden;
-}
-.container21 .threelogin .line{
-    position: absolute;
-    top: 391px;
-    width: 420px;
-    height:1px;
-    background-color:#f1f1f1;
-    // overflow:hidden;
-}
-.container21 .threelogin .lo{
-    position: absolute;
-    top: 383px;
-    left: 171px;
-    width: 81px;
-    height:17px;
-    color:#999999;
-    background: #fff;
-    text-align: center;
-    font-size: 16px;
-    padding-left: 8px;
-    padding-right: 8px;
-    // overflow:hidden;
-}
+
+
 .container21 .threelogin .qq{
     position: absolute;
-    top: 424px;
-    left: 120px;
+    top: 308px;
+    right:42px;
     width: 50px;
     height:50px;
     cursor: pointer;

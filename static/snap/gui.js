@@ -5413,7 +5413,7 @@ IDE_Morph.prototype.logout = function () {
 IDE_Morph.prototype.saveProjectToCloud = function (name) {
     var myself = this;
     if (name) {
-        this.showMessage('Saving project\nto the cloud...');
+		this.showMessage('Saving project\nto the cloud...',2);
         this.setProjectName(name);
         this.cloud.saveProject(
             this,
@@ -6317,7 +6317,7 @@ ProjectDialogMorph.prototype.installCloudProjectList = function (pl) {
     };
     this.body.add(this.listField);
     if (this.task === 'open') {
-        this.recoverButton.show();
+        this.recoverButton.hide();
     }
     this.shareButton.show();
     this.unshareButton.hide();
@@ -6455,7 +6455,7 @@ ProjectDialogMorph.prototype.saveProject = function () {
 
 ProjectDialogMorph.prototype.saveCloudProject = function () {
     var myself = this;
-    this.ide.showMessage('Saving project\nto the cloud...');
+    this.ide.showMessage('Saving project\nto the cloud...',2);
     this.ide.cloud.saveProject(
         this.ide,
         function () {

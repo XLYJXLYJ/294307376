@@ -10,12 +10,13 @@ IDE_Morph.prototype.openIn = function (world) {
 		dataType: "json",
 		async:false,
 		success:function(res){
-			localStorage.username=res.data.username
-			localStorage.password=res.data.password
+			sessionStorage.username=res.data.username
+			sessionStorage.password=res.data.password
+			sessionStorage.userid=res.data.userid
 			if(res.data.userid){
 				myself.cloud.login(
-				localStorage.username,
-				localStorage.password,    
+				sessionStorage.username,
+				sessionStorage.password,    
 				null,
 				null,
 				null)
@@ -359,15 +360,17 @@ Cloud.prototype.login = function (
 					myself.username = username;
 					myself.password = password;
 					myself.id = objStr.data.id;
+					sessionStorage.userid=objStr.data.id;
 					if(callBack!==null){
 						callBack.call(
 						null,
 						request.responseText,
-						'logout suc!'
+						'login suc!'
 						);
 					}
 
                 } else {
+					
 					myself.username = null;
 					myself.password = null;
 					myself.id = null;
