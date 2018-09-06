@@ -9,7 +9,7 @@
                 <li v-for="(item,index) in list01" :key='item.id' v-if="index<6">
                     <div class="share">
                         <img :src="item.imgBuffer" alt="">
-                        <p>{{item.title}}</p>
+                        <p :title="item.title">{{item.title}}</p>
                         <span>作者：{{item.auth}}</span>
                     </div>
                 </li>
@@ -272,7 +272,10 @@ export default {
     text-align: left;
     position: relative;
     top: 0px;
-    left: 0px;   
+    left: 0px;  
+    width: 150px;
+    height: 28px;
+    overflow: hidden;  
 }
 .container41 .block span{
     font-size:@xm-size;
@@ -280,6 +283,9 @@ export default {
     position: relative;
     top: 0px;
     left: 0px;   
+    width: 150px;
+    height: 38px;
+    overflow: hidden; 
 }
 .container41 .block img{
     width: 154px;

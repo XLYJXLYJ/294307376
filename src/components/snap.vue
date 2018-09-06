@@ -13,6 +13,18 @@ export default{
                 demoxml:'',//作品数据
             }
         },
+        created(){
+            let url=window.location.href;
+            // var theRequest = new Object();  
+            if (window.location.href.indexOf("?") != -1) {  
+                var str = url.split("?=");
+                this.$store.state.shareid=str[1];
+                sessionStorage.snapdemoid=str[1];
+                // for(var i = 0; i < strs.length; i ++) {  
+                //     theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+                // }  
+            }
+        },
         mounted(){
             this.loadprojectxml()
         },

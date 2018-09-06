@@ -232,7 +232,6 @@ IDE_Morph.prototype.openIn = function (world) {
             demoxml = location.hash.substr(36, 5)
             demouser = location.hash.substr(18, 5)
             axios.post('/res/getfile',{
-                userid:demouser,
                 id:demoxml,
                 state:3
             })

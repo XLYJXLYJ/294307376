@@ -36,8 +36,37 @@
                     <!-- <iframe class="video" frameborder="0" id="myFrameId" :src="'static/snap/snap.html#run:/codeplay/file/'+demoid+'.xml'" name="myFrameName"></iframe> -->
                 </div>
                 <div class="mydemo_frame">
-                    <router-link class="Myvideo" to="/Video/Myvideo">Ta的作品</router-link>
-                    <router-link class="Lovevideo" to="/Video/Lovevideo">推荐作品</router-link>
+                    <div class="Myvideo" @click="ismy=true,islove=false" >Ta的作品</div>
+                    <div class="container37" v-show="ismy">
+                        <ul>
+                            <router-link to="/Video">
+                                <li v-for="(item,index) in myvideolist" :key='item.id' v-if='index<5' @click="edit03(item.id)">
+                                    <img class="jinglin" :src="item.imgBuffer" alt="">
+                                    <p class="jinglingtext" :title="item.title">{{item.title}}</p>
+                                    <span class="time">分享于：{{item.create_time|formatDate}}</span>
+                                    <span class="icon_see_zan"><i class="icon_zan"><span>{{item.praisetotal|looksums}}</span></i></span>
+                                    <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
+                                    <span class="icon_see_see01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
+                                </li>
+                            </router-link>
+                        </ul>
+                    </div>
+
+                    <div class="Lovevideo" @click="ismy=false,islove=true" >推荐作品</div>
+                    <div class="container38" v-show="islove">
+                        <ul>
+                            <router-link to="/Video">
+                                <li v-for="(item,index) in lovevideolist" :key='item.id' v-if='index<5' @click="edit04(item.id)">
+                                    <img class="jinglin" :src="item.imgBuffer" alt="">
+                                    <p class="jinglingtext" :title="item.title">{{item.title}}</p>
+                                    <span class="time">分享于：{{item.create_time|formatDate}}</span>
+                                    <span class="icon_see_zan"><i class="icon_zan"><span>{{item.praisetotal|looksums}}</span></i></span>
+                                    <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
+                                    <span class="icon_see_see01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
+                                </li>
+                            </router-link>
+                        </ul>
+                    </div>
                 </div>   
             </div>
             <router-view></router-view>
@@ -87,6 +116,7 @@
 import Header from '@/components/HomePage/header'
 import Footer from '@/components/HomePage/Footer'
 import { formatDate } from '../public/time.js'
+import { looksum } from '../public/seesum.js'
 var QRCode = require('qrcode')//二维码生成插件
 var canvas = '';
 export default{
@@ -94,6 +124,10 @@ export default{
         formatDate(time) {
         var date = new Date(time);
         return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
+        },
+        looksums(n) {//数字过滤器
+            var n = n;
+            return looksum(n);
         }
     },
     data(){
@@ -115,13 +149,31 @@ export default{
             videoimg01:'',//控制用户头像是否显示
             videoimg02:'',//控制默认头像是否显示
             imgBuffer:'',//用户自选头像imgbuffer
+            uservideo:true,//控制是否显示list
+            myvideolist:'',//myvideolist数据列表
+            lovevideolist:[],//lovevideos数据列表
+            ismy:true,//是否显示我的作品，默认是true
+            islove:false//是否显示推荐的作品，默认是false
         }
     },
     created(){
+        this.Getsession()
+        let url=window.location.href;
+        // var theRequest = new Object();  
+        if (window.location.href.indexOf("?") != -1) {  
+            var str = url.split("?=");
+            this.$store.state.shareid=str[1];
+            sessionStorage.id=str[1];
+            // for(var i = 0; i < strs.length; i ++) {  
+            //     theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+            // }  
+        }
         this.loadproject()
+        this.Getalldemo()//获取myvideo初始数据
+        this.getdemo01()//获取lovevideo初始数据
     },
     mounted(){
-        this.recommendRoute()
+        // this.recommendRoute()
         this.loadprojectplay()
         this.$store.state.shareid = sessionStorage.id  
     },
@@ -146,9 +198,9 @@ export default{
             }
         },
         //路由跳转
-        recommendRoute(){
-            this.$router.push({ name: 'Lovevideo' })
-        },
+        // recommendRoute(){
+        //     this.$router.push({ name: 'Lovevideo' })
+        // },
         //加载默认数据
         loadproject(){
             // if(sessionStorage.userid!=='unfined')
@@ -164,10 +216,10 @@ export default{
                 this.isPraise = response.data.data.isPraise
                 this.isAttention= response.data.data.isAttention
                 this.publishtime= response.data.data.publishtime
-                this.$store.state.authid= response.data.data.authid//赋值全局的作者名称
+                sessionStorage.authid= response.data.data.authid//赋值全局的作者名称
                 this.authid= response.data.data.authid//赋值video的作者名称
                 this.demoid = sessionStorage.id 
-                this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username='+ this.authid +'&ProjectName='+this.$store.state.shareid
+                this.bannerUrl = 'http://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username=many&ProjectName='+this.$store.state.shareid
                 //  this.bannerUrl = 'localhost:8080/static/snap/playersharesnap.html#present:Username=10004&ProjectName=20'
                 sessionStorage.sharenameid=this.authid
                 sessionStorage.sharedesid=this.$store.state.shareid
@@ -338,6 +390,64 @@ export default{
                 
                 }
             })
+        },
+        //加载myvideo默认数据
+        Getalldemo(){
+            this.axios.post('/res/filelist',{
+                userid:sessionStorage.authid,
+                state:1
+            })
+            .then(response => {        
+                if(response.data.data.msg=='这回真的没有了~'){
+                    this.uservideo = false
+                }else{
+                    this.myvideolist=response.data.data
+                }
+            })
+        },
+        //点击修改myvideo数据
+        edit03(id){                 
+            sessionStorage.id = id
+            location.reload()
+        },
+        //加载lovevideo默认数据
+        getdemo01(){
+            this.axios.post('/res/filelist',{
+                state:4,
+                sortstate:2,
+                pagesize:5
+            })
+            .then(response => {   
+                this.lovevideolist=response.data.data
+                this.$store.state.searchdemo=false
+                this.$store.state.recommenddemo=true
+                this.$store.state.productiondemo=false
+            })
+        },
+        //点击修改lovevideo数据
+        edit04(id){                 
+            sessionStorage.id = id
+            location.reload()
+        },
+        Getsession() {  
+            this.axios.get('/res/verify')
+            .then(response =>{
+                if(response.data.data.userid){
+                    this.publicKey = response.data.data.publicKey
+                    this.dialogLogin = false;
+                    this.loginSign = false;
+                    sessionStorage.userid = response.data.data.userid
+                    sessionStorage.usernamesession = response.data.data.username
+                    this.$store.state.usernamesession02 = sessionStorage.usernamesession
+                    this.$store.state.userid = sessionStorage.userid  
+                    this.userCenter = true; 
+                }else{
+                    this.dialogLogin = false;
+                    this.userCenter = false;
+                    this.loginSign = true;
+                    this.publicKey = response.data.data.publicKey
+                }
+            }) 
         },
     },
     components:{
@@ -549,6 +659,7 @@ export default{
     top:22px;  
     color: #7E7E7E;
     font-size:@xm-size;
+    cursor: pointer;
 }
 .container35  .mydemo_frame .Lovevideo{
     position: absolute;
@@ -556,6 +667,7 @@ export default{
     top:22px;  
     color: #7E7E7E;
     font-size:@xm-size;
+    cursor: pointer;
 }
 .con3536 .comment{
     width: 1200px;
@@ -666,5 +778,248 @@ export default{
     // position:absolute;
     // width: 1200px!important;
     // height: 100%!important;
+}
+
+.con3536 .container38{
+    height: 500px;
+    width: 370px;
+    position: relative;
+    left:20px;
+    top: 60px;
+    text-decoration: none;
+}
+.con3536 .container38 ul li{
+    height: 77px;
+    width: 300px;
+    position: relative;
+    left:0px;
+    margin-bottom: 18px;
+    cursor: pointer;
+}
+.con3536 .container38 .jinglin{
+    position: absolute;
+    height: 77px;
+    width: 77px;
+    top: 18px;
+    left: 32px;
+}
+.con3536 .container38 .jinglin img{
+    width: 100%;
+    height: 100%;
+}
+.con3536 .container38 .jinglingtext{
+    position: absolute;
+    height: 26px;
+    width: 200px;
+    top: 17px;
+    left: 126px;
+    font-size:@lg-size;
+    color: #43455a;
+    overflow: hidden;
+}
+.con3536 .container38 .jinglingtext:hover{
+    color: @main-color;
+}
+.con3536 .container38 .time{
+    position: absolute;
+    width: 200px;
+    top: 55px;
+    left: 126px;
+    font-size:@sm-size;
+    color: #b1b2ba;
+    overflow: hidden;
+}
+.con3536 .container38 .icon_zan{
+    background: url(../assets/video/zan.png) no-repeat;
+    width: auto;
+    height: 16px;
+    position: relative;
+    left: 93px;
+}
+.con3536 .container38 .icon_see{
+    width: auto;
+    height: 14px;
+    position: relative;
+    left: 20px;
+    background: url(../assets/video/see01.png) no-repeat;
+}
+.con3536 .container38 .icon_star{
+    width: auto;
+    height: 14px;
+    position: relative;
+    left: 20px;
+    background: url(../assets/video/star01.png) no-repeat;
+}
+.con3536 .container38 .icon_see_zan{
+    height: 16px;
+    width: auto;
+    font-size:@sm-size;
+    position: relative;
+    left: 32px;
+    top: 77px;
+    text-decoration: none;
+    color: @list-color;
+}
+.con3536 .container38 .icon_see_star01{
+    height: 16px;
+    width: auto;
+    font-size:@sm-size;
+    position: relative;
+    left: 124px;
+    top: 77px;
+    text-decoration: none;
+    color: @list-color;
+}
+.con3536 .container38 .icon_see_see01{
+    height: 16px;
+    width: auto;
+    font-size:@sm-size;
+    position: relative;
+    left: 146px;
+    top: 77px;
+    text-decoration: none;
+    color: @list-color;
+}
+.con3536 .container38 .icon_zan span{
+    position: relative;
+    left: 6px;
+    margin-left: 18px;
+    font-style: normal;
+}
+.con3536 .container38 .icon_star span{
+    position: relative;
+    left: 6px;
+    margin-left: 18px;
+    font-style: normal;
+}
+.con3536 .container38 .icon_see span{
+    position: relative;
+    left: 6px;
+    margin-left: 18px;
+    font-style: normal;
+}
+
+.con3536 .container37{
+    height: 500px;
+    width: 370px;
+    position: relative;
+    left:20px;
+    top: 60px;
+    text-decoration: none;
+}
+
+.con3536 .container37 ul li{
+    height: 77px;
+    width: 300px;
+    position: relative;
+    left:0px;
+    margin-bottom: 18px;
+    cursor: pointer;
+    text-decoration: none;
+}
+ .con3536 .container37 .jinglin{
+    position: absolute;
+    height: 77px;
+    width: 77px;
+    top: 18px;
+    left: 32px;
+}
+ .con3536 .container37 .jinglin img{
+     width: 100%;
+     height: 100%;
+}
+.con3536 .container37 .jinglingtext{
+    position: absolute;
+    height: 26px;
+    width: 200px;
+    top: 17px;
+    left: 126px;
+    font-size:@lg-size;
+    color: #43455a;
+    overflow:hidden;
+}
+.con3536 .container37 .jinglingtext:hover{
+    color: @main-color;
+}
+.con3536 .container37 .time{
+    position: absolute;
+    width: 200px;
+    top: 55px;
+    left: 126px;
+    font-size:@sm-size;
+    color: #b1b2ba;
+    overflow: hidden;
+}
+.con3536 .container37 .icon_zan{
+    background: url(../assets/video/zan.png) no-repeat;
+    width: auto;
+    height: 16px;
+    position: relative;
+    left: 93px;
+}
+.con3536 .container37 .icon_see{
+    width: auto;
+    height: 14px;
+    position: relative;
+    left: 20px;
+    background: url(../assets/video/see01.png) no-repeat;
+}
+.con3536 .container37 .icon_star{
+    width: auto;
+    height: 14px;
+    position: relative;
+    left: 20px;
+    background: url(../assets/video/star01.png) no-repeat;
+}
+.con3536 .container37 .icon_see_zan{
+    height: 16px;
+    width: auto;
+    font-size:@sm-size;
+    position: relative;
+    left: 32px;
+    top: 77px;
+    text-decoration: none;
+    color: @list-color;
+}
+.con3536 .container37 .icon_see_star01{
+    height: 16px;
+    width: auto;
+    font-size:@sm-size;
+    position: relative;
+    left: 124px;
+    top: 77px;
+    text-decoration: none;
+    color: @list-color;
+}
+.con3536 .container37 .icon_see_see01{
+    height: 16px;
+    width: auto;
+    font-size:@sm-size;
+    position: relative;
+    left: 146px;
+    top: 77px;
+    text-decoration: none;
+    color: @list-color;
+}
+.con3536 .container37 .icon_zan span{
+    position: relative;
+    left: 8px;
+    margin-left: 18px;
+    font-style: normal;
+}
+.con3536 .container37 .icon_star span{
+    position: relative;
+    left: 8px;
+    margin-left: 18px;
+    font-style: normal;
+}
+.con3536 .container37 .icon_see span{
+    position: relative;
+    left: 8px;
+    margin-left: 18px;
+    font-style: normal;
+}
+.con3536 .container37 a{
+    text-decoration: none;
 }
 </style>

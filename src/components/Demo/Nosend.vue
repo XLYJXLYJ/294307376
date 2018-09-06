@@ -3,11 +3,13 @@
         <ul v-show="noSend">
             <li v-for="item in list" :key='item.id'>
                 <div class="all_up">
-                    <img :src="item.imgBuffer" alt="">
+                    <router-link :to="'/video?='+item.id">
+                        <img :src="item.imgBuffer" alt="">
+                    </router-link>
                     <p>{{item.title}}</p>
                     <span>{{item.update_time|formatDate}}</span>
                 </div>
-                <a href="/codeplay/#/snap" target='_blank'><button class="button01" @click="edit(item.id)">修改</button></a>
+                <a :href="'/codeplay/#/snap?='+item.id" target="_blank"><button class="button01" @click="edit(item.id)">修改</button></a>
                 <router-link to="/publish"><button class="button02" @click="publish(item.id)">发布</button></router-link> 
                 <p class="cancelpub" @click.prevent.stop="deletedemo01(item.id)">删除</p>
             </li>    
@@ -123,7 +125,7 @@ import { formatDate } from '../../public/time.js'
 @import '../../assets/index.less';
 .container29 {
     margin: 0 auto;
-    height: 530px;
+    height: 540px;
     width: 1160px;
     position: relative;
     left: -20px;
@@ -147,7 +149,7 @@ import { formatDate } from '../../public/time.js'
     left: 0px; 
     height: 252px;
     z-index: 100;
-    width: 358px;
+    width: 359px;
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;

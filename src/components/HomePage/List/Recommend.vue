@@ -2,11 +2,12 @@
     <div class="container01" v-show="$store.state.recommenddemo">
         <el-row :gutter="10" class="el-row">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id' class="el-col"> 
-                    <router-link to="/Video">
+                    <!-- <a :href="'http://www.manykit.com/codeplay/#/Video?='+item.id"> -->
+                    <router-link :to="'/video?='+item.id">
                         <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
                             <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>
-                            <p class="item-title">{{item.title}}</p>
-                            <!-- <span class="game_cat" :title=item.desc>{{item.desc}}</span> -->
+                            <p class="item-title" :title="item.title">{{item.title}}</p>
+                            <span class="game_cat" :title=item.desc>{{item.desc}}</span>
                             <div class="downbox">
                                 <span class="down01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
                                 <span class="down02"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
@@ -18,6 +19,7 @@
                             </div>
                         </div>
                     </router-link>
+                    <!-- </a> -->
             </el-col>         
         </el-row>
         <!-- <button class="button" v-show="load" @click="Seemorerecommend">查看更多作品</button>
@@ -133,7 +135,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
 }
 .container01 .list_pic{
     margin-top: 25px;
-    height: 254px;
+    height: 274px;
     width: 173px;
     cursor: pointer;
     background:@background-color;
@@ -180,9 +182,9 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     font-size:12px;
     position: relative;
     top: 18px;
-    text-align: left;
+    left: 9px;
     color: @list-color;
-    width: 170px;
+    width: 160px;
     height: 18px;
     overflow: hidden;
 }
@@ -222,7 +224,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     width: 162px;
     height: 13px;
     position: relative;
-    top: 20px;
+    top: 23px;
     left: 9px;
 }
 .container01 .down01{
@@ -279,7 +281,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     height: 18px;
     width: 400px;
     position: absolute;
-    top: 230px;
+    top: 250px;
     left: 9px;
 }
 .container01 .list_pic .author img{

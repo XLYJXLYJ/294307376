@@ -147,61 +147,116 @@ IDE_Morph.prototype.openIn = function (world) {
                 this.rawOpenProjectString(getURL(hash));
             }
             applyFlags(myself.cloud.parseDict(location.hash.substr(5)));
-        } else if (location.hash.substr(0, 9) === '#present:') {
+        } else if (location.hash.substr(0, 9) === '#present:')  {
             this.shield = new Morph();
             this.shield.color = this.color;
             this.shield.setExtent(this.parent.extent());
             this.parent.add(this.shield);
             // myself.showMessage('Fetching project\nfrom the cloud...');
             var demoxml
+            var demouser
+            // demoxml = location.hash.substr(36, 5)
+            // $('#demoxml').html(1);
             demoxml = location.hash.substr(35, 5)
+            demouser = location.hash.substr(18, 4)
+            axios.post('/res/getfile',{
+                id:demoxml,
+                state:3
+            })
+            .then(function(response) { 
+                var namexml = response.data.data.name;
+                var titlexml = response.data.data.title;
+				console.log(response.data)
+                document.getElementById("demouser").innerHTML=namexml;
+                document.getElementById("demoxml").innerHTML=titlexml;
+            })
+
             var playerresultxml = new Promise((resolve,reject) =>{
                 axios.post('/res/getfile',{
                     id:demoxml,
                 })
-                .then(function(response) { 
-                    resolve(response.data)
+                .then(function(res) { 
+                    resolve(res.data)
                     // console.log(response.data)
                 })
-            })
-			playerresultxml.then(function (projectData) {
-				var msg;
-				if(!demoxml){
-					projectData=' '
-				}else{
-					myself.nextSteps([
-						function () {
-						   if (
-								projectData.indexOf('<project') === 0
-							) {
-								myself.rawOpenProjectString(projectData);
-							}
-							else if (
-								projectData === ' '   
-							) {
-								myself.toggleAppMode(false)
-								myself.shield.destroy();
-								myself.shield = null;
-								msg.destroy();
-								myself.toggleAppMode(false);
-							}
-							myself.hasChangedMedia = true;
-							myself.toggleAppMode(false);
-							myself.shield.destroy();
-							myself.shield = null;
-							// msg.destroy();
-							myself.toggleAppMode(false);
-						},
-						function () {
-							// myself.shield.destroy();
-							myself.shield = null;
-							// msg.destroy();
-							myself.toggleAppMode(false);
-							}
-						]);
-					}
-				}
-            ) 
+            });
+            playerresultxml.then(function (projectData) {
+                var msg;
+
+                // alert(projectData)
+                myself.nextSteps([
+                    function () {
+                        msg = myself.showMessage('Opening project...');
+                    },
+                    function () {nop(); }, // yield (bug in Chrome)
+                    function () {
+                        if (projectData.indexOf('<snapdata') === 0) {
+                            myself.rawOpenCloudDataString(projectData);
+                        } else if (
+                            projectData.indexOf('<project') === 0
+                        ) {
+                            myself.rawOpenProjectString(projectData);
+                        }
+                        myself.hasChangedMedia = true;
+                        myself.toggleAppMode(true)
+                    },
+                    function () {
+                        myself.shield.destroy();
+                        myself.shield = null;
+                        msg.destroy();
+                        // applyFlags(dict);
+                    }
+                ]);
+            }
+        ) 
+
+            // axios.post('/res/getfile',{
+            //     id:sessionStorage.id,
+            //     id:11576,
+            // })
+            // .then(response => {  
+            //     alert('成功了')                        
+            //    var projectData = response.data  
+            //    console.log('1111111'+projectData)  
+            //    myself.rawOpenProjectString(projectData);
+            // })
+
+            // console.log('22222'+projectData)  
+            // make sure to lowercase the username
+            // dict = SnapCloud.parseDict(location.hash.substr(9));
+            // dict.Username = dict.Username.toLowerCase();
+
+            // SnapCloud.getPublicProject(
+                // dict.ProjectName,
+                // dict.Username,
+            //     function (projectData) {
+            //         var msg;
+            //         alert(projectData)
+            //         myself.nextSteps([
+            //             function () {
+            //                 msg = myself.showMessage('Opening project...');
+            //             },
+            //             function () {nop(); }, // yield (bug in Chrome)
+            //             function () {
+            //                 if (projectData.indexOf('<snapdata') === 0) {
+            //                     myself.rawOpenCloudDataString(projectData);
+            //                 } else if (
+            //                     projectData.indexOf('<project') === 0
+            //                 ) {
+            //                     myself.rawOpenProjectString(projectData);
+            //                 }
+            //                 myself.hasChangedMedia = true;
+            //             },
+            //             function () {
+            //                 myself.shield.destroy();
+            //                 myself.shield = null;
+            //                 msg.destroy();
+            //                 applyFlags(dict);
+            //             }
+            //         ]);
+            //     },
+            //     this.cloudError()
+            // );
         } else if (sessionStorage.snapdemoid) {
 
 			var clouddata;

@@ -15,7 +15,7 @@
                         <router-link to="/Video">
                             <span class="sort_num">{{index+1}}</span>
                             <div class="ranking"><img :src="item.imgBuffer" alt=""></div>
-                            <p>{{item.title}}</p>
+                            <p :title="item.title">{{item.title}}</p>
                             <span class="icon_see_box"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
                             <span class="icon_see_love"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
                         </router-link>

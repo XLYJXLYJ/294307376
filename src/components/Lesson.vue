@@ -4,7 +4,7 @@
         <div class="content02">
             <LessonDownload/>
             <LessonList01/> 
-            <LessonList02/>
+            <!-- <LessonList02/> -->
         </div>
         <div class="footer02">
             <Footer/>

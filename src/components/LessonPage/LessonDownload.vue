@@ -23,7 +23,7 @@
     position: absolute;
     left: 0px;
     top: 0px;
-    height: 1752px;
+    min-height: 1362px;
     width: 100%;
     background: @mainbg-color;
     z-index: -1;

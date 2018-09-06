@@ -1,18 +1,5 @@
 <template>
-    <div class="container37">
-            <ul v-show="uservideo">
-                <router-link to="/Video">
-                    <li v-for="(item,index) in list" :key='item.id' v-if='index<5' @click="edit03(item.id)">
-                        <img class="jinglin" :src="item.imgBuffer" alt="">
-                        <p class="jinglingtext" :title="item.title">{{item.title}}</p>
-                        <span class="time">分享于：{{item.create_time|formatDate}}</span>
-                        <span class="icon_see_zan"><i class="icon_zan"><span>{{item.praisetotal|looksums}}</span></i></span>
-                        <span class="icon_see_star01"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
-                        <span class="icon_see_see01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
-                    </li>
-                </router-link>
-            </ul>
-    </div>
+
 </template>
 <script>
 import { formatDate } from '../../public/time.js'

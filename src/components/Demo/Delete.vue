@@ -4,7 +4,9 @@
         <ul v-for="item in list" :key='item.id' v-show="noSend">
             <li>
                 <div class="all_up">
-                    <img :src="item.imgBuffer" alt="">
+                     <router-link :to="'/video?='+item.id">
+                        <img :src="item.imgBuffer" alt="">
+                     </router-link>
                     <p>{{item.title}}</p>
                     <span class="deltime01">删除时间:{{item.update_time|formatDate}}</span>
                     <!-- <span class="deltime02">上午11：12：51</span> -->
