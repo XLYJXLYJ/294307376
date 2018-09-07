@@ -4,10 +4,10 @@
         </div>
         <div class="container10">
             <img class="logo_02" src="../../assets/Lesson/logo_02.png" alt="">
-            <p class="download_text">下载电脑客户端，上课、创作更方便</p>
+            <p class="download_text">下载电脑客户端，上课、创作更方便</p> 
             <span class="download_version">最新版本：v1.3.1 31.4M 2018.03.05</span>
             <div>
-                <img class="WindowsDownload" src="../../assets/Lesson/WindowsDownload.png" alt="">
+                <a href="http://www.manykit.com/public/PHOENIXEngine.zip" download><img class="WindowsDownload" src="../../assets/Lesson/WindowsDownload.png" alt=""></a>
                 <p class="trouble_text_01"><a href="">如何咋电脑客户端上课?</a></p>
                 <span class="trouble_text_02"><a href="">安装遇到问题?</a></span>
             </div>

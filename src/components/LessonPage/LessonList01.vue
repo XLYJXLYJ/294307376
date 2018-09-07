@@ -9,10 +9,8 @@
                         <el-menu
                             default-active="1"
                             class="el-menu-vertical-demo"
-                            @open="handleOpen"
-                            @close="handleClose"
-                            background-color='#FF9797'
-                            text-color="#fff"
+                            background-color='#f9f9f9'
+                            text-color="#000"
                             active-text-color="#ffd04b">
                             <el-submenu index="1">
                                 <template slot="title">
@@ -22,112 +20,76 @@
                                     <el-submenu index="1.1">
                                         <template slot="title">1. 图形编程</template>
                                             <el-menu-item-group>
-                                            <el-menu-item index="1-1"><a href="#1-1">1.1 切换语言</a></el-menu-item>
-                                            <el-menu-item index="1-2"><a href="#1-1">1.2 改变舞台大小</a></el-menu-item>
-                                            <el-menu-item index="1-3"><a href="#1-1">1.3 改变脚本区积木大小</a></el-menu-item>
-                                            <el-menu-item index="1-4" title="1.4 新建角色，画一个角色，隐藏显示，复制，删除等功能"><a href="#1-1">1.4 新建角色，画一个角色，隐藏显示，复制，删除等功能</a></el-menu-item>
-                                            <el-menu-item index="1-5"><a href="#1-1">1.5 介绍各个命令模块的功能</a></el-menu-item>
-                                            <el-menu-item index="1-6"><a href="#1-1">1.6 开发一个弹球游戏</a></el-menu-item>
-                                            <el-menu-item index="1-7"><a href="#1-1">1.9 保存（注册，登录）</a></el-menu-item>
+                                                <el-menu-item index="item.id" v-for="item in listlesson1" :key="item.id"><a href="#1-1">{{item.lesson1}}</a></el-menu-item>
                                             </el-menu-item-group>
                                     </el-submenu>
                                     <el-submenu index="1.2">
-                                        <template slot="title">2. 机器人资料</template>
-                                            <!-- <el-menu-item-group>
-                                            <el-menu-item index="1-8"> 2.1 绝对动作，滑行</el-menu-item>
-                                            <el-menu-item index="1-9">2.2 相对动作</el-menu-item>
-                                            <el-menu-item index="1-10">2.3 朝向</el-menu-item>
-                                            <el-menu-item index="1-11">2.4 试一试，走格子</el-menu-item>
-                                            <el-menu-item index="1-12">2.5 做一个猫爪球的游戏</el-menu-item>
-                                            <el-menu-item index="1-13">2.6 画笔</el-menu-item>
-                                            <el-menu-item index="1-14">2.7 神奇的循环画笔</el-menu-item>
-                                            <el-menu-item index="1-15">2.8 图章功能</el-menu-item>
-                                            </el-menu-item-group> -->
-                                    </el-submenu>
-                                    <el-submenu index="1.3">
-                                        <template slot="title">3. 机器人课</template>
-                                        <el-menu-item-group>
-                                            <el-submenu index="1.3.1">
-                                                <template slot="title">3.1 制作动画</template>
-                                                <!-- <el-menu-item-group>
-                                                    <el-menu-item index="1-17">3.1.1 自定义角色外观</el-menu-item>
-                                                    <el-menu-item index="1-18">3.1.2 让角色动起来</el-menu-item>
-                                                    <el-menu-item index="1-19">3.1.3 角色对话和思考</el-menu-item>
-                                                    <el-menu-item index="1-20">3.1.4 图形特效</el-menu-item>
-                                                    <el-menu-item index="1-21">3.1.5 角色隐身</el-menu-item>
-                                                    <el-menu-item index="1-22">3.1.6 图层</el-menu-item>
-                                                </el-menu-item-group> -->
-                                            </el-submenu>
-                                            <el-submenu index="1.3.2">
-                                            <template slot="title">4.3D打印课程</template>
-                                                <!-- <el-menu-item-group>
-                                                    <el-menu-item index="1-24">3.2.1 播放音乐文件</el-menu-item>
-                                                    <el-menu-item index="1-25">3.2.2 关闭所有声音</el-menu-item>
-                                                    <el-menu-item index="1-26">3.2.3 乐器</el-menu-item>
-                                                    <el-menu-item index="1-27">3.2.4 弹奏音符与节奏概念</el-menu-item>
-                                                </el-menu-item-group> -->
-                                            </el-submenu>
-                                        </el-menu-item-group>
-                                    </el-submenu>
-                                    <el-submenu index="1.4">
-                                        <template slot="title">4. 变量</template>
-                                        <!-- <el-menu-item-group>
-                                        <el-menu-item index="1-28">4.1 什么是变量</el-menu-item>
-                                        <el-menu-item index="1-29">4.2 变量的类型与积木形状</el-menu-item>
-                                        <el-menu-item index="1-30">4.3 类型转换</el-menu-item>
-                                        <el-menu-item index="1-31">4.4 变量的基础操作</el-menu-item>
-                                        </el-menu-item-group> -->
-                                    </el-submenu>
-                                    <el-submenu index="1.5">
-                                        <template slot="title">5. 逻辑运算</template>
-                                        <!-- <el-menu-item-group>
-                                        <el-menu-item index="1-32">5.1 数值比较</el-menu-item>
-                                        <el-menu-item index="1-33">5.2 逻辑运算</el-menu-item>
-                                        <el-menu-item index="1-34">5.3 分支结构</el-menu-item>
-                                        </el-menu-item-group> -->
-                                    </el-submenu>
-                                    <el-submenu index="1.6">
-                                        <template slot="title">6. 消息与过程</template>
-                                            <!-- <el-menu-item-group>
-                                            <el-menu-item index="1-35">6.1 广播与等待消息</el-menu-item>
-                                            <el-menu-item index="1-36">6.2 拆分任务</el-menu-item>
-                                            <el-menu-item index="1-37">6.3 自定义积木</el-menu-item>
-                                            </el-menu-item-group> -->
-                                    </el-submenu>
-                                    <el-submenu index="1.7">
-                                        <template slot="title">7. 循环</template>
-                                            <!-- <el-menu-item-group>
-                                            <el-menu-item index="1-38">7.1 循环积木</el-menu-item>
-                                            <el-menu-item index="1-39">7.2 停止积木</el-menu-item>
-                                            </el-menu-item-group> -->
-                                    </el-submenu>
-                                    <el-submenu index="1.8">
-                                        <template slot="title">8. 字符串与链表操作</template>
-                                            <!-- <el-menu-item-group>
-                                            <el-menu-item index="1-40">8.1 字符串操作</el-menu-item>
-                                            <el-menu-item index="1-41">8.2 链表操作</el-menu-item>
-                                            </el-menu-item-group> -->
+                                        <template slot="title">2. 机器人课</template>
+                                            <el-menu-item-group>
+                                                <el-menu-item index="item.id" v-for="item in listlesson2" :key="item.id" @click="lesson2(item.id)">{{item.lesson2}}</el-menu-item>
+                                            </el-menu-item-group>
                                     </el-submenu>
                             </el-submenu>
                         </el-menu>
                     </el-col>
                 </el-row>
-
-
             </div>
             <div class="block">
+                <vue-markdown>{{md}}</vue-markdown>
             </div>
         </div>
     </div>
 </template>
 <script>
+import md16 from '../../assets/text/16.md'
+import md17 from '../../assets/text/17.md'
+import md18 from '../../assets/text/18.md'
+import marked from 'marked'
+import VueMarkdown from 'vue-markdown'
     export default{
         data(){
             return{
                 lessonLength:18,
                 isLessonHover:'',
                 playStatus:false,//默认的播放状态
-                dialogVideo01:false//播放模态款状态，默认时关闭
+                dialogVideo01:false,//播放模态款状态，默认时关闭
+                md16:md16,
+                md17:md17,
+                md18:md18,
+                md:'',
+                listlesson1:[
+                    {id:0,lesson1:'1.1 认识snap编程体验课'},
+                    {id:1,lesson1:'1.2 动作与绘图'},
+                    {id:2,lesson1:'1.3 外观和声音'},
+                    {id:3,lesson1:'1.4 变量'},
+                    {id:4,lesson1:'1.5 逻辑运算'},
+                    {id:5,lesson1:'1.6 消息与过程'},
+                    {id:6,lesson1:'1.7 循环'},
+                    {id:7,lesson1:'1.8 字符串与链表操作'}
+                ],
+                listlesson2:[
+                    {id:8,lesson2:'2.1 Arduino介绍，闪烁LED'},
+                    {id:9,lesson2:'2.2 学习使用按钮控制LED'},
+                    {id:10,lesson2:'2.3 制作忽明忽暗LED'},
+                    {id:11,lesson2:'2.4 硬件小游戏'},
+                    {id:12,lesson2:'2.5 按钮风扇和自动变速风扇'},
+                    {id:13,lesson2:'2.6 摇头风扇'},
+                    {id:14,lesson2:'2.7 遥控风扇'},
+                    {id:15,lesson2:'2.8 智能声控灯'},
+                    {id:16,lesson2:'2.9 遥控小车'},
+                    {id:17,lesson2:'2.10 超声波避障小车'},
+                    {id:18,lesson2:'2.11 沿着黑线寻迹小车'},
+                ],
+                file2: {m16:md16,m17:md17,m18:md18},
+            }
+        },
+        created(){
+            let mdindex='m'+sessionStorage.md
+            this.md=this.file2[mdindex]
+        },
+        computed:{
+            compiledMarkdown () {
+                return marked(this.md1)
             }
         },
         watch:{
@@ -138,6 +100,13 @@
             }
         },
         methods:{
+            lesson2(id){
+                sessionStorage.md=id
+                window.location.reload()
+            },
+            showmd(){
+                console.log(this.compiledMarkdown);
+            },
             selectLesson(index){
                 this.isLessonHover=index
             },
@@ -154,6 +123,9 @@
             videoScreen(){
                 this.dialogVideo01 = true
             },
+        },
+        components: {
+            VueMarkdown
         }
     }
 </script>
@@ -190,13 +162,17 @@
 }
  .container11 .container_up01{
     position: absolute;
-    left: 0px;
-    top: 68px;
-    height:874px;
+    left: 20px;
+    top: 88px;
+    height:834px;
     z-index: 100;
-    width: 360px;
-    background: #FF9797;
+    width: 320px;
+    background: #f9f9f9;
     overflow-y: auto;
+}
+ .container11 .container_up01 a{
+     color: #000;
+     text-decoration: none;
 }
  .container11 .video{
     position: absolute;
@@ -228,39 +204,28 @@
     text-align:left;
     text-indent:2em;
 }
- .container11 .block ul{
+ .container11 .block{
     position: absolute;
     left: 360px;
-    top: 68px;
-    height: 871px;
+    top: 88px;
+    height: 792px;
     z-index: 100;
-    width: 840px;
+    width: 780px;
     font-size: 0px;
     text-align:left; 
-    border: 1px solid red;
-}
- .container11 .block li{
-    position: relative;
-    left: 0px; 
-    height: 71px;
-    z-index: 100;
-    width: 68px;
-    border: 1px solid #FF7878;
-    display: inline-block;
     font-size: 20px;
-    text-align: center;
-    background: #FF9797;
-    cursor: pointer;
+    padding: 20px;
+    background: #f9f9f9;
+    overflow: auto;
 }
- .container11 .block li:hover{
-    background: #f13232;
+ .container11 .block p{
+    z-index: 1000;
+    height: 100px;
+    width: 100px;
+    color: #000;
+
 }
 .lessonhover{
     background: #f13232!important;
  }
-.container11 .block li p{
-    position: relative;
-    top: 20px;
-    color: #fff;
-}
 </style>
