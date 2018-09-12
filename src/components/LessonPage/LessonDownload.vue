@@ -13,7 +13,7 @@
             </div>
             <!-- <div class="qr"><img src="../../assets/Lesson/download.png" alt=""><p>扫码购买课程</p><div><img class="what" src="../../assets/Lesson/what.png" alt=""></div></div> -->
             <div class="cut_off"></div>
-            <p class="Lesson_01">你暂时还没有要上的课程</p>
+            <!-- <p class="Lesson_01">你暂时还没有要上的课程</p> -->
         </div>
     </div>
 </template>
@@ -29,7 +29,7 @@
     z-index: -1;
 }
 .container10{
-    height: 306px;
+    height: 206px;
     width: 1200px;
     margin: 0 auto;
     background: @background-color;

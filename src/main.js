@@ -13,6 +13,7 @@ import VueLazyload from 'vue-lazyload'
 
 Vue.use(VueLazyload)
 
+
 // 懒加载配置
 Vue.use(VueLazyload, {
   preLoad: 1.3,

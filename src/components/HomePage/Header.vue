@@ -850,21 +850,23 @@ export default {
 }
 .headercontainer04 .login_sign{
      position: absolute;
-     top: 0px;
+     top: 19px;
      left: 1095px;
-     width: 96px;
-     height: 100px;
+     width: 100px;
+     height: 36px;
      z-index: 200;
      border-radius: 10px;
      color: @black;
      cursor: pointer;
+     background: #a8c9ed;
+     border-radius: 5px;
 }
 .headercontainer04 .login{
     display: inline;
     position: absolute;
-    top: 29px;
-    left:0px;
-    font-size:21px;
+    top: 10px;
+    left:12px;
+    font-size:17px;
     color:@black;;
     cursor: pointer;
     text-decoration: none;
@@ -873,9 +875,9 @@ export default {
 .headercontainer04 .login01{
     display: inline;
     position: absolute;
-    top: 24px;
+    top: 28px;
     left:1110px;
-    font-size:22px;
+    font-size:21px;
     color: @black;
     cursor: pointer;
     font-family: 'SimHei';
@@ -895,9 +897,9 @@ export default {
 .headercontainer04 .sign{
     display: inline;
     position: absolute;
-    top: 29px;
-    left:51px;
-    font-size:21px;
+    top: 10px;
+    left:55px;
+    font-size:17px;
     color: @black;
     cursor: pointer;
     text-decoration: none;
