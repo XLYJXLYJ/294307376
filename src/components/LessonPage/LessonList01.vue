@@ -102,8 +102,7 @@ import VueMarkdown from 'vue-markdown'
         },
         created(){
             let mdindex='m'+sessionStorage.md
-            this.md=this.file2[mdindex]
-            
+            this.md=this.file2[m1]
         },
         computed:{
             compiledMarkdown () {
@@ -121,7 +120,6 @@ import VueMarkdown from 'vue-markdown'
             lesson2(id){
                 sessionStorage.md=id
                 this.md=this.file2['m'+id]
-                console.log(this.md)
                 // window.location.reload()
             },
             showmd(){

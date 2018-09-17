@@ -61,7 +61,7 @@
                         <a href="http://www.manykit.com" target="_blank"><p>帮助</p></a> 
                     </li>   -->
                     <li>
-                        <a href="http://www.manykit.com/forum" target="_blank"><p>社区</p></a> 
+                        <a href="http://www.manykit.com/nodebb/" target="_blank"><p>社区</p></a> 
                     </li>  
                 </ul> 
             </div>
@@ -189,6 +189,7 @@ export default {
             btnTxtColor01:true,//验证码按钮的颜色
             btnTxtColor02:false,//验证码按钮的颜色
             nickname:'',
+            nodebb_csrf:'',
             // dropDowm:false,
             formLogin: {//登录表单
                 userName: '',//用户输入的名称
@@ -236,6 +237,7 @@ export default {
         // this.getData()
         // this.Getsessionname()
          this.Getsession()
+
         //     QC.Login({
         //         btnId:"qqLoginBtn"    //插入按钮的节点id
         //     });
@@ -369,6 +371,21 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
+
+            this.axios.post('/nodebb/login', {
+                username:this.formLogin.userName,
+                password:this.formLogin.password,
+                _csrf:this.nodebb_csrf,
+                remember:'on',
+                noscript: false
+            })
+            .then(response => {
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
             }   
         },
         // 注册
@@ -434,6 +451,23 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
+
+                this.axios.post('/nodebb/api/v2/users', 
+                    {
+                        _uid:1,
+                        username:this.formRegister.userName,
+                        password:this.formRegister.password,
+                        mail:this.formRegister.mail
+                    },
+                    {
+                        headers: {'Authorization':'Bearer db7a60a5-6c70-4057-b1d4-1dd289895c31'},
+                    }
+                )
+                    .then(response => {
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
         },
         //获取验证码
@@ -552,6 +586,13 @@ export default {
                     this.publicKey = response.data.data.publicKey
                 }
             }) 
+
+            this.axios.get('/nodebb/api/config')
+            .then(response =>{
+                this.nodebb_csrf=response.data.csrf_token
+            });
+
+
         },
         // Getsessionname(){
         //     console.log(sessionStorage.userid)
@@ -581,6 +622,24 @@ export default {
                 this.$router.push({ name: 'Recommend' })
                 location.reload()   
             }) 
+
+            this.axios.post('/nodebb/logout', 
+            {
+                _csrf:this.nodebb_csrf,
+                remember:'off',
+                noscript: true,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            }
+            )
+            .then(response => {
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+
+
         }
     }
 };
