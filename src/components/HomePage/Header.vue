@@ -61,7 +61,7 @@
                         <a href="http://www.manykit.com" target="_blank"><p>帮助</p></a> 
                     </li>   -->
                     <li>
-                        <a href="http://www.manykit.com/nodebb/" target="_blank"><p>社区</p></a> 
+                        <a href="http://www.manykit.com/forum/" target="_blank"><p>社区</p></a> 
                     </li>  
                 </ul> 
             </div>
@@ -169,6 +169,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import { mapGetters,mapActions} from 'vuex'
 import NodeRSA from 'node-rsa'//获取公钥插件
+
 import { loginqq } from '../../public/qq.js'//qq第三方登录
 
 export default {
@@ -237,19 +238,20 @@ export default {
         // this.getData()
         // this.Getsessionname()
          this.Getsession()
-
-        //     QC.Login({
-        //         btnId:"qqLoginBtn"    //插入按钮的节点id
-        //     });
         }, 
+        updated:function(){
+              QC.Login({
+                    btnId: "qqLoginBtn" //插入按钮的节点id
+                })
+        },
         methods: {
         totallogin(){
             this.dialogLogin = true, 
             this.dialogLoginShow = true, 
             this.dialogRegister = false, 
             this.dialogForgetPassword= false,
-            this.dialogPasswordSure=false,
-            this.qqlogin()
+            this.dialogPasswordSure=false
+           
         },
         qqlogin(){
             let that = this
@@ -257,7 +259,10 @@ export default {
                     btnId: "qqLoginBtn" //插入按钮的节点id
                 },function(oInfo, oOpts) {
                     let nickname=oInfo.nickname
+                    sessionStorage.info= oInfo.nickname
                     QC.Login.getMe(function(openId, accessToken) {
+                    sessionStorage.openid=openId;
+                    sessionStorage.accessToken=accessToken;
                     that.axios.post('/res/thirdlogin', {
 				        openid:openId,
                         accesstoken:accessToken, 
@@ -273,6 +278,28 @@ export default {
                                 center:true
                             })
                         }else{
+                            var state=response.data.data.isband
+                            sessionStorage.qqid = response.data.data.id
+                            console.log(state)
+                            if(state==1){
+                                var username= response.data.data.username
+                                var password= response.data.data.password
+                                that.axios.post('/forum/login', {
+                                    username:username,
+                                    password:password,
+                                    _csrf:that.nodebb_csrf,
+                                    remember:'on',
+                                    noscript: false
+                                })
+                                .then(response => {
+                                    window.location.href = "http://www.manykit.com/codeplay/#/Home/Recommend"; 
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                            }else{
+                                window.location.href = "http://www.manykit.com/register"; 
+                            }
                             that.dialogLogin = false
                             sessionStorage.username= datamsg.userName;
                             that.Getsession()
@@ -372,7 +399,7 @@ export default {
                 console.log(error);
             });
 
-            this.axios.post('/nodebb/login', {
+            this.axios.post('/forum/login', {
                 username:this.formLogin.userName,
                 password:this.formLogin.password,
                 _csrf:this.nodebb_csrf,
@@ -452,7 +479,7 @@ export default {
                     console.log(error);
                 });
 
-                this.axios.post('/nodebb/api/v2/users', 
+                this.axios.post('/forum/api/v2/users', 
                     {
                         _uid:1,
                         username:this.formRegister.userName,
@@ -587,7 +614,7 @@ export default {
                 }
             }) 
 
-            this.axios.get('/nodebb/api/config')
+            this.axios.get('/forum/api/config')
             .then(response =>{
                 this.nodebb_csrf=response.data.csrf_token
             });
@@ -620,10 +647,11 @@ export default {
                 this.$store.state.userid = ''
                 this.$router.push({ name: 'Home' })
                 this.$router.push({ name: 'Recommend' })
+                QC.Login.signOut()
                 location.reload()   
             }) 
 
-            this.axios.post('/nodebb/logout', 
+            this.axios.post('/forum/logout', 
             {
                 _csrf:this.nodebb_csrf,
                 remember:'off',
