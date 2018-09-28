@@ -91,7 +91,6 @@
                     <li @click="Cancellogout">退出登陆</li>
                 </ul>
             </div>
-
         </div> 
          <!-- 模态框 -->      
         <transition name="el-fade-in-linear">
@@ -103,7 +102,8 @@
                             <p class="sign_logo">登录</p>
                             <el-input type="text" v-model="formLogin.userName" class="tele" placeholder="请输入用户名"></el-input>
                             <el-input type="password" v-model="formLogin.password" class="iden01" placeholder="请输入密码"></el-input>
-                            <p class="ap_text" @click="dialogLoginShow= false,dialogForgetPassword = true">忘记密码?</p>
+                            <!-- <p class="ap_text" @click="dialogLoginShow= false,dialogForgetPassword = true">忘记密码?</p> -->
+                            <p><a class="ap_text" href="http://www.manykit.com/forum/reset">忘记密码?</a></p>
                             <button class="register" @click.prevent="Loginbtn">登录</button>
                             <div class="free_res"><p>没有账号?</p><span @click="dialogLoginShow = false,dialogRegister = true">免费注册</span></div>    
                         </form> 
@@ -240,7 +240,7 @@ export default {
          this.Getsession()
         }, 
         updated:function(){
-              QC.Login({
+            QC.Login({
                     btnId: "qqLoginBtn" //插入按钮的节点id
                 })
         },
@@ -292,7 +292,7 @@ export default {
                                     noscript: false
                                 })
                                 .then(response => {
-                                    window.location.href = "http://www.manykit.com/codeplay/#/Home/Recommend"; 
+                                     
                                 })
                                 .catch(function (error) {
                                     console.log(error);

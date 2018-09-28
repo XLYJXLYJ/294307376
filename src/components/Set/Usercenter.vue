@@ -6,6 +6,9 @@
         <div class="userpiv" v-show="userpic"><img  :src="'data:image/png;base64,'+imageUrl01"></div>
         <div class="userpiv" v-show="localpic"><img  :src="imageUrl"></div> 
         <div  class="two_text"><p>{{$store.state.usernamesession02}}</p></div>
+        <button :class='{"attenbutton01":true}' v-show="buttoncolor" @click.stop="Untieqq"><p>解绑QQ</p></button>
+        <!-- <button :class='{"attenbutton01":buttoncolor,"attenbutton02":!buttoncolor}' id="qqLoginBtn" @click.prevent.stop="Untieqq"><p>{{ buttoncolor?'解绑QQ':'绑定QQ' }}</p></button> -->
+         <button id="qqLoginBtn" :class='{"attenbuttonqq":true}' v-show="!buttoncolor" @click.stop="tieqq"></button>
         <el-form :label-position="labelPosition" label-width="80px" class="usercenter" :model="formLabelAlign" :rules="rules">
             <el-form-item label="名称">
                 <input class="input01" v-model="formLabelAlign.name">
@@ -32,6 +35,7 @@
         imageUrl01:'',//用户自选的图片
         userpic:'',//是否显示用户选择的图片
         localpic:'',//是否选择本地图片
+        buttoncolor:'',//是否绑定QQ
         formLabelAlign: {//个人信息表单
           name: '',//姓名
           sex: '',//性别
@@ -49,6 +53,11 @@
     mounted:function(){
       this.loadmessage()
     },
+    updated:function(){
+        QC.Login({
+            btnId: "qqLoginBtn" //插入按钮的节点id
+        })
+    },
     methods:{
       loadmessage(){
             this.axios.post('/res/userinfo',{
@@ -61,6 +70,11 @@
                   this.formLabelAlign.sex = response.data.data.sex
                   this.formLabelAlign.realName = response.data.data.realname
                   this.imageUrl01 = response.data.data.imgBuffer
+                  if(response.data.data.isband==1){
+                    this.buttoncolor=true
+                  }else{
+                    this.buttoncolor=false
+                  }
                   if(this.formLabelAlign.sex===1){
                       this.formLabelAlign.sex='男'
                   }else{
@@ -126,8 +140,69 @@
                     center: true
                 });  
         }
-
       },
+        Untieqq(){
+            QC.Login.signOut()
+            this.buttoncolor = false
+            if(this.buttoncolor==false){
+                this.axios.post('/res/userinfo',{
+                    userid:sessionStorage.userid,
+                    Untieqq:0
+                })
+                .then(response => {
+                    that.msg = response.data.data
+                        this.$message({
+                        message: '解绑成功',
+                        center: true
+                    });  
+                    location.reload() 
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            }else{
+ 
+            }
+            this.axios.post('/res/userinfo',{
+                userid:sessionStorage.userid,
+                Untieqq:0
+            })
+            .then(response => {
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        },
+        tieqq(){
+
+                let that = this
+                QC.Login({
+                        btnId: "qqLoginBtn" //插入按钮的节点id
+                    },function(oInfo, oOpts) {
+                        let nickname=oInfo.nickname
+                        sessionStorage.info= oInfo.nickname
+                        QC.Login.getMe(function(openId, accessToken) {
+                        sessionStorage.openid=openId;
+                        sessionStorage.accessToken=accessToken;
+                        that.axios.post('/res/thirdlogin', {
+                            openid:openId,
+                            accesstoken:accessToken, 
+                            info:nickname,
+                            type:1,
+                            userid:sessionStorage.userid
+                        })
+                        .then(response => {
+                            that.buttoncolor = true
+                            that.msg = response.data.data
+                                this.$message({
+                                message: '绑定成功',
+                                center: true
+                            });  
+                        })      
+                    })
+                }); 
+        },
         choise_file () {
             this.imageUrl01 = ''
             this.userpic = false
@@ -147,6 +222,7 @@
         }
     }
   }
+ 
 </script>
 <style scoped lang="less">
 @import '../../assets/index.less';
@@ -221,5 +297,31 @@
     position: absolute;
     left: 0px;
     top: 87px;
+}
+.container33 .attenbutton01{
+    position: relative;
+    left: -265px;
+    top: 37px;
+    height: 40px;
+    width: 130px;
+    background: #c51d4a;
+    cursor: pointer;
+    border: none;
+}
+.container33 .attenbutton02{
+    position: relative;
+    left: -265px;
+    top: 37px;
+    height: 40px;
+    width: 130px;
+    cursor: pointer;
+}
+.container33 .attenbuttonqq{
+    position: relative;
+    left: -238px;
+    top: 37px;
+    background: #fff;
+    cursor: pointer;
+    border: none;
 }
 </style>

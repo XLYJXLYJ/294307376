@@ -1,8 +1,6 @@
 <template>
     <div class="container11">
-        <div class="logo04_p1" @click="clickblock01" v-bind:class="{ blockblue: isblue, blockblack: !isblack}"><p>课程大纲</p></div>
-        <div class="logo04_p2" @click="clickblock02" v-bind:class="{ blockblue: !isblue, blockblack: isblack }"><p>视频教程</p></div>
-        <div class="line"></div>
+
         <div class="container011">
             <!-- <div class="cut_off"></div> -->
             <div class="container_up01"  v-show='istext'>
@@ -13,7 +11,7 @@
                             class="el-menu-vertical-demo"
                             background-color='#f9f9f9'
                             text-color="#000"
-                            default-openeds='[1,1.1,1.2]'
+                             :default-openeds="['1','1.1','1.2']"
                             active-text-color="#000">
                             <el-submenu index="1">
                                 <template slot="title">
@@ -41,48 +39,6 @@
             </div>
         </div>
 
-        <div class="container012" v-show='isvideo'>
-            <!-- <div class="cut_off"></div> -->
-            <div class="videoblock" style="padding-top:10%">
-                <video id="video" :src="videourl"  :autoplay="playStatus" controls @click="playClick" height="auto" width="95%">
-                    <img src="../../assets/home/player.png" alt="">
-                </video> 
-            </div>
-
-            <div class="container_up01">
-                <el-row class="tac">
-                    <el-col>
-                        <el-menu
-                            default-active="1"
-                            class="el-menu-vertical-demo"
-                            background-color='#f9f9f9'
-                            text-color="#000"
-                            default-openeds='[1,1.1,1.2]'
-                            active-text-color="#000">
-                            <el-submenu index="1">
-                                <template slot="title">
-                                <i class="el-icon-location"></i>
-                                <span>STEAM教育</span>
-                                </template>
-                                    <el-submenu index="1.1">
-                                        <template slot="title">1. 图形编程(视频)</template>
-                                            <el-menu-item-group>
-                                                <el-menu-item index="item.id" v-for="item in listvideo1" :key="item.id" @click="video2(item.id)">{{item.lesson1}}</el-menu-item>
-                                            </el-menu-item-group>
-                                    </el-submenu>
-                                    <el-submenu index="1.2">
-                                        <template slot="title">2. 机器人课(视频)</template>
-                                            <el-menu-item-group>
-                                                <el-menu-item index="item.id" v-for="item in listvideo2" :key="item.id" @click="video2(item.id)">{{item.lesson2}}</el-menu-item>
-                                            </el-menu-item-group>
-                                    </el-submenu>
-                            </el-submenu>
-                        </el-menu>
-                    </el-col>
-                </el-row>
-            </div>
-
-        </div>
 
 
     </div>
@@ -299,16 +255,16 @@ import VueMarkdown from 'vue-markdown'
 @import '../../assets/index.less';
  .container11{
      width: 1200px;
-     min-height: 951px;
+     min-height: 961px;
      z-index: 100;
      background: @background-color;
      margin: 0 auto;
      z-index: -1;
-     margin-top: 6px;
+     margin-top: -18px;
  }
   .container011{
      position: relative;
-     top: -40px;
+     top: -10px;
  }
  .container11 .logo04_p1{
      font-size: 30px;
@@ -329,13 +285,13 @@ import VueMarkdown from 'vue-markdown'
      margin-top: 0px;
      cursor: pointer;
  }
-.container11 .line{
-    height: 3px;
-    width: 1200px;
-    background: #f9f9f9;
-    position: relative;
-    top: 20px;
- }
+// .container11 .line{
+//     height: 3px;
+//     width: 1200px;
+//     background: #f9f9f9;
+//     position: relative;
+//     top: 20px;
+//  }
  .blockblue{
     background: #c51d4a;
     color: #fff;
@@ -360,8 +316,8 @@ import VueMarkdown from 'vue-markdown'
  .container11 .container_up01{
     position: absolute;
     left: 20px;
-    top: 88px;
-    height:804px;
+    top: 98px;
+    height:854px;
     z-index: 100;
     width: 320px;
     background: #f9f9f9;
@@ -376,8 +332,8 @@ import VueMarkdown from 'vue-markdown'
  .container11 .block{
     position: absolute;
     left: 360px;
-    top: 88px;
-    height: 792px;
+    top: 98px;
+    height: 812px;
     width: 780px;
     text-indent:2em;
     padding: 20px;
@@ -393,34 +349,4 @@ import VueMarkdown from 'vue-markdown'
      position: relative;
      top: -40px;
  }
-
- .container11 .container_up012{
-    position: absolute;
-    left: 20px;
-    top: 88px;
-    height:804px;
-    z-index: 100;
-    width: 320px;
-    background: #f9f9f9;
-    overflow-y: auto;
-}
- .container11 .container_up012 a{
-     color: #000;
-     text-decoration: none;
-}
- .container11 .videoblock{
-    position: absolute;
-    left: 320px;
-    top: 88px;
-    height: 792px;
-    width: 820px;
-    text-indent:2em;
-    padding: 30px;
-    color: #333;
-    font-size: 16px;
-    line-height: 2;
-    word-wrap: break-word;
-    background: #f9f9f9;
-    overflow: auto;
-}
 </style>

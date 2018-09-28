@@ -186,12 +186,22 @@ export default new Router({
       {
           path: '/Lesson',
           name: 'Lesson',
-          component: resolve =>require(['@/components/Lesson'],resolve)
+          component: resolve =>require(['@/components/Lesson'],resolve),
+          children:[
+            {path: '/Lesson/textLesson', component: resolve =>require(['@/components/LessonPage/LessonList01'],resolve)},
+            {path: '/Lesson/videoLesson', component: resolve =>require(['@/components/LessonPage/LessonList02'],resolve)},
+            { path: '/', component:resolve =>require(['@/components/LessonPage/LessonList01'],resolve)},
+        ]
       },
       {
           path: '/Material',
           name: 'Material',
           component: resolve =>require(['@/components/Material'],resolve)
+      }, 
+      {
+            path: '/studyvideo',
+            name: 'studyvideo',
+            component: resolve =>require(['@/components/studyvideo'],resolve)
       }, 
       {
           path: '/source',
