@@ -199,9 +199,9 @@ export default new Router({
           component: resolve =>require(['@/components/Material'],resolve)
       }, 
       {
-            path: '/studyvideo',
+            path: '/tv',
             name: 'studyvideo',
-            component: resolve =>require(['@/components/studyvideo'],resolve)
+            component: resolve =>require(['@/components/tv'],resolve)
       }, 
       {
           path: '/source',

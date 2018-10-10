@@ -36,7 +36,7 @@
             </div>
             <div class="block">
                 <!-- <video id="video02" src="static/homelesson.mp4"  :autoplay="playStatus" controls @click="playClick" height="100%" width="100%"> -->
-                    <iframe frameborder="0" :src="md" allowFullScreen="true" width="100%" height="100%"></iframe>
+                    <!-- <iframe frameborder="0" :src="md" allowFullScreen="true" width="100%" height="100%"></iframe> -->
                 <!-- </video>  -->
             </div>
         </div>
