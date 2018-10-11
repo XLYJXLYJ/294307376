@@ -101,8 +101,8 @@ SyntaxElementMorph.prototype.labelPart = function(spec) {
                 null,
                 false,
                 {
-                    'INPUT' : ['INPUT'],
-                    'OUTPUT' : ['OUTPUT']
+                    'input' : ['input'],
+                    'output' : ['output']
                 },
                 true
                 );
@@ -112,8 +112,8 @@ SyntaxElementMorph.prototype.labelPart = function(spec) {
                 null,
                 false,
                 {
-                    'HIGH' : ['HIGH'],
-                    'LOW' : ['LOW']
+                    'high' : ['high'],
+                    'low' : ['low']
                 },
                 true
                 );
@@ -166,18 +166,13 @@ BlockMorph.prototype.userMenu = function () {
         menu.addLine();
         menu.addItem(
                 'export as Arduino sketch...',
-                'transpileToCAndSave'
-                );
-        menu.addLine();
-        menu.addItem(
-                'show Arduino code',
-                'transpileToCAndShow'
+                'transpileToC'
                 );
     }
     return menu;
 };
 
-BlockMorph.prototype.transpileToCAndShow = function () {
+BlockMorph.prototype.transpileToC = function () {
     var ide = this.parentThatIsA(IDE_Morph),
         safeChars = {"á": "a", "à": "a", "ä": "a",
                      "é": "e", "è": "e", "ë": "e",
@@ -190,58 +185,13 @@ BlockMorph.prototype.transpileToCAndShow = function () {
                      "Ó": "O", "Ò": "O", "Ö": "O",
                      "Ú": "U", "Ù": "U", "Ü": "U",
                      "ç":"c", "Ç": "C", "ñ": "n", "Ñ": "N"},
-        fileName =  'ManyKitArduinoSketch';
+        fileName = ide.projectName || 'manykitarduino';
 
     fileName = fileName.replace(/[^\w ]/g, function(char) {
         return safeChars[char] || char;
     });
     fileName = fileName.replace(/ /g,'_')
     fileName = fileName.replace(/[^a-zA-Z0-9_]/g,'');
-
-    try {
-        c_code = this.world().Arduino.transpile(
-            this.mappedCode(),
-            this.parentThatIsA(ScriptsMorph).children.filter(
-                function (each) {
-                    return each instanceof HatBlockMorph &&
-                        each.selector == 'receiveMessage';
-                }))
-        // show c_code
-        localStorage.setblock=c_code.replace(new RegExp('\n', 'g'), '<br>')
-        // document.getElementById("blockdaima").innerHTML = c_code.replace(new RegExp('\n', 'g'), '<br>');
-        // document.getElementById('codeiframe').contentWindow.document.getElementById('blockdaima').innerHTML = localStorage.setblock;
-        // document.getElementById("blockdaima").innerHTML=c_code.replace(new RegExp('\n', 'g'), '<br>')
-        $("#tab_item").removeClass('xiaoshi');
-        $(".block").removeClass('xiaoshi');
-        $(".move").removeClass('xiaoshi');
-        localStorage.isRellyShow=1
-        document.getElementById('codeiframe').contentWindow.location.reload(true);
-    } catch (error) {
-
-    }
-};
-
-BlockMorph.prototype.transpileToCAndSave = function () {
-    var ide = this.parentThatIsA(IDE_Morph),
-        safeChars = {"á": "a", "à": "a", "ä": "a",
-                     "é": "e", "è": "e", "ë": "e",
-                     "í": "i", "ì": "i", "ï": "i",
-                     "ó": "o", "ò": "o", "ö": "o",
-                     "ú": "u", "ù": "u", "ü": "u",
-                     "Á": "A", "À": "A", "Ä": "A",
-                     "É": "E", "È": "E", "Ë": "E",
-                     "Í": "I", "Ì": "I", "Ï": "I",
-                     "Ó": "O", "Ò": "O", "Ö": "O",
-                     "Ú": "U", "Ù": "U", "Ü": "U",
-                     "ç":"c", "Ç": "C", "ñ": "n", "Ñ": "N"},
-        fileName =  'ManyKitArduinoSketch';
-
-    fileName = fileName.replace(/[^\w ]/g, function(char) {
-        return safeChars[char] || char;
-    });
-    fileName = fileName.replace(/ /g,'_')
-    fileName = fileName.replace(/[^a-zA-Z0-9_]/g,'');
-
     try {
         ide.saveFileAs(
                 this.world().Arduino.transpile(
@@ -254,6 +204,6 @@ BlockMorph.prototype.transpileToCAndSave = function () {
                 'application/ino;chartset=utf-8',
                 fileName);
     } catch (error) {
-
+        ide.inform('Error exporting to Arduino sketch!', error.message)
     }
 };

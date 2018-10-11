@@ -4,7 +4,12 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>编程玩SNAP-寓教于乐学编程</title>
 		<link rel="shortcut icon" href="manykit/bianchengwan_w.ico">
+		<link href="manykit/styles/monokai-sublime.css" rel="stylesheet">  
+		<script src="manykit/highlight.pack.js"></script>  
+		<script >hljs.initHighlightingOnLoad();</script>  
+		<link href="manykit/prism.css" rel="stylesheet" />
 		<script type="text/javascript" src="manykit/jquery-3.2.1.min.js"></script>
+		<script src="manykit/prism.js"></script>
 		<script type="text/javascript" src="morphic.js"></script>
 		<script type="text/javascript" src="widgets.js"></script>
 		<script type="text/javascript" src="blocks.js"></script>
@@ -30,13 +35,23 @@
 		<script type="text/javascript" src="sha512.js"></script>
 		<script type="text/javascript" src="FileSaver.min.js"></script>
 		<script type="text/javascript" src="manykit/base64.js"></script>
+		<script>
+			addEventListener('transpileToCAndShow', function() {
+			var code = document.querySelector('#code');
+			var worker = new Worker('manykit/worker.js');
+			worker.onmessage = function(event) { code.innerHTML = event.data; }
+			worker.postMessage(code.textContent);
+			})
+		</script>
 		<script type="text/javascript">
 			var world;
 			var ide;
+			var blockide;
 			window.onload = function () {
 				world = new WorldMorph(document.getElementById('world'));
                 world.worldCanvas.focus();
 				ide = new IDE_Morph();
+				blockide = new BlockMorph();
 				ide.openIn(world);
         		loop();
 			};
@@ -47,6 +62,110 @@
 		</script>
 	</head>
 	<body style="margin: 0;">
-		<canvas id="world" tabindex="1" style="position: absolute;" />
+		<div id="worldCanvas1"><canvas id="world" tabindex="1" style="position: absolute;" /></div>
+		<div class="block xiaoshi" id="block">
+			<img class="side2 xiaoshi" id ='tab_item' src="./manykit/close.png" alt="收起源码">
+			<script>
+				var blockide = new BlockMorph();
+				!function(){
+					$('#tab_item').click(
+						function(){
+							$('.block').addClass('xiaoshi')
+							$('.move').addClass('xiaoshi')
+						}
+					)
+				}()
+			</script>
+			<div class="move xiaoshi" id="move" alt="收起源码"></div>
+			<iframe src="manykit/code.html" frameborder="0" height="100%" width="480px" id="codeiframe"></iframe>
+			　　　　<script>
+				  　　 var move = document.getElementById("move");
+					   var iframemove = document.getElementById("block");
+					   var codeiframe = document.getElementById("codeiframe");
+				  　　move.onmousedown = function(ev){
+				  　　　　var oevent = ev || event;
+				  　　　　var distanceX = oevent.clientX - move.offsetLeft;
+						 var distanceXiframe= document.body.clientWidth-oevent.clientX;
+				  　　　　document.onmousemove = function(ev){
+				  　　　　　　var oevent = ev || event;
+				  　　　　　　move.style.left = oevent.clientX - distanceX + 'px';
+				//   　　　　　　move.style.top = oevent.clientY - distanceY + 'px'; 
+							  console.log(oevent)
+							  console.log('move.offsetLeft======'+move.offsetLeft)
+							   iframemove.style.width=distanceXiframe + 'px';
+							   codeiframe.style.width=distanceXiframe + 'px';
+				  　　　　};
+				  　　　　document.onmouseup = function(ev){
+					　		var oevent = ev || event;
+							var distanceXiframe= document.body.clientWidth-oevent.clientX;
+							iframemove.style.width=distanceXiframe + 'px';
+							codeiframe.style.width=distanceXiframe + 'px';
+				  　　　　　　document.onmousemove = null;
+				  　　　　　　document.onmouseup = null;
+				  　　　　};
+				　　};
+
+				  </script>
+			<!-- <button style="margin-right:10px" id='download'>下载源码</button> 
+			<script>
+				var blockide = new BlockMorph();
+				!function(){
+					$('#download').click(
+						function(event){
+							event.preventDefault();
+							console.log(blockide.transpileToCAndSave);
+							ide.transpileToCAndSave();
+						}
+					)
+				}()
+			</script> -->
+
+		</div>		
 	</body>
 </html>
+<style>
+	.block{
+		position: fixed;
+		width: 480px;
+		height: 100%;
+		right: 0px;
+		background-color: #333333;
+		z-index: 1000;
+		overflow: auto;
+	}
+	.side2{
+		width: 15px;
+		height: 15px;
+		position: fixed;
+		right: 30px;
+		top: 30px;
+		opacity: 0.6;
+		z-index: 1000;
+	}
+	.side2:hover{
+		opacity: 1;
+		cursor: pointer;
+	}
+	.move{
+		width: 10px;
+		height: 95%;
+		position: fixed;
+		right: 460px;
+		top: 30px;
+		opacity: 0.6;
+		z-index: 1000;
+		background: #333;
+		cursor: e-resize;
+	}
+	.move:hover{
+		opacity: 1;
+		background: #000;
+		cursor: e-resize;
+	}
+	#codeiframe{
+		z-index: 0;
+	}
+	.xiaoshi{
+		display: none;
+	}
+</style>
