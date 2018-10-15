@@ -19,7 +19,8 @@
                 <div>
                     <div :class='{"love":!isPraise,"love1":isPraise}' @click="love"  title='点赞'><span class="lovenum">{{list.praisetotal}}</span></div>
                     <div :class='{"star":!isCollect,"star1":isCollect}' @click="star" title='收藏'><span class="starnum">{{list.collecttotal}}</span></div>
-                    <router-link to="/snap"><button @click="seecode" class="buycode">查看代码</button></router-link>
+                    <router-link :to="'/snap?='+$store.state.shareid" target='_blank'><button class="buycode">查看代码</button></router-link>
+                    <!-- <router-link to="/snap"><button @click="seecode" class="buycode">查看代码</button></router-link> -->
                     <!--<span class="buy">已有4人购买</span> -->
                     <!-- <a class="avideo" href="http://localhost:8080/static/js/snap.html#present:Username=jens&ProjectName=tree%20animation" target="myFrameName"><button>点击播放</button></a> -->
                 </div>

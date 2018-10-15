@@ -24,7 +24,7 @@ SpriteMorph.prototype.initArduinoBlocks = function () {
         type: 'command',
         category: 'Arduino',
         spec: 'PinMode %_Pin as %_PinMode',
-        defaults: ["2", 'output'],
+        defaults: ["2", 'OUTPUT'],
         transpilable: true
     };
 
@@ -34,7 +34,7 @@ SpriteMorph.prototype.initArduinoBlocks = function () {
         type: 'command',
         category: 'Arduino',
         spec: 'DigitalWrite %_Pin as %_HighLow',
-        defaults: ["2", "high"],
+        defaults: ["2", "HIGH"],
         transpilable: true
     };
 
@@ -448,19 +448,19 @@ SpriteMorph.prototype.initPXFrameBlocks = function () {
     StageMorph.prototype.codeMappings['doDeclareVariables'] = 'int <#1> = 0;'; // How do we deal with types? Damn types...
 
     // Arduino
-    StageMorph.prototype.codeMappings['pinMode'] = 'manykit.pinMode(<#1>, <#2>);';
-    StageMorph.prototype.codeMappings['digitalWrite'] = 'manykit.digitalWrite(<#1>, <#2>);';
-    StageMorph.prototype.codeMappings['pwmWrite'] = 'manykit.analogWrite(<#1>, <#2>);';
-    StageMorph.prototype.codeMappings['digitalRead'] = 'manykit.digitalRead(<#1>)';
+    StageMorph.prototype.codeMappings['pinMode'] = 'pinMode(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['digitalWrite'] = 'digitalWrite(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['pwmWrite'] = 'analogWrite(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['digitalRead'] = 'digitalRead(<#1>)';
 
-    StageMorph.prototype.codeMappings['analogWrite'] = 'manykit.analogWrite(<#1>, <#2>);';
-    StageMorph.prototype.codeMappings['analogRead'] = 'manykit.analogRead(<#1>)';
+    StageMorph.prototype.codeMappings['analogWrite'] = 'analogWrite(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['analogRead'] = 'analogRead(<#1>)';
 
-    StageMorph.prototype.codeMappings['servoInit'] = 'manykit.servoInit(<#1>, <#2>);';
-    StageMorph.prototype.codeMappings['servoWrite'] = 'manykit.servoWrite(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['servoInit'] = 'servoInit(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['servoWrite'] = 'servoWrite(<#1>, <#2>);';
     
-    StageMorph.prototype.codeMappings['ultrasonicInit'] = 'manykit.ultrasonicInit(<#1>, <#2>)';
-    StageMorph.prototype.codeMappings['ultrasonicMeasure'] = 'manykit.ultrasonicMeasure()';
+    StageMorph.prototype.codeMappings['ultrasonicInit'] = 'ultrasonicInit(<#1>, <#2>);';
+    StageMorph.prototype.codeMappings['ultrasonicMeasure'] = 'ultrasonicMeasure()';
     
     // PXFrame
     //StageMorph.prototype.codeMappings['_GetServerMessage'] = 'manykit._GetServerMessage();';

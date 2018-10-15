@@ -190,7 +190,7 @@ BlockMorph.prototype.transpileToCAndShow = function () {
                      "Ó": "O", "Ò": "O", "Ö": "O",
                      "Ú": "U", "Ù": "U", "Ü": "U",
                      "ç":"c", "Ç": "C", "ñ": "n", "Ñ": "N"},
-        fileName = ide.projectName || 'ManyKitArduinoSketch';
+        fileName =  'ManyKitArduinoSketch';
 
     fileName = fileName.replace(/[^\w ]/g, function(char) {
         return safeChars[char] || char;
@@ -206,20 +206,6 @@ BlockMorph.prototype.transpileToCAndShow = function () {
                     return each instanceof HatBlockMorph &&
                         each.selector == 'receiveMessage';
                 }))
-        c_code = c_code.replace(new RegExp('manykit.math\\(abs,', 'g'), 'abs(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(ceiling,', 'g'), 'ceil(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(floor,', 'g'), 'floor(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(sqrt,', 'g'), 'sqrt(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(sin,', 'g'), 'sin(DEG_TO_RAD * ')
-        c_code = c_code.replace(new RegExp('manykit.math\\(cos,', 'g'), 'cos(DEG_TO_RAD * ')
-        c_code = c_code.replace(new RegExp('manykit.math\\(tan,', 'g'), 'tan(DEG_TO_RAD * ')
-        c_code = c_code.replace(new RegExp('manykit.math\\(asin,', 'g'), 'RAD_TO_DEG * asin(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(acos,', 'g'), 'RAD_TO_DEG * acos(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(atan,', 'g'), 'RAD_TO_DEG * atan(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(ln,', 'g'), 'log(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(log,', 'g'), 'log10(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(e\\^,', 'g'), 'exp(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(10\\^,', 'g'), 'pow(10,')
         // show c_code
         localStorage.setblock=c_code.replace(new RegExp('\n', 'g'), '<br>')
         // document.getElementById("blockdaima").innerHTML = c_code.replace(new RegExp('\n', 'g'), '<br>');
@@ -248,7 +234,7 @@ BlockMorph.prototype.transpileToCAndSave = function () {
                      "Ó": "O", "Ò": "O", "Ö": "O",
                      "Ú": "U", "Ù": "U", "Ü": "U",
                      "ç":"c", "Ç": "C", "ñ": "n", "Ñ": "N"},
-        fileName = ide.projectName || 'ManyKitArduinoSketch';
+        fileName =  'ManyKitArduinoSketch';
 
     fileName = fileName.replace(/[^\w ]/g, function(char) {
         return safeChars[char] || char;
@@ -257,32 +243,17 @@ BlockMorph.prototype.transpileToCAndSave = function () {
     fileName = fileName.replace(/[^a-zA-Z0-9_]/g,'');
 
     try {
-        c_code = this.world().Arduino.transpile(
-            this.mappedCode(),
-            this.parentThatIsA(ScriptsMorph).children.filter(
-                function (each) {
-                    return each instanceof HatBlockMorph &&
-                        each.selector == 'receiveMessage';
-                }))
-        c_code = c_code.replace(new RegExp('manykit.math\\(abs,', 'g'), 'abs(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(ceiling,', 'g'), 'ceil(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(floor,', 'g'), 'floor(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(sqrt,', 'g'), 'sqrt(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(sin,', 'g'), 'sin(DEG_TO_RAD * ')
-        c_code = c_code.replace(new RegExp('manykit.math\\(cos,', 'g'), 'cos(DEG_TO_RAD * ')
-        c_code = c_code.replace(new RegExp('manykit.math\\(tan,', 'g'), 'tan(DEG_TO_RAD * ')
-        c_code = c_code.replace(new RegExp('manykit.math\\(asin,', 'g'), 'RAD_TO_DEG * asin(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(acos,', 'g'), 'RAD_TO_DEG * acos(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(atan,', 'g'), 'RAD_TO_DEG * atan(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(ln,', 'g'), 'log(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(log,', 'g'), 'log10(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(e\\^,', 'g'), 'exp(')
-        c_code = c_code.replace(new RegExp('manykit.math\\(10\\^,', 'g'), 'pow(10,')
         ide.saveFileAs(
-                c_code,
+                this.world().Arduino.transpile(
+                    this.mappedCode(),
+                    this.parentThatIsA(ScriptsMorph).children.filter(
+                        function (each) {
+                            return each instanceof HatBlockMorph &&
+                                each.selector == 'receiveMessage';
+                        })),
                 'application/ino;chartset=utf-8',
                 fileName);
     } catch (error) {
-        ide.inform('Error exporting to Arduino sketch!', error.message)
+
     }
 };

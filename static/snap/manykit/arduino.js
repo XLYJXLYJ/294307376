@@ -386,7 +386,8 @@ Arduino.headerMessage =
     + '\n'
     + '#include <Servo.h>\n'
     + '#define NUMSERVOS 6\n'
-    + 'Servo servos[NUMSERVOS];\n';
+    + 'Servo servos[NUMSERVOS];\n'
+    + 'int trig, echo;\n';
 
 Arduino.processBroadcasts = function (hatBlocks) {
     var myself = this,
@@ -444,87 +445,33 @@ Arduino.transpile = function (body, hatBlocks) {
 };
 
 Arduino.replaceStr = function (str) {
-    str = str.replace('output', 'OUTPUT');
-    str = str.replace('input', 'INPUT');
-    str = str.replace('high', 'HIGH');
-    str = str.replace('low', 'LOW');
+    // str = str.replace('OUTPUT', 'OUTPUT');
+    // str = str.replace('INPUT', 'INPUT');
+    // str = str.replace('HIGH', 'HIGH');
+    // str = str.replace('LOW', 'LOW');
 
-    str = str.replace('manykit.pinMode', 'pinMode');
-    str = str.replace('manykit.digitalWrite', 'digitalWrite');
-    str = str.replace('manykit.pwmWrite', 'pwmWrite');
-    str = str.replace('manykit.analogWrite', 'analogWrite');
-    str = str.replace('manykit.digitalRead', 'digitalRead');
-    str = str.replace('manykit.analogRead', 'analogRead');
-    str = str.replace('manykit.servoInit', 'servoInit');
-    str = str.replace('manykit.servoWrite', 'servoWrite');
-    str = str.replace('manykit.ultrasonicInit', 'ultrasonicInit');
-    str = str.replace('manykit.ultrasonicMeasure', 'ultrasonicMeasure');
+    // str = str.replace('manykit.pinMode', 'pinMode');
+    // str = str.replace('manykit.digitalWrite', 'digitalWrite');
+    // str = str.replace('manykit.pwmWrite', 'pwmWrite');
+    // str = str.replace('manykit.analogWrite', 'analogWrite');
+    // str = str.replace('manykit.digitalRead', 'digitalRead');
+    // str = str.replace('manykit.analogRead', 'analogRead');
+    // str = str.replace('manykit.servoInit', 'servoInit');
+    // str = str.replace('manykit.servoWrite', 'servoWrite');
+    // str = str.replace('manykit.ultrasonicInit', 'ultrasonicInit');
+    // str = str.replace('manykit.ultrasonicMeasure', 'ultrasonicMeasure');
 
     return str;
 }
 
 Arduino.ManyKitfunctions =
-'typedef struct {\n'
-+ '  int math(char op,int num) {\n'
-+ '    int result = 0;\n'
-+ '    switch(op){\n'
-+ '      case \'abs\':\n'
-+ '        result = abs(num);\n'
-+ '        break;\n'
-+ '      case \'ceiling\':\n'
-+ '        result = ceil(num);\n'
-+ '        break;\n'
-+ '      case \'floor\':\n'
-+ '        result = floor(num);\n'
-+ '        break;\n'
-+ '      case \'sqrt\':\n'
-+ '        result = sqrt(num);\n'
-+ '        break;\n'
-+ '      case \'sin\':\n'
-+ '        result = sin(num * DEG_TO_RAD);\n'
-+ '        break;\n'
-+ '      case \'cos\':\n'
-+ '        result = cos(num * DEG_TO_RAD);\n'
-+ '        break;\n'
-+ '      case \'tan\':\n'
-+ '        result = tan(num * DEG_TO_RAD);\n'
-+ '        break;\n'
-+ '      case \'asin\':\n'
-+ '        result = RAD_TO_DEG * (asin(num));\n'
-+ '        break;\n'
-+ '      case \'acos\':\n'
-+ '        result = RAD_TO_DEG * (acos(num));\n'
-+ '        break;\n'
-+ '      case \'atan\':\n'
-+ '        result = RAD_TO_DEG * (atan(num));\n'
-+ '        break;\n'
-+ '      case \'ln\':\n'
-+ '        result = log(num);\n'
-+ '        break;\n'
-+ '      case \'log\':\n'
-+ '        result = log10(num);\n'
-+ '        break;\n'
-+ '      case \'e\':\n'
-+ '        result = exp(num);\n'
-+ '        break;\n'
-+ '      case \'10\':\n'
-+ '        result = pow(10,num);\n'
-+ '        break;\n'
-+ '      default:\n'
-+ '        result = 0;\n'
-+ '        break;\n'
-+ '    }\n'
-+ '    return result;\n'
-+ '  }\n'
-+ '} ManyKitStruct, ManyKit;\n'
-+ 'ManyKit manykit;\n\n'
-+ 'void servoInit(int i, int pin) {'
-+ '     if (0<=i && i<NUMSERVOS)\n'
-+ '        servos[i].attach(pin);\n'
+'void servoInit(int i, int pin) {\n'
++ '  if (0 <= i && i < NUMSERVOS)\n'
++ '    servos[i].attach(pin);\n'
 + '}\n'
-+ 'void servoWrite(int i, int val) {'
-+ '     if (0<=i && i<NUMSERVOS)\n'
-+ '        servos[i].write(val);\n'
++ 'void servoWrite(int i, int val) {\n'
++ '  if (0 <= i && i < NUMSERVOS)\n'
++ '    servos[i].write(val);\n'
 + '}\n'
 + 'void ultrasonicInit(int trig_pin, int echo_pin){\n'
 + '  trig = trig_pin;\n'
