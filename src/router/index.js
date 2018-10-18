@@ -199,6 +199,11 @@ export default new Router({
           component: resolve =>require(['@/components/Material'],resolve)
       }, 
       {
+            path: '/Search',
+            name: 'Search',
+            component: resolve =>require(['@/components/HomePage/Search'],resolve)
+        }, 
+      {
             path: '/tv',
             name: 'studyvideo',
             component: resolve =>require(['@/components/tv'],resolve)
@@ -269,6 +274,7 @@ export default new Router({
                       { path: '/Demo/Mydemo/All', name: 'Alldemohaha',component: resolve =>require(['@/components/Demo/All'],resolve)},
                       { path: '/Demo/Mydemo/Readysend', component: resolve =>require(['@/components/Demo/Readysend'],resolve)},
                       { path: '/Demo/Mydemo/Nosend', name: 'Nosend',component: resolve =>require(['@/components/Demo/Nosend'],resolve)},
+                      { path: '/Demo/Mydemo/Engine', name: 'Engine',component: resolve =>require(['@/components/Demo/Engine'],resolve)},
                   ]
             },
             { path: '/Demo/Delete', component: resolve =>require(['@/components/Demo/Delete'],resolve)},

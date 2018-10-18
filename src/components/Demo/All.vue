@@ -8,7 +8,7 @@
                     </router-link>
                     <p>{{item.title}}</p>
                     <span>{{item.create_time|formatDate}}</span>
-                </div><a></a>
+                </div>
                 <a :href="'/codeplay/#/snap?='+item.id" target="_blank"><button class="button01" @click="edit(item.id,item.state)">修改</button></a>
                 <button class="button02" @click.prevent.stop="isPublic(item.id,item.state)">{{item.state==0?'发布':'取消发布'}}</button>
                 <span class="down"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
@@ -84,6 +84,7 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
                         // }); 
                     }else{
                         this.list=response.data.data
+                         console.log(this.list)
                     }
                 })
             },
@@ -156,7 +157,7 @@ import { looksum } from '../../public/seesum.js'//观看总数转换函数(数�
     width: 1160px;
     position: relative;
     left: -20px;
-    top: 33px;
+    top: 13px;
     overflow: auto;
 }
 .container27 ul{

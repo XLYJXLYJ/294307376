@@ -126,7 +126,7 @@ import http from '../../../ajax/fetch.js'//引入封装的axios
     margin-left: 19px;
 }
 .container01 .el-row{
-    margin-top: 22px;
+    margin-top: 62px;
 }
 .container01 .el-col{
     background: #f9f9f9;

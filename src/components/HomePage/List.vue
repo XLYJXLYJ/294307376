@@ -1,11 +1,13 @@
 <template>
   <div class="container05">
-      <Search/>
+      <!-- <Search/> -->
       <ul>
           <li><router-link class="recommend" to="/Home/Recommend">大家创造的玩法</router-link></li>
           <!-- <li><router-link class="production" to="/Home/Production">作品</router-link></li> -->
       </ul>
-      <p class="see-more-rem">查看更多>></p>
+        <router-link to="/Search">
+                <p class="see-more-rem">查看更多>></p>
+        </router-link>
       <router-view></router-view>
       <RankingList/>
   </div>
@@ -48,16 +50,20 @@
     position: absolute;
     height: 22px;
     width: 160px;
-    top: 0px;
+    top: 56px;
     left: 21px;
 }
 .container05 .see-more-rem{
     position: absolute;
+    height: 18px;
+    width: 80px;
     top: 59px;
-    left: 694px;
+    left: 730px;
     font-size: 15px;
     color: #999999;
     font-family: 'SimHei';
+    cursor: pointer!important;
+    z-index: 1000;
 }
 // .container05 .production{
 //     font-size: 22px;

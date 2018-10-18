@@ -16,7 +16,9 @@
                     </router-link>
             </el-col>         
         </el-row>
-        <button class="button" v-show="load" @click="Seemoreproduction">查看更多作品</button>
+        <router-link to="/Search">
+            <button class="button" v-show="load" @click="Seemoreproduction">查看更多作品</button>
+        </router-link>
         <button class="buttonloaddown" v-show="loadDown">已加载完全部作品</button>
     </div>
 </template>

@@ -1,19 +1,19 @@
 <template>
-    <div class="container28">
-        <ul v-show="noSend">
-            <li v-for="item in list" :key='item.id'>
+    <div class="engine">
+        <ul v-for="item in list" :key='item.id' v-show="enginenoSend">
+            <li>
                 <div class="all_up">
-                    <router-link :to="'/video?='+item.id">
-                        <img :src="item.imgBuffer" alt="">
-                    </router-link>
+                    <!-- <router-link :to="'/video?='+item.id"> -->
+                    <img src="../../assets/home/engine.jpg" alt="">
+                    <!-- </router-link> -->
                     <p>{{item.title}}</p>
-                    <span>{{item.update_time|formatDate}}</span>
+                    <span>{{item.create_time|formatDate}}</span>
                 </div>
-                <a :href="'/codeplay/#/snap?='+item.id" target="_blank"><button class="button01" @click="edit(item.id)">修改</button></a>
-                <button class="button02" @click.prevent.stop="Canpublic(item.id)">取消发布</button>
-                <span class="down"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
+                <button class="button01" @click="deletedemo03(item.id)">删除</button>
+                <!-- <button class="button02" @click.prevent.stop="Canpublic(item.id)">取消发布</button> -->
+                <!-- <span class="down"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
                 <span class="down"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
-                <span class="down"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span>
+                <span class="down"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span> -->
                 <!-- <p class="cancelpub" @click.prevent.stop="Canpublic(item.id)">取消发布</p> -->
             </li>    
         </ul>  
@@ -36,7 +36,7 @@ export default{
     },
     data(){
         return{
-            noSend:true,//是否显示列表
+            enginenoSend:true,//是否显示列表
             list:'',//获取数据
         }
     },
@@ -47,20 +47,28 @@ export default{
         Getalldemo(){//初始化数据函数
             this.axios.post('/res/filelist',{
                 userid:this.$store.state.userid,
-                state:1
+                type:1
+            }).then(response=>{
+                console.log(88888)
+                console.log(response.data.data.title)
+                this.list=response.data.data
             })
-            .then(response => {           
-                if(response.data.data.msg=='这回真的没有了~'){
-                    this.noSend = false
-                        // this.$message({
-                        // message: '没有已发布的作品',
-                        // center: true
-                        // }); 
-                }else{
-                    this.list=response.data.data
-                }
+        },
+        deletedemo03(id){
+                this.dialogdelete=false
+                this.axios.post('/res/dealfile',{
+                id:id,
+                userid:sessionStorage.userid,
+                state:5
             })
-            },
+            .then(response => {
+                this.$message({
+                message: '删除成功',
+                center: true
+                }); 
+                this.getalldemo()
+            })
+        },
         edit(id){//编辑
             id:id,                  
             this.$store.state.demoxmlid = id
@@ -87,28 +95,29 @@ export default{
 </script>
 <style scoped lang="less">
 @import '../../assets/index.less';
-.container28 {
+.engine {
     margin: 0 auto;
     height: 530px;
     width: 1160px;
     position: relative;
     left: -20px;
-    top: 13px;
+    top: 33px;
     overflow: auto;
+  
 }
-.container28 ul{
+.engine ul{
     position: relative;
     left: 20px;
     top: 0px;
     height: auto;
     z-index: 100;
-    width:1120px;
+    width:auto;
     text-align:left;    
     float: left;
     list-style: none;
     overflow: auto;
 }
-.container28 li{
+.engine li{
     position: relative;
     left: 0px; 
     height: 252px;
@@ -119,14 +128,14 @@ export default{
     margin-bottom: 10px;
     background: @mainbg-color;
 }
-.container28 .all_up img{
+.engine .all_up img{
     position: absolute;
     height: 154px;
     width: 154px;
     left: 12px;
     top: 12px;
 }
-.container28 .all_up p{
+.engine .all_up p{
     height: 24px;
     width:340px;
     overflow: hidden;
@@ -136,7 +145,7 @@ export default{
     top: 180px;
     left: 13px;
 }
-.container28 .all_up span{
+.engine .all_up span{
     height: 14px;
     width:221px;
     color: @delete-color;
@@ -145,7 +154,7 @@ export default{
     top: 215px;
     left: 15px;
 }
-.container28 .button01{
+.engine .button01{
     height: 50px;
     width: 157px;
     background: @main-color;
@@ -157,7 +166,7 @@ export default{
     font-size:@lg-size;
     cursor: pointer;
 }
-.container28 .button02{
+.engine .button02{
     height: 50px;
     width: 157px;
     background: @main-color;
@@ -169,32 +178,32 @@ export default{
     font-size:@lg-size;
     cursor: pointer;
 }
-.container28 .icon_see{
+.engine .icon_see{
     background:url(../../assets/home/icon_see.png) no-repeat;
     padding-right: 10px;
 }
-.container28 .icon_love{
+.engine .icon_love{
     background:url(../../assets/home/icon_love.png) no-repeat;
     padding-right: 10px;
 }
-.container28 .icon_star{
+.engine .icon_star{
     background:url(../../assets/home/icon_star.png) no-repeat;
     padding-right: 10px;
 }
-.container28 .down{
+.engine .down{
     font-size:@sm-size;
     position: relative;
     left: 190px;
     top: 152px;
 }
-.container28 .down span{
+.engine .down span{
     position: relative;
     left: 10px;
     margin-left: 11px;
     top: -2px;
     font-style: normal;
 }
-.container28 .cancelpub{
+.engine .cancelpub{
     height: 14px;
     width: 77px;
     color: @cancel-color;
