@@ -203,6 +203,11 @@ export default new Router({
             name: 'Search',
             component: resolve =>require(['@/components/HomePage/Search'],resolve)
         }, 
+        {
+            path: '/Engine',
+            name: 'Engine',
+            component: resolve =>require(['@/components/HomePage/Engine'],resolve)
+        }, 
       {
             path: '/tv',
             name: 'studyvideo',

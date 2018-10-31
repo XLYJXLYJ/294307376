@@ -1,16 +1,17 @@
 <template>
 <div class="searchDemo">
     <Header/>
+    <!-- <div class="search01"  v-show="$store.state.searchdemo"> -->
     <div class="search01">
         <div class="mainNav-middle">
             <ul>
-                <router-link to="/Search"><li @click="snap" :class="[{active:defalutColor}]">SNAP</li></router-link> 
-                <router-link to="/Engine"><li :class="[{active:!defalutColor}]">引擎</li></router-link> 
+                <router-link to="/Search"><li :class="[{active:defalutColor}]">SNAP</li></router-link> 
+                <router-link to="/Engine"><li @click="engine" :class="[{active:!defalutColor}]">引擎</li></router-link> 
             </ul>
         </div>
         <div class="search">
-        <input class="search_input" placeholder="搜索作品" v-model="searchName" @keyup.enter="searchDemo">
-        <i slot="prefix" class="el-input__icon el-icon-search" @click="searchDemo"></i>
+        <!-- <input class="search_input" placeholder="搜索作品" v-model="searchName" @keyup.enter="searchDemo">
+        <i slot="prefix" class="el-input__icon el-icon-search" @click="searchDemo"></i> -->
         </div>
         <div class="sort02">
             <ul v-show="isdown">
@@ -25,25 +26,23 @@
         <keep-alive>
             <el-row :gutter="10" class="el-row" v-loading="loading">
                 <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="4" v-for="item in list" :key='item.id' class="el-col"> 
-                    <router-link :to="'/video?='+item.id" v-show="isdown">
-                        <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
-                            <!-- <div class="imgcon"><img :src="'static/publish/'+item.surfaceplot+'l.png'" alt=""></div> -->
-                            <div class="imgcon" v-show="isdown"><img :src="item.imgBuffer" alt=""></div>
-                            <div class="imgcon" v-show="!isdown"><img src="../../assets/home/engine.jpg" alt=""></div>
-                            <p class="item-title" :title=item.title>{{item.title}}</p>
-                            <!-- <span class="game_cat">{{item.desc}}</span> -->
-                            <div class="downbox" v-show="isdown">
-                                <span class="down01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
-                                <span class="down02"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
-                                <!-- <span class="down03"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span> -->
-                            </div>
-                            <button class="download" v-show="!isdown"><a :href="'http://www.manykit.com/'+item.address" download>下载</a></button>
-                            <div class="author">
-                                <img :src="item.imgBuffer" alt="">
-                                <p>manykit</p>
-                            </div>
+                    <div class="grid-content bg-purple list_pic" @click="edit01(item.id)" v-show="!isdown">
+                        <!-- <div class="imgcon"><img :src="'static/publish/'+item.surfaceplot+'l.png'" alt=""></div> -->
+                        <div class="imgcon" v-show="isdown"><img :src="item.imgBuffer" alt=""></div>
+                        <div class="imgcon" v-show="!isdown"><img src="../../assets/home/engine.jpg" alt=""></div>
+                        <p class="item-title" :title=item.title>{{item.title}}</p>
+                        <!-- <span class="game_cat">{{item.desc}}</span> -->
+                        <div class="downbox" v-show="isdown">
+                            <span class="down01"><i class="icon_see"><span>{{item.looktotal|looksums}}</span></i></span>
+                            <span class="down02"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
+                            <!-- <span class="down03"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span> -->
                         </div>
-                    </router-link>
+                        <a :href="'http://www.manykit.com/codeplay/file/'+item.address" download><button class="download" v-show="!isdown">下载</button></a>
+                        <div class="author">
+                            <img :src="item.imgBuffer" alt="">
+                            <p>manykit</p>
+                        </div>
+                    </div>
                 </el-col>         
             </el-row>
         </keep-alive>
@@ -98,41 +97,60 @@ import http from '../../ajax/fetch.js'//引入封装的axios
             isrecent:'',//是否是最近更新
             defalutColor:true,
             isdown:true,//是否显示观看数和点赞数
-            isengine:'',//是否是引擎项目
-            loading:''
+            isengine:''//是否是引擎项目
         }
     },
     mounted: function () {   
         this.getProduct()//获取初始化数据   
     },
     methods:{
-        async getProduct() {//初始化函数
-        this.loading=true,
-        this.isdown=true
-            let params = {
-                state:4,
-                sortstate:2,
-                pagesize:18
-            }
-            const res = await http.post(api.getDemo, params)
-            this.list=res.data.data
-            if(this.list.msg=='这回真的没有了~'){
-                this.$store.state.recommenddemo=true
-            }else{
-                this.loading=false
-                this.list=res.data.data
-                this.listnewlength=res.data.data[0].total
-                this.listnumtotal = Math.ceil(this.listnewlength/18)*10  
-            }
+        getProduct() {//初始化函数
+        this.engine()
+        // this.isdown=true
+        //     let params = {
+        //         state:4,
+        //         sortstate:2,
+        //         pagesize:30
+        //     }
+        //     const res = await http.post(api.getDemo, params)
+        //     this.list=res.data.data
+        //     if(this.list.msg=='这回真的没有了~'){
+        //         this.$store.state.recommenddemo=true
+        //     }else{
+        //         this.list=res.data.data
+        //         this.listnewlength=res.data.data.length
+        //         this.listnumtotal = Math.ceil(this.listnewlength/30)*10  
+        //         this.$store.state.searchdemo=true//搜索结果列表全局变量
+        //         this.$store.state.recommenddemo=true//推荐结果列表全局变量
+        //         this.$store.state.productiondemo=false//产品结果列表全局变量
+        //     }
+
         },
-        snap(){
-            this.isengine=0
-            this.defalutColor=true
-            this.getProduct()
+        // snap(){
+        //     this.isengine=0
+        //     this.defalutColor=true
+        //     this.getProduct()
+        // },
+
+        engine(){
+            this.loading=true,
+            this.isengine=1
+            this.isdown=false
+            this.defalutColor=false
+            this.axios.post('/res/filelist',{
+                type:1,
+                pagenum:this.cur_page,
+                pagesize:18
+            }).then(response=>{
+                this.loading=false,
+                this.list=response.data.data
+                this.listnewlength=response.data.data[0].total
+                this.listnumtotal = Math.ceil(this.listnewlength/18)*10  
+            })
         },
          //最近更新
         resentchange(){
-            this.loading=true
+            this.loading=true,
             this.isresentshow=true
             this.isdownshow=false
             this.isrecent=1//用于判断是否是最近更新模块
@@ -145,14 +163,23 @@ import http from '../../ajax/fetch.js'//引入封装的axios
                     pagesize:18
                 })
                 .then(response => { 
-                    this.loading=false
+                    this.loading=false,
                     this.list = response.data.data 
+                    // if(this.listLength<16){
+                    //     this.list = this.list.concat(this.listNum)
+                    //     this.load = false,
+                    //     this.loadDown = true 
+                    // }
+                    // else{
+                    //     this.listNum = response.data.data   
+                    //     this.list = this.list.concat(this.listnum)  
+                    // }
                 }) 
             }
         },
         //最多使用
         mostuse(){
-            this.loading=true
+            this.loading=true,
             this.isdownshow=true
             this.isresentshow=false
             if(this.isengine==1){
@@ -165,17 +192,25 @@ import http from '../../ajax/fetch.js'//引入封装的axios
                     pagesize:18
                 })
                     .then(response => {  
-
                         if(response.data.data.msg =="这回真的没有了~"){
 
                         }else{
-                        this.loading=false
+                        this.loading=false,
                         this.list = response.data.data  
+                        // if(this.listLength<16){
+                        //     this.list = this.list.concat(this.listNum)
+                        //     this.load = false,
+                        //     this.loadDown = true 
+                        // }
+                        // else{
+                        //     this.listNum = response.data.data   
+                        //     this.list = this.list.concat(this.listnum)  
+                        // }
                     }
                 }) 
             }
         },
-        //获取当前页数
+                //获取当前页数
         handleCurrentChange(val){
             this.loading=true,
             this.cur_page = val;
@@ -214,7 +249,7 @@ import http from '../../ajax/fetch.js'//引入封装的axios
             }
         },
         searchDemo(){//搜索函数
-           this.loading=true,
+            this.loading=true,
             this.axios.post('/res/filelist',{
                 sortstate:3,
                 searchname:this.searchName

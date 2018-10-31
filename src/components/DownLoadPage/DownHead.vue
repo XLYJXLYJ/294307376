@@ -8,8 +8,9 @@
                     <p class="download_text">手机APP端Phoneix</p>
                     <span class="download_version">随时随地在线学编程，快速成为编程小达人~</span>
                     <div>
-                        <img class="an_download" src="../../assets/download/an_download.png" alt="">
-                        <img class="ios_download" src="../../assets/download/ios_download.png" alt=""> 
+                        <button class="an_download">Android下载</button>
+                        <button class="ios_download">App Store下载</button>
+                        <button class="snapdownload">SNAP下载</button>
                     </div>
                     <div class="qr"><img src="../../assets/download/qr_download.png" alt=""><p>ios/android扫码下载</p></div>
                 </div>
@@ -29,7 +30,7 @@
     z-index: 1;
 }
 .container17{
-    height: 420px;
+    height: 520px;
     width: 1200px;
     margin: 0 auto;
     background: @background-color;
@@ -38,7 +39,7 @@
     z-index: 10;  
 }
 .container18{
-    height: 240px;
+    height: 340px;
     width: 1061px;
     position: relative;
     left: 60px;
@@ -56,7 +57,7 @@
 .logo_02{
     position: absolute;
     left: 36px;
-    top: 30px;
+    top: 80px;
     height: 180px;
     width: 180px;
 }
@@ -85,6 +86,11 @@
     height: 48px;
     width: 176px;
     cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    background:@main-color;
+    border: none;
+    border-radius: 40px;
 }
 .ios_download{
     position: absolute;
@@ -93,11 +99,30 @@
     height: 48px;
     width: 196px;
     cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    background:@main-color;
+    border: none;
+    border-radius: 40px;
+
+}
+.snapdownload{
+    position: absolute;
+    left: 264px;
+    top: 254px;
+    height: 48px;
+    width: 176px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    background:@main-color;
+    border: none;
+    border-radius: 40px;
 }
 .qr{
     position: absolute;
     left: 864px;
-    top: 30px;
+    top: 80px;
     height: 148px;
     width: 144px;
 }
