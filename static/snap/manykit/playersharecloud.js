@@ -166,7 +166,13 @@ IDE_Morph.prototype.openIn = function (world) {
             .then(function(response) { 
                 var namexml = response.data.data.name;
                 var titlexml = response.data.data.title;
-				console.log(response.data)
+                var imgbuffer = response.data.data.imgBuffer;
+                console.log(response.data)
+                if(imgbuffer==null){
+                    document.getElementById("demoimg").src = './localpic.png'
+                }else{
+                    document.getElementById("demoimg").src = "data:image/png;base64,"+imgbuffer;
+                }
                 document.getElementById("demouser").innerHTML=namexml;
                 document.getElementById("demoxml").innerHTML=titlexml;
             })

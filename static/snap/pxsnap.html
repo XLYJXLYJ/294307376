@@ -64,51 +64,27 @@
 		}
 	</script>
 	<script>
-		$(function () {
-			$("#dialog").dialog();
-		});
-
 		var which_board = 'arduino:avr:uno';
 		var which_port = 'COM5';
 
-		var board_list = ['arduino:avr:uno', 'arduino:avr:mega', 'arduino:avr:nano'];
-		var port_list = ['0', '100', '200'];
-		world.Arduino.getSerialPorts((ports) => {
-			Object.keys(ports).forEach((p) => {
-				port_list.push(p)
-			});
-		})
-		$(function () {
-			$("#speed").selectmenu();
-
-			$("#files").selectmenu();
-
-			$("#number")
-				.selectmenu()
-				.selectmenu("menuWidget")
-				.addClass("overflow");
-
-			$("#salutation").selectmenu();
-		});
-
-		function Myselect(){
+		function Myselect() {
 			var i;
-			for (i=0;i < board_list.length; i++) {
-				document.getElementById('salutation').options[i] = new Option(board_list[i],i);
+			for (i = 0; i < board_list.length; i++) {
+				document.getElementById('salutation').options[i] = new Option(board_list[i], board_list[i]);
 			}
 		}
 
-		function Myselectport(){
+		function Myselectport() {
 			var i;
-			for (i=0;i < port_list.length; i++) {
-				document.getElementById('port').options[i] = new Option(port_list[i],i);
+			for (i = 0; i < port_list.length; i++) {
+				document.getElementById('port').options[i] = new Option(port_list[i], port_list[i]);
 			}
 		}
 	</script>
 </head>
 
 <body style="margin: 0;">
-	<div id="dialog" title="上传Arduino代码">
+	<div id="dialog" class="xiaoshi" title="上传Arduino代码">
 		<label for="salutation">选择Arduino</label>
 		<select name="salutation" id="salutation" onFocus="Myselect()">
 			<option disabled selected></option>

@@ -10,7 +10,7 @@
                     <div>
                         <button class="an_download">Android下载</button>
                         <button class="ios_download">App Store下载</button>
-                        <button class="snapdownload">SNAP下载</button>
+                        <a href="https://www.manykit.com/public/snap-win32.zip" download><button class="snapdownload"> SNAP下载</button></a>
                     </div>
                     <div class="qr"><img src="../../assets/download/qr_download.png" alt=""><p>ios/android扫码下载</p></div>
                 </div>
