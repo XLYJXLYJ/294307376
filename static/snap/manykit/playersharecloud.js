@@ -106,6 +106,8 @@ IDE_Morph.prototype.openIn = function (world) {
     function interpretUrlAnchors() {
         var dict, idx;
 
+
+
         if (location.hash.substr(0, 6) === '#open:') {
             hash = location.hash.substr(6);
             if (hash.charAt(0) === '%'
@@ -148,6 +150,11 @@ IDE_Morph.prototype.openIn = function (world) {
             }
             applyFlags(myself.cloud.parseDict(location.hash.substr(5)));
         } else if (location.hash.substr(0, 9) === '#present:')  {
+
+            dict = this.cloud.parseDict(location.hash.substr(9));
+            dict.embedMode = true;
+            dict.hideControls = true;
+
             this.shield = new Morph();
             this.shield.color = this.color;
             this.shield.setExtent(this.parent.extent());

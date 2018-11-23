@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="objects.js"></script>
 		<script type="text/javascript" src="manykit/objects.js"></script>
 		<script type="text/javascript" src="gui.js"></script>
-		<script type="text/javascript" src="manykit/playersharegui.js"></script>
+		<script type="text/javascript" src="manykit/gui.js"></script>
 		<script type="text/javascript" src="paint.js"></script>
 		<script type="text/javascript" src="lists.js"></script>
 		<script type="text/javascript" src="byob.js"></script>
@@ -26,7 +26,7 @@
 		<script type="text/javascript" src="locale.js"></script>
 		<script type="text/javascript" src="manykit/locale.js"></script>
 		<script type="text/javascript" src="cloud.js"></script>
-		<script type="text/javascript" src="manykit/playersharecloud.js"></script>
+		<!-- <script type="text/javascript" src="manykit/playersharecloud.js"></script> -->
 		<script type="text/javascript" src="sha512.js"></script>
 		<script type="text/javascript" src="FileSaver.min.js"></script>
 		<script type="text/javascript" src="manykit/base64.js"></script>
@@ -55,9 +55,8 @@
 
 		<div id="id">id:<span id="spanid"></span></div>
 		<img id="load" src="./reload.png" alt="">
-		<img id="islove" src="./love.png" alt="">
+		<!-- <img id="islove" src="./love.png" alt=""> -->
 		<div class="head">	
-			<h1 class="title">编程玩-开源编程玩法社区</h1>
 			<!-- <div class="search">
 				<input type="text" placeholder="请输入作品id" id="contextid">
 				<button id="search">搜索</button>
@@ -81,12 +80,12 @@
 		// 			window.location = url
 		// 	});
 
-		// var player = document.getElementById('playerimg')
-		// player.addEventListener('touchstart', function(event){
-		// 	document.getElementById('playerimg').style.cssText="display:none"
-		// 	ide.pressStart() 
-		// 	}
-		// )
+		var player = document.getElementById('load')
+		player.addEventListener('touchstart', function(event){
+			ide.pressStart() 
+			}
+		)
+
 		// var video = document.getElementById('world')
 		// video.addEventListener('touchstart', function(event){
 		// 	document.getElementById('playerimg').style.cssText="display:block"
