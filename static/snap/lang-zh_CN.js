@@ -190,7 +190,7 @@ SnapTranslator.dict.zh_CN = {
     // GUI
     // control bar:
     'untitled':
-        '无名项目',
+        '未命名项目',
     'development mode':
         '开发模式',
 
@@ -1578,7 +1578,7 @@ SnapTranslator.dict.zh_CN = {
 
     // Project Manager
     'Untitled':
-        '无名项目',
+        '未命名项目',
     'Open Project':
         '打开项目',
     '(empty)':

@@ -35,69 +35,64 @@
 			var ide;
 			window.onload = function () {
 				world = new WorldMorph(document.getElementById('world'));
-				world.worldCanvas.focus();
+                world.worldCanvas.focus();
 				ide = new IDE_Morph();
 				ide.openIn(world);
-				ide.toggleAppMode(true);
-				// ide.toggleAppMode(true);
-				// setInterval(loop, 30);
-				loop();
+        		loop();
 			};
 			function loop() {
-				requestAnimationFrame(loop);
+        		requestAnimationFrame(loop);
 				world.doOneCycle();
 			}
 		</script>
 	</head>
-
-	<script>
-		!function(){
-			$('#search').click(
-				function () {
-
-				}
-			)
-		}()
-	</script>
 	<body style="margin: 0;">
+		<!-- <img id="playerimg" src="./1.png" alt=""> -->
+		<div id="playerimg">
+			<canvas id="world" src="" frameborder="0"></canvas>
+			<!-- <canvas id="world" tabindex="1" style="position: absolute;" /> -->
+		</div>
+
+		<div id="id">id:<span id="spanid"></span></div>
+		<img id="load" src="./reload.png" alt="">
+		<img id="islove" src="./love.png" alt="">
 		<div class="head">	
 			<h1 class="title">编程玩-开源编程玩法社区</h1>
-			<div class="search">
+			<!-- <div class="search">
 				<input type="text" placeholder="请输入作品id" id="contextid">
 				<button id="search">搜索</button>
-			</div>
-			<div class="name">
+			</div> -->
+			<p id="zong">我的作品</p>
+			<div id="name">
 				<img src="" alt="" id="demoimg">
 				<h1>作者：<span id="demouser"></span></h1>
 			</div>
-			<div class="demo">
+			<div id="demo">
 				<h1>作品名称：<span id="demoxml"></span></h1>
 			</div>
 		</div>
-		<div id="playerimg"><img src="./player.png" alt=""></div>
-		<canvas id="world" tabindex="1"  style="position: absolute;" />
 	</body>
 
 	<script>
-		var obj = document.getElementById('search');
-			obj.addEventListener('touchstart', function(event) {
-				sessionStorage.idid = $('#contextid').val()
-					url = "https://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username=many&ProjectName="+sessionStorage.idid
-					window.location = url
-			});
+		// var obj = document.getElementById('search');
+		// 	obj.addEventListener('touchstart', function(event) {
+		// 		sessionStorage.idid = $('#contextid').val()
+		// 			url = "https://www.manykit.com/codeplay/static/snap/playersharesnap.html#present:Username=many&ProjectName="+sessionStorage.idid
+		// 			window.location = url
+		// 	});
 
-		var player = document.getElementById('playerimg')
-		player.addEventListener('touchstart', function(event){
-			document.getElementById('playerimg').style.cssText="display:none"
-			ide.pressStart() 
-			}
-		)
-		var video = document.getElementById('world')
-		video.addEventListener('touchstart', function(event){
-			document.getElementById('playerimg').style.cssText="display:block"
-			ide.togglePauseResume()
-			}
-		)
+		// var player = document.getElementById('playerimg')
+		// player.addEventListener('touchstart', function(event){
+		// 	document.getElementById('playerimg').style.cssText="display:none"
+		// 	ide.pressStart() 
+		// 	}
+		// )
+		// var video = document.getElementById('world')
+		// video.addEventListener('touchstart', function(event){
+		// 	document.getElementById('playerimg').style.cssText="display:block"
+		// 	ide.togglePauseResume()
+		// 	}
+		// )
 		// function videoPlay01(){
 		// 	document.getElementById('playerimg').style.cssText="display:none"
 		// 	ide.pressStart() 
@@ -109,39 +104,67 @@
 	</script>
 </html>
 <style>
+
 #world{
-	height: 75%!important;
 	width: 100%!important;
-	display: block;
-	top: 400px;
+	height:55%!important;
 }
 #playerimg{
-	position:absolute;
+	/* position:absolute; */
 	width: 100%;
-	height:75%;
+	height:55%;
 	z-index: 1000;
-	background: #333;
-	opacity: 0.8;
+	/* background: #333; */
+	/* opacity: 0.8; */
 	text-align: center;
 	cursor: pointer;
-	top: 400px;
+	top: 0px;
 }
-#playerimg img{
+#id{
+	position:absolute;
+	width: 120px;
+	height:30px;
+	font-size: 4em;
+	margin-left: 20px;
+	/* background: #333; */
+	/* opacity: 0.8; */
+	left: 3%;
+	top: 60%;
+}
+#load{
+	position:absolute;
+	width: auto;
+	height:80px;
+	/* background: #333; */
+	/* opacity: 0.8; */
+	left: 49%;
+	top: 60%;
+}
+#islove{
+	position:absolute;
+	width: 80px;
+	height:80px;
+	/* background: #333; */
+	/* opacity: 0.8; */
+	top: 60%;
+	right: 40px;
+}
+/* #playerimg img{
 	position:absolute;
 	width: 69px;
 	height: 69px;
 	z-index: 1000;
-	top: 43%;
+	top: 63%;
 	left: 45.2%;
 	cursor: pointer;
-}
-.head{
+} */
+/* .head{
 	width: 100%;
 	position: fixed;
 	min-height: 500px!important;
 	top: -20px;
-}
-.head .title{
+} */
+/* .head .title{
 	position: fixed;
 	width: 100%;
 	background: #c51d4a;
@@ -181,50 +204,59 @@
 	background: #c51d4a;
 	padding-top: 6px;
 	font-size: 30px;
+} */
+#zong{
+	position:absolute;
+	width: 280px;
+	height:40px;
+	/* background: #333; */
+	/* opacity: 0.8; */
+	left: 4%;
+	top: 65%;
+	font-size: 4em;
 }
-.head .name{
-	position: fixed;
-	top: 160px;
-	left: 4px;
-	width: 100%;
-	height: 60px;
-	color:#fff;
-	padding-top: 20px;
+#name{
+	position:absolute;
+	width: 80px;
+	height:80px;
+	/* background: #333; */
+	/* opacity: 0.8; */
+	left: 4%;
+	top: 75%;
 }
-.head .name #demoimg{
-	position: relative;
-	top: 60px;
-	left: 14px;
-	width:60px;
-	height: 60px;
+#name #demoimg{
+	position: absolute;
+	top: 30px;
+	left: 0px;
+	width:80px;
+	height: 80px;
 	z-index: 1000;
 }
-.head .name h1{
-	position: relative;
+#name h1{
+	position: absolute;
 	top: 0px;
 	left: 100px;
 	width:360px;
 	height: 60px;
 	color:#000;
+	font-size: 3em;
 }
-.head .demo{
-	position: fixed;
-	top: 290px;
-	left: 4px;
-	width: 70%;
-	height: 60px;
-	color:#fff;
-	padding-top: 20px;
+#demo{
+	position:absolute;
+	width: 280px;
+	height:80px;
+	/* background: #333; */
+	/* opacity: 0.8; */
+	left: 4%;
+	top: 83%;
 }
-.head .demo h1{
+#demo h1{
 	position: relative;
 	top: 0px;
 	width:760px;
 	height: 60px;
-	color:#000;
-	text-align: center;
+	color:rgb(184, 166, 166);
+	font-size: 3em;
 }
 
 </style>
-
-

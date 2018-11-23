@@ -217,6 +217,7 @@ IDE_Morph.prototype.openIn = function (world) {
             }
             // applyFlags(SnapCloud.parseDict(location.hash.substr(5)));
         } else if (location.hash.substr(0, 9) === '#present:') {
+            myself.toggleAppMode(true)
             this.shield = new Morph();
             this.shield.color = this.color;
             this.shield.setExtent(this.parent.extent());
@@ -251,7 +252,7 @@ IDE_Morph.prototype.openIn = function (world) {
                             myself.rawOpenProjectString(projectData);
                         }
                         myself.hasChangedMedia = true;
-                        myself.toggleAppMode(true)
+                        
                     },
                     function () {
                         myself.shield.destroy();

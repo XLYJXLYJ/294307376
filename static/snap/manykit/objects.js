@@ -152,7 +152,7 @@ SpriteMorph.prototype.initPXFrameBlocks = function () {
         type: 'command',
         category: 'PXFrame',
         spec: 'VehicleInitMotoBoard298N at pinLA %_Pin and pinLB %_Pin and pinLS %_Pin and pinRA %_Pin and pinRB %_Pin pinRS %_Pin',
-        defaults: ["P_4", "P_5", "P_6", "P_7", "P_8", "P_9"],
+        defaults: ["4", "5", "6", "7", "8", "9"],
         transpilable: false
     };
 
@@ -191,7 +191,7 @@ SpriteMorph.prototype.initPXFrameBlocks = function () {
         type: 'command',
         category: 'PXFrame',
         spec: 'VehicleSpeedEncorderInit at pinLA %_Pin and pinLB %_Pin and pinRA %_Pin and pinRB %_Pin',
-        defaults: [2, "P_A0", 3, "P_A1"],
+        defaults: [2, "A0", 3, "A1"],
         transpilable: false
     };
 
@@ -211,7 +211,7 @@ SpriteMorph.prototype.initPXFrameBlocks = function () {
         type: 'command',
         category: 'PXFrame',
         spec: 'MP3 init at pinR %_Pin pinT %_Pin',
-        defaults: ["P_7", "P_8"],
+        defaults: ["7", "8"],
         transpilable: false
     };
 
@@ -268,7 +268,7 @@ SpriteMorph.prototype.initPXFrameBlocks = function () {
         type: 'command',
         category: 'PXFrame',
         spec: 'infrared recviver init at pin %_Pin',
-        defaults: ["P_7"],
+        defaults: ["7"],
         transpilable: false
     };
 
@@ -288,7 +288,7 @@ SpriteMorph.prototype.initPXFrameBlocks = function () {
         type: 'command',
         category: 'PXFrame',
         spec: 'weight tester %n init at pinOut %_Pin pinClk %_Pin',
-        defaults: [0, "P_7", "P_8"],
+        defaults: [0, "7", "8"],
         transpilable: false
     };
 	

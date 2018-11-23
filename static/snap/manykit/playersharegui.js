@@ -231,6 +231,7 @@ IDE_Morph.prototype.openIn = function (world) {
             // $('#demoxml').html(1);
             demoxml = location.hash.substr(36, 5)
             demouser = location.hash.substr(18, 5)
+
             axios.post('/res/getfile',{
                 id:demoxml,
                 state:3

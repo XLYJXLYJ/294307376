@@ -1,12 +1,12 @@
 pxframeDict = {
-    'BianChengWan website':
-    '编程玩首页',
+    'ZERONERobot website':
+    '零一机器人',
 
     'ManyKit website':
-        '许多米首页',
+        '许多米科技',
 
     'ManyKit GitHub':
-        '代码仓库',
+        '源代码仓库',
 
     'Singup From ManyKit':
         '从官网注册',
@@ -57,14 +57,16 @@ pxframeDict = {
         '检测PHOENIXFrame防火墙代码是否已经加载',
 
     'select a port': '选择一个端口',
+
+    'Visible stepping': '显示执行过程',
 		
     'PinMode %_Pin as %_PinMode': '引脚 %_Pin 设为 %_PinMode',
     
-    'input': '输入',
-    'output': '输出',
+    'INPUT': '输入',
+    'OUTPUT': '输出',
 
-    'high': '高',
-    'low': '低',
+    'HIGH': '高',
+    'LOW': '低',
 
     'DigitalWrite %_Pin as %_HighLow': '引脚 %_Pin 输出 %_HighLow',
     'PwmWrite %_PwmPin as %n': '引脚 %_PwmPin PWM输出 %n',

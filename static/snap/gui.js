@@ -75,7 +75,7 @@ isRetinaSupported, SliderMorph, Animation, BoxMorph, MediaRecorder*/
 
 // Global stuff ////////////////////////////////////////////////////////
 
-modules.gui = '2018-July-19';
+modules.gui = '2018-September-09';
 
 // Declarations
 
@@ -301,7 +301,7 @@ IDE_Morph.prototype.openIn = function (world) {
     world.add(this);
     world.userMenu = this.userMenu;
 
-    // override Cloud's user message with Morphic
+    // override SnapCloud's user message with Morphic
     this.cloud.message = function (string) {
         var m = new MenuMorph(null, string),
             intervalHandle;
@@ -1741,13 +1741,13 @@ IDE_Morph.prototype.fixLayout = function (situation) {
 
         // categories
         this.categories.setLeft(this.logo.left());
-        this.categories.setTop(this.logo.bottom());
+        this.categories.setTop(this.logo.bottom()+padding);
         this.categories.setWidth(this.paletteWidth);
     }
 
     // palette
     this.palette.setLeft(this.logo.left());
-    this.palette.setTop(this.categories.bottom());
+    this.palette.setTop(this.categories.bottom()+1);
     this.palette.setHeight(this.bottom() - this.palette.top());
     this.palette.setWidth(this.paletteWidth);
 
@@ -3513,7 +3513,7 @@ IDE_Morph.prototype.aboutSnap = function () {
         module, btn1, btn2, btn3, btn4, licenseBtn, translatorsBtn,
         world = this.world();
 
-    aboutTxt = 'Snap! 4.2.1.3\nBuild Your Own Blocks\n\n'
+    aboutTxt = 'Snap! 4.2.1.4\nBuild Your Own Blocks\n\n'
         + 'Copyright \u24B8 2018 Jens M\u00F6nig and '
         + 'Brian Harvey\n'
         + 'jens@moenig.org, bh@cs.berkeley.edu\n\n'
@@ -5413,7 +5413,7 @@ IDE_Morph.prototype.logout = function () {
 IDE_Morph.prototype.saveProjectToCloud = function (name) {
     var myself = this;
     if (name) {
-		this.showMessage('Saving project\nto the cloud...',2);
+        this.showMessage('Saving project\nto the cloud...');
         this.setProjectName(name);
         this.cloud.saveProject(
             this,
@@ -6317,7 +6317,7 @@ ProjectDialogMorph.prototype.installCloudProjectList = function (pl) {
     };
     this.body.add(this.listField);
     if (this.task === 'open') {
-        this.recoverButton.hide();
+        this.recoverButton.show();
     }
     this.shareButton.show();
     this.unshareButton.hide();
@@ -6455,7 +6455,7 @@ ProjectDialogMorph.prototype.saveProject = function () {
 
 ProjectDialogMorph.prototype.saveCloudProject = function () {
     var myself = this;
-    this.ide.showMessage('Saving project\nto the cloud...',2);
+    this.ide.showMessage('Saving project\nto the cloud...');
     this.ide.cloud.saveProject(
         this.ide,
         function () {

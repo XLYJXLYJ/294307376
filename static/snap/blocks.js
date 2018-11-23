@@ -148,7 +148,7 @@ CustomCommandBlockMorph, SymbolMorph, ToggleButtonMorph, DialMorph*/
 
 // Global stuff ////////////////////////////////////////////////////////
 
-modules.blocks = '2018-July-13';
+modules.blocks = '2018-September-09';
 
 var SyntaxElementMorph;
 var BlockMorph;
@@ -7386,7 +7386,6 @@ CommandSlotMorph.prototype.drawEdges = function (context) {
     context.lineJoin = 'round';
     context.lineCap = 'round';
 
-
     // bright:
     // bottom horizontal line
     gradient = context.createLinearGradient(
@@ -8664,9 +8663,10 @@ InputSlotMorph.prototype.shadowedVariablesMenu = function () {
 
     if (!block) {return dict; }
     rcvr = block.scriptTarget();
-    if (this.parentThatIsA(RingMorph)) {
+    if (this.parentThatIsA(RingMorph) ||
+            this.topBlock().selector === 'receiveOnClone') {
     	// show own local vars and attributes, because this is likely to be
-     	// inside TELL, ASK or OF
+     	// inside TELL, ASK or OF or when initializing a new clone
         vars = rcvr.variables.names();
         vars.forEach(function (name) {
             dict[name] = name;

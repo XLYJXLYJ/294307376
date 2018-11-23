@@ -159,6 +159,8 @@ IDE_Morph.prototype.openIn = function (world) {
             // $('#demoxml').html(1);
             demoxml = location.hash.substr(35, 5)
             demouser = location.hash.substr(18, 4)
+            document.getElementById("world").src='https://www.manykit.com/codeplay/static/snap/playsnap.html#present:Username=Lynn&ProjectName='+demoxml;
+            document.getElementById("spanid").innerHTML=demoxml;
             axios.post('/res/getfile',{
                 id:demoxml,
                 state:3
@@ -379,7 +381,7 @@ Cloud.prototype.init = function () {
 };
 
 Cloud.prototype.determineCloudDomain = function () {
-    return "http://www.manykit.com/res/";
+    return "https://www.manykit.com/res/";
 };
 
 // Cloud.prototype.initSession = function (onSuccess) {
