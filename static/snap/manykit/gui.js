@@ -2337,7 +2337,7 @@ IDE_Morph.prototype.openIn = function (world) {
                     function () {
                         myself.shield.destroy();
                         myself.shield = null;
-                        dict = myself.cloud.parseDict(location.hash.substr(11));
+                        dict = myself.cloud.parseDict(location.hash.substr(9));
                         dict.embedMode = true;
                         // dict.hideControls = true;
                         msg.destroy();
@@ -2346,10 +2346,10 @@ IDE_Morph.prototype.openIn = function (world) {
                 ]);
             }
         ) 
-        dict = myself.cloud.parseDict(location.hash.substr(11));
-        dict.embedMode = true;
-        dict.hideControls = true;
-        applyFlags(dict); 
+        // dict = myself.cloud.parseDict(location.hash.substr(11));
+        // dict.embedMode = true;
+        // dict.hideControls = true;
+        // applyFlags(dict); 
         }
         else if (location.hash.substr(0, 6) === '#open:') {
             hash = location.hash.substr(6);
