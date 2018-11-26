@@ -13,11 +13,11 @@
         <div class="first">
             <ul class="role">
                 <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
-                    <!-- <div class="roleimg"><img class="imglesson" :src="'/codeplay'+item.content"></div> -->
+                    <!-- <div class="roleimg"><img class="imglesson" :src="'/zeronerobot'+item.content"></div> -->
                     <div class="roleimg"><img class="imglesson" :src="isbgcolor(item.type,item.content)"></div>
                     <div class="roleup">
                         <!-- <button @click="collectmaster(item.id)">采集</button> -->
-                        <a :href="'/codeplay'+item.content" download><button @click="downloadmaster(item.id)">下载</button></a>
+                        <a :href="'/zeronerobot'+item.content" download><button @click="downloadmaster(item.id)">下载</button></a>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>
@@ -113,7 +113,7 @@ export default{
         // },
         isbgcolor(i,j){
             if(i=='png'){
-                return "codeplay"+j;
+                return "zeronerobot"+j;
             }else{
                 return 'static/musicbg.png';
             }

@@ -2,7 +2,7 @@
     <div class="container01" v-show="$store.state.recommenddemo">
         <el-row :gutter="10" class="el-row">
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" v-for="item in list" :key='item.id' class="el-col"> 
-                    <!-- <a :href="'http://www.manykit.com/codeplay/#/Video?='+item.id"> -->
+                    <!-- <a :href="'http://www.manykit.com/zeronerobot/#/Video?='+item.id"> -->
                     <router-link :to="'/video?='+item.id">
                         <div class="grid-content bg-purple list_pic" @click="edit01(item.id)">
                             <div class="imgcon"><img :src="item.imgBuffer" alt=""></div>

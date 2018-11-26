@@ -46,9 +46,9 @@
     <div class="first">
         <ul class="role">
             <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
-                <div class="roleimg"><img :src="'/codeplay/'+item.content"></div>
+                <div class="roleimg"><img :src="'/zeronerobot/'+item.content"></div>
                 <div class="roleup">
-                <a :href="'/codeplay/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
+                <a :href="'/zeronerobot/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
                     <p class="text">{{item.name}}</p>
                 </div>
             </li>

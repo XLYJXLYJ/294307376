@@ -37,7 +37,7 @@
                             <span class="down02"><i class="icon_love"><span>{{item.praisetotal|looksums}}</span></i></span>
                             <!-- <span class="down03"><i class="icon_star"><span>{{item.collecttotal|looksums}}</span></i></span> -->
                         </div>
-                        <a :href="'http://www.manykit.com/codeplay/file/'+item.address" download><button class="download" v-show="!isdown">下载</button></a>
+                        <a :href="'http://www.manykit.com/zeronerobot/file/'+item.address" download><button class="download" v-show="!isdown">下载</button></a>
                         <div class="author">
                             <img :src="item.imgBuffer" alt="">
                             <p>manykit</p>

@@ -37,11 +37,11 @@
                 <li v-for="(item,index) in listnew" :key="item.id" v-if="index<15">
                     <div class="roleimg">
                         <div class="roleimgbox">
-                             <img :src="'/codeplay/'+item.content" alt="">
+                             <img :src="'/zeronerobot/'+item.content" alt="">
                         </div>
                     </div>
                     <div class="roleup">
-                    <a :href="'/codeplay/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
+                    <a :href="'/zeronerobot/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>

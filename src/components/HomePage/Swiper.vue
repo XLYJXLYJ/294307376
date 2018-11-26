@@ -43,7 +43,7 @@
         <div class="create">
             <div>
                 <p class="creattitle">常去的地方</p>
-                <!-- <a href="http://www.manykit.com/codeplay/#/snap" target="_blank"><div class="creat01" @click="clearSession"><img src="../../assets/home/s.png" alt=""></div></a> -->
+                <!-- <a href="http://www.manykit.com/zeronerobot/#/snap" target="_blank"><div class="creat01" @click="clearSession"><img src="../../assets/home/s.png" alt=""></div></a> -->
                 <router-link to="/snap" target="_blank"><div class="creat01" @click="clearSession"><img src="../../assets/home/s.png" alt=""><p>Snap</p></div></router-link>
                 <router-link to="/Blockly" target="_blank"><div class="creat02"><img src="../../assets/home/p.png" alt=""><p>Blockly</p></div></router-link> 
                 <a href="https://github.com/manykits/PHOENIXEngine" target="_blank"><div class="creat03"><img src="../../assets/home/g.png" alt=""><p>PHOENIXEngine</p></div></a>

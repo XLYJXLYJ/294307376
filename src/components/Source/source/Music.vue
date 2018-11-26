@@ -49,14 +49,14 @@
                         <div @click="musicplay01(index,item.id)"><img v-show="musicstart01==index||musicstart0001==item.id" src="../../../assets/source/end.png"></div>
                         <!-- 这里是个坑 -->
                         <div @click="musicstop(index,item.id)"><img v-show="musicend==index||musicend01==item.id" src="../../../assets/source/start.png"></div>
-                        <audio :src="'/codeplay'+item.content" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime(index)" controls="controls" preload="metadata"></audio>
+                        <audio :src="'/zeronerobot'+item.content" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime(index)" controls="controls" preload="metadata"></audio>
                         <!-- <audio src="static/1.mp3" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime" controls="controls" preload="metadata"></audio> -->
                         <el-progress class="progress" :text-inside="false" v-show="progressbg==index" :stroke-width="4" :percentage="scale"></el-progress>
                         <!-- <el-progress class="progress" v-show="progressbg==index?true:false" type="circle" :percentage="scale" :width="75" :show-text="false"></el-progress> -->
                     </div>
                     <div class="roleup">
     
-                    <a :href="'/codeplay/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
+                    <a :href="'/zeronerobot/'+item.content" download><button @click="collectmaster(item.id)">下载</button></a>
                         <p class="text">{{item.name}}</p>
                         <p class="clock" v-show="isduration==index">{{duration02}}</p>
                     </div>

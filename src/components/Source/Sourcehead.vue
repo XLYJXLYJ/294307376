@@ -38,10 +38,10 @@
                 <div class="line"></div>
                 <ul class="role">
                     <li v-for="(item) in list" :key="item.id" v-show="item.onenav==1">
-                        <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
-                        <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
+                        <!-- <div class="roleimg"><img :src="'/zeronerobot/'+item.content"></div> -->
+                        <div class="roleimg"><img v-lazy="'/zeronerobot/'+item.content" alt=""></div>
                         <div class="roleup">
-                        <button><a :href="'/codeplay/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
+                        <button><a :href="'/zeronerobot/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
                             <p class="text">{{item.name}}</p>
                         </div>
                     </li>
@@ -53,10 +53,10 @@
             <div class="line"></div>
             <ul class="role">
                 <li v-for="(item) in list" :key="item.id" v-show="item.onenav==2">
-                    <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content" alt=""></div> -->
-                    <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
+                    <!-- <div class="roleimg"><img :src="'/zeronerobot/'+item.content" alt=""></div> -->
+                    <div class="roleimg"><img v-lazy="'/zeronerobot/'+item.content" alt=""></div>
                     <div class="roleup">
-                       <a :href="'/codeplay'+item.content" download @click="collectmaster02(item.id)"><button>下载</button></a>
+                       <a :href="'/zeronerobot'+item.content" download @click="collectmaster02(item.id)"><button>下载</button></a>
                         <p class="text">{{item.name}}</p>
                     </div>
                 </li>  
@@ -68,10 +68,10 @@
                 <div class="line"></div>
                 <ul class="role">
                     <li v-for="(item) in list" :key="item.id" v-show="item.onenav==3">
-                        <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
-                        <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
+                        <!-- <div class="roleimg"><img :src="'/zeronerobot/'+item.content"></div> -->
+                        <div class="roleimg"><img v-lazy="'/zeronerobot/'+item.content" alt=""></div>
                         <div class="roleup">
-                        <button><a :href="'/codeplay/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
+                        <button><a :href="'/zeronerobot/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
                             <p class="text">{{item.name}}</p>
                         </div>
                     </li>
@@ -84,10 +84,10 @@
                 <div class="line"></div>
                 <ul class="role">
                     <li v-for="(item) in list" :key="item.id" v-show="item.onenav==4">
-                        <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
-                        <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
+                        <!-- <div class="roleimg"><img :src="'/zeronerobot/'+item.content"></div> -->
+                        <div class="roleimg"><img v-lazy="'/zeronerobot/'+item.content" alt=""></div>
                         <div class="roleup">
-                        <button><a :href="'/codeplay/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
+                        <button><a :href="'/zeronerobot/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
                             <p class="text">{{item.name}}</p>
                         </div>
                     </li>
@@ -104,14 +104,14 @@
                             <div @click="musicplay01(index)"><img v-show="musicstart01==index" src="../../assets/source/end.png"></div>
                             <!-- 这里是个坑 -->
                             <div @click="musicstop(index)"><img v-show="musicend==index" src="../../assets/source/start.png"></div>
-                            <audio :src="'/codeplay'+item.content" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime(index)" controls="controls" preload="metadata"></audio>
+                            <audio :src="'/zeronerobot'+item.content" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime(index)" controls="controls" preload="metadata"></audio>
                             <!-- <audio src="static/1.mp3" ref="audio" v-show="false" id="bgmusic" @timeupdate="updateTime" controls="controls" preload="metadata"></audio> -->
                             <el-progress class="progress" :text-inside="false" v-show="progressbg==index" :stroke-width="4" :percentage="scale"></el-progress>
                             <!-- <el-progress class="progress" v-show="progressbg==index?true:false" type="circle" :percentage="scale" :width="75" :show-text="false"></el-progress> -->
                         </div>
                         <div class="roleup">
 
-                        <a :href="'/codeplay'+item.content" download><button @click="collectmaster02(item.id)">下载</button></a>
+                        <a :href="'/zeronerobot'+item.content" download><button @click="collectmaster02(item.id)">下载</button></a>
                             <p class="text">{{item.name}}</p>
                             <p class="clock" v-show="isduration==index">{{duration02}}</p>
                         </div>
@@ -124,10 +124,10 @@
                 <div class="line"></div>
                 <ul class="role">
                     <li v-for="(item) in list" :key="item.id" v-show="item.onenav==6">
-                        <!-- <div class="roleimg"><img :src="'/codeplay/'+item.content"></div> -->
-                        <div class="roleimg"><img v-lazy="'/codeplay/'+item.content" alt=""></div>
+                        <!-- <div class="roleimg"><img :src="'/zeronerobot/'+item.content"></div> -->
+                        <div class="roleimg"><img v-lazy="'/zeronerobot/'+item.content" alt=""></div>
                         <div class="roleup">
-                        <button><a :href="'/codeplay/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
+                        <button><a :href="'/zeronerobot/'+item.content" download @click="collectmaster02(item.id)">下载</a></button>
                             <p class="text">{{item.name}}</p>
                         </div>
                     </li>

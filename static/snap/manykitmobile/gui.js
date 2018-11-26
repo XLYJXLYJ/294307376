@@ -536,7 +536,7 @@ IDE_Morph.prototype.snapMenu = function () {
     menu.addLine();
     menu.addItem('ZERONERobot website',
         function () {
-            window.open('http://www.manykit.com/codeplay', 'BianChengWanWebsite');
+            window.open('http://www.manykit.com/zeronerobot', 'BianChengWanWebsite');
         }
     );
 
@@ -1366,7 +1366,7 @@ IDE_Morph.prototype.cloudMenu = function () {
         menu.addItem(
             'Singup From ManyKit',
             function () {
-                window.open('http://www.manykit.com/codeplay', 'BianChengWanWebsite');
+                window.open('http://www.manykit.com/zeronerobot', 'BianChengWanWebsite');
             }
         );
     } else {
