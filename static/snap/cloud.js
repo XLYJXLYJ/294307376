@@ -50,7 +50,7 @@ Cloud.prototype.init = function () {
 };
 
 Cloud.prototype.knownDomains = {
-    'Snap!Cloud' : 'https://cloud.snap.berkeley.edu',
+    'Snap!Cloud' : 'https://www.manykit.com',
     'Snap!Cloud (cs10)' : 'https://snap-cloud.cs10.org',
     'Snap!Cloud (staging)': 'https://snap-staging.cs10.org',
     'localhost': 'http://localhost:8080',

@@ -105,8 +105,73 @@ IDE_Morph.prototype.openIn = function (world) {
 
     function interpretUrlAnchors() {
         var dict, idx;
+        //location.hash = "#embedmode:";
+        if (location.hash.substr(0, 11) === '#embedmode:')
+        {
+            dict = myself.cloud.parseDict(location.hash.substr(11));
+            dict.embedMode = true;
+            //dict.hideControls = true;
+            applyFlags(dict); 
 
-        if (location.hash.substr(0, 6) === '#open:') {
+            // myself.showMessage('Fetching project\nfrom the cloud...');
+            var demoxml
+            var demouser
+            // demoxml = location.hash.substr(36, 5)
+            // $('#demoxml').html(1);
+            demoxml = location.hash.substr(36, 5)
+            demouser = location.hash.substr(18, 5)
+
+            axios.post('/res/getfile',{
+                id:152,
+                state:3
+            })
+            .then(function(response) { 
+                var namexml = response.data.data.name;
+                var titlexml = response.data.data.title;
+                document.getElementById("demouser").innerHTML=namexml;
+                document.getElementById("demoxml").innerHTML=titlexml;
+            })
+
+            var playerresultxml = new Promise((resolve,reject) =>{
+                axios.post('/res/getfile',{
+                    id:demoxml,
+                })
+                .then(function(response) { 
+                    resolve(response.data)
+                    // console.log(response.data)
+                })
+            });
+            playerresultxml.then(function (projectData) {
+                var msg;
+
+                // alert(projectData)
+                myself.nextSteps([
+                    function () {
+                        msg = myself.showMessage('Opening project...');
+                    },
+                    function () {nop(); }, // yield (bug in Chrome)
+                    function () {
+                        if (projectData.indexOf('<snapdata') === 0) {
+                            myself.rawOpenCloudDataString(projectData);
+                        } else if (
+                            projectData.indexOf('<project') === 0
+                        ) {
+                            myself.rawOpenProjectString(projectData);
+                        }
+                        myself.hasChangedMedia = true;
+                        myself.toggleAppMode(true)
+                    },
+                    function () {
+                        myself.shield.destroy();
+                        myself.shield = null;
+                        msg.destroy();
+                        // applyFlags(dict);
+                    }
+                ]);
+            }
+        ) 
+        }
+        else if (location.hash.substr(0, 6) === '#open:') {
             hash = location.hash.substr(6);
             if (hash.charAt(0) === '%'
                     || hash.search(/\%(?:[0-9a-f]{2})/i) > -1) {

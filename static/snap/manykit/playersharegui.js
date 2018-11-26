@@ -276,6 +276,10 @@ IDE_Morph.prototype.openIn = function (world) {
                         myself.shield.destroy();
                         myself.shield = null;
                         msg.destroy();
+                        dict = myself.cloud.parseDict(location.hash.substr(9));
+                        dict.embedMode = true;
+                        // dict.hideControls = true;
+                        applyFlags(dict);
                         // applyFlags(dict);
                     }
                 ]);

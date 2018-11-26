@@ -378,8 +378,14 @@ IDE_Morph.prototype.openIn = function (world) {
 
     function interpretUrlAnchors() {
         var dict, idx;
-
-        if (location.hash.substr(0, 6) === '#open:') {
+        if(location.hash.substr(0, 11) === '#embedmode:'){
+            dict = myself.cloud.parseDict(location.hash.substr(9));
+            dict.embedMode = true;
+            // dict.hideControls = true;
+            applyFlags(dict);
+        
+        }
+        else if (location.hash.substr(0, 6) === '#open:') {
             hash = location.hash.substr(6);
             if (hash.charAt(0) === '%'
                     || hash.search(/\%(?:[0-9a-f]{2})/i) > -1) {

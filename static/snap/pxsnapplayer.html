@@ -4,18 +4,17 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>编程玩-开源编程玩法社区</title>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<script type="text/javascript" src="manykit/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="manykitmobile/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="morphic.js"></script>
 		<script type="text/javascript" src="widgets.js"></script>
 		<script type="text/javascript" src="blocks.js"></script>
-		<script type="text/javascript" src="manykit/blocks.js"></script>
-		<script type="text/javascript" src="manykit/arduino.js"></script>
+		<script type="text/javascript" src="manykitmobile/blocks.js"></script>
+		<script type="text/javascript" src="manykitmobile/arduino.js"></script>
 		<script type="text/javascript" src="threads.js"></script>
-		<script type="text/javascript" src="manykit/threads.js"></script>
+		<script type="text/javascript" src="manykitmobile/threads.js"></script>
 		<script type="text/javascript" src="objects.js"></script>
-		<script type="text/javascript" src="manykit/objects.js"></script>
-		<script type="text/javascript" src="gui.js"></script>
-		<script type="text/javascript" src="manykit/gui.js"></script>
+		<script type="text/javascript" src="manykitmobile/objects.js"></script>
+
 		<script type="text/javascript" src="paint.js"></script>
 		<script type="text/javascript" src="lists.js"></script>
 		<script type="text/javascript" src="byob.js"></script>
@@ -24,39 +23,27 @@
 		<script type="text/javascript" src="xml.js"></script>
 		<script type="text/javascript" src="store.js"></script>
 		<script type="text/javascript" src="locale.js"></script>
-		<script type="text/javascript" src="manykit/locale.js"></script>
+		<script type="text/javascript" src="manykitmobile/locale.js"></script>
 		<script type="text/javascript" src="cloud.js"></script>
-		<script type="text/javascript" src="manykit/playersharecloud.js"></script>
+		<script type="text/javascript" src="manykitweb/playersharecloud.js"></script>
 		<script type="text/javascript" src="sha512.js"></script>
 		<script type="text/javascript" src="FileSaver.min.js"></script>
-		<script type="text/javascript" src="manykit/base64.js"></script>
+		<script type="text/javascript" src="manykitmobile/base64.js"></script>
+		<script type="text/javascript" src="gui.js"></script>
+		<script type="text/javascript" src="manykitmobile/gui.js"></script>
 		<script type="text/javascript">
-			var world;
-			var ide;
-			window.onload = function () {
-				world = new WorldMorph(document.getElementById('world'));
-                world.worldCanvas.focus();
-				ide = new IDE_Morph();
-				ide.openIn(world);
-        		loop();
-			};
-			function loop() {
-        		requestAnimationFrame(loop);
-				world.doOneCycle();
-			}
+
 		</script>
 	</head>
 	<body style="margin: 0;">
-		<img id="playerimg1" src="./play.png" alt="">
 		<div id="playerimg">
-			<iframe id="world" src="" frameborder="0"></iframe>
-			<!-- <canvas id="world" tabindex="1" style="position: absolute;" /> -->
+			<iframe id ="content" src=""></iframe>
 		</div>
 
 		<div id="id">id:<span id="spanid"></span></div>
-		<img id="load" src="./load.jpg" alt="">
-		<!-- <img id="islove" src="./love.png" alt=""> -->
+		<img id="load" src="./manykitweb/reload.png" alt="">
 		<div class="head">	
+			<!-- <h1 class="title">编程玩-开源编程玩法社区</h1> -->
 			<!-- <div class="search">
 				<input type="text" placeholder="请输入作品id" id="contextid">
 				<button id="search">搜索</button>
@@ -73,6 +60,8 @@
 	</body>
 
 	<script>
+	
+		
 		// var obj = document.getElementById('search');
 		// 	obj.addEventListener('touchstart', function(event) {
 		// 		sessionStorage.idid = $('#contextid').val()
@@ -80,22 +69,12 @@
 		// 			window.location = url
 		// 	});
 
-		var ide;
-		ide = new IDE_Morph();	
-
-		var player1 = document.getElementById('playerimg1')
-		player1.addEventListener('touchstart', function(event){
-			ide.pressStart() 
-			document.getElementById('playerimg1').style.cssText="display:none"
-			}
-		)
-
-		var player = document.getElementById('load')
-		player.addEventListener('touchstart', function(event){
-			ide.pressStart() 
-			}
-		)
-
+		// var player = document.getElementById('playerimg')
+		// player.addEventListener('touchstart', function(event){
+		// 	document.getElementById('playerimg').style.cssText="display:none"
+		// 	ide.pressStart() 
+		// 	}
+		// )
 		// var video = document.getElementById('world')
 		// video.addEventListener('touchstart', function(event){
 		// 	document.getElementById('playerimg').style.cssText="display:block"
@@ -110,34 +89,27 @@
 		// 	document.getElementById('playerimg').style.cssText="display:block"
 		// 	ide.togglePauseResume() 
 		// }
-
- 
 	</script>
-	
 </html>
 <style>
 
-#world{
-	width: 100%!important;
-	height:55%!important;
-}
-#playerimg1{
+#playerimg{
 	position:absolute;
 	width: 100%;
 	height:55%;
 	z-index: 1000;
-}
-#playerimg{
-	/* position:absolute; */
-	width: 100%;
-	height:55%;
-	z-index: 100;
 	/* background: #333; */
 	/* opacity: 0.8; */
 	text-align: center;
 	cursor: pointer;
 	top: 0px;
 }
+
+#playerimg #content{
+	width: 100%!important;
+	height:100%!important;
+}
+
 #id{
 	position:absolute;
 	width: 120px;

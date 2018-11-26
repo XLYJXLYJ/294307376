@@ -107,8 +107,14 @@ IDE_Morph.prototype.openIn = function (world) {
         var dict, idx;
 
 
+if(location.hash.substr(0, 6) === '#embedmode:'){
+    dict = myself.cloud.parseDict(location.hash.substr(9));
+    dict.embedMode = true;
+    // dict.hideControls = true;
+    applyFlags(dict);
 
-        if (location.hash.substr(0, 6) === '#open:') {
+}
+    else  if (location.hash.substr(0, 6) === '#open:') {
             hash = location.hash.substr(6);
             if (hash.charAt(0) === '%'
                     || hash.search(/\%(?:[0-9a-f]{2})/i) > -1) {
@@ -219,6 +225,10 @@ IDE_Morph.prototype.openIn = function (world) {
                         myself.shield.destroy();
                         myself.shield = null;
                         msg.destroy();
+                        dict = myself.cloud.parseDict(location.hash.substr(9));
+                        dict.embedMode = true;
+                        // dict.hideControls = true;
+                        applyFlags(dict);
                         // applyFlags(dict);
                     }
                 ]);
