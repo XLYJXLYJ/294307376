@@ -536,7 +536,7 @@ IDE_Morph.prototype.snapMenu = function () {
     menu.addLine();
     menu.addItem('ZERONERobot website',
         function () {
-            window.open('https://www.manykit.com/zeronerobot', 'BianChengWanWebsite');
+            window.open('https://www.manykit.com/codeplay', 'BianChengWanWebsite');
         }
     );
 
@@ -1366,7 +1366,7 @@ IDE_Morph.prototype.cloudMenu = function () {
         menu.addItem(
             'Singup From ManyKit',
             function () {
-                window.open('https://www.manykit.com/zeronerobot', 'BianChengWanWebsite');
+                window.open('https://www.manykit.com/codeplay', 'BianChengWanWebsite');
             }
         );
     } else {
@@ -2285,7 +2285,7 @@ IDE_Morph.prototype.openIn = function (world) {
             // $('#demoxml').html(1);
             demoxml = location.hash.substr(37, 5)
             demouser = location.hash.substr(20, 4)
-            document.getElementById("world").src='https://www.manykit.com/zeronerobot/static/snap/playsnap.html#present:Username=Lynn&ProjectName='+demoxml;
+            document.getElementById("world").src='https://www.manykit.com/codeplay/static/snap/playsnap.html#present:Username=Lynn&ProjectName='+demoxml;
             document.getElementById("spanid").innerHTML=demoxml;
             axios.post('/res/getfile',{
                 id:demoxml,

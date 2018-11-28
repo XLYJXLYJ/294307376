@@ -90,9 +90,11 @@
                     <div class="qrsharetext">
                         <!-- <button @click="shareVideo">全屏播放</button> -->
                         <router-link to="/Share" target="_blank"><button>全屏播放</button></router-link>
+         
                         <!-- <p>or</p> -->
                         <span>扫码在手机上玩</span>
                     </div>
+                    <a href="https://www.manykit.com/public/snap/pxsnapplayer.html#ProjectName=137" target="_blank"><button>手机播放</button></a>
                 </div>
             </div>
         </div> 

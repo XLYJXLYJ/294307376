@@ -172,7 +172,7 @@ if(location.hash.substr(0, 6) === '#embedmode:'){
             // $('#demoxml').html(1);
             demoxml = location.hash.substr(35, 5)
             demouser = location.hash.substr(18, 4)
-            document.getElementById("world").src='https://www.manykit.com/zeronerobot/static/snap/playsnap.html#present:Username=Lynn&ProjectName='+demoxml;
+            document.getElementById("world").src='https://www.manykit.com/codeplay/static/snap/playsnap.html#present:Username=Lynn&ProjectName='+demoxml;
             document.getElementById("spanid").innerHTML=demoxml;
             axios.post('/res/getfile',{
                 id:demoxml,

@@ -108,11 +108,6 @@ IDE_Morph.prototype.openIn = function (world) {
         //location.hash = "#embedmode:";
         if (location.hash.substr(0, 11) === '#embedmode:')
         {
-            dict = myself.cloud.parseDict(location.hash.substr(11));
-            dict.embedMode = true;
-            //dict.hideControls = true;
-            applyFlags(dict); 
-
             // myself.showMessage('Fetching project\nfrom the cloud...');
             var demoxml
             var demouser
@@ -128,13 +123,13 @@ IDE_Morph.prototype.openIn = function (world) {
             .then(function(response) { 
                 var namexml = response.data.data.name;
                 var titlexml = response.data.data.title;
-                document.getElementById("demouser").innerHTML=namexml;
-                document.getElementById("demoxml").innerHTML=titlexml;
+                // document.getElementById("demouser").innerHTML=namexml;
+                // document.getElementById("demoxml").innerHTML=titlexml;
             })
 
             var playerresultxml = new Promise((resolve,reject) =>{
                 axios.post('/res/getfile',{
-                    id:demoxml,
+                    id:152,
                 })
                 .then(function(response) { 
                     resolve(response.data)
@@ -162,10 +157,10 @@ IDE_Morph.prototype.openIn = function (world) {
                         myself.toggleAppMode(true)
                     },
                     function () {
-                        myself.shield.destroy();
-                        myself.shield = null;
                         msg.destroy();
-                        // applyFlags(dict);
+                        dict = myself.cloud.parseDict(location.hash.substr(11));
+                        dict.embedMode = true;
+                        applyFlags(dict); 
                     }
                 ]);
             }
