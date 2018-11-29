@@ -11,7 +11,7 @@
                 <div>
                     <router-link to="/User">
                         <img class="cat01" :src="'data:image/png;base64,'+imgBuffer" alt="" @click="lookusersdes" v-show="videoimg01">
-                        <img class="cat01" src="static/localpic.png" alt="" @click="lookusersdes" v-show="videoimg02">
+                        <img class="cat01" src="static/images/localpic.png" alt="" @click="lookusersdes" v-show="videoimg02">
                         <p class="four" @click="lookusersdes">{{list.name}}</p>
                     </router-link>
                     <div :class='{"jia":!isAttention,"jia1":isAttention}' @click="jia"></div>
@@ -94,7 +94,7 @@
                         <!-- <p>or</p> -->
                         <span>扫码在手机上玩</span>
                     </div>
-                    <a href="https://www.manykit.com/public/snap/pxsnapplayer.html#ProjectName=137" target="_blank"><button>手机播放</button></a>
+                    <a :href='"https://www.manykit.com/zeronerobot/static/snap/manykit/mobile/pxsnapplayer.html#ProjectName="+demoid' target="_blank"><button>手机播放</button></a>
                 </div>
             </div>
         </div> 
@@ -222,7 +222,7 @@ export default{
                 sessionStorage.authid= response.data.data.authid//赋值全局的作者名称
                 this.authid= response.data.data.authid//赋值video的作者名称
                 this.demoid = sessionStorage.id 
-                this.bannerUrl = 'https://www.manykit.com/public/snap/pxsnapplayer.html#ProjectName='+this.$store.state.shareid
+                this.bannerUrl = 'https://www.manykit.com/zeronerobot/static/snap/manykit/mobile/pxsnapplayer.html#ProjectName'+this.$store.state.shareid
                 //  this.bannerUrl = 'localhost:8080/static/snap/playersharesnap.html#present:Username=10004&ProjectName=20'
                 sessionStorage.sharenameid=this.authid
                 sessionStorage.sharedesid=this.$store.state.shareid

@@ -31,7 +31,7 @@
     data() {
       return {
         labelPosition: 'right',
-        imageUrl:'static/localpic.png',//静态图片
+        imageUrl:'static/images/localpic.png',//静态图片
         imageUrl01:'',//用户自选的图片
         userpic:'',//是否显示用户选择的图片
         localpic:'',//是否选择本地图片

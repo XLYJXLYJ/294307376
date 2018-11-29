@@ -8,7 +8,7 @@ IDE_Morph.prototype.createLogo = function () {
     }
 
     this.logo = new Morph();
-    this.logo.texture = 'manykit/bianchengwan.ico'; // Overriden
+    //this.logo.texture = 'manykit/bianchengwan.ico'; // Overriden
     this.logo.drawNew = function () {
         this.image = newCanvas(this.extent());
         var context = this.image.getContext('2d'),

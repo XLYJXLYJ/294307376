@@ -2271,36 +2271,26 @@ IDE_Morph.prototype.openIn = function (world) {
     function interpretUrlAnchors() {
         var dict, idx;
 
-        // location.hash = "#embedmode:";
+        //location.hash = "#embedmode:";
         if (location.hash.substr(0, 11) === '#embedmode:')
         {
-            this.shield = new Morph();
-            this.shield.color = this.color;
-            this.shield.setExtent(this.parent.extent());
-            this.parent.add(this.shield);
-            myself.showMessage('Fetching project\nfrom the cloud...');
+
+
+            // myself.showMessage('Fetching project\nfrom the cloud...');
             var demoxml
             var demouser
             // demoxml = location.hash.substr(36, 5)
             // $('#demoxml').html(1);
-            demoxml = location.hash.substr(37, 5)
-            demouser = location.hash.substr(20, 4)
-            document.getElementById("world").src='https://www.manykit.com/codeplay/static/snap/playsnap.html#present:Username=Lynn&ProjectName='+demoxml;
-            document.getElementById("spanid").innerHTML=demoxml;
+            demoxml = location.hash.substr(36, 5)
+            demouser = location.hash.substr(18, 5)
+
             axios.post('/res/getfile',{
-                id:demoxml,
+                id:152,
                 state:3
             })
             .then(function(response) { 
                 var namexml = response.data.data.name;
                 var titlexml = response.data.data.title;
-                var imgbuffer = response.data.data.imgBuffer;
-                console.log(response.data)
-                if(imgbuffer==null){
-                    document.getElementById("demoimg").src = './localpic.png'
-                }else{
-                    document.getElementById("demoimg").src = "data:image/png;base64,"+imgbuffer;
-                }
                 document.getElementById("demouser").innerHTML=namexml;
                 document.getElementById("demoxml").innerHTML=titlexml;
             })
@@ -2309,14 +2299,14 @@ IDE_Morph.prototype.openIn = function (world) {
                 axios.post('/res/getfile',{
                     id:demoxml,
                 })
-                .then(function(res) { 
-                    resolve(res.data)
+                .then(function(response) { 
+                    resolve(response.data)
                     // console.log(response.data)
                 })
             });
             playerresultxml.then(function (projectData) {
                 var msg;
-
+                
                 // alert(projectData)
                 myself.nextSteps([
                     function () {
@@ -2337,19 +2327,12 @@ IDE_Morph.prototype.openIn = function (world) {
                     function () {
                         myself.shield.destroy();
                         myself.shield = null;
-                        dict = myself.cloud.parseDict(location.hash.substr(9));
-                        dict.embedMode = true;
-                        // dict.hideControls = true;
                         msg.destroy();
-                        applyFlags(dict);
+                        // applyFlags(dict);
                     }
                 ]);
             }
         ) 
-        // dict = myself.cloud.parseDict(location.hash.substr(11));
-        // dict.embedMode = true;
-        // dict.hideControls = true;
-        // applyFlags(dict); 
         }
         else if (location.hash.substr(0, 6) === '#open:') {
             hash = location.hash.substr(6);
@@ -2393,12 +2376,6 @@ IDE_Morph.prototype.openIn = function (world) {
             }
             applyFlags(myself.cloud.parseDict(location.hash.substr(5)));
         } else if (location.hash.substr(0, 9) === '#present:') {
-
-            dict = myself.cloud.parseDict(location.hash.substr(9));
-            dict.embedMode = true;
-            dict.hideControls = true;
-            applyFlags(dict); 
-
             this.shield = new Morph();
             this.shield.color = this.color;
             this.shield.setExtent(this.parent.extent());

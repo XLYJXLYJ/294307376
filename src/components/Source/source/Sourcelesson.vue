@@ -115,7 +115,7 @@ export default{
             if(i=='png'){
                 return "zeronerobot"+j;
             }else{
-                return 'static/musicbg.png';
+                return 'static/images/musicbg.png';
             }
         },
 

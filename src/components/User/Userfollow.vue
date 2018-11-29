@@ -82,7 +82,7 @@ export default{
                 this.sharebg=true
             }else{
                 if(!this.list.imgBuffer){
-                    this.imgBuffer='static/localpic.png'
+                    this.imgBuffer='static/images/localpic.png'
                 }else{
                     this.imgBuffer=this.list.imgBuffer
                 }

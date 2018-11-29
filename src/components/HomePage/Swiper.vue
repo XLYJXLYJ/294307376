@@ -3,8 +3,8 @@
         <div class="container09">
             <!-- <el-carousel :interval="3000">
                 <el-carousel-item v-for="(item,index) in DataImg" :key="index"> -->
-                    <img class="bottom-img" src="static/1.png" alt="">
-                    <img class="one-img" src="static/left-up.png" alt="">
+                    <img class="bottom-img" src="static/images/1.png" alt="">
+                    <img class="one-img" src="static/images/left-up.png" alt="">
                     <p class="ot1">一台小而强大的单片机</p>
                     <p class="ot2">非常适合用来学习编程，物联网，机器人</p>
                     <p class="ot3">从零开始进入科技的世界</p>
@@ -13,7 +13,7 @@
                     <p class="ot4">ZODuino是非常适合学习C语言的平台，C语言是计算机语言的基础，是每一个学习</p>
                     <p class="ot5">工科的学生必须掌握的语言。使用ZODUINO，在开发机器人的过程中学习C语言，将</p>
                     <p class="ot6">更加直观，有趣，获得一种全新的学习体验！</p>
-                    <img class="two-img" src="static/right.png" alt="">
+                    <img class="two-img" src="static/images/right.png" alt="">
                 <!-- </el-carousel-item>
             </el-carousel> -->
         </div>
@@ -75,7 +75,7 @@
 <script>
 import Vue from 'vue'
     const DataImg =[//默认图片
-        {url: 'static/1.png'},
+        {url: 'static/images/1.png'},
         // {url: 'static/2.png'},
         // {url: 'static/3.png'}, 
     ]

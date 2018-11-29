@@ -25,7 +25,7 @@ import NodeRSA from 'node-rsa'
     data() {
       return {
         labelPosition: 'right',
-        imageUrl:'static/localpic.png',//默认图片
+        imageUrl:'static/images/localpic.png',//默认图片
         imageUrl02:'',//获取后台显示用户自选图片
         userpic:'',//用户
         localpic:'',//本地图片

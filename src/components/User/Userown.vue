@@ -3,7 +3,7 @@
         <div>
             <div>
                 <img class="head" :src="'data:image/png;base64,'+userimageUrl" alt="" v-show="userownimg01">
-                <img class="head"  src="static/localpic.png" alt="" v-show="userownimg02">
+                <img class="head"  src="static/images/localpic.png" alt="" v-show="userownimg02">
                 <p class="name">{{username}}</p>
                 <p class="atten">编程达人</p>
             </div>
