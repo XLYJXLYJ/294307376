@@ -222,7 +222,7 @@ export default{
                 sessionStorage.authid= response.data.data.authid//赋值全局的作者名称
                 this.authid= response.data.data.authid//赋值video的作者名称
                 this.demoid = sessionStorage.id 
-                this.bannerUrl = 'https://www.manykit.com/zeronerobot/static/snap/manykit/mobile/pxsnapplayer.html#ProjectName'+this.$store.state.shareid
+                this.bannerUrl = 'https://www.manykit.com/zeronerobot/static/snap/manykit/mobile/pxsnapplayer.html#ProjectName='+this.$store.state.shareid
                 //  this.bannerUrl = 'localhost:8080/static/snap/playersharesnap.html#present:Username=10004&ProjectName=20'
                 sessionStorage.sharenameid=this.authid
                 sessionStorage.sharedesid=this.$store.state.shareid
