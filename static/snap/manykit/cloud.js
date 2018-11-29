@@ -161,6 +161,7 @@ IDE_Morph.prototype.openIn = function (world) {
                         dict = myself.cloud.parseDict(location.hash.substr(11));
                         dict.embedMode = true;
                         applyFlags(dict); 
+                        sessionStorage.load=1
                     }
                 ]);
             }
@@ -256,7 +257,8 @@ IDE_Morph.prototype.openIn = function (world) {
 							// myself.shield.destroy();
 							myself.shield = null;
 							// msg.destroy();
-							myself.toggleAppMode(false);
+                            myself.toggleAppMode(false);
+                            sessionStorage.load=1
 							}
 						]);
 					}
@@ -277,12 +279,14 @@ IDE_Morph.prototype.openIn = function (world) {
 				success:function(data){
 					clouddata=data.responseText;
 					myself.droppedText(clouddata);
-					sessionStorage.snapdemoid='';
+                    sessionStorage.snapdemoid='';
+                    sessionStorage.load=1
 				},
 				error:function(data){
 					clouddata=data.responseText;
 					myself.droppedText(clouddata);
-					sessionStorage.snapdemoid='';
+                    sessionStorage.snapdemoid='';
+                    sessionStorage.load=1
 				},
 			})
         } else if (location.hash.substr(0, 7) === '#cloud:') {

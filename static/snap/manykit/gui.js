@@ -2342,6 +2342,7 @@ IDE_Morph.prototype.openIn = function (world) {
                         // dict.hideControls = true;
                         msg.destroy();
                         applyFlags(dict);
+                        sessionStorage.load==1
                     }
                 ]);
             }
